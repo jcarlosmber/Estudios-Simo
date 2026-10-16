@@ -1,0 +1,1026 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#1e293b">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="manifest" href="manifest.webmanifest">
+  <title>SIMO Prep - Entrenador CNSC / DIAN</title>
+  <link rel="stylesheet" href="sidepanel.css">
+</head>
+<body>
+  <!-- Encabezado Principal con Pomodoro Integrado -->
+  <header class="header-bar">
+    <div class="brand-wrapper">
+      <img src="icons/icon48.png" alt="Logo SIMO DIAN" style="width: 38px; height: 38px; border-radius: 9px; box-shadow: 0 2px 10px rgba(37, 99, 235, 0.35); flex-shrink: 0;">
+      <div>
+        <div class="brand-title">SIMO Prep</div>
+        <div class="brand-subtitle">Gestor III • 2676</div>
+      </div>
+    </div>
+
+    <div style="display: flex; align-items: center; gap: 8px;">
+      <!-- Botón de Alternancia de Sonido -->
+      <button id="btnSoundToggle" style="background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.15); color: #f8fafc; width: 34px; height: 34px; border-radius: 8px; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 16px; transition: all 0.2s;" title="Sonido: Activado (Clic para silenciar)">
+        🔊
+      </button>
+
+      <!-- Botón de Sincronización en la Nube / Servidor Propio -->
+      <button id="btnOpenCloudSync" style="background: rgba(56, 189, 248, 0.12); border: 1px solid rgba(56, 189, 248, 0.35); color: #38bdf8; width: 34px; height: 34px; border-radius: 8px; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 16px; transition: all 0.2s;" title="Sincronizar Progreso con tu Servidor">
+        ☁️
+      </button>
+
+      <!-- Widget Pomodoro 25/5 -->
+      <div id="pomodoroWidget" class="pomodoro-pill" title="Clic para Iniciar / Pausar Pomodoro">
+        <div class="pomodoro-dot"></div>
+        <span id="pomodoroLabel" style="font-size: 12px; font-weight: 700; text-transform: uppercase;">Estudio</span>
+        <span id="pomodoroClock" class="pomodoro-time">25:00</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Barra de Cargo Activo / Enfoque OPEC -->
+  <section id="jobProfileBar" style="background: linear-gradient(90deg, #1e293b, #0b1120); border-bottom: 1px solid rgba(255,255,255,0.08); padding: 10px 18px; display: flex; align-items: center; justify-content: space-between; gap: 10px;">
+    <div style="display: flex; flex-direction: column; gap: 3px; overflow: hidden;">
+      <div style="display: flex; align-items: center; gap: 8px;">
+        <span style="font-size: 12px; background-color: rgba(245, 158, 11, 0.2); color: #f59e0b; padding: 2px 8px; border-radius: 4px; font-weight: 800; border: 1px solid rgba(245, 158, 11, 0.4);">
+          OPEC 242703
+        </span>
+        <span id="jobLevelBadge" style="font-size: 13px; color: #38bdf8; font-weight: 700;">
+          GESTOR III • PROFESIONAL
+        </span>
+      </div>
+      <div id="jobTitleDisplay" style="font-size: 14px; font-weight: 700; color: #f8fafc; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 250px;">
+        Ficha FT-TAH-1824 | DIAN 2676
+      </div>
+    </div>
+    <div style="display: flex; align-items: center; gap: 6px; flex-wrap: wrap;">
+      <button id="btnOpenTipsModal" style="background-color: rgba(245, 158, 11, 0.15); border: 1px solid rgba(245, 158, 11, 0.4); color: #f59e0b; padding: 6px 10px; border-radius: 6px; font-size: 12px; font-weight: 700; cursor: pointer; white-space: nowrap;" title="Banco de 41 Claves Maestras">
+        💡 41 Claves PJS
+      </button>
+      <button id="btnOpenLecturaModal" style="background-color: rgba(56, 189, 248, 0.15); border: 1px solid rgba(56, 189, 248, 0.4); color: #38bdf8; padding: 6px 10px; border-radius: 6px; font-size: 12px; font-weight: 700; cursor: pointer; white-space: nowrap;" title="Técnicas de Comprensión Lectora para el Examen">
+        📖 Lectura Crítica
+      </button>
+      <button id="btnRandomTipFlash" style="background-color: rgba(129, 140, 248, 0.15); border: 1px solid rgba(129, 140, 248, 0.4); color: #818cf8; padding: 6px 10px; border-radius: 6px; font-size: 12px; font-weight: 700; cursor: pointer; white-space: nowrap;" title="Mostrar un Tip Flash Aleatorio">
+        🎲 Tip Flash
+      </button>
+      <span id="streakPill" class="stats-pill" style="font-size: 13px; padding: 4px 10px; border-radius: 12px; background: rgba(245,158,11,0.15); color: #f59e0b; font-weight: 700; border: 1px solid rgba(245,158,11,0.3);">
+        🔥 <span id="streakCount">1</span> d
+      </span>
+      <button id="btnOpenJobModal" style="background-color: rgba(56, 189, 248, 0.15); border: 1px solid rgba(56, 189, 248, 0.4); color: #38bdf8; padding: 6px 10px; border-radius: 6px; font-size: 12px; font-weight: 700; cursor: pointer; white-space: nowrap;">
+        ⚙️ Perfil
+      </button>
+    </div>
+  </section>
+
+  <!-- Pestañas de Navegación -->
+  <nav class="tabs-nav">
+    <button class="tab-btn active" data-tab="practice">
+      <span>🎯</span>
+      <span>Práctica</span>
+    </button>
+    <button class="tab-btn" data-tab="speedDrill">
+      <span>⚡</span>
+      <span>Speed Drill</span>
+    </button>
+    <button class="tab-btn" data-tab="mnemotecnias">
+      <span>💡</span>
+      <span>Fórmulas</span>
+    </button>
+    <button class="tab-btn" data-tab="srs">
+      <span>🧠</span>
+      <span>SRS Flash</span>
+    </button>
+    <button class="tab-btn" data-tab="simulacro">
+      <span>⏱️</span>
+      <span>Simulacro</span>
+    </button>
+    <button class="tab-btn" data-tab="stats">
+      <span>📊</span>
+      <span>Métricas</span>
+    </button>
+    <button class="tab-btn" data-tab="jobFocus">
+      <span>📋</span>
+      <span>Cargo</span>
+    </button>
+  </nav>
+
+  <!-- Filtro por Ejes Temáticos en Práctica con Modo Intercalado -->
+  <div id="practiceFilterBar" class="filter-bar-container">
+    <span style="font-size: 12px; color: var(--text-secondary); white-space: nowrap;">Modo / Eje:</span>
+    <select id="selectEjeFilter" class="filter-eje-select">
+      <option value="interleaving">🌪️ Modo Intercalado (Interleaving - Mezcla Mixta)</option>
+      <option value="todos">⚡ Todos los Ejes de la DIAN (100 Casos)</option>
+      <option value="tributario">📊 Procedimiento Tributario y Fiscalización (24)</option>
+      <option value="aduanero">🚢 Régimen Aduanero y Comercio Exterior (15)</option>
+      <option value="comportamentales">🤝 Competencias Comportamentales Gestor III (10)</option>
+      <option value="integridad">⭐ Valores de Integridad y CGD (9)</option>
+      <option value="cpaca">📜 Derecho Administrativo y CPACA (7)</option>
+      <option value="cobranzas">⚖️ Cobro Coactivo y Títulos Ejecutivos (6)</option>
+      <option value="contratacion">📄 Contratación Estatal y Convenios (6)</option>
+      <option value="servicio">👥 Derecho de Petición y Atención al Ciudadano (5)</option>
+      <option value="cambiario">💱 Régimen Cambiario y Lavado de Activos (4)</option>
+      <option value="control_interno">🛡️ Control Interno y 3 Líneas de Defensa (3)</option>
+      <option value="misionalidad">🏛️ Misionalidad y Estructura DIAN (3)</option>
+      <option value="mipg">📐 Modelo MIPG y Desempeño FURAG (3)</option>
+      <option value="indicadores">📈 Indicadores de Gestión (2)</option>
+      <option value="razonamiento">🧠 Razonamiento Analítico (2)</option>
+      <option value="rendicion_cuentas">📢 Rendición de Cuentas (1)</option>
+    </select>
+  </div>
+
+  <!-- Contenedor Principal Dinámico -->
+  <main class="main-container">
+
+    <!-- 1. PESTAÑA: PRÁCTICA LIBRE -->
+    <section id="tab-practice" class="tab-content">
+      <div class="question-card">
+        <div class="tags-row">
+          <span id="qBadgeLevel" class="badge badge-level">GESTOR III</span>
+          <span id="qBadgeType" class="badge badge-type">Funcional</span>
+          <span id="qBadgeTopic" class="badge badge-topic">MIPG</span>
+        </div>
+
+        <!-- Banner de Escena Inmersiva para Casos Clave -->
+        <div id="qSceneBannerContainer" style="position: relative; border-radius: 8px; overflow: hidden; max-height: 140px; border: 1px solid var(--border-color); display: flex;">
+          <img id="qSceneBannerImg" src="assets/escena_aduanera.jpg" alt="Escena de Control Fiscal DIAN" style="width: 100%; height: 140px; object-fit: cover; filter: brightness(0.9);">
+          <div style="position: absolute; bottom: 0; inset-inline: 0; background: linear-gradient(0deg, rgba(11,17,32,0.95), transparent); padding: 6px 12px; font-size: 11px; color: #fef08a; font-weight: 700;">
+            📸 Contexto Visual: Inspección y Control Fiscal en Zona Primaria
+          </div>
+        </div>
+
+        <div class="case-box">
+          <div class="case-heading">Caso Situacional (Pruebas Escritas DIAN)</div>
+          <div id="qCaseText" class="case-text">Cargando caso...</div>
+        </div>
+
+        <div id="qEnunciado" class="question-enunciado">
+          Cargando enunciado...
+        </div>
+
+        <div id="optionsContainer" class="options-list">
+          <!-- Opciones A, B, C -->
+        </div>
+
+        <!-- Botón Cacería de Distractores -->
+        <button id="btnDistractorHunt" class="btn-secondary" style="font-size: 13px; font-weight: 700; padding: 8px 12px; border-color: rgba(245, 158, 11, 0.4); color: #f59e0b; width: 100%; display: flex; align-items: center; justify-content: center; gap: 6px; margin-top: 2px;">
+          🕵️ Cacería de Distractores: ¿Por qué fallan las otras opciones?
+        </button>
+        <div id="distractorHuntBox" style="display: none; background: rgba(11, 17, 32, 0.85); border: 1px dashed rgba(245, 158, 11, 0.5); border-radius: 8px; padding: 12px; font-size: 13px; color: #fef08a; line-height: 1.55;">
+          <!-- Pistas socráticas -->
+        </div>
+
+        <div class="actions-row">
+          <button id="btnConfirmAnswer" class="btn-primary" disabled>
+            Confirmar Respuesta
+          </button>
+          <button id="btnNextQuestion" class="btn-secondary" style="display: none;">
+            Siguiente Caso ➔
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- PESTAÑA: SPEED DRILL (MICROAPRENDIZAJE V/F CON TEMPORIZADOR) -->
+    <section id="tab-speedDrill" class="tab-content" style="display: none; flex-direction: column; gap: 14px;">
+      <div style="background-color: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 18px; display: flex; flex-direction: column; gap: 14px;">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <div style="display: flex; align-items: center; gap: 6px;">
+            <span style="font-size: 18px;">⚡</span>
+            <span style="font-size: 15px; font-weight: 800; color: #f8fafc;">Speed Drill Relámpago</span>
+          </div>
+          <div style="background: rgba(245, 158, 11, 0.15); border: 1px solid rgba(245, 158, 11, 0.4); padding: 4px 12px; border-radius: 20px; font-size: 13px; font-weight: 800; color: var(--accent-gold);">
+            🔥 Racha: <span id="speedDrillStreak">0</span>
+          </div>
+        </div>
+
+        <div style="display: flex; justify-content: space-between; align-items: center; background: rgba(11,17,32,0.85); padding: 8px 12px; border-radius: 6px; border: 1px solid var(--border-color);">
+          <span id="speedDrillTopicBadge" style="font-size: 13px; color: var(--accent-blue); font-weight: 700;">Tema Legal</span>
+          <span id="speedDrillTimer" style="font-size: 14px; font-weight: 800; color: #fca5a5; font-family: monospace;">⏳ 15s</span>
+        </div>
+
+        <div class="case-box" style="border-left-color: var(--accent-blue);">
+          <div style="font-size: 12px; font-weight: 800; color: var(--accent-blue); text-transform: uppercase; margin-bottom: 6px;">Afirmación a Evaluar</div>
+          <div id="speedDrillStatement" style="font-size: 15px; color: #ffffff; line-height: 1.6; font-weight: 600;">
+            Cargando afirmación...
+          </div>
+        </div>
+
+        <!-- Botones Verdadero / Falso -->
+        <div style="display: flex; gap: 10px;">
+          <button id="btnSpeedTrue" class="btn-primary" style="background: linear-gradient(135deg, #059669, #10b981); font-size: 15px; padding: 14px; flex: 1;">
+            🟢 VERDADERO
+          </button>
+          <button id="btnSpeedFalse" class="btn-primary" style="background: linear-gradient(135deg, #dc2626, #ef4444); font-size: 15px; padding: 14px; flex: 1;">
+            🔴 FALSO
+          </button>
+        </div>
+
+        <!-- Feedback inmediato -->
+        <div id="speedDrillFeedback" style="display: none; flex-direction: column; gap: 8px; padding: 14px; border-radius: 8px;">
+          <div id="speedDrillVerdict" style="font-size: 15px; font-weight: 800;"></div>
+          <div id="speedDrillExplanation" style="font-size: 13px; line-height: 1.55; color: #e2e8f0;"></div>
+          <button id="btnNextSpeedDrill" class="btn-secondary" style="margin-top: 6px; font-size: 14px; font-weight: 700;">
+            Siguiente Afirmación ➔
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- PESTAÑA: MNEMOTECNIAS Y FÓRMULAS DE MEMORIA RÁPIDA -->
+    <section id="tab-mnemotecnias" class="tab-content" style="display: none; flex-direction: column; gap: 16px;">
+      <div style="display: flex; justify-content: space-between; align-items: center;">
+        <div>
+          <h3 style="font-size: 16px; font-weight: 800; color: var(--text-primary);">Fórmulas e Infografías Visuales</h3>
+          <p style="font-size: 13px; color: var(--text-secondary);">Anclas de memoria y mapas conceptuales del concurso</p>
+        </div>
+      </div>
+
+      <!-- Galería de Infografías Clave -->
+      <div style="display: flex; flex-direction: column; gap: 12px;">
+        <div style="font-size: 13px; font-weight: 800; color: var(--accent-gold); text-transform: uppercase;">
+          🖼️ Infografías de Estudio Visual
+        </div>
+
+        <div style="background-color: var(--bg-surface); border: 1px solid var(--border-color); border-radius: 12px; overflow: hidden; box-shadow: var(--shadow-sm);">
+          <a href="assets/infografia_lineas_defensa.jpg" target="_blank" style="display: block; text-decoration: none;">
+            <img src="assets/infografia_lineas_defensa.jpg" alt="Las Tres Líneas de Defensa" style="width: 100%; height: auto; display: block; cursor: pointer;" title="Clic para ampliar en nueva pestaña">
+          </a>
+          <div style="padding: 10px 12px; display: flex; justify-content: space-between; align-items: center;">
+            <div>
+              <div style="font-size: 13px; font-weight: 800; color: #f8fafc;">Fortaleza de las 3 Líneas de Defensa</div>
+              <div style="font-size: 11px; color: var(--text-secondary);">Sistema de Control Interno (Ley 87 de 1993 y MECI)</div>
+            </div>
+            <a href="assets/infografia_lineas_defensa.jpg" target="_blank" style="font-size: 11px; color: var(--accent-blue); text-decoration: none; font-weight: 700; border: 1px solid rgba(56,189,248,0.4); padding: 4px 8px; border-radius: 6px;">🔍 Ampliar</a>
+          </div>
+        </div>
+
+        <div style="background-color: var(--bg-surface); border: 1px solid var(--border-color); border-radius: 12px; overflow: hidden; box-shadow: var(--shadow-sm);">
+          <a href="assets/infografia_mipg.jpg" target="_blank" style="display: block; text-decoration: none;">
+            <img src="assets/infografia_mipg.jpg" alt="7 Dimensiones del MIPG" style="width: 100%; height: auto; display: block; cursor: pointer;" title="Clic para ampliar en nueva pestaña">
+          </a>
+          <div style="padding: 10px 12px; display: flex; justify-content: space-between; align-items: center;">
+            <div>
+              <div style="font-size: 13px; font-weight: 800; color: #f8fafc;">El Corazón y las 7 Dimensiones del MIPG</div>
+              <div style="font-size: 11px; color: var(--text-secondary);">Talento Humano articulando las políticas de gestión</div>
+            </div>
+            <a href="assets/infografia_mipg.jpg" target="_blank" style="font-size: 11px; color: var(--accent-blue); text-decoration: none; font-weight: 700; border: 1px solid rgba(56,189,248,0.4); padding: 4px 8px; border-radius: 6px;">🔍 Ampliar</a>
+          </div>
+        </div>
+      </div>
+
+      <div id="mnemotecniasContainer" style="display: flex; flex-direction: column; gap: 12px;">
+        <!-- Tarjetas de mnemotecnias -->
+      </div>
+    </section>
+
+    <!-- PESTAÑA: MI CARGO Y FUNCIONES (ENFOQUE OPEC 242703) -->
+    <section id="tab-jobFocus" class="tab-content" style="display: none;">
+      <div style="background-color: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 14px; display: flex; flex-direction: column; gap: 12px;">
+        <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+          <div>
+            <h3 id="focusCardTitle" style="font-size: 14px; font-weight: 800; color: #f8fafc;">GESTOR III (OPEC 242703)</h3>
+            <p id="focusCardEntity" style="font-size: 11px; color: #94a3b8; margin-top: 2px;">DIAN 2676 • Ficha FT-TAH-1824</p>
+          </div>
+          <button id="btnEditJobFromCard" style="background: none; border: 1px solid var(--border-color); color: var(--accent-blue); padding: 4px 8px; border-radius: 6px; font-size: 10px; font-weight: 700; cursor: pointer;">
+            Editar OPEC
+          </button>
+        </div>
+
+        <div style="background-color: rgba(11, 17, 32, 0.6); border-left: 3px solid var(--accent-blue); padding: 8px 10px; border-radius: 4px;">
+          <div style="font-size: 10px; font-weight: 800; color: var(--accent-blue); text-transform: uppercase; margin-bottom: 2px;">
+            Propósito Principal del Empleo
+          </div>
+          <div id="focusPurposeText" style="font-size: 11px; line-height: 1.45; color: #cbd5e1;">
+            Cargando propósito...
+          </div>
+        </div>
+
+        <div>
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+            <div style="font-size: 11px; font-weight: 800; color: var(--text-primary); text-transform: uppercase;">
+              Funciones Esenciales del Cargo
+            </div>
+            <span id="functionsCountBadge" style="font-size: 10px; background-color: var(--bg-card); color: var(--text-secondary); padding: 2px 6px; border-radius: 10px;">
+              5 funciones
+            </span>
+          </div>
+          <div id="functionsListContainer" style="display: flex; flex-direction: column; gap: 6px;">
+            <!-- Funciones -->
+          </div>
+        </div>
+
+        <button id="btnGenerateForJob" style="background: linear-gradient(135deg, #6366f1, #38bdf8); color: #0b1120; font-weight: 800; border: none; padding: 10px; border-radius: 8px; font-size: 12px; cursor: pointer;">
+          🚀 Practicar Caso Enfocado en Mi Cargo
+        </button>
+      </div>
+    </section>
+
+    <!-- 3. PESTAÑA: FLASHCARDS INTERACTIVAS SRS (REPETICIÓN ESPACIADA + NOTAS FEYNMAN) -->
+    <section id="tab-srs" class="tab-content" style="display: none;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+        <div>
+          <h3 style="font-size: 14px; font-weight: 800; color: var(--text-primary);">Tarjetas de Repaso SRS</h3>
+          <p style="font-size: 11px; color: var(--text-secondary);">Cuaderno de errores con método Feynman</p>
+        </div>
+        <span id="srsPendingBadge" style="font-size: 11px; background-color: rgba(239, 68, 68, 0.2); color: #fca5a5; padding: 3px 8px; border-radius: 12px; font-weight: 700;">
+          0 pendientes
+        </span>
+      </div>
+
+      <div id="srsListContainer" style="display: flex; flex-direction: column; gap: 10px;">
+        <!-- Tarjetas dinámicas con notas Feynman -->
+      </div>
+    </section>
+
+    <!-- 4. PESTAÑA: SIMULACRO CRONOMETRADO TIPO DIAN 2676 -->
+    <section id="tab-simulacro" class="tab-content" style="display: none;">
+      <div id="simulacroSetup" style="background-color: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 16px; display: flex; flex-direction: column; gap: 12px;">
+        <h3 style="font-size: 15px; font-weight: 800; color: var(--text-primary);">Simulacro Tipo Examen DIAN 2676</h3>
+        <p style="font-size: 12px; color: var(--text-secondary); line-height: 1.5;">
+          Evalúa tu velocidad y precisión. Tendrás <strong>2 minutos (120 segundos) por pregunta</strong>. Recuerda que la prueba de <strong>Competencias Funcionales es ELIMINATORIA (65%)</strong> y exige un puntaje mínimo de <strong>70.00 puntos</strong>.
+        </p>
+        <div style="background-color: rgba(11, 17, 32, 0.6); padding: 10px; border-radius: var(--radius-sm); border: 1px solid var(--border-color); display: flex; flex-direction: column; gap: 6px;">
+          <div style="font-size: 11px; color: var(--text-secondary); display: flex; justify-content: space-between;">
+            <span>Cantidad de preguntas:</span>
+            <strong style="color: var(--text-primary);">5 casos situacionales</strong>
+          </div>
+          <div style="font-size: 11px; color: var(--text-secondary); display: flex; justify-content: space-between;">
+            <span>Ejes evaluados:</span>
+            <strong style="color: var(--accent-gold);">Funcionales, Comportamentales e Integridad</strong>
+          </div>
+        </div>
+        <button id="btnStartSimulacro" class="btn-primary">
+          Comenzar Simulacro Cronometrado ⏱️
+        </button>
+      </div>
+
+      <div id="simulacroActiveArea" style="display: none; flex-direction: column; gap: 12px;">
+        <div class="timer-bar" style="display: flex; justify-content: space-between; align-items: center; background: rgba(239,68,68,0.15); border: 1px solid rgba(239,68,68,0.3); padding: 8px 12px; border-radius: 8px; color: #fca5a5; font-size: 12px; font-weight: 800;">
+          <span id="simulacroProgressText">Pregunta 1 de 5</span>
+          <span id="simulacroClock">⏳ 02:00</span>
+        </div>
+        <div id="simulacroCardContainer"></div>
+      </div>
+    </section>
+
+    <!-- 5. PESTAÑA: MÉTRICAS REDISEÑADAS Y DASHBOARD COCKPIT -->
+    <section id="tab-stats" class="tab-content" style="display: none;">
+      <div class="metrics-dashboard">
+        
+        <!-- Cockpit Hero: Score Circle y Resumen de Precisión -->
+        <div class="cockpit-hero">
+          <div>
+            <div style="font-size: 11px; color: var(--accent-blue); font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px;">
+              Diagnóstico de Preparación
+            </div>
+            <div id="dashLevelTitle" style="font-size: 15px; font-weight: 800; color: #ffffff; margin-top: 2px;">
+              Nivel de Dominio DIAN
+            </div>
+            <div id="dashSubStatus" style="font-size: 11px; color: #94a3b8; margin-top: 2px;">
+              0 casos respondidos
+            </div>
+          </div>
+
+          <div id="dashScoreCircle" class="cockpit-score-circle" style="--score-pct: 0;">
+            <div class="cockpit-score-inner">
+              <span id="dashAccuracyVal" class="cockpit-score-val">0%</span>
+              <span class="cockpit-score-lbl">Aciertos</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- KPI Grid de Estudio -->
+        <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px;">
+          <div style="background-color: var(--bg-card); padding: 10px; border-radius: 8px; text-align: center; border: 1px solid var(--border-color);">
+            <div style="font-size: 10px; color: var(--text-secondary); text-transform: uppercase;">Respondidas</div>
+            <div id="statTotalAnswered" style="font-size: 18px; font-weight: 800; color: #f8fafc; margin-top: 2px;">0</div>
+          </div>
+          <div style="background-color: var(--bg-card); padding: 10px; border-radius: 8px; text-align: center; border: 1px solid var(--border-color);">
+            <div style="font-size: 10px; color: var(--text-secondary); text-transform: uppercase;">Aciertos</div>
+            <div id="statCorrect" style="font-size: 18px; font-weight: 800; color: var(--accent-green); margin-top: 2px;">0</div>
+          </div>
+          <div style="background-color: var(--bg-card); padding: 10px; border-radius: 8px; text-align: center; border: 1px solid var(--border-color);">
+            <div style="font-size: 10px; color: var(--text-secondary); text-transform: uppercase;">En Repaso</div>
+            <div id="statPendingSRS" style="font-size: 18px; font-weight: 800; color: var(--accent-gold); margin-top: 2px;">0</div>
+          </div>
+        </div>
+
+        <!-- SECCIÓN DE INSIGNIAS DE LOGRO VISUALES (GAMIFICACIÓN) -->
+        <div style="background-color: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 14px; display: flex; flex-direction: column; gap: 10px;">
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <div style="font-size: 13px; font-weight: 800; color: var(--accent-gold); text-transform: uppercase;">
+              🎖️ Insignias de Honor y Mérito
+            </div>
+            <span style="font-size: 11px; color: var(--accent-green); font-weight: 700;">Desbloqueada</span>
+          </div>
+
+          <div style="display: flex; gap: 12px; align-items: center; background: rgba(11, 17, 32, 0.7); border: 1px solid rgba(245, 158, 11, 0.4); border-radius: 10px; padding: 10px 12px;">
+            <img src="assets/insignia_integridad.jpg" alt="Insignia Guardián de la Integridad" style="width: 58px; height: 58px; border-radius: 50%; border: 2px solid #f59e0b; box-shadow: 0 0 12px rgba(245,158,11,0.5); object-fit: cover; flex-shrink: 0;">
+            <div style="display: flex; flex-direction: column; gap: 3px;">
+              <div style="font-size: 13px; font-weight: 800; color: #f8fafc; display: flex; align-items: center; gap: 6px;">
+                <span>Guardián de la Integridad</span>
+                <span id="badgeIntegridadStatus" style="font-size: 10px; background: rgba(16,185,129,0.2); color: #34d399; padding: 1px 6px; border-radius: 4px; border: 1px solid rgba(16,185,129,0.4);">
+                  ⭐ Activa
+                </span>
+              </div>
+              <div style="font-size: 11px; color: #cbd5e1; line-height: 1.4;">
+                Concedida por defender los principios de Honestidad, Diligencia, Respeto y Justicia sin tolerar sobornos ni conflictos de interés.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CALCULADORA DE PONDERACIÓN OFICIAL DIAN 2676 -->
+        <div class="calculator-card">
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <div style="font-size: 12px; font-weight: 800; color: var(--accent-gold); text-transform: uppercase;">
+              🧮 Calculadora Convocatoria DIAN
+            </div>
+            <span id="calcPassBadge" class="pass-badge failed">
+              ⚠️ Umbral 70.00
+            </span>
+          </div>
+
+          <p style="font-size: 11px; color: var(--text-secondary); line-height: 1.35;">
+            Simula tus puntajes esperados con los pesos reales del concurso (Funcionales 65%, Comportamentales 15%, Integridad 10%, Antecedentes 10%):
+          </p>
+
+          <!-- Slider Funcionales (65% Eliminatorio) -->
+          <div class="calc-row">
+            <div class="calc-label-row">
+              <span style="font-weight: 700; color: #f8fafc;">Competencias Funcionales (65%):</span>
+              <strong id="calcFuncVal" style="color: var(--accent-blue);">75 pts</strong>
+            </div>
+            <input type="range" id="sliderFunc" class="calc-slider" min="0" max="100" value="75">
+          </div>
+
+          <!-- Slider Comportamentales (15%) -->
+          <div class="calc-row">
+            <div class="calc-label-row">
+              <span style="font-weight: 700; color: #f8fafc;">Competencias Comportamentales (15%):</span>
+              <strong id="calcCompVal" style="color: #818cf8;">80 pts</strong>
+            </div>
+            <input type="range" id="sliderComp" class="calc-slider" min="0" max="100" value="80">
+          </div>
+
+          <!-- Slider Integridad (10%) -->
+          <div class="calc-row">
+            <div class="calc-label-row">
+              <span style="font-weight: 700; color: #f8fafc;">Prueba de Integridad (10%):</span>
+              <strong id="calcIntegVal" style="color: #34d399;">85 pts</strong>
+            </div>
+            <input type="range" id="sliderInteg" class="calc-slider" min="0" max="100" value="85">
+          </div>
+
+          <!-- Slider Antecedentes (10%) -->
+          <div class="calc-row">
+            <div class="calc-label-row">
+              <span style="font-weight: 700; color: #f8fafc;">Valoración de Antecedentes (10%):</span>
+              <strong id="calcAntecVal" style="color: #cbd5e1;">70 pts</strong>
+            </div>
+            <input type="range" id="sliderAntec" class="calc-slider" min="0" max="100" value="70">
+          </div>
+
+          <!-- Resultado Ponderado Final -->
+          <div style="background-color: rgba(11, 17, 32, 0.8); border: 1px solid rgba(245, 158, 11, 0.4); border-radius: 8px; padding: 12px; display: flex; justify-content: space-between; align-items: center; margin-top: 4px;">
+            <div>
+              <div style="font-size: 10px; color: #f59e0b; font-weight: 800; text-transform: uppercase;">
+                Puntaje Ponderado Proyectado
+              </div>
+              <div id="calcStatusText" style="font-size: 11px; color: #94a3b8;">
+                Supera el umbral eliminatorio
+              </div>
+            </div>
+            <div id="calcTotalScore" style="font-size: 26px; font-weight: 900; color: var(--accent-gold);">
+              76.25
+            </div>
+          </div>
+        </div>
+
+        <!-- Dominio por Ejes Temáticos -->
+        <div style="background-color: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 14px; display: flex; flex-direction: column; gap: 8px;">
+          <h4 style="font-size: 12px; font-weight: 800; color: var(--text-primary); text-transform: uppercase;">
+            📊 Dominio por Componente Oficial
+          </h4>
+          
+          <div class="eje-stat-row">
+            <div style="display: flex; justify-content: space-between; font-size: 11px;">
+              <span>Competencias Funcionales (Eliminatorio 65%)</span>
+              <strong id="statFuncPerc" style="color: var(--accent-blue);">0%</strong>
+            </div>
+            <div style="background-color: #0b1120; height: 6px; border-radius: 3px; overflow: hidden;">
+              <div id="statFuncBar" style="background-color: var(--accent-blue); width: 0%; height: 100%; transition: width 0.3s ease;"></div>
+            </div>
+          </div>
+
+          <div class="eje-stat-row">
+            <div style="display: flex; justify-content: space-between; font-size: 11px;">
+              <span>Competencias Comportamentales (15%)</span>
+              <strong id="statCompPerc" style="color: #818cf8;">0%</strong>
+            </div>
+            <div style="background-color: #0b1120; height: 6px; border-radius: 3px; overflow: hidden;">
+              <div id="statCompBar" style="background-color: #818cf8; width: 0%; height: 100%; transition: width 0.3s ease;"></div>
+            </div>
+          </div>
+
+          <div class="eje-stat-row">
+            <div style="display: flex; justify-content: space-between; font-size: 11px;">
+              <span>Prueba de Integridad (10%)</span>
+              <strong id="statIntegPerc" style="color: var(--accent-green);">0%</strong>
+            </div>
+            <div style="background-color: #0b1120; height: 6px; border-radius: 3px; overflow: hidden;">
+              <div id="statIntegBar" style="background-color: var(--accent-green); width: 0%; height: 100%; transition: width 0.3s ease;"></div>
+            </div>
+          </div>
+        </div>
+
+        <button id="btnResetStats" class="btn-secondary" style="width: 100%;">
+          Reiniciar Historial de Estadísticas
+        </button>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- MODAL: RETROALIMENTACIÓN FORMATIVA -->
+  <div id="feedbackModal" class="modal-overlay">
+    <div class="modal-card" style="max-width: 620px; width: 95%; max-height: 90vh; padding: 24px; gap: 16px;">
+      <div style="display: flex; align-items: center; gap: 12px; border-bottom: 1px solid var(--border-color); padding-bottom: 12px;">
+        <div id="feedbackIcon" class="verdict-icon correct" style="width: 44px; height: 44px; font-size: 24px;">✓</div>
+        <div style="flex: 1;">
+          <div id="feedbackTitle" class="verdict-title correct" style="font-size: 20px; font-weight: 800;">¡Respuesta Correcta!</div>
+          <div id="feedbackSub" style="font-size: 14px; font-weight: 600; color: #94a3b8; margin-top: 2px;">Análisis de Juicio Situacional DIAN</div>
+        </div>
+      </div>
+
+      <!-- BADGE DE RACHA DINÁMICO EN FEEDBACK -->
+      <div id="feedbackStreakBadge" style="display: none; align-items: center; justify-content: space-between; background: linear-gradient(90deg, rgba(245, 158, 11, 0.22), rgba(239, 68, 68, 0.18)); border: 1px solid rgba(245, 158, 11, 0.5); padding: 10px 14px; border-radius: 8px;">
+        <div style="display: flex; align-items: center; gap: 8px;">
+          <span id="feedbackStreakFlame" style="font-size: 24px; animation: simoFlamePulse 1.2s infinite alternate; display: inline-block;">🔥</span>
+          <div>
+            <div id="feedbackStreakTitle" style="font-size: 14px; font-weight: 800; color: #f59e0b;">¡Racha Activa!</div>
+            <div id="feedbackStreakSubtitle" style="font-size: 12px; color: #fef08a; font-weight: 600;">3 respuestas correctas seguidas</div>
+          </div>
+        </div>
+        <span id="feedbackStreakXP" style="font-size: 12px; font-weight: 800; background: #f59e0b; color: #0b1120; padding: 4px 10px; border-radius: 12px; letter-spacing: 0.3px;">+150 XP</span>
+      </div>
+
+      <div class="norm-box" style="padding: 14px 16px; border-radius: 6px; background-color: rgba(99, 102, 241, 0.16); border-left: 4px solid var(--accent-indigo);">
+        <div style="font-weight: 800; text-transform: uppercase; margin-bottom: 6px; color: #a5b4fc; font-size: 13px; letter-spacing: 0.5px;">
+          ⚖️ Fundamento Normativo / Criterio Oficial
+        </div>
+        <div id="feedbackNormText" style="font-size: 15px; line-height: 1.6; color: #e0e7ff;">Ley o Decreto...</div>
+      </div>
+
+      <div class="breakdown-section">
+        <div style="font-size: 14px; font-weight: 800; color: #f8fafc; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px;">
+          🔍 Análisis de Opciones y Distractores
+        </div>
+        <div id="feedbackOptionsBreakdown" style="display: flex; flex-direction: column; gap: 10px;">
+          <!-- Items -->
+        </div>
+      </div>
+
+      <div class="srs-section" style="border-top: 1px solid var(--border-color); padding-top: 12px;">
+        <div style="font-size: 13px; font-weight: 800; color: #cbd5e1; text-transform: uppercase; margin-bottom: 8px; letter-spacing: 0.4px;">
+          🧠 Programar Repetición Espaciada (SRS)
+        </div>
+        <div class="srs-buttons">
+          <button class="srs-btn" data-srs="hard" style="border-color: rgba(239, 68, 68, 0.4); padding: 12px 8px; font-size: 14px; font-weight: 700;">
+            🔴 Difícil<br><span style="font-size: 12px; font-weight: 500; opacity: 0.9;">Repasar hoy</span>
+          </button>
+          <button class="srs-btn" data-srs="good" style="border-color: rgba(56, 189, 248, 0.4); padding: 12px 8px; font-size: 14px; font-weight: 700;">
+            🟡 Regular<br><span style="font-size: 12px; font-weight: 500; opacity: 0.9;">En 2 días</span>
+          </button>
+          <button class="srs-btn" data-srs="easy" style="border-color: rgba(16, 185, 129, 0.4); padding: 12px 8px; font-size: 14px; font-weight: 700;">
+            🟢 Dominada<br><span style="font-size: 12px; font-weight: 500; opacity: 0.9;">En 5 días</span>
+          </button>
+        </div>
+      </div>
+
+      <button id="btnCloseFeedback" class="btn-primary" style="margin-top: 6px; font-size: 16px; font-weight: 700; padding: 13px;">
+        Continuar a la siguiente pregunta ➔
+      </button>
+    </div>
+  </div>
+
+  <!-- MODAL: CONFIGURADOR DEL CARGO -->
+  <div id="jobModal" class="modal-overlay">
+    <div class="modal-card">
+      <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-color); padding-bottom: 10px;">
+        <h3 style="font-size: 14px; font-weight: 800; color: var(--text-primary);">Configuración de tu Cargo en SIMO</h3>
+        <button id="btnCloseJobModalX" style="background: none; border: none; color: var(--text-secondary); font-size: 18px; cursor: pointer;">✕</button>
+      </div>
+
+      <form id="jobForm" style="display: flex; flex-direction: column; gap: 10px;">
+        <div>
+          <label style="font-size: 10px; font-weight: 800; color: var(--text-secondary); text-transform: uppercase;">
+            Denominación del Cargo
+          </label>
+          <input type="text" id="inputJobTitle" required style="width: 100%; margin-top: 3px; padding: 7px 10px; background-color: var(--bg-card); border: 1px solid var(--border-color); border-radius: 6px; color: var(--text-primary); font-size: 11px; outline: none;">
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+          <div>
+            <label style="font-size: 10px; font-weight: 800; color: var(--text-secondary); text-transform: uppercase;">Código OPEC</label>
+            <input type="text" id="inputJobOpec" style="width: 100%; margin-top: 3px; padding: 7px 10px; background-color: var(--bg-card); border: 1px solid var(--border-color); border-radius: 6px; color: var(--text-primary); font-size: 11px; outline: none;">
+          </div>
+          <div>
+            <label style="font-size: 10px; font-weight: 800; color: var(--text-secondary); text-transform: uppercase;">Nivel</label>
+            <select id="selectJobLevel" style="width: 100%; margin-top: 3px; padding: 7px 10px; background-color: var(--bg-card); border: 1px solid var(--border-color); border-radius: 6px; color: var(--text-primary); font-size: 11px; outline: none;">
+              <option value="Profesional">Profesional</option>
+              <option value="Técnico">Técnico</option>
+              <option value="Asistencial">Asistencial</option>
+            </select>
+          </div>
+        </div>
+
+        <div>
+          <label style="font-size: 10px; font-weight: 800; color: var(--text-secondary); text-transform: uppercase;">Entidad / Convocatoria</label>
+          <input type="text" id="inputJobEntity" style="width: 100%; margin-top: 3px; padding: 7px 10px; background-color: var(--bg-card); border: 1px solid var(--border-color); border-radius: 6px; color: var(--text-primary); font-size: 11px; outline: none;">
+        </div>
+
+        <div>
+          <label style="font-size: 10px; font-weight: 800; color: var(--text-secondary); text-transform: uppercase;">Propósito Principal</label>
+          <textarea id="inputJobPurpose" rows="2" style="width: 100%; margin-top: 3px; padding: 7px 10px; background-color: var(--bg-card); border: 1px solid var(--border-color); border-radius: 6px; color: var(--text-primary); font-size: 11px; outline: none; resize: vertical;"></textarea>
+        </div>
+
+        <div>
+          <label style="font-size: 10px; font-weight: 800; color: var(--text-secondary); text-transform: uppercase;">Funciones Esenciales</label>
+          <textarea id="inputJobFunctions" rows="3" style="width: 100%; margin-top: 3px; padding: 7px 10px; background-color: var(--bg-card); border: 1px solid var(--border-color); border-radius: 6px; color: var(--text-primary); font-size: 11px; outline: none; resize: vertical;"></textarea>
+        </div>
+
+        <div style="display: flex; gap: 8px; margin-top: 4px;">
+          <button type="button" id="btnCancelJobModal" class="btn-secondary" style="flex: 1;">Cancelar</button>
+          <button type="submit" class="btn-primary" style="flex: 1;">Guardar y Enfocar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL: BANCO MAESTRO DE 18 CLAVES DE JUICIO SITUACIONAL Y COMPRENSIÓN LECTORA (CNSC / DIAN) -->
+  <div id="tipsModal" class="modal-overlay">
+    <div class="modal-card" style="max-width: 680px; width: 96%; max-height: 92vh; padding: 24px; gap: 16px;">
+      <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-color); padding-bottom: 12px;">
+        <div>
+          <h3 style="font-size: 19px; font-weight: 800; color: var(--accent-gold); display: flex; align-items: center; gap: 8px; margin: 0;">
+            <span>💡</span> 41 Claves Maestras de Juicio Situacional y Comprensión
+          </h3>
+          <p style="font-size: 13px; color: var(--text-secondary); margin: 3px 0 0 0;">
+            Estrategias psicométricas, régimen tributario/aduanero y análisis textual para GESTOR III (OPEC 242703)
+          </p>
+        </div>
+        <button id="btnCloseTipsModalX" style="background: rgba(255,255,255,0.06); border: none; color: var(--text-secondary); font-size: 20px; cursor: pointer; border-radius: 6px; width: 34px; height: 34px; display: flex; align-items: center; justify-content: center; line-height: 1;" title="Cerrar">✕</button>
+      </div>
+
+      <!-- Filtro rápido por categoría -->
+      <div style="display: flex; gap: 8px; align-items: center; overflow-x: auto; padding-bottom: 4px;">
+        <span style="font-size: 12px; color: #94a3b8; font-weight: 700; white-space: nowrap;">Filtrar:</span>
+        <button class="tip-filter-btn active" data-cat="all" style="background: rgba(245, 158, 11, 0.2); border: 1px solid #f59e0b; color: #f59e0b; padding: 4px 10px; border-radius: 12px; font-size: 12px; font-weight: 700; cursor: pointer; white-space: nowrap;">Todas (41)</button>
+        <button class="tip-filter-btn" data-cat="Comprensión Lectora" style="background: rgba(56, 189, 248, 0.15); border: 1px solid #38bdf8; color: #38bdf8; padding: 4px 10px; border-radius: 12px; font-size: 12px; font-weight: 700; cursor: pointer; white-space: nowrap;">📖 Comprensión Lectora (21)</button>
+        <button class="tip-filter-btn" data-cat="Régimen Aduanero" style="background: rgba(2, 132, 199, 0.15); border: 1px solid #0284c7; color: #38bdf8; padding: 4px 10px; border-radius: 12px; font-size: 12px; font-weight: 700; cursor: pointer; white-space: nowrap;">🚢 Aduanas (Decreto 1165)</button>
+        <button class="tip-filter-btn" data-cat="Procedimiento Tributario" style="background: rgba(225, 29, 72, 0.15); border: 1px solid #e11d48; color: #f43f5e; padding: 4px 10px; border-radius: 12px; font-size: 12px; font-weight: 700; cursor: pointer; white-space: nowrap;">🏪 Facturación y Clausura</button>
+        <button class="tip-filter-btn" data-cat="Constitución y Legalidad" style="background: rgba(255,255,255,0.05); border: 1px solid var(--border-color); color: #cbd5e1; padding: 4px 10px; border-radius: 12px; font-size: 12px; font-weight: 600; cursor: pointer; white-space: nowrap;">⚖️ Legalidad</button>
+        <button class="tip-filter-btn" data-cat="Técnica de Examen" style="background: rgba(255,255,255,0.05); border: 1px solid var(--border-color); color: #cbd5e1; padding: 4px 10px; border-radius: 12px; font-size: 12px; font-weight: 600; cursor: pointer; white-space: nowrap;">🎯 Técnica</button>
+        <button class="tip-filter-btn" data-cat="Ética e Integridad" style="background: rgba(255,255,255,0.05); border: 1px solid var(--border-color); color: #cbd5e1; padding: 4px 10px; border-radius: 12px; font-size: 12px; font-weight: 600; cursor: pointer; white-space: nowrap;">🛡️ Integridad</button>
+      </div>
+
+      <!-- Control de Microaprendizaje en Segundo Plano (Sidebar Cerrado) -->
+      <div style="background: rgba(56, 189, 248, 0.08); border: 1px solid rgba(56, 189, 248, 0.3); border-radius: 8px; padding: 12px 14px; display: flex; flex-direction: column; gap: 8px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
+          <div style="display: flex; align-items: center; gap: 6px;">
+            <span style="font-size: 16px;">🔔</span>
+            <span style="font-size: 13px; font-weight: 800; color: #38bdf8;">Microaprendizaje con el panel lateral CERRADO</span>
+          </div>
+          <label style="display: flex; align-items: center; gap: 6px; font-size: 13px; color: #f8fafc; font-weight: 700; cursor: pointer;">
+            <input type="checkbox" id="chkBackgroundTips" checked style="accent-color: #38bdf8; width: 16px; height: 16px;">
+            Activo en segundo plano
+          </label>
+        </div>
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; font-size: 12px; color: #cbd5e1;">
+          <div style="display: flex; align-items: center; gap: 6px;">
+            <span>Contenido:</span>
+            <select id="selectBgMode" style="background: #0f172a; border: 1px solid rgba(255,255,255,0.2); color: #fff; padding: 4px 8px; border-radius: 4px; font-size: 12px; cursor: pointer;">
+              <option value="alternate" selected>🔄 Alternar Tips y Preguntas</option>
+              <option value="questions_only">🎯 Solo Preguntas Situacionales</option>
+              <option value="tips_only">💡 Solo Claves y Tips</option>
+            </select>
+          </div>
+          <div style="display: flex; align-items: center; gap: 6px;">
+            <span>Frecuencia:</span>
+            <select id="selectBgInterval" style="background: #0f172a; border: 1px solid rgba(255,255,255,0.2); color: #fff; padding: 4px 8px; border-radius: 4px; font-size: 12px; cursor: pointer;">
+              <option value="15">Cada 15 min</option>
+              <option value="25" selected>Cada 25 min (Pomodoro)</option>
+              <option value="45">Cada 45 min</option>
+              <option value="60">Cada 1 hora</option>
+            </select>
+          </div>
+          <div style="display: flex; align-items: center; gap: 6px;">
+            <span>Formato:</span>
+            <select id="selectBgFormat" style="background: #0f172a; border: 1px solid rgba(255,255,255,0.2); color: #fff; padding: 4px 8px; border-radius: 4px; font-size: 12px; cursor: pointer;">
+              <option value="popup" selected>Modal Flotante en Pantalla (Sin otra ventana)</option>
+              <option value="notification">Notificación Windows / Chrome</option>
+            </select>
+          </div>
+          <div style="display: flex; gap: 6px; flex-wrap: wrap;">
+            <button id="btnTestBgAlternate" type="button" style="background: rgba(56, 189, 248, 0.2); border: 1px solid #38bdf8; color: #38bdf8; padding: 4px 10px; border-radius: 6px; font-size: 12px; font-weight: 700; cursor: pointer;" title="Probar alternado">
+              ⚡ Probar Siguiente
+            </button>
+            <button id="btnTestBgQuestion" type="button" style="background: rgba(34, 197, 94, 0.2); border: 1px solid #22c55e; color: #4ade80; padding: 4px 10px; border-radius: 6px; font-size: 12px; font-weight: 700; cursor: pointer;" title="Probar pregunta situacional interactiva">
+              🎯 Probar Pregunta
+            </button>
+            <button id="btnTestBackgroundTip" type="button" style="background: rgba(245, 158, 11, 0.2); border: 1px solid #f59e0b; color: #f59e0b; padding: 4px 10px; border-radius: 6px; font-size: 12px; font-weight: 700; cursor: pointer;" title="Probar clave o tip">
+              💡 Probar Tip
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Contenedor dinámico de los tips -->
+      <div id="tipsListContainer" style="display: flex; flex-direction: column; gap: 14px; max-height: 52vh; overflow-y: auto; padding-right: 6px;">
+        <!-- Se inyectan dinámicamente con tamaño grande desde tips_data.js -->
+      </div>
+
+      <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border-color); padding-top: 10px; margin-top: 4px;">
+        <label style="display: flex; align-items: center; gap: 6px; font-size: 13px; color: #cbd5e1; cursor: pointer;">
+          <input type="checkbox" id="chkAutoTipsFromModal" checked style="accent-color: #f59e0b; width: 16px; height: 16px;">
+          Activar recordatorios automáticos (Popups Flash de vez en cuando)
+        </label>
+        <button id="btnCloseTipsModal" class="btn-primary" style="font-size: 15px; font-weight: 700; padding: 10px 20px;">
+          Entendido, ¡A Practicar! 🚀
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: GUÍA TÁCTICA DE COMPRENSIÓN LECTORA PARA PRUEBAS SITUACIONALES CNSC -->
+  <div id="comprensionLectoraModal" class="modal-overlay">
+    <div class="modal-card" style="max-width: 680px; width: 96%; max-height: 92vh; padding: 24px; gap: 16px;">
+      <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-color); padding-bottom: 12px;">
+        <div>
+          <h3 style="font-size: 19px; font-weight: 800; color: #38bdf8; display: flex; align-items: center; gap: 8px; margin: 0;">
+            <span>📖</span> Radar de Comprensión Lectora Estratégica (CNSC / DIAN)
+          </h3>
+          <p style="font-size: 13px; color: var(--text-secondary); margin: 3px 0 0 0;">
+            Cómo leer y desarticular casos situacionales de más de 100 palabras en menos de 45 segundos
+          </p>
+        </div>
+        <button id="btnCloseLecturaModalX" style="background: rgba(255,255,255,0.06); border: none; color: var(--text-secondary); font-size: 20px; cursor: pointer; border-radius: 6px; width: 34px; height: 34px; display: flex; align-items: center; justify-content: center; line-height: 1;" title="Cerrar">✕</button>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 14px; max-height: 68vh; overflow-y: auto; padding-right: 6px;">
+        <!-- Paso 1 -->
+        <div style="background-color: rgba(11, 17, 32, 0.75); border-left: 4px solid #38bdf8; padding: 16px 18px; border-radius: 6px;">
+          <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
+            <span style="font-size: 18px;">🎯</span>
+            <div style="font-size: 16px; font-weight: 800; color: #38bdf8;">Paso 1: Lectura Inversa Estratégica (El Verbo Rector)</div>
+          </div>
+          <div style="font-size: 15px; color: #e2e8f0; line-height: 1.6;">
+            <strong>Regla:</strong> Nunca comiences a leer el caso desde el primer párrafo. Dirige la mirada directamente a la <strong>última frase en negrilla (el enunciado interrogativo)</strong>.<br>
+            • ¿Qué verbo exige? (<em>Identificar, Notificar, Suspender, Rechazar, Proyectar</em>).<br>
+            • Conocer la meta antes de leer el cuerpo del caso te permite activar un <strong>filtro de lectura selectiva</strong>, reduciendo el esfuerzo cognitivo en un 50%.
+          </div>
+        </div>
+
+        <!-- Paso 2 -->
+        <div style="background-color: rgba(11, 17, 32, 0.75); border-left: 4px solid #a855f7; padding: 16px 18px; border-radius: 6px;">
+          <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
+            <span style="font-size: 18px;">🔍</span>
+            <div style="font-size: 16px; font-weight: 800; color: #c084fc;">Paso 2: Extracción del Núcleo Fáctico vs. Ruido Narrativo</div>
+          </div>
+          <div style="font-size: 15px; color: #e2e8f0; line-height: 1.6;">
+            Los casos de la DIAN suelen incluir relatos emocionales de usuarios exaltados o sospechas de auditoría.<br>
+            • <strong>Desprecia el Ruido:</strong> Ignora adjetivos, enfados, quejas y apreciaciones personales no documentadas.<br>
+            • <strong>Captura los Hechos Probados:</strong> Rastrea únicamente <em>fechas de radicación, actos administrativos notificados, declaraciones tributarias registradas y cifras en firme</em>. Solo lo que está probado en el expediente cuenta.
+          </div>
+        </div>
+
+        <!-- Paso 3 -->
+        <div style="background-color: rgba(11, 17, 32, 0.75); border-left: 4px solid #f87171; padding: 16px 18px; border-radius: 6px;">
+          <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
+            <span style="font-size: 18px;">🚨</span>
+            <div style="font-size: 16px; font-weight: 800; color: #f87171;">Paso 3: Radar de Cuantificadores Absolutos (Trampas Semánticas)</div>
+          </div>
+          <div style="font-size: 15px; color: #e2e8f0; line-height: 1.6;">
+            Al leer las opciones A, B y C, activa la alarma ante palabras categóricas:<br>
+            • <strong style="color: #f87171;">Alerta Roja (Distractor casi seguro):</strong> <em>"siempre", "nunca", "de plano sin audiencia", "únicamente", "inapelable", "automáticamente"</em>.<br>
+            • <strong style="color: #4ade80;">Lenguaje de la Clave:</strong> <em>"previa verificación motivada", "dentro del término legal", "garantizando el derecho de contradicción", "conforme a la competencia legal"</em>.
+          </div>
+        </div>
+
+        <!-- Paso 4 -->
+        <div style="background-color: rgba(11, 17, 32, 0.75); border-left: 4px solid #10b981; padding: 16px 18px; border-radius: 6px;">
+          <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
+            <span style="font-size: 18px;">⚖️</span>
+            <div style="font-size: 16px; font-weight: 800; color: #34d399;">Paso 4: Test del Rol y Congruencia (Gestor III)</div>
+          </div>
+          <div style="font-size: 15px; color: #e2e8f0; line-height: 1.6;">
+            Cuidado con la <em>"Verdad Incompetente"</em>. Una opción puede citar una ley real y perfecta, pero si la acción le corresponde al Director Seccional o al Juez Contencioso, es un distractor de usurpación de funciones.<br>
+            • Pregúntate: <strong>¿Está facultado mi cargo de Gestor III Profesional para tomar esta determinación por sí mismo?</strong>
+          </div>
+        </div>
+
+        <!-- Matriz Rápida Resumen -->
+        <div style="background: rgba(245, 158, 11, 0.1); border: 1px solid rgba(245, 158, 11, 0.3); border-radius: 6px; padding: 14px 16px;">
+          <div style="font-size: 14px; font-weight: 800; color: #f59e0b; margin-bottom: 6px;">
+            💡 Fórmula Mnemotécnica: E-P-C
+          </div>
+          <div style="font-size: 14px; color: #cbd5e1; line-height: 1.55;">
+            <strong>E</strong>nunciado final interrogativo ➔ <strong>P</strong>remisa fáctica probada con fechas ➔ <strong>C</strong>lave congruente con el rol profesional y sin atajos ilegales.
+          </div>
+        </div>
+      </div>
+
+      <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border-color); padding-top: 10px; margin-top: 4px;">
+        <button id="btnVerTodasClavesDesdeLectura" style="background: none; border: none; color: #38bdf8; font-size: 13px; font-weight: 700; text-decoration: underline; cursor: pointer;">
+          Ver las 41 Claves 💡
+        </button>
+        <button id="btnCloseLecturaModal" class="btn-primary" style="font-size: 15px; font-weight: 700; padding: 10px 20px;">
+          ¡Anotado! Ir a Practicar Casos 🚀
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: POPUP FLASH OCASIONAL (MICRO-TIP EN TIEMPO DE ESTUDIO) -->
+  <div id="popupTipFlashModal" class="modal-overlay">
+    <div class="modal-card" style="max-width: 580px; width: 95%; border: 2px solid var(--accent-gold); box-shadow: 0 18px 45px rgba(0,0,0,0.75); padding: 24px; gap: 16px; border-radius: 14px; background: linear-gradient(145deg, #131d33 0%, #0d1527 100%);">
+      <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(245, 158, 11, 0.25); padding-bottom: 12px;">
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <span style="font-size: 22px;" id="popupTipIcon">💡</span>
+          <span id="popupTipBadge" style="font-size: 13px; font-weight: 800; background: rgba(245, 158, 11, 0.2); color: #f59e0b; padding: 4px 10px; border-radius: 6px; text-transform: uppercase; letter-spacing: 0.5px;">
+            Tip Flash de Juicio Situacional
+          </span>
+        </div>
+        <button id="btnClosePopupTipX" style="background: rgba(255,255,255,0.06); border: none; color: #94a3b8; font-size: 20px; cursor: pointer; border-radius: 6px; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center;" title="Cerrar">✕</button>
+      </div>
+
+      <!-- Banner de Imagen Temática Curada -->
+      <div id="popupTipBannerContainer" style="position: relative; width: 100%; height: 130px; border-radius: 8px; overflow: hidden; border: 1px solid var(--border-color); display: flex;">
+        <img id="popupTipBannerImg" src="https://images.unsplash.com/photo-1450133064473-71024230f91b?auto=format&fit=crop&w=720&h=240&q=80" alt="Contexto Visual de la Clave" style="width: 100%; height: 100%; object-fit: cover;">
+        <div id="popupTipBannerBadge" style="position: absolute; bottom: 8px; left: 8px; background: rgba(11, 17, 32, 0.88); backdrop-filter: blur(4px); color: #f59e0b; font-size: 11px; font-weight: 800; padding: 3px 8px; border-radius: 4px; border: 1px solid rgba(245, 158, 11, 0.4);">
+          🏛️ Misionalidad DIAN & Marco Legal
+        </div>
+      </div>
+
+      <div>
+        <h4 id="popupTipTitle" style="font-size: 20px; font-weight: 800; color: #f8fafc; margin: 0 0 6px 0; line-height: 1.35;">
+          Principio de Legalidad Estricta
+        </h4>
+        <div id="popupTipNorma" style="font-size: 14px; color: #38bdf8; font-weight: 600; margin-bottom: 10px;">
+          Constitución Política Arts. 6, 121 y 122
+        </div>
+        <div id="popupTipBody" style="font-size: 16px; color: #f1f5f9; line-height: 1.65; background: rgba(11, 17, 32, 0.85); padding: 16px 18px; border-radius: 8px; border-left: 5px solid var(--accent-gold);">
+          El servidor público solo hace lo expresamente facultado por ley. Descarta atajos informales o justificaciones basadas en urgencia.
+        </div>
+      </div>
+
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 4px; padding-top: 8px; border-top: 1px solid var(--border-color);">
+        <label style="display: flex; align-items: center; gap: 6px; font-size: 13px; color: #94a3b8; cursor: pointer;">
+          <input type="checkbox" id="chkAutoTipsEnabled" checked style="accent-color: #f59e0b; width: 15px; height: 15px;">
+          Recordatorios periódicos activos
+        </label>
+        <button id="btnVerTodasClavesDesdePopup" style="background: none; border: none; color: #38bdf8; font-size: 14px; font-weight: 700; text-decoration: underline; cursor: pointer;">
+          Ver las 41 Claves 📖
+        </button>
+      </div>
+
+      <button id="btnClosePopupTip" class="btn-primary" style="margin-top: 6px; font-size: 16px; font-weight: 700; padding: 13px; border-radius: 8px;">
+        ¡Anotado! Continuar con la prueba 🚀
+      </button>
+    </div>
+  </div>
+
+  <!-- MODAL GENERAL (SIN ALERTS) -->
+  <div id="generalAlertModal" class="modal-overlay">
+    <div class="modal-card" style="max-width: 380px; padding: 22px; text-align: center;">
+      <div id="generalAlertIcon" style="font-size: 34px; margin-bottom: 6px;">ℹ️</div>
+      <h3 id="generalAlertTitle" style="font-size: 18px; font-weight: 800; color: var(--text-primary);">Aviso</h3>
+      <p id="generalAlertMessage" style="font-size: 14px; color: var(--text-secondary); line-height: 1.55; margin: 6px 0 14px;">
+        Mensaje
+      </p>
+      <div id="generalAlertButtons" style="display: flex; gap: 10px; justify-content: center;">
+        <button id="btnGeneralAlertOk" class="btn-primary" style="min-width: 100px; font-size: 14px; padding: 10px 18px;">Aceptar</button>
+        <button id="btnGeneralAlertCancel" class="btn-secondary" style="display: none; min-width: 100px; font-size: 14px; padding: 10px 18px;">Cancelar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL DE HITO DE RACHA Y CELEBRACIÓN CON CONFETTI -->
+  <div id="streakMilestoneModal" class="modal-overlay" style="z-index: 99999;">
+    <div class="modal-card" style="max-width: 460px; width: 94%; padding: 28px 22px; text-align: center; border: 2px solid #f59e0b; box-shadow: 0 0 50px rgba(245, 158, 11, 0.45), 0 20px 50px rgba(0,0,0,0.9); background: linear-gradient(160deg, #131d33 0%, #0b1120 100%); position: relative; overflow: hidden; border-radius: 16px;">
+      <!-- Canvas de Confetti animado -->
+      <canvas id="streakConfettiCanvas" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1;"></canvas>
+
+      <div style="position: relative; z-index: 2; display: flex; flex-direction: column; align-items: center; gap: 14px;">
+        <!-- Fuego animado y Medallón central -->
+        <div style="position: relative; width: 96px; height: 96px; display: flex; align-items: center; justify-content: center; background: radial-gradient(circle, rgba(245, 158, 11, 0.4) 0%, rgba(239, 68, 68, 0.15) 65%, transparent 100%); border-radius: 50%;">
+          <div id="streakMilestoneIcon" style="font-size: 56px; animation: simoFlamePulse 1.2s infinite alternate;">🔥</div>
+        </div>
+
+        <div>
+          <div id="streakMilestoneTag" style="font-size: 11px; font-weight: 900; text-transform: uppercase; letter-spacing: 1.5px; color: #f59e0b; background: rgba(245, 158, 11, 0.15); border: 1px solid rgba(245, 158, 11, 0.4); padding: 4px 14px; border-radius: 20px; display: inline-block; margin-bottom: 8px;">
+            ¡HITO DE RACHA DESBLOQUEADO!
+          </div>
+          <h3 id="streakMilestoneTitle" style="font-size: 23px; font-weight: 900; color: #f8fafc; line-height: 1.25; margin: 0;">
+            ¡Racha de 5 Aciertos!
+          </h3>
+          <div id="streakMilestoneRank" style="font-size: 15px; font-weight: 800; color: #38bdf8; margin-top: 4px;">
+            ⚡ Nivel: Gestor Imparable
+          </div>
+        </div>
+
+        <!-- Mensaje Motivador Concurso DIAN -->
+        <div id="streakMilestoneMsg" style="background: rgba(11, 17, 32, 0.85); border: 1px solid rgba(255, 255, 255, 0.1); border-left: 4px solid #f59e0b; padding: 12px 14px; border-radius: 8px; font-size: 14px; color: #e2e8f0; line-height: 1.6; text-align: left; width: 100%;">
+          Estás asimilando el criterio de la CNSC y el régimen de la DIAN a máxima velocidad. ¡Cada acierto te posiciona más alto en la lista de elegibles!
+        </div>
+
+        <!-- Mini métricas de la racha -->
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; width: 100%;">
+          <div style="background: rgba(255, 255, 255, 0.05); padding: 10px; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.08);">
+            <div style="font-size: 11px; color: #94a3b8; text-transform: uppercase; font-weight: 700;">Aciertos Seguidos</div>
+            <div id="streakMilestoneCountVal" style="font-size: 24px; font-weight: 900; color: #f59e0b; margin-top: 2px;">5</div>
+          </div>
+          <div style="background: rgba(255, 255, 255, 0.05); padding: 10px; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.08);">
+            <div style="font-size: 11px; color: #94a3b8; text-transform: uppercase; font-weight: 700;">Recompensa</div>
+            <div id="streakMilestonePointsVal" style="font-size: 24px; font-weight: 900; color: #34d399; margin-top: 2px;">+250 XP</div>
+          </div>
+        </div>
+
+        <button id="btnCloseStreakMilestone" class="btn-primary" style="width: 100%; font-size: 16px; font-weight: 800; padding: 14px; border-radius: 8px; background: linear-gradient(135deg, #f59e0b, #d97706); border: none; cursor: pointer; color: #0b1120; box-shadow: 0 4px 18px rgba(245, 158, 11, 0.45); margin-top: 4px;">
+          ¡Mantener la Racha y Continuar! 🔥
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: SINCRONIZACIÓN EN LA NUBE (SERVIDOR PROPIO) -->
+  <div id="cloudSyncModal" class="modal-overlay">
+    <div class="modal-card" style="max-width: 500px; width: 94%; padding: 22px; gap: 14px;">
+      <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-color); padding-bottom: 10px;">
+        <h3 style="font-size: 17px; font-weight: 800; color: #38bdf8; display: flex; align-items: center; gap: 8px; margin: 0;">
+          <span>☁️</span> Sincronización en la Nube
+        </h3>
+        <button id="btnCloseCloudSyncX" style="background: rgba(255,255,255,0.06); border: none; color: var(--text-secondary); font-size: 18px; cursor: pointer; border-radius: 6px; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center;" title="Cerrar">✕</button>
+      </div>
+
+      <p style="font-size: 13px; color: var(--text-secondary); line-height: 1.5; margin: 0;">
+        Guarda tu racha, estadísticas, repaso espaciado (SRS) y preguntas en tu propio servidor para continuar estudiando en tu celular o PC sin perder nada.
+      </p>
+
+      <div style="display: flex; flex-direction: column; gap: 10px; background: rgba(11, 17, 32, 0.6); padding: 14px; border-radius: 8px; border: 1px solid var(--border-color);">
+        <div>
+          <label style="font-size: 12px; color: #94a3b8; font-weight: 700; display: block; margin-bottom: 4px;">URL de tu Servidor:</label>
+          <input type="text" id="inputSyncServerUrl" placeholder="Ej: http://192.168.1.15:3000 o https://mi-servidor.com" style="width: 100%; box-sizing: border-box; background: #0f172a; border: 1px solid rgba(255,255,255,0.2); color: #fff; padding: 8px 12px; border-radius: 6px; font-size: 13px;">
+        </div>
+
+        <div>
+          <label style="font-size: 12px; color: #94a3b8; font-weight: 700; display: block; margin-bottom: 4px;">ID de Usuario / Aspirante:</label>
+          <input type="text" id="inputSyncUserId" placeholder="aspirante_dian_01" value="aspirante_dian_01" style="width: 100%; box-sizing: border-box; background: #0f172a; border: 1px solid rgba(255,255,255,0.2); color: #fff; padding: 8px 12px; border-radius: 6px; font-size: 13px;">
+        </div>
+
+        <label style="display: flex; align-items: center; gap: 8px; font-size: 12px; color: #e2e8f0; cursor: pointer; margin-top: 4px;">
+          <input type="checkbox" id="chkAutoCloudSync" checked style="accent-color: #38bdf8; width: 16px; height: 16px;">
+          Sincronizar automáticamente al responder y terminar sesiones
+        </label>
+      </div>
+
+      <div id="cloudSyncStatus" style="font-size: 12px; color: #94a3b8; min-height: 20px; display: flex; align-items: center; gap: 6px;">
+        <span>Estado: Configuración local lista.</span>
+      </div>
+
+      <!-- Acciones de Sincronización -->
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+        <button id="btnPushCloudSync" class="btn-primary" style="background: linear-gradient(135deg, #0284c7, #0369a1); font-size: 13px; font-weight: 700; padding: 10px; display: flex; align-items: center; justify-content: center; gap: 6px;">
+          ⬆️ Subir a Mi Servidor
+        </button>
+        <button id="btnPullCloudSync" class="btn-primary" style="background: linear-gradient(135deg, #10b981, #059669); font-size: 13px; font-weight: 700; padding: 10px; display: flex; align-items: center; justify-content: center; gap: 6px;">
+          ⬇️ Descargar de Servidor
+        </button>
+      </div>
+
+      <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border-color); padding-top: 10px;">
+        <button id="btnPullQuestionsServer" style="background: none; border: none; color: #38bdf8; font-size: 12px; font-weight: 700; cursor: pointer; text-decoration: underline;">
+          🔄 Actualizar Preguntas desde Servidor
+        </button>
+        <button id="btnCloseCloudSync" class="btn-secondary" style="font-size: 13px; padding: 6px 14px;">
+          Guardar y Cerrar
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="sound_effects.js"></script>
+  <script src="image_catalog.js"></script>
+  <script src="speed_drills.js"></script>
+  <script src="tips_data.js"></script>
+  <script src="questions.js"></script>
+  <script src="cloud_sync.js"></script>
+  <script src="sidepanel.js"></script>
+</body>
+</html>
