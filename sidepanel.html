@@ -145,6 +145,7 @@
           <span id="qBadgeLevel" class="badge badge-level">GESTOR III</span>
           <span id="qBadgeType" class="badge badge-type">Funcional</span>
           <span id="qBadgeTopic" class="badge badge-topic">MIPG</span>
+          <span id="qBadgeProgressPill" class="badge" style="background: rgba(16, 185, 129, 0.16); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.35); font-weight: 700; margin-left: auto;">🎯 119 restantes</span>
         </div>
 
         <!-- Banner de Escena Inmersiva para Casos Clave -->
@@ -308,13 +309,18 @@
     <!-- PESTAÑA: SPEED DRILL (MICROAPRENDIZAJE V/F CON TEMPORIZADOR) -->
     <section id="tab-speedDrill" class="tab-content" style="display: none; flex-direction: column; gap: 14px;">
       <div style="background-color: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 18px; display: flex; flex-direction: column; gap: 14px;">
-        <div style="display: flex; justify-content: space-between; align-items: center;">
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
           <div style="display: flex; align-items: center; gap: 6px;">
             <span style="font-size: 18px;">⚡</span>
             <span style="font-size: 15px; font-weight: 800; color: #f8fafc;">Speed Drill Relámpago</span>
           </div>
-          <div style="background: rgba(245, 158, 11, 0.15); border: 1px solid rgba(245, 158, 11, 0.4); padding: 4px 12px; border-radius: 20px; font-size: 13px; font-weight: 800; color: var(--accent-gold);">
-            🔥 Racha: <span id="speedDrillStreak">0</span>
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <span id="speedDrillRemainingBadge" style="background: rgba(56, 189, 248, 0.15); border: 1px solid rgba(56, 189, 248, 0.35); padding: 3px 10px; border-radius: 12px; font-size: 11px; font-weight: 700; color: #38bdf8;">
+              35 restantes
+            </span>
+            <div style="background: rgba(245, 158, 11, 0.15); border: 1px solid rgba(245, 158, 11, 0.4); padding: 4px 12px; border-radius: 20px; font-size: 13px; font-weight: 800; color: var(--accent-gold);">
+              🔥 Racha: <span id="speedDrillStreak">0</span>
+            </div>
           </div>
         </div>
 

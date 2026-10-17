@@ -133,6 +133,118 @@ const SPEED_DRILLS = [
     afirmacion: "Dentro de las funciones oficiales del Analista IV en la DIAN se encuentran expresamente: 'Acompañar' diligencias de pruebas, 'Intervenir' en destrucción de mercancías y 'Reportar' operaciones sospechosas (ROS).",
     esVerdadero: true,
     explicacion: "VERDADERO. Son tres de los verbos rectores pilares taxativamente establecidos en la Ficha AT-FL-2010 del empleo código 204 grado 04."
+  },
+  {
+    id: "sd_20",
+    tema: "Estatuto Tributario (Art. 705 E.T.)",
+    afirmacion: "El término general que tiene la DIAN para notificar el Requerimiento Especial a un contribuyente es de cinco (5) años contados desde el vencimiento del plazo para declarar.",
+    esVerdadero: false,
+    explicacion: "FALSO. El artículo 705 del Estatuto Tributario establece que el Requerimiento Especial debe notificarse a más tardar dentro de los tres (3) años siguientes a la fecha de vencimiento del plazo para declarar (o de la fecha de presentación si fue extemporánea)."
+  },
+  {
+    id: "sd_21",
+    tema: "CPACA (Art. 76 Ley 1437 de 2011)",
+    afirmacion: "En el procedimiento administrativo colombiano, el recurso de reposición es de interposición obligatoria para agotar la actuación y poder acudir a la demanda contenciosa.",
+    esVerdadero: false,
+    explicacion: "FALSO. El artículo 76 del CPACA señala que el recurso de reposición no es obligatorio sino facultativo; el recurso obligatorio para agotar la vía administrativa cuando proceda es el de apelación."
+  },
+  {
+    id: "sd_22",
+    tema: "Régimen Aduanero (Decreto 1165 de 2019)",
+    afirmacion: "La aprehensión de una mercancía en zona primaria aduanera traslada automáticamente la propiedad de los bienes a favor de la Nación sin requerir resolución de decomiso previa.",
+    esVerdadero: false,
+    explicacion: "FALSO. La aprehensión es una medida cautelar provisional. La titularidad solo pasa a la Nación cuando se profiere y queda en firme la resolución de decomiso motivada tras agotar el debido proceso."
+  },
+  {
+    id: "sd_23",
+    tema: "Sistema de Control Interno (Ley 87 de 1993)",
+    afirmacion: "El establecimiento y desarrollo del Sistema de Control Interno en la DIAN es responsabilidad exclusiva del Jefe de la Oficina de Control Interno.",
+    esVerdadero: false,
+    explicacion: "FALSO. Conforme al artículo 6 de la Ley 87 de 1993, el control interno es responsabilidad de la máxima autoridad de la entidad y de TODOS los servidores públicos en el ejercicio de sus funciones."
+  },
+  {
+    id: "sd_24",
+    tema: "Código Disciplinario (Ley 1952 de 2019)",
+    afirmacion: "El servidor público que identifique una causal de conflicto de intereses respecto de un asunto a su cargo debe declararse impedido dentro de los tres (3) días hábiles siguientes.",
+    esVerdadero: true,
+    explicacion: "VERDADERO. El artículo 11 del CPACA y el régimen disciplinario ordenan manifestar el impedimento dentro de los 3 días hábiles siguientes al conocimiento de la causal mediante escrito motivado al superior."
+  },
+  {
+    id: "sd_25",
+    tema: "Carrera DIAN (Decreto Ley 071 de 2020)",
+    afirmacion: "Los servidores nombrados en periodo de prueba en la DIAN superan dicha etapa tras completar un periodo reglamentario de seis (6) meses con calificación satisfactoria.",
+    esVerdadero: true,
+    explicacion: "VERDADERO. El artículo 31 del Decreto Ley 071 de 2020 fija el periodo de prueba en seis (6) meses, al cabo del cual se realiza la evaluación del desempeño laboral para inscripción en el Registro de Carrera."
+  },
+  {
+    id: "sd_26",
+    tema: "Estatuto Tributario (Art. 689-3 E.T.)",
+    afirmacion: "El Beneficio de Auditoría permite que una declaración de renta quede en firme en 6 o 12 meses si se incrementa el impuesto neto de renta en los porcentajes mínimos señalados por la ley.",
+    esVerdadero: true,
+    explicacion: "VERDADERO. El artículo 689-3 del E.T. premia el incremento del impuesto neto de renta (ej. 35% o 25%) reduciendo la firmeza a 6 o 12 meses, siempre que se cumplan las condiciones legales."
+  },
+  {
+    id: "sd_27",
+    tema: "Estatuto Tributario (Art. 714 E.T.)",
+    afirmacion: "La firmeza general de la declaración tributaria ordinaria en la cual no se liquiden pérdidas fiscales opera a los cinco (5) años de su presentación.",
+    esVerdadero: false,
+    explicacion: "FALSO. Conforme al Art. 714 del Estatuto Tributario, la declaración tributaria queda en firme a los tres (3) años siguientes al vencimiento del plazo para declarar (o de su presentación si fue extemporánea)."
+  },
+  {
+    id: "sd_28",
+    tema: "Régimen Cambiario y Lavado de Activos",
+    afirmacion: "La DIAN carece de competencia para investigar infracciones al régimen cambiario, pues esa función pertenece con exclusividad al Banco de la República.",
+    esVerdadero: false,
+    explicacion: "FALSO. Por mandato legal y del Decreto 1742 de 2020, la DIAN ejerce el control y vigilancia cambiaria en operaciones de importación, exportación de bienes, zonas francas y endeudamiento externo conexo."
+  },
+  {
+    id: "sd_29",
+    tema: "MIPG - Información y Comunicación",
+    afirmacion: "Las políticas de 'Transparencia y Acceso a la Información Pública' y 'Gestión Documental' forman parte integral de la Dimensión de Información y Comunicación del MIPG.",
+    esVerdadero: true,
+    explicacion: "VERDADERO. Es la 5ª dimensión del MIPG orientada a garantizar un flujo de información interno y externo transparente, oportuno y verificable hacia la ciudadanía."
+  },
+  {
+    id: "sd_30",
+    tema: "CPACA (Art. 164 Ley 1437 de 2011)",
+    afirmacion: "El medio de control de nulidad y restablecimiento del derecho contra una liquidación oficial caduca en el término perentorio de cuatro (4) meses contados desde el día siguiente a su notificación.",
+    esVerdadero: true,
+    explicacion: "VERDADERO. El numeral 2, literal d) del artículo 164 del CPACA estipula que la demanda debe interponerse dentro del término de 4 meses siguientes a la notificación del acto definitivo que agota vía administrativa."
+  },
+  {
+    id: "sd_31",
+    tema: "Estatuto Tributario (Art. 720 E.T.)",
+    afirmacion: "El contribuyente dispone de un plazo de quince (15) días hábiles para interponer el recurso de reconsideración contra la Liquidación Oficial de Revisión.",
+    esVerdadero: false,
+    explicacion: "FALSO. El artículo 720 del Estatuto Tributario concede dos (2) meses calendario contados a partir de la notificación de la liquidación oficial para interponer el recurso de reconsideración."
+  },
+  {
+    id: "sd_32",
+    tema: "Régimen Aduanero (Decreto 1165 de 2019)",
+    afirmacion: "La declaración anticipada obligatoria de importación debe radicarse con una antelación no inferior a cinco (5) días hábiles a la llegada de las mercancías al país.",
+    esVerdadero: false,
+    explicacion: "FALSO. El artículo 175 del Decreto 1165 de 2019 fija la antelación mínima de la declaración anticipada en no menos de quince (15) días calendario a la llegada de las mercancías para las operaciones reguladas."
+  },
+  {
+    id: "sd_33",
+    tema: "Facturación Electrónica (Art. 616-1 E.T.)",
+    afirmacion: "El tiquete de máquina registradora con sistema POS otorga derecho a costos y deducciones en el impuesto de renta para el adquirente que sea comerciante.",
+    esVerdadero: false,
+    explicacion: "FALSO. Por expresa disposición del Art. 616-1 del E.T., el tiquete POS no otorga derecho a costos ni deducciones en renta ni a impuestos descontables en IVA; para ello se exige Factura Electrónica de Venta."
+  },
+  {
+    id: "sd_34",
+    tema: "Cobro Coactivo (Art. 817 E.T.)",
+    afirmacion: "La acción de cobro de las obligaciones fiscales a cargo de la DIAN prescribe en el término de cinco (5) años contados desde que se hicieron legalmente exigibles.",
+    esVerdadero: true,
+    explicacion: "VERDADERO. El artículo 817 del Estatuto Tributario consagra el término de prescripción de la acción de cobro en 5 años a partir de la ejecutoria del acto administrativo o presentación de la declaración privada."
+  },
+  {
+    id: "sd_35",
+    tema: "Constitución Política (Art. 29 C.P.)",
+    afirmacion: "En actuaciones tributarias sancionatorias, una prueba obtenida mediante hackeo o vulneración de comunicaciones privadas puede admitirse válidamente si demuestra una evasión multimillonaria.",
+    esVerdadero: false,
+    explicacion: "FALSO. El artículo 29 de la Constitución Política es taxativo y categórico: 'Es nula, de pleno derecho, la prueba obtenida con violación del debido proceso' (regla de exclusión probatoria inquebrantable)."
   }
 ];
 

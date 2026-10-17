@@ -12,6 +12,7 @@ const AppState = {
   currentQuestion: null,
   selectedOption: null,
   currentEjeFilter: "todos",
+  practiceCorrectIds: [],
   activeJob: (typeof PROFILES_DATA !== "undefined" && PROFILES_DATA.gestor_iii) ? { ...PROFILES_DATA.gestor_iii } : {
     title: "GESTOR III (Código 303 - Grado 03)",
     shortTitle: "GESTOR III",
@@ -373,6 +374,573 @@ const TIPS_LECTURA_CRITICA = [
         "❌ Usurpación de funciones de remate y disposición de mercancías."
       ]
     }
+  },
+  {
+    id: "lc_8",
+    numero: 8,
+    titulo: "Técnica del Silencio Administrativo: Positivo vs. Negativo",
+    regla: "En derecho tributario el silencio positivo es excepcional; por regla general opera el negativo ficticio.",
+    resumen: "La CNSC evalúa con frecuencia casos donde la administración guarda silencio vencido el término legal. El distractor común induce a creer que el silencio siempre es negativo o que 'no produce efectos'. La regla de oro es: por mandato general del CPACA (Art. 83), el silencio administrativo es negativo (una ficción para permitir demandar ante lo contencioso administrativo). Únicamente opera el silencio administrativo positivo cuando una norma expresa y taxativa lo ordene (como el Art. 734 del E.T. cuando la DIAN no resuelve el recurso de reconsideración en el término de 1 año).",
+    formula: "Regla general CPACA = Silencio Negativo // Excepción con norma expresa = Silencio Positivo (Art. 734 E.T.)",
+    puntosClave: [
+      "Identifica si el trámite tiene norma expresa de silencio positivo (ej. Art. 734 E.T. en reconsideración).",
+      "Si no existe norma expresa especial, el silencio es negativo ficticio que agota vía administrativa para demandar.",
+      "El silencio administrativo nunca convalida actos manifiestamente ilegales sin norma que lo respalde."
+    ],
+    ejercicio: {
+      pregunta: "Un contribuyente radicó recurso de reconsideración contra una liquidación oficial de revisión. Transcurrieron 14 meses continuos sin que la DIAN haya proferido ni notificado la resolución que decide el recurso. ¿Cuál es el efecto jurídico del silencio según el Art. 734 del Estatuto Tributario?",
+      opciones: [
+        "A. Opera el silencio administrativo negativo, por lo cual el contribuyente debe esperar indefinidamente la decisión expresa.",
+        "B. Se configura el silencio administrativo positivo, entendiéndose fallado el recurso a favor del contribuyente.",
+        "C. La liquidación oficial de revisión queda en firme automáticamente y pasa a cobro coactivo."
+      ],
+      correcta: 1,
+      explicaciones: [
+        "❌ Trampa clásica: En recursos de reconsideración tributarios no rige el silencio negativo general, sino la regla especial de silencio positivo del Art. 734 E.T.",
+        "✅ ¡Acierto Jurídico! Conforme al Art. 734 del Estatuto Tributario, transcurrido 1 año sin notificación del fallo, opera de pleno derecho el silencio positivo a favor del contribuyente.",
+        "❌ Contradicción total: El silencio de la administración jamás confirma el acto desfavorable cuando existe causal de silencio positivo."
+      ]
+    }
+  },
+  {
+    id: "lc_9",
+    numero: 9,
+    titulo: "Detector de Falsa Causalidad (Presunción de Buena Fe)",
+    regla: "La buena fe se presume (Art. 83 C.P.); el dolo o fraude fiscal exige prueba técnica fehaciente.",
+    resumen: "Un truco recurrente en los casos de la CNSC es narrar dos hechos sucesivos para que asumas causalidad delictiva: 'la empresa cambió de contador y al mes siguiente se reportaron menos utilidades', o 'el importador cambió de agente aduanero y llegó mercancía con descripción genérica'. El distractor inmediato propone sancionar por 'fraude doloso' o 'evasión intencional'. El ojo forense entrenado recuerda que la buena fe constitucional se presume y que para tipificar falsedad o dolo se requiere prueba documental técnica directa, no sospechas cronológicas.",
+    formula: "Sucesión de hechos en el tiempo ≠ Dolo o culpabilidad probada en el expediente",
+    puntosClave: [
+      "Diferencia siempre 'inconsistencia formal subsanable' de 'fraude o evasión dolosa'.",
+      "No asumas mala fe porque dos eventos coincidan en el calendario.",
+      "La opción correcta siempre exige verificar pruebas de trazabilidad financiera antes de calificar dolo."
+    ],
+    ejercicio: {
+      pregunta: "En una auditoría tributaria se observa que una sociedad mercantil cambió de revisor fiscal en mayo y en la declaración de IVA del bimestre siguiente declaró saldos a favor atípicos. ¿Cuál es la conducta procesal correcta del auditor?",
+      opciones: [
+        "A. Formular de inmediato denuncia penal por concierto para delinquir y fraude procesal contra el nuevo revisor fiscal.",
+        "B. Proferir requerimiento ordinario de información solicitando los soportes contables y facturas electrónicas que sustentan el saldo a favor.",
+        "C. Rechazar de plano la declaración de IVA asumiendo mala fe por el cambio intempestivo de revisor fiscal."
+      ],
+      correcta: 1,
+      explicaciones: [
+        "❌ Trampa de prejuicio: Una coincidencia temporal de cambio de personal no es prueba idónea para formular denuncias penales sin acervo probatorio.",
+        "✅ ¡Excelente análisis! Rige la presunción de buena fe: la administración solicita soportes objetivos mediante requerimiento ordinario para cotejar la realidad contable.",
+        "❌ Arbitrariedad: Ninguna declaración se rechaza 'de plano' por presunción de mala fe sin agotar el debido proceso probatorio."
+      ]
+    }
+  },
+  {
+    id: "lc_10",
+    numero: 10,
+    titulo: "Jerarquía Normativa: Ley Especial Prima sobre Ley General",
+    regla: "El Estatuto Tributario y Régimen de Aduanas prevalecen sobre el CPACA y Código Civil.",
+    resumen: "Muchos distractores están construidos con normas completamente vigentes y verdaderas del Código General del Proceso o del CPACA general. Sin embargo, en el ámbito de la DIAN rige el principio hermenéutico de especialidad (Art. 5 de la Ley 57 de 1887 y Art. 2 del CPACA): las normas tributarias y aduaneras tienen procedimiento propio. Si una opción cita un término del CPACA general (ej. 10 días para peticiones de información) y otra cita el término especial tributario (ej. 15 días según Art. 684 del E.T.), la norma especial siempre es la clave correcta.",
+    formula: "Norma Especial DIAN (Estatuto / Régimen Aduanero) > Norma General (CPACA / CGP)",
+    puntosClave: [
+      "El CPACA es norma subsidiaria: solo aplica en lo no regulado por el Estatuto Tributario o Régimen Aduanero.",
+      "Términos de notificación, recursos y firmeza se rigen prioritariamente por el Estatuto Tributario.",
+      "Desconfía de opciones que apliquen reglas civiles generales a procedimientos fiscales especiales."
+    ],
+    ejercicio: {
+      pregunta: "Frente a la notificación electrónica de un acto administrativo tributario, el contribuyente alega que según el CPACA general el término corre al día siguiente del envío. La norma especial del Art. 566-1 del E.T. señala que el término se computa a partir de los 5 días hábiles siguientes a la entrega en el buzón. ¿Cuál norma determina la oportunidad legal?",
+      opciones: [
+        "A. El CPACA general por ser el código rector de toda la administración pública colombiana.",
+        "B. El Art. 566-1 del Estatuto Tributario por ser la norma especial que regula expresamente el procedimiento tributario.",
+        "C. El Código General del Proceso por analogía procesal obligatoria."
+      ],
+      correcta: 1,
+      explicaciones: [
+        "❌ Trampa de generalidad: El CPACA es subsidiario ante normas de procedimiento especial tributario.",
+        "✅ ¡Principio de Especialidad! El Art. 566-1 del Estatuto Tributario rige de manera preferente en la DIAN sobre cualquier norma procesal general.",
+        "❌ Distractor: El CGP solo aplica por remisión expresa ante vacíos insalvables, no contra norma expresa tributaria."
+      ]
+    }
+  },
+  {
+    id: "lc_11",
+    numero: 11,
+    titulo: "Doble Filtro Cautelar: Proporcionalidad e Inembargabilidad",
+    regla: "Toda medida cautelar coactiva debe ser proporcional a la deuda y respetar límites legales.",
+    resumen: "En la etapa de cobro coactivo o control aduanero, las medidas cautelares (embargos bancarios, secuestros, aprehensiones) son restrictivas de derechos fundamentales. La CNSC coloca trampas donde el funcionario 'ordena embargar la totalidad de la cuenta corriente de nómina' o 'decomisa todo el contenedor porque faltó la serie de una caja'. La clave exige el Doble Filtro Cautelar: 1. Proporcionalidad (la medida no puede exceder el doble de la deuda más intereses - Art. 838 E.T.); 2. Inembargabilidad legal (cuentas de pensiones, depósitos de nómina protegidos por ley y bienes de uso público).",
+    formula: "Medida Cautelar Válida = Límite Cuantitativo (Art. 838 E.T.) + Respeto a Bienes Inembargables",
+    puntosClave: [
+      "Los embargos bancarios en cobro coactivo no pueden superar el límite legal fijado por ley.",
+      "Las cuentas de ahorro con montos protegidos por el límite legal de inembargabilidad no se tocan.",
+      "La aprehensión aduanera recae exclusivamente sobre la mercancía no amparada, no sobre la legal."
+    ],
+    ejercicio: {
+      pregunta: "En un proceso de cobro coactivo por una obligación tributaria de 50 UVT, el ejecutor fiscal debe decretar medidas cautelares sobre las cuentas bancarias del deudor persona natural. ¿Cuál medida es jurídicamente procedente?",
+      opciones: [
+        "A. Decretar el embargo indiscriminado y total de todas las cuentas bancarias sin límite de cuantía.",
+        "B. Decretar el embargo limitando la medida al monto de la deuda más intereses y costas, respetando los montos legales inembargables en cuentas de ahorro.",
+        "C. Congelar de plano los salarios del trabajador sin notificación a la entidad bancaria."
+      ],
+      correcta: 1,
+      explicaciones: [
+        "❌ Abuso de poder y desproporcionalidad: El embargo sin límite de cuantía es ilegal y susceptible de revocatoria directa.",
+        "✅ ¡Doble Filtro Aplicado! La medida debe fijar un límite cuantitativo estricto y respetar las sumas inembargables de cuentas de ahorro fijadas por la Superintendencia Financiera.",
+        "❌ Ilegalidad manifiesta: Los salarios gozan de protección constitucional y legal contra embargos coactivos no autorizados."
+      ]
+    }
+  },
+  {
+    id: "lc_12",
+    numero: 12,
+    titulo: "Filtro Temporal: Caducidad vs. Prescripción Forense",
+    regla: "Caducidad extingue la facultad de sancionar/liquidar; Prescripción extingue la acción de cobro.",
+    resumen: "Una confusión clásica que cuesta puntos en el examen es mezclar la firmeza/caducidad con la prescripción: La Caducidad opera ANTES del acto en firme (es el tiempo máximo que tiene la DIAN para proferir el requerimiento especial o liquidación oficial; si no lo hace en término, la declaración queda en firme). La Prescripción opera DESPUÉS del acto en firme (es el término de 5 años que tiene la DIAN para cobrar coactivamente la obligación ya ejecutoriada - Art. 817 E.T.). Identifica en qué momento procesal está el caso: ¿Se está discutiendo la deuda o ya se está cobrando?",
+    formula: "Antes del título en firme = Caducidad / Firmeza // Después del título en firme = Prescripción de Cobro (5 años)",
+    puntosClave: [
+      "¿El acto está en firme? Si NO: estás evaluando firmeza de la declaración o caducidad sancionatoria.",
+      "¿El acto ya es título ejecutivo ejecutoriado? Si SÍ: estás evaluando prescripción de la acción de cobro (Art. 817 E.T.).",
+      "La prescripción del cobro se interrumpe con la notificación del mandamiento de pago."
+    ],
+    ejercicio: {
+      pregunta: "Un contribuyente presentó su declaración de renta del año gravable 2018 con beneficio de auditoría y quedó en firme en 2019. En 2024 la DIAN le notifica un requerimiento especial pretendiendo modificar el impuesto a cargo. ¿Qué excepción procesal ampara al contribuyente?",
+      opciones: [
+        "A. Prescripción de la acción de cobro coactivo de 5 años.",
+        "B. Pérdida de competencia por firmeza definitiva de la declaración (caducidad de la facultad de fiscalización).",
+        "C. Silencio administrativo negativo sobre la fiscalización."
+      ],
+      correcta: 1,
+      explicaciones: [
+        "❌ Confusión conceptual: La prescripción solo aplica a títulos ejecutivos en cobro, no a facultades de liquidación y revisión previa.",
+        "✅ ¡Precisión Forense! Al operar la firmeza legal de la declaración, la DIAN pierde de forma definitiva e improrrogable la competencia para revisar o modificar la liquidación privada.",
+        "❌ Distractor: El silencio administrativo no rige la pérdida de competencia temporal por firmeza."
+      ]
+    }
+  },
+  {
+    id: "lc_13",
+    numero: 13,
+    titulo: "Debido Proceso Probatorio: Prueba Conducente vs. Prueba Ilícita",
+    regla: "Es nula de pleno derecho la prueba obtenida con violación del debido proceso (Art. 29 C.P.).",
+    resumen: "En fiscalizaciones tributarias y aduaneras, las pruebas deben ser legales, conducentes, pertinentes y útiles, recaudadas con oportunidad de contradicción. En los casos de la CNSC aparecen situaciones tentadoras: 'un hacker entrega archivos de la competencia', 'un exempleado resentido aporta chats privados sin orden de juez', o 'el auditor ingresa a un domicilio privado sin orden de registro'. El distractor induce a utilizar esa prueba porque 'demuestra claramente la evasión'. La respuesta correcta siempre rechaza la prueba ilícita o exige su exclusión procesal.",
+    formula: "Prueba ilegal o sin cadena de custodia = Regla de Exclusión Probatoria (Art. 29 C.P.)",
+    puntosClave: [
+      "Ningún fin sancionatorio justifica el uso de pruebas ilícitas o clandestinas en la administración.",
+      "Toda inspección contable o tributaria debe realizarse previa notificación de auto comisorio.",
+      "El contribuyente tiene derecho inalienable a controvertir y objetar las pruebas aportadas al expediente."
+    ],
+    ejercicio: {
+      pregunta: "Durante una investigación tributaria, un tercero anónimo aporta una memoria USB asegurando que contiene la contabilidad real paralela ('doble contabilidad') de una empresa, obtenida mediante hackeo a los servidores privados. ¿Cómo debe proceder el funcionario de fiscalización?",
+      opciones: [
+        "A. Incorporar de inmediato la USB como prueba reina e iniciar liquidación oficial de aforo con base en ella.",
+        "B. Desestimar la prueba por ilicitud manifiesta en su obtención (violación al debido proceso y reserva de datos) y practicar pruebas formales directas legalmente autorizadas.",
+        "C. Filtrar los archivos a la prensa para que el contribuyente sienta presión social y confiese la evasión."
+      ],
+      correcta: 1,
+      explicaciones: [
+        "❌ Nulidad absoluta: Los actos fundamentados en pruebas ilícitas (fruto del árbol envenenado) son nulos de pleno derecho ante la jurisdicción contenciosa.",
+        "✅ ¡Postura Constitucional! La prueba obtenida con vulneración de derechos fundamentales no puede sustentar actuaciones administrativas; la DIAN debe recaudar su propio acervo probatorio formal con apego a la ley.",
+        "❌ Delito y falta disciplinaria gravísima: Violar la reserva tributaria y filtrar datos a medios acarrearía destitución inmediata."
+      ]
+    }
+  },
+  {
+    id: "lc_14",
+    numero: 14,
+    titulo: "Triangulación Ética MIPG: Conflicto de Interés vs. Diligencia",
+    regla: "Ante conflicto de interés, el deber ético no es callar ni resolver: es declarar el impedimento formal.",
+    resumen: "En las pruebas de juicio situacional para la carrera DIAN, los dilemas éticos son altamente valorados por el Modelo Integrado de Planeación y Gestión (MIPG) y el Código de Integridad. Las situaciones típicas involucran: presión de un superior jerárquico para beneficiar a un amigo, fiscalización a una empresa donde trabaja un pariente, o recepción de atenciones/regalos de usuarios. Los distractores proponen: 1. Obedecer sumisamente ('por obediencia jerárquica'); 2. Pelear o publicar en redes; 3. Hacerse el desentendido. La clave oficial siempre es la vía institucional: declararse impedido por escrito ante el superior inmediato (Art. 11 CPACA y Ley 1952 de 2019).",
+    formula: "Parentesco / Interés particular = Deber de Impedimento Motivado Inmediato por Escrito",
+    puntosClave: [
+      "El conflicto de intereses no es una falta en sí; la falta es NO declararse impedido a tiempo.",
+      "La obediencia jerárquica jamás justifica cometer un acto ilegal o manifiestamente contrario a la Constitución.",
+      "El servidor de la DIAN responde con el conducto regular: radicación escrita motivada con copia al expediente."
+    ],
+    ejercicio: {
+      pregunta: "A un Gestor de Fiscalización se le asigna por reparto el expediente de auditoría de una sociedad comercial donde su hermano es el socio mayoritario y representante legal. ¿Cuál es la actuación transparente y legal exigida por el Código de Integridad y el CPACA?",
+      opciones: [
+        "A. Continuar con la auditoría aplicando el máximo rigor posible para demostrar que no favorece a su familiar.",
+        "B. Radicar formalmente manifestación de impedimento por escrito ante su superior inmediato, explicando la causal de parentesco para que se reasigne el caso.",
+        "C. Abstenerse de actuar en silencio y archivar el expediente de forma encubierta para proteger a la familia."
+      ],
+      correcta: 1,
+      explicaciones: [
+        "❌ Trampa de falso heroísmo: Por más riguroso que sea el funcionario, el conflicto de interés objetivo existe por ley y vicia de nulidad cualquier actuación que suscriba.",
+        "✅ ¡Conducta Ética Ejemplar! El Art. 11 del CPACA obliga al servidor público a manifestar el impedimento dentro de los 3 días siguientes al conocimiento de la causal. El superior designará un funcionario ad-hoc.",
+        "❌ Delito de prevaricato por omisión y falta disciplinaria gravísima de ocultamiento."
+      ]
+    }
+  },
+  {
+    id: "lc_15",
+    numero: 15,
+    titulo: "Bloque de Constitucionalidad: Primacía de Tratados de DD.HH.",
+    regla: "Los tratados de DD.HH. y garantías constitucionales prevalecen sobre directrices o circulares (Art. 93 C.P.).",
+    resumen: "Cuando un caso plantee contradicción entre una directriz, memorando interno o circular de la DIAN y un derecho fundamental o garantía procesal (Art. 29 C.P. o Convención Americana), la opción correcta jamás valida vulnerar el derecho fundamental para 'cumplir metas de recaudo'. Las directrices operativas no pueden modificar el orden constitucional.",
+    formula: "Tratados de DD.HH. / Art. 93 C.P. > Ley > Decretos > Circulares e Instructivos Internos",
+    puntosClave: [
+      "Una circular o memorando interno jamás puede suspender términos legales ni vulnerar el debido proceso.",
+      "El derecho a la defensa y contradicción prima sobre directrices de celeridad o metas de fiscalización.",
+      "Desconfía de opciones que justifiquen irregularidades procesales escudándose en órdenes verbales de superiores."
+    ],
+    ejercicio: {
+      pregunta: "Una circular interna de una seccional de la DIAN instruye omitir el intento de notificación personal y electrónica para notificar directamente por aviso en portal web a fin de cerrar el trimestre con metas cumplidas. Frente a una liquidación de revisión notificada así, ¿cuál es la validez de dicha actuación?",
+      opciones: [
+        "A. Válida, porque las circulares internas son de obligatorio cumplimiento jerárquico dentro de la entidad.",
+        "B. Nula por violación al debido proceso constitucional, pues las circulares no pueden modificar el régimen legal y preferente de notificación.",
+        "C. Válida únicamente si el contribuyente no presenta reclamo dentro de las siguientes 24 horas."
+      ],
+      correcta: 1,
+      explicaciones: [
+        "❌ Violación jerárquica: Ningún instructivo interno administrativo puede derogar el procedimiento legal de notificación del Estatuto Tributario.",
+        "✅ ¡Primacía Constitucional! El debido proceso (Art. 29 C.P.) y las normas legales de notificación priman absolutamente sobre cualquier directriz operativa o meta de gestión.",
+        "❌ Distractor: Las nulidades por violación del núcleo esencial de garantías procesales no se convalidan en 24 horas."
+      ]
+    }
+  },
+  {
+    id: "lc_16",
+    numero: 16,
+    titulo: "Detector de Causal de Nulidad: Incompetencia y Falsa Motivación",
+    regla: "La falta de competencia y la falta o falsa motivación vician de nulidad absoluta el acto administrativo (Art. 137 CPACA).",
+    resumen: "En las pruebas de la CNSC abundan actos administrativos que parecen bien redactados pero carecen de motivación real (falsa motivación: los hechos invocados no existen o fueron falseados) o fueron proferidos por funcionarios sin competencia funcional delegada. La opción correcta siempre identifica el vicio de legalidad y exige sanearlo o revocar el acto en lugar de ejecutarlo de plano.",
+    formula: "Acto Administrativo Válido = Competencia Legal Expresa + Motivación Fáctica y Jurídica Real y Probada",
+    puntosClave: [
+      "Falsa motivación: se alega un hecho inexistente en el expediente para sancionar al administrado.",
+      "Incompetencia: el funcionario firma un acto reservado por ley o delegación a otra autoridad.",
+      "Todo acto administrativo definitivo debe expresar con claridad los motivos de hecho y de derecho que lo fundamentan."
+    ],
+    ejercicio: {
+      pregunta: "La DIAN profiere una resolución sancionatoria contra una empresa manifestando que no dio respuesta a un requerimiento de información. En el expediente reposa copia auténtica del radicado de respuesta entregado dentro del término legal con su sello digital. ¿Qué causal de nulidad vicia la resolución?",
+      opciones: [
+        "A. Incompetencia territorial del auditor tributario.",
+        "B. Nulidad por falsa motivación, al fundamentarse en un supuesto de hecho contrariado por la prueba documental del expediente.",
+        "C. Silencio administrativo positivo por error material involuntario."
+      ],
+      correcta: 1,
+      explicaciones: [
+        "❌ Causal equivocada: La falta de radicación alegada no es un tema territorial, sino de veracidad fáctica de la motivación.",
+        "✅ ¡Causal Exacta! Existe falsa motivación cuando el fundamento fáctico en que se apoya la administración es contrario a la realidad probada en el expediente (Art. 137 CPACA).",
+        "❌ Distractor: El silencio positivo solo opera con norma expresa taxativa y no ante actos expresos con falsa motivación."
+      ]
+    }
+  },
+  {
+    id: "lc_17",
+    numero: 17,
+    titulo: "Cómputo Forense del Tiempo: Días Hábiles vs. Calendario y Meses",
+    regla: "Los plazos en días fijados en la ley procesal administrativa son hábiles (Art. 68 CPACA y Art. 118 CGP), salvo norma expresa.",
+    resumen: "Gran cantidad de preguntas situacionales se definen por saber contar términos: 1. Los plazos en DÍAS en actuaciones administrativas tributarias son HÁBILES (excluyen sábados, domingos y festivos), salvo que la norma diga expresamente 'días calendario'. 2. Si el último día es inhábil, vence el primer día hábil siguiente. 3. Los plazos en MESES o AÑOS se computan en el calendario de fecha a fecha (ej. de 15 de marzo a 15 de abril).",
+    formula: "Plazo en Días = Hábiles (sin festivos ni fines de semana) // Plazo en Meses/Años = De fecha a fecha",
+    puntosClave: [
+      "El término de 15 días para responder requerimiento especial se cuenta en días hábiles.",
+      "El término de 3 meses para interponer recurso de reconsideración es en meses calendario de fecha a fecha.",
+      "El día inicial de la notificación no se cuenta; el término empieza a correr a partir del día siguiente."
+    ],
+    ejercicio: {
+      pregunta: "Un contribuyente recibe notificación electrónica formal de un requerimiento ordinario el viernes 5 de abril. La norma le concede 5 días hábiles para responder. Si el sábado y domingo son inhábiles y no hay festivos intermedios, ¿cuál es el día límite exacto de respuesta?",
+      opciones: [
+        "A. El miércoles 10 de abril al finalizar la jornada laboral.",
+        "B. El viernes 12 de abril al finalizar la jornada legal.",
+        "C. El lunes 8 de abril por contar de corrido los fines de semana."
+      ],
+      correcta: 1,
+      explicaciones: [
+        "❌ Conteo incorrecto: Incluyó erróneamente sábado y domingo en un término fijado en días hábiles.",
+        "✅ ¡Cómputo Forense Impecable! Notificado el viernes 5: día 1 (lunes 8), día 2 (martes 9), día 3 (miércoles 10), día 4 (jueves 11) y día 5 (viernes 12 de abril).",
+        "❌ Distractor: Los fines de semana no se cuentan en plazos de días hábiles del procedimiento tributario."
+      ]
+    }
+  },
+  {
+    id: "lc_18",
+    numero: 18,
+    titulo: "Filtro del Título Ejecutivo: Claro, Expreso y Exigible",
+    regla: "No hay cobro coactivo sin título ejecutivo idóneo que conste en documento ejecutoriado (Art. 828 E.T.).",
+    resumen: "El cobro coactivo no se inicia por meras sospechas o actos en trámite. Requiere un título ejecutivo con tres condiciones inseparables: 1. Expreso (identificado con precisión en el texto); 2. Claro (sujetos deudor/acreedor y cuantía exacta determinada); 3. Exigible (con plazo vencido y sin recursos pendientes de fallo, es decir, debidamente ejecutoriado). Librar mandamiento de pago cuando el contribuyente tiene un recurso de reconsideración en trámite es causal de nulidad por falta de exigibilidad.",
+    formula: "Título Ejecutivo Válido = Expreso + Claro + Exigible (Firmeza sin recursos pendientes)",
+    puntosClave: [
+      "Si un recurso está en trámite, el acto NO está ejecutoriado ni es exigible.",
+      "Las liquidaciones privadas son título ejecutivo solo si se presentaron sin pago y no están suspendidas.",
+      "Las excepciones contra el mandamiento de pago proceden por falta de título ejecutivo idóneo (Art. 831 E.T.)."
+    ],
+    ejercicio: {
+      pregunta: "La división de Cobranzas de la DIAN libra mandamiento de pago contra un contribuyente con base en una Liquidación Oficial de Revisión sobre la cual se radicó oportunamente recurso de reconsideración que aún se encuentra pendiente de fallo. ¿Qué excepción legal debe prosperar?",
+      opciones: [
+        "A. Falta de exigibilidad del título ejecutivo, por encontrarse en trámite el recurso de reconsideración que impide la firmeza del acto.",
+        "B. Prescripción de la acción ejecutiva por haber transcurrido más de 1 mes sin fallo.",
+        "C. Ninguna, porque los actos de la DIAN se cobran de inmediato sin importar si fueron recurridos."
+      ],
+      correcta: 0,
+      explicaciones: [
+        "✅ ¡Acierto Procesal! Conforme al Art. 829 y 831 del Estatuto Tributario, el acto administrativo recurrido no está en firme ni es ejecutoriado; carece de exigibilidad para cobro coactivo.",
+        "❌ Causal errónea: La prescripción del cobro es de 5 años y opera únicamente sobre obligaciones legalmente ejecutoriadas.",
+        "❌ Violación al debido proceso: Los recursos legalmente interpuestos suspenden la ejecución del acto hasta su decisión expresa o silencio procesal."
+      ]
+    }
+  },
+  {
+    id: "lc_19",
+    numero: 19,
+    titulo: "Filtro Anti-Contradicción: Coherencia entre Supuesto y Consecuencia",
+    regla: "La conclusión procesal debe ser congruente con la gravedad probada de la falta en el supuesto fáctico.",
+    resumen: "Un patrón frecuente en los distractores de la CNSC es construir opciones con 'doble faz': la primera parte de la frase suena técnica y garantista, pero en la segunda parte remata con una sanción desproporcionada, autoritaria o de plano (ej. 'solicitar aclaración motivada concediendo término de descargos y proceder de inmediato a la clausura definitiva del negocio sin esperar respuesta'). Lee siempre la opción completa hasta la última palabra para cazar incongruencias internas.",
+    formula: "Premisa garantista + Desenlace desproporcionado o automático = 🚫 Distractor con Trampa Oculta",
+    puntosClave: [
+      "Nunca te quedes con la primera mitad de la opción: la trampa casi siempre se esconde al final.",
+      "El principio de proporcionalidad exige equilibrio entre la falta y la sanción impuesta.",
+      "Si la opción promete debido proceso pero ejecuta la sanción sin esperar el término, descártala."
+    ],
+    ejercicio: {
+      pregunta: "Al auditar la facturación de un establecimiento de comercio, se detecta que no expidió factura electrónica en dos ventas menores. ¿Cuál de las siguientes opciones contiene una contradicción interna que debes descartar?",
+      opciones: [
+        "A. Notificar pliego de cargos otorgando 10 días para explicaciones y decretar simultáneamente la clausura inmediata e irrevocable del establecimiento.",
+        "B. Notificar pliego de cargos otorgando el término legal de 10 días para que el contribuyente presente descargos con las pruebas pertinentes.",
+        "C. Evaluar las explicaciones del contribuyente antes de definir si procede sanción de clausura o sanción pecuniaria."
+      ],
+      correcta: 0,
+      explicaciones: [
+        "✅ ¡Cazaste la Contradicción! Da el término de descargos pero al mismo tiempo clausura de inmediato de forma irrevocable: viola la lógica procesal y el debido proceso (Art. 657 E.T.).",
+        "❌ Esta opción es coherente, legal y respeta el trámite ordinario sin contradicciones.",
+        "❌ Esta opción es prudente y proporcionada conforme a la gradualidad sancionatoria."
+      ]
+    }
+  },
+  {
+    id: "lc_20",
+    numero: 20,
+    titulo: "Principio de Favorabilidad: Retroactividad de la Ley Más Benigna",
+    regla: "En materia sancionatoria, la ley permisiva o favorable prevalece y aplica de forma retroactiva (Art. 29 C.P. y Art. 640 E.T.).",
+    resumen: "En el régimen sancionatorio tributario y aduanero de la DIAN opera el principio constitucional de favorabilidad: si una nueva ley o reforma reduce una sanción o suaviza un requisito antes de que la resolución sancionatoria quede en firme (o incluso en etapa de discusión), la administración tiene la obligación de aplicar la norma más favorable al contribuyente. El distractor típico afirma erróneamente que 'las leyes solo rigen hacia el futuro y la DIAN jamás puede rebajar sanciones vigentes al momento del hecho'.",
+    formula: "Infracción anterior + Nueva ley con sanción menor antes de ejecutoria = Aplicación Favorable Obligatoria",
+    puntosClave: [
+      "La favorabilidad sancionatoria es un principio constitucional de aplicación inmediata.",
+      "Aplica tanto en discusiones en sede administrativa como ante la jurisdicción contenciosa.",
+      "El Art. 640 del Estatuto Tributario consagra la reducción de sanciones por no reincidencia y favorabilidad."
+    ],
+    ejercicio: {
+      pregunta: "Un contribuyente incurrió en extemporaneidad en 2023 cuya sanción legal calculada era del 10% del impuesto. En 2024, antes de proferirse la resolución sancionatoria, entra en vigencia una reforma tributaria que reduce la sanción aplicable a ese caso al 5%. ¿Cómo debe liquidar la DIAN la sanción?",
+      opciones: [
+        "A. Al 10%, porque las normas tributarias se aplican estrictamente según la fecha en que ocurrió el hecho generador de la infracción sin excepción.",
+        "B. Al 5%, en aplicación obligatoria del principio constitucional de favorabilidad que ampara el derecho sancionatorio administrativo.",
+        "C. Promediando ambas tarifas al 7.5% por equidad procesal."
+      ],
+      correcta: 1,
+      explicaciones: [
+        "❌ Desconoce el principio de favorabilidad del Art. 29 de la Constitución Política y Art. 640 del Estatuto Tributario.",
+        "✅ ¡Postura Constitucional Sancionatoria! Por mandato superior, la ley permisiva o favorable rige retroactivamente sobre hechos no consolidados definitivamente en acto ejecutoriado.",
+        "❌ Inexistente en derecho: La administración no puede inventar tarifas promedio no fijadas en la ley."
+      ]
+    }
+  },
+  {
+    id: "lc_21",
+    numero: 21,
+    titulo: "Matriz de Congruencia Fáctica: Limítate Estrictamente al Expediente",
+    regla: "La liquidación oficial o resolución sancionatoria debe limitarse a los hechos debatidos en el requerimiento previo (Art. 711 E.T.).",
+    resumen: "El principio de congruencia fáctica (Art. 711 del Estatuto Tributario) impide a la DIAN modificar la causa petendi o incluir nuevos impuestos, hechos o periodos en la Liquidación Oficial de Revisión que no hayan sido incluidos expresamente en el Requerimiento Especial. En el examen de la CNSC se plantean casos donde el auditor 'aprovecha para cobrarle el IVA del periodo siguiente que descubrió de paso'. Toda opción que extienda la sanción o liquidación más allá de lo formalmente requerido es nula por vulneración del derecho a la defensa.",
+    formula: "Hechos y Rubros en Liquidación Oficial ≤ Hechos y Rubros Notificados en Requerimiento Especial (Congruencia)",
+    puntosClave: [
+      "El Requerimiento Especial delimita de forma improrrogable el marco fáctico del debate tributario.",
+      "Si la DIAN quiere modificar otros aspectos, debe proferir ampliación al requerimiento especial dentro del término legal.",
+      "Toda liquidación que agregue glosas no contempladas en el requerimiento previo adolece de nulidad por incongruencia."
+    ],
+    ejercicio: {
+      pregunta: "La DIAN notificó Requerimiento Especial a una sociedad cuestionando únicamente las deducciones por salarios del año 2022. En la Liquidación Oficial de Revisión, además de rechazar los salarios, rechaza las deducciones por depreciación de activos que nunca fueron mencionadas en el requerimiento. ¿Qué vicio afecta la liquidación oficial?",
+      opciones: [
+        "A. Violación al principio de congruencia (Art. 711 E.T.), al incorporar glosas que no fueron objeto del previo requerimiento especial.",
+        "B. Caducidad automática de la totalidad del impuesto de renta del año 2022.",
+        "C. Ninguno, porque el auditor tributario tiene facultades omnímodas de fiscalización integral en cualquier etapa."
+      ],
+      correcta: 0,
+      explicaciones: [
+        "✅ ¡Congruencia Forense! El Art. 711 del Estatuto Tributario exige correspondencia estricta entre el requerimiento especial y la liquidación de revisión; incluir rubros nuevos sin previo requerimiento vulnera el derecho a la defensa.",
+        "❌ Distractor: La inclusión indebida vicia de nulidad la glosa no congruente, pero no caduca automáticamente todo el impuesto si los términos del requerimiento inicial se cumplieron.",
+        "❌ Arbitrariedad: Las facultades de fiscalización están sujetas al principio de legalidad y al debido proceso reglado."
+      ]
+    }
+  },
+  {
+    id: "lc_22",
+    numero: 22,
+    titulo: "Revocatoria Directa: Límite del Consentimiento Previo del Particular",
+    regla: "Los actos particulares y favorables no se revocan sin consentimiento expreso y escrito (Art. 97 CPACA).",
+    resumen: "Si la DIAN expide por error un acto administrativo que reconoce un saldo a favor, compensación o beneficio a un particular, la administración NO puede revocarlo unilateralmente de plano. Conforme al Art. 97 del CPACA, requiere el consentimiento previo, expreso y escrito del titular. Si el contribuyente no consiente la revocatoria, la entidad debe demandar su propio acto ante la Jurisdicción Contencioso Administrativa mediante el medio de control de lesividad.",
+    formula: "Acto Favorable a Particular + Error DIAN = Consentimiento Escrito O Demanda de Lesividad (Nunca de plano)",
+    puntosClave: [
+      "La revocatoria de oficio sin consentimiento viola el principio de seguridad jurídica y derechos adquiridos.",
+      "Única excepción sin consentimiento: si el acto se obtuvo por medios ilícitos penalmente comprobados.",
+      "Si el administrado niega el consentimiento, la vía legal exclusiva es la demanda judicial de lesividad."
+    ],
+    ejercicio: {
+      pregunta: "La DIAN profirió resolución que autorizó una devolución de saldos a favor por $80 millones a un declarante. Semanas después, un supervisor detecta un error de cálculo aritmético interno de la entidad y propone revocar unilateralmente y de plano la resolución para cobrar el dinero. ¿Cuál es el trámite legalmente exigido?",
+      opciones: [
+        "A. Expedir de plano y sin trámite la resolución de revocatoria directa e iniciar embargo bancario preventivo.",
+        "B. Solicitar el consentimiento previo, expreso y escrito del titular del derecho; si lo niega, demandar el acto propio ante la jurisdicción contenciosa mediante acción de lesividad.",
+        "C. Anular la resolución mediante oficio simple de trámite sin recurso alguno."
+      ],
+      correcta: 1,
+      explicaciones: [
+        "❌ Vía de hecho arbitraria: La revocatoria unilateral de actos favorables sin consentimiento está expresamente prohibida por el Art. 97 del CPACA.",
+        "✅ ¡Garantía de Legalidad! Los actos particulares y concretos requieren autorización escrita del interesado para su revocatoria; ante su negativa, la DIAN debe acudir al juez contencioso mediante acción de lesividad.",
+        "❌ Violación procesal: Los actos creadores de derechos no se invalidan por simples oficios de trámite."
+      ]
+    }
+  },
+  {
+    id: "lc_23",
+    numero: 23,
+    titulo: "Filtro Anti-Formulismo: Principio de Eficacia vs. Exceso Ritual",
+    regla: "El derecho sustancial prevalece sobre las formas procesales intrascendentes (Art. 228 C.P. y Art. 3 CPACA).",
+    resumen: "En las preguntas de juicio situacional, los redactores incluyen distractores que proponen 'rechazar de plano' recursos o peticiones por minucias intrascendentes (ej. 'no adjuntó la copia del poder que ya reposa en el expediente matriz', 'faltó numerar una página'). El Consejo de Estado y la Corte Constitucional prohíben el exceso ritual manifiesto. Si una solicitud contiene la información sustancial pero tiene un defecto formal menor, la conducta oficial es darle trámite o requerir subsanación en término legal, nunca rechazar in límine.",
+    formula: "Derecho Sustancial > Formalismo Vacío // Requerir Subsanación > Rechazo Injustificado",
+    puntosClave: [
+      "El rechazo de plano solo procede por causales taxativas de ley (ej. extemporaneidad absoluta no subsanable).",
+      "Los defectos de forma subsanables exigen otorgar plazo de subsanación de 10 días o 1 mes (Art. 17 CPACA).",
+      "No se puede exigir al ciudadano documentos o requisitos que la misma entidad ya tiene en su custodia."
+    ],
+    ejercicio: {
+      pregunta: "Un contribuyente radica oportunamente un recurso de reconsideración tributario. En el memorial omitió anexar el certificado de existencia y representación legal que ya reposa actualizado en el Registro Único Tributario (RUT) de la DIAN. ¿Cuál es la decisión correcta del funcionario sustanciador?",
+      opciones: [
+        "A. Proferir auto inadmisorio concediendo el término legal de un mes para subsanar el requisito formal, o verificarlo directamente en las bases oficiales institucionales.",
+        "B. Rechazar de plano y en forma definitiva el recurso declarando ejecutoriada la liquidación oficial.",
+        "C. Remitir el expediente al archivo definitivo por carencia de personería jurídica insanable."
+      ],
+      correcta: 0,
+      explicaciones: [
+        "✅ ¡Prevalencia Sustancial! Conforme al Estatuto Tributario y CPACA, los defectos de acreditación formal dan lugar a auto inadmisorio para subsanar dentro del mes siguiente, evitando el exceso ritual manifiesto.",
+        "❌ Trampa de Exceso Ritual: Los requisitos formales subsanables no acarrean rechazo de plano definitivo sin oportunidad de subsanación.",
+        "❌ Extralimitación: La falta de un certificado consultable en bases institucionales no extingue la personería sustantiva."
+      ]
+    }
+  },
+  {
+    id: "lc_24",
+    numero: 24,
+    titulo: "Efecto Vinculante de Doctrinas y Respuestas a Consultas DIAN",
+    regla: "Los conceptos oficiales vigentes de la DIAN obligan a sus funcionarios y protegen al administrado (Ley 2010 de 2019).",
+    resumen: "Cuando un contribuyente liquida sus impuestos o adopta una postura tributaria amparado en un Concepto u Oficio Doctrinal emitido por la Dirección de Gestión Jurídica de la DIAN vigente para la época, el funcionario fiscalizador no puede sancionarlo por inexactitud ni tipificar mala fe. Conforme al Art. 131 de la Ley 2010 de 2019, la doctrina oficial es de obligatorio acatamiento para todos los servidores de la DIAN, y las actuaciones del ciudadano amparadas en ella están protegidas por la confianza legítima.",
+    formula: "Concepto DIAN Vigente + Actuación del Contribuyente = Confianza Legítima (Exoneración de Sanción)",
+    puntosClave: [
+      "El funcionario no puede desconocer a su arbitrio la doctrina jurídica formal de la entidad.",
+      "Los cambios doctrinales de la DIAN nunca aplican con retroactividad en perjuicio del administrado.",
+      "El sustento en conceptos oficiales vigentes descarta la culpa o negligencia sancionable."
+    ],
+    ejercicio: {
+      pregunta: "En una fiscalización por IVA, el auditor observa que una empresa aplicó una exención siguiendo al pie de la letra un Concepto oficial vigente expedido por la DIAN. El auditor considera personalmente que ese concepto es jurídicamente erróneo. ¿Cuál es su deber funcional?",
+      opciones: [
+        "A. Imponer la sanción por inexactitud del 100% desconociendo el concepto por criterio personal independiente.",
+        "B. Respetar la doctrina oficial vigente de la DIAN que ampara al contribuyente y abstenerse de formular sanción por inexactitud con base en dicho criterio.",
+        "C. Denunciar penalmente al representante legal de la empresa por acatar un concepto tributario cuestionable."
+      ],
+      correcta: 1,
+      explicaciones: [
+        "❌ Infracción al principio de legalidad: Los conceptos doctrinales de la DIAN son obligatorios para los funcionarios de la entidad (Art. 131 Ley 2010 de 2019); el funcionario no puede inaplicarlos a su arbitrio.",
+        "✅ ¡Confianza Legítima y Obligatoriedad Doctrinal! La actuación amparada en conceptos oficiales vigentes excluye la imposición de sanciones por inexactitud tributaria.",
+        "❌ Absurdo jurídico: Acatar la doctrina de la propia entidad no constituye delito alguno."
+      ]
+    }
+  },
+  {
+    id: "lc_25",
+    numero: 25,
+    titulo: "Detector de Desviación de Poder: Fin Público vs. Interés Viciado",
+    regla: "Las facultades de fiscalización deben ejercerse exclusivamente para fines de interés público (Art. 137 CPACA).",
+    resumen: "La desviación de poder se configura cuando una potestad legítima (por ejemplo, ordenar visitas de inspección aduanera, requerimientos o fiscalizaciones) se ejecuta persiguiendo fines personales, revanchas comerciales, retaliaciones políticas o presiones indebidas. En los casos situacionales de la CNSC, la respuesta correcta siempre descarta auditorías dirigidas por enemistad o interés privado y exige sujeción a las matrices objetivas de gestión del riesgo y perfiles analíticos de la DIAN.",
+    formula: "Competencia Legal ejercida con móvil oculto particular = Desviación de Poder (Nulidad y Falta Gravísima)",
+    puntosClave: [
+      "La selección de investigados en la DIAN debe responder a criterios técnicos del Sistema de Gestión de Riesgos.",
+      "Está prohibido usar la potestad pública para beneficios familiares, políticos o vendettas personales.",
+      "La desviación de poder acarrea nulidad del acto administrativo y destitución disciplinaria."
+    ],
+    ejercicio: {
+      pregunta: "Un funcionario de la División de Fiscalización solicita a su superior que se priorice una inspección tributaria a fondo sobre una microempresa vecina, motivado en un altercado particular por el pago de cuotas de administración del conjunto residencial donde vive. ¿Cómo califica jurídicamente esta actuación?",
+      opciones: [
+        "A. Un acto de celo institucional legítimo que debe ser respaldado por la jefatura.",
+        "B. Una conducta constitutiva de desviación de poder y conflicto de interés que amerita investigación disciplinaria.",
+        "C. Una actuación reglada normal amparada en las facultades discrecionales de fiscalización."
+      ],
+      correcta: 1,
+      explicaciones: [
+        "❌ Error ético grave: Utilizar el aparato coercitivo del Estado para intereses privados es una falta disciplinaria gravísima.",
+        "✅ ¡Desviación de Poder Detectada! Desviar las facultades públicas para fines de retaliación privada vicia la función pública y acarrea sanción disciplinaria y penal.",
+        "❌ Distractor: Las facultades de fiscalización no son caprichosas ni de venganza particular; son eminentemente regladas y técnicas."
+      ]
+    }
+  },
+  {
+    id: "lc_26",
+    numero: 26,
+    titulo: "Notificación por Conducta Concluyente: Convalidación Procesal",
+    regla: "Si el interesado interpone recursos o manifiesta conocer el acto, se tiene por notificado (Art. 72 CPACA).",
+    resumen: "Ocurre a menudo que una citación o notificación electrónica presentó fallas de envío o acuse de recibo. Sin embargo, el contribuyente acude a la entidad, solicita copias, radica descargos o presenta el recurso de reconsideración respectivo. La regla de conducta concluyente (Art. 72 CPACA) indica que la notificación defectuosa queda plenamente saneada y convalidada en la fecha de radicación del memorial del ciudadano. La opción que proponga 'anular todo y notificar de nuevo desde cero' desconoce la economía procesal.",
+    formula: "Manifestación Formal o Recurso Radicado = Notificación Surtida por Conducta Concluyente",
+    puntosClave: [
+      "La conducta concluyente sanea los vicios de notificación sin necesidad de trámites repetitivos.",
+      "El término para resolver o para recursos se computa a partir de la fecha de la manifestación expresa del interesado.",
+      "Evita dilaciones injustificadas en la administración de justicia tributaria."
+    ],
+    ejercicio: {
+      pregunta: "A una sociedad comercial no le llegó el correo electrónico con la liquidación oficial por una falla en el servidor. No obstante, el representante legal descarga el acto de la plataforma y radica memorial de reconsideración debidamente motivado dentro del mes siguiente. ¿Cómo opera la notificación de dicho acto?",
+      opciones: [
+        "A. La liquidación oficial es nula de pleno derecho y debe emitirse un nuevo requerimiento especial.",
+        "B. Se tiene por legalmente notificada la sociedad por conducta concluyente desde la fecha en que radicó el recurso, dándose trámite al mismo.",
+        "C. La DIAN debe rechazar el recurso y volver a enviar el correo electrónico original esperando 3 meses más."
+      ],
+      correcta: 1,
+      explicaciones: [
+        "❌ Consecuencia desproporcionada: La falla formal en la remisión no invalida el acto sustantivo cuando el interesado ejerció oportunamente su defensa.",
+        "✅ ¡Conducta Concluyente Perfecta! El Art. 72 del CPACA establece que la notificación se entiende surtida el día en que la parte manifieste conocer el acto o interponga recursos.",
+        "❌ Violación al principio de celeridad y eficacia: Sería un desgaste innecesario repetir una notificación ya conocida y controvertida."
+      ]
+    }
+  },
+  {
+    id: "lc_27",
+    numero: 27,
+    titulo: "Pérdida de Fuerza Ejecutoria: Decaimiento del Acto por el Tiempo",
+    regla: "El acto administrativo pierde fuerza ejecutoria transcurridos 5 años sin cobro (Art. 91 CPACA y Art. 817 E.T.).",
+    resumen: "La facultad de hacer cumplir un acto administrativo (su ejecutoriedad) no dura indefinidamente. El fenómeno del decaimiento o pérdida de fuerza ejecutoria opera principalmente cuando transcurren más de cinco (5) años desde que el acto quedó en firme sin que la administración haya realizado los actos coactivos o mandamiento de pago para hacerlo efectivo. Transcurrido ese plazo, el título pierde su carácter coercitivo y el funcionario ejecutor no puede librar embargos sobre actos que han perdido fuerza ejecutoria.",
+    formula: "Acto en Firme + 5 Años de Inactividad de Cobro = Pérdida de Fuerza Ejecutoria (Inexigibilidad Sobreviniente)",
+    puntosClave: [
+      "El deudor puede alegar la pérdida de fuerza ejecutoria mediante excepción ante el mandamiento tardío.",
+      "Diferencia: La nulidad es un vicio de nacimiento; el decaimiento es la pérdida de eficacia posterior por inacción.",
+      "Previene abusos y garantiza la seguridad jurídica de los administrados frente a la desidia estatal."
+    ],
+    ejercicio: {
+      pregunta: "Una resolución sancionatoria aduanera quedó ejecutoriada en enero de 2018. La administración nunca libró mandamiento de pago ni notificó interrupción alguna. En julio de 2024, la división de cobranzas pretende reactivar el cobro y decretar el embargo de las cuentas del deudor. ¿Qué causal procesal extinguió la potestad coactiva?",
+      opciones: [
+        "A. Pérdida de fuerza ejecutoria del acto administrativo por transcurso de más de 5 años sin ejecución coactiva (Art. 91 CPACA y prescripción del Art. 817 E.T.).",
+        "B. Silencio administrativo positivo tácito.",
+        "C. Nulidad por indebida representación procesal."
+      ],
+      correcta: 0,
+      explicaciones: [
+        "✅ ¡Firmeza del Tiempo! Transcurridos 5 años sin mandamiento de pago, el acto pierde fuerza ejecutoria (Art. 91 CPACA) y prescribe la acción de cobro tributario (Art. 817 E.T.). Las medidas cautelares son improcedentes.",
+        "❌ Distractor: El silencio administrativo no rige la extinción de títulos ejecutivos inactivos.",
+        "❌ Causal impertinente: No guarda relación con la extinción de la exigibilidad por el paso del tiempo."
+      ]
+    }
+  },
+  {
+    id: "lc_28",
+    numero: 28,
+    titulo: "Confianza Legítima: Prohibición de Ir contra los Actos Propios",
+    regla: "La administración no puede defraudar la buena fe objetiva generada en el ciudadano con sus actos previos (Art. 83 C.P.).",
+    resumen: "En la doctrina constitucional (*venire contra factum proprium*), la administración pública debe mantener consistencia y estabilidad en sus actuaciones. Si la DIAN le indicó formalmente a un contribuyente mediante oficio que un mecanismo de pago o soporte documental era el idóneo para su caso, y el ciudadano actuó siguiendo exactamente esa instrucción, un nuevo funcionario no puede llegar meses después a desconocer la directriz y sancionarlo alegando 'que debió hacerlo de otra forma'. La buena fe y la confianza legítima protegen al administrado.",
+    formula: "Instrucción Oficial Escrita Previa + Ciudadano Actúa de Buena Fe = Protección por Confianza Legítima (Sin Sanción)",
+    puntosClave: [
+      "Nadie puede ir válidamente en contra de sus propios actos precedentes vinculantes.",
+      "Los cambios intempestivos de criterio administrativo deben prever periodos de transición razonables.",
+      "El ciudadano que acata las directrices expresas de la autoridad no puede ser considerado infractor culpable."
+    ],
+    ejercicio: {
+      pregunta: "Un importador consultó por escrito a la DIAN sobre el código arancelario de un producto innovador y la división competente le emitió oficio vinculante señalando la partida exacta. Al llegar el embarque, el inspector aduanero alega que ese oficio está mal expedido y pretende aprehender la mercancía por 'inexactitud en la partida arancelaria'. ¿Qué principio superior tutela al importador?",
+      opciones: [
+        "A. Principio de soberanía arancelaria unilateral de la aduana.",
+        "B. Principio de buena fe y confianza legítima (prohibición de ir contra los actos propios), al haber actuado el importador bajo instrucción oficial previa de la autoridad.",
+        "C. Ninguno, porque los oficios de la DIAN carecen de todo valor probatorio en puerto."
+      ],
+      correcta: 1,
+      explicaciones: [
+        "❌ Infracción constitucional: La discrecionalidad de los inspectores está supeditada a los actos formales de la propia entidad.",
+        "✅ ¡Tutela Superior de Confianza Legítima! El ciudadano que obra guiado por una determinación previa de la administración goza de presunción de buena fe y no puede ser sancionado ni despojado de sus mercancías.",
+        "❌ Falso: Las respuestas y clasificaciones oficiales de la entidad tienen plena fuerza jurídica y vinculante en sede de control aduanero."
+      ]
+    }
   }
 ];
 
@@ -632,6 +1200,120 @@ function launchConfetti(canvas) {
   update();
 }
 
+// =========================================================================
+// SimoFX: Motor de micro-animaciones (estilos inline + keyframes en sidepanel.css)
+// =========================================================================
+const SimoFX = {
+  reduced() {
+    return typeof window !== "undefined" && window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  },
+
+  _center(el) {
+    if (!el || !el.getBoundingClientRect) return { x: window.innerWidth / 2, y: window.innerHeight / 2 };
+    const r = el.getBoundingClientRect();
+    return { x: r.left + r.width / 2, y: r.top + r.height / 2 };
+  },
+
+  _layer(el, ms) {
+    el.classList.add("simo-fx-layer");
+    document.body.appendChild(el);
+    setTimeout(() => el.remove(), ms);
+    return el;
+  },
+
+  // Texto flotante tipo "+50 XP" que sube y se desvanece
+  floatText(anchor, text, color = "#34d399") {
+    if (this.reduced()) return;
+    const { x, y } = this._center(anchor);
+    const el = document.createElement("div");
+    el.textContent = text;
+    el.style.cssText = `position: fixed; left: ${x}px; top: ${y - 10}px; z-index: 100000; pointer-events: none; font-size: 18px; font-weight: 900; color: ${color}; text-shadow: 0 2px 10px rgba(0,0,0,0.6), 0 0 14px ${color}; animation: simoFloatUp 1.1s ease-out forwards; white-space: nowrap; font-family: inherit;`;
+    this._layer(el, 1200);
+  },
+
+  // Explosión radial de emojis/partículas
+  burst(anchor, emojis = ["✨", "⭐", "💫"], count = 14, spread = 110) {
+    if (this.reduced()) return;
+    const { x, y } = this._center(anchor);
+    for (let i = 0; i < count; i++) {
+      const p = document.createElement("div");
+      const angle = (Math.PI * 2 * i) / count + Math.random() * 0.5;
+      const dist = spread * (0.55 + Math.random() * 0.6);
+      const size = 14 + Math.random() * 12;
+      p.textContent = emojis[i % emojis.length];
+      p.style.cssText = `position: fixed; left: ${x}px; top: ${y}px; z-index: 100000; pointer-events: none; font-size: ${size}px; --dx: ${Math.cos(angle) * dist}px; --dy: ${Math.sin(angle) * dist}px; --rot: ${Math.random() * 540 - 270}deg; animation: simoParticle ${0.7 + Math.random() * 0.5}s cubic-bezier(0.15, 0.8, 0.3, 1) forwards;`;
+      this._layer(p, 1300);
+    }
+  },
+
+  // Reproduce una animación CSS sobre un elemento existente
+  play(el, animation) {
+    if (!el || this.reduced()) return;
+    el.style.animation = "none";
+    void el.offsetWidth;
+    el.style.animation = animation;
+    const clear = () => { el.style.animation = ""; el.removeEventListener("animationend", clear); };
+    el.addEventListener("animationend", clear);
+  },
+
+  shake(el) { this.play(el, "simoShake 0.5s ease-in-out"); },
+  pop(el) { this.play(el, "simoPop 0.45s cubic-bezier(0.175, 0.885, 0.32, 1.275)"); },
+
+  glow(el, color = "rgba(16, 185, 129, 0.7)") {
+    if (!el) return;
+    el.style.setProperty("--glow", color);
+    this.play(el, "simoGlowRing 0.8s ease-out 2");
+  },
+
+  // La llama del header crece y gira al sumar racha
+  flameBoost() {
+    document.querySelectorAll(".duo-flame-icon").forEach((f) => {
+      if (this.reduced()) return;
+      f.style.display = "inline-block";
+      f.style.animation = "none";
+      void f.offsetWidth;
+      f.style.animation = "simoFlameBoost 0.9s ease-out, simoFlamePulse 1.4s 0.9s infinite alternate";
+    });
+  },
+
+  // Celebración a pantalla completa: trofeo que emerge + lluvia de emojis
+  celebrate(icon = "🏆", title = "¡Logro desbloqueado!", subtitle = "", rain = ["🎉", "⭐", "✨", "🏅"]) {
+    if (this.reduced()) return;
+    const layer = document.createElement("div");
+    layer.style.cssText = "position: fixed; inset: 0; z-index: 100001; pointer-events: none; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; background: radial-gradient(circle at center, rgba(245, 158, 11, 0.22) 0%, rgba(11, 17, 32, 0.55) 70%); animation: simoFadeInOut 2.6s ease forwards; overflow: hidden;";
+
+    for (let i = 0; i < 34; i++) {
+      const d = document.createElement("div");
+      d.textContent = rain[i % rain.length];
+      d.style.cssText = `position: absolute; top: 0; left: ${Math.random() * 100}%; font-size: ${14 + Math.random() * 18}px; --rot: ${Math.random() * 720 - 360}deg; animation: simoRainDrop ${1.6 + Math.random() * 1.2}s linear ${Math.random() * 0.8}s forwards; opacity: 0;`;
+      layer.appendChild(d);
+    }
+
+    const trophy = document.createElement("div");
+    trophy.textContent = icon;
+    trophy.style.cssText = "font-size: 86px; animation: simoTrophyRise 0.9s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; filter: drop-shadow(0 0 30px rgba(250, 204, 21, 0.8));";
+    layer.appendChild(trophy);
+
+    const t = document.createElement("div");
+    t.textContent = title;
+    t.style.cssText = "font-size: 22px; font-weight: 900; text-align: center; padding: 0 20px; background: linear-gradient(90deg, #fde68a, #f59e0b, #fff7ed, #f59e0b, #fde68a); background-size: 200% auto; -webkit-background-clip: text; background-clip: text; color: transparent; animation: simoShine 2s linear infinite;";
+    layer.appendChild(t);
+
+    if (subtitle) {
+      const s = document.createElement("div");
+      s.textContent = subtitle;
+      s.style.cssText = "font-size: 14px; font-weight: 700; color: #e2e8f0; text-align: center; padding: 0 24px; text-shadow: 0 2px 8px rgba(0,0,0,0.7);";
+      layer.appendChild(s);
+    }
+
+    this._layer(layer, 2700);
+  },
+
+  // Latido del temporizador en los últimos segundos
+  heartbeat(el) { this.play(el, "simoHeartbeat 0.6s ease-in-out"); }
+};
+if (typeof window !== "undefined") window.SimoFX = SimoFX;
+
 function showStreakMilestoneModal(count) {
   const modal = document.getElementById("streakMilestoneModal");
   if (!modal) return;
@@ -672,7 +1354,18 @@ function showStreakMilestoneModal(count) {
     xp = "+150 XP";
   }
 
-  if (iconEl) iconEl.textContent = icon;
+  if (iconEl) {
+    iconEl.textContent = icon;
+    // Animación distinta según el rango alcanzado
+    const rankAnimations = {
+      "👑": "simoCrownSpin 1.8s ease-in-out infinite",
+      "🎖️": "simoMedalSwing 1.4s ease-in-out infinite",
+      "⚡": "simoZap 1.1s ease-in-out infinite",
+      "🔥": "simoFlamePulse 1.2s infinite alternate"
+    };
+    iconEl.style.display = "inline-block";
+    iconEl.style.animation = rankAnimations[icon] || rankAnimations["🔥"];
+  }
   if (titleEl) titleEl.textContent = `¡Racha de ${count} Aciertos!`;
   if (rankEl) rankEl.textContent = rankTitle;
   if (msgEl) msgEl.textContent = motivationalMsg;
@@ -682,6 +1375,7 @@ function showStreakMilestoneModal(count) {
   openModal(modal);
 
   setTimeout(() => launchConfetti(canvas), 100);
+  setTimeout(() => SimoFX.burst(iconEl, count >= 10 ? ["👑", "⭐", "💎"] : ["🔥", "✨", "⚡"], 18, 140), 250);
 
   if (btnClose) {
     btnClose.onclick = () => {
@@ -1121,6 +1815,9 @@ function setupTipsModal() {
               if (typeof SoundEffects !== "undefined" && typeof SoundEffects.playCorrect === "function") {
                 SoundEffects.playCorrect();
               }
+              SimoFX.burst(btn, ["🎯", "⭐", "🔍", "✨"], 16, 120);
+              SimoFX.floatText(btn, "🎯 Acierto Forense", "#86efac");
+              SimoFX.glow(btn, "rgba(34, 197, 94, 0.75)");
             } else {
               fbBox.style.background = "rgba(239, 68, 68, 0.15)";
               fbBox.style.border = "1px solid rgba(239, 68, 68, 0.4)";
@@ -1137,6 +1834,8 @@ function setupTipsModal() {
               if (typeof SoundEffects !== "undefined" && typeof SoundEffects.playError === "function") {
                 SoundEffects.playError();
               }
+              SimoFX.shake(btn);
+              SimoFX.floatText(btn, "🚨 ¡Trampa!", "#fca5a5");
 
               const retryBtn = fbBox.querySelector("#btnRetryLecturaExercise");
               if (retryBtn) {
@@ -1655,6 +2354,9 @@ async function loadUserData() {
   const savedAutoTips = await StorageManager.get("autoTipsEnabled", true);
   AppState.autoTips.enabled = savedAutoTips;
 
+  const savedPracticeCorrect = await StorageManager.get("practiceCorrectIds_" + savedProfileId, []);
+  AppState.practiceCorrectIds = Array.isArray(savedPracticeCorrect) ? savedPracticeCorrect : [];
+
   const savedQuestionTimer = await StorageManager.get("questionTimerSeconds", 120);
   PracticeTimer.setTotalSeconds(savedQuestionTimer);
 }
@@ -1973,9 +2675,12 @@ function applyProfile(profileId, save = true, showNotification = false) {
   const switcher = document.getElementById("profileSwitcher");
   if (switcher) switcher.value = profileId;
 
-  updateJobProfileUI();
-  updateEjeFilterOptions(profileId);
-  loadNextPracticeQuestion();
+  StorageManager.get("practiceCorrectIds_" + profileId, []).then((saved) => {
+    AppState.practiceCorrectIds = Array.isArray(saved) ? saved : [];
+    updateJobProfileUI();
+    updateEjeFilterOptions(profileId);
+    loadNextPracticeQuestion();
+  });
 
   if (AppState.currentTab === "jobFocus") renderJobFocusTab();
   if (AppState.currentTab === "srs") renderSrsTab();
@@ -2391,9 +3096,55 @@ function loadNextPracticeQuestion() {
     if (filtered.length > 0) pool = filtered;
   }
 
-  const randomIndex = Math.floor(Math.random() * pool.length);
-  const q = pool[randomIndex];
+  // Sistema Anti-Repetición Inteligente: Solo repite preguntas acertadas tras terminar las otras
+  if (!AppState.practiceCorrectIds) {
+    AppState.practiceCorrectIds = [];
+  }
+  const correctSet = new Set(AppState.practiceCorrectIds);
+  let availableCandidates = pool.filter((q) => !correctSet.has(q.id));
+
+  // Si ya se acertaron todas las preguntas del grupo seleccionado, reiniciar ciclo para este grupo
+  if (availableCandidates.length === 0) {
+    const poolIdSet = new Set(pool.map((q) => q.id));
+    AppState.practiceCorrectIds = AppState.practiceCorrectIds.filter((id) => !poolIdSet.has(id));
+    StorageManager.set("practiceCorrectIds_" + AppState.activeProfileId, AppState.practiceCorrectIds);
+    availableCandidates = [...pool];
+
+    const filterName = (filter && filter !== "todos" && filter !== "interleaving") ? `del eje seleccionado` : `de este cargo`;
+    SimoFX.celebrate("🏆", "¡Ciclo de Casos Completado!", `${pool.length} casos situacionales dominados`, ["🎉", "⭐", "🏅", "✨"]);
+    showCustomModal({
+      title: "🎉 ¡Ciclo de Casos Completado!",
+      message: `¡Extraordinario avance! Has acertado todos los ${pool.length} casos situacionales ${filterName}. Se ha reiniciado el ciclo para que continúes repasando y consolidando tu preparación para el examen.`,
+      icon: "🏆"
+    });
+  }
+
+  // Evitar repetir la misma pregunta que se acaba de responder si hay más de 1 opción disponible
+  let candidates = availableCandidates;
+  if (candidates.length > 1 && AppState.currentQuestion) {
+    const diff = candidates.filter((q) => q.id !== AppState.currentQuestion.id);
+    if (diff.length > 0) candidates = diff;
+  }
+
+  const randomIndex = Math.floor(Math.random() * candidates.length);
+  const q = candidates[randomIndex];
   renderPracticeQuestion(q);
+  updatePracticeProgressPill(pool.length, availableCandidates.length);
+}
+
+function updatePracticeProgressPill(totalPoolCount, remainingCount) {
+  const pill = document.getElementById("qBadgeProgressPill");
+  if (!pill) return;
+  const total = typeof totalPoolCount === "number" ? totalPoolCount : 0;
+  const remaining = typeof remainingCount === "number" ? remainingCount : total;
+  const completed = Math.max(0, total - remaining);
+
+  if (total > 0) {
+    pill.textContent = `🎯 ${completed}/${total} (${remaining} restantes)`;
+    pill.style.display = "inline-flex";
+  } else {
+    pill.style.display = "none";
+  }
 }
 
 function renderPracticeQuestion(q) {
@@ -2537,7 +3288,14 @@ function evaluateAnswer(selectedId) {
   if (isCorrect) AppState.stats.correctCount += 1;
 
   AppState.practiceSession.questionsAnswered = (AppState.practiceSession.questionsAnswered || 0) + 1;
-  if (isCorrect) AppState.practiceSession.correctCount = (AppState.practiceSession.correctCount || 0) + 1;
+  if (isCorrect) {
+    AppState.practiceSession.correctCount = (AppState.practiceSession.correctCount || 0) + 1;
+    if (!AppState.practiceCorrectIds) AppState.practiceCorrectIds = [];
+    if (!AppState.practiceCorrectIds.includes(q.id)) {
+      AppState.practiceCorrectIds.push(q.id);
+      StorageManager.set("practiceCorrectIds_" + AppState.activeProfileId, AppState.practiceCorrectIds);
+    }
+  }
 
   if (q.tipo.includes("Funcional")) {
     AppState.stats.functionalTotal += 1;
@@ -2555,12 +3313,18 @@ function evaluateAnswer(selectedId) {
     CloudSync.pushProgress().catch(() => {});
   }
 
+  const selectedOptEl = document.querySelector(`.option-item[data-id="${selectedId}"]`);
   if (!isCorrect) {
     addToSrsQueue(q, "hard");
     AppState.sessionStreak = 0;
     if (typeof SoundFX !== "undefined") SoundFX.playIncorrect();
+    SimoFX.shake(document.getElementById("practiceCardContainer"));
+    SimoFX.floatText(selectedOptEl, "📚 A repasar", "#fca5a5");
   } else {
     AppState.sessionStreak = (AppState.sessionStreak || 0) + 1;
+    SimoFX.burst(selectedOptEl, ["✨", "⭐", "💫", "✅"], 16, 120);
+    SimoFX.floatText(selectedOptEl, `+${AppState.sessionStreak * 50} XP`, "#34d399");
+    SimoFX.flameBoost();
     if (typeof SoundFX !== "undefined") {
       if ([3, 5, 10, 15, 20].includes(AppState.sessionStreak)) {
         SoundFX.playFanfare();
@@ -4130,14 +4894,18 @@ function setupDistractorHunt() {
 // 6. SPEED DRILL (MICROAPRENDIZAJE RELÁMPAGO V/F CON TEMPORIZADOR)
 // =========================================================================
 const SpeedDrillState = {
-  currentIndex: 0,
+  currentDrill: null,
+  completedIds: [],
   streak: 0,
   timer: null,
   timeLeft: 15,
   isAnswered: false
 };
 
-function setupSpeedDrill() {
+async function setupSpeedDrill() {
+  const stored = await StorageManager.get("speedDrillsCompleted", []);
+  SpeedDrillState.completedIds = Array.isArray(stored) ? stored : [];
+
   const btnTrue = document.getElementById("btnSpeedTrue");
   const btnFalse = document.getElementById("btnSpeedFalse");
   const btnNext = document.getElementById("btnNextSpeedDrill");
@@ -4149,8 +4917,11 @@ function setupSpeedDrill() {
   if (btnNext) btnNext.addEventListener("click", () => nextSpeedDrillStep());
 }
 
-function startSpeedDrill() {
-  SpeedDrillState.currentIndex = 0;
+async function startSpeedDrill() {
+  if (!SpeedDrillState.completedIds || SpeedDrillState.completedIds.length === 0) {
+    const stored = await StorageManager.get("speedDrillsCompleted", []);
+    SpeedDrillState.completedIds = Array.isArray(stored) ? stored : [];
+  }
   SpeedDrillState.streak = 0;
   const streakEl = document.getElementById("speedDrillStreak");
   if (streakEl) streakEl.textContent = "0";
@@ -4160,11 +4931,47 @@ function startSpeedDrill() {
 function renderSpeedDrillCard() {
   if (typeof SPEED_DRILLS === "undefined" || SPEED_DRILLS.length === 0) return;
 
-  const drill = SPEED_DRILLS[SpeedDrillState.currentIndex % SPEED_DRILLS.length];
+  const completedSet = new Set(SpeedDrillState.completedIds || []);
+  let pool = SPEED_DRILLS.filter((d) => !completedSet.has(d.id));
+
+  // Si ya se acertaron todas las afirmaciones, reiniciar ciclo y felicitar al usuario
+  if (pool.length === 0) {
+    SpeedDrillState.completedIds = [];
+    StorageManager.set("speedDrillsCompleted", []);
+    pool = [...SPEED_DRILLS];
+    SimoFX.celebrate("⚡", "¡Ciclo Speed Drill Completado!", `${SPEED_DRILLS.length} afirmaciones dominadas`, ["⚡", "⭐", "🔥", "💥"]);
+    showCustomModal({
+      title: "⚡ ¡Ciclo Speed Drill Completado!",
+      message: `¡Impresionante agilidad mental! Has respondido correctamente todas las ${SPEED_DRILLS.length} afirmaciones de Speed Drill. Se ha reiniciado el ciclo para que continúes batiendo récords de velocidad.`,
+      icon: "🏆"
+    });
+  }
+
+  // Evitar repetir la misma afirmación que se acaba de responder si hay más de 1 disponible
+  let candidates = pool;
+  if (candidates.length > 1 && SpeedDrillState.currentDrill) {
+    const diff = candidates.filter((d) => d.id !== SpeedDrillState.currentDrill.id);
+    if (diff.length > 0) candidates = diff;
+  }
+
+  const drill = candidates[Math.floor(Math.random() * candidates.length)];
+  SpeedDrillState.currentDrill = drill;
   SpeedDrillState.isAnswered = false;
   SpeedDrillState.timeLeft = 15;
 
-  document.getElementById("speedDrillTopicBadge").textContent = drill.tema;
+  const completedCount = SpeedDrillState.completedIds ? SpeedDrillState.completedIds.length : 0;
+  const remainingCount = Math.max(0, SPEED_DRILLS.length - completedCount);
+
+  const remainingBadge = document.getElementById("speedDrillRemainingBadge");
+  if (remainingBadge) {
+    remainingBadge.textContent = `${completedCount + 1}/${SPEED_DRILLS.length} • ${remainingCount} restantes`;
+  }
+
+  const topicBadge = document.getElementById("speedDrillTopicBadge");
+  if (topicBadge) {
+    topicBadge.textContent = drill.tema;
+  }
+
   document.getElementById("speedDrillStatement").textContent = drill.afirmacion;
   document.getElementById("speedDrillFeedback").style.display = "none";
   document.getElementById("btnSpeedTrue").disabled = false;
@@ -4179,7 +4986,9 @@ function renderSpeedDrillCard() {
     timerEl.textContent = `⏳ ${SpeedDrillState.timeLeft}s`;
 
     if (SpeedDrillState.timeLeft <= 5 && SpeedDrillState.timeLeft > 0) {
-      if (typeof SoundFX !== "undefined") SoundFX.playTick();
+      if (typeof SoundFX !== "undefined" && SoundFX.playTick) SoundFX.playTick();
+      timerEl.style.display = "inline-block";
+      SimoFX.heartbeat(timerEl);
     }
 
     if (SpeedDrillState.timeLeft <= 0) {
@@ -4194,7 +5003,8 @@ function handleSpeedDrillAnswer(userChoice) {
   SpeedDrillState.isAnswered = true;
   clearInterval(SpeedDrillState.timer);
 
-  const drill = SPEED_DRILLS[SpeedDrillState.currentIndex % SPEED_DRILLS.length];
+  const drill = SpeedDrillState.currentDrill;
+  if (!drill) return;
   const isCorrect = userChoice === drill.esVerdadero;
 
   if (typeof SoundFX !== "undefined") {
@@ -4211,6 +5021,10 @@ function handleSpeedDrillAnswer(userChoice) {
 
   if (isCorrect) {
     SpeedDrillState.streak += 1;
+    if (!SpeedDrillState.completedIds.includes(drill.id)) {
+      SpeedDrillState.completedIds.push(drill.id);
+      StorageManager.set("speedDrillsCompleted", SpeedDrillState.completedIds);
+    }
     verdictEl.textContent = `✅ ¡ACERTASTE! Es ${drill.esVerdadero ? "VERDADERO" : "FALSO"}`;
     verdictEl.style.color = "var(--accent-green)";
     fb.style.backgroundColor = "rgba(16, 185, 129, 0.15)";
@@ -4223,9 +5037,33 @@ function handleSpeedDrillAnswer(userChoice) {
     fb.style.border = "1px solid rgba(239, 68, 68, 0.4)";
   }
 
-  document.getElementById("speedDrillStreak").textContent = SpeedDrillState.streak;
+  const remainingBadge = document.getElementById("speedDrillRemainingBadge");
+  if (remainingBadge) {
+    const completedCount = SpeedDrillState.completedIds ? SpeedDrillState.completedIds.length : 0;
+    const remainingCount = Math.max(0, SPEED_DRILLS.length - completedCount);
+    remainingBadge.textContent = `${completedCount}/${SPEED_DRILLS.length} • ${remainingCount} restantes`;
+  }
+
+  const streakEl = document.getElementById("speedDrillStreak");
+  streakEl.textContent = SpeedDrillState.streak;
   explEl.textContent = drill.explicacion;
   fb.style.display = "flex";
+
+  const answerBtn = document.getElementById(userChoice ? "btnSpeedTrue" : "btnSpeedFalse");
+  if (isCorrect) {
+    const streak = SpeedDrillState.streak;
+    const emojis = streak >= 10 ? ["👑", "💎", "⭐"] : streak >= 5 ? ["🔥", "⚡", "💥"] : ["⚡", "✨"];
+    SimoFX.burst(answerBtn, emojis, streak >= 5 ? 20 : 12, streak >= 5 ? 150 : 100);
+    SimoFX.floatText(answerBtn, streak >= 3 ? `🔥 x${streak}` : "⚡ +1", "#fde047");
+    streakEl.style.display = "inline-block";
+    SimoFX.pop(streakEl);
+    if ([5, 10, 20].includes(streak)) {
+      SimoFX.celebrate(streak >= 10 ? "👑" : "🔥", `¡Racha Relámpago x${streak}!`, "Velocidad y precisión de nivel examen", ["⚡", "🔥", "⭐"]);
+    }
+  } else {
+    SimoFX.shake(document.getElementById("speedDrillStatement"));
+    SimoFX.floatText(answerBtn, "💢 Racha rota", "#fca5a5");
+  }
 }
 
 function handleSpeedDrillTimeout() {
@@ -4234,9 +5072,12 @@ function handleSpeedDrillTimeout() {
   SpeedDrillState.streak = 0;
   document.getElementById("speedDrillStreak").textContent = "0";
 
-  if (typeof SoundFX !== "undefined") SoundFX.playTimeout();
+  if (typeof SoundFX !== "undefined" && SoundFX.playTimeout) SoundFX.playTimeout();
+  SimoFX.shake(document.getElementById("speedDrillStatement"));
+  SimoFX.floatText(document.getElementById("speedDrillTimer"), "⌛ ¡Tiempo!", "#fbbf24");
 
-  const drill = SPEED_DRILLS[SpeedDrillState.currentIndex % SPEED_DRILLS.length];
+  const drill = SpeedDrillState.currentDrill;
+  if (!drill) return;
   const fb = document.getElementById("speedDrillFeedback");
   const verdictEl = document.getElementById("speedDrillVerdict");
   const explEl = document.getElementById("speedDrillExplanation");
@@ -4250,7 +5091,6 @@ function handleSpeedDrillTimeout() {
 }
 
 function nextSpeedDrillStep() {
-  SpeedDrillState.currentIndex += 1;
   renderSpeedDrillCard();
 }
 

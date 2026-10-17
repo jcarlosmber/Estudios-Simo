@@ -59,6 +59,153 @@ const TIPS_LECTURA_CRITICA = [
     titulo: "Triángulo V-N-C del Verbo Rector",
     regla: "V (Verbo) ➔ N (Nivel del empleo) ➔ C (Competencia legal).",
     resumen: "Nivel Técnico (Analista) verifica y apoya; Nivel Profesional (Gestor) proyecta, analiza y sustenta; Directivos ordenan, deciden y sancionan."
+  },
+  {
+    id: "lc_8",
+    numero: 8,
+    titulo: "Técnica del Silencio Administrativo: Positivo vs. Negativo",
+    regla: "En derecho tributario el silencio positivo es excepcional; por regla general opera el negativo ficticio.",
+    resumen: "En el CPACA rige el silencio negativo ficto (Art. 83) para demandar, salvo norma expresa de silencio positivo como el Art. 734 del E.T. (1 año sin resolver recurso de reconsideración)."
+  },
+  {
+    id: "lc_9",
+    numero: 9,
+    titulo: "Detector de Falsa Causalidad (Presunción de Buena Fe)",
+    regla: "La buena fe se presume (Art. 83 C.P.); el dolo o fraude fiscal exige prueba técnica fehaciente.",
+    resumen: "Dos hechos seguidos en el tiempo no configuran dolo automáticamente. Desconfía de sanciones automáticas y exige requerimiento ordinario previo y acervo probatorio."
+  },
+  {
+    id: "lc_10",
+    numero: 10,
+    titulo: "Jerarquía Normativa: Ley Especial Prima sobre Ley General",
+    regla: "El Estatuto Tributario y Régimen de Aduanas prevalecen sobre el CPACA y Código Civil.",
+    resumen: "El CPACA es subsidiario ante vacíos. Los términos tributarios especiales (ej. Art. 566-1 E.T. sobre notificación electrónica) desplazan siempre las reglas procesales generales."
+  },
+  {
+    id: "lc_11",
+    numero: 11,
+    titulo: "Doble Filtro Cautelar: Proporcionalidad e Inembargabilidad",
+    regla: "Toda medida cautelar coactiva debe ser proporcional a la deuda y respetar límites legales.",
+    resumen: "Los embargos coactivos no pueden superar el límite del Art. 838 E.T. y deben respetar siempre los topes legales inembargables en cuentas de ahorro y nóminas."
+  },
+  {
+    id: "lc_12",
+    numero: 12,
+    titulo: "Filtro Temporal: Caducidad vs. Prescripción Forense",
+    regla: "Caducidad extingue la facultad de sancionar/liquidar; Prescripción extingue la acción de cobro.",
+    resumen: "Caducidad o firmeza opera ANTES del acto administrativo definitivo; Prescripción (5 años, Art. 817 E.T.) opera DESPUÉS sobre el título ejecutivo ejecutoriado."
+  },
+  {
+    id: "lc_13",
+    numero: 13,
+    titulo: "Debido Proceso Probatorio: Prueba Conducente vs. Prueba Ilícita",
+    regla: "Es nula de pleno derecho la prueba obtenida con violación del debido proceso (Art. 29 C.P.).",
+    resumen: "Pruebas obtenidas mediante hackeos, anónimos sin cadena de custodia o sin auto comisorio previo deben excluirse procesalmente sin importar su veracidad material."
+  },
+  {
+    id: "lc_14",
+    numero: 14,
+    titulo: "Triangulación Ética MIPG: Conflicto de Interés vs. Diligencia",
+    regla: "Ante conflicto de interés, el deber ético no es callar ni resolver: es declarar el impedimento formal.",
+    resumen: "Ante vínculos de parentesco o interés particular, el servidor DIAN debe manifestar formalmente su impedimento por escrito (Art. 11 CPACA); la sumisión no exime de falta."
+  },
+  {
+    id: "lc_15",
+    numero: 15,
+    titulo: "Bloque de Constitucionalidad: Primacía de Tratados de DD.HH.",
+    regla: "Los tratados de DD.HH. y garantías constitucionales prevalecen sobre directrices o circulares (Art. 93 C.P.).",
+    resumen: "El debido proceso (Art. 29 C.P.) y las garantías fundamentales priman sobre directrices, circulares internas o metas cuantitativas de recaudo de la entidad."
+  },
+  {
+    id: "lc_16",
+    numero: 16,
+    titulo: "Detector de Causal de Nulidad: Incompetencia y Falsa Motivación",
+    regla: "La falta de competencia y la falta o falsa motivación vician de nulidad absoluta el acto administrativo (Art. 137 CPACA).",
+    resumen: "La falsa motivación ocurre cuando los motivos alegados se contradicen con las pruebas del expediente. La opción correcta identifica el vicio de legalidad en lugar de ejecutar el acto."
+  },
+  {
+    id: "lc_17",
+    numero: 17,
+    titulo: "Cómputo Forense del Tiempo: Días Hábiles vs. Calendario y Meses",
+    regla: "Los plazos en días fijados en la ley procesal administrativa son hábiles (Art. 68 CPACA y Art. 118 CGP), salvo norma expresa.",
+    resumen: "Plazos en días = hábiles (sin sábados, domingos ni festivos). Plazos en meses o años = fecha a fecha en el calendario. Si vence en día inhábil se traslada al siguiente día hábil."
+  },
+  {
+    id: "lc_18",
+    numero: 18,
+    titulo: "Filtro del Título Ejecutivo: Claro, Expreso y Exigible",
+    regla: "No hay cobro coactivo sin título ejecutivo idóneo que conste en documento ejecutoriado (Art. 828 E.T.).",
+    resumen: "Para iniciar cobro coactivo la deuda debe ser expresa, clara y exigible. Si un recurso de reconsideración está en trámite, el acto no tiene firmeza y el cobro es nulo por falta de exigibilidad."
+  },
+  {
+    id: "lc_19",
+    numero: 19,
+    titulo: "Filtro Anti-Contradicción: Coherencia entre Supuesto y Consecuencia",
+    regla: "La conclusión procesal debe ser congruente con la gravedad probada de la falta en el supuesto fáctico.",
+    resumen: "Alerta con opciones compuestas: una premisa inicial garantista combinada con un desenlace sancionatorio automático o de plano es un distractor clásico de contradicción."
+  },
+  {
+    id: "lc_20",
+    numero: 20,
+    titulo: "Principio de Favorabilidad: Retroactividad de la Ley Más Benigna",
+    regla: "En materia sancionatoria, la ley permisiva o favorable prevalece y aplica de forma retroactiva (Art. 29 C.P. y Art. 640 E.T.).",
+    resumen: "Si una reforma posterior reduce una sanción o flexibiliza requisitos antes de la ejecutoria formal del acto, la DIAN debe aplicar retroactivamente la norma favorable al investigado."
+  },
+  {
+    id: "lc_21",
+    numero: 21,
+    titulo: "Matriz de Congruencia Fáctica: Limítate Estrictamente al Expediente",
+    regla: "La liquidación oficial o resolución sancionatoria debe limitarse a los hechos debatidos en el requerimiento previo (Art. 711 E.T.).",
+    resumen: "La liquidación oficial de revisión no puede incluir impuestos, periodos o rubros no contemplados en el requerimiento especial previo; violar este principio genera nulidad por incongruencia."
+  },
+  {
+    id: "lc_22",
+    numero: 22,
+    titulo: "Revocatoria Directa: Límite del Consentimiento Previo del Particular",
+    regla: "Los actos particulares y favorables no se revocan sin consentimiento expreso y escrito (Art. 97 CPACA).",
+    resumen: "La DIAN no puede revocar de plano actos que reconocieron derechos o devoluciones a particulares; requiere consentimiento escrito previo o demandar en acción de lesividad."
+  },
+  {
+    id: "lc_23",
+    numero: 23,
+    titulo: "Filtro Anti-Formulismo: Principio de Eficacia vs. Exceso Ritual",
+    regla: "El derecho sustancial prevalece sobre las formas procesales intrascendentes (Art. 228 C.P. y Art. 3 CPACA).",
+    resumen: "Frente a omisiones formales menores (falta de poder consultable en RUT o foliatura), la entidad debe requerir subsanación en término legal y jamás rechazar de plano."
+  },
+  {
+    id: "lc_24",
+    numero: 24,
+    titulo: "Efecto Vinculante de Doctrinas y Respuestas a Consultas DIAN",
+    regla: "Los conceptos oficiales vigentes de la DIAN obligan a sus funcionarios y protegen al administrado (Ley 2010 de 2019).",
+    resumen: "El funcionario fiscalizador no puede sancionar por inexactitud a quien liquidó amparado en un concepto oficial vigente de Gestión Jurídica; rige la confianza legítima."
+  },
+  {
+    id: "lc_25",
+    numero: 25,
+    titulo: "Detector de Desviación de Poder: Fin Público vs. Interés Viciado",
+    regla: "Las facultades de fiscalización deben ejercerse exclusivamente para fines de interés público (Art. 137 CPACA).",
+    resumen: "Priorizar auditorías o inspecciones por rencillas vecinales, comerciales o políticas constituye desviación de poder, causal de nulidad absoluta y falta disciplinaria gravísima."
+  },
+  {
+    id: "lc_26",
+    numero: 26,
+    titulo: "Notificación por Conducta Concluyente: Convalidación Procesal",
+    regla: "Si el interesado interpone recursos o manifiesta conocer el acto, se tiene por notificado (Art. 72 CPACA).",
+    resumen: "Fallas en el envío o correo electrónico quedan plenamente saneadas el día en que el particular radica memorial o recurso contra el acto; es innecesario repetir la notificación."
+  },
+  {
+    id: "lc_27",
+    numero: 27,
+    titulo: "Pérdida de Fuerza Ejecutoria: Decaimiento del Acto por el Tiempo",
+    regla: "El acto administrativo pierde fuerza ejecutoria transcurridos 5 años sin cobro (Art. 91 CPACA y Art. 817 E.T.).",
+    resumen: "Transcurridos más de 5 años desde la firmeza sin mandamiento de pago, el acto pierde fuerza ejecutoria y prescribe la acción coactiva; los embargos tardíos son ilegales."
+  },
+  {
+    id: "lc_28",
+    numero: 28,
+    titulo: "Confianza Legítima: Prohibición de Ir contra los Actos Propios",
+    regla: "La administración no puede defraudar la buena fe objetiva generada en el ciudadano con sus actos previos (Art. 83 C.P.).",
+    resumen: "Nadie puede ir válidamente contra sus propios actos (*venire contra factum proprium*). Si la DIAN instruyó un procedimiento por escrito, no puede sancionar luego por seguirlo."
   }
 ];
 
