@@ -2,6 +2,8 @@
 // Alterna automáticamente en segundo plano entre TIPS y PREGUNTAS situacionales inyectadas
 
 importScripts("tips_data.js");
+importScripts("questions_gestor_iii.js");
+importScripts("questions_analista_iv.js");
 importScripts("questions.js");
 importScripts("image_catalog.js");
 

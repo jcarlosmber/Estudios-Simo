@@ -84,5 +84,7 @@ if (!fs.existsSync(iconsDir)) {
 fs.writeFileSync(path.join(iconsDir, 'icon16.png'), createPNG(16, 16, 245, 158, 11));
 fs.writeFileSync(path.join(iconsDir, 'icon48.png'), createPNG(48, 48, 245, 158, 11));
 fs.writeFileSync(path.join(iconsDir, 'icon128.png'), createPNG(128, 128, 245, 158, 11));
+fs.writeFileSync(path.join(iconsDir, 'icon192.png'), createPNG(192, 192, 245, 158, 11));
+fs.writeFileSync(path.join(iconsDir, 'icon512.png'), createPNG(512, 512, 245, 158, 11));
 
-console.log('Iconos creados exitosamente en /icons');
+console.log('Iconos creados exitosamente en /icons (16, 48, 128, 192, 512)');

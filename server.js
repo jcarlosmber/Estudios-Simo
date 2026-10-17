@@ -113,6 +113,24 @@ app.get('/questions', (req, res) => {
   }
 });
 
+// 6. Descargar Paquete de Extensión de Chrome (.ZIP)
+app.get(['/download/extension', '/simo-prep-extension.zip'], (req, res) => {
+  try {
+    let zipPath = path.join(__dirname, 'simo-prep-extension.zip');
+    if (!fs.existsSync(zipPath)) {
+      const { buildExtensionZip } = require('./build_extension_zip.js');
+      buildExtensionZip();
+    }
+    res.download(zipPath, 'simo-prep-extension.zip', (err) => {
+      if (err && !res.headersSent) {
+        res.status(500).json({ error: 'Error al enviar el archivo zip', detail: err.message });
+      }
+    });
+  } catch (err) {
+    res.status(500).json({ error: 'Error generando la extensión', detail: err.message });
+  }
+});
+
 app.listen(PORT, '0.0.0.0', () => {
   console.log(`=======================================================`);
   console.log(`🚀 SIMO Prep Server activo en el puerto ${PORT}`);

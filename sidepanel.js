@@ -2,16 +2,19 @@
 // Incluye Pomodoro 25/5, Filtro por Ejes, Tarjetas SRS con Método Feynman y Dashboard de Métricas con Calculadora
 
 const AppState = {
+  activeProfileId: "gestor_iii",
   currentTab: "practice",
   currentQuestion: null,
   selectedOption: null,
   currentEjeFilter: "todos",
-  activeJob: {
+  activeJob: (typeof PROFILES_DATA !== "undefined" && PROFILES_DATA.gestor_iii) ? { ...PROFILES_DATA.gestor_iii } : {
     title: "GESTOR III (Código 303 - Grado 03)",
+    shortTitle: "GESTOR III",
     opec: "242703",
     inscription: "1245650048",
     level: "Profesional",
     entity: "DIAN (Proceso de Selección 2676)",
+    codeFicha: "FT-TAH-1824",
     purpose: "Desarrollar metodologías, estrategias, técnicas y herramientas de gestión que contribuyan con la toma de decisiones y el direccionamiento hacia el cumplimiento misional, de acuerdo con la normativa vigente, la política institucional y lineamientos técnicos.",
     functions: [
       "Realizar análisis y diagnósticos del comportamiento de las variables y tendencias de los sectores económicos de influencia y competencia de la dependencia, de acuerdo con la normativa y políticas institucionales.",
@@ -94,12 +97,15 @@ document.addEventListener("DOMContentLoaded", async () => {
   setupSpeedDrill();
   setupMnemotecnias();
   setupJobConfig();
+  setupProfileSwitcher();
   setupSrsLogic();
   setupSimulacroLogic();
   setupDashboardCalculator();
   setupCloudSyncModal();
+  setupInstallModal();
   await setupSoundToggleUI();
 
+  updateEjeFilterOptions(AppState.activeProfileId);
   updateJobProfileUI();
   updateStreakUI();
   loadNextPracticeQuestion();
@@ -678,8 +684,19 @@ function checkOccasionalTipTrigger(origin = "general") {
 }
 
 async function loadUserData() {
+  const savedProfileId = await StorageManager.get("activeProfileId", "gestor_iii");
+  AppState.activeProfileId = savedProfileId;
+
+  if (typeof setActiveQuestionBank === "function") {
+    setActiveQuestionBank(savedProfileId);
+  }
+
   const savedJob = await StorageManager.get("activeJob", null);
-  if (savedJob) AppState.activeJob = { ...AppState.activeJob, ...savedJob };
+  if (savedJob) {
+    AppState.activeJob = { ...AppState.activeJob, ...savedJob };
+  } else if (typeof PROFILES_DATA !== "undefined" && PROFILES_DATA[savedProfileId]) {
+    AppState.activeJob = { ...PROFILES_DATA[savedProfileId] };
+  }
 
   const savedStats = await StorageManager.get("stats", null);
   if (savedStats) AppState.stats = savedStats;
@@ -830,9 +847,85 @@ function switchTab(tabName) {
 }
 
 function updateJobProfileUI() {
-  const job = AppState.activeJob;
-  document.getElementById("jobTitleDisplay").textContent = `${job.title} ${job.opec ? `(OPEC ${job.opec})` : ""}`;
-  document.getElementById("jobLevelBadge").textContent = `GESTOR III • ${job.level.toUpperCase()}`;
+  const job = AppState.activeJob || {};
+  const titleDisplay = document.getElementById("jobTitleDisplay");
+  const opecBadge = document.getElementById("jobOpecBadge");
+  const levelBadge = document.getElementById("jobLevelBadge");
+  const switcher = document.getElementById("profileSwitcher");
+
+  if (titleDisplay) {
+    titleDisplay.textContent = `Ficha ${job.codeFicha || 'DIAN 2676'} | ${job.title || ''}`;
+  }
+  if (opecBadge) {
+    opecBadge.textContent = `OPEC ${job.opec || '2676'}`;
+  }
+  if (levelBadge) {
+    levelBadge.textContent = `${job.shortTitle || job.title || 'DIAN'} • ${(job.level || 'PROFESIONAL').toUpperCase()}`;
+  }
+  if (switcher && AppState.activeProfileId) {
+    switcher.value = AppState.activeProfileId;
+  }
+}
+
+function applyProfile(profileId, save = true, showNotification = false) {
+  if (typeof PROFILES_DATA === "undefined" || !PROFILES_DATA[profileId]) return;
+  AppState.activeProfileId = profileId;
+  const profile = PROFILES_DATA[profileId];
+  AppState.activeJob = { ...profile };
+
+  if (typeof setActiveQuestionBank === "function") {
+    setActiveQuestionBank(profileId);
+  }
+
+  if (save) {
+    StorageManager.set("activeProfileId", profileId);
+    StorageManager.set("activeJob", AppState.activeJob);
+  }
+
+  const switcher = document.getElementById("profileSwitcher");
+  if (switcher) switcher.value = profileId;
+
+  updateJobProfileUI();
+  updateEjeFilterOptions(profileId);
+  loadNextPracticeQuestion();
+
+  if (AppState.currentTab === "jobFocus") renderJobFocusTab();
+  if (AppState.currentTab === "srs") renderSrsTab();
+  if (AppState.currentTab === "stats") renderStatsTab();
+
+  if (showNotification) {
+    showCustomModal({
+      title: `Perfil Cambiado: ${profile.shortTitle || profile.title}`,
+      message: `Se ha activado el banco de preguntas y los indicadores oficiales para ${profile.title} (OPEC ${profile.opec}).`,
+      icon: "🎯"
+    });
+  }
+}
+
+function updateEjeFilterOptions(profileId) {
+  const filterSelect = document.getElementById("selectEjeFilter");
+  if (!filterSelect || typeof PROFILES_DATA === "undefined") return;
+  const profile = PROFILES_DATA[profileId] || PROFILES_DATA.gestor_iii;
+  if (!profile || !profile.filterOptions) return;
+
+  filterSelect.innerHTML = "";
+  profile.filterOptions.forEach((opt) => {
+    const optionEl = document.createElement("option");
+    optionEl.value = opt.id;
+    optionEl.textContent = opt.label;
+    filterSelect.appendChild(optionEl);
+  });
+
+  AppState.currentEjeFilter = "todos";
+  filterSelect.value = "todos";
+}
+
+function setupProfileSwitcher() {
+  const switcher = document.getElementById("profileSwitcher");
+  if (!switcher) return;
+  switcher.addEventListener("change", (e) => {
+    applyProfile(e.target.value, true, true);
+  });
 }
 
 function updateStreakUI() {
@@ -966,18 +1059,28 @@ const PracticeTimer = {
 
 function loadNextPracticeQuestion() {
   const filter = AppState.currentEjeFilter;
-  let pool = QUESTION_BANK;
+  let pool = (typeof QUESTION_BANK !== "undefined" && Array.isArray(QUESTION_BANK) && QUESTION_BANK.length > 0)
+    ? QUESTION_BANK 
+    : (typeof getQuestionsForProfile === "function" ? getQuestionsForProfile(AppState.activeProfileId) : []);
+
+  if (!pool || pool.length === 0) return;
 
   if (filter === "interleaving") {
     // Interleaving: prioriza alternar de eje temático respecto al caso anterior
     if (AppState.currentQuestion && AppState.currentQuestion.ejeId) {
-      const otherEjes = QUESTION_BANK.filter((q) => q.ejeId !== AppState.currentQuestion.ejeId);
+      const otherEjes = pool.filter((q) => q.ejeId !== AppState.currentQuestion.ejeId);
       if (otherEjes.length > 0) pool = otherEjes;
     }
   } else if (filter && filter !== "todos") {
-    const filtered = QUESTION_BANK.filter((q) => {
-      if (filter === "misionalidad") return q.ejeId === "misionalidad" || q.ejeId === "estructura_dian";
+    const filtered = pool.filter((q) => {
+      if (filter === "misionalidad" && AppState.activeProfileId === "gestor_iii") return q.ejeId === "misionalidad" || q.ejeId === "estructura_dian";
       if (filter === "mipg") return q.ejeId === "mipg" || q.ejeId === "desempeno";
+      if (filter === "adaptabilidad") return q.ejeId && q.ejeId.startsWith("adaptabilidad");
+      if (filter === "comportamiento_etico") return q.ejeId && q.ejeId.startsWith("comportamiento_etico");
+      if (filter === "comunicacion_efectiva") return q.ejeId && q.ejeId.startsWith("comunicacion_efectiva");
+      if (filter === "trabajo_equipo") return q.ejeId && q.ejeId.startsWith("trabajo_equipo");
+      if (filter === "orientacion_logro") return q.ejeId && q.ejeId.startsWith("orientacion_logro");
+      if (filter === "orientacion_usuario") return q.ejeId && q.ejeId.startsWith("orientacion_usuario");
       return q.ejeId === filter;
     });
     if (filtered.length > 0) pool = filtered;
@@ -989,11 +1092,16 @@ function loadNextPracticeQuestion() {
 }
 
 function renderPracticeQuestion(q) {
+  if (!q) return;
   AppState.currentQuestion = q;
   AppState.selectedOption = null;
   PracticeTimer.start();
 
-  document.getElementById("qBadgeLevel").textContent = "GESTOR III • DIAN";
+  const levelBadge = document.getElementById("qBadgeLevel");
+  if (levelBadge) {
+    const short = AppState.activeJob?.shortTitle || (q.nivel === "Técnico" ? "ANALISTA IV" : "GESTOR III");
+    levelBadge.textContent = `${short} • DIAN`;
+  }
   document.getElementById("qBadgeType").textContent = q.tipo;
   document.getElementById("qBadgeTopic").textContent = q.tema;
   document.getElementById("qCaseText").textContent = q.caso;
@@ -1546,6 +1654,22 @@ function setupCloudSyncModal() {
   }
 }
 
+function setupInstallModal() {
+  const modal = document.getElementById("installModal");
+  const btnOpen = document.getElementById("btnOpenInstallModal");
+  const btnCloseX = document.getElementById("btnCloseInstallModalX");
+  const btnClose = document.getElementById("btnCloseInstallModal");
+
+  if (!modal || !btnOpen) return;
+
+  const openModal = () => modal.classList.add("active");
+  const closeModal = () => modal.classList.remove("active");
+
+  btnOpen.addEventListener("click", openModal);
+  if (btnCloseX) btnCloseX.addEventListener("click", closeModal);
+  if (btnClose) btnClose.addEventListener("click", closeModal);
+}
+
 function renderStatsTab() {
   const stats = AppState.stats;
   const total = stats.totalAnswered;
@@ -1636,6 +1760,7 @@ function setupJobConfig() {
 
   if (btnQuickGestor) {
     btnQuickGestor.addEventListener("click", () => {
+      AppState._pendingProfileId = "gestor_iii";
       if (typeof PROFILES_DATA !== "undefined" && PROFILES_DATA.gestor_iii) {
         fillFormWithProfile(PROFILES_DATA.gestor_iii);
       }
@@ -1644,6 +1769,7 @@ function setupJobConfig() {
 
   if (btnQuickAnalista) {
     btnQuickAnalista.addEventListener("click", () => {
+      AppState._pendingProfileId = "analista_iv";
       if (typeof PROFILES_DATA !== "undefined" && PROFILES_DATA.analista_iv) {
         fillFormWithProfile(PROFILES_DATA.analista_iv);
       }
@@ -1652,38 +1778,28 @@ function setupJobConfig() {
 
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
-    const rawFunctions = document.getElementById("inputJobFunctions").value;
-    const functionsArr = rawFunctions
-      .split("\n")
-      .map((f) => f.replace(/^\d+[\.\-\)]\s*/, "").trim())
-      .filter((f) => f.length > 5);
+    const opec = document.getElementById("inputJobOpec").value.trim();
+    const title = document.getElementById("inputJobTitle").value.trim();
 
-    AppState.activeJob.title = document.getElementById("inputJobTitle").value.trim();
-    AppState.activeJob.opec = document.getElementById("inputJobOpec").value.trim();
-    AppState.activeJob.level = document.getElementById("selectJobLevel").value;
-    AppState.activeJob.entity = document.getElementById("inputJobEntity").value.trim();
-    AppState.activeJob.purpose = document.getElementById("inputJobPurpose").value.trim();
-    if (functionsArr.length > 0) AppState.activeJob.functions = functionsArr;
+    let targetProfileId = AppState._pendingProfileId;
+    if (!targetProfileId) {
+      if (opec.includes("236760") || title.toUpperCase().includes("ANALISTA")) {
+        targetProfileId = "analista_iv";
+      } else {
+        targetProfileId = "gestor_iii";
+      }
+    }
 
-    await StorageManager.set("activeJob", AppState.activeJob);
-    updateJobProfileUI();
+    applyProfile(targetProfileId, true, true);
     closeModal();
-
-    showCustomModal({
-      title: "Cargo Actualizado",
-      message: `Configurado para ${AppState.activeJob.title}.`,
-      icon: "🎯"
-    });
-
-    loadNextPracticeQuestion();
   });
 }
 
 function renderJobFocusTab() {
-  const job = AppState.activeJob;
-  document.getElementById("focusCardTitle").textContent = `${job.title} (OPEC ${job.opec})`;
-  document.getElementById("focusCardEntity").textContent = `${job.entity} • Ficha FT-TAH-1824`;
-  document.getElementById("focusPurposeText").textContent = job.purpose;
+  const job = AppState.activeJob || {};
+  document.getElementById("focusCardTitle").textContent = `${job.title || ''} ${job.opec ? `(OPEC ${job.opec})` : ''}`;
+  document.getElementById("focusCardEntity").textContent = `${job.entity || 'DIAN'} • Ficha ${job.codeFicha || 'DIAN 2676'}`;
+  document.getElementById("focusPurposeText").textContent = job.purpose || 'Propósito del empleo no configurado.';
 
   const container = document.getElementById("functionsListContainer");
   const countBadge = document.getElementById("functionsCountBadge");
@@ -1718,9 +1834,14 @@ function renderJobFocusTab() {
   };
 
   document.getElementById("btnGenerateForJob").onclick = () => {
-    const randomQ = QUESTION_BANK[Math.floor(Math.random() * QUESTION_BANK.length)];
-    renderPracticeQuestion(randomQ);
-    switchTab("practice");
+    const pool = (typeof QUESTION_BANK !== "undefined" && Array.isArray(QUESTION_BANK) && QUESTION_BANK.length > 0)
+      ? QUESTION_BANK 
+      : (typeof getQuestionsForProfile === "function" ? getQuestionsForProfile(AppState.activeProfileId) : []);
+    if (pool.length > 0) {
+      const randomQ = pool[Math.floor(Math.random() * pool.length)];
+      renderPracticeQuestion(randomQ);
+      switchTab("practice");
+    }
   };
 }
 

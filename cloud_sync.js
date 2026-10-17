@@ -70,6 +70,7 @@ const CloudSync = {
       timestamp: new Date().toISOString(),
       stats: AppState.stats,
       srsCards: AppState.srsCards,
+      activeProfileId: AppState.activeProfileId || "gestor_iii",
       activeJob: AppState.activeJob,
       streak: {
         current: AppState.stats?.streak || 0,
@@ -122,6 +123,12 @@ const CloudSync = {
         if (Array.isArray(remoteData.srsCards) && remoteData.srsCards.length > 0) {
           AppState.srsCards = remoteData.srsCards;
           await StorageManager.set("srsCards", AppState.srsCards);
+        }
+
+        if (remoteData.activeProfileId && remoteData.activeProfileId !== AppState.activeProfileId) {
+          if (typeof applyProfile === "function") {
+            applyProfile(remoteData.activeProfileId, true, false);
+          }
         }
 
         this.config.lastSyncTimestamp = new Date().toISOString();

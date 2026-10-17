@@ -3,6 +3,7 @@
   "short_name": "SIMO Prep",
   "description": "Entrenador Oficial de Juicio Situacional (PJS) y Comprensión Lectora para Concurso DIAN 2676 (OPEC 242703)",
   "start_url": "./sidepanel.html",
+  "scope": "./",
   "display": "standalone",
   "background_color": "#0b1120",
   "theme_color": "#1e293b",
@@ -17,6 +18,18 @@
       "src": "icons/icon128.png",
       "sizes": "128x128",
       "type": "image/png"
+    },
+    {
+      "src": "icons/icon192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icons/icon512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
     }
   ]
 }

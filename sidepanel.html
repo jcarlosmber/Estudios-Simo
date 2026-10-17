@@ -32,6 +32,11 @@
         ☁️
       </button>
 
+      <!-- Botón para Descargar / Instalar Extensión en PC o App -->
+      <button id="btnOpenInstallModal" style="background: rgba(168, 85, 247, 0.15); border: 1px solid rgba(168, 85, 247, 0.4); color: #c084fc; padding: 5px 10px; border-radius: 8px; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 12px; font-weight: 700; gap: 5px; transition: all 0.2s;" title="Instalar Extensión en PC o App en Celular">
+        🧩 Instalar
+      </button>
+
       <!-- Widget Pomodoro 25/5 -->
       <div id="pomodoroWidget" class="pomodoro-pill" title="Clic para Iniciar / Pausar Pomodoro">
         <div class="pomodoro-dot"></div>
@@ -43,16 +48,20 @@
 
   <!-- Barra de Cargo Activo / Enfoque OPEC -->
   <section id="jobProfileBar" style="background: linear-gradient(90deg, #1e293b, #0b1120); border-bottom: 1px solid rgba(255,255,255,0.08); padding: 10px 18px; display: flex; align-items: center; justify-content: space-between; gap: 10px;">
-    <div style="display: flex; flex-direction: column; gap: 3px; overflow: hidden;">
-      <div style="display: flex; align-items: center; gap: 8px;">
-        <span style="font-size: 12px; background-color: rgba(245, 158, 11, 0.2); color: #f59e0b; padding: 2px 8px; border-radius: 4px; font-weight: 800; border: 1px solid rgba(245, 158, 11, 0.4);">
+    <div style="display: flex; flex-direction: column; gap: 4px; overflow: hidden;">
+      <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+        <select id="profileSwitcher" style="background: #0f172a; color: #38bdf8; font-weight: 800; font-size: 12px; border: 1px solid rgba(56, 189, 248, 0.4); border-radius: 6px; padding: 3px 8px; cursor: pointer; outline: none;" title="Cambiar Perfil de Estudio">
+          <option value="gestor_iii">👔 GESTOR III (242703)</option>
+          <option value="analista_iv">🔍 ANALISTA IV (236760)</option>
+        </select>
+        <span id="jobOpecBadge" style="font-size: 11px; background-color: rgba(245, 158, 11, 0.2); color: #f59e0b; padding: 2px 7px; border-radius: 4px; font-weight: 800; border: 1px solid rgba(245, 158, 11, 0.4);">
           OPEC 242703
         </span>
-        <span id="jobLevelBadge" style="font-size: 13px; color: #38bdf8; font-weight: 700;">
+        <span id="jobLevelBadge" style="font-size: 12px; color: #38bdf8; font-weight: 700;">
           GESTOR III • PROFESIONAL
         </span>
       </div>
-      <div id="jobTitleDisplay" style="font-size: 14px; font-weight: 700; color: #f8fafc; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 250px;">
+      <div id="jobTitleDisplay" style="font-size: 13px; font-weight: 600; color: #94a3b8; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 270px;">
         Ficha FT-TAH-1824 | DIAN 2676
       </div>
     </div>
@@ -1074,14 +1083,90 @@
     </div>
   </div>
 
+  <!-- MODAL: INSTALACIÓN EN PC (EXTENSIÓN CHROME) Y CELULAR (PWA) -->
+  <div id="installModal" class="modal-overlay">
+    <div class="modal-card" style="max-width: 560px; width: 95%; max-height: 90vh; overflow-y: auto; -webkit-overflow-scrolling: touch; padding: 22px; border-radius: 14px; box-sizing: border-box; background: linear-gradient(160deg, #131d33 0%, #0d1527 100%); border: 1px solid rgba(168, 85, 247, 0.35); box-shadow: 0 20px 50px rgba(0,0,0,0.85); display: flex; flex-direction: column; gap: 16px;">
+      
+      <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 12px;">
+        <div style="display: flex; align-items: center; gap: 8px;">
+          <span style="font-size: 24px;">🧩</span>
+          <div>
+            <h3 style="font-size: 17px; font-weight: 800; color: #f8fafc; margin: 0;">Instalar SIMO Prep</h3>
+            <span style="font-size: 12px; color: #c084fc;">En Google Chrome (PC) o como App en Celular</span>
+          </div>
+        </div>
+        <button id="btnCloseInstallModalX" type="button" style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); color: #cbd5e1; font-size: 18px; cursor: pointer; width: 34px; height: 34px; border-radius: 8px; display: flex; align-items: center; justify-content: center;" title="Cerrar">✕</button>
+      </div>
+
+      <!-- Opción 1: Extensión Google Chrome para PC -->
+      <div style="background: rgba(168, 85, 247, 0.08); border: 1px solid rgba(168, 85, 247, 0.3); border-radius: 10px; padding: 14px; display: flex; flex-direction: column; gap: 10px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <span style="font-size: 18px;">💻</span>
+            <span style="font-size: 14px; font-weight: 800; color: #f8fafc;">Opción 1: Extensión para Google Chrome (PC)</span>
+          </div>
+          <a href="/download/extension" download="simo-prep-extension.zip" style="text-decoration: none;">
+            <button type="button" style="background: linear-gradient(135deg, #a855f7, #7c3aed); border: none; color: #fff; font-size: 13px; font-weight: 700; padding: 8px 14px; border-radius: 8px; cursor: pointer; display: flex; align-items: center; gap: 6px; box-shadow: 0 4px 12px rgba(168, 85, 247, 0.35);">
+              📥 Descargar Extensión (.ZIP)
+            </button>
+          </a>
+        </div>
+        
+        <p style="font-size: 12px; color: #cbd5e1; line-height: 1.5; margin: 0;">
+          Para instalarla en tu navegador de computadora en 3 simples pasos:
+        </p>
+
+        <ol style="margin: 0; padding-left: 20px; font-size: 12px; color: #e2e8f0; line-height: 1.6; display: flex; flex-direction: column; gap: 6px;">
+          <li>Haz clic arriba en <strong>"Descargar Extensión (.ZIP)"</strong> y descomprime la carpeta en tu PC.</li>
+          <li>En Google Chrome, abre una nueva pestaña y entra a: <code style="background: rgba(0,0,0,0.4); padding: 2px 6px; border-radius: 4px; color: #38bdf8;">chrome://extensions</code></li>
+          <li>En la esquina superior derecha, activa el interruptor <strong>"Modo de desarrollador"</strong>.</li>
+          <li>Haz clic en el botón <strong>"Cargar descomprimida"</strong> (arriba a la izquierda) y selecciona la carpeta descomprimida.</li>
+        </ol>
+      </div>
+
+      <!-- Opción 2: App para Celular / PWA -->
+      <div style="background: rgba(56, 189, 248, 0.08); border: 1px solid rgba(56, 189, 248, 0.3); border-radius: 10px; padding: 14px; display: flex; flex-direction: column; gap: 8px;">
+        <div style="display: flex; align-items: center; gap: 8px;">
+          <span style="font-size: 18px;">📱</span>
+          <span style="font-size: 14px; font-weight: 800; color: #f8fafc;">Opción 2: Instalar como App en Celular (PWA)</span>
+        </div>
+        <p style="font-size: 12px; color: #cbd5e1; line-height: 1.5; margin: 0;">
+          Abre <code style="color: #38bdf8;">https://simo.liverohoa.com</code> en Google Chrome de tu teléfono:
+        </p>
+        <ul style="margin: 0; padding-left: 20px; font-size: 12px; color: #e2e8f0; line-height: 1.6;">
+          <li>Toca el menú de tres puntos (<strong>⋮</strong>) arriba a la derecha.</li>
+          <li>Selecciona <strong>"Instalar aplicación"</strong> o <strong>"Agregar a la pantalla principal"</strong>.</li>
+          <li>Se creará un acceso directo con ícono propio en tu pantalla de inicio.</li>
+        </ul>
+      </div>
+
+      <div style="display: flex; justify-content: flex-end; margin-top: 4px;">
+        <button type="button" id="btnCloseInstallModal" class="btn-secondary" style="font-size: 13px; padding: 8px 18px; border-radius: 8px;">
+          Cerrar
+        </button>
+      </div>
+    </div>
+  </div>
+
   <!-- Scripts -->
   <script src="sound_effects.js"></script>
   <script src="image_catalog.js"></script>
   <script src="profiles.js"></script>
+  <script src="questions_gestor_iii.js"></script>
+  <script src="questions_analista_iv.js"></script>
   <script src="speed_drills.js"></script>
   <script src="tips_data.js"></script>
   <script src="questions.js"></script>
   <script src="cloud_sync.js"></script>
   <script src="sidepanel.js"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./sw.js')
+          .then(reg => console.log('[SIMO Prep] Service Worker registrado exitosamente:', reg.scope))
+          .catch(err => console.log('[SIMO Prep] Service Worker error:', err));
+      });
+    }
+  </script>
 </body>
 </html>
