@@ -930,7 +930,7 @@ async function injectInPageQuestionModal(tabId, qData) {
             </div>
             <div style="display: flex; align-items: center; gap: 8px;">
               <div class="timer-pill" id="simoTimerPill">
-                ⏱️ <span id="simoTimerSec">45</span>s
+                ⏱️ <span id="simoTimerSec">02:00</span>
               </div>
               <button class="btn-sound" id="simoSoundBtn" title="${initialSoundEnabled ? 'Sonido: Activado (Clic para silenciar)' : 'Sonido: Silenciado (Clic para activar)'}">
                 ${initialSoundEnabled ? '🔊' : '🔇'}
@@ -991,7 +991,7 @@ async function injectInPageQuestionModal(tabId, qData) {
       `;
 
       let currentStreak = initialStreak;
-      let totalSeconds = 45;
+      let totalSeconds = 120; // 2 minutos reglamentarios estándar DIAN / CNSC
       let remainingSec = totalSeconds;
       let isAnswered = false;
       let selectedDifficulty = null;
@@ -1024,16 +1024,18 @@ async function injectInPageQuestionModal(tabId, qData) {
         });
       }
 
-      // Temporizador Speed Drill
+      // Temporizador Speed Drill (2 minutos / 120s)
       const timerInterval = setInterval(() => {
         if (isAnswered) return;
         remainingSec -= 1;
-        timerSecEl.textContent = remainingSec;
+        const mins = Math.floor(Math.max(0, remainingSec) / 60);
+        const secs = Math.max(0, remainingSec) % 60;
+        timerSecEl.textContent = `${mins.toString().padStart(2, "0")}:${secs.toString().padStart(2, "0")}`;
         
         const pct = Math.max(0, (remainingSec / totalSeconds) * 100);
         speedBarEl.style.width = pct + "%";
 
-        if (remainingSec <= 10) {
+        if (remainingSec <= 20) {
           timerPillEl.classList.add("urgent");
           speedBarEl.classList.add("urgent");
         }

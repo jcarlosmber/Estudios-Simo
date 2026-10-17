@@ -897,6 +897,73 @@ function setupPracticeLogic() {
   });
 }
 
+// Cronómetro de 2 minutos (120 segundos) reglamentario tipo examen DIAN / CNSC
+const PracticeTimer = {
+  totalSeconds: 120, // 2 minutos
+  remaining: 120,
+  interval: null,
+  isPaused: false,
+  start() {
+    this.stop();
+    this.remaining = this.totalSeconds;
+    this.isPaused = false;
+    this.updateUI();
+
+    this.interval = setInterval(() => {
+      if (this.isPaused) return;
+      this.remaining -= 1;
+      this.updateUI();
+
+      if (this.remaining === 30) {
+        if (typeof SoundFX !== "undefined" && SoundFX.playTick) SoundFX.playTick();
+      }
+
+      if (this.remaining <= 0) {
+        this.stop();
+        if (typeof SoundFX !== "undefined" && SoundFX.playTimeout) SoundFX.playTimeout();
+        const timerEl = document.getElementById("practiceQuestionTimer");
+        if (timerEl) {
+          timerEl.textContent = "00:00";
+          timerEl.style.color = "#f87171";
+          timerEl.style.borderColor = "#ef4444";
+          timerEl.style.background = "rgba(239, 68, 68, 0.25)";
+        }
+        showCustomModal({
+          title: "⏱️ Tiempo Reglamentario (2 min)",
+          message: "Han transcurrido los 2 minutos (120 segundos) estándar por pregunta de la DIAN. Puedes confirmar tu opción para ver el análisis de distractores.",
+          icon: "⌛"
+        });
+      }
+    }, 1000);
+  },
+  stop() {
+    if (this.interval) {
+      clearInterval(this.interval);
+      this.interval = null;
+    }
+  },
+  pause() {
+    this.isPaused = true;
+  },
+  updateUI() {
+    const timerEl = document.getElementById("practiceQuestionTimer");
+    if (!timerEl) return;
+    const mins = Math.floor(Math.max(0, this.remaining) / 60);
+    const secs = Math.max(0, this.remaining) % 60;
+    timerEl.textContent = `${mins.toString().padStart(2, "0")}:${secs.toString().padStart(2, "0")}`;
+
+    if (this.remaining <= 30) {
+      timerEl.style.color = "#f87171";
+      timerEl.style.borderColor = "#ef4444";
+      timerEl.style.background = "rgba(239, 68, 68, 0.2)";
+    } else {
+      timerEl.style.color = "#f8fafc";
+      timerEl.style.borderColor = "rgba(255,255,255,0.15)";
+      timerEl.style.background = "rgba(15, 23, 42, 0.8)";
+    }
+  }
+};
+
 function loadNextPracticeQuestion() {
   const filter = AppState.currentEjeFilter;
   let pool = QUESTION_BANK;
@@ -924,6 +991,7 @@ function loadNextPracticeQuestion() {
 function renderPracticeQuestion(q) {
   AppState.currentQuestion = q;
   AppState.selectedOption = null;
+  PracticeTimer.start();
 
   document.getElementById("qBadgeLevel").textContent = "GESTOR III • DIAN";
   document.getElementById("qBadgeType").textContent = q.tipo;
@@ -985,6 +1053,7 @@ function renderPracticeQuestion(q) {
 }
 
 function evaluateAnswer(selectedId) {
+  PracticeTimer.stop();
   const q = AppState.currentQuestion;
   const isCorrect = selectedId === q.respuestaCorrecta;
 
@@ -1550,6 +1619,36 @@ function setupJobConfig() {
   btnOpen.addEventListener("click", openModal);
   btnCloseX.addEventListener("click", closeModal);
   btnCancel.addEventListener("click", closeModal);
+
+  // Selector Rápido de Perfiles Oficiales DIAN (Gestor III y Analista IV)
+  const btnQuickGestor = document.getElementById("btnQuickProfileGestor");
+  const btnQuickAnalista = document.getElementById("btnQuickProfileAnalista");
+
+  const fillFormWithProfile = (profile) => {
+    if (!profile) return;
+    document.getElementById("inputJobTitle").value = profile.title || "";
+    document.getElementById("inputJobOpec").value = profile.opec || "";
+    document.getElementById("selectJobLevel").value = profile.level || "Profesional";
+    document.getElementById("inputJobEntity").value = profile.entity || "";
+    document.getElementById("inputJobPurpose").value = profile.purpose || "";
+    document.getElementById("inputJobFunctions").value = (profile.functions || []).join("\n");
+  };
+
+  if (btnQuickGestor) {
+    btnQuickGestor.addEventListener("click", () => {
+      if (typeof PROFILES_DATA !== "undefined" && PROFILES_DATA.gestor_iii) {
+        fillFormWithProfile(PROFILES_DATA.gestor_iii);
+      }
+    });
+  }
+
+  if (btnQuickAnalista) {
+    btnQuickAnalista.addEventListener("click", () => {
+      if (typeof PROFILES_DATA !== "undefined" && PROFILES_DATA.analista_iv) {
+        fillFormWithProfile(PROFILES_DATA.analista_iv);
+      }
+    });
+  }
 
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
