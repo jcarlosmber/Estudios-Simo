@@ -223,6 +223,15 @@
           <span class="hub-card-arrow">➔</span>
         </div>
 
+        <div class="duo-hub-card cyan" id="hubCardMicrolearning">
+          <div class="hub-card-icon">🔔</div>
+          <div class="hub-card-content">
+            <div class="hub-card-title">Microaprendizaje & Notificaciones</div>
+            <div class="hub-card-desc">Píldoras y preguntas flash de estudio con el panel abierto o cerrado</div>
+          </div>
+          <span class="hub-card-arrow">➔</span>
+        </div>
+
         <div class="duo-hub-card blue" id="hubCardLectura">
           <div class="hub-card-icon">📖</div>
           <div class="hub-card-content">
@@ -834,123 +843,229 @@
     </div>
   </div>
 
-  <!-- MODAL: BANCO MAESTRO DE 18 CLAVES DE JUICIO SITUACIONAL Y COMPRENSIÓN LECTORA (CNSC / DIAN) -->
+  <!-- MODAL: BANCO MAESTRO DE 41 CLAVES DE JUICIO SITUACIONAL (CNSC / DIAN) -->
   <div id="tipsModal" class="modal-overlay">
-    <div class="modal-card" style="max-width: 680px; width: 96%; max-height: 92vh; padding: 24px; gap: 16px;">
-      <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-color); padding-bottom: 12px;">
-        <div>
-          <h3 style="font-size: 19px; font-weight: 800; color: var(--accent-gold); display: flex; align-items: center; gap: 8px; margin: 0;">
-            <span>💡</span> 41 Claves Maestras de Juicio Situacional y Comprensión
-          </h3>
-          <p style="font-size: 13px; color: var(--text-secondary); margin: 3px 0 0 0;">
-            Estrategias psicométricas, régimen tributario/aduanero y análisis textual para GESTOR III (OPEC 242703)
-          </p>
+    <div class="modal-card" style="max-width: 680px; width: 96%; max-height: 90vh;">
+      <div class="modal-header">
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <span style="font-size: 24px;">💡</span>
+          <div>
+            <h3 style="font-size: 17px; font-weight: 800; color: var(--accent-gold); margin: 0; line-height: 1.2;">
+              41 Claves Maestras PJS
+            </h3>
+            <p style="font-size: 12px; color: var(--text-secondary); margin: 2px 0 0 0;">
+              Estrategias psicométricas y régimen oficial DIAN (OPEC 242703)
+            </p>
+          </div>
         </div>
-        <button id="btnCloseTipsModalX" style="background: rgba(255,255,255,0.06); border: none; color: var(--text-secondary); font-size: 20px; cursor: pointer; border-radius: 6px; width: 34px; height: 34px; display: flex; align-items: center; justify-content: center; line-height: 1;" title="Cerrar">✕</button>
+        <button id="btnCloseTipsModalX" class="modal-close-btn" title="Cerrar">✕</button>
       </div>
 
-      <!-- Filtro rápido por categoría -->
-      <div style="display: flex; gap: 8px; align-items: center; overflow-x: auto; padding-bottom: 4px;">
-        <span style="font-size: 12px; color: #94a3b8; font-weight: 700; white-space: nowrap;">Filtrar:</span>
-        <button class="tip-filter-btn active" data-cat="all" style="background: rgba(245, 158, 11, 0.2); border: 1px solid #f59e0b; color: #f59e0b; padding: 4px 10px; border-radius: 12px; font-size: 12px; font-weight: 700; cursor: pointer; white-space: nowrap;">Todas (41)</button>
-        <button class="tip-filter-btn" data-cat="Comprensión Lectora" style="background: rgba(56, 189, 248, 0.15); border: 1px solid #38bdf8; color: #38bdf8; padding: 4px 10px; border-radius: 12px; font-size: 12px; font-weight: 700; cursor: pointer; white-space: nowrap;">📖 Comprensión Lectora (21)</button>
-        <button class="tip-filter-btn" data-cat="Régimen Aduanero" style="background: rgba(2, 132, 199, 0.15); border: 1px solid #0284c7; color: #38bdf8; padding: 4px 10px; border-radius: 12px; font-size: 12px; font-weight: 700; cursor: pointer; white-space: nowrap;">🚢 Aduanas (Decreto 1165)</button>
-        <button class="tip-filter-btn" data-cat="Procedimiento Tributario" style="background: rgba(225, 29, 72, 0.15); border: 1px solid #e11d48; color: #f43f5e; padding: 4px 10px; border-radius: 12px; font-size: 12px; font-weight: 700; cursor: pointer; white-space: nowrap;">🏪 Facturación y Clausura</button>
-        <button class="tip-filter-btn" data-cat="Constitución y Legalidad" style="background: rgba(255,255,255,0.05); border: 1px solid var(--border-color); color: #cbd5e1; padding: 4px 10px; border-radius: 12px; font-size: 12px; font-weight: 600; cursor: pointer; white-space: nowrap;">⚖️ Legalidad</button>
-        <button class="tip-filter-btn" data-cat="Técnica de Examen" style="background: rgba(255,255,255,0.05); border: 1px solid var(--border-color); color: #cbd5e1; padding: 4px 10px; border-radius: 12px; font-size: 12px; font-weight: 600; cursor: pointer; white-space: nowrap;">🎯 Técnica</button>
-        <button class="tip-filter-btn" data-cat="Ética e Integridad" style="background: rgba(255,255,255,0.05); border: 1px solid var(--border-color); color: #cbd5e1; padding: 4px 10px; border-radius: 12px; font-size: 12px; font-weight: 600; cursor: pointer; white-space: nowrap;">🛡️ Integridad</button>
+      <div class="modal-body">
+        <!-- Barra de herramientas: Buscador y Acceso a Microaprendizaje -->
+        <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap;">
+          <div style="position: relative; flex: 1; min-width: 200px;">
+            <input type="text" id="inputSearchTips" placeholder="🔍 Buscar clave o tema (ej. factura, aduana, lectura)..." style="width: 100%; box-sizing: border-box; background: #0b1120; border: 1px solid rgba(255,255,255,0.15); color: #f8fafc; padding: 9px 12px; border-radius: 8px; font-size: 13px; outline: none;">
+          </div>
+          <button id="btnOpenMicrolearningFromTips" type="button" style="background: rgba(56, 189, 248, 0.12); border: 1px solid rgba(56, 189, 248, 0.35); color: #38bdf8; font-size: 12px; font-weight: 700; padding: 9px 12px; border-radius: 8px; cursor: pointer; display: flex; align-items: center; gap: 6px; white-space: nowrap;">
+            <span>🔔</span> Configurar Microaprendizaje
+          </button>
+        </div>
+
+        <!-- Filtros rápidos por categoría con scroll horizontal táctil -->
+        <div style="display: flex; gap: 6px; align-items: center; overflow-x: auto; padding-bottom: 4px; -webkit-overflow-scrolling: touch;">
+          <button class="tip-filter-btn active" data-cat="all" style="background: rgba(245, 158, 11, 0.2); border: 1px solid #f59e0b; color: #f59e0b; padding: 5px 12px; border-radius: 12px; font-size: 12px; font-weight: 700; cursor: pointer; white-space: nowrap;">Todas (41)</button>
+          <button class="tip-filter-btn" data-cat="Comprensión Lectora" style="background: rgba(56, 189, 248, 0.15); border: 1px solid #38bdf8; color: #38bdf8; padding: 5px 12px; border-radius: 12px; font-size: 12px; font-weight: 700; cursor: pointer; white-space: nowrap;">📖 Comprensión (21)</button>
+          <button class="tip-filter-btn" data-cat="Régimen Aduanero" style="background: rgba(2, 132, 199, 0.15); border: 1px solid #0284c7; color: #38bdf8; padding: 5px 12px; border-radius: 12px; font-size: 12px; font-weight: 700; cursor: pointer; white-space: nowrap;">🚢 Aduanas (Dec. 1165)</button>
+          <button class="tip-filter-btn" data-cat="Procedimiento Tributario" style="background: rgba(225, 29, 72, 0.15); border: 1px solid #e11d48; color: #f43f5e; padding: 5px 12px; border-radius: 12px; font-size: 12px; font-weight: 700; cursor: pointer; white-space: nowrap;">🏪 Facturación & Clausura</button>
+          <button class="tip-filter-btn" data-cat="Constitución y Legalidad" style="background: rgba(255,255,255,0.05); border: 1px solid var(--border-color); color: #cbd5e1; padding: 5px 12px; border-radius: 12px; font-size: 12px; font-weight: 600; cursor: pointer; white-space: nowrap;">⚖️ Legalidad</button>
+          <button class="tip-filter-btn" data-cat="Técnica de Examen" style="background: rgba(255,255,255,0.05); border: 1px solid var(--border-color); color: #cbd5e1; padding: 5px 12px; border-radius: 12px; font-size: 12px; font-weight: 600; cursor: pointer; white-space: nowrap;">🎯 Técnica</button>
+          <button class="tip-filter-btn" data-cat="Ética e Integridad" style="background: rgba(255,255,255,0.05); border: 1px solid var(--border-color); color: #cbd5e1; padding: 5px 12px; border-radius: 12px; font-size: 12px; font-weight: 600; cursor: pointer; white-space: nowrap;">🛡️ Integridad</button>
+        </div>
+
+        <div style="display: flex; justify-content: space-between; align-items: center; font-size: 12px; color: #94a3b8; padding: 0 2px;">
+          <span id="tipsCountBadge">Mostrando 41 claves</span>
+          <span style="font-size: 11px; color: #64748b;">Desliza para ver fundamentos y reglas rápidas</span>
+        </div>
+
+        <!-- Contenedor dinámico de los tips (scroll fluido único sin scrolls anidados) -->
+        <div id="tipsListContainer" style="display: flex; flex-direction: column; gap: 12px;">
+          <!-- Se inyectan dinámicamente con tips_data.js -->
+        </div>
       </div>
 
-      <!-- Control de Microaprendizaje en Segundo Plano (Sidebar Cerrado) -->
-      <div style="background: rgba(56, 189, 248, 0.08); border: 1px solid rgba(56, 189, 248, 0.3); border-radius: 8px; padding: 12px 14px; display: flex; flex-direction: column; gap: 8px;">
-        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
-          <div style="display: flex; align-items: center; gap: 6px;">
-            <span style="font-size: 16px;">🔔</span>
-            <span style="font-size: 13px; font-weight: 800; color: #38bdf8;">Microaprendizaje con el panel lateral CERRADO</span>
+      <div class="modal-footer">
+        <span style="font-size: 12px; color: #94a3b8; display: flex; align-items: center; gap: 6px;">
+          <span>💡</span> Memoriza las reglas rápidas
+        </span>
+        <button id="btnCloseTipsModal" class="btn-primary" style="font-size: 14px; font-weight: 700; padding: 10px 20px;">
+          Entendido, ¡A Practicar! 🚀
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL DEDICADO: MICROAPRENDIZAJE & REPASO INTELIGENTE -->
+  <div id="microlearningModal" class="modal-overlay">
+    <div class="modal-card" style="max-width: 600px; width: 96%; max-height: 90vh;">
+      <div class="modal-header">
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <span style="font-size: 24px;">🔔</span>
+          <div>
+            <h3 style="font-size: 17px; font-weight: 800; color: #38bdf8; margin: 0; line-height: 1.2;">
+              Microaprendizaje & Repaso Inteligente
+            </h3>
+            <p style="font-size: 12px; color: var(--text-secondary); margin: 2px 0 0 0;">
+              Recordatorios y preguntas espaciadas con el panel abierto o cerrado
+            </p>
+          </div>
+        </div>
+        <button id="btnCloseMicrolearningModalX" class="modal-close-btn" title="Cerrar">✕</button>
+      </div>
+
+      <div class="modal-body">
+        <!-- Switch Maestro -->
+        <div style="background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.3); border-radius: 12px; padding: 14px 16px; display: flex; justify-content: space-between; align-items: center; gap: 12px;">
+          <div>
+            <div style="font-size: 15px; font-weight: 800; color: #f8fafc; display: flex; align-items: center; gap: 6px;">
+              <span>⚡</span> Repaso en Segundo Plano Activo
+            </div>
+            <div style="font-size: 12px; color: #cbd5e1; margin-top: 3px; line-height: 1.4;">
+              Envía píldoras flash y preguntas situacionales a intervalos periódicos.
+            </div>
           </div>
           <label style="display: flex; align-items: center; gap: 6px; font-size: 13px; color: #f8fafc; font-weight: 700; cursor: pointer;">
-            <input type="checkbox" id="chkBackgroundTips" checked style="accent-color: #38bdf8; width: 16px; height: 16px;">
-            Activo en segundo plano
+            <input type="checkbox" id="chkBackgroundTips" checked style="accent-color: #38bdf8; width: 20px; height: 20px; cursor: pointer;">
+            <span>Activo</span>
           </label>
         </div>
-        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; font-size: 12px; color: #cbd5e1;">
-          <div style="display: flex; align-items: center; gap: 6px;">
-            <span>Contenido:</span>
-            <select id="selectBgMode" style="background: #0f172a; border: 1px solid rgba(255,255,255,0.2); color: #fff; padding: 4px 8px; border-radius: 4px; font-size: 12px; cursor: pointer;">
+
+        <!-- Opciones de Configuración -->
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+          <!-- Tipo de Contenido -->
+          <div style="background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(255,255,255,0.08); border-radius: 10px; padding: 12px;">
+            <label style="font-size: 11px; font-weight: 800; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.5px; display: block; margin-bottom: 6px;">
+              Tipo de Píldora:
+            </label>
+            <select id="selectBgMode" style="width: 100%; box-sizing: border-box; background: #0b1120; border: 1px solid rgba(255,255,255,0.2); color: #fff; padding: 8px 10px; border-radius: 6px; font-size: 13px; outline: none; cursor: pointer;">
               <option value="alternate" selected>🔄 Alternar Tips y Preguntas</option>
               <option value="questions_only">🎯 Solo Preguntas Situacionales</option>
               <option value="tips_only">💡 Solo Claves y Tips</option>
             </select>
           </div>
-          <div style="display: flex; align-items: center; gap: 6px;">
-            <span>Frecuencia:</span>
-            <select id="selectBgInterval" style="background: #0f172a; border: 1px solid rgba(255,255,255,0.2); color: #fff; padding: 4px 8px; border-radius: 4px; font-size: 12px; cursor: pointer;">
-              <option value="15">Cada 15 min</option>
+
+          <!-- Frecuencia -->
+          <div style="background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(255,255,255,0.08); border-radius: 10px; padding: 12px;">
+            <label style="font-size: 11px; font-weight: 800; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.5px; display: block; margin-bottom: 6px;">
+              Frecuencia de Envío:
+            </label>
+            <select id="selectBgInterval" style="width: 100%; box-sizing: border-box; background: #0b1120; border: 1px solid rgba(255,255,255,0.2); color: #fff; padding: 8px 10px; border-radius: 6px; font-size: 13px; outline: none; cursor: pointer;">
+              <option value="15">Cada 15 minutos</option>
               <option value="25" selected>Cada 25 min (Pomodoro)</option>
-              <option value="45">Cada 45 min</option>
+              <option value="45">Cada 45 minutos</option>
               <option value="60">Cada 1 hora</option>
             </select>
           </div>
-          <div style="display: flex; align-items: center; gap: 6px;">
-            <span>Formato:</span>
-            <select id="selectBgFormat" style="background: #0f172a; border: 1px solid rgba(255,255,255,0.2); color: #fff; padding: 4px 8px; border-radius: 4px; font-size: 12px; cursor: pointer;">
-              <option value="popup" selected>Modal Flotante en Pantalla (Sin otra ventana)</option>
-              <option value="notification">Notificación Windows / Chrome</option>
-            </select>
-          </div>
+        </div>
 
-          <!-- Control de Horario de Sueño / Descanso (Silencio Automático) -->
-          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; border-top: 1px dashed rgba(255,255,255,0.12); padding-top: 8px; width: 100%; font-size: 12px; color: #cbd5e1;">
-            <div style="display: flex; align-items: center; gap: 6px; flex-wrap: wrap;">
-              <span style="font-size: 15px;">🌙</span>
-              <span style="font-weight: 700; color: #a5b4fc;">Modo Sueño / Descanso:</span>
-              <span>No notificar entre</span>
-              <select id="selectQuietStart" style="background: #0f172a; border: 1px solid rgba(255,255,255,0.2); color: #fff; padding: 3px 6px; border-radius: 4px; font-size: 12px; cursor: pointer;">
-                <option value="19">7:00 PM</option>
-                <option value="20" selected>8:00 PM</option>
-                <option value="21">9:00 PM</option>
-                <option value="22">10:00 PM</option>
-                <option value="23">11:00 PM</option>
-              </select>
-              <span>y</span>
-              <select id="selectQuietEnd" style="background: #0f172a; border: 1px solid rgba(255,255,255,0.2); color: #fff; padding: 3px 6px; border-radius: 4px; font-size: 12px; cursor: pointer;">
-                <option value="6">6:00 AM</option>
-                <option value="7">7:00 AM</option>
-                <option value="8" selected>8:00 AM</option>
-                <option value="9">9:00 AM</option>
-              </select>
+        <!-- Formato de Entrega -->
+        <div style="background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(255,255,255,0.08); border-radius: 10px; padding: 12px;">
+          <label style="font-size: 11px; font-weight: 800; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.5px; display: block; margin-bottom: 6px;">
+            Formato de Visualización:
+          </label>
+          <select id="selectBgFormat" style="width: 100%; box-sizing: border-box; background: #0b1120; border: 1px solid rgba(255,255,255,0.2); color: #fff; padding: 8px 10px; border-radius: 6px; font-size: 13px; outline: none; cursor: pointer;">
+            <option value="popup" selected>🪟 Modal Flotante en Pantalla (Recomendado)</option>
+            <option value="notification">🔔 Notificación Nativa del Navegador / Celular</option>
+          </select>
+        </div>
+
+        <!-- Tiempo de Respuesta por Pregunta Situacional -->
+        <div style="background: rgba(56, 189, 248, 0.07); border: 1px solid rgba(56, 189, 248, 0.25); border-radius: 10px; padding: 12px; display: flex; flex-direction: column; gap: 8px;">
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <label style="font-size: 11px; font-weight: 800; color: #38bdf8; text-transform: uppercase; letter-spacing: 0.5px; display: flex; align-items: center; gap: 6px; margin: 0;">
+              <span>⏱️</span> Tiempo de Respuesta por Pregunta:
+            </label>
+            <span id="labelTimerIntensity" style="font-size: 11px; font-weight: 700; color: #38bdf8; background: rgba(56, 189, 248, 0.18); padding: 2px 8px; border-radius: 4px;">
+              2 min (Oficial)
+            </span>
+          </div>
+          <select id="selectQuestionTimer" style="width: 100%; box-sizing: border-box; background: #0b1120; border: 1px solid rgba(255,255,255,0.2); color: #fff; padding: 8px 10px; border-radius: 6px; font-size: 13px; outline: none; cursor: pointer;">
+            <option value="45">⚡ 45 segundos (Entrenamiento Rápido / Speed)</option>
+            <option value="60">🔥 60 segundos / 1 min (Alta Intensidad)</option>
+            <option value="90">🎯 90 segundos / 1.5 min (Táctico PJS)</option>
+            <option value="120" selected>⏱️ 120 segundos / 2 min (Oficial Concurso CNSC)</option>
+            <option value="180">📖 180 segundos / 3 min (Análisis Detallado)</option>
+            <option value="0">🧘 Sin límite de tiempo (Tiempo Libre)</option>
+          </select>
+          <div style="font-size: 11px; color: #cbd5e1; line-height: 1.4;">
+            Segundos que tendrás para leer el caso situacional, analizar los distractores y confirmar tu opción antes de que termine el cronómetro.
+          </div>
+        </div>
+
+        <!-- Modo Sueño / Horario de Descanso -->
+        <div style="background: rgba(99, 102, 241, 0.08); border: 1px solid rgba(99, 102, 241, 0.25); border-radius: 10px; padding: 12px 14px; display: flex; flex-direction: column; gap: 8px;">
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
+            <div style="display: flex; align-items: center; gap: 6px;">
+              <span style="font-size: 16px;">🌙</span>
+              <span style="font-size: 13px; font-weight: 800; color: #a5b4fc;">Modo Sueño y Descanso (Silencio Nocturno)</span>
             </div>
             <label style="display: flex; align-items: center; gap: 6px; font-size: 12px; color: #cbd5e1; cursor: pointer;">
-              <input type="checkbox" id="chkQuietHours" checked style="accent-color: #a5b4fc; width: 15px; height: 15px;">
-              Activo (No molestar de noche)
+              <input type="checkbox" id="chkQuietHours" checked style="accent-color: #a5b4fc; width: 16px; height: 16px;">
+              Activo
             </label>
           </div>
-          <div style="display: flex; gap: 6px; flex-wrap: wrap;">
-            <button id="btnTestBgAlternate" type="button" style="background: rgba(56, 189, 248, 0.2); border: 1px solid #38bdf8; color: #38bdf8; padding: 4px 10px; border-radius: 6px; font-size: 12px; font-weight: 700; cursor: pointer;" title="Probar alternado">
-              ⚡ Probar Siguiente
+          <div style="display: flex; align-items: center; gap: 8px; font-size: 13px; color: #cbd5e1; flex-wrap: wrap;">
+            <span>No notificar entre</span>
+            <select id="selectQuietStart" style="background: #0f172a; border: 1px solid rgba(255,255,255,0.2); color: #fff; padding: 4px 8px; border-radius: 6px; font-size: 12px; cursor: pointer;">
+              <option value="19">7:00 PM</option>
+              <option value="20" selected>8:00 PM</option>
+              <option value="21">9:00 PM</option>
+              <option value="22">10:00 PM</option>
+              <option value="23">11:00 PM</option>
+            </select>
+            <span>y las</span>
+            <select id="selectQuietEnd" style="background: #0f172a; border: 1px solid rgba(255,255,255,0.2); color: #fff; padding: 4px 8px; border-radius: 6px; font-size: 12px; cursor: pointer;">
+              <option value="6">6:00 AM</option>
+              <option value="7">7:00 AM</option>
+              <option value="8" selected>8:00 AM</option>
+              <option value="9">9:00 AM</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Recordatorios Flash en Práctica Libre -->
+        <label style="display: flex; align-items: center; gap: 10px; background: rgba(245, 158, 11, 0.08); border: 1px solid rgba(245, 158, 11, 0.25); border-radius: 10px; padding: 12px 14px; cursor: pointer;">
+          <input type="checkbox" id="chkAutoTipsFromModal" checked style="accent-color: #f59e0b; width: 18px; height: 18px; flex-shrink: 0;">
+          <span style="font-size: 13px; color: #e2e8f0; line-height: 1.4;">
+            <strong>Tips Flash en Práctica:</strong> Mostrar pildoritas de refuerzo automáticas mientras resuelves preguntas en la app.
+          </span>
+        </label>
+
+        <!-- Zona de Pruebas Rápidas -->
+        <div style="border-top: 1px solid rgba(255,255,255,0.08); padding-top: 10px;">
+          <div style="font-size: 11px; font-weight: 800; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px;">
+            🧪 Probar Envío Inmediato:
+          </div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px;">
+            <button id="btnTestBgAlternate" type="button" style="background: rgba(56, 189, 248, 0.15); border: 1px solid #38bdf8; color: #38bdf8; padding: 8px 6px; border-radius: 8px; font-size: 12px; font-weight: 700; cursor: pointer; text-align: center;" title="Probar alternado">
+              ⚡ Siguiente
             </button>
-            <button id="btnTestBgQuestion" type="button" style="background: rgba(34, 197, 94, 0.2); border: 1px solid #22c55e; color: #4ade80; padding: 4px 10px; border-radius: 6px; font-size: 12px; font-weight: 700; cursor: pointer;" title="Probar pregunta situacional interactiva">
-              🎯 Probar Pregunta
+            <button id="btnTestBgQuestion" type="button" style="background: rgba(34, 197, 94, 0.15); border: 1px solid #22c55e; color: #4ade80; padding: 8px 6px; border-radius: 8px; font-size: 12px; font-weight: 700; cursor: pointer; text-align: center;" title="Probar pregunta situacional">
+              🎯 Pregunta
             </button>
-            <button id="btnTestBackgroundTip" type="button" style="background: rgba(245, 158, 11, 0.2); border: 1px solid #f59e0b; color: #f59e0b; padding: 4px 10px; border-radius: 6px; font-size: 12px; font-weight: 700; cursor: pointer;" title="Probar clave o tip">
-              💡 Probar Tip
+            <button id="btnTestBackgroundTip" type="button" style="background: rgba(245, 158, 11, 0.15); border: 1px solid #f59e0b; color: #f59e0b; padding: 8px 6px; border-radius: 8px; font-size: 12px; font-weight: 700; cursor: pointer; text-align: center;" title="Probar tip">
+              💡 Tip Flash
             </button>
           </div>
         </div>
       </div>
 
-      <!-- Contenedor dinámico de los tips -->
-      <div id="tipsListContainer" style="display: flex; flex-direction: column; gap: 14px; max-height: 52vh; overflow-y: auto; padding-right: 6px;">
-        <!-- Se inyectan dinámicamente con tamaño grande desde tips_data.js -->
-      </div>
-
-      <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border-color); padding-top: 10px; margin-top: 4px;">
-        <label style="display: flex; align-items: center; gap: 6px; font-size: 13px; color: #cbd5e1; cursor: pointer;">
-          <input type="checkbox" id="chkAutoTipsFromModal" checked style="accent-color: #f59e0b; width: 16px; height: 16px;">
-          Activar recordatorios automáticos (Popups Flash de vez en cuando)
-        </label>
-        <button id="btnCloseTipsModal" class="btn-primary" style="font-size: 15px; font-weight: 700; padding: 10px 20px;">
-          Entendido, ¡A Practicar! 🚀
+      <div class="modal-footer">
+        <button id="btnCancelMicrolearningModal" class="btn-secondary" style="font-size: 13px; padding: 9px 16px; border-radius: 8px;">
+          Cerrar
+        </button>
+        <button id="btnSaveMicrolearningModal" class="btn-primary" style="font-size: 14px; font-weight: 700; padding: 10px 22px; border-radius: 8px; background: linear-gradient(135deg, #0284c7, #2563eb);">
+          Guardar y Activar 🚀
         </button>
       </div>
     </div>
@@ -958,27 +1073,30 @@
 
   <!-- MODAL: GUÍA TÁCTICA DE COMPRENSIÓN LECTORA PARA PRUEBAS SITUACIONALES CNSC -->
   <div id="comprensionLectoraModal" class="modal-overlay">
-    <div class="modal-card" style="max-width: 680px; width: 96%; max-height: 92vh; padding: 24px; gap: 16px;">
-      <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-color); padding-bottom: 12px;">
-        <div>
-          <h3 style="font-size: 19px; font-weight: 800; color: #38bdf8; display: flex; align-items: center; gap: 8px; margin: 0;">
-            <span>📖</span> Radar de Comprensión Lectora Estratégica (CNSC / DIAN)
-          </h3>
-          <p style="font-size: 13px; color: var(--text-secondary); margin: 3px 0 0 0;">
-            Cómo leer y desarticular casos situacionales de más de 100 palabras en menos de 45 segundos
-          </p>
+    <div class="modal-card" style="max-width: 680px; width: 96%; max-height: 90vh;">
+      <div class="modal-header">
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <span style="font-size: 24px;">📖</span>
+          <div>
+            <h3 style="font-size: 17px; font-weight: 800; color: #38bdf8; margin: 0; line-height: 1.2;">
+              Radar de Comprensión Lectora (CNSC / DIAN)
+            </h3>
+            <p style="font-size: 12px; color: var(--text-secondary); margin: 2px 0 0 0;">
+              Desarticula casos largos (>100 palabras) en menos de 45 segundos
+            </p>
+          </div>
         </div>
-        <button id="btnCloseLecturaModalX" style="background: rgba(255,255,255,0.06); border: none; color: var(--text-secondary); font-size: 20px; cursor: pointer; border-radius: 6px; width: 34px; height: 34px; display: flex; align-items: center; justify-content: center; line-height: 1;" title="Cerrar">✕</button>
+        <button id="btnCloseLecturaModalX" class="modal-close-btn" title="Cerrar">✕</button>
       </div>
 
-      <div style="display: flex; flex-direction: column; gap: 14px; max-height: 68vh; overflow-y: auto; padding-right: 6px;">
+      <div class="modal-body">
         <!-- Paso 1 -->
-        <div style="background-color: rgba(11, 17, 32, 0.75); border-left: 4px solid #38bdf8; padding: 16px 18px; border-radius: 6px;">
+        <div style="background-color: rgba(11, 17, 32, 0.75); border-left: 4px solid #38bdf8; padding: 16px 18px; border-radius: 8px;">
           <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
             <span style="font-size: 18px;">🎯</span>
-            <div style="font-size: 16px; font-weight: 800; color: #38bdf8;">Paso 1: Lectura Inversa Estratégica (El Verbo Rector)</div>
+            <div style="font-size: 15px; font-weight: 800; color: #38bdf8;">Paso 1: Lectura Inversa Estratégica (El Verbo Rector)</div>
           </div>
-          <div style="font-size: 15px; color: #e2e8f0; line-height: 1.6;">
+          <div style="font-size: 14px; color: #e2e8f0; line-height: 1.6;">
             <strong>Regla:</strong> Nunca comiences a leer el caso desde el primer párrafo. Dirige la mirada directamente a la <strong>última frase en negrilla (el enunciado interrogativo)</strong>.<br>
             • ¿Qué verbo exige? (<em>Identificar, Notificar, Suspender, Rechazar, Proyectar</em>).<br>
             • Conocer la meta antes de leer el cuerpo del caso te permite activar un <strong>filtro de lectura selectiva</strong>, reduciendo el esfuerzo cognitivo en un 50%.
@@ -986,12 +1104,12 @@
         </div>
 
         <!-- Paso 2 -->
-        <div style="background-color: rgba(11, 17, 32, 0.75); border-left: 4px solid #a855f7; padding: 16px 18px; border-radius: 6px;">
+        <div style="background-color: rgba(11, 17, 32, 0.75); border-left: 4px solid #a855f7; padding: 16px 18px; border-radius: 8px;">
           <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
             <span style="font-size: 18px;">🔍</span>
-            <div style="font-size: 16px; font-weight: 800; color: #c084fc;">Paso 2: Extracción del Núcleo Fáctico vs. Ruido Narrativo</div>
+            <div style="font-size: 15px; font-weight: 800; color: #c084fc;">Paso 2: Extracción del Núcleo Fáctico vs. Ruido Narrativo</div>
           </div>
-          <div style="font-size: 15px; color: #e2e8f0; line-height: 1.6;">
+          <div style="font-size: 14px; color: #e2e8f0; line-height: 1.6;">
             Los casos de la DIAN suelen incluir relatos emocionales de usuarios exaltados o sospechas de auditoría.<br>
             • <strong>Desprecia el Ruido:</strong> Ignora adjetivos, enfados, quejas y apreciaciones personales no documentadas.<br>
             • <strong>Captura los Hechos Probados:</strong> Rastrea únicamente <em>fechas de radicación, actos administrativos notificados, declaraciones tributarias registradas y cifras en firme</em>. Solo lo que está probado en el expediente cuenta.
@@ -999,12 +1117,12 @@
         </div>
 
         <!-- Paso 3 -->
-        <div style="background-color: rgba(11, 17, 32, 0.75); border-left: 4px solid #f87171; padding: 16px 18px; border-radius: 6px;">
+        <div style="background-color: rgba(11, 17, 32, 0.75); border-left: 4px solid #f87171; padding: 16px 18px; border-radius: 8px;">
           <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
             <span style="font-size: 18px;">🚨</span>
-            <div style="font-size: 16px; font-weight: 800; color: #f87171;">Paso 3: Radar de Cuantificadores Absolutos (Trampas Semánticas)</div>
+            <div style="font-size: 15px; font-weight: 800; color: #f87171;">Paso 3: Radar de Cuantificadores Absolutos (Trampas Semánticas)</div>
           </div>
-          <div style="font-size: 15px; color: #e2e8f0; line-height: 1.6;">
+          <div style="font-size: 14px; color: #e2e8f0; line-height: 1.6;">
             Al leer las opciones A, B y C, activa la alarma ante palabras categóricas:<br>
             • <strong style="color: #f87171;">Alerta Roja (Distractor casi seguro):</strong> <em>"siempre", "nunca", "de plano sin audiencia", "únicamente", "inapelable", "automáticamente"</em>.<br>
             • <strong style="color: #4ade80;">Lenguaje de la Clave:</strong> <em>"previa verificación motivada", "dentro del término legal", "garantizando el derecho de contradicción", "conforme a la competencia legal"</em>.
@@ -1012,19 +1130,19 @@
         </div>
 
         <!-- Paso 4 -->
-        <div style="background-color: rgba(11, 17, 32, 0.75); border-left: 4px solid #10b981; padding: 16px 18px; border-radius: 6px;">
+        <div style="background-color: rgba(11, 17, 32, 0.75); border-left: 4px solid #10b981; padding: 16px 18px; border-radius: 8px;">
           <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
             <span style="font-size: 18px;">⚖️</span>
-            <div style="font-size: 16px; font-weight: 800; color: #34d399;">Paso 4: Test del Rol y Congruencia (Gestor III)</div>
+            <div style="font-size: 15px; font-weight: 800; color: #34d399;">Paso 4: Test del Rol y Congruencia (Gestor III)</div>
           </div>
-          <div style="font-size: 15px; color: #e2e8f0; line-height: 1.6;">
+          <div style="font-size: 14px; color: #e2e8f0; line-height: 1.6;">
             Cuidado con la <em>"Verdad Incompetente"</em>. Una opción puede citar una ley real y perfecta, pero si la acción le corresponde al Director Seccional o al Juez Contencioso, es un distractor de usurpación de funciones.<br>
             • Pregúntate: <strong>¿Está facultado mi cargo de Gestor III Profesional para tomar esta determinación por sí mismo?</strong>
           </div>
         </div>
 
         <!-- Matriz Rápida Resumen -->
-        <div style="background: rgba(245, 158, 11, 0.1); border: 1px solid rgba(245, 158, 11, 0.3); border-radius: 6px; padding: 14px 16px;">
+        <div style="background: rgba(245, 158, 11, 0.1); border: 1px solid rgba(245, 158, 11, 0.3); border-radius: 8px; padding: 14px 16px;">
           <div style="font-size: 14px; font-weight: 800; color: #f59e0b; margin-bottom: 6px;">
             💡 Fórmula Mnemotécnica: E-P-C
           </div>
@@ -1034,11 +1152,11 @@
         </div>
       </div>
 
-      <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border-color); padding-top: 10px; margin-top: 4px;">
+      <div class="modal-footer">
         <button id="btnVerTodasClavesDesdeLectura" style="background: none; border: none; color: #38bdf8; font-size: 13px; font-weight: 700; text-decoration: underline; cursor: pointer;">
           Ver las 41 Claves 💡
         </button>
-        <button id="btnCloseLecturaModal" class="btn-primary" style="font-size: 15px; font-weight: 700; padding: 10px 20px;">
+        <button id="btnCloseLecturaModal" class="btn-primary" style="font-size: 14px; font-weight: 700; padding: 10px 20px;">
           ¡Anotado! Ir a Practicar Casos 🚀
         </button>
       </div>
@@ -1047,50 +1165,54 @@
 
   <!-- MODAL: POPUP FLASH OCASIONAL (MICRO-TIP EN TIEMPO DE ESTUDIO) -->
   <div id="popupTipFlashModal" class="modal-overlay">
-    <div class="modal-card" style="max-width: 580px; width: 95%; border: 2px solid var(--accent-gold); box-shadow: 0 18px 45px rgba(0,0,0,0.75); padding: 24px; gap: 16px; border-radius: 14px; background: linear-gradient(145deg, #131d33 0%, #0d1527 100%);">
-      <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(245, 158, 11, 0.25); padding-bottom: 12px;">
+    <div class="modal-card" style="max-width: 580px; width: 95%; border: 2px solid var(--accent-gold); box-shadow: 0 18px 45px rgba(0,0,0,0.75);">
+      <div class="modal-header" style="border-bottom-color: rgba(245, 158, 11, 0.25);">
         <div style="display: flex; align-items: center; gap: 10px;">
           <span style="font-size: 22px;" id="popupTipIcon">💡</span>
           <span id="popupTipBadge" style="font-size: 13px; font-weight: 800; background: rgba(245, 158, 11, 0.2); color: #f59e0b; padding: 4px 10px; border-radius: 6px; text-transform: uppercase; letter-spacing: 0.5px;">
             Tip Flash de Juicio Situacional
           </span>
         </div>
-        <button id="btnClosePopupTipX" style="background: rgba(255,255,255,0.06); border: none; color: #94a3b8; font-size: 20px; cursor: pointer; border-radius: 6px; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center;" title="Cerrar">✕</button>
+        <button id="btnClosePopupTipX" class="modal-close-btn" title="Cerrar">✕</button>
       </div>
 
-      <!-- Banner de Imagen Temática Curada -->
-      <div id="popupTipBannerContainer" style="position: relative; width: 100%; height: 130px; border-radius: 8px; overflow: hidden; border: 1px solid var(--border-color); display: flex;">
-        <img id="popupTipBannerImg" src="https://images.unsplash.com/photo-1450133064473-71024230f91b?auto=format&fit=crop&w=720&h=240&q=80" alt="Contexto Visual de la Clave" style="width: 100%; height: 100%; object-fit: cover;">
-        <div id="popupTipBannerBadge" style="position: absolute; bottom: 8px; left: 8px; background: rgba(11, 17, 32, 0.88); backdrop-filter: blur(4px); color: #f59e0b; font-size: 11px; font-weight: 800; padding: 3px 8px; border-radius: 4px; border: 1px solid rgba(245, 158, 11, 0.4);">
-          🏛️ Misionalidad DIAN & Marco Legal
+      <div class="modal-body" style="padding: 16px 20px;">
+        <!-- Banner de Imagen Temática Curada -->
+        <div id="popupTipBannerContainer" style="position: relative; width: 100%; height: 120px; border-radius: 8px; overflow: hidden; border: 1px solid var(--border-color); display: flex;">
+          <img id="popupTipBannerImg" src="https://images.unsplash.com/photo-1450133064473-71024230f91b?auto=format&fit=crop&w=720&h=240&q=80" alt="Contexto Visual de la Clave" style="width: 100%; height: 100%; object-fit: cover;">
+          <div id="popupTipBannerBadge" style="position: absolute; bottom: 8px; left: 8px; background: rgba(11, 17, 32, 0.88); backdrop-filter: blur(4px); color: #f59e0b; font-size: 11px; font-weight: 800; padding: 3px 8px; border-radius: 4px; border: 1px solid rgba(245, 158, 11, 0.4);">
+            🏛️ Misionalidad DIAN & Marco Legal
+          </div>
+        </div>
+
+        <div>
+          <h4 id="popupTipTitle" style="font-size: 18px; font-weight: 800; color: #f8fafc; margin: 0 0 4px 0; line-height: 1.35;">
+            Principio de Legalidad Estricta
+          </h4>
+          <div id="popupTipNorma" style="font-size: 13px; color: #38bdf8; font-weight: 600; margin-bottom: 8px;">
+            Constitución Política Arts. 6, 121 y 122
+          </div>
+          <div id="popupTipBody" style="font-size: 15px; color: #f1f5f9; line-height: 1.6; background: rgba(11, 17, 32, 0.85); padding: 14px 16px; border-radius: 8px; border-left: 5px solid var(--accent-gold);">
+            El servidor público solo hace lo expresamente facultado por ley. Descarta atajos informales o justificaciones basadas en urgencia.
+          </div>
+        </div>
+
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 4px; padding-top: 8px; border-top: 1px solid var(--border-color);">
+          <label style="display: flex; align-items: center; gap: 6px; font-size: 12px; color: #94a3b8; cursor: pointer;">
+            <input type="checkbox" id="chkAutoTipsEnabled" checked style="accent-color: #f59e0b; width: 16px; height: 16px;">
+            Recordatorios periódicos activos
+          </label>
+          <button id="btnVerTodasClavesDesdePopup" style="background: none; border: none; color: #38bdf8; font-size: 13px; font-weight: 700; text-decoration: underline; cursor: pointer;">
+            Ver las 41 Claves 📖
+          </button>
         </div>
       </div>
 
-      <div>
-        <h4 id="popupTipTitle" style="font-size: 20px; font-weight: 800; color: #f8fafc; margin: 0 0 6px 0; line-height: 1.35;">
-          Principio de Legalidad Estricta
-        </h4>
-        <div id="popupTipNorma" style="font-size: 14px; color: #38bdf8; font-weight: 600; margin-bottom: 10px;">
-          Constitución Política Arts. 6, 121 y 122
-        </div>
-        <div id="popupTipBody" style="font-size: 16px; color: #f1f5f9; line-height: 1.65; background: rgba(11, 17, 32, 0.85); padding: 16px 18px; border-radius: 8px; border-left: 5px solid var(--accent-gold);">
-          El servidor público solo hace lo expresamente facultado por ley. Descarta atajos informales o justificaciones basadas en urgencia.
-        </div>
-      </div>
-
-      <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 4px; padding-top: 8px; border-top: 1px solid var(--border-color);">
-        <label style="display: flex; align-items: center; gap: 6px; font-size: 13px; color: #94a3b8; cursor: pointer;">
-          <input type="checkbox" id="chkAutoTipsEnabled" checked style="accent-color: #f59e0b; width: 15px; height: 15px;">
-          Recordatorios periódicos activos
-        </label>
-        <button id="btnVerTodasClavesDesdePopup" style="background: none; border: none; color: #38bdf8; font-size: 14px; font-weight: 700; text-decoration: underline; cursor: pointer;">
-          Ver las 41 Claves 📖
+      <div class="modal-footer" style="padding: 12px 20px;">
+        <button id="btnClosePopupTip" class="btn-primary" style="width: 100%; font-size: 15px; font-weight: 700; padding: 12px; border-radius: 8px;">
+          ¡Anotado! Continuar con la prueba 🚀
         </button>
       </div>
-
-      <button id="btnClosePopupTip" class="btn-primary" style="margin-top: 6px; font-size: 16px; font-weight: 700; padding: 13px; border-radius: 8px;">
-        ¡Anotado! Continuar con la prueba 🚀
-      </button>
     </div>
   </div>
 

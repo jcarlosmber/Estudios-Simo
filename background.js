@@ -411,14 +411,15 @@ async function injectInPageTipModal(tabId, tipData) {
 
 // Inyección de MODAL DE PREGUNTA SITUACIONAL INTERACTIVA en la página activa
 async function injectInPageQuestionModal(tabId, qData) {
-  const stored = await chrome.storage.local.get(["stats", "speedDrillQuizStreak", "simoSoundEnabled"]);
+  const stored = await chrome.storage.local.get(["stats", "speedDrillQuizStreak", "simoSoundEnabled", "questionTimerSeconds"]);
   const initialStreak = typeof stored.speedDrillQuizStreak === "number" ? stored.speedDrillQuizStreak : 0;
   const soundEnabled = stored.simoSoundEnabled !== false;
+  const questionTimerSeconds = typeof stored.questionTimerSeconds === "number" ? stored.questionTimerSeconds : 120;
   const themeImg = typeof getImageForContext === "function" ? getImageForContext(qData) : null;
 
   await chrome.scripting.executeScript({
     target: { tabId: tabId },
-    func: (q, initialStreak, themeImg, initialSoundEnabled) => {
+    func: (q, initialStreak, themeImg, initialSoundEnabled, timerSecondsConfig) => {
       const existing = document.getElementById("simo-tip-floating-host");
       if (existing) existing.remove();
 
@@ -602,6 +603,12 @@ async function injectInPageQuestionModal(tabId, qData) {
       host.style.pointerEvents = "auto";
 
       const shadow = host.attachShadow({ mode: "open" });
+
+      const totalSeconds = typeof timerSecondsConfig === "number" ? timerSecondsConfig : 120;
+      const isFreeMode = totalSeconds === 0;
+      const initialTimerText = isFreeMode
+        ? "00:00 (Libre)"
+        : `${Math.floor(totalSeconds / 60).toString().padStart(2, "0")}:${(totalSeconds % 60).toString().padStart(2, "0")}`;
 
       const optionsHtml = q.opciones.map((opt) => `
         <button class="option-btn" data-id="${opt.id}">
@@ -932,7 +939,7 @@ async function injectInPageQuestionModal(tabId, qData) {
             </div>
             <div style="display: flex; align-items: center; gap: 8px;">
               <div class="timer-pill" id="simoTimerPill">
-                ⏱️ <span id="simoTimerSec">02:00</span>
+                ⏱️ <span id="simoTimerSec">${initialTimerText}</span>
               </div>
               <button class="btn-sound" id="simoSoundBtn" title="${initialSoundEnabled ? 'Sonido: Activado (Clic para silenciar)' : 'Sonido: Silenciado (Clic para activar)'}">
                 ${initialSoundEnabled ? '🔊' : '🔇'}
@@ -993,8 +1000,8 @@ async function injectInPageQuestionModal(tabId, qData) {
       `;
 
       let currentStreak = initialStreak;
-      let totalSeconds = 120; // 2 minutos reglamentarios estándar DIAN / CNSC
-      let remainingSec = totalSeconds;
+      let remainingSec = isFreeMode ? 0 : totalSeconds;
+      let elapsedSec = 0;
       let isAnswered = false;
       let selectedDifficulty = null;
 
@@ -1026,31 +1033,39 @@ async function injectInPageQuestionModal(tabId, qData) {
         });
       }
 
-      // Temporizador Speed Drill (2 minutos / 120s)
+      // Temporizador Speed Drill o Modo Libre
       const timerInterval = setInterval(() => {
         if (isAnswered) return;
-        remainingSec -= 1;
-        const mins = Math.floor(Math.max(0, remainingSec) / 60);
-        const secs = Math.max(0, remainingSec) % 60;
-        timerSecEl.textContent = `${mins.toString().padStart(2, "0")}:${secs.toString().padStart(2, "0")}`;
-        
-        const pct = Math.max(0, (remainingSec / totalSeconds) * 100);
-        speedBarEl.style.width = pct + "%";
+        if (isFreeMode) {
+          elapsedSec += 1;
+          const mins = Math.floor(elapsedSec / 60);
+          const secs = elapsedSec % 60;
+          timerSecEl.textContent = `${mins.toString().padStart(2, "0")}:${secs.toString().padStart(2, "0")} (Libre)`;
+          speedBarEl.style.width = "100%";
+        } else {
+          remainingSec -= 1;
+          const mins = Math.floor(Math.max(0, remainingSec) / 60);
+          const secs = Math.max(0, remainingSec) % 60;
+          timerSecEl.textContent = `${mins.toString().padStart(2, "0")}:${secs.toString().padStart(2, "0")}`;
+          
+          const pct = Math.max(0, (remainingSec / totalSeconds) * 100);
+          speedBarEl.style.width = pct + "%";
 
-        if (remainingSec <= 20) {
-          timerPillEl.classList.add("urgent");
-          speedBarEl.classList.add("urgent");
-        }
+          if (remainingSec <= 15) {
+            timerPillEl.classList.add("urgent");
+            speedBarEl.classList.add("urgent");
+          }
 
-        // Ticks de sonido en los últimos 5 segundos
-        if (remainingSec <= 5 && remainingSec > 0) {
-          SoundFX.playTick();
-        }
+          // Ticks de sonido en los últimos 5 segundos
+          if (remainingSec <= 5 && remainingSec > 0) {
+            SoundFX.playTick();
+          }
 
-        if (remainingSec <= 0) {
-          clearInterval(timerInterval);
-          SoundFX.playTimeout();
-          evaluateResponse(null, true);
+          if (remainingSec <= 0) {
+            clearInterval(timerInterval);
+            SoundFX.playTimeout();
+            evaluateResponse(null, true);
+          }
         }
       }, 1000);
 
@@ -1080,7 +1095,7 @@ async function injectInPageQuestionModal(tabId, qData) {
         isAnswered = true;
         clearInterval(timerInterval);
 
-        const timeSpent = Math.max(1, totalSeconds - remainingSec);
+        const timeSpent = isFreeMode ? Math.max(1, elapsedSec) : Math.max(1, totalSeconds - remainingSec);
         const isCorrect = !isTimeout && selectedId === q.respuestaCorrecta;
 
         // Deshabilitar opciones
@@ -1115,7 +1130,7 @@ async function injectInPageQuestionModal(tabId, qData) {
           currentStreak = 0;
           streakCountEl.textContent = "0";
           if (isTimeout) {
-            timerPillEl.textContent = `⏱️ Tiempo agotado (45s)`;
+            timerPillEl.textContent = `⏱️ Tiempo agotado (${totalSeconds}s)`;
           } else {
             timerPillEl.textContent = `⚡ Respondido en ${timeSpent}s`;
             SoundFX.playIncorrect();
@@ -1244,7 +1259,7 @@ async function injectInPageQuestionModal(tabId, qData) {
       // Reproducir sonido de llegada de la pregunta
       SoundFX.playChime();
     },
-    args: [qData, initialStreak, themeImg, soundEnabled]
+    args: [qData, initialStreak, themeImg, soundEnabled, questionTimerSeconds]
   });
 }
 

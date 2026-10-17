@@ -88,9 +88,11 @@ const StorageManager = {
 };
 
 document.addEventListener("DOMContentLoaded", async () => {
+  setupGlobalModals();
   await loadUserData();
   setupNavigation();
   setupTipsModal();
+  setupMicrolearningModal();
   setupPomodoro();
   setupPracticeLogic();
   setupDistractorHunt();
@@ -297,17 +299,59 @@ function showStreakMilestoneModal(count) {
   if (countValEl) countValEl.textContent = count;
   if (pointsValEl) pointsValEl.textContent = xp;
 
-  modal.classList.add("active");
+  openModal(modal);
 
   setTimeout(() => launchConfetti(canvas), 100);
 
   if (btnClose) {
     btnClose.onclick = () => {
-      modal.classList.remove("active");
+      closeModal(modal);
     };
   }
 }
 
+// =========================================================================
+// SISTEMA UNIVERSAL DE MODALES (OPTIMIZADO PARA APP Y PANTALLAS TÁCTILES)
+// =========================================================================
+function openModal(modalEl) {
+  if (!modalEl) return;
+  modalEl.classList.add("active");
+  document.body.classList.add("modal-open");
+}
+
+function closeModal(modalEl) {
+  if (!modalEl) return;
+  modalEl.classList.remove("active");
+  const anyActive = document.querySelector(".modal-overlay.active");
+  if (!anyActive) {
+    document.body.classList.remove("modal-open");
+  }
+}
+
+function setupGlobalModals() {
+  // Cierre intuitivo al tocar el fondo oscuro (backdrop click)
+  document.querySelectorAll(".modal-overlay").forEach((overlay) => {
+    overlay.addEventListener("click", (e) => {
+      if (e.target === overlay) {
+        closeModal(overlay);
+      }
+    });
+  });
+
+  // Cierre rápido con tecla Escape
+  window.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+      const activeModal = document.querySelector(".modal-overlay.active");
+      if (activeModal) {
+        closeModal(activeModal);
+      }
+    }
+  });
+}
+
+// =========================================================================
+// 1. BANCO MAESTRO DE 41 CLAVES DE JUICIO SITUACIONAL (CNSC / DIAN)
+// =========================================================================
 function setupTipsModal() {
   const modal = document.getElementById("tipsModal");
   const btnOpen = document.getElementById("btnOpenTipsModal");
@@ -315,50 +359,73 @@ function setupTipsModal() {
   const btnClose = document.getElementById("btnCloseTipsModal");
   const listContainer = document.getElementById("tipsListContainer");
   const filterBtns = document.querySelectorAll(".tip-filter-btn");
+  const searchInput = document.getElementById("inputSearchTips");
+  const countBadge = document.getElementById("tipsCountBadge");
+  const btnOpenMicro = document.getElementById("btnOpenMicrolearningFromTips");
 
   const popupFlashModal = document.getElementById("popupTipFlashModal");
   const btnRandomFlash = document.getElementById("btnRandomTipFlash");
   const btnClosePopupX = document.getElementById("btnClosePopupTipX");
   const btnClosePopup = document.getElementById("btnClosePopupTip");
   const btnVerTodasDesdePopup = document.getElementById("btnVerTodasClavesDesdePopup");
-  const chkAutoFromModal = document.getElementById("chkAutoTipsFromModal");
   const chkAutoPopup = document.getElementById("chkAutoTipsEnabled");
 
-  // Sincronizar estado inicial de autoTips
-  if (chkAutoFromModal) chkAutoFromModal.checked = AppState.autoTips.enabled;
+  // Sincronizar estado inicial de autoTips popup
   if (chkAutoPopup) chkAutoPopup.checked = AppState.autoTips.enabled;
-
-  const updateAutoTipsSetting = (enabled) => {
-    AppState.autoTips.enabled = enabled;
-    if (chkAutoFromModal) chkAutoFromModal.checked = enabled;
-    if (chkAutoPopup) chkAutoPopup.checked = enabled;
-    StorageManager.set("autoTipsEnabled", enabled);
-  };
-
-  if (chkAutoFromModal) {
-    chkAutoFromModal.addEventListener("change", (e) => updateAutoTipsSetting(e.target.checked));
-  }
   if (chkAutoPopup) {
-    chkAutoPopup.addEventListener("change", (e) => updateAutoTipsSetting(e.target.checked));
+    chkAutoPopup.addEventListener("change", (e) => {
+      AppState.autoTips.enabled = e.target.checked;
+      StorageManager.set("autoTipsEnabled", e.target.checked);
+      const chkAutoModal = document.getElementById("chkAutoTipsFromModal");
+      if (chkAutoModal) chkAutoModal.checked = e.target.checked;
+    });
   }
 
-  // Renderizar las 12 Claves Maestras con tipografía grande (16px y 15px)
-  function renderTipsList(filterCategory = "all") {
+  let currentCategory = "all";
+  let currentSearch = "";
+
+  // Renderizar las 41 Claves Maestras con filtro de texto y categoría
+  function renderTipsList() {
     if (!listContainer || typeof TIPS_PJS_DATA === "undefined") return;
     listContainer.innerHTML = "";
 
-    const items = filterCategory === "all" 
-      ? TIPS_PJS_DATA 
-      : TIPS_PJS_DATA.filter(t => t.categoria === filterCategory);
+    const term = currentSearch.trim().toLowerCase();
+    const filtered = TIPS_PJS_DATA.filter((tip) => {
+      const matchCategory = currentCategory === "all" || tip.categoria === currentCategory;
+      const matchSearch = !term ||
+        tip.titulo.toLowerCase().includes(term) ||
+        tip.resumenCorto.toLowerCase().includes(term) ||
+        (tip.normaReferencia && tip.normaReferencia.toLowerCase().includes(term)) ||
+        (tip.contenidoDetallado && tip.contenidoDetallado.toLowerCase().includes(term)) ||
+        (tip.categoria && tip.categoria.toLowerCase().includes(term)) ||
+        String(tip.numero).includes(term);
+      return matchCategory && matchSearch;
+    });
 
-    items.forEach((tip) => {
+    if (countBadge) {
+      countBadge.textContent = `Mostrando ${filtered.length} de ${TIPS_PJS_DATA.length} claves`;
+    }
+
+    if (filtered.length === 0) {
+      listContainer.innerHTML = `
+        <div style="text-align: center; padding: 36px 16px; color: #94a3b8; background: rgba(11, 17, 32, 0.5); border-radius: 10px; border: 1px dashed rgba(255,255,255,0.1);">
+          <div style="font-size: 32px; margin-bottom: 8px;">🔍</div>
+          <div style="font-size: 15px; font-weight: 800; color: #f8fafc;">No se encontraron claves</div>
+          <div style="font-size: 13px; color: #cbd5e1; margin-top: 4px;">Prueba buscando otra palabra clave o selecciona "Todas".</div>
+        </div>
+      `;
+      return;
+    }
+
+    filtered.forEach((tip) => {
       const card = document.createElement("div");
       card.style.cssText = `
-        background-color: rgba(11, 17, 32, 0.7);
+        background-color: rgba(11, 17, 32, 0.75);
+        border: 1px solid rgba(255,255,255,0.06);
         border-left: 4px solid ${tip.color || "var(--accent-gold)"};
-        padding: 16px 18px;
-        border-radius: 6px;
-        box-shadow: 0 2px 6px rgba(0,0,0,0.25);
+        padding: 15px 16px;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.25);
         display: flex;
         flex-direction: column;
         gap: 6px;
@@ -366,7 +433,7 @@ function setupTipsModal() {
 
       card.innerHTML = `
         <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; flex-wrap: wrap;">
-          <div style="font-size: 16px; font-weight: 800; color: ${tip.color || "#f59e0b"}; display: flex; align-items: center; gap: 6px;">
+          <div style="font-size: 15px; font-weight: 800; color: ${tip.color || "#f59e0b"}; display: flex; align-items: center; gap: 6px;">
             <span>${tip.icono || "💡"}</span>
             <span>${tip.numero}. ${tip.titulo}</span>
           </div>
@@ -377,10 +444,10 @@ function setupTipsModal() {
         <div style="font-size: 12px; color: #94a3b8; font-weight: 600;">
           📌 Fundamento: ${tip.normaReferencia}
         </div>
-        <div style="font-size: 15px; color: #e2e8f0; line-height: 1.6; margin-top: 4px;">
+        <div style="font-size: 14px; color: #e2e8f0; line-height: 1.6; margin-top: 2px;">
           ${tip.contenidoDetallado}
         </div>
-        <div style="font-size: 14px; color: #cbd5e1; background: rgba(0,0,0,0.3); padding: 8px 12px; border-radius: 4px; margin-top: 6px; border-left: 2px solid ${tip.color || "#f59e0b"};">
+        <div style="font-size: 13px; color: #cbd5e1; background: rgba(0,0,0,0.35); padding: 8px 12px; border-radius: 6px; margin-top: 4px; border-left: 2px solid ${tip.color || "#f59e0b"};">
           <strong style="color: #f8fafc;">💡 Regla Rápida:</strong> ${tip.resumenCorto}
         </div>
       `;
@@ -388,7 +455,15 @@ function setupTipsModal() {
     });
   }
 
-  renderTipsList("all");
+  renderTipsList();
+
+  // Búsqueda en tiempo real
+  if (searchInput) {
+    searchInput.addEventListener("input", (e) => {
+      currentSearch = e.target.value;
+      renderTipsList();
+    });
+  }
 
   // Manejo de filtros por categoría
   filterBtns.forEach((btn) => {
@@ -403,29 +478,39 @@ function setupTipsModal() {
       btn.style.borderColor = "#f59e0b";
       btn.style.color = "#f59e0b";
       btn.classList.add("active");
-      renderTipsList(btn.getAttribute("data-cat"));
+      currentCategory = btn.getAttribute("data-cat");
+      renderTipsList();
     });
   });
 
-  // Apertura y Cierre Modal Principal
-  if (btnOpen) btnOpen.addEventListener("click", () => modal.classList.add("active"));
-  if (btnCloseX) btnCloseX.addEventListener("click", () => modal.classList.remove("active"));
-  if (btnClose) btnClose.addEventListener("click", () => modal.classList.remove("active"));
+  // Acceso directo a Microaprendizaje desde el modal de claves
+  if (btnOpenMicro) {
+    btnOpenMicro.addEventListener("click", () => {
+      closeModal(modal);
+      const microModal = document.getElementById("microlearningModal");
+      openModal(microModal);
+    });
+  }
+
+  // Apertura y Cierre Modal Principal de Claves
+  if (btnOpen) btnOpen.addEventListener("click", () => openModal(modal));
+  if (btnCloseX) btnCloseX.addEventListener("click", () => closeModal(modal));
+  if (btnClose) btnClose.addEventListener("click", () => closeModal(modal));
 
   // Manejadores Popup Flash Ocasional
   if (btnRandomFlash) {
     btnRandomFlash.addEventListener("click", () => showRandomTipFlash({ forced: true }));
   }
   if (btnClosePopupX) {
-    btnClosePopupX.addEventListener("click", () => popupFlashModal.classList.remove("active"));
+    btnClosePopupX.addEventListener("click", () => closeModal(popupFlashModal));
   }
   if (btnClosePopup) {
-    btnClosePopup.addEventListener("click", () => popupFlashModal.classList.remove("active"));
+    btnClosePopup.addEventListener("click", () => closeModal(popupFlashModal));
   }
   if (btnVerTodasDesdePopup) {
     btnVerTodasDesdePopup.addEventListener("click", () => {
-      popupFlashModal.classList.remove("active");
-      modal.classList.add("active");
+      closeModal(popupFlashModal);
+      openModal(modal);
     });
   }
 
@@ -437,30 +522,33 @@ function setupTipsModal() {
   const btnVerTodasDesdeLectura = document.getElementById("btnVerTodasClavesDesdeLectura");
 
   if (btnOpenLectura) {
-    btnOpenLectura.addEventListener("click", () => {
-      if (lecturaModal) lecturaModal.classList.add("active");
-    });
+    btnOpenLectura.addEventListener("click", () => openModal(lecturaModal));
   }
   if (btnCloseLecturaX) {
-    btnCloseLecturaX.addEventListener("click", () => {
-      if (lecturaModal) lecturaModal.classList.remove("active");
-    });
+    btnCloseLecturaX.addEventListener("click", () => closeModal(lecturaModal));
   }
   if (btnCloseLectura) {
-    btnCloseLectura.addEventListener("click", () => {
-      if (lecturaModal) lecturaModal.classList.remove("active");
-    });
+    btnCloseLectura.addEventListener("click", () => closeModal(lecturaModal));
   }
   if (btnVerTodasDesdeLectura) {
     btnVerTodasDesdeLectura.addEventListener("click", () => {
-      if (lecturaModal) lecturaModal.classList.remove("active");
-      if (modal) modal.classList.add("active");
+      closeModal(lecturaModal);
+      openModal(modal);
       const filterComp = Array.from(filterBtns).find(b => b.getAttribute("data-cat") === "Comprensión Lectora");
       if (filterComp) filterComp.click();
     });
   }
+}
 
-  // Control de microaprendizaje en segundo plano (con Sidepanel cerrado)
+// =========================================================================
+// 2. MODAL DEDICADO DE MICROAPRENDIZAJE & REPASO INTELIGENTE
+// =========================================================================
+function setupMicrolearningModal() {
+  const modal = document.getElementById("microlearningModal");
+  const btnCloseX = document.getElementById("btnCloseMicrolearningModalX");
+  const btnCancel = document.getElementById("btnCancelMicrolearningModal");
+  const btnSave = document.getElementById("btnSaveMicrolearningModal");
+
   const chkBgTips = document.getElementById("chkBackgroundTips");
   const selectBgInterval = document.getElementById("selectBgInterval");
   const selectBgFormat = document.getElementById("selectBgFormat");
@@ -468,10 +556,45 @@ function setupTipsModal() {
   const chkQuietHours = document.getElementById("chkQuietHours");
   const selectQuietStart = document.getElementById("selectQuietStart");
   const selectQuietEnd = document.getElementById("selectQuietEnd");
+  const chkAutoFromModal = document.getElementById("chkAutoTipsFromModal");
+  const selectQuestionTimer = document.getElementById("selectQuestionTimer");
+  const labelTimerIntensity = document.getElementById("labelTimerIntensity");
+
   const btnTestBgAlternate = document.getElementById("btnTestBgAlternate");
   const btnTestBgQuestion = document.getElementById("btnTestBgQuestion");
   const btnTestBgTip = document.getElementById("btnTestBackgroundTip");
 
+  const updateIntensityBadge = (sec) => {
+    if (!labelTimerIntensity) return;
+    const s = Number(sec);
+    if (s === 45) {
+      labelTimerIntensity.textContent = "⚡ 45s Speed";
+      labelTimerIntensity.style.color = "#f59e0b";
+      labelTimerIntensity.style.background = "rgba(245, 158, 11, 0.2)";
+    } else if (s === 60) {
+      labelTimerIntensity.textContent = "🔥 1 min Intenso";
+      labelTimerIntensity.style.color = "#f43f5e";
+      labelTimerIntensity.style.background = "rgba(244, 63, 94, 0.2)";
+    } else if (s === 90) {
+      labelTimerIntensity.textContent = "🎯 90s Táctico";
+      labelTimerIntensity.style.color = "#a855f7";
+      labelTimerIntensity.style.background = "rgba(168, 85, 247, 0.2)";
+    } else if (s === 120) {
+      labelTimerIntensity.textContent = "⏱️ 2 min (Oficial)";
+      labelTimerIntensity.style.color = "#38bdf8";
+      labelTimerIntensity.style.background = "rgba(56, 189, 248, 0.2)";
+    } else if (s === 180) {
+      labelTimerIntensity.textContent = "📖 3 min Detallado";
+      labelTimerIntensity.style.color = "#34d399";
+      labelTimerIntensity.style.background = "rgba(52, 211, 153, 0.2)";
+    } else if (s === 0) {
+      labelTimerIntensity.textContent = "🧘 Tiempo Libre";
+      labelTimerIntensity.style.color = "#cbd5e1";
+      labelTimerIntensity.style.background = "rgba(255, 255, 255, 0.1)";
+    }
+  };
+
+  // Cargar preferencias guardadas
   StorageManager.get("backgroundTipsEnabled", true).then((enabled) => {
     if (chkBgTips) chkBgTips.checked = enabled;
   });
@@ -493,6 +616,14 @@ function setupTipsModal() {
   StorageManager.get("quietHoursEnd", 8).then((end) => {
     if (selectQuietEnd) selectQuietEnd.value = String(end);
   });
+  StorageManager.get("autoTipsEnabled", true).then((enabled) => {
+    if (chkAutoFromModal) chkAutoFromModal.checked = enabled;
+  });
+  StorageManager.get("questionTimerSeconds", 120).then((timerSec) => {
+    if (selectQuestionTimer) selectQuestionTimer.value = String(timerSec);
+    updateIntensityBadge(timerSec);
+    PracticeTimer.setTotalSeconds(timerSec);
+  });
 
   const syncBackgroundSettings = () => {
     const enabled = chkBgTips ? chkBgTips.checked : true;
@@ -502,6 +633,13 @@ function setupTipsModal() {
     const quietEnabled = chkQuietHours ? chkQuietHours.checked : true;
     const quietStart = selectQuietStart ? parseInt(selectQuietStart.value, 10) : 20;
     const quietEnd = selectQuietEnd ? parseInt(selectQuietEnd.value, 10) : 8;
+    const autoTipsInApp = chkAutoFromModal ? chkAutoFromModal.checked : true;
+    const questionTimerSec = selectQuestionTimer ? parseInt(selectQuestionTimer.value, 10) : 120;
+
+    AppState.autoTips.enabled = autoTipsInApp;
+    StorageManager.set("autoTipsEnabled", autoTipsInApp);
+    const chkAutoPopup = document.getElementById("chkAutoTipsEnabled");
+    if (chkAutoPopup) chkAutoPopup.checked = autoTipsInApp;
 
     StorageManager.set("backgroundTipsEnabled", enabled);
     StorageManager.set("backgroundTipsInterval", intervalMinutes);
@@ -510,8 +648,11 @@ function setupTipsModal() {
     StorageManager.set("quietHoursEnabled", quietEnabled);
     StorageManager.set("quietHoursStart", quietStart);
     StorageManager.set("quietHoursEnd", quietEnd);
+    StorageManager.set("questionTimerSeconds", questionTimerSec);
 
-    // Si se activó formato notificación y el navegador soporta Web Notifications (PWA en celular)
+    updateIntensityBadge(questionTimerSec);
+    PracticeTimer.setTotalSeconds(questionTimerSec);
+
     if (format === "notification" && typeof Notification !== "undefined" && Notification.permission === "default") {
       Notification.requestPermission();
     }
@@ -520,7 +661,8 @@ function setupTipsModal() {
       chrome.runtime.sendMessage({
         action: "updateBackgroundAlarm",
         enabled: enabled,
-        intervalMinutes: intervalMinutes
+        intervalMinutes: intervalMinutes,
+        questionTimerSeconds: questionTimerSec
       });
     }
   };
@@ -539,7 +681,28 @@ function setupTipsModal() {
   if (chkQuietHours) chkQuietHours.addEventListener("change", syncBackgroundSettings);
   if (selectQuietStart) selectQuietStart.addEventListener("change", syncBackgroundSettings);
   if (selectQuietEnd) selectQuietEnd.addEventListener("change", syncBackgroundSettings);
+  if (chkAutoFromModal) chkAutoFromModal.addEventListener("change", syncBackgroundSettings);
+  if (selectQuestionTimer) {
+    selectQuestionTimer.addEventListener("change", () => {
+      syncBackgroundSettings();
+    });
+  }
 
+  // Botones de cierre
+  if (btnCloseX) btnCloseX.addEventListener("click", () => closeModal(modal));
+  if (btnCancel) btnCancel.addEventListener("click", () => closeModal(modal));
+  if (btnSave) {
+    btnSave.addEventListener("click", () => {
+      syncBackgroundSettings();
+      btnSave.textContent = "¡Guardado! ✔";
+      setTimeout(() => {
+        btnSave.textContent = "Guardar y Activar 🚀";
+        closeModal(modal);
+      }, 350);
+    });
+  }
+
+  // Botones de prueba interactiva
   if (btnTestBgAlternate) {
     btnTestBgAlternate.addEventListener("click", () => {
       if (typeof chrome !== "undefined" && chrome.runtime && chrome.runtime.sendMessage) {
@@ -578,8 +741,10 @@ function setupTipsModal() {
     const isQuiet = await isClientQuietTime();
     if (isQuiet) return;
 
+    // Solo si el usuario está en la app estudiando libremente y no tiene otros modales abiertos ni está en speed drill
     const isAnyModalActive = document.querySelector(".modal-overlay.active");
-    if (!isAnyModalActive && AppState.currentTab === "practice") {
+    const isDrillRunning = typeof SpeedDrillState !== "undefined" && SpeedDrillState.timer !== null;
+    if (!isAnyModalActive && !isDrillRunning && AppState.currentTab === "practice") {
       showRandomTipFlash({ forced: false });
     }
   }, 7 * 60 * 1000);
@@ -663,7 +828,7 @@ function showRandomTipFlash({ forced = false, customTip = null } = {}) {
     bodyEl.style.borderLeftColor = tip.color || "#f59e0b";
   }
 
-  modal.classList.add("active");
+  openModal(modal);
   if (typeof SoundFX !== "undefined") SoundFX.playChime();
 }
 
@@ -676,7 +841,8 @@ function checkOccasionalTipTrigger(origin = "general") {
     AppState.autoTips.questionsSinceLastTip = 0;
     setTimeout(() => {
       const isAnyModalActive = document.querySelector(".modal-overlay.active");
-      if (!isAnyModalActive) {
+      const isDrillRunning = typeof SpeedDrillState !== "undefined" && SpeedDrillState.timer !== null;
+      if (!isAnyModalActive && !isDrillRunning) {
         showRandomTipFlash({ forced: false });
       }
     }, 450);
@@ -706,6 +872,9 @@ async function loadUserData() {
 
   const savedAutoTips = await StorageManager.get("autoTipsEnabled", true);
   AppState.autoTips.enabled = savedAutoTips;
+
+  const savedQuestionTimer = await StorageManager.get("questionTimerSeconds", 120);
+  PracticeTimer.setTotalSeconds(savedQuestionTimer);
 }
 
 // Modal personalizado (reemplazo estricto de alert y confirm)
@@ -723,7 +892,7 @@ function showCustomModal({ title, message, icon = "ℹ️", isConfirm = false, o
 
   btnCancel.style.display = isConfirm ? "inline-block" : "none";
 
-  const close = () => overlay.classList.remove("active");
+  const close = () => closeModal(overlay);
 
   btnOk.onclick = () => {
     close();
@@ -735,7 +904,7 @@ function showCustomModal({ title, message, icon = "ℹ️", isConfirm = false, o
     if (onCancel) onCancel();
   };
 
-  overlay.classList.add("active");
+  openModal(overlay);
 }
 
 // =========================================================================
@@ -834,6 +1003,13 @@ function setupNavigation() {
     });
   }
 
+  const hubMicro = document.getElementById("hubCardMicrolearning");
+  if (hubMicro) {
+    hubMicro.addEventListener("click", () => {
+      openModal(document.getElementById("microlearningModal"));
+    });
+  }
+
   const hubLectura = document.getElementById("hubCardLectura");
   if (hubLectura) {
     hubLectura.addEventListener("click", () => {
@@ -879,26 +1055,26 @@ function setupNavigation() {
   const btnSettingsOpenBgTips = document.getElementById("btnSettingsOpenBgTips");
 
   if (btnSettings && modalSettings) {
-    btnSettings.addEventListener("click", () => modalSettings.classList.add("active"));
+    btnSettings.addEventListener("click", () => openModal(modalSettings));
   }
   if (btnCloseSettingsX && modalSettings) {
-    btnCloseSettingsX.addEventListener("click", () => modalSettings.classList.remove("active"));
+    btnCloseSettingsX.addEventListener("click", () => closeModal(modalSettings));
   }
   if (btnCloseSettings && modalSettings) {
-    btnCloseSettings.addEventListener("click", () => modalSettings.classList.remove("active"));
+    btnCloseSettings.addEventListener("click", () => closeModal(modalSettings));
   }
   if (btnSettingsOpenJob && modalSettings) {
     btnSettingsOpenJob.addEventListener("click", () => {
-      modalSettings.classList.remove("active");
+      closeModal(modalSettings);
       const jobModal = document.getElementById("jobModal");
-      if (jobModal) jobModal.classList.add("active");
+      if (jobModal) openModal(jobModal);
     });
   }
   if (btnSettingsOpenBgTips && modalSettings) {
     btnSettingsOpenBgTips.addEventListener("click", () => {
-      modalSettings.classList.remove("active");
-      const tipsModal = document.getElementById("tipsModal");
-      if (tipsModal) tipsModal.classList.add("active");
+      closeModal(modalSettings);
+      const microModal = document.getElementById("microlearningModal");
+      if (microModal) openModal(microModal);
     });
   }
 
@@ -908,7 +1084,7 @@ function setupNavigation() {
     headerProfile.addEventListener("click", (e) => {
       if (e.target && e.target.id === "profileSwitcher") return;
       const jobModal = document.getElementById("jobModal");
-      if (jobModal) jobModal.classList.add("active");
+      if (jobModal) openModal(jobModal);
     });
   }
 }
@@ -1081,7 +1257,7 @@ function setupPracticeLogic() {
   });
 
   btnCloseModal.addEventListener("click", () => {
-    document.getElementById("feedbackModal").classList.remove("active");
+    closeModal(document.getElementById("feedbackModal"));
     checkOccasionalTipTrigger("btnCloseModal");
     loadNextPracticeQuestion();
   });
@@ -1090,23 +1266,46 @@ function setupPracticeLogic() {
     btn.addEventListener("click", () => {
       const difficulty = btn.getAttribute("data-srs");
       handleSrsRating(difficulty);
-      document.getElementById("feedbackModal").classList.remove("active");
+      closeModal(document.getElementById("feedbackModal"));
       checkOccasionalTipTrigger("srsFeedback");
       loadNextPracticeQuestion();
     });
   });
 }
 
-// Cronómetro de 2 minutos (120 segundos) reglamentario tipo examen DIAN / CNSC
+// Cronómetro reglamentario configurable por el usuario (Microaprendizaje / Práctica)
 const PracticeTimer = {
-  totalSeconds: 120, // 2 minutos
+  totalSeconds: 120, // Por defecto 120s (2 min)
   remaining: 120,
   interval: null,
   isPaused: false,
+  setTotalSeconds(sec) {
+    this.totalSeconds = typeof sec === "number" ? sec : 120;
+    if (this.totalSeconds === 0) {
+      this.remaining = 0;
+    } else {
+      this.remaining = this.totalSeconds;
+    }
+    this.updateUI();
+  },
   start() {
     this.stop();
-    this.remaining = this.totalSeconds;
     this.isPaused = false;
+
+    if (this.totalSeconds === 0) {
+      // Modo libre sin límite de tiempo (cronómetro hacia arriba)
+      this.remaining = 0;
+      this.updateUI();
+      this.interval = setInterval(() => {
+        if (this.isPaused) return;
+        this.remaining += 1;
+        this.updateUI();
+      }, 1000);
+      return;
+    }
+
+    // Modo cuenta regresiva con tiempo límite
+    this.remaining = this.totalSeconds;
     this.updateUI();
 
     this.interval = setInterval(() => {
@@ -1114,23 +1313,18 @@ const PracticeTimer = {
       this.remaining -= 1;
       this.updateUI();
 
-      if (this.remaining === 30) {
+      const warningThreshold = Math.min(30, Math.max(10, Math.floor(this.totalSeconds * 0.25)));
+      if (this.remaining === warningThreshold || this.remaining === 10) {
         if (typeof SoundFX !== "undefined" && SoundFX.playTick) SoundFX.playTick();
       }
 
       if (this.remaining <= 0) {
         this.stop();
         if (typeof SoundFX !== "undefined" && SoundFX.playTimeout) SoundFX.playTimeout();
-        const timerEl = document.getElementById("practiceQuestionTimer");
-        if (timerEl) {
-          timerEl.textContent = "00:00";
-          timerEl.style.color = "#f87171";
-          timerEl.style.borderColor = "#ef4444";
-          timerEl.style.background = "rgba(239, 68, 68, 0.25)";
-        }
+        this.updateUI();
         showCustomModal({
-          title: "⏱️ Tiempo Reglamentario (2 min)",
-          message: "Han transcurrido los 2 minutos (120 segundos) estándar por pregunta de la DIAN. Puedes confirmar tu opción para ver el análisis de distractores.",
+          title: "⏱️ Tiempo de Respuesta Agotado",
+          message: `Han transcurrido los ${this.totalSeconds} segundos configurados para este caso. Confirma tu opción para ver el análisis de distractores y la clave oficial.`,
           icon: "⌛"
         });
       }
@@ -1148,11 +1342,23 @@ const PracticeTimer = {
   updateUI() {
     const timerEl = document.getElementById("practiceQuestionTimer");
     if (!timerEl) return;
+
+    if (this.totalSeconds === 0) {
+      const mins = Math.floor(this.remaining / 60);
+      const secs = this.remaining % 60;
+      timerEl.textContent = `⏱️ ${mins.toString().padStart(2, "0")}:${secs.toString().padStart(2, "0")} (Libre)`;
+      timerEl.style.color = "#38bdf8";
+      timerEl.style.borderColor = "rgba(56, 189, 248, 0.4)";
+      timerEl.style.background = "rgba(15, 23, 42, 0.8)";
+      return;
+    }
+
     const mins = Math.floor(Math.max(0, this.remaining) / 60);
     const secs = Math.max(0, this.remaining) % 60;
     timerEl.textContent = `${mins.toString().padStart(2, "0")}:${secs.toString().padStart(2, "0")}`;
 
-    if (this.remaining <= 30) {
+    const warningThreshold = Math.min(30, Math.max(10, Math.floor(this.totalSeconds * 0.25)));
+    if (this.remaining <= warningThreshold) {
       timerEl.style.color = "#f87171";
       timerEl.style.borderColor = "#ef4444";
       timerEl.style.background = "rgba(239, 68, 68, 0.2)";
@@ -1439,7 +1645,7 @@ function openFeedbackModal(isCorrect, q) {
     breakdownContainer.appendChild(item);
   });
 
-  modal.classList.add("active");
+  openModal(modal);
 }
 
 function handleSrsRating(difficulty) {
@@ -1711,17 +1917,17 @@ function setupCloudSyncModal() {
   };
 
   btnOpen.addEventListener("click", () => {
-    modal.classList.add("active");
+    openModal(modal);
   });
 
   if (btnCloseX) btnCloseX.addEventListener("click", () => {
     saveFormConfig();
-    modal.classList.remove("active");
+    closeModal(modal);
   });
 
   if (btnClose) btnClose.addEventListener("click", () => {
     saveFormConfig();
-    modal.classList.remove("active");
+    closeModal(modal);
     showCustomModal({
       title: "Configuración Guardada",
       message: "Se guardó la configuración de tu servidor.",
@@ -1825,12 +2031,9 @@ function setupInstallModal() {
 
   if (!modal || !btnOpen) return;
 
-  const openModal = () => modal.classList.add("active");
-  const closeModal = () => modal.classList.remove("active");
-
-  btnOpen.addEventListener("click", openModal);
-  if (btnCloseX) btnCloseX.addEventListener("click", closeModal);
-  if (btnClose) btnClose.addEventListener("click", closeModal);
+  btnOpen.addEventListener("click", () => openModal(modal));
+  if (btnCloseX) btnCloseX.addEventListener("click", () => closeModal(modal));
+  if (btnClose) btnClose.addEventListener("click", () => closeModal(modal));
 }
 
 function renderStatsTab() {
@@ -1972,7 +2175,7 @@ function setupJobConfig() {
   const btnCancel = document.getElementById("btnCancelJobModal");
   const form = document.getElementById("jobForm");
 
-  const openModal = () => {
+  const openJobModal = () => {
     const job = AppState.activeJob;
     document.getElementById("inputJobTitle").value = job.title || "";
     document.getElementById("inputJobOpec").value = job.opec || "";
@@ -1980,14 +2183,14 @@ function setupJobConfig() {
     document.getElementById("inputJobEntity").value = job.entity || "";
     document.getElementById("inputJobPurpose").value = job.purpose || "";
     document.getElementById("inputJobFunctions").value = (job.functions || []).join("\n");
-    modal.classList.add("active");
+    openModal(modal);
   };
 
-  const closeModal = () => modal.classList.remove("active");
+  const closeJobModal = () => closeModal(modal);
 
-  btnOpen.addEventListener("click", openModal);
-  btnCloseX.addEventListener("click", closeModal);
-  btnCancel.addEventListener("click", closeModal);
+  if (btnOpen) btnOpen.addEventListener("click", openJobModal);
+  if (btnCloseX) btnCloseX.addEventListener("click", closeJobModal);
+  if (btnCancel) btnCancel.addEventListener("click", closeJobModal);
 
   // Selector Rápido de Perfiles Oficiales DIAN (Gestor III y Analista IV)
   const btnQuickGestor = document.getElementById("btnQuickProfileGestor");
