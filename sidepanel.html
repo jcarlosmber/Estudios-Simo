@@ -66,9 +66,9 @@
     <section id="tab-practice" class="tab-content" style="display: flex; flex-direction: column; gap: 14px; width: 100%;">
       <!-- Barra de Acciones Rápidas Táctiles (Power-Ups de Estudio) -->
       <div class="practice-powerups-row">
-        <button id="btnOpenTipsModal" class="duo-powerup-btn duo-powerup-gold" title="Banco de 41 Claves Maestras">
+        <button id="btnOpenTipsModal" class="duo-powerup-btn duo-powerup-gold" title="Banco de 46 Claves Maestras">
           <span>💡</span>
-          <span>41 Claves PJS</span>
+          <span>46 Claves PJS</span>
         </button>
         <button id="btnOpenLecturaModal" class="duo-powerup-btn duo-powerup-blue" title="Técnicas de Comprensión Lectora para el Examen">
           <span>📖</span>
@@ -106,7 +106,29 @@
           <option value="rendicion_cuentas">📢 Rendición de Cuentas (1)</option>
         </select>
       </div>
-      <div class="question-card">
+
+      <!-- Carátula de Inicio de Modo Práctica -->
+      <div id="practiceCoverCard" style="display: none; background-color: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 32px 20px; text-align: center; flex-direction: column; align-items: center; gap: 16px; box-shadow: var(--shadow-card);">
+        <div style="width: 68px; height: 68px; border-radius: 50%; background: rgba(56, 189, 248, 0.15); border: 2px solid #38bdf8; display: flex; align-items: center; justify-content: center; font-size: 34px;">
+          🎯
+        </div>
+        <div>
+          <span id="practiceCoverBadge" style="font-size: 12px; font-weight: 800; color: #38bdf8; text-transform: uppercase; letter-spacing: 0.6px; background: rgba(56, 189, 248, 0.12); padding: 5px 14px; border-radius: 12px; border: 1px solid rgba(56, 189, 248, 0.3);">
+            Modo Práctica • DIAN 2676
+          </span>
+          <h3 id="practiceCoverTitle" style="font-size: 20px; font-weight: 800; color: #f8fafc; margin: 12px 0 6px 0;">
+            Entrenamiento de Juicio Situacional
+          </h3>
+          <p id="practiceCoverDesc" style="font-size: 14px; color: #94a3b8; line-height: 1.55; margin: 0 auto; max-width: 440px;">
+            Simula las condiciones del examen real: 2 minutos por caso, cacería de distractores y retroalimentación inmediata fundamentada en la normativa.
+          </p>
+        </div>
+        <button id="btnStartPracticeFromCover" class="btn-primary" style="font-size: 16px; font-weight: 800; padding: 14px 30px; border-radius: 10px; display: flex; align-items: center; gap: 10px; box-shadow: 0 4px 14px rgba(56, 189, 248, 0.4); cursor: pointer;">
+          <span>▶</span> Iniciar Sesión de Práctica
+        </button>
+      </div>
+
+      <div id="practiceCardContainer" class="question-card">
         <!-- Cronómetro Reglamentario Examen DIAN (2 Minutos por Pregunta) -->
         <div id="practiceTimerBar" style="display: flex; justify-content: space-between; align-items: center; background: rgba(56, 189, 248, 0.08); border: 1px solid rgba(56, 189, 248, 0.25); padding: 7px 12px; border-radius: 8px; margin-bottom: 8px;">
           <div style="display: flex; align-items: center; gap: 8px;">
@@ -153,9 +175,14 @@
           <button id="btnConfirmAnswer" class="btn-primary" disabled>
             Confirmar Respuesta
           </button>
-          <button id="btnNextQuestion" class="btn-secondary" style="display: none;">
-            Siguiente Caso ➔
-          </button>
+          <div id="postAnswerActionsRow" style="display: none; width: 100%; gap: 10px;">
+            <button id="btnFinishSessionFromCard" class="btn-secondary" style="flex: 1; font-size: 13px; font-weight: 700; background: rgba(239, 68, 68, 0.15); border: 1px solid rgba(239, 68, 68, 0.4); color: #fca5a5; cursor: pointer; border-radius: 8px; padding: 10px;">
+              🏁 Terminar Sesión
+            </button>
+            <button id="btnNextQuestion" class="btn-primary" style="flex: 2; font-size: 14px; font-weight: 700; border-radius: 8px; padding: 10px;">
+              Seguir Practicando ➔
+            </button>
+          </div>
         </div>
       </div>
     </section>
@@ -217,7 +244,7 @@
         <div class="duo-hub-card gold" id="hubCardTips">
           <div class="hub-card-icon">💡</div>
           <div class="hub-card-content">
-            <div class="hub-card-title">41 Claves Maestras PJS</div>
+            <div class="hub-card-title">46 Claves Maestras PJS</div>
             <div class="hub-card-desc">Estrategias psicométricas, régimen tributario y aduanero oficial</div>
           </div>
           <span class="hub-card-arrow">➔</span>
@@ -251,10 +278,10 @@
         </div>
 
         <div class="duo-hub-card green" id="hubCardSRS">
-          <div class="hub-card-icon">🧠</div>
+          <div class="hub-card-icon">🎴</div>
           <div class="hub-card-content">
-            <div class="hub-card-title">Tarjetas de Repaso SRS</div>
-            <div class="hub-card-desc">Cuaderno de errores con método Feynman y repetición espaciada</div>
+            <div class="hub-card-title">Flashcards Leitner y Quiz Relámpago</div>
+            <div class="hub-card-desc">Repaso activo 3D por niveles y quiz cronometrado de errores</div>
           </div>
           <span class="hub-card-arrow">➔</span>
         </div>
@@ -370,21 +397,63 @@
       </div>
     </section>
 
-    <!-- 3. PESTAÑA: FLASHCARDS INTERACTIVAS SRS (REPETICIÓN ESPACIADA + NOTAS FEYNMAN) -->
+    <!-- 3. PESTAÑA: FLASHCARDS INTERACTIVAS 3D (SISTEMA LEITNER Y QUIZ RELÁMPAGO) -->
     <section id="tab-srs" class="tab-content" style="display: none; flex-direction: column; gap: 12px;">
       <button type="button" class="btn-back-to-recursos">⬅️ Volver a Biblioteca de Recursos</button>
-      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+      
+      <!-- Encabezado con estado y contador de baraja -->
+      <div style="display: flex; justify-content: space-between; align-items: center;">
         <div>
-          <h3 style="font-size: 14px; font-weight: 800; color: var(--text-primary);">Tarjetas de Repaso SRS</h3>
-          <p style="font-size: 11px; color: var(--text-secondary);">Cuaderno de errores con método Feynman</p>
+          <h3 style="font-size: 15px; font-weight: 800; color: var(--text-primary); margin: 0;">Flashcards Leitner 3D</h3>
+          <p style="font-size: 11px; color: var(--text-secondary); margin: 2px 0 0 0;">Repaso activo espaciado y Quiz Relámpago de Errores</p>
         </div>
-        <span id="srsPendingBadge" style="font-size: 11px; background-color: rgba(239, 68, 68, 0.2); color: #fca5a5; padding: 3px 8px; border-radius: 12px; font-weight: 700;">
-          0 pendientes
+        <span id="srsPendingBadge" style="font-size: 11px; background-color: rgba(56, 189, 248, 0.15); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.35); padding: 4px 10px; border-radius: 12px; font-weight: 800;">
+          0 en baraja
         </span>
       </div>
 
-      <div id="srsListContainer" style="display: flex; flex-direction: column; gap: 10px;">
-        <!-- Tarjetas dinámicas con notas Feynman -->
+      <!-- Banner de Acción Rápida: Quiz Relámpago -->
+      <div id="quizRelampagoBanner" style="background: linear-gradient(135deg, rgba(99, 102, 241, 0.22) 0%, rgba(245, 158, 11, 0.18) 100%); border: 1px solid rgba(99, 102, 241, 0.45); border-radius: 10px; padding: 12px 14px; display: flex; align-items: center; justify-content: space-between; gap: 10px;">
+        <div style="flex: 1;">
+          <div style="font-size: 13px; font-weight: 800; color: #f8fafc; display: flex; align-items: center; gap: 6px;">
+            <span>⚡ Quiz Relámpago de Errores</span>
+            <span style="font-size: 9px; background: #f59e0b; color: #0b1120; font-weight: 800; padding: 1px 6px; border-radius: 4px;">EXPRESS</span>
+          </div>
+          <div style="font-size: 11px; color: #cbd5e1; margin-top: 2px;">
+            Prueba de fuego cronometrada (45s) para dominar tus preguntas guardadas.
+          </div>
+        </div>
+        <button id="btnStartQuizRelampago" style="background: linear-gradient(135deg, #f59e0b, #ef4444); color: #0b1120; border: none; font-size: 11px; font-weight: 800; padding: 8px 14px; border-radius: 8px; cursor: pointer; white-space: nowrap; box-shadow: 0 4px 12px rgba(245, 158, 11, 0.35); transition: transform 0.15s ease;">
+          ⚡ Iniciar Quiz
+        </button>
+      </div>
+
+      <!-- Filtros por Cajas del Sistema Leitner -->
+      <div class="leitner-box-filters" id="leitnerFilters">
+        <button class="leitner-filter-btn active" data-box="all">
+          <span class="count" id="countBoxAll">0</span>
+          <span>Todas</span>
+        </button>
+        <button class="leitner-filter-btn" data-box="1" style="border-left: 2px solid #ef4444;">
+          <span class="count" id="countBox1" style="color: #f87171;">0</span>
+          <span>🔴 Caja 1</span>
+        </button>
+        <button class="leitner-filter-btn" data-box="2" style="border-left: 2px solid #f59e0b;">
+          <span class="count" id="countBox2" style="color: #fbbf24;">0</span>
+          <span>🟡 Caja 2</span>
+        </button>
+        <button class="leitner-filter-btn" data-box="3" style="border-left: 2px solid #10b981;">
+          <span class="count" id="countBox3" style="color: #34d399;">0</span>
+          <span>🟢 Caja 3</span>
+        </button>
+      </div>
+
+      <!-- Contenedor Interactivo del Quiz Relámpago (se activa dinámicamente) -->
+      <div id="quizRelampagoArea" style="display: none; flex-direction: column; gap: 12px;"></div>
+
+      <!-- Baraja Dinámica de Flashcards 3D -->
+      <div id="srsListContainer" style="display: flex; flex-direction: column; gap: 14px;">
+        <!-- Tarjetas interactivas 3D inyectadas por JavaScript -->
       </div>
     </section>
 
@@ -760,9 +829,14 @@
         </div>
       </div>
 
-      <button id="btnCloseFeedback" class="btn-primary" style="margin-top: 6px; font-size: 16px; font-weight: 700; padding: 13px;">
-        Continuar a la siguiente pregunta ➔
-      </button>
+      <div id="feedbackModalActions" style="display: flex; gap: 10px; margin-top: 8px;">
+        <button id="btnFinishSessionFromFeedback" class="btn-secondary" style="flex: 1; font-size: 14px; font-weight: 700; padding: 12px; background: rgba(239, 68, 68, 0.15); border: 1px solid rgba(239, 68, 68, 0.4); color: #fca5a5; cursor: pointer; border-radius: 8px;">
+          🏁 Terminar Sesión
+        </button>
+        <button id="btnCloseFeedback" class="btn-primary" style="flex: 2; font-size: 15px; font-weight: 700; padding: 12px;">
+          Seguir Practicando ➔
+        </button>
+      </div>
     </div>
   </div>
 
@@ -851,7 +925,7 @@
           <span style="font-size: 24px;">💡</span>
           <div>
             <h3 style="font-size: 17px; font-weight: 800; color: var(--accent-gold); margin: 0; line-height: 1.2;">
-              41 Claves Maestras PJS
+              46 Claves Maestras PJS
             </h3>
             <p style="font-size: 12px; color: var(--text-secondary); margin: 2px 0 0 0;">
               Estrategias psicométricas y régimen oficial DIAN (OPEC 242703)
@@ -1155,7 +1229,7 @@
 
       <div class="modal-footer">
         <button id="btnVerTodasClavesDesdeLectura" style="background: none; border: none; color: #38bdf8; font-size: 13px; font-weight: 700; text-decoration: underline; cursor: pointer;">
-          Ver las 41 Claves 💡
+          Ver las 46 Claves 💡
         </button>
         <button id="btnCloseLecturaModal" class="btn-primary" style="font-size: 14px; font-weight: 700; padding: 10px 20px;">
           ¡Anotado! Ir a Practicar Casos 🚀
@@ -1204,7 +1278,7 @@
             Recordatorios periódicos activos
           </label>
           <button id="btnVerTodasClavesDesdePopup" style="background: none; border: none; color: #38bdf8; font-size: 13px; font-weight: 700; text-decoration: underline; cursor: pointer;">
-            Ver las 41 Claves 📖
+            Ver las 46 Claves 📖
           </button>
         </div>
       </div>

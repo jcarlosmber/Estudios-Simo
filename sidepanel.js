@@ -4,6 +4,11 @@
 const AppState = {
   activeProfileId: "gestor_iii",
   currentTab: "practice",
+  practiceSession: {
+    active: false,
+    questionsAnswered: 0,
+    correctCount: 0
+  },
   currentQuestion: null,
   selectedOption: null,
   currentEjeFilter: "todos",
@@ -51,6 +56,16 @@ const AppState = {
     lastTipShownId: 0
   },
   srsCards: [],
+  srsFilter: "all",
+  quizRelampago: {
+    isActive: false,
+    questions: [],
+    currentIndex: 0,
+    score: 0,
+    promotedCount: 0,
+    timer: null,
+    timeLeft: 45
+  },
   simulacro: {
     isActive: false,
     questions: [],
@@ -118,7 +133,10 @@ document.addEventListener("DOMContentLoaded", async () => {
   updateEjeFilterOptions(AppState.activeProfileId);
   updateJobProfileUI();
   updateStreakUI();
-  loadNextPracticeQuestion();
+  showPracticeCover();
+  setTimeout(() => {
+    promptStartPracticeSession({ fromSwitch: false });
+  }, 400);
 
   // Sincronización Automática Silenciosa con https://simo.liverohoa.com (Progreso y Preguntas)
   if (typeof CloudSync !== "undefined") {
@@ -454,6 +472,15 @@ function setupTipsModal() {
         <div style="font-size: 13px; color: #cbd5e1; background: rgba(0,0,0,0.35); padding: 8px 12px; border-radius: 6px; margin-top: 4px; border-left: 2px solid ${tip.color || "#f59e0b"};">
           <strong style="color: #f8fafc;">💡 Regla Rápida:</strong> ${tip.resumenCorto}
         </div>
+        ${tip.formula ? `
+          <div style="font-size: 13px; color: #fdf4ff; background: rgba(168, 85, 247, 0.16); border: 1px solid rgba(168, 85, 247, 0.4); border-left: 3px solid #a855f7; padding: 9px 12px; border-radius: 6px; margin-top: 5px; display: flex; align-items: flex-start; gap: 8px;">
+            <span style="font-size: 16px; line-height: 1.2;">📐</span>
+            <div style="flex: 1;">
+              <div style="font-size: 11px; font-weight: 800; color: #c084fc; text-transform: uppercase; letter-spacing: 0.5px;">Fórmula / Regla Mnemotécnica:</div>
+              <div style="font-size: 13px; font-weight: 700; color: #f8fafc; font-family: 'Consolas', monospace; margin-top: 2px; line-height: 1.35;">${tip.formula}</div>
+            </div>
+          </div>
+        ` : ""}
       `;
       listContainer.appendChild(card);
     });
@@ -822,11 +849,22 @@ function showRandomTipFlash({ forced = false, customTip = null } = {}) {
   }
 
   if (bodyEl) {
+    const formulaHtml = tip.formula ? `
+      <div style="background: rgba(168, 85, 247, 0.16); border: 1px solid rgba(168, 85, 247, 0.45); border-left: 4px solid #a855f7; border-radius: 8px; padding: 10px 14px; margin: 12px 0 10px 0; display: flex; align-items: flex-start; gap: 10px;">
+        <span style="font-size: 20px; line-height: 1;">📐</span>
+        <div style="flex: 1;">
+          <div style="font-size: 11px; font-weight: 800; color: #c084fc; text-transform: uppercase; letter-spacing: 0.5px;">Fórmula Mnemotécnica / Regla Rápida:</div>
+          <div style="font-size: 14px; font-weight: 800; color: #fdf4ff; font-family: 'Consolas', monospace; margin-top: 3px; line-height: 1.4;">${tip.formula}</div>
+        </div>
+      </div>
+    ` : "";
+
     bodyEl.innerHTML = `
       <div style="font-size: 16px; font-weight: 700; color: #f8fafc; margin-bottom: 8px; line-height: 1.5;">
         ${tip.resumenCorto}
       </div>
-      <div style="font-size: 15px; color: #f1f5f9; line-height: 1.65;">
+      ${formulaHtml}
+      <div style="font-size: 15px; color: #f1f5f9; line-height: 1.65; margin-top: 6px;">
         ${tip.contenidoDetallado}
       </div>
     `;
@@ -883,7 +921,7 @@ async function loadUserData() {
 }
 
 // Modal personalizado (reemplazo estricto de alert y confirm)
-function showCustomModal({ title, message, icon = "ℹ️", isConfirm = false, onOk = null, onCancel = null }) {
+function showCustomModal({ title, message, icon = "ℹ️", isConfirm = false, okText = "Aceptar", cancelText = "Cancelar", onOk = null, onCancel = null }) {
   const overlay = document.getElementById("generalAlertModal");
   const titleEl = document.getElementById("generalAlertTitle");
   const messageEl = document.getElementById("generalAlertMessage");
@@ -891,9 +929,13 @@ function showCustomModal({ title, message, icon = "ℹ️", isConfirm = false, o
   const btnOk = document.getElementById("btnGeneralAlertOk");
   const btnCancel = document.getElementById("btnGeneralAlertCancel");
 
+  if (!overlay || !titleEl) return;
+
   titleEl.textContent = title;
   messageEl.textContent = message;
   iconEl.textContent = icon;
+  btnOk.textContent = okText;
+  btnCancel.textContent = cancelText;
 
   btnCancel.style.display = isConfirm ? "inline-block" : "none";
 
@@ -1125,6 +1167,15 @@ function switchTab(tabName) {
   const filterBar = document.getElementById("practiceFilterBar");
   if (filterBar) filterBar.style.display = tabName === "practice" ? "flex" : "none";
 
+  if (tabName === "practice") {
+    if (!AppState.practiceSession.active) {
+      showPracticeCover();
+      promptStartPracticeSession({ fromSwitch: true });
+    } else {
+      hidePracticeCover();
+    }
+  }
+
   if (tabName === "jobFocus") renderJobFocusTab();
   if (tabName === "srs") renderSrsTab();
   if (tabName === "stats") renderStatsTab();
@@ -1246,9 +1297,33 @@ function setupPracticeLogic() {
   const btnCloseModal = document.getElementById("btnCloseFeedback");
   const filterSelect = document.getElementById("selectEjeFilter");
 
+  const btnStartCover = document.getElementById("btnStartPracticeFromCover");
+  const btnFinishCard = document.getElementById("btnFinishSessionFromCard");
+  const btnFinishFeedback = document.getElementById("btnFinishSessionFromFeedback");
+
+  if (btnStartCover) {
+    btnStartCover.addEventListener("click", () => {
+      startPracticeSession();
+    });
+  }
+
+  if (btnFinishCard) {
+    btnFinishCard.addEventListener("click", () => {
+      finishPracticeSession();
+    });
+  }
+
+  if (btnFinishFeedback) {
+    btnFinishFeedback.addEventListener("click", () => {
+      finishPracticeSession();
+    });
+  }
+
   filterSelect.addEventListener("change", (e) => {
     AppState.currentEjeFilter = e.target.value;
-    loadNextPracticeQuestion();
+    if (AppState.practiceSession.active) {
+      loadNextPracticeQuestion();
+    }
   });
 
   btnConfirm.addEventListener("click", () => {
@@ -1375,7 +1450,87 @@ const PracticeTimer = {
   }
 };
 
+function showPracticeCover() {
+  const cover = document.getElementById("practiceCoverCard");
+  const card = document.getElementById("practiceCardContainer");
+  const shortTitle = AppState.activeJob?.shortTitle || "DIAN 2676";
+  const badge = document.getElementById("practiceCoverBadge");
+  if (badge) badge.textContent = `Modo Práctica • ${shortTitle}`;
+
+  if (cover) cover.style.display = "flex";
+  if (card) card.style.display = "none";
+  PracticeTimer.stop();
+}
+
+function hidePracticeCover() {
+  const cover = document.getElementById("practiceCoverCard");
+  const card = document.getElementById("practiceCardContainer");
+  if (cover) cover.style.display = "none";
+  if (card) card.style.display = "flex";
+}
+
+function promptStartPracticeSession({ fromSwitch = false } = {}) {
+  const shortTitle = AppState.activeJob?.shortTitle || "DIAN 2676";
+  showCustomModal({
+    title: "Iniciar Modo Práctica",
+    message: `¿Deseas iniciar una sesión de entrenamiento en Juicio Situacional para ${shortTitle}? Se activará el temporizador por caso y se registrará tu desempeño.`,
+    icon: "🎯",
+    isConfirm: true,
+    okText: "▶ Iniciar Práctica",
+    cancelText: "Ahora no",
+    onOk: () => {
+      startPracticeSession();
+    },
+    onCancel: () => {
+      AppState.practiceSession.active = false;
+      showPracticeCover();
+      if (fromSwitch) {
+        switchTab("recursos");
+      }
+    }
+  });
+}
+
+function startPracticeSession() {
+  AppState.practiceSession.active = true;
+  AppState.practiceSession.questionsAnswered = 0;
+  AppState.practiceSession.correctCount = 0;
+  hidePracticeCover();
+  loadNextPracticeQuestion();
+}
+
+function finishPracticeSession() {
+  PracticeTimer.stop();
+  const feedbackModal = document.getElementById("feedbackModal");
+  if (feedbackModal) closeModal(feedbackModal);
+
+  const total = AppState.practiceSession.questionsAnswered || 0;
+  const correct = AppState.practiceSession.correctCount || 0;
+  const pct = total > 0 ? Math.round((correct / total) * 100) : 0;
+  const streak = AppState.sessionStreak || 0;
+
+  AppState.practiceSession.active = false;
+  showPracticeCover();
+
+  showCustomModal({
+    title: "Sesión de Práctica Finalizada",
+    message: total > 0
+      ? `¡Excelente entrenamiento! Has respondido ${total} caso(s) en esta sesión con ${correct} acierto(s) (${pct}% de efectividad). Tu racha en esta sesión fue de ${streak} acierto(s) consecutivos.`
+      : "Has finalizado la sesión de práctica. ¡Puedes retomarla cuando quieras!",
+    icon: "🏆",
+    isConfirm: false,
+    okText: "Ver Estadísticas",
+    onOk: () => {
+      switchTab("stats");
+    }
+  });
+}
+
 function loadNextPracticeQuestion() {
+  if (!AppState.practiceSession.active) {
+    AppState.practiceSession.active = true;
+  }
+  hidePracticeCover();
   const filter = AppState.currentEjeFilter;
   let pool = null;
   if (typeof getQuestionsForProfile === "function") {
@@ -1469,9 +1624,12 @@ function renderPracticeQuestion(q) {
   optionsContainer.innerHTML = "";
 
   const btnConfirm = document.getElementById("btnConfirmAnswer");
-  btnConfirm.disabled = true;
-  btnConfirm.style.display = "block";
-  document.getElementById("btnNextQuestion").style.display = "none";
+  const postRow = document.getElementById("postAnswerActionsRow");
+  if (btnConfirm) {
+    btnConfirm.disabled = true;
+    btnConfirm.style.display = "block";
+  }
+  if (postRow) postRow.style.display = "none";
 
   q.opciones.forEach((opt) => {
     const item = document.createElement("div");
@@ -1535,12 +1693,15 @@ function evaluateAnswer(selectedId) {
 
   // Alternar botones de acción en la tarjeta
   const btnConfirm = document.getElementById("btnConfirmAnswer");
-  const btnNext = document.getElementById("btnNextQuestion");
+  const postRow = document.getElementById("postAnswerActionsRow");
   if (btnConfirm) btnConfirm.style.display = "none";
-  if (btnNext) btnNext.style.display = "block";
+  if (postRow) postRow.style.display = "flex";
 
   AppState.stats.totalAnswered += 1;
   if (isCorrect) AppState.stats.correctCount += 1;
+
+  AppState.practiceSession.questionsAnswered = (AppState.practiceSession.questionsAnswered || 0) + 1;
+  if (isCorrect) AppState.practiceSession.correctCount = (AppState.practiceSession.correctCount || 0) + 1;
 
   if (q.tipo.includes("Funcional")) {
     AppState.stats.functionalTotal += 1;
@@ -1662,19 +1823,27 @@ function handleSrsRating(difficulty) {
 function addToSrsQueue(question, difficulty, feynmanNotes = "") {
   const now = new Date();
   let daysToAdd = 1;
-  if (difficulty === "good") daysToAdd = 2;
-  if (difficulty === "easy") daysToAdd = 5;
+  let leitnerBox = 1;
+  if (difficulty === "good") {
+    daysToAdd = 3;
+    leitnerBox = 2;
+  }
+  if (difficulty === "easy") {
+    daysToAdd = 7;
+    leitnerBox = 3;
+  }
 
   const nextReview = new Date(now.getTime() + daysToAdd * 24 * 60 * 60 * 1000).toISOString().slice(0, 10);
-
-  const existingIdx = AppState.srsCards.findIndex((c) => c.question.id === question.id);
+  const existingIdx = AppState.srsCards.findIndex((c) => c.question && c.question.id === question.id);
   const existingNotes = existingIdx >= 0 ? AppState.srsCards[existingIdx].feynmanNotes || "" : "";
+  const existingReps = existingIdx >= 0 ? (AppState.srsCards[existingIdx].repetitions || 1) : 0;
 
   const cardData = {
     question: question,
     nextReviewDate: nextReview,
     difficulty: difficulty,
-    repetitions: existingIdx >= 0 ? AppState.srsCards[existingIdx].repetitions + 1 : 1,
+    leitnerBox: leitnerBox,
+    repetitions: existingReps + 1,
     feynmanNotes: feynmanNotes || existingNotes
   };
 
@@ -1691,123 +1860,651 @@ function addToSrsQueue(question, difficulty, feynmanNotes = "") {
 }
 
 // =========================================================================
-// 3. TARJETAS SRS MEJORADAS (MÉTODO FEYNMAN Y REPASO ACTIVO)
+// 3. FLASHCARDS INTERACTIVAS 3D CON SISTEMA LEITNER Y QUIZ RELÁMPAGO
 // =========================================================================
-function setupSrsLogic() {}
+function setupSrsLogic() {
+  // Filtros de Cajas Leitner
+  const filterBtns = document.querySelectorAll(".leitner-filter-btn");
+  filterBtns.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      filterBtns.forEach((b) => b.classList.remove("active"));
+      btn.classList.add("active");
+      AppState.srsFilter = btn.getAttribute("data-box");
+      renderSrsCardsList();
+    });
+  });
+
+  // Botón para iniciar Quiz Relámpago
+  const btnStartQuiz = document.getElementById("btnStartQuizRelampago");
+  if (btnStartQuiz) {
+    btnStartQuiz.addEventListener("click", () => {
+      startQuizRelampago();
+    });
+  }
+}
 
 function renderSrsTab() {
+  // Si hay un quiz relámpago en curso, mantenerlo en pantalla
+  if (AppState.quizRelampago && AppState.quizRelampago.isActive) {
+    return;
+  }
+
   const container = document.getElementById("srsListContainer");
   const badge = document.getElementById("srsPendingBadge");
+  const quizBanner = document.getElementById("quizRelampagoBanner");
+  const quizArea = document.getElementById("quizRelampagoArea");
+  const leitnerFilters = document.getElementById("leitnerFilters");
   const cards = AppState.srsCards || [];
 
-  badge.textContent = `${cards.length} en repaso`;
+  if (quizArea) quizArea.style.display = "none";
+  if (quizBanner) quizBanner.style.display = cards.length > 0 ? "flex" : "none";
+  if (leitnerFilters) leitnerFilters.style.display = cards.length > 0 ? "grid" : "none";
+  if (container) container.style.display = "flex";
+
+  if (badge) badge.textContent = `${cards.length} en baraja`;
+
+  // Calcular contadores por caja Leitner
+  let box1Count = 0;
+  let box2Count = 0;
+  let box3Count = 0;
+
+  cards.forEach((c) => {
+    const box = c.leitnerBox || (c.difficulty === "hard" ? 1 : c.difficulty === "good" ? 2 : 3);
+    if (box === 1) box1Count++;
+    else if (box === 2) box2Count++;
+    else if (box === 3) box3Count++;
+  });
+
+  const countBoxAll = document.getElementById("countBoxAll");
+  const countBox1 = document.getElementById("countBox1");
+  const countBox2 = document.getElementById("countBox2");
+  const countBox3 = document.getElementById("countBox3");
+
+  if (countBoxAll) countBoxAll.textContent = cards.length;
+  if (countBox1) countBox1.textContent = box1Count;
+  if (countBox2) countBox2.textContent = box2Count;
+  if (countBox3) countBox3.textContent = box3Count;
+
+  renderSrsCardsList();
+}
+
+function renderSrsCardsList() {
+  const container = document.getElementById("srsListContainer");
+  if (!container) return;
   container.innerHTML = "";
+
+  const cards = AppState.srsCards || [];
 
   if (cards.length === 0) {
     container.innerHTML = `
-      <div style="text-align: center; padding: 40px 16px; color: var(--text-secondary); display: flex; flex-direction: column; align-items: center; gap: 10px;">
-        <div style="font-size: 38px;">🎉</div>
-        <div style="font-size: 13px; max-width: 280px; line-height: 1.4;">
-          ¡Excelente! Tu cuaderno de errores está al día. Cuando falles una pregunta o la califiques como difícil, aparecerá aquí como Flashcard interactiva.
+      <div style="text-align: center; padding: 36px 16px; color: var(--text-secondary); display: flex; flex-direction: column; align-items: center; gap: 12px; background: rgba(15, 23, 42, 0.4); border: 1px dashed var(--border-color); border-radius: 12px;">
+        <div style="font-size: 42px;">🎴</div>
+        <div style="font-size: 14px; font-weight: 700; color: #f8fafc;">
+          Tu Baraja de Flashcards está limpia
         </div>
+        <div style="font-size: 12px; max-width: 290px; line-height: 1.5; color: #94a3b8;">
+          Al resolver simulacros o preguntas de práctica, califica los casos como 🔴 Difícil o 🟡 Regular para que se agreguen automáticamente a tu baraja interactiva 3D.
+        </div>
+        <button class="btn-primary" style="margin-top: 6px; font-size: 11px; padding: 8px 16px;" onclick="switchTab('practice')">
+          🚀 Ir a Practicar Preguntas
+        </button>
       </div>
     `;
     return;
   }
 
-  cards.forEach((card, idx) => {
+  // Filtrar según la caja seleccionada
+  const filter = AppState.srsFilter || "all";
+  const filteredCards = cards.map((c, idx) => ({ ...c, originalIdx: idx })).filter((c) => {
+    if (filter === "all") return true;
+    const box = c.leitnerBox || (c.difficulty === "hard" ? 1 : c.difficulty === "good" ? 2 : 3);
+    return String(box) === String(filter);
+  });
+
+  if (filteredCards.length === 0) {
+    container.innerHTML = `
+      <div style="text-align: center; padding: 24px; color: var(--text-secondary); font-size: 12px; background: rgba(15, 23, 42, 0.3); border-radius: 8px;">
+        No tienes tarjetas guardadas en esta caja en este momento.
+      </div>
+    `;
+    return;
+  }
+
+  filteredCards.forEach((card) => {
     const q = card.question;
+    const box = card.leitnerBox || (card.difficulty === "hard" ? 1 : card.difficulty === "good" ? 2 : 3);
+
+    let boxBadgeBg = "rgba(239, 68, 68, 0.15)";
+    let boxBadgeBorder = "rgba(239, 68, 68, 0.35)";
+    let boxBadgeColor = "#fca5a5";
+    let boxLabel = "🔴 Caja 1 • Repaso Diario";
+
+    if (box === 2) {
+      boxBadgeBg = "rgba(245, 158, 11, 0.15)";
+      boxBadgeBorder = "rgba(245, 158, 11, 0.35)";
+      boxBadgeColor = "#fde68a";
+      boxLabel = "🟡 Caja 2 • Cada 3 Días";
+    } else if (box === 3) {
+      boxBadgeBg = "rgba(16, 185, 129, 0.15)";
+      boxBadgeBorder = "rgba(16, 185, 129, 0.35)";
+      boxBadgeColor = "#6ee7b7";
+      boxLabel = "🟢 Caja 3 • Dominada (7 Días)";
+    }
+
+    const correctOpt = (q.opciones || []).find((o) => o.id === q.respuestaCorrecta);
+    const correctText = correctOpt ? correctOpt.texto : "";
+
     const cardEl = document.createElement("div");
-    cardEl.className = "srs-card-container";
+    cardEl.className = "srs-flip-card";
 
     cardEl.innerHTML = `
-      <div style="display: flex; justify-content: space-between; align-items: center;">
-        <span style="font-size: 10px; background-color: rgba(56, 189, 248, 0.15); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.3); padding: 2px 6px; border-radius: 4px; font-weight: 800;">
-          ${q.ejeNombre || q.tipo}
-        </span>
-        <span style="font-size: 10px; color: var(--text-secondary);">
-          Próximo repaso: <strong>${card.nextReviewDate}</strong>
-        </span>
-      </div>
+      <div class="srs-flip-inner">
+        <!-- ANVERSO (FRENTE DE LA FICHA) -->
+        <div class="srs-flip-front">
+          <div style="display: flex; justify-content: space-between; align-items: center; gap: 6px;">
+            <span style="font-size: 10px; font-weight: 800; background: ${boxBadgeBg}; border: 1px solid ${boxBadgeBorder}; color: ${boxBadgeColor}; padding: 3px 8px; border-radius: 6px;">
+              ${boxLabel}
+            </span>
+            <span style="font-size: 10px; color: var(--text-secondary);">
+              Repaso: <strong style="color: #cbd5e1;">${card.nextReviewDate || "Hoy"}</strong>
+            </span>
+          </div>
 
-      <div style="font-size: 12px; font-weight: 700; color: #f8fafc; line-height: 1.4;">
-        ${q.tema}
-      </div>
+          <div style="font-size: 11px; font-weight: 800; color: #38bdf8; text-transform: uppercase; letter-spacing: 0.4px;">
+            ${q.ejeNombre || q.tipo || "Juicio Situacional"} • ${q.tema || "DIAN"}
+          </div>
 
-      <div style="font-size: 11px; color: #cbd5e1; background: rgba(11,17,32,0.6); padding: 8px 10px; border-radius: 6px; border-left: 3px solid var(--accent-gold);">
-        ${q.caso.slice(0, 160)}...
-      </div>
+          <div style="font-size: 12px; color: #f8fafc; font-weight: 600; line-height: 1.5; background: rgba(11, 17, 32, 0.6); padding: 10px 12px; border-radius: 8px; border-left: 3px solid var(--accent-gold);">
+            ${q.caso}
+          </div>
 
-      <!-- Botón para revelar fundamento legal -->
-      <button class="btn-secondary btn-reveal-key" style="padding: 6px 10px; font-size: 11px; width: 100%;">
-        👁️ Revelar Clave Oficial y Argumento Legal
-      </button>
+          <!-- Opciones para reflexión activa previa al volteo -->
+          <div style="display: flex; flex-direction: column; gap: 4px; font-size: 11px; color: #cbd5e1;">
+            ${(q.opciones || []).map((opt) => `
+              <div style="padding: 6px 8px; background: rgba(255, 255, 255, 0.04); border-radius: 6px; border: 1px solid rgba(255, 255, 255, 0.06); display: flex; gap: 6px;">
+                <strong style="color: #38bdf8;">${opt.id})</strong>
+                <span>${opt.texto}</span>
+              </div>
+            `).join("")}
+          </div>
 
-      <div class="revealed-details" style="display: none; flex-direction: column; gap: 6px; background-color: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.3); border-radius: 6px; padding: 10px;">
-        <div style="font-size: 11px; font-weight: 800; color: var(--accent-green);">
-          ✓ Respuesta Correcta: Opción ${q.respuestaCorrecta}
+          <div class="srs-flip-indicator">
+            <span>🔄 Toca aquí para voltear y ver fundamento legal</span>
+          </div>
         </div>
-        <div style="font-size: 11px; color: #e2e8f0; line-height: 1.4;">
-          ${q.norma}
-        </div>
-      </div>
 
-      <!-- Caja Método Feynman (Notas del usuario) -->
-      <div class="feynman-box">
-        <div style="font-size: 10px; font-weight: 800; color: #f59e0b; text-transform: uppercase;">
-          📝 Mis Apuntes Feynman (Explícalo con tus palabras):
-        </div>
-        <textarea class="feynman-textarea" placeholder="Escribe aquí tu propia síntesis de por qué esta es la regla correcta...">${card.feynmanNotes || ""}</textarea>
-        <button class="btn-save-feynman" style="align-self: flex-end; background: none; border: 1px solid rgba(245,158,11,0.4); color: #f59e0b; font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 4px; cursor: pointer;">
-          Guardar Nota
-        </button>
-      </div>
+        <!-- REVERSO (FUNDAMENTO Y AUTOEVALUACIÓN LEITNER) -->
+        <div class="srs-flip-back">
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <span style="font-size: 10px; font-weight: 800; color: #10b981; text-transform: uppercase; display: flex; align-items: center; gap: 4px;">
+              <span>⚖️ Criterio Oficial DIAN</span>
+            </span>
+            <button class="btn-flip-back" style="background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); color: #cbd5e1; font-size: 10px; font-weight: 700; padding: 3px 8px; border-radius: 4px; cursor: pointer;">
+              ↩️ Frente
+            </button>
+          </div>
 
-      <div style="display: flex; gap: 6px; margin-top: 2px;">
-        <button class="btn-primary btn-practice-this" style="padding: 6px 10px; font-size: 11px; flex: 2;">
-          Entrenar Caso ➔
-        </button>
-        <button class="btn-secondary btn-remove-card" style="padding: 6px 8px; font-size: 11px; flex: 1;">
-          Eliminar
-        </button>
+          <div style="background: rgba(16, 185, 129, 0.15); border: 1px solid rgba(16, 185, 129, 0.4); border-radius: 8px; padding: 10px; display: flex; flex-direction: column; gap: 4px;">
+            <div style="font-size: 12px; font-weight: 800; color: #34d399;">
+              ✓ Respuesta Correcta: Opción ${q.respuestaCorrecta}
+            </div>
+            ${correctText ? `<div style="font-size: 11px; color: #f1f5f9; line-height: 1.4;">${correctText}</div>` : ""}
+          </div>
+
+          <div style="background: rgba(11, 17, 32, 0.7); border-radius: 8px; padding: 8px 10px; border-left: 3px solid #6366f1; font-size: 11px; color: #cbd5e1; line-height: 1.4;">
+            <strong style="color: #a5b4fc; display: block; margin-bottom: 2px;">Fundamento Normativo:</strong>
+            ${q.norma || "Fundamento legal y directriz del modelo de evaluación por competencias."}
+          </div>
+
+          <!-- Acciones de Repetición Espaciada Leitner -->
+          <div style="display: flex; flex-direction: column; gap: 6px; margin-top: auto;">
+            <div style="font-size: 10px; font-weight: 800; color: #94a3b8; text-transform: uppercase; text-align: center;">
+              ¿Cómo la dominas? (Califica para espaciar)
+            </div>
+            <div class="leitner-actions-grid">
+              <button class="leitner-action-btn leitner-btn-hard" data-box="1" title="Repasar mañana">
+                <span>🔴 Difícil</span>
+                <span style="font-size: 9px; opacity: 0.85;">Caja 1 • Diario</span>
+              </button>
+              <button class="leitner-action-btn leitner-btn-good" data-box="2" title="Repasar en 3 días">
+                <span>🟡 Regular</span>
+                <span style="font-size: 9px; opacity: 0.85;">Caja 2 • 3 días</span>
+              </button>
+              <button class="leitner-action-btn leitner-btn-easy" data-box="3" title="Repasar en 7 días">
+                <span>🟢 Dominada</span>
+                <span style="font-size: 9px; opacity: 0.85;">Caja 3 • 7 días</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Acciones de práctica y eliminación -->
+          <div style="display: flex; justify-content: space-between; align-items: center; gap: 6px; margin-top: 4px; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 6px;">
+            <button class="btn-srs-practice" style="background: none; border: none; color: #38bdf8; font-size: 11px; font-weight: 700; cursor: pointer; padding: 2px 4px; display: flex; align-items: center; gap: 4px;">
+              <span>🎯 Entrenar en Práctica ➔</span>
+            </button>
+            <button class="btn-srs-delete" style="background: none; border: none; color: #f87171; font-size: 11px; font-weight: 700; cursor: pointer; padding: 2px 4px; display: flex; align-items: center; gap: 4px;">
+              <span>🗑️ Quitar</span>
+            </button>
+          </div>
+        </div>
       </div>
     `;
 
-    // Eventos de la tarjeta
-    const btnReveal = cardEl.querySelector(".btn-reveal-key");
-    const details = cardEl.querySelector(".revealed-details");
-    btnReveal.onclick = () => {
-      const isVisible = details.style.display === "flex";
-      details.style.display = isVisible ? "none" : "flex";
-      btnReveal.textContent = isVisible ? "👁️ Revelar Clave Oficial y Argumento Legal" : "🙈 Ocultar Clave";
-    };
-
-    const textarea = cardEl.querySelector(".feynman-textarea");
-    const btnSaveNote = cardEl.querySelector(".btn-save-feynman");
-    btnSaveNote.onclick = () => {
-      card.feynmanNotes = textarea.value;
-      StorageManager.set("srsCards", AppState.srsCards);
+    // Evento de volteo 3D al hacer clic en el frente
+    const frontEl = cardEl.querySelector(".srs-flip-front");
+    frontEl.addEventListener("click", () => {
+      cardEl.classList.toggle("flipped");
       if (typeof SoundFX !== "undefined") SoundFX.playPop();
-      showCustomModal({
-        title: "Nota Guardada",
-        message: "Tu apunte de la técnica Feynman ha sido guardado exitosamente.",
-        icon: "📝"
-      });
-    };
+    });
 
-    cardEl.querySelector(".btn-practice-this").onclick = () => {
+    // Botón para volver al frente desde el reverso
+    const btnFlipBack = cardEl.querySelector(".btn-flip-back");
+    btnFlipBack.addEventListener("click", (e) => {
+      e.stopPropagation();
+      cardEl.classList.remove("flipped");
+    });
+
+    // Calificación Leitner
+    const rateBtns = cardEl.querySelectorAll(".leitner-action-btn");
+    rateBtns.forEach((btn) => {
+      btn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        const targetBox = parseInt(btn.getAttribute("data-box"), 10);
+        rateLeitnerCard(card.originalIdx, targetBox);
+      });
+    });
+
+    // Entrenar este caso en práctica
+    const btnPractice = cardEl.querySelector(".btn-srs-practice");
+    btnPractice.addEventListener("click", (e) => {
+      e.stopPropagation();
       renderPracticeQuestion(q);
       switchTab("practice");
-    };
+    });
 
-    cardEl.querySelector(".btn-remove-card").onclick = () => {
-      AppState.srsCards.splice(idx, 1);
-      StorageManager.set("srsCards", AppState.srsCards);
-      renderSrsTab();
-    };
+    // Eliminar tarjeta
+    const btnDelete = cardEl.querySelector(".btn-srs-delete");
+    btnDelete.addEventListener("click", (e) => {
+      e.stopPropagation();
+      showCustomModal({
+        title: "¿Quitar Flashcard?",
+        message: "¿Deseas eliminar esta tarjeta de tu cuaderno de repaso Leitner?",
+        icon: "🗑️",
+        isConfirm: true,
+        onOk: () => {
+          AppState.srsCards.splice(card.originalIdx, 1);
+          StorageManager.set("srsCards", AppState.srsCards);
+          if (typeof SoundFX !== "undefined") SoundFX.playPop();
+          renderSrsTab();
+        }
+      });
+    });
 
     container.appendChild(cardEl);
   });
+}
+
+function rateLeitnerCard(cardIdx, targetBox) {
+  const card = AppState.srsCards[cardIdx];
+  if (!card) return;
+
+  card.leitnerBox = targetBox;
+  card.difficulty = targetBox === 1 ? "hard" : targetBox === 2 ? "good" : "easy";
+
+  const now = new Date();
+  const days = targetBox === 1 ? 1 : targetBox === 2 ? 3 : 7;
+  card.nextReviewDate = new Date(now.getTime() + days * 24 * 60 * 60 * 1000).toISOString().slice(0, 10);
+  card.repetitions = (card.repetitions || 1) + 1;
+
+  if (targetBox === 3 && typeof SoundFX !== "undefined") {
+    SoundFX.playCorrect();
+  } else if (typeof SoundFX !== "undefined") {
+    SoundFX.playPop();
+  }
+
+  StorageManager.set("srsCards", AppState.srsCards);
+  if (typeof CloudSync !== "undefined" && CloudSync.config.autoSync) {
+    CloudSync.pushProgress().catch(() => {});
+  }
+
+  renderSrsTab();
+}
+
+// =========================================================================
+// MODO: QUIZ RELÁMPAGO DE ERRORES (ACTIVE RECALL CRONOMETRADO)
+// =========================================================================
+function startQuizRelampago() {
+  const cards = AppState.srsCards || [];
+  if (cards.length === 0) {
+    showCustomModal({
+      title: "Baraja Vacía",
+      message: "No tienes preguntas en tu baraja de repaso todavía. Agrega casos resolviendo simulacros o prácticas.",
+      icon: "🎴"
+    });
+    return;
+  }
+
+  // Barajar hasta 10 preguntas
+  const shuffled = [...cards].sort(() => Math.random() - 0.5).slice(0, 10);
+
+  AppState.quizRelampago = {
+    isActive: true,
+    questions: shuffled,
+    currentIndex: 0,
+    score: 0,
+    promotedCount: 0,
+    timer: null,
+    timeLeft: 45
+  };
+
+  const container = document.getElementById("srsListContainer");
+  const quizBanner = document.getElementById("quizRelampagoBanner");
+  const leitnerFilters = document.getElementById("leitnerFilters");
+  const quizArea = document.getElementById("quizRelampagoArea");
+
+  if (container) container.style.display = "none";
+  if (quizBanner) quizBanner.style.display = "none";
+  if (leitnerFilters) leitnerFilters.style.display = "none";
+  if (quizArea) quizArea.style.display = "flex";
+
+  renderQuizRelampagoQuestion();
+}
+
+function renderQuizRelampagoQuestion() {
+  const qArea = document.getElementById("quizRelampagoArea");
+  if (!qArea) return;
+
+  const state = AppState.quizRelampago;
+  if (!state || !state.isActive) return;
+
+  if (state.timer) {
+    clearInterval(state.timer);
+    state.timer = null;
+  }
+
+  if (state.currentIndex >= state.questions.length) {
+    finishQuizRelampago();
+    return;
+  }
+
+  const currentCard = state.questions[state.currentIndex];
+  const q = currentCard.question;
+  state.timeLeft = 45;
+
+  qArea.innerHTML = `
+    <div style="background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 16px; display: flex; flex-direction: column; gap: 12px; box-shadow: var(--shadow-md);">
+      
+      <!-- Encabezado Quiz Relámpago -->
+      <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-color); padding-bottom: 10px;">
+        <div style="display: flex; align-items: center; gap: 8px;">
+          <span style="font-size: 18px;">⚡</span>
+          <div>
+            <div style="font-size: 13px; font-weight: 800; color: #f8fafc;">
+              Quiz Relámpago (${state.currentIndex + 1}/${state.questions.length})
+            </div>
+            <div style="font-size: 10px; color: #94a3b8;">
+              Aciertos: <strong style="color: #34d399;">${state.score}</strong>
+            </div>
+          </div>
+        </div>
+
+        <button id="btnExitQuizRelampago" style="background: rgba(239,68,68,0.15); border: 1px solid rgba(239,68,68,0.3); color: #fca5a5; font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 6px; cursor: pointer;">
+          ✕ Salir
+        </button>
+      </div>
+
+      <!-- Barra de tiempo de 45 segundos -->
+      <div style="display: flex; flex-direction: column; gap: 4px;">
+        <div style="display: flex; justify-content: space-between; font-size: 11px; font-weight: 700; color: #f59e0b;">
+          <span>⏱️ Tiempo Relámpago:</span>
+          <span id="quizTimerText">45s</span>
+        </div>
+        <div class="quiz-timer-track">
+          <div id="quizTimerBar" class="quiz-timer-fill" style="width: 100%;"></div>
+        </div>
+      </div>
+
+      <!-- Caso Situacional -->
+      <div style="font-size: 11px; font-weight: 800; color: #38bdf8; text-transform: uppercase;">
+        ${q.ejeNombre || q.tipo || "Juicio Situacional"} • ${q.tema || "DIAN"}
+      </div>
+
+      <div style="font-size: 12px; color: #f8fafc; font-weight: 600; line-height: 1.5; background: rgba(11, 17, 32, 0.6); padding: 10px 12px; border-radius: 8px; border-left: 3px solid var(--accent-gold);">
+        ${q.caso}
+      </div>
+
+      <!-- Opciones Interactivas -->
+      <div id="quizOptionsContainer" style="display: flex; flex-direction: column; gap: 8px; margin-top: 4px;">
+        ${(q.opciones || []).map((opt) => `
+          <button class="quiz-option-btn" data-opt-id="${opt.id}">
+            <strong style="color: #38bdf8; font-size: 13px;">${opt.id})</strong>
+            <span>${opt.texto}</span>
+          </button>
+        `).join("")}
+      </div>
+
+      <!-- Recuadro de retroalimentación inmediata -->
+      <div id="quizFeedbackBox" style="display: none; flex-direction: column; gap: 8px; border-radius: 8px; padding: 10px 12px;"></div>
+
+      <button id="btnNextQuizQuestion" class="btn-primary" style="display: none; padding: 10px; font-size: 12px; font-weight: 800; margin-top: 4px;">
+        Siguiente Pregunta ➔
+      </button>
+    </div>
+  `;
+
+  // Salir del Quiz
+  document.getElementById("btnExitQuizRelampago").addEventListener("click", () => {
+    showCustomModal({
+      title: "¿Salir del Quiz Relámpago?",
+      message: "Tu progreso actual quedará guardado para las preguntas que ya respondiste.",
+      icon: "⚡",
+      isConfirm: true,
+      onOk: () => {
+        exitQuizRelampago();
+      }
+    });
+  });
+
+  // Opciones de respuesta
+  const optBtns = qArea.querySelectorAll(".quiz-option-btn");
+  optBtns.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const optId = btn.getAttribute("data-opt-id");
+      handleQuizRelampagoAnswer(optId, btn);
+    });
+  });
+
+  // Botón Siguiente
+  const btnNext = document.getElementById("btnNextQuizQuestion");
+  btnNext.addEventListener("click", () => {
+    state.currentIndex++;
+    renderQuizRelampagoQuestion();
+  });
+
+  // Iniciar temporizador
+  const timerText = document.getElementById("quizTimerText");
+  const timerBar = document.getElementById("quizTimerBar");
+
+  state.timer = setInterval(() => {
+    state.timeLeft--;
+    if (timerText) timerText.textContent = `${state.timeLeft}s`;
+    if (timerBar) timerBar.style.width = `${(state.timeLeft / 45) * 100}%`;
+
+    if (state.timeLeft <= 5 && typeof SoundFX !== "undefined") {
+      SoundFX.playTick();
+    }
+
+    if (state.timeLeft <= 0) {
+      clearInterval(state.timer);
+      state.timer = null;
+      if (typeof SoundFX !== "undefined") SoundFX.playTimeout();
+      handleQuizRelampagoAnswer(null, null); // Tiempo agotado
+    }
+  }, 1000);
+}
+
+function handleQuizRelampagoAnswer(selectedOptId, clickedBtn) {
+  const state = AppState.quizRelampago;
+  if (!state || !state.isActive) return;
+
+  if (state.timer) {
+    clearInterval(state.timer);
+    state.timer = null;
+  }
+
+  const currentCard = state.questions[state.currentIndex];
+  const q = currentCard.question;
+  const isCorrect = selectedOptId === q.respuestaCorrecta;
+
+  // Deshabilitar todas las opciones
+  const qArea = document.getElementById("quizRelampagoArea");
+  const optBtns = qArea.querySelectorAll(".quiz-option-btn");
+  optBtns.forEach((btn) => {
+    btn.disabled = true;
+    const id = btn.getAttribute("data-opt-id");
+    if (id === q.respuestaCorrecta) {
+      btn.classList.add("correct");
+    } else if (id === selectedOptId && !isCorrect) {
+      btn.classList.add("incorrect");
+    }
+  });
+
+  const feedbackBox = document.getElementById("quizFeedbackBox");
+  const btnNext = document.getElementById("btnNextQuizQuestion");
+
+  if (isCorrect) {
+    state.score++;
+    if (typeof SoundFX !== "undefined") SoundFX.playCorrect();
+
+    // Promover en Leitner si no está al máximo
+    const prevBox = currentCard.leitnerBox || 1;
+    const newBox = Math.min(3, prevBox + 1);
+    currentCard.leitnerBox = newBox;
+    currentCard.difficulty = newBox === 3 ? "easy" : newBox === 2 ? "good" : "hard";
+    const days = newBox === 3 ? 7 : newBox === 2 ? 3 : 1;
+    currentCard.nextReviewDate = new Date(Date.now() + days * 24 * 60 * 60 * 1000).toISOString().slice(0, 10);
+    state.promotedCount++;
+
+    feedbackBox.style.display = "flex";
+    feedbackBox.style.background = "rgba(16, 185, 129, 0.15)";
+    feedbackBox.style.border = "1px solid rgba(16, 185, 129, 0.4)";
+    feedbackBox.innerHTML = `
+      <div style="font-size: 13px; font-weight: 800; color: #34d399; display: flex; align-items: center; gap: 6px;">
+        <span>✓ ¡Excelente! Respuesta Correcta</span>
+        <span style="font-size: 10px; background: #10b981; color: #0b1120; padding: 2px 6px; border-radius: 4px; font-weight: 800;">
+          Ascendida a Caja ${newBox} 🚀
+        </span>
+      </div>
+      <div style="font-size: 11px; color: #cbd5e1; line-height: 1.4;">
+        ${q.norma || "Fundamento validado exitosamente."}
+      </div>
+    `;
+  } else {
+    if (typeof SoundFX !== "undefined") SoundFX.playIncorrect();
+
+    // Desciende a Caja 1 para repaso diario
+    currentCard.leitnerBox = 1;
+    currentCard.difficulty = "hard";
+    currentCard.nextReviewDate = new Date(Date.now() + 1 * 24 * 60 * 60 * 1000).toISOString().slice(0, 10);
+
+    feedbackBox.style.display = "flex";
+    feedbackBox.style.background = "rgba(239, 68, 68, 0.15)";
+    feedbackBox.style.border = "1px solid rgba(239, 68, 68, 0.4)";
+    feedbackBox.innerHTML = `
+      <div style="font-size: 13px; font-weight: 800; color: #f87171;">
+        ${selectedOptId ? "❌ Opción Errónea" : "⏳ ¡Tiempo Agotado!"} • Clave Oficial: ${q.respuestaCorrecta}
+      </div>
+      <div style="font-size: 11px; color: #cbd5e1; line-height: 1.4;">
+        <strong style="color: #fca5a5;">Criterio Normativo:</strong> ${q.norma || "Revisa la norma para afianzar el concepto."}
+      </div>
+      <div style="font-size: 10px; color: #fde68a; font-weight: 700;">
+        📌 Esta tarjeta se fijó en Caja 1 (Repaso Diario).
+      </div>
+    `;
+  }
+
+  // Guardar cambios en la tarjeta dentro de AppState.srsCards
+  const existingMasterIdx = AppState.srsCards.findIndex((c) => c.question && c.question.id === q.id);
+  if (existingMasterIdx >= 0) {
+    AppState.srsCards[existingMasterIdx].leitnerBox = currentCard.leitnerBox;
+    AppState.srsCards[existingMasterIdx].difficulty = currentCard.difficulty;
+    AppState.srsCards[existingMasterIdx].nextReviewDate = currentCard.nextReviewDate;
+  }
+  StorageManager.set("srsCards", AppState.srsCards);
+
+  btnNext.style.display = "block";
+}
+
+function finishQuizRelampago() {
+  const qArea = document.getElementById("quizRelampagoArea");
+  if (!qArea) return;
+
+  const state = AppState.quizRelampago;
+  const total = state.questions.length;
+  const pct = Math.round((state.score / total) * 100);
+
+  if (pct >= 70 && typeof SoundFX !== "undefined") {
+    SoundFX.playFanfare();
+  } else if (typeof SoundFX !== "undefined") {
+    SoundFX.playPop();
+  }
+
+  qArea.innerHTML = `
+    <div style="background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 20px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 14px; box-shadow: var(--shadow-md);">
+      <div style="font-size: 48px;">${pct >= 70 ? "🏆" : "💪"}</div>
+      
+      <div>
+        <h3 style="font-size: 16px; font-weight: 800; color: #f8fafc; margin: 0;">
+          ${pct >= 70 ? "¡Excelente Dominio Relámpago!" : "¡Buen Entrenamiento de Refuerzo!"}
+        </h3>
+        <p style="font-size: 12px; color: #94a3b8; margin: 4px 0 0 0;">
+          Has completado el repaso activo de tus preguntas guardadas.
+        </p>
+      </div>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; width: 100%; margin: 6px 0;">
+        <div style="background: rgba(15, 23, 42, 0.6); padding: 12px; border-radius: 8px; border: 1px solid var(--border-color);">
+          <div style="font-size: 22px; font-weight: 800; color: #38bdf8;">${state.score} / ${total}</div>
+          <div style="font-size: 11px; color: #94a3b8;">Aciertos (${pct}%)</div>
+        </div>
+        <div style="background: rgba(15, 23, 42, 0.6); padding: 12px; border-radius: 8px; border: 1px solid var(--border-color);">
+          <div style="font-size: 22px; font-weight: 800; color: #34d399;">+${state.promotedCount}</div>
+          <div style="font-size: 11px; color: #94a3b8;">Ascendidas en Leitner</div>
+        </div>
+      </div>
+
+      <div style="display: flex; gap: 8px; width: 100%;">
+        <button id="btnRetryQuizRelampago" class="btn-primary" style="flex: 1; padding: 10px; font-size: 11px; font-weight: 800;">
+          🔄 Repetir Quiz
+        </button>
+        <button id="btnBackToFlashcards" class="btn-secondary" style="flex: 1; padding: 10px; font-size: 11px; font-weight: 800;">
+          🎴 Ver Flashcards 3D
+        </button>
+      </div>
+    </div>
+  `;
+
+  document.getElementById("btnRetryQuizRelampago").addEventListener("click", () => {
+    startQuizRelampago();
+  });
+
+  document.getElementById("btnBackToFlashcards").addEventListener("click", () => {
+    exitQuizRelampago();
+  });
+}
+
+function exitQuizRelampago() {
+  const state = AppState.quizRelampago;
+  if (state && state.timer) {
+    clearInterval(state.timer);
+    state.timer = null;
+  }
+  state.isActive = false;
+
+  const quizArea = document.getElementById("quizRelampagoArea");
+  if (quizArea) quizArea.style.display = "none";
+
+  renderSrsTab();
 }
 
 // =========================================================================
