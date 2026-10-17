@@ -838,6 +838,106 @@ function setupTipsModal() {
   if (btnClose) btnClose.addEventListener("click", () => closeModal(modal));
 
   // Definición de Navegación de Subvistas en el Cuerpo de Práctica
+  let currentLecturaIndex = 0;
+
+  window.showLecturaTip = function(indexOrMode = "current") {
+    const list = typeof TIPS_LECTURA_CRITICA !== "undefined" ? TIPS_LECTURA_CRITICA : [];
+    if (!list || list.length === 0) return;
+
+    if (typeof indexOrMode === "number") {
+      currentLecturaIndex = (indexOrMode + list.length) % list.length;
+    } else if (indexOrMode === "next") {
+      currentLecturaIndex = (currentLecturaIndex + 1) % list.length;
+    } else if (indexOrMode === "random") {
+      currentLecturaIndex = Math.floor(Math.random() * list.length);
+    }
+
+    const tip = list[currentLecturaIndex];
+    if (!tip) return;
+
+    const badgeEl = document.getElementById("lecturaTipBadge");
+    const titleEl = document.getElementById("lecturaTipTitle");
+    const normaEl = document.getElementById("lecturaTipNorma");
+    const bodyEl = document.getElementById("lecturaTipBody");
+    const bannerImg = document.getElementById("lecturaTipBannerImg");
+    const bannerBadge = document.getElementById("lecturaTipBannerBadge");
+    const extraContentEl = document.getElementById("lecturaTipExtraContent");
+
+    if (badgeEl) {
+      badgeEl.textContent = `Técnica ${currentLecturaIndex + 1} de ${list.length} • Lectura Crítica CNSC`;
+    }
+    if (titleEl) {
+      titleEl.textContent = tip.titulo;
+    }
+    if (normaEl) {
+      normaEl.textContent = `💡 ${tip.regla}`;
+    }
+    if (bannerImg) {
+      bannerImg.src = "https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?auto=format&fit=crop&w=720&h=240&q=80";
+    }
+    if (bannerBadge) {
+      bannerBadge.textContent = "🎯 Desglose Forense & Comprensión de Casos";
+    }
+
+    if (bodyEl) {
+      bodyEl.innerHTML = `
+        <div style="font-size: 15px; color: #f8fafc; font-weight: 700; margin-bottom: 8px; line-height: 1.5;">
+          ${tip.resumen}
+        </div>
+        <div style="font-size: 13px; color: #94a3b8; line-height: 1.5; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 8px; margin-top: 8px;">
+          📌 <strong style="color: #38bdf8;">Aplicación Práctica en SIMO:</strong> ${tip.regla}
+        </div>
+      `;
+    }
+
+    if (extraContentEl) {
+      if (tip.id === "lc_3" || tip.id === "lc_1") {
+        extraContentEl.innerHTML = `
+          <div style="background: rgba(15, 23, 42, 0.85); border: 1px solid rgba(56, 189, 248, 0.3); border-radius: 10px; padding: 12px 14px;">
+            <div style="font-size: 13px; font-weight: 800; color: #38bdf8; margin-bottom: 8px; display: flex; align-items: center; gap: 6px;">
+              <span>🎯</span> Detector de Trampas: Toca para comprobar
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 6px;">
+              <button type="button" class="btn-trap-tester" data-trap-id="1" style="text-align: left; background: rgba(239, 68, 68, 0.12); border: 1px solid rgba(239, 68, 68, 0.35); padding: 7px 10px; border-radius: 6px; color: #fca5a5; font-size: 12px; cursor: pointer;">
+                ❌ <em>"...ordenar de plano y automáticamente sin audiencia..."</em>
+              </button>
+              <div id="trapFeedback1" style="display: none; font-size: 11px; background: rgba(0,0,0,0.4); padding: 6px 10px; border-radius: 6px; color: #fecaca; line-height: 1.45;">
+                🚨 <strong>TRAMPA:</strong> Viola el debido proceso (Art. 29 C.P.). Ninguna sanción opera "de plano" sin pliego de cargos ni oportunidad de defensa.
+              </div>
+              <button type="button" class="btn-trap-tester" data-trap-id="2" style="text-align: left; background: rgba(16, 185, 129, 0.12); border: 1px solid rgba(16, 185, 129, 0.35); padding: 7px 10px; border-radius: 6px; color: #6ee7b7; font-size: 12px; cursor: pointer;">
+                ✅ <em>"...proyectar el auto motivado garantizando el término legal..."</em>
+              </button>
+              <div id="trapFeedback2" style="display: none; font-size: 11px; background: rgba(0,0,0,0.4); padding: 6px 10px; border-radius: 6px; color: #a7f3d0; line-height: 1.45;">
+                💎 <strong>CLAVE:</strong> Cumple el rol, respeta motivación y términos de contradicción legales.
+              </div>
+            </div>
+          </div>
+        `;
+      } else {
+        extraContentEl.innerHTML = `
+          <div style="background: rgba(56, 189, 248, 0.08); border: 1px solid rgba(56, 189, 248, 0.25); border-radius: 8px; padding: 12px 14px;">
+            <div style="font-size: 13px; font-weight: 800; color: #38bdf8; margin-bottom: 4px;">
+              💡 Fórmula de Comprensión E-P-C:
+            </div>
+            <div style="font-size: 13px; color: #cbd5e1; line-height: 1.5;">
+              <strong>E</strong>nunciado final con '?' ➔ <strong>P</strong>remisa fáctica probada en fechas ➔ <strong>C</strong>lave congruente con tu rol sin atajos.
+            </div>
+          </div>
+        `;
+      }
+
+      extraContentEl.querySelectorAll(".btn-trap-tester").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const trapId = btn.getAttribute("data-trap-id");
+          const fb = document.getElementById(`trapFeedback${trapId}`);
+          if (fb) {
+            fb.style.display = fb.style.display === "none" ? "block" : "none";
+          }
+        });
+      });
+    }
+  };
+
   window.setPracticeSubView = function(view) {
     const vPractice = document.getElementById("subviewPractice");
     const vLectura = document.getElementById("subviewLecturaCritica");
@@ -857,6 +957,8 @@ function setupTipsModal() {
 
     if (view === "tipFlash") {
       showRandomTipFlash({ forced: true });
+    } else if (view === "lectura") {
+      window.showLecturaTip("current");
     }
 
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -898,6 +1000,7 @@ function setupTipsModal() {
   const btnOpenLectura = document.getElementById("btnOpenLecturaModal");
   const btnCloseLectura = document.getElementById("btnCloseLecturaModal");
   const btnBackLectura = document.getElementById("btnBackToPracticeFromLectura");
+  const btnNextLectura = document.getElementById("btnNextLecturaTip");
   const btnVerTodasDesdeLectura = document.getElementById("btnVerTodasClavesDesdeLectura");
 
   if (btnOpenLectura) {
@@ -906,6 +1009,12 @@ function setupTipsModal() {
         switchTab("practice");
       }
       setPracticeSubView("lectura");
+    });
+  }
+
+  if (btnNextLectura) {
+    btnNextLectura.addEventListener("click", () => {
+      window.showLecturaTip("next");
     });
   }
 
@@ -934,17 +1043,6 @@ function setupTipsModal() {
       if (filterComp) filterComp.click();
     });
   }
-
-  // Interacción Cazador de Trampas Semánticas en Lectura Crítica
-  document.querySelectorAll(".btn-trap-tester").forEach((btn) => {
-    btn.addEventListener("click", () => {
-      const trapId = btn.getAttribute("data-trap-id");
-      const fb = document.getElementById(`trapFeedback${trapId}`);
-      if (fb) {
-        fb.style.display = fb.style.display === "none" ? "block" : "none";
-      }
-    });
-  });
 }
 
 // =========================================================================
@@ -1199,8 +1297,8 @@ function showRandomTipFlash({ forced = false, customTip = null } = {}) {
   if (!forced && !AppState.autoTips.enabled) return;
   if (typeof TIPS_PJS_DATA === "undefined" || TIPS_PJS_DATA.length === 0) return;
 
-  const modal = document.getElementById("popupTipFlashModal");
-  if (!modal) return;
+  const container = document.getElementById("subviewTipFlash") || document.getElementById("popupTipFlashModal");
+  if (!container) return;
 
   let tip = customTip;
   if (!tip) {
@@ -1538,6 +1636,26 @@ function setupNavigation() {
       closeModal(modalSettings);
       const microModal = document.getElementById("microlearningModal");
       if (microModal) openModal(microModal);
+    });
+  }
+  const btnSettingsOpenAccount = document.getElementById("btnOpenAccountModal");
+  if (btnSettingsOpenAccount && modalSettings) {
+    btnSettingsOpenAccount.addEventListener("click", () => {
+      closeModal(modalSettings);
+      if (typeof window.openAccountModal === "function") {
+        window.openAccountModal();
+      } else {
+        const accModal = document.getElementById("accountModal");
+        if (accModal) openModal(accModal);
+      }
+    });
+  }
+  const btnSettingsOpenInstall = document.getElementById("btnOpenInstallModal");
+  if (btnSettingsOpenInstall && modalSettings) {
+    btnSettingsOpenInstall.addEventListener("click", () => {
+      closeModal(modalSettings);
+      const installModal = document.getElementById("installModal");
+      if (installModal) openModal(installModal);
     });
   }
 
@@ -3103,27 +3221,69 @@ function setupAccountModal() {
   const btnSave = document.getElementById("btnSaveAccountUser");
   const inputServer = document.getElementById("inputAccountServerUrl");
   const btnManualSync = document.getElementById("btnManualSyncNow");
+  const inputQuickUser = document.getElementById("inputSettingsQuickUserId");
+  const btnSaveQuickUser = document.getElementById("btnSaveQuickUser");
 
-  if (!modal || typeof CloudSync === "undefined") return;
+  window.openAccountModal = function() {
+    const currentUid = (typeof CloudSync !== "undefined" && CloudSync.config && CloudSync.config.userId)
+      ? CloudSync.config.userId
+      : (localStorage.getItem("simo_aspirante_user") || "jcarlos");
 
-  CloudSync.init().then(() => {
-    if (inputUser) inputUser.value = CloudSync.config.userId || "jcarlos";
-    if (inputServer) inputServer.value = CloudSync.config.serverUrl || "https://simo.liverohoa.com";
-    CloudSync.updateStatusBadge();
-  });
+    if (inputUser) inputUser.value = currentUid;
+    if (inputQuickUser) inputQuickUser.value = currentUid;
+    if (inputServer && typeof CloudSync !== "undefined" && CloudSync.config) {
+      inputServer.value = CloudSync.config.serverUrl || "https://simo.liverohoa.com";
+    }
+    if (typeof CloudSync !== "undefined" && typeof CloudSync.updateStatusBadge === "function") {
+      CloudSync.updateStatusBadge();
+    }
+    if (modal) openModal(modal);
+  };
+
+  const syncUserAcrossUI = (userId) => {
+    const cleanId = (userId || "").trim().toLowerCase();
+    if (!cleanId) return;
+
+    if (inputUser) inputUser.value = cleanId;
+    if (inputQuickUser) inputQuickUser.value = cleanId;
+
+    const sub = document.getElementById("settingsAccountSub");
+    if (sub) sub.textContent = `Aspirante: ${cleanId} • 🟢 Nube activa`;
+
+    const cardUser = document.getElementById("accountCardUserDisplay");
+    if (cardUser) cardUser.textContent = cleanId;
+
+    try {
+      localStorage.setItem("simo_aspirante_user", cleanId);
+    } catch (e) {}
+  };
+
+  // Carga inicial de usuario en inputs
+  if (typeof CloudSync !== "undefined") {
+    CloudSync.init().then(() => {
+      const uid = CloudSync.config.userId || "jcarlos";
+      syncUserAcrossUI(uid);
+      if (inputServer) inputServer.value = CloudSync.config.serverUrl || "https://simo.liverohoa.com";
+      CloudSync.updateStatusBadge();
+    }).catch(() => {
+      const fallbackUser = localStorage.getItem("simo_aspirante_user") || "jcarlos";
+      syncUserAcrossUI(fallbackUser);
+    });
+  } else {
+    const fallbackUser = localStorage.getItem("simo_aspirante_user") || "jcarlos";
+    syncUserAcrossUI(fallbackUser);
+  }
 
   if (btnOpen) {
     btnOpen.addEventListener("click", () => {
-      if (inputUser) inputUser.value = CloudSync.config.userId || "jcarlos";
-      if (inputServer) inputServer.value = CloudSync.config.serverUrl || "https://simo.liverohoa.com";
-      CloudSync.updateStatusBadge();
-      openModal(modal);
+      const modalSettings = document.getElementById("appSettingsModal");
+      if (modalSettings) closeModal(modalSettings);
+      window.openAccountModal();
     });
   }
 
-  const handleSave = async () => {
-    const rawUser = inputUser ? inputUser.value.trim() : "jcarlos";
-    const serverUrl = inputServer ? inputServer.value.trim() : "https://simo.liverohoa.com";
+  const performSaveUser = async (targetUserId, targetServerUrl, sourceBtn) => {
+    const rawUser = (targetUserId || "").trim().toLowerCase();
     if (!rawUser) {
       showCustomModal({
         title: "ID Requerido",
@@ -3133,35 +3293,64 @@ function setupAccountModal() {
       return;
     }
 
-    if (serverUrl) {
-      CloudSync.config.serverUrl = serverUrl;
+    if (sourceBtn) {
+      sourceBtn.textContent = "⏳ Guardando...";
+      sourceBtn.disabled = true;
     }
 
-    btnSave.textContent = "⏳ Conectando...";
-    btnSave.disabled = true;
-
     try {
-      await CloudSync.login(rawUser);
-      closeModal(modal);
-      btnSave.textContent = "💾 Guardar e Iniciar Sesión";
-      btnSave.disabled = false;
+      syncUserAcrossUI(rawUser);
+
+      if (typeof CloudSync !== "undefined") {
+        if (targetServerUrl) {
+          CloudSync.config.serverUrl = targetServerUrl;
+        }
+        await CloudSync.login(rawUser);
+      } else if (typeof StorageManager !== "undefined") {
+        await StorageManager.set("cloudSyncConfig", { userId: rawUser });
+      }
+
+      if (modal && modal.classList.contains("active")) {
+        closeModal(modal);
+      }
+
       showCustomModal({
-        title: "¡Sesión Activa!",
-        message: `Has iniciado sesión como "${rawUser}". Tu progreso, racha y preguntas se sincronizan solos en segundo plano.`,
+        title: "¡Usuario Guardado!",
+        message: `Tu nombre de usuario se actualizó a "${rawUser}". Tu progreso y preguntas se sincronizan bajo esta cuenta.`,
         icon: "👤"
       });
     } catch (e) {
-      btnSave.textContent = "💾 Guardar e Iniciar Sesión";
-      btnSave.disabled = false;
-      closeModal(modal);
+      console.warn("[CloudSync] Error guardando usuario:", e);
+      if (modal && modal.classList.contains("active")) {
+        closeModal(modal);
+      }
+    } finally {
+      if (sourceBtn) {
+        sourceBtn.textContent = sourceBtn.id === "btnSaveQuickUser" ? "💾 Guardar" : "💾 Guardar e Iniciar Sesión";
+        sourceBtn.disabled = false;
+      }
     }
   };
 
-  if (btnSave) btnSave.addEventListener("click", handleSave);
+  if (btnSave) {
+    btnSave.addEventListener("click", () => {
+      const rawUser = inputUser ? inputUser.value : "jcarlos";
+      const serverUrl = inputServer ? inputServer.value : "https://simo.liverohoa.com";
+      performSaveUser(rawUser, serverUrl, btnSave);
+    });
+  }
+
+  if (btnSaveQuickUser) {
+    btnSaveQuickUser.addEventListener("click", () => {
+      const rawUser = inputQuickUser ? inputQuickUser.value : "jcarlos";
+      performSaveUser(rawUser, null, btnSaveQuickUser);
+    });
+  }
+
   if (btnCloseX) btnCloseX.addEventListener("click", () => closeModal(modal));
   if (btnClose) btnClose.addEventListener("click", () => closeModal(modal));
 
-  if (btnManualSync) {
+  if (btnManualSync && typeof CloudSync !== "undefined") {
     btnManualSync.addEventListener("click", async () => {
       btnManualSync.textContent = "⏳ Sincronizando...";
       btnManualSync.disabled = true;
