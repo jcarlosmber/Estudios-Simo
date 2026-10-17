@@ -13,45 +13,52 @@ const DEFAULT_INTERVAL_MINUTES = 25;
 const TIPS_LECTURA_CRITICA = [
   {
     id: "lc_1",
+    numero: 1,
     titulo: "Lectura Inversa: Encuentra el Verbo Rector",
-    resumen: "Nunca leas el caso desde el inicio. Ve a la última frase interrogativa en negrilla para fijar el verbo rector (Notificar, Suspender, Rechazar, Proyectar).",
-    regla: "Saber qué te piden antes de leer el cuerpo del caso ahorra 50% de esfuerzo cognitivo."
+    regla: "Saber qué te piden antes de leer el cuerpo del caso ahorra 50% de esfuerzo cognitivo.",
+    resumen: "Nunca comiences a leer el caso desde el primer párrafo. Dirige la mirada directamente a la última frase interrogativa en negrilla para fijar el verbo rector (Notificar, Suspender, Decretar, Rechazar, Proyectar)."
   },
   {
     id: "lc_2",
+    numero: 2,
     titulo: "Filtro Anti-Ruido: Hechos Probados vs. Emociones",
-    resumen: "Ignora adjetivos y enfados de usuarios. Rastrea únicamente fechas de radicación, actos administrativos notificados y cifras en firme.",
-    regla: "En derecho público solo lo probado en el expediente cuenta. Lo no documentado es distractor."
+    regla: "En derecho público solo lo probado en el expediente cuenta. Lo no documentado es distractor.",
+    resumen: "Ignora adjetivos y enfados de usuarios. Rastrea únicamente fechas de radicación, actos administrativos notificados y cifras en firme en UVT."
   },
   {
     id: "lc_3",
+    numero: 3,
     titulo: "Radar de Cuantificadores Absolutos (Trampas)",
-    resumen: "Alerta máxima con 'siempre', 'nunca', 'únicamente', 'inapelable' o 'automáticamente'. Son distractores en un 95%.",
-    regla: "La clave prefiere 'previa verificación motivada', 'dentro del término' o 'conforme al debido proceso'."
+    regla: "Palabras categóricas como 'siempre', 'nunca' o 'de plano' son distractores en un 95%.",
+    resumen: "Alerta máxima con 'siempre', 'nunca', 'únicamente', 'inapelable' o 'automáticamente'. La clave oficial prefiere 'previa verificación motivada y término de ley'."
   },
   {
     id: "lc_4",
+    numero: 4,
     titulo: "Test del Rol: Cuidado con la Verdad Incompetente",
-    resumen: "Una opción puede citar una ley perfecta, pero si la acción le toca al Director Seccional o al Juez, es usurpación de funciones.",
-    regla: "Pregúntate siempre: ¿Está facultado mi cargo (Gestor / Analista) para tomar esta decisión por sí mismo?"
+    regla: "Una opción puede citar una ley perfecta, pero si no es competencia de tu cargo, es usurpación.",
+    resumen: "Pregúntate siempre: ¿Está facultado mi cargo (Gestor / Analista) para tomar esta decisión por sí mismo? Si le toca a un Juez, Fiscal o Director, descártala."
   },
   {
     id: "lc_5",
+    numero: 5,
     titulo: "Fórmula E-P-C de Comprensión Rápida",
-    resumen: "Enunciado interrogativo ➔ Premisa fáctica probada con fechas ➔ Clave congruente con tu rol.",
-    regla: "Desarticula casos extensos de 4 párrafos en menos de 45 segundos aplicando el filtro E-P-C."
+    regla: "Enunciado interrogativo ➔ Premisa fáctica probada ➔ Clave congruente con tu rol.",
+    resumen: "Desarticula casos extensos en 3 pasos: Enunciado (E) + Premisa fáctica probada en fechas (P) = Clave congruente sin atajos ilegales (C)."
   },
   {
     id: "lc_6",
+    numero: 6,
     titulo: "Técnica E-I-C de Análisis Forense",
-    resumen: "Escaneo visual (8 seg de fechas y UVT) ➔ Interrogante final ➔ Conexión al párrafo determinante.",
-    regla: "No leas como novela: escanea como auditor y responde como juez."
+    regla: "Escaneo visual preliminar ➔ Interrogante ➔ Conexión al párrafo determinante.",
+    resumen: "Escaneo visual de 8 seg de fechas y UVT ➔ Interrogante final ➔ Conexión directa al párrafo determinante sin leer texto irrelevante."
   },
   {
     id: "lc_7",
+    numero: 7,
     titulo: "Triángulo V-N-C del Verbo Rector",
-    resumen: "V (Verbo de la pregunta) ➔ N (Nivel: Profesional vs Técnico) ➔ C (Competencia legal).",
-    regla: "Nivel Técnico apoya y verifica; Nivel Profesional sustenta, proyecta y formula."
+    regla: "V (Verbo) ➔ N (Nivel del empleo) ➔ C (Competencia legal).",
+    resumen: "Nivel Técnico (Analista) verifica y apoya; Nivel Profesional (Gestor) proyecta, analiza y sustenta; Directivos ordenan, deciden y sancionan."
   }
 ];
 

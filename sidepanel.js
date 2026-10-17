@@ -187,45 +187,192 @@ async function sendDeviceNotification(title, options = {}) {
 const TIPS_LECTURA_CRITICA = [
   {
     id: "lc_1",
+    numero: 1,
     titulo: "Lectura Inversa: Encuentra el Verbo Rector",
-    resumen: "Nunca leas el caso desde el inicio. Ve a la última frase interrogativa en negrilla para fijar el verbo rector (Notificar, Suspender, Rechazar, Proyectar).",
-    regla: "Saber qué te piden antes de leer el cuerpo del caso ahorra 50% de esfuerzo cognitivo."
+    regla: "Saber qué te piden antes de leer el cuerpo del caso ahorra 50% de esfuerzo cognitivo.",
+    resumen: "Nunca comiences a leer el caso desde el primer párrafo. En las pruebas de juicio situacional de la CNSC, los casos tienen entre 80 y 250 palabras de contexto descriptivo. Dirige tu mirada directamente a la última frase en negrilla o con signos de interrogación para atrapar el Verbo Rector (Notificar, Suspender, Decretar, Rechazar, Proyectar). Al saber exactamente la meta procesal, lees el texto con un filtro selectivo que descarta la información irrelevante.",
+    formula: "Última frase con '?' ➔ Verbo Rector ➔ Filtro de búsqueda selectiva",
+    puntosClave: [
+      "Ignora el primer párrafo hasta haber leído el interrogante final en negrilla.",
+      "Subraya mentalmente el verbo rector (ej. 'proyectar respuesta' vs 'sancionar de plano').",
+      "Lee las 3 opciones de respuesta antes de leer la historia completa del caso."
+    ],
+    ejercicio: {
+      pregunta: "Caso extenso de 3 párrafos sobre controversia aduanera. La última frase dice: 'Frente a la solicitud extemporánea del declarante para subsanar la declaración anticipada, la actuación procedente que debe PROYECTAR el funcionario es:' ¿Cuál es la opción congruente con el verbo y la situación?",
+      opciones: [
+        "A. Decretar inmediatamente el decomiso directo de la mercancía sin auto motivado.",
+        "B. Proyectar auto motivado que rechaza la solicitud extemporánea garantizando términos de contradicción.",
+        "C. Abrir una indagación preliminar para averiguar los motivos personales del retardo del declarante."
+      ],
+      correcta: 1,
+      explicaciones: [
+        "❌ Trampa: 'Decretar decomiso directo sin auto' es arbitrario y no corresponde al verbo 'proyectar respuesta a solicitud extemporánea'.",
+        "✅ ¡Excelente! El verbo rector pide 'PROYECTAR' ante un término vencido; proyectar auto motivado respetando el término legal es la respuesta exacta.",
+        "❌ Distractor de dilación: En términos procesales perentorios no se abren 'indagaciones previas' sobre motivos subjetivos."
+      ]
+    }
   },
   {
     id: "lc_2",
+    numero: 2,
     titulo: "Filtro Anti-Ruido: Hechos Probados vs. Emociones",
-    resumen: "Ignora adjetivos y enfados de usuarios. Rastrea únicamente fechas de radicación, actos administrativos notificados y cifras en firme.",
-    regla: "En derecho público solo lo probado en el expediente cuenta. Lo no documentado es distractor."
+    regla: "En derecho público solo lo probado en el expediente cuenta. Lo no documentado es distractor.",
+    resumen: "Los redactores de la prueba suelen adornar los casos con relatos emotivos: 'el contribuyente llora y alega quiebra inminente', 'el usuario insulta a los funcionarios', 'el auditor sospecha que la empresa oculta activos'. El aspirante novato se distrae con la empatía o el prejuicio. El aspirante preparado activa el Filtro Anti-Ruido: elimina adjetivos y busca exclusivamente fechas de notificación, actos administrativos en firme y cuantías en UVT.",
+    formula: "Expediente con fechas y soportes formales > Emociones o quejas del usuario",
+    puntosClave: [
+      "Si una afirmación no tiene soporte documental o fecha en el expediente, legalmente no existe.",
+      "Las emociones, enojos o súplicas jamás modifican los términos perentorios del Estatuto Tributario.",
+      "Extrae en 5 segundos la línea de tiempo: Fecha del acto ➔ Fecha de notificación ➔ Vencimiento."
+    ],
+    ejercicio: {
+      pregunta: "Un comerciante acude a la DIAN muy alterado afirmando que por un incendio perdió sus facturas y que 'es inhumano e injusto' que le cobren sanción por no enviar información. En el expediente consta requerimiento ordinario notificado válidamente hace 4 meses sin respuesta. ¿Cuál es el dato jurídico determinante?",
+      opciones: [
+        "A. El angustioso relato verbal del comerciante sobre la pérdida de sus libros por fuerza mayor.",
+        "B. El requerimiento ordinario debidamente notificado hace 4 meses cuyo término legal de respuesta expiró.",
+        "C. La apreciación subjetiva del funcionario sobre la sinceridad del comerciante."
+      ],
+      correcta: 1,
+      explicaciones: [
+        "❌ Distractor de ruido emocional: La fuerza mayor debe probarse formalmente dentro del término de descargos, no mediante alegaciones verbales posteriores.",
+        "✅ ¡Perfecto! Núcleo fáctico probado en el expediente: acto notificado en debida forma con término legal vencido. Ese es el único dato legal vinculante.",
+        "❌ Distractor subjetivo: Los servidores públicos resuelven conforme al acervo probatorio, no por impresiones de sinceridad."
+      ]
+    }
   },
   {
     id: "lc_3",
+    numero: 3,
     titulo: "Radar de Cuantificadores Absolutos (Trampas)",
-    resumen: "Alerta máxima con 'siempre', 'nunca', 'únicamente', 'inapelable' o 'automáticamente'. Son distractores en un 95%.",
-    regla: "La clave prefiere 'previa verificación motivada', 'dentro del término' o 'conforme al debido proceso'."
+    regla: "Palabras categóricas como 'siempre', 'nunca' o 'de plano' son distractores en un 95%.",
+    resumen: "En la administración pública rige el debido proceso (Art. 29 C.P.), la presunción de inocencia y el derecho de contradicción. Por mandato constitucional, la ley casi nunca autoriza actuar 'de plano', 'automáticamente', 'sin fórmula de juicio' ni 'de forma inapelable'. Cuando leas las opciones de respuesta, escanea de inmediato buscando estos cuantificadores absolutistas: son distractores diseñados para atrapar a quienes creen erróneamente que la DIAN actúa de manera autoritaria.",
+    formula: "Palabras absolutas ('automáticamente', 'sin recurso', 'de plano') = 🚨 ALERTA ROJA",
+    puntosClave: [
+      "Alerta máxima con: 'siempre', 'nunca', 'únicamente', 'inapelable', 'de plano', 'automáticamente'.",
+      "Lenguaje preferido de la clave oficial: 'previa verificación motivada', 'dentro del término legal', 'garantizando el derecho de contradicción'.",
+      "Excepción única: cuando la ley expresamente señale que contra un auto de trámite no procede recurso."
+    ],
+    ejercicio: {
+      pregunta: "Al verificar inconsistencias en la declaración de renta de un contribuyente, ¿cuál de las siguientes opciones representa una trampa de cuantificador absoluto que debes descartar de inmediato?",
+      opciones: [
+        "A. '...proferir de plano y automáticamente liquidación oficial de aforo sin requerimiento especial previo...'",
+        "B. '...notificar requerimiento especial motivado para que el contribuyente presente objeciones dentro del término legal...'",
+        "C. '...verificar los cruces de información de terceros antes de proferir el pliego de cargos...'"
+      ],
+      correcta: 0,
+      explicaciones: [
+        "✅ ¡Detectaste la trampa! 'De plano y automáticamente sin requerimiento previo' viola el debido proceso del Art. 703 del E.T. Es el distractor clásico de la CNSC.",
+        "❌ Esta es una opción garantista y válida (lenguaje de clave oficial), no una trampa.",
+        "❌ Esta es una actuación de auditoría prudente y legal, no una trampa absolutista."
+      ]
+    }
   },
   {
     id: "lc_4",
+    numero: 4,
     titulo: "Test del Rol: Cuidado con la Verdad Incompetente",
-    resumen: "Una opción puede citar una ley perfecta, pero si la acción le toca al Director Seccional o al Juez, es usurpación de funciones.",
-    regla: "Pregúntate siempre: ¿Está facultado mi cargo (Gestor / Analista) para tomar esta decisión por sí mismo?"
+    regla: "Una opción puede citar una ley perfecta, pero si no es competencia de tu cargo, es usurpación.",
+    resumen: "La trampa más sofisticada en pruebas situacionales es la 'Verdad Incompetente'. Consiste en una opción redactada con términos jurídicos impecables, que cita jurisprudencia real del Consejo de Estado, pero cuya ordenación o firma le corresponde al Director General, a un Juez de la República, a la Fiscalía o al Director Seccional, y no a un Gestor III o Analista IV. Si tu cargo no puede ejecutar esa acción por sí mismo según el manual de funciones, la opción es falsa por incompetencia.",
+    formula: "¿Está facultado mi cargo (Gestor / Analista) para tomar esta decisión por sí mismo?",
+    puntosClave: [
+      "Pregúntate siempre: ¿Quién firma y quién decide esto según el manual de funciones?",
+      "El Nivel Técnico verifica y clasifica; el Nivel Profesional proyecta y sustenta; el Directivo ordena y sanciona.",
+      "Las órdenes de captura y extinciones de dominio pertenecen a la Fiscalía y Jueces, nunca a un funcionario DIAN."
+    ],
+    ejercicio: {
+      pregunta: "Como Gestor III en Fiscalización detectas indicios graves de contrabando continuado y facturación falsa por $2.500 millones. ¿Cuál es tu actuación legítima según tu rol funcional?",
+      opciones: [
+        "A. Ordenar la captura del representante legal de la empresa y decretar la extinción penal del dominio de las bodegas.",
+        "B. Elaborar el informe técnico probatorio motivado y remitirlo al superior para que compulse copias a la Fiscalía.",
+        "C. Llegar a un acuerdo transaccional informal con el contribuyente para perdonarle parte de la sanción."
+      ],
+      correcta: 1,
+      explicaciones: [
+        "❌ Verdad Incompetente / Usurpación de Funciones: Ordenar capturas y extinguir dominio son facultades penales exclusivas de Fiscales y Jueces, no de un Gestor DIAN.",
+        "✅ ¡Exacto! Tu rol profesional es recaudar pruebas, elaborar el informe técnico motivado y trasladar al superior para las acciones penales y administrativas pertinentes.",
+        "❌ Falta grave disciplinaria: Las sanciones tributarias son de orden público y no se negocian informalmente."
+      ]
+    }
   },
   {
     id: "lc_5",
+    numero: 5,
     titulo: "Fórmula E-P-C de Comprensión Rápida",
-    resumen: "Enunciado interrogativo ➔ Premisa fáctica probada con fechas ➔ Clave congruente con tu rol.",
-    regla: "Desarticula casos extensos de 4 párrafos en menos de 45 segundos aplicando el filtro E-P-C."
+    regla: "Enunciado interrogativo ➔ Premisa fáctica probada ➔ Clave congruente con tu rol.",
+    resumen: "Cuando el tiempo apremie o sientas fatiga mental tras muchas preguntas, aplica la Fórmula E-P-C para resolver cualquier caso en menos de 40 segundos: E (Enunciado final): ¿Qué problema concreto exige resolver la pregunta? P (Premisa fáctica probada): ¿Qué hecho está soportado con fechas y normas en firme? C (Clave congruente): ¿Cuál de las 3 opciones une el Enunciado con la Premisa respetando la competencia de tu cargo y el debido proceso?",
+    formula: "E (Enunciado final) + P (Premisa probada en fechas) = C (Clave congruente)",
+    puntosClave: [
+      "E: Filtra el 80% de la información innecesaria y fija el objetivo procesal.",
+      "P: Descarta opciones que contradicen los hechos probados o inventan datos no dichos.",
+      "C: Elige la opción que resuelve directamente el problema planteado sin atajos ilegales."
+    ],
+    ejercicio: {
+      pregunta: "Aplica E-P-C: Enunciado (E): Qué actuación procede ante un recurso de reconsideración tributario. Premisa (P): El expediente prueba que el contribuyente radicó el recurso 5 días hábiles después del vencimiento legal. ¿Cuál es la Clave Congruente (C)?",
+      opciones: [
+        "A. Dar trámite al recurso aplicando el principio de favorabilidad tributaria.",
+        "B. Proyectar auto de rechazo por extemporaneidad motivando el vencimiento de términos y garantizando recurso de queja.",
+        "C. Guardar silencio administrativo y archivar el expediente sin comunicar al contribuyente."
+      ],
+      correcta: 1,
+      explicaciones: [
+        "❌ Contradice la Premisa (P): La extemporaneidad en recursos tributarios genera rechazo obligatorio por falta de competencia temporal.",
+        "✅ ¡Perfecta aplicación E-P-C! Enunciado resuelto + Premisa probada de extemporaneidad + Clave congruente con auto motivado legal.",
+        "❌ Viola el debido proceso y deber de motivación: La administración debe resolver expresamente mediante acto notificado."
+      ]
+    }
   },
   {
     id: "lc_6",
+    numero: 6,
     titulo: "Técnica E-I-C de Análisis Forense",
-    resumen: "Escaneo visual (8 seg de fechas y UVT) ➔ Interrogante final ➔ Conexión al párrafo determinante.",
-    regla: "No leas como novela: escanea como auditor y responde como juez."
+    regla: "Escaneo visual preliminar ➔ Interrogante ➔ Conexión al párrafo determinante.",
+    resumen: "Inspirada en las auditorías tributarias y aduaneras de la DIAN: E (Escaneo relámpago de 8 segundos): Recorre el caso saltando palabras de relleno para atrapar anclas duras: fechas, cuantías en UVT, números de resolución y siglas (NIT, CPACA, E.T.). I (Interrogante rector): Lee la pregunta final para saber exactamente qué cálculo o trámite te solicitan. C (Conexión al párrafo determinante): Regresa únicamente al párrafo donde se encuentra la fecha o cifra identificada, omitiendo todo el texto restante.",
+    formula: "Escaneo de Anclas (Fechas/UVT) ➔ Interrogante ➔ Conexión selectiva al párrafo clave",
+    puntosClave: [
+      "No leas como una novela: escanea como auditor forense que busca discrepancias.",
+      "Las anclas duras (fechas y números) son imanes visuales que te llevan al párrafo clave.",
+      "Te permite contestar preguntas complejas de liquidación y términos en la mitad de tiempo."
+    ],
+    ejercicio: {
+      pregunta: "Escaneo Forense: Un caso menciona una factura emitida el 10 de enero de 2024, un requerimiento ordinario notificado el 15 de marzo, y una respuesta radicada el 20 de mayo. El interrogante te pide determinar si la respuesta fue oportuna si el término legal era de 15 días hábiles. ¿Qué ancla conecta la solución?",
+      opciones: [
+        "A. La fecha de emisión de la factura (10 de enero).",
+        "B. El cálculo de días hábiles entre la notificación del requerimiento (15 de marzo) y la radicación (20 de mayo).",
+        "C. El valor monetario registrado en la factura electrónica."
+      ],
+      correcta: 1,
+      explicaciones: [
+        "❌ Distractor temporal irrelevante para el cómputo de oportunidad procesal.",
+        "✅ ¡Exacto! La técnica E-I-C conecta el término procesal: de 15 de marzo a 20 de mayo excede con creces los 15 días hábiles. El ancla determinante es la línea de tiempo del requerimiento.",
+        "❌ Cifra económica no solicitada por el interrogante procesal."
+      ]
+    }
   },
   {
     id: "lc_7",
+    numero: 7,
     titulo: "Triángulo V-N-C del Verbo Rector",
-    resumen: "V (Verbo de la pregunta) ➔ N (Nivel: Profesional vs Técnico) ➔ C (Competencia legal).",
-    regla: "Nivel Técnico apoya y verifica; Nivel Profesional sustenta, proyecta y formula."
+    regla: "V (Verbo) ➔ N (Nivel del empleo) ➔ C (Competencia legal).",
+    resumen: "Cada empleo de carrera en la DIAN (Decreto Ley 071 de 2020 y Decreto 1742 de 2020) opera en un nivel jerárquico preciso. El Triángulo V-N-C cruza: V (Verbo de la opción): ¿El verbo denota ejecutar, verificar, sustentar, proyectar o decidir? N (Nivel del cargo): Nivel Técnico (Analista) verifica, clasifica y apoya; Nivel Profesional (Gestor) analiza, proyecta y sustenta; Directivos ordenan y sancionan. C (Competencia): Si un Analista pretende proferir pliegos o un Gestor ordenar embargos judiciales, la opción está viciada por incompetencia.",
+    formula: "V (Verbo de la opción) + N (Nivel del cargo) + C (Competencia del manual) = CLAVE",
+    puntosClave: [
+      "Si concursas para ANALISTA IV (Técnico), descarta opciones donde el funcionario firma actos resolutivos de fondo.",
+      "Si concursas para GESTOR III (Profesional), la opción correcta suele ser 'elaborar informe técnico motivado' o 'proyectar pliego'.",
+      "Los verbos de fondo (Sancionar, Fallar, Decomisar) están reservados a Directores Seccionales y Jefes de División."
+    ],
+    ejercicio: {
+      pregunta: "En el empleo de ANALISTA IV (Nivel Técnico DIAN), durante una inspección en depósito aduanero detectas exceso de mercancía no declarada. ¿Cuál acción corresponde a la congruencia V-N-C de tu nivel?",
+      opciones: [
+        "A. Proferir la resolución sancionatoria de decomiso definitivo de la mercancía.",
+        "B. Levantar el acta de inspección detallando el conteo físico y trasladarla con los soportes al Profesional competente.",
+        "C. Ordenar el remate público inmediato de los bienes en la plataforma aduanera."
+      ],
+      correcta: 1,
+      explicaciones: [
+        "❌ Incongruencia de Nivel: Proferir resoluciones sancionatorias de fondo es competencia de Jefes de División o Directores, no del Nivel Técnico.",
+        "✅ ¡Triángulo V-N-C perfecto! Verbo: 'Levantar acta y trasladar'; Nivel: Técnico (apoyo y verificación); Competencia: dejar constancia física en el expediente.",
+        "❌ Usurpación de funciones de remate y disposición de mercancías."
+      ]
+    }
   }
 ];
 
@@ -881,57 +1028,123 @@ function setupTipsModal() {
 
     if (bodyEl) {
       bodyEl.innerHTML = `
-        <div style="font-size: 15px; color: #f8fafc; font-weight: 700; margin-bottom: 8px; line-height: 1.5;">
+        <div style="font-size: 15px; color: #f8fafc; font-weight: 700; margin-bottom: 8px; line-height: 1.55;">
           ${tip.resumen}
         </div>
         <div style="font-size: 13px; color: #94a3b8; line-height: 1.5; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 8px; margin-top: 8px;">
-          📌 <strong style="color: #38bdf8;">Aplicación Práctica en SIMO:</strong> ${tip.regla}
+          📌 <strong style="color: #38bdf8;">Regla de Oro en SIMO:</strong> ${tip.regla}
         </div>
       `;
     }
 
-    if (extraContentEl) {
-      if (tip.id === "lc_3" || tip.id === "lc_1") {
-        extraContentEl.innerHTML = `
-          <div style="background: rgba(15, 23, 42, 0.85); border: 1px solid rgba(56, 189, 248, 0.3); border-radius: 10px; padding: 12px 14px;">
-            <div style="font-size: 13px; font-weight: 800; color: #38bdf8; margin-bottom: 8px; display: flex; align-items: center; gap: 6px;">
-              <span>🎯</span> Detector de Trampas: Toca para comprobar
-            </div>
-            <div style="display: flex; flex-direction: column; gap: 6px;">
-              <button type="button" class="btn-trap-tester" data-trap-id="1" style="text-align: left; background: rgba(239, 68, 68, 0.12); border: 1px solid rgba(239, 68, 68, 0.35); padding: 7px 10px; border-radius: 6px; color: #fca5a5; font-size: 12px; cursor: pointer;">
-                ❌ <em>"...ordenar de plano y automáticamente sin audiencia..."</em>
-              </button>
-              <div id="trapFeedback1" style="display: none; font-size: 11px; background: rgba(0,0,0,0.4); padding: 6px 10px; border-radius: 6px; color: #fecaca; line-height: 1.45;">
-                🚨 <strong>TRAMPA:</strong> Viola el debido proceso (Art. 29 C.P.). Ninguna sanción opera "de plano" sin pliego de cargos ni oportunidad de defensa.
-              </div>
-              <button type="button" class="btn-trap-tester" data-trap-id="2" style="text-align: left; background: rgba(16, 185, 129, 0.12); border: 1px solid rgba(16, 185, 129, 0.35); padding: 7px 10px; border-radius: 6px; color: #6ee7b7; font-size: 12px; cursor: pointer;">
-                ✅ <em>"...proyectar el auto motivado garantizando el término legal..."</em>
-              </button>
-              <div id="trapFeedback2" style="display: none; font-size: 11px; background: rgba(0,0,0,0.4); padding: 6px 10px; border-radius: 6px; color: #a7f3d0; line-height: 1.45;">
-                💎 <strong>CLAVE:</strong> Cumple el rol, respeta motivación y términos de contradicción legales.
-              </div>
-            </div>
-          </div>
-        `;
-      } else {
-        extraContentEl.innerHTML = `
-          <div style="background: rgba(56, 189, 248, 0.08); border: 1px solid rgba(56, 189, 248, 0.25); border-radius: 8px; padding: 12px 14px;">
-            <div style="font-size: 13px; font-weight: 800; color: #38bdf8; margin-bottom: 4px;">
-              💡 Fórmula de Comprensión E-P-C:
-            </div>
-            <div style="font-size: 13px; color: #cbd5e1; line-height: 1.5;">
-              <strong>E</strong>nunciado final con '?' ➔ <strong>P</strong>remisa fáctica probada en fechas ➔ <strong>C</strong>lave congruente con tu rol sin atajos.
-            </div>
-          </div>
-        `;
-      }
+    if (extraContentEl && tip.ejercicio) {
+      const ej = tip.ejercicio;
+      const optionsHtml = ej.opciones.map((opt, oIdx) => `
+        <button type="button" class="btn-lectura-exercise-opt" data-opt-idx="${oIdx}" style="text-align: left; background: rgba(15, 23, 42, 0.7); border: 1px solid rgba(56, 189, 248, 0.3); padding: 10px 12px; border-radius: 8px; color: #e2e8f0; font-size: 13px; font-weight: 600; cursor: pointer; transition: all 0.2s; line-height: 1.45;">
+          ${opt}
+        </button>
+      `).join("");
 
-      extraContentEl.querySelectorAll(".btn-trap-tester").forEach((btn) => {
+      const formulaHtml = tip.formula ? `
+        <div style="background: rgba(168, 85, 247, 0.12); border: 1px solid rgba(168, 85, 247, 0.35); border-left: 4px solid #c084fc; border-radius: 8px; padding: 10px 14px; margin-bottom: 12px;">
+          <div style="font-size: 11px; font-weight: 800; color: #c084fc; text-transform: uppercase; letter-spacing: 0.5px;">📐 Fórmula Mnemotécnica:</div>
+          <div style="font-size: 13px; font-weight: 700; color: #fdf4ff; margin-top: 2px;">${tip.formula}</div>
+        </div>
+      ` : "";
+
+      const puntosHtml = (tip.puntosClave && tip.puntosClave.length > 0) ? `
+        <div style="background: rgba(11, 17, 32, 0.6); border-radius: 8px; padding: 10px 14px; margin-bottom: 12px; border: 1px solid rgba(255,255,255,0.08);">
+          <div style="font-size: 11px; font-weight: 800; color: #38bdf8; text-transform: uppercase; margin-bottom: 6px;">⚡ Claves de Aplicación Rápida:</div>
+          ${tip.puntosClave.map(p => `<div style="font-size: 12px; color: #cbd5e1; line-height: 1.5; margin-bottom: 4px;">• ${p}</div>`).join("")}
+        </div>
+      ` : "";
+
+      extraContentEl.innerHTML = `
+        ${formulaHtml}
+        ${puntosHtml}
+        <div style="background: linear-gradient(145deg, rgba(15, 23, 42, 0.95), rgba(30, 41, 59, 0.7)); border: 1px solid rgba(56, 189, 248, 0.4); border-radius: 12px; padding: 16px; margin-top: 6px;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+            <div style="font-size: 14px; font-weight: 800; color: #38bdf8; display: flex; align-items: center; gap: 6px;">
+              <span>🎯</span>
+              <span>Ejercicio Práctico: Aplica esta Técnica</span>
+            </div>
+            <span style="font-size: 11px; font-weight: 700; color: #94a3b8; background: rgba(255,255,255,0.06); padding: 3px 8px; border-radius: 10px;">Caso Interactivo</span>
+          </div>
+          <div style="font-size: 13px; color: #f8fafc; font-weight: 700; line-height: 1.5; margin-bottom: 12px; background: rgba(0,0,0,0.3); padding: 10px 12px; border-radius: 8px; border-left: 3px solid #38bdf8;">
+            ${ej.pregunta}
+          </div>
+          <div id="lecturaExerciseOptions" style="display: flex; flex-direction: column; gap: 8px;">
+            ${optionsHtml}
+          </div>
+          <div id="lecturaExerciseFeedback" style="display: none; margin-top: 12px; padding: 12px 14px; border-radius: 8px; font-size: 13px; line-height: 1.5;"></div>
+        </div>
+      `;
+
+      // Event listeners para las opciones interactivas
+      const optButtons = extraContentEl.querySelectorAll(".btn-lectura-exercise-opt");
+      const fbBox = extraContentEl.querySelector("#lecturaExerciseFeedback");
+
+      optButtons.forEach(btn => {
         btn.addEventListener("click", () => {
-          const trapId = btn.getAttribute("data-trap-id");
-          const fb = document.getElementById(`trapFeedback${trapId}`);
-          if (fb) {
-            fb.style.display = fb.style.display === "none" ? "block" : "none";
+          const optIdx = parseInt(btn.getAttribute("data-opt-idx"), 10);
+          const isCorrect = optIdx === ej.correcta;
+
+          // Deshabilitar botones tras responder
+          optButtons.forEach((b, bIdx) => {
+            b.disabled = true;
+            b.style.cursor = "default";
+            if (bIdx === ej.correcta) {
+              b.style.background = "rgba(34, 197, 94, 0.25)";
+              b.style.borderColor = "#22c55e";
+              b.style.color = "#86efac";
+            } else if (bIdx === optIdx && !isCorrect) {
+              b.style.background = "rgba(239, 68, 68, 0.25)";
+              b.style.borderColor = "#ef4444";
+              b.style.color = "#fca5a5";
+            } else {
+              b.style.opacity = "0.45";
+            }
+          });
+
+          if (fbBox) {
+            fbBox.style.display = "block";
+            if (isCorrect) {
+              fbBox.style.background = "rgba(34, 197, 94, 0.15)";
+              fbBox.style.border = "1px solid rgba(34, 197, 94, 0.4)";
+              fbBox.style.color = "#86efac";
+              fbBox.innerHTML = `
+                <div style="font-weight: 800; font-size: 14px; margin-bottom: 4px; display: flex; align-items: center; gap: 6px;">
+                  <span>🎉</span> ¡ACIERTO FORENSE!
+                </div>
+                <div>${ej.explicaciones[optIdx]}</div>
+              `;
+              if (typeof SoundEffects !== "undefined" && typeof SoundEffects.playCorrect === "function") {
+                SoundEffects.playCorrect();
+              }
+            } else {
+              fbBox.style.background = "rgba(239, 68, 68, 0.15)";
+              fbBox.style.border = "1px solid rgba(239, 68, 68, 0.4)";
+              fbBox.style.color = "#fca5a5";
+              fbBox.innerHTML = `
+                <div style="font-weight: 800; font-size: 14px; margin-bottom: 4px; display: flex; align-items: center; gap: 6px;">
+                  <span>🚨</span> TRAMPA DETECTADA
+                </div>
+                <div>${ej.explicaciones[optIdx]}</div>
+                <button type="button" id="btnRetryLecturaExercise" style="margin-top: 10px; background: rgba(56, 189, 248, 0.18); border: 1px solid rgba(56, 189, 248, 0.4); color: #38bdf8; font-size: 12px; font-weight: 700; padding: 6px 14px; border-radius: 6px; cursor: pointer;">
+                  🔄 Reintentar Ejercicio
+                </button>
+              `;
+              if (typeof SoundEffects !== "undefined" && typeof SoundEffects.playError === "function") {
+                SoundEffects.playError();
+              }
+
+              const retryBtn = fbBox.querySelector("#btnRetryLecturaExercise");
+              if (retryBtn) {
+                retryBtn.addEventListener("click", () => {
+                  window.showLecturaTip(currentLecturaIndex);
+                });
+              }
+            }
           }
         });
       });
