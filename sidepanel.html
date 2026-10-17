@@ -7,144 +7,105 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" type="image/svg+xml" href="icons/icon.svg">
+  <link rel="icon" type="image/png" sizes="192x192" href="icons/icon192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon.png">
+  <link rel="apple-touch-icon" href="icons/icon192.png">
   <title>SIMO Prep - Entrenador CNSC / DIAN</title>
   <link rel="stylesheet" href="sidepanel.css">
 </head>
 <body>
-  <!-- Encabezado Principal con Pomodoro Integrado -->
-  <header class="header-bar">
-    <div class="brand-wrapper">
-      <img src="icons/icon48.png" alt="Logo SIMO DIAN" style="width: 38px; height: 38px; border-radius: 9px; box-shadow: 0 2px 10px rgba(37, 99, 235, 0.35); flex-shrink: 0;">
-      <div>
-        <div class="brand-title">SIMO Prep</div>
-        <div class="brand-subtitle">Gestor III • 2676</div>
+  <!-- Encabezado Principal Estilo App Móvil (Duolingo Style) -->
+  <header class="header-bar duo-header">
+    <!-- Chip de Perfil Táctil (Izquierda) -->
+    <div class="duo-profile-chip" id="btnHeaderProfile" title="Perfil y Cargo OPEC (Toca para cambiar o configurar)">
+      <div class="duo-profile-avatar">👔</div>
+      <div class="duo-profile-info">
+        <div class="duo-profile-title-row">
+          <span id="jobLevelBadge" class="duo-job-badge">GESTOR III</span>
+          <span id="jobOpecBadge" class="duo-opec-badge">OPEC 242703</span>
+        </div>
+        <div id="jobTitleDisplay" class="duo-job-sub">Ficha FT-TAH-1824 | DIAN 2676</div>
       </div>
+      <!-- Selector oculto pero accesible para compatibilidad total con scripts -->
+      <select id="profileSwitcher" class="duo-profile-switcher-hidden" title="Cambiar Perfil">
+        <option value="gestor_iii">👔 GESTOR III (242703)</option>
+        <option value="analista_iv">🔍 ANALISTA IV (236760)</option>
+      </select>
     </div>
 
-    <div style="display: flex; align-items: center; gap: 8px;">
-      <!-- Botón de Alternancia de Sonido -->
-      <button id="btnSoundToggle" style="background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.15); color: #f8fafc; width: 34px; height: 34px; border-radius: 8px; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 16px; transition: all 0.2s;" title="Sonido: Activado (Clic para silenciar)">
-        🔊
-      </button>
+    <!-- Indicadores de Gamificación y Ajustes (Derecha) -->
+    <div class="duo-header-actions">
+      <!-- Racha Flame Pill (Duolingo) -->
+      <div id="streakPill" class="duo-streak-pill" title="Racha de estudio continuo">
+        <span class="duo-flame-icon">🔥</span>
+        <span id="streakCount" class="duo-streak-num">1</span>
+      </div>
 
-      <!-- Botón de Sincronización en la Nube / Servidor Propio -->
-      <button id="btnOpenCloudSync" style="background: rgba(56, 189, 248, 0.12); border: 1px solid rgba(56, 189, 248, 0.35); color: #38bdf8; width: 34px; height: 34px; border-radius: 8px; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 16px; transition: all 0.2s;" title="Sincronizar Progreso con tu Servidor">
-        ☁️
-      </button>
-
-      <!-- Botón para Descargar / Instalar Extensión en PC o App -->
-      <button id="btnOpenInstallModal" style="background: rgba(168, 85, 247, 0.15); border: 1px solid rgba(168, 85, 247, 0.4); color: #c084fc; padding: 5px 10px; border-radius: 8px; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 12px; font-weight: 700; gap: 5px; transition: all 0.2s;" title="Instalar Extensión en PC o App en Celular">
-        🧩 Instalar
-      </button>
-
-      <!-- Widget Pomodoro 25/5 -->
-      <div id="pomodoroWidget" class="pomodoro-pill" title="Clic para Iniciar / Pausar Pomodoro">
+      <!-- Pomodoro Timer Pill -->
+      <div id="pomodoroWidget" class="pomodoro-pill duo-pomodoro-pill" title="Pomodoro 25/5 (Toca para iniciar/pausar)">
         <div class="pomodoro-dot"></div>
-        <span id="pomodoroLabel" style="font-size: 12px; font-weight: 700; text-transform: uppercase;">Estudio</span>
+        <span id="pomodoroLabel" style="display: none;">Estudio</span>
         <span id="pomodoroClock" class="pomodoro-time">25:00</span>
       </div>
+
+      <!-- Botón de Ajustes / Configuración App -->
+      <button id="btnOpenSettingsModal" class="duo-settings-btn" title="Ajustes y Herramientas">
+        ⚙️
+      </button>
+
+      <!-- Botón de perfil delegado para compatibilidad -->
+      <button id="btnOpenJobModal" style="display: none;"></button>
     </div>
   </header>
-
-  <!-- Barra de Cargo Activo / Enfoque OPEC -->
-  <section id="jobProfileBar" style="background: linear-gradient(90deg, #1e293b, #0b1120); border-bottom: 1px solid rgba(255,255,255,0.08); padding: 10px 18px; display: flex; align-items: center; justify-content: space-between; gap: 10px;">
-    <div style="display: flex; flex-direction: column; gap: 4px; overflow: hidden;">
-      <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
-        <select id="profileSwitcher" style="background: #0f172a; color: #38bdf8; font-weight: 800; font-size: 12px; border: 1px solid rgba(56, 189, 248, 0.4); border-radius: 6px; padding: 3px 8px; cursor: pointer; outline: none;" title="Cambiar Perfil de Estudio">
-          <option value="gestor_iii">👔 GESTOR III (242703)</option>
-          <option value="analista_iv">🔍 ANALISTA IV (236760)</option>
-        </select>
-        <span id="jobOpecBadge" style="font-size: 11px; background-color: rgba(245, 158, 11, 0.2); color: #f59e0b; padding: 2px 7px; border-radius: 4px; font-weight: 800; border: 1px solid rgba(245, 158, 11, 0.4);">
-          OPEC 242703
-        </span>
-        <span id="jobLevelBadge" style="font-size: 12px; color: #38bdf8; font-weight: 700;">
-          GESTOR III • PROFESIONAL
-        </span>
-      </div>
-      <div id="jobTitleDisplay" style="font-size: 13px; font-weight: 600; color: #94a3b8; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 270px;">
-        Ficha FT-TAH-1824 | DIAN 2676
-      </div>
-    </div>
-    <div style="display: flex; align-items: center; gap: 6px; flex-wrap: wrap;">
-      <button id="btnOpenTipsModal" style="background-color: rgba(245, 158, 11, 0.15); border: 1px solid rgba(245, 158, 11, 0.4); color: #f59e0b; padding: 6px 10px; border-radius: 6px; font-size: 12px; font-weight: 700; cursor: pointer; white-space: nowrap;" title="Banco de 41 Claves Maestras">
-        💡 41 Claves PJS
-      </button>
-      <button id="btnOpenLecturaModal" style="background-color: rgba(56, 189, 248, 0.15); border: 1px solid rgba(56, 189, 248, 0.4); color: #38bdf8; padding: 6px 10px; border-radius: 6px; font-size: 12px; font-weight: 700; cursor: pointer; white-space: nowrap;" title="Técnicas de Comprensión Lectora para el Examen">
-        📖 Lectura Crítica
-      </button>
-      <button id="btnRandomTipFlash" style="background-color: rgba(129, 140, 248, 0.15); border: 1px solid rgba(129, 140, 248, 0.4); color: #818cf8; padding: 6px 10px; border-radius: 6px; font-size: 12px; font-weight: 700; cursor: pointer; white-space: nowrap;" title="Mostrar un Tip Flash Aleatorio">
-        🎲 Tip Flash
-      </button>
-      <span id="streakPill" class="stats-pill" style="font-size: 13px; padding: 4px 10px; border-radius: 12px; background: rgba(245,158,11,0.15); color: #f59e0b; font-weight: 700; border: 1px solid rgba(245,158,11,0.3);">
-        🔥 <span id="streakCount">1</span> d
-      </span>
-      <button id="btnOpenJobModal" style="background-color: rgba(56, 189, 248, 0.15); border: 1px solid rgba(56, 189, 248, 0.4); color: #38bdf8; padding: 6px 10px; border-radius: 6px; font-size: 12px; font-weight: 700; cursor: pointer; white-space: nowrap;">
-        ⚙️ Perfil
-      </button>
-    </div>
-  </section>
-
-  <!-- Pestañas de Navegación -->
-  <nav class="tabs-nav">
-    <button class="tab-btn active" data-tab="practice">
-      <span>🎯</span>
-      <span>Práctica</span>
-    </button>
-    <button class="tab-btn" data-tab="speedDrill">
-      <span>⚡</span>
-      <span>Speed Drill</span>
-    </button>
-    <button class="tab-btn" data-tab="mnemotecnias">
-      <span>💡</span>
-      <span>Fórmulas</span>
-    </button>
-    <button class="tab-btn" data-tab="srs">
-      <span>🧠</span>
-      <span>SRS Flash</span>
-    </button>
-    <button class="tab-btn" data-tab="simulacro">
-      <span>⏱️</span>
-      <span>Simulacro</span>
-    </button>
-    <button class="tab-btn" data-tab="stats">
-      <span>📊</span>
-      <span>Métricas</span>
-    </button>
-    <button class="tab-btn" data-tab="jobFocus">
-      <span>📋</span>
-      <span>Cargo</span>
-    </button>
-  </nav>
-
-  <!-- Filtro por Ejes Temáticos en Práctica con Modo Intercalado -->
-  <div id="practiceFilterBar" class="filter-bar-container">
-    <span style="font-size: 12px; color: var(--text-secondary); white-space: nowrap;">Modo / Eje:</span>
-    <select id="selectEjeFilter" class="filter-eje-select">
-      <option value="interleaving">🌪️ Modo Intercalado (Interleaving - Mezcla Mixta)</option>
-      <option value="todos">⚡ Todos los Ejes de la DIAN (100 Casos)</option>
-      <option value="tributario">📊 Procedimiento Tributario y Fiscalización (24)</option>
-      <option value="aduanero">🚢 Régimen Aduanero y Comercio Exterior (15)</option>
-      <option value="comportamentales">🤝 Competencias Comportamentales Gestor III (10)</option>
-      <option value="integridad">⭐ Valores de Integridad y CGD (9)</option>
-      <option value="cpaca">📜 Derecho Administrativo y CPACA (7)</option>
-      <option value="cobranzas">⚖️ Cobro Coactivo y Títulos Ejecutivos (6)</option>
-      <option value="contratacion">📄 Contratación Estatal y Convenios (6)</option>
-      <option value="servicio">👥 Derecho de Petición y Atención al Ciudadano (5)</option>
-      <option value="cambiario">💱 Régimen Cambiario y Lavado de Activos (4)</option>
-      <option value="control_interno">🛡️ Control Interno y 3 Líneas de Defensa (3)</option>
-      <option value="misionalidad">🏛️ Misionalidad y Estructura DIAN (3)</option>
-      <option value="mipg">📐 Modelo MIPG y Desempeño FURAG (3)</option>
-      <option value="indicadores">📈 Indicadores de Gestión (2)</option>
-      <option value="razonamiento">🧠 Razonamiento Analítico (2)</option>
-      <option value="rendicion_cuentas">📢 Rendición de Cuentas (1)</option>
-    </select>
-  </div>
 
   <!-- Contenedor Principal Dinámico -->
   <main class="main-container">
 
     <!-- 1. PESTAÑA: PRÁCTICA LIBRE -->
     <section id="tab-practice" class="tab-content">
+      <!-- Barra de Acciones Rápidas Táctiles (Power-Ups de Estudio) -->
+      <div class="practice-powerups-row">
+        <button id="btnOpenTipsModal" class="duo-powerup-btn duo-powerup-gold" title="Banco de 41 Claves Maestras">
+          <span>💡</span>
+          <span>41 Claves PJS</span>
+        </button>
+        <button id="btnOpenLecturaModal" class="duo-powerup-btn duo-powerup-blue" title="Técnicas de Comprensión Lectora para el Examen">
+          <span>📖</span>
+          <span>Lectura Crítica</span>
+        </button>
+        <button id="btnRandomTipFlash" class="duo-powerup-btn duo-powerup-purple" title="Mostrar un Tip Flash Aleatorio">
+          <span>🎲</span>
+          <span>Tip Flash</span>
+        </button>
+      </div>
+
+      <!-- Filtro por Ejes Temáticos con Estilo Píldora/Card -->
+      <div id="practiceFilterBar" class="duo-filter-card">
+        <div class="duo-filter-label">
+          <span>🎯</span>
+          <span>Eje / Modo:</span>
+        </div>
+        <select id="selectEjeFilter" class="duo-filter-select">
+          <option value="interleaving">🌪️ Modo Intercalado (Mezcla Mixta)</option>
+          <option value="todos">⚡ Todos los Ejes de la DIAN (100 Casos)</option>
+          <option value="tributario">📊 Procedimiento Tributario y Fiscalización (24)</option>
+          <option value="aduanero">🚢 Régimen Aduanero y Comercio Exterior (15)</option>
+          <option value="comportamentales">🤝 Competencias Comportamentales Gestor III (10)</option>
+          <option value="integridad">⭐ Valores de Integridad y CGD (9)</option>
+          <option value="cpaca">📜 Derecho Administrativo y CPACA (7)</option>
+          <option value="cobranzas">⚖️ Cobro Coactivo y Títulos Ejecutivos (6)</option>
+          <option value="contratacion">📄 Contratación Estatal y Convenios (6)</option>
+          <option value="servicio">👥 Derecho de Petición y Atención al Ciudadano (5)</option>
+          <option value="cambiario">💱 Régimen Cambiario y Lavado de Activos (4)</option>
+          <option value="control_interno">🛡️ Control Interno y 3 Líneas de Defensa (3)</option>
+          <option value="misionalidad">🏛️ Misionalidad y Estructura DIAN (3)</option>
+          <option value="mipg">📐 Modelo MIPG y Desempeño FURAG (3)</option>
+          <option value="indicadores">📈 Indicadores de Gestión (2)</option>
+          <option value="razonamiento">🧠 Razonamiento Analítico (2)</option>
+          <option value="rendicion_cuentas">📢 Rendición de Cuentas (1)</option>
+        </select>
+      </div>
       <div class="question-card">
         <!-- Cronómetro Reglamentario Examen DIAN (2 Minutos por Pregunta) -->
         <div id="practiceTimerBar" style="display: flex; justify-content: space-between; align-items: center; background: rgba(56, 189, 248, 0.08); border: 1px solid rgba(56, 189, 248, 0.25); padding: 7px 12px; border-radius: 8px; margin-bottom: 8px;">
@@ -248,8 +209,73 @@
       </div>
     </section>
 
+    <!-- PESTAÑA: RECURSOS Y BIBLIOTECA (CENTRO DE APRENDIZAJE DUOLINGO) -->
+    <section id="tab-recursos" class="tab-content" style="display: none; flex-direction: column; gap: 16px;">
+      <div class="duo-section-header">
+        <div class="duo-section-title">📚 Biblioteca de Recursos</div>
+        <div class="duo-section-sub">Herramientas estratégicas y material de alta recordación para el concurso</div>
+      </div>
+
+      <div class="duo-hub-grid">
+        <div class="duo-hub-card gold" id="hubCardTips">
+          <div class="hub-card-icon">💡</div>
+          <div class="hub-card-content">
+            <div class="hub-card-title">41 Claves Maestras PJS</div>
+            <div class="hub-card-desc">Estrategias psicométricas, régimen tributario y aduanero oficial</div>
+          </div>
+          <span class="hub-card-arrow">➔</span>
+        </div>
+
+        <div class="duo-hub-card blue" id="hubCardLectura">
+          <div class="hub-card-icon">📖</div>
+          <div class="hub-card-content">
+            <div class="hub-card-title">Radar de Comprensión Lectora</div>
+            <div class="hub-card-desc">Desarticula casos largos (>100 palabras) en menos de 45 segundos</div>
+          </div>
+          <span class="hub-card-arrow">➔</span>
+        </div>
+
+        <div class="duo-hub-card purple" id="hubCardFlash">
+          <div class="hub-card-icon">🎲</div>
+          <div class="hub-card-content">
+            <div class="hub-card-title">Tip Flash Aleatorio</div>
+            <div class="hub-card-desc">Píldora rápida de repaso conceptual con normas de referencia</div>
+          </div>
+          <span class="hub-card-arrow">➔</span>
+        </div>
+
+        <div class="duo-hub-card green" id="hubCardSRS">
+          <div class="hub-card-icon">🧠</div>
+          <div class="hub-card-content">
+            <div class="hub-card-title">Tarjetas de Repaso SRS</div>
+            <div class="hub-card-desc">Cuaderno de errores con método Feynman y repetición espaciada</div>
+          </div>
+          <span class="hub-card-arrow">➔</span>
+        </div>
+
+        <div class="duo-hub-card indigo" id="hubCardFormulas">
+          <div class="hub-card-icon">📐</div>
+          <div class="hub-card-content">
+            <div class="hub-card-title">Fórmulas e Infografías</div>
+            <div class="hub-card-desc">3 Líneas de defensa, 7 dimensiones MIPG y anclas de memoria</div>
+          </div>
+          <span class="hub-card-arrow">➔</span>
+        </div>
+
+        <div class="duo-hub-card amber" id="hubCardJob">
+          <div class="hub-card-icon">📋</div>
+          <div class="hub-card-content">
+            <div class="hub-card-title">Mi Cargo y Funciones OPEC</div>
+            <div class="hub-card-desc">Propósito del empleo, funciones esenciales y ficha DIAN 2676</div>
+          </div>
+          <span class="hub-card-arrow">➔</span>
+        </div>
+      </div>
+    </section>
+
     <!-- PESTAÑA: MNEMOTECNIAS Y FÓRMULAS DE MEMORIA RÁPIDA -->
     <section id="tab-mnemotecnias" class="tab-content" style="display: none; flex-direction: column; gap: 16px;">
+      <button type="button" class="btn-back-to-recursos">⬅️ Volver a Biblioteca de Recursos</button>
       <div style="display: flex; justify-content: space-between; align-items: center;">
         <div>
           <h3 style="font-size: 16px; font-weight: 800; color: var(--text-primary);">Fórmulas e Infografías Visuales</h3>
@@ -296,7 +322,8 @@
     </section>
 
     <!-- PESTAÑA: MI CARGO Y FUNCIONES (ENFOQUE OPEC 242703) -->
-    <section id="tab-jobFocus" class="tab-content" style="display: none;">
+    <section id="tab-jobFocus" class="tab-content" style="display: none; flex-direction: column; gap: 12px;">
+      <button type="button" class="btn-back-to-recursos">⬅️ Volver a Biblioteca de Recursos</button>
       <div style="background-color: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 14px; display: flex; flex-direction: column; gap: 12px;">
         <div style="display: flex; justify-content: space-between; align-items: flex-start;">
           <div>
@@ -338,7 +365,8 @@
     </section>
 
     <!-- 3. PESTAÑA: FLASHCARDS INTERACTIVAS SRS (REPETICIÓN ESPACIADA + NOTAS FEYNMAN) -->
-    <section id="tab-srs" class="tab-content" style="display: none;">
+    <section id="tab-srs" class="tab-content" style="display: none; flex-direction: column; gap: 12px;">
+      <button type="button" class="btn-back-to-recursos">⬅️ Volver a Biblioteca de Recursos</button>
       <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
         <div>
           <h3 style="font-size: 14px; font-weight: 800; color: var(--text-primary);">Tarjetas de Repaso SRS</h3>
@@ -564,6 +592,111 @@
     </section>
 
   </main>
+
+  <!-- Barra de Navegación Inferior (Bottom Bar Móvil Estilo Duolingo) -->
+  <nav class="app-bottom-nav">
+    <button class="nav-tab-item active" data-tab="practice">
+      <div class="nav-tab-icon">🎯</div>
+      <div class="nav-tab-label">Práctica</div>
+    </button>
+    <button class="nav-tab-item" data-tab="speedDrill">
+      <div class="nav-tab-icon">⚡</div>
+      <div class="nav-tab-label">Speed</div>
+    </button>
+    <button class="nav-tab-item" data-tab="simulacro">
+      <div class="nav-tab-icon">⏱️</div>
+      <div class="nav-tab-label">Simulacro</div>
+    </button>
+    <button class="nav-tab-item" data-tab="recursos">
+      <div class="nav-tab-icon">📚</div>
+      <div class="nav-tab-label">Recursos</div>
+    </button>
+    <button class="nav-tab-item" data-tab="stats">
+      <div class="nav-tab-icon">📊</div>
+      <div class="nav-tab-label">Progreso</div>
+    </button>
+  </nav>
+
+  <!-- MODAL: AJUSTES Y HERRAMIENTAS DE LA APP (DUOLINGO STYLE) -->
+  <div id="appSettingsModal" class="modal-overlay">
+    <div class="modal-card duo-modal-settings">
+      <div class="duo-modal-header">
+        <div class="duo-modal-title">
+          <span>⚙️</span>
+          <span>Ajustes y Herramientas</span>
+        </div>
+        <button id="btnCloseSettingsModalX" class="duo-modal-close" title="Cerrar">✕</button>
+      </div>
+
+      <div class="duo-settings-list">
+        <!-- Perfil / Cargo -->
+        <div class="duo-setting-row" id="settingRowProfile">
+          <div class="setting-row-left">
+            <span class="setting-row-icon">👔</span>
+            <div>
+              <div class="setting-row-title">Perfil Oficial DIAN & OPEC</div>
+              <div class="setting-row-sub">Configura tu empleo, funciones y propósito</div>
+            </div>
+          </div>
+          <button id="btnSettingsOpenJob" class="duo-btn-chip">Configurar</button>
+        </div>
+
+        <!-- Sonido -->
+        <div class="duo-setting-row">
+          <div class="setting-row-left">
+            <span class="setting-row-icon">🔊</span>
+            <div>
+              <div class="setting-row-title">Efectos de Sonido</div>
+              <div class="setting-row-sub">Sonidos de acierto, error y cronómetro</div>
+            </div>
+          </div>
+          <button id="btnSoundToggle" class="duo-sound-toggle-btn" title="Alternar Sonido">🔊</button>
+        </div>
+
+        <!-- Sincronización en la Nube -->
+        <div class="duo-setting-row">
+          <div class="setting-row-left">
+            <span class="setting-row-icon">☁️</span>
+            <div>
+              <div class="setting-row-title">Sincronización en la Nube</div>
+              <div class="setting-row-sub">Guarda tu progreso con tu servidor</div>
+            </div>
+          </div>
+          <button id="btnOpenCloudSync" class="duo-btn-chip duo-chip-blue">Sincronizar</button>
+        </div>
+
+        <!-- Instalar App / Extensión -->
+        <div class="duo-setting-row">
+          <div class="setting-row-left">
+            <span class="setting-row-icon">🧩</span>
+            <div>
+              <div class="setting-row-title">Instalar en PC o Celular</div>
+              <div class="setting-row-sub">Extensión Chrome o PWA móvil</div>
+            </div>
+          </div>
+          <button id="btnOpenInstallModal" class="duo-btn-chip duo-chip-purple">Instalar</button>
+        </div>
+
+        <!-- Microaprendizaje en 2do Plano -->
+        <div class="duo-setting-row" id="settingRowBgTips">
+          <div class="setting-row-left">
+            <span class="setting-row-icon">🔔</span>
+            <div>
+              <div class="setting-row-title">Microaprendizaje en 2º Plano</div>
+              <div class="setting-row-sub">Tips automáticos y recordatorios de estudio</div>
+            </div>
+          </div>
+          <button id="btnSettingsOpenBgTips" class="duo-btn-chip">Opciones</button>
+        </div>
+      </div>
+
+      <div style="display: flex; justify-content: flex-end; margin-top: 6px;">
+        <button type="button" id="btnCloseSettingsModal" class="btn-primary" style="padding: 10px 24px; font-size: 14px; min-height: 44px;">
+          Listo
+        </button>
+      </div>
+    </div>
+  </div>
 
   <!-- MODAL: RETROALIMENTACIÓN FORMATIVA -->
   <div id="feedbackModal" class="modal-overlay">

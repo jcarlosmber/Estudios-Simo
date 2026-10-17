@@ -818,19 +818,112 @@ function setupPomodoro() {
   updatePomodoroUI();
 }
 
-// Navegación
+// Navegación Estilo App Duolingo
 function setupNavigation() {
-  const tabs = document.querySelectorAll(".tab-btn");
+  const tabs = document.querySelectorAll(".nav-tab-item, .tab-btn");
   tabs.forEach((tab) => {
     tab.addEventListener("click", () => switchTab(tab.getAttribute("data-tab")));
   });
+
+  // Tarjetas del Centro de Recursos (Learning Hub)
+  const hubTips = document.getElementById("hubCardTips");
+  if (hubTips) {
+    hubTips.addEventListener("click", () => {
+      const btn = document.getElementById("btnOpenTipsModal");
+      if (btn) btn.click();
+    });
+  }
+
+  const hubLectura = document.getElementById("hubCardLectura");
+  if (hubLectura) {
+    hubLectura.addEventListener("click", () => {
+      const btn = document.getElementById("btnOpenLecturaModal");
+      if (btn) btn.click();
+    });
+  }
+
+  const hubFlash = document.getElementById("hubCardFlash");
+  if (hubFlash) {
+    hubFlash.addEventListener("click", () => {
+      const btn = document.getElementById("btnRandomTipFlash");
+      if (btn) btn.click();
+    });
+  }
+
+  const hubSRS = document.getElementById("hubCardSRS");
+  if (hubSRS) {
+    hubSRS.addEventListener("click", () => switchTab("srs"));
+  }
+
+  const hubFormulas = document.getElementById("hubCardFormulas");
+  if (hubFormulas) {
+    hubFormulas.addEventListener("click", () => switchTab("mnemotecnias"));
+  }
+
+  const hubJob = document.getElementById("hubCardJob");
+  if (hubJob) {
+    hubJob.addEventListener("click", () => switchTab("jobFocus"));
+  }
+
+  // Botones de retorno al centro de recursos
+  document.querySelectorAll(".btn-back-to-recursos").forEach((btn) => {
+    btn.addEventListener("click", () => switchTab("recursos"));
+  });
+
+  // Modal de Ajustes
+  const btnSettings = document.getElementById("btnOpenSettingsModal");
+  const modalSettings = document.getElementById("appSettingsModal");
+  const btnCloseSettingsX = document.getElementById("btnCloseSettingsModalX");
+  const btnCloseSettings = document.getElementById("btnCloseSettingsModal");
+  const btnSettingsOpenJob = document.getElementById("btnSettingsOpenJob");
+  const btnSettingsOpenBgTips = document.getElementById("btnSettingsOpenBgTips");
+
+  if (btnSettings && modalSettings) {
+    btnSettings.addEventListener("click", () => modalSettings.classList.add("active"));
+  }
+  if (btnCloseSettingsX && modalSettings) {
+    btnCloseSettingsX.addEventListener("click", () => modalSettings.classList.remove("active"));
+  }
+  if (btnCloseSettings && modalSettings) {
+    btnCloseSettings.addEventListener("click", () => modalSettings.classList.remove("active"));
+  }
+  if (btnSettingsOpenJob && modalSettings) {
+    btnSettingsOpenJob.addEventListener("click", () => {
+      modalSettings.classList.remove("active");
+      const jobModal = document.getElementById("jobModal");
+      if (jobModal) jobModal.classList.add("active");
+    });
+  }
+  if (btnSettingsOpenBgTips && modalSettings) {
+    btnSettingsOpenBgTips.addEventListener("click", () => {
+      modalSettings.classList.remove("active");
+      const tipsModal = document.getElementById("tipsModal");
+      if (tipsModal) tipsModal.classList.add("active");
+    });
+  }
+
+  // Clic en el Chip de Perfil de la cabecera para abrir configuración del cargo
+  const headerProfile = document.getElementById("btnHeaderProfile");
+  if (headerProfile) {
+    headerProfile.addEventListener("click", (e) => {
+      if (e.target && e.target.id === "profileSwitcher") return;
+      const jobModal = document.getElementById("jobModal");
+      if (jobModal) jobModal.classList.add("active");
+    });
+  }
 }
 
 function switchTab(tabName) {
   AppState.currentTab = tabName;
-  document.querySelectorAll(".tab-btn").forEach((t) => {
-    t.classList.toggle("active", t.getAttribute("data-tab") === tabName);
+
+  // Si se ingresa a una sub-herramienta de recursos, mantener iluminado 'recursos' en el bottom nav
+  const activeNavKey = ["mnemotecnias", "srs", "jobFocus", "recursos"].includes(tabName) ? "recursos" : tabName;
+
+  document.querySelectorAll(".nav-tab-item, .tab-btn").forEach((t) => {
+    const dataTab = t.getAttribute("data-tab");
+    t.classList.toggle("active", dataTab === activeNavKey || dataTab === tabName);
   });
+
   document.querySelectorAll(".tab-content").forEach((c) => {
     c.style.display = c.id === `tab-${tabName}` ? "flex" : "none";
   });
@@ -844,6 +937,8 @@ function switchTab(tabName) {
   if (tabName === "stats") renderStatsTab();
   if (tabName === "speedDrill") startSpeedDrill();
   if (tabName === "mnemotecnias") renderMnemotecniasTab();
+
+  window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
 function updateJobProfileUI() {
