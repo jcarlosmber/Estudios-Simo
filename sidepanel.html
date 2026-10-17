@@ -659,16 +659,16 @@
           <button id="btnSoundToggle" class="duo-sound-toggle-btn" title="Alternar Sonido">🔊</button>
         </div>
 
-        <!-- Sincronización en la Nube -->
-        <div class="duo-setting-row">
+        <!-- Cuenta de Aspirante & Sincronización Nube -->
+        <div class="duo-setting-row" id="settingRowAccount">
           <div class="setting-row-left">
-            <span class="setting-row-icon">☁️</span>
+            <span class="setting-row-icon">👤</span>
             <div>
-              <div class="setting-row-title">Sincronización en la Nube</div>
-              <div class="setting-row-sub">Guarda tu progreso con tu servidor</div>
+              <div class="setting-row-title">Cuenta de Aspirante</div>
+              <div id="settingsAccountSub" class="setting-row-sub">Aspirante: jcarlos • 🟢 Nube activa</div>
             </div>
           </div>
-          <button id="btnOpenCloudSync" class="duo-btn-chip duo-chip-blue">Sincronizar</button>
+          <button id="btnOpenAccountModal" class="duo-btn-chip duo-chip-blue">Mi Cuenta</button>
         </div>
 
         <!-- Instalar App / Extensión -->
@@ -874,7 +874,8 @@
 
         <!-- Filtros rápidos por categoría con scroll horizontal táctil -->
         <div style="display: flex; gap: 6px; align-items: center; overflow-x: auto; padding-bottom: 4px; -webkit-overflow-scrolling: touch;">
-          <button class="tip-filter-btn active" data-cat="all" style="background: rgba(245, 158, 11, 0.2); border: 1px solid #f59e0b; color: #f59e0b; padding: 5px 12px; border-radius: 12px; font-size: 12px; font-weight: 700; cursor: pointer; white-space: nowrap;">Todas (41)</button>
+          <button class="tip-filter-btn active" data-cat="all" style="background: rgba(245, 158, 11, 0.2); border: 1px solid #f59e0b; color: #f59e0b; padding: 5px 12px; border-radius: 12px; font-size: 12px; font-weight: 700; cursor: pointer; white-space: nowrap;">Todas (46)</button>
+          <button class="tip-filter-btn" data-cat="Verbo Rector" style="background: rgba(168, 85, 247, 0.2); border: 1px solid #a855f7; color: #c084fc; padding: 5px 12px; border-radius: 12px; font-size: 12px; font-weight: 700; cursor: pointer; white-space: nowrap;">⚡ Verbo Rector (5)</button>
           <button class="tip-filter-btn" data-cat="Comprensión Lectora" style="background: rgba(56, 189, 248, 0.15); border: 1px solid #38bdf8; color: #38bdf8; padding: 5px 12px; border-radius: 12px; font-size: 12px; font-weight: 700; cursor: pointer; white-space: nowrap;">📖 Comprensión (21)</button>
           <button class="tip-filter-btn" data-cat="Régimen Aduanero" style="background: rgba(2, 132, 199, 0.15); border: 1px solid #0284c7; color: #38bdf8; padding: 5px 12px; border-radius: 12px; font-size: 12px; font-weight: 700; cursor: pointer; white-space: nowrap;">🚢 Aduanas (Dec. 1165)</button>
           <button class="tip-filter-btn" data-cat="Procedimiento Tributario" style="background: rgba(225, 29, 72, 0.15); border: 1px solid #e11d48; color: #f43f5e; padding: 5px 12px; border-radius: 12px; font-size: 12px; font-weight: 700; cursor: pointer; white-space: nowrap;">🏪 Facturación & Clausura</button>
@@ -884,7 +885,7 @@
         </div>
 
         <div style="display: flex; justify-content: space-between; align-items: center; font-size: 12px; color: #94a3b8; padding: 0 2px;">
-          <span id="tipsCountBadge">Mostrando 41 claves</span>
+          <span id="tipsCountBadge">Mostrando 46 claves</span>
           <span style="font-size: 11px; color: #64748b;">Desliza para ver fundamentos y reglas rápidas</span>
         </div>
 
@@ -974,8 +975,8 @@
             Formato de Visualización:
           </label>
           <select id="selectBgFormat" style="width: 100%; box-sizing: border-box; background: #0b1120; border: 1px solid rgba(255,255,255,0.2); color: #fff; padding: 8px 10px; border-radius: 6px; font-size: 13px; outline: none; cursor: pointer;">
-            <option value="popup" selected>🪟 Modal Flotante en Pantalla (Recomendado)</option>
-            <option value="notification">🔔 Notificación Nativa del Navegador / Celular</option>
+            <option value="notification" selected>🔔 Notificación Nativa del Celular (Recomendado en Móvil)</option>
+            <option value="popup">🪟 Modal Flotante en Pantalla (Recomendado en PC / Chrome)</option>
           </select>
         </div>
 
@@ -1279,57 +1280,83 @@
     </div>
   </div>
 
-  <!-- MODAL: SINCRONIZACIÓN EN LA NUBE (SERVIDOR PROPIO) -->
-  <div id="cloudSyncModal" class="modal-overlay">
-    <div class="modal-card" style="max-width: 500px; width: 94%; padding: 22px; gap: 14px;">
-      <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-color); padding-bottom: 10px;">
+  <!-- MODAL: CUENTA DE ASPIRANTE & SINCRONIZACIÓN AUTOMÁTICA -->
+  <div id="accountModal" class="modal-overlay">
+    <div class="modal-card" style="max-width: 480px; width: 94%; padding: 22px; gap: 16px; border-radius: 14px;">
+      <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-color); padding-bottom: 12px;">
         <h3 style="font-size: 17px; font-weight: 800; color: #38bdf8; display: flex; align-items: center; gap: 8px; margin: 0;">
-          <span>☁️</span> Sincronización en la Nube
+          <span>👤</span> Mi Cuenta de Aspirante
         </h3>
-        <button id="btnCloseCloudSyncX" style="background: rgba(255,255,255,0.06); border: none; color: var(--text-secondary); font-size: 18px; cursor: pointer; border-radius: 6px; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center;" title="Cerrar">✕</button>
+        <button id="btnCloseAccountModalX" class="modal-close-btn" title="Cerrar">✕</button>
       </div>
 
-      <p style="font-size: 13px; color: var(--text-secondary); line-height: 1.5; margin: 0;">
-        Guarda tu racha, estadísticas, repaso espaciado (SRS) y preguntas en tu propio servidor para continuar estudiando en tu celular o PC sin perder nada.
-      </p>
-
-      <div style="display: flex; flex-direction: column; gap: 10px; background: rgba(11, 17, 32, 0.6); padding: 14px; border-radius: 8px; border: 1px solid var(--border-color);">
-        <div>
-          <label style="font-size: 12px; color: #94a3b8; font-weight: 700; display: block; margin-bottom: 4px;">URL de tu Servidor:</label>
-          <input type="text" id="inputSyncServerUrl" value="https://simo.liverohoa.com" placeholder="https://simo.liverohoa.com" style="width: 100%; box-sizing: border-box; background: #0f172a; border: 1px solid rgba(255,255,255,0.2); color: #fff; padding: 8px 12px; border-radius: 6px; font-size: 13px;">
+      <!-- Tarjeta de Estado de Sincronización -->
+      <div style="background: linear-gradient(135deg, rgba(2, 132, 199, 0.15), rgba(15, 23, 42, 0.8)); border: 1px solid rgba(56, 189, 248, 0.3); border-radius: 10px; padding: 14px; display: flex; align-items: center; gap: 12px;">
+        <div style="font-size: 32px; background: rgba(56, 189, 248, 0.15); width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+          👔
         </div>
-
-        <div>
-          <label style="font-size: 12px; color: #94a3b8; font-weight: 700; display: block; margin-bottom: 4px;">ID de Usuario / Aspirante:</label>
-          <input type="text" id="inputSyncUserId" value="jcarlos" placeholder="jcarlos" style="width: 100%; box-sizing: border-box; background: #0f172a; border: 1px solid rgba(255,255,255,0.2); color: #fff; padding: 8px 12px; border-radius: 6px; font-size: 13px;">
+        <div style="flex: 1;">
+          <div style="display: flex; align-items: center; gap: 6px;">
+            <span style="font-size: 15px; font-weight: 800; color: #f8fafc;" id="accountCardUserDisplay">jcarlos</span>
+            <span id="accountBadgeStatus" style="font-size: 11px; font-weight: 800; color: #34d399; background: rgba(52, 211, 153, 0.18); padding: 2px 8px; border-radius: 12px; border: 1px solid rgba(52, 211, 153, 0.35);">🟢 Conectado</span>
+          </div>
+          <div style="font-size: 12px; color: #94a3b8; margin-top: 3px;" id="accountCardSyncText">
+            ☁️ Preguntas, racha y progreso sincronizados automáticamente.
+          </div>
         </div>
+      </div>
 
-        <label style="display: flex; align-items: center; gap: 8px; font-size: 12px; color: #e2e8f0; cursor: pointer; margin-top: 4px;">
-          <input type="checkbox" id="chkAutoCloudSync" checked style="accent-color: #38bdf8; width: 16px; height: 16px;">
-          Sincronizar automáticamente al responder y terminar sesiones
+      <!-- Formulario simple para ingresar o cambiar usuario -->
+      <div style="display: flex; flex-direction: column; gap: 10px; background: rgba(11, 17, 32, 0.6); padding: 16px; border-radius: 10px; border: 1px solid var(--border-color);">
+        <label for="inputAccountUserId" style="font-size: 13px; color: #e2e8f0; font-weight: 700; display: flex; align-items: center; gap: 6px;">
+          <span>🏷️</span> Identificador o Nombre de Aspirante:
         </label>
-      </div>
+        <input type="text" id="inputAccountUserId" value="jcarlos" placeholder="Ej: jcarlos, carlos_dian" style="width: 100%; box-sizing: border-box; background: #0f172a; border: 1px solid rgba(56, 189, 248, 0.4); color: #fff; padding: 10px 14px; border-radius: 8px; font-size: 14px; font-weight: 600;">
+        <span style="font-size: 12px; color: #94a3b8; line-height: 1.45;">
+          Usa el mismo usuario en tu celular y en tu PC. Tus simulacros, racha y las preguntas se sincronizan solos en segundo plano.
+        </span>
 
-      <div id="cloudSyncStatus" style="font-size: 12px; color: #94a3b8; min-height: 20px; display: flex; align-items: center; gap: 6px;">
-        <span>Estado: Configuración local lista.</span>
-      </div>
-
-      <!-- Acciones de Sincronización -->
-      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
-        <button id="btnPushCloudSync" class="btn-primary" style="background: linear-gradient(135deg, #0284c7, #0369a1); font-size: 13px; font-weight: 700; padding: 10px; display: flex; align-items: center; justify-content: center; gap: 6px;">
-          ⬆️ Subir a Mi Servidor
-        </button>
-        <button id="btnPullCloudSync" class="btn-primary" style="background: linear-gradient(135deg, #10b981, #059669); font-size: 13px; font-weight: 700; padding: 10px; display: flex; align-items: center; justify-content: center; gap: 6px;">
-          ⬇️ Descargar de Servidor
+        <button id="btnSaveAccountUser" class="btn-primary" style="margin-top: 6px; padding: 11px; font-size: 14px; font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 8px; background: linear-gradient(135deg, #0284c7, #2563eb); border-radius: 8px;">
+          💾 Guardar e Iniciar Sesión
         </button>
       </div>
 
-      <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border-color); padding-top: 10px;">
-        <button id="btnPullQuestionsServer" style="background: none; border: none; color: #38bdf8; font-size: 12px; font-weight: 700; cursor: pointer; text-decoration: underline;">
-          🔄 Actualizar Preguntas desde Servidor
+      <!-- Configuración Avanzada Opcional -->
+      <details style="font-size: 12px; color: #94a3b8;">
+        <summary style="cursor: pointer; font-weight: 600; padding: 4px 0; color: #64748b;">⚙️ Opciones de Servidor (Opcional)</summary>
+        <div style="margin-top: 8px; display: flex; flex-direction: column; gap: 6px; background: rgba(0,0,0,0.25); padding: 10px; border-radius: 6px;">
+          <label style="font-size: 11px; color: #94a3b8;">URL Servidor:</label>
+          <input type="text" id="inputAccountServerUrl" value="https://simo.liverohoa.com" style="width: 100%; box-sizing: border-box; background: #0f172a; border: 1px solid rgba(255,255,255,0.15); color: #cbd5e1; padding: 6px 10px; border-radius: 6px; font-size: 12px;">
+          <div style="display: flex; gap: 8px; margin-top: 4px;">
+            <button id="btnManualSyncNow" style="background: rgba(56, 189, 248, 0.15); border: 1px solid rgba(56, 189, 248, 0.4); color: #38bdf8; font-size: 11px; font-weight: 700; padding: 6px 10px; border-radius: 6px; cursor: pointer;">
+              🔄 Forzar Sincronización Ahora
+            </button>
+          </div>
+        </div>
+      </details>
+
+      <div style="display: flex; justify-content: flex-end; border-top: 1px solid var(--border-color); padding-top: 12px;">
+        <button id="btnCloseAccountModal" class="btn-secondary" style="font-size: 13px; padding: 8px 18px; border-radius: 8px;">
+          Listo
         </button>
-        <button id="btnCloseCloudSync" class="btn-secondary" style="font-size: 13px; padding: 6px 14px;">
-          Guardar y Cerrar
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: INVITACIÓN ACTIVACIÓN NOTIFICACIONES EN CELULAR -->
+  <div id="mobileNotificationModal" class="modal-overlay">
+    <div class="modal-card" style="max-width: 440px; width: 92%; padding: 22px; text-align: center; gap: 14px; border-radius: 14px; border: 1px solid rgba(56, 189, 248, 0.4); background: linear-gradient(160deg, #0b1120 0%, #162238 100%);">
+      <div style="font-size: 40px; margin-bottom: -4px;">📱 🔔</div>
+      <h3 style="font-size: 18px; font-weight: 800; color: #f8fafc; margin: 0;">¿Activar Notificaciones en Celular?</h3>
+      <p style="font-size: 13px; color: #cbd5e1; line-height: 1.5; margin: 0;">
+        Recibe píldoras de microaprendizaje, casos situacionales y tips de la DIAN directamente en las notificaciones nativas de tu celular para no perder la racha.
+      </p>
+      <div style="display: flex; flex-direction: column; gap: 8px; margin-top: 6px;">
+        <button id="btnEnableMobileNotifications" class="btn-primary" style="padding: 12px; font-size: 14px; font-weight: 700; background: linear-gradient(135deg, #0284c7, #2563eb); border-radius: 8px; display: flex; align-items: center; justify-content: center; gap: 8px;">
+          🔔 Activar Notificaciones Nativas
+        </button>
+        <button id="btnDismissMobileNotifications" class="btn-secondary" style="padding: 10px; font-size: 13px; border-radius: 8px; background: transparent; border: 1px solid rgba(255,255,255,0.15);">
+          Más tarde
         </button>
       </div>
     </div>

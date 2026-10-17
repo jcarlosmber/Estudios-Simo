@@ -3302,6 +3302,96 @@ const QUESTION_BANK_GESTOR = [
     "respuestaCorrecta": "A",
     "norma": "Ley 1757 de 2015 y Guía de Lenguaje Claro para Servidores Públicos (DNP / DAFP)",
     "citaNormativa": "«Las entidades públicas deberán utilizar un lenguaje claro, sencillo y comprensible que permita a los ciudadanos entender la gestión pública y ejercer el control social de manera efectiva.» (Ley 1757 de 2015)."
+  },
+  {
+    "id": "gestor_vr_01",
+    "nivel": "Profesional",
+    "ejeId": "razonamiento",
+    "ejeNombre": "Razonamiento Analítico",
+    "tipo": "Funcional (Eliminatorio - 65%)",
+    "tema": "Técnica del Verbo Rector en el Nivel Profesional - Formulación Estratégica",
+    "caso": "En una Seccional de la DIAN se evidencia un incremento del 35% en la evasión del impuesto sobre las ventas (IVA) en el sector hotelero durante la temporada turística. La Jefatura de Fiscalización le solicita al Gestor III que intervenga de manera inmediata frente a esta problemática recurrente.",
+    "enunciado": "Teniendo en cuenta el nivel profesional y las funciones del cargo (FT-TAH-1824), ¿cuál es la acción prioritaria que debe FORMULAR el Gestor III?",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "Formular un plan de choque focalizado de auditorías y control preventivo con base en cruces de información de facturación electrónica y pasarelas de pago, estableciendo indicadores de riesgo y cronograma de seguimiento.",
+        "explicacion": "Correcta. El Gestor III ejerce el verbo rector 'Formular', desplegando autonomía analítica, modelación de riesgos y diseño metodológico según la Ficha FT-TAH-1824 y el Decreto 815 de 2018."
+      },
+      {
+        "id": "B",
+        "texto": "Archivar y foliar cronológicamente las denuncias ciudadanas recibidas en ventanilla, limitándose a remitir fotocopias simples al buzón del Administrador Seccional sin realizar diagnósticos ni cruces analíticos.",
+        "explicacion": "Incorrecta. Distractor de infra-valoración; ofrece verbos meramente mecánicos/asistenciales (archivar, foliar, fotocopiar) que denotan carencia de competencia profesional analítica."
+      },
+      {
+        "id": "C",
+        "texto": "Expedir y suscribir unilateralmente una resolución sancionatoria de clausura de establecimiento de plano contra todos los hoteles de la región sin requerimiento previo ni otorgar derecho de defensa.",
+        "explicacion": "Incorrecta. Distractor de extralimitación; usurpa facultades sancionatorias privativas de la Jefatura con delegación formal, vulnerando el debido proceso (Art. 29 C.P.) y el principio de legalidad."
+      }
+    ],
+    "respuestaCorrecta": "A",
+    "norma": "Decreto 815 de 2018, Ficha FT-TAH-1824 y Manual Específico de Funciones DIAN",
+    "citaNormativa": "«Son funciones del nivel profesional: Formular, ejecutar, hacer seguimiento, ajuste y evaluar los planes, programas o proyectos de la dependencia... y realizar análisis y diagnósticos del comportamiento de las variables.» (Ficha FT-TAH-1824)."
+  },
+  {
+    "id": "gestor_vr_02",
+    "nivel": "Profesional",
+    "ejeId": "tributario",
+    "ejeNombre": "Procedimiento Tributario y Fiscalización",
+    "tipo": "Funcional (Eliminatorio - 65%)",
+    "tema": "Verbo Rector en Procedimiento Tributario - Proyectar Actos Administrativos",
+    "caso": "Un contribuyente interpone oportunamente Recurso de Reconsideración contra una Liquidación Oficial de Revisión por deducciones improcedentes de renta. El expediente es asignado para sustanciación al Gestor III adscrito a la División Jurídica Tributaria.",
+    "enunciado": "De acuerdo con el principio del debido proceso y los límites funcionales de su empleo, ¿cuál es la conducta procesal que debe ADELANTAR el Gestor III?",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "Estudiar a fondo las pruebas y argumentos del recurrente, confrontarlos con las normas tributarias y proyectar la resolución que decide el recurso con su motivación fáctica y jurídica, sometiéndola a revisión y firma del funcionario competente.",
+        "explicacion": "Correcta. El servidor profesional sustancia y proyecta el acto administrativo motivado; respeta la regla de que la adopción y firma formal corresponde a la autoridad con delegación legal (Director Seccional o Delegado)."
+      },
+      {
+        "id": "B",
+        "texto": "Firmar y notificar de manera directa al contribuyente la resolución que confirma la liquidación, omitiendo la firma del Administrador Seccional para agilizar el trámite procesal.",
+        "explicacion": "Incorrecta. Incurre en causal de nulidad absoluta del acto por incompetencia funcional subjetiva, ya que el Gestor carece de facultad legal delegada para decidir por sí mismo."
+      },
+      {
+        "id": "C",
+        "texto": "Abstenerse de analizar las pruebas documentales aportadas y archivar el recurso alegando congestión en el despacho administrativo.",
+        "explicacion": "Incorrecta. Constituye falta disciplinaria gravísima por omisión de los deberes funcionales y denegación de justicia administrativa."
+      }
+    ],
+    "respuestaCorrecta": "A",
+    "norma": "Estatuto Tributario Arts. 720, 732 y Decreto 1742 de 2020",
+    "citaNormativa": "«Los servidores del nivel profesional realizarán los estudios jurídicos y técnicos requeridos y proyectarán las decisiones para la firma de la autoridad competente.» (Decreto 1742 de 2020)."
+  },
+  {
+    "id": "gestor_vr_03",
+    "nivel": "Profesional",
+    "ejeId": "mipg",
+    "ejeNombre": "Modelo de Planeación y Gestión MIPG",
+    "tipo": "Funcional (Eliminatorio - 65%)",
+    "tema": "Verbo Rector en Gestión Institucional - Evaluar y Proponer Mejoras",
+    "caso": "La Oficina de Control Interno emite un informe donde señala una debilidad reiterada en los tiempos de respuesta a los derechos de petición en la Seccional. El Gestor III de Planeación debe intervenir para subsanar este riesgo institucional.",
+    "enunciado": "Bajo el marco del MIPG y las funciones de su empleo, ¿cómo debe ACTUAR el Gestor III?",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "Evaluar el flujo del proceso de correspondencia, identificar los cuellos de botella en la asignación de peticiones y estructurar una propuesta técnica de optimización con alertas tempranas y tablero de control.",
+        "explicacion": "Correcta. Despliega los verbos rectores propios del nivel profesional: evaluar, diagnosticar, estructurar y proponer mejoras organizacionales según la dimensión de Gestión con Valores para el Resultado del MIPG."
+      },
+      {
+        "id": "B",
+        "texto": "Asumir personalmente la radicación física y fotocopiado manual de las peticiones en la ventanilla única durante toda la vigencia, sin modificar el procedimiento ni analizar las causas de la demora.",
+        "explicacion": "Incorrecta. Se degrada a tareas asistenciales de ejecución repetitiva desconociendo su rol analítico y estratégico de mejoramiento continuo institucional."
+      },
+      {
+        "id": "C",
+        "texto": "Modificar de forma unilateral los términos legales del derecho de petición de 15 a 30 días en el sistema para que no salgan alertas de vencimiento.",
+        "explicacion": "Incorrecta. Modificación arbitraria e ilegal de normas estatutarias de orden público (Ley 1755 de 2015), acarreando responsabilidad disciplinaria y penal."
+      }
+    ],
+    "respuestaCorrecta": "A",
+    "norma": "Decreto 1499 de 2017 (MIPG) y Ficha FT-TAH-1824",
+    "citaNormativa": "«Adelantar procesos de orientación, implementación, mejora y seguimiento en el cumplimiento de los planes, proyectos y sistemas de gestión establecidos por la Entidad.» (Ficha FT-TAH-1824)."
   }
 ];
 

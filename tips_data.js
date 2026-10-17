@@ -590,9 +590,100 @@ const TIPS_PJS_DATA = [
     • <strong>Regla general en el CPACA (Art. 83):</strong> Si transcurren 3 meses sin respuesta a una petición o actuación, opera el <em>Silencio Administrativo Negativo</em> (se entiende denegada la solicitud para permitir acudir a la justicia contenciosa).<br>
     • <strong>Excepción especial tributaria (Silencio Positivo - Art. 734 E.T.):</strong> Si la DIAN no resuelve el Recurso de Reconsideración dentro del término de <strong>un (1) año</strong> contado a partir de su debida interposición, opera el <em>Silencio Administrativo Positivo</em> y se entiende fallado a favor del contribuyente.<br><br>
     <strong>Atención al leer:</strong> Verifica si el caso trata de un recurso gubernativo tributario (1 año para positivo) o de un derecho de petición general (silencio negativo). Marcar la figura inversa es causal inmediata de fallo en la pregunta.`
+  },
+  {
+    id: 42,
+    numero: "42",
+    titulo: "La Técnica del Verbo Rector en Juicio Situacional (CNSC / DIAN)",
+    categoria: "Verbo Rector",
+    icono: "🎯",
+    color: "#a855f7",
+    resumenCorto: "El Verbo Rector en el enunciado interrogativo final determina la naturaleza exacta de la acción requerida: formular, verificar, proyectar, acompañar o reportar.",
+    normaReferencia: "Metodología Oficial de Juicio Situacional CNSC y Decreto Ley 071 de 2020",
+    contenidoDetallado: `En las pruebas escritas de la CNSC y la DIAN, el <strong>Verbo Rector</strong> es el núcleo lingüístico y comportamental de cada pregunta:<br><br>
+    • <strong>Ubicación Clave:</strong> Se localiza invariablemente en la <strong>oración interrogativa final</strong> en negrilla (ej. <em>'¿Cuál es la acción que debe FORMULAR el Gestor...?'</em> o <em>'¿Qué labor técnica debe ACOMPAÑAR el Analista...?'</em>).<br>
+    • <strong>El Filtro del Triángulo Psicométrico:</strong><br>
+      1. <strong>Acción Requerida:</strong> ¿Te piden diseñar, verificar, proyectar o custodiar?<br>
+      2. <strong>Nivel Jerárquico:</strong> ¿El cargo evaluado es Profesional (análisis, formulación y sustanciación) o Técnico (apoyo operativo, verificación material y fe documental)?<br>
+      3. <strong>Límite Legal:</strong> ¿La opción respeta el principio de legalidad (Art. 121 C.P.) o extralimita las facultades del empleo?<br><br>
+    <strong>Regla de oro:</strong> Una opción puede describir una acción muy positiva o necesaria, pero si su verbo rector no satisface la exigencia funcional de la pregunta, es un distractor prefabricado para hacerte perder puntos.`
+  },
+  {
+    id: 43,
+    numero: "43",
+    titulo: "Verbos Rectores en GESTOR III (Nivel Profesional): Formular, Diseñar y Evaluar",
+    categoria: "Verbo Rector",
+    icono: "💼",
+    color: "#3b82f6",
+    resumenCorto: "El Gestor III (FT-TAH-1824) actúa con verbos de alta autonomía analítica y estratégica. Descarta verbos asistenciales mecánicos y de usurpación directiva.",
+    normaReferencia: "Decreto 815 de 2018 y Manual Específico de Funciones DIAN (Ficha FT-TAH-1824)",
+    contenidoDetallado: `Para el empleo de <strong>GESTOR III (OPEC 242703 - Nivel Profesional, Grado 03)</strong>, el evaluador califica tu capacidad de juicio analítico, modelamiento y formulación técnica:<br><br>
+    • <strong>Verbos Rectores del Manual:</strong> <em>Formular</em> (estrategias y planes), <em>Diseñar</em> (metodologías e indicadores), <em>Evaluar</em> (gestión y riesgos), <em>Diagnosticar</em> (variables macroeconómicas y tributarias), <em>Proyectar</em> (respuestas a recursos y actos administrativos), <em>Coordinar</em> e <em>Implementar</em> (sistemas MIPG).<br><br>
+    • <strong>Trampa 1: El Distractor Asistencial (Infra-valoración):</strong><br>
+      Opciones que ofrecen verbos mecánicos como <em>'foliar fotocopias'</em>, <em>'trasladar el oficio sin análisis'</em> o <em>'archivar pasivamente en espera'</em>. En el nivel profesional, estas conductas se sancionan con 0 puntos por carencia de juicio técnico.<br><br>
+    • <strong>Trampa 2: El Distractor de Usurpación Directiva (Extralimitación):</strong><br>
+      Opciones donde el Gestor <em>'expide por su cuenta la sanción definitiva'</em>, <em>'declara de plano la revocatoria'</em> o <em>'sanciona sin competencia'</em>. Recuerda: el Gestor III <strong>proyecta y sustancia</strong> la decisión técnica; la firma formal y la potestad sancionatoria corresponden al Director Seccional o General mediante delegación formal expresa.`
+  },
+  {
+    id: 44,
+    numero: "44",
+    titulo: "Verbos Rectores en ANALISTA IV (Nivel Técnico): Acompañar, Clasificar y Verificar",
+    categoria: "Verbo Rector",
+    icono: "🔍",
+    color: "#f59e0b",
+    resumenCorto: "El Analista IV (AT-FL-2010) ejecuta soporte técnico en terreno y despacho: Acompañar, Clasificar, Intervenir, Elaborar actas, Custodiar y Reportar.",
+    normaReferencia: "Ficha Oficial AT-FL-2010 y Decreto Ley 071 de 2020",
+    contenidoDetallado: `Para el empleo de <strong>ANALISTA IV (OPEC 236760 - Nivel Técnico, Grado 04)</strong>, las 9 funciones esenciales de la Ficha AT-FL-2010 delimitan con precisión milimétrica su campo de acción:<br><br>
+    • <strong>Los 6 Verbos Rectores de Oro del Analista IV:</strong><br>
+      1. <strong>Acompañar:</strong> Las diligencias de práctica de pruebas decretadas formalmente dentro de investigaciones tributarias, aduaneras o cambiarias.<br>
+      2. <strong>Apoyar:</strong> La ejecución de acciones de fiscalización y verificación en campo y despacho.<br>
+      3. <strong>Clasificar:</strong> La información técnica preliminar, insumos y denuncias recibidas para facilitar la toma de decisiones.<br>
+      4. <strong>Intervenir:</strong> En las diligencias materiales de destrucción de mercancías averiadas, defectuosas o inservibles.<br>
+      5. <strong>Elaborar:</strong> Actos y documentos de carácter técnico, administrativo y operativo (actas de inspección, cuadros de cotejo, inventarios).<br>
+      6. <strong>Reportar:</strong> Operaciones sospechosas (ROS) y conductas indicativas de lavado de activos ante las instancias competentes.<br><br>
+    • <strong>Trampa Fatal: El Distractor de Usurpación Jurídica:</strong><br>
+      Cuidado con opciones que pretendan que el Analista IV <em>'declare de plano el decomiso definitivo'</em>, <em>'califique jurídicamente la culpabilidad'</em> o <em>'resuelva el recurso de reposición'</em>. Cualquier respuesta con verbos resolutivos de fondo es nula de pleno derecho e incorrecta en el examen.`
+  },
+  {
+    id: 45,
+    numero: "45",
+    titulo: "Verbos de Decisión vs. Verbos de Sustanciación (El Blindaje Jurídico)",
+    categoria: "Verbo Rector",
+    icono: "⚖️",
+    color: "#10b981",
+    resumenCorto: "Diferencia procesal entre quien sustancia (analiza, recolecta y proyecta) y quien decide (adopta y firma con potestad delegada). Clave para evitar la nulidad.",
+    normaReferencia: "CPACA (Ley 1437 de 2011 Arts. 9 y 43) y Estatuto Tributario",
+    contenidoDetallado: `En la arquitectura jurídica de la DIAN existe una estricta división entre sustanciación y decisión:<br><br>
+    • <strong>Servidores que Sustancian (Gestores y Analistas):</strong><br>
+      - Verbos: <em>Examinar, cotejar, verificar, recopilar pruebas, clasificar antecedentes, elaborar proyectos de pliegos, resoluciones o informes técnicos.</em><br>
+      - Sus actuaciones constituyen <strong>actos preparatorios o de trámite</strong> que ilustran el juicio de la entidad pero no generan decisión definitiva frente al tercero por sí solos.<br><br>
+    • <strong>Autoridades que Deciden (Directores, Administradores, Jefes de División):</strong><br>
+      - Verbos: <em>Adoptar, resolver recursos, ordenar decomisos definitivos, fallar de fondo, sancionar.</em><br>
+      - Requieren investidura legal o acto expreso de delegación (Ley 489 de 1998 Art. 9).<br><br>
+    <strong>Impacto en el examen:</strong> Cuando el enunciado pregunte por el trámite de un acto definitivo, la conducta correcta del profesional es <strong>proyectar con motivación suficiente</strong> para someterlo a la firma de la jefatura competente, jamás arrogarse la decisión unilateral.`
+  },
+  {
+    id: 46,
+    numero: "46",
+    titulo: "La Regla Mnemotécnica V-N-C: Verbo, Nivel y Competencia",
+    categoria: "Verbo Rector",
+    icono: "🧠",
+    color: "#ec4899",
+    resumenCorto: "Aplica en 10 segundos el filtro V-N-C: 1) ¿Qué Verbo manda la pregunta? 2) ¿A qué Nivel pertenece el cargo? 3) ¿Qué Competencia legal autoriza la norma?",
+    normaReferencia: "Estrategia de Resolución Acelerada para Pruebas Escritas CNSC",
+    contenidoDetallado: `Para resolver cualquier caso situacional en menos de 60 segundos sin caer en los distractores más elaborados de la Universidad evaluadora:<br><br>
+    • <strong>Paso 1 - V (Verbo):</strong> Identifica el verbo rector del enunciado (ej. <em>'formular'</em>, <em>'acompañar'</em>, <em>'clasificar'</em>). Descarta de entrada las opciones cuyos verbos contradigan la naturaleza de la solicitud.<br><br>
+    • <strong>Paso 2 - N (Nivel Jerárquico):</strong><br>
+      - Si eres <strong>Gestor III (Profesional)</strong>: Tus opciones ganadoras contienen verbos como <em>Formular, Diagnosticar, Estructurar, Evaluar, Proponer</em>.<br>
+      - Si eres <strong>Analista IV (Técnico)</strong>: Tus opciones ganadoras contienen verbos como <em>Acompañar, Clasificar, Verificar, Elaborar actas, Custodiar, Reportar</em>.<br><br>
+    • <strong>Paso 3 - C (Competencia Legal):</strong> Confirma que la acción no vulnere el debido proceso (Art. 29 C.P.) ni constituya omisión o extralimitación de funciones (Art. 6 C.P.).<br><br>
+    <strong>Resultado garantizado:</strong> Eliminas 2 de las 3 opciones en los primeros 25 segundos y aseguras el máximo puntaje en competencias funcionales.`
   }
 ];
 
 if (typeof window !== "undefined") {
   window.TIPS_PJS_DATA = TIPS_PJS_DATA;
+}
+if (typeof module !== "undefined" && module.exports) {
+  module.exports = { TIPS_PJS_DATA };
 }

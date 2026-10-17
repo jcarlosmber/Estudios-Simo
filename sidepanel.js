@@ -63,6 +63,13 @@ const AppState = {
   }
 };
 
+function isMobileDevice() {
+  const isMobileUA = /Android|iPhone|iPad|iPod|webOS|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+  const isSmallTouch = window.innerWidth <= 768 && ('ontouchstart' in window || navigator.maxTouchPoints > 0);
+  const isStandalone = typeof window !== "undefined" && window.matchMedia && window.matchMedia('(display-mode: standalone)').matches;
+  return Boolean(isMobileUA || isSmallTouch || isStandalone);
+}
+
 const StorageManager = {
   async get(key, defaultValue) {
     if (typeof chrome !== "undefined" && chrome.storage && chrome.storage.local) {
@@ -103,7 +110,8 @@ document.addEventListener("DOMContentLoaded", async () => {
   setupSrsLogic();
   setupSimulacroLogic();
   setupDashboardCalculator();
-  setupCloudSyncModal();
+  setupAccountModal();
+  setupMobileNotificationPrompt();
   setupInstallModal();
   await setupSoundToggleUI();
 
@@ -112,14 +120,10 @@ document.addEventListener("DOMContentLoaded", async () => {
   updateStreakUI();
   loadNextPracticeQuestion();
 
-  // Sincronización Automática Silenciosa con https://simo.liverohoa.com
+  // Sincronización Automática Silenciosa con https://simo.liverohoa.com (Progreso y Preguntas)
   if (typeof CloudSync !== "undefined") {
     CloudSync.init().then(async () => {
-      const remote = await CloudSync.pullProgress();
-      if (remote) {
-        updateStreakUI();
-        updateDashboardCalculator();
-      }
+      await CloudSync.syncAll();
     }).catch(() => {});
   }
 
@@ -601,7 +605,8 @@ function setupMicrolearningModal() {
   StorageManager.get("backgroundTipsInterval", 25).then((interval) => {
     if (selectBgInterval) selectBgInterval.value = String(interval);
   });
-  StorageManager.get("backgroundTipsFormat", "popup").then((format) => {
+  const defaultFormat = isMobileDevice() ? "notification" : "popup";
+  StorageManager.get("backgroundTipsFormat", defaultFormat).then((format) => {
     if (selectBgFormat) selectBgFormat.value = format;
   });
   StorageManager.get("backgroundAlternateMode", "alternate").then((mode) => {
@@ -1680,6 +1685,9 @@ function addToSrsQueue(question, difficulty, feynmanNotes = "") {
   }
 
   StorageManager.set("srsCards", AppState.srsCards);
+  if (typeof CloudSync !== "undefined" && CloudSync.config.autoSync) {
+    CloudSync.pushProgress().catch(() => {});
+  }
 }
 
 // =========================================================================
@@ -1884,143 +1892,155 @@ function setupDashboardCalculator() {
   });
 }
 
-function setupCloudSyncModal() {
-  const modal = document.getElementById("cloudSyncModal");
-  const btnOpen = document.getElementById("btnOpenCloudSync");
-  const btnCloseX = document.getElementById("btnCloseCloudSyncX");
-  const btnClose = document.getElementById("btnCloseCloudSync");
-  const inputUrl = document.getElementById("inputSyncServerUrl");
-  const inputUser = document.getElementById("inputSyncUserId");
-  const chkAuto = document.getElementById("chkAutoCloudSync");
-  const statusEl = document.getElementById("cloudSyncStatus");
-  const btnPush = document.getElementById("btnPushCloudSync");
-  const btnPull = document.getElementById("btnPullCloudSync");
-  const btnPullQ = document.getElementById("btnPullQuestionsServer");
+function setupAccountModal() {
+  const modal = document.getElementById("accountModal");
+  const btnOpen = document.getElementById("btnOpenAccountModal");
+  const btnCloseX = document.getElementById("btnCloseAccountModalX");
+  const btnClose = document.getElementById("btnCloseAccountModal");
+  const inputUser = document.getElementById("inputAccountUserId");
+  const btnSave = document.getElementById("btnSaveAccountUser");
+  const inputServer = document.getElementById("inputAccountServerUrl");
+  const btnManualSync = document.getElementById("btnManualSyncNow");
 
-  if (!modal || !btnOpen || typeof CloudSync === "undefined") return;
+  if (!modal || typeof CloudSync === "undefined") return;
 
   CloudSync.init().then(() => {
-    if (inputUrl) inputUrl.value = CloudSync.config.serverUrl || "";
-    if (inputUser) inputUser.value = CloudSync.config.userId || "aspirante_dian_01";
-    if (chkAuto) chkAuto.checked = CloudSync.config.autoSync !== false;
-    if (CloudSync.config.lastSyncTimestamp && statusEl) {
-      statusEl.innerHTML = `<span>Última sinc: ${new Date(CloudSync.config.lastSyncTimestamp).toLocaleTimeString()}</span>`;
-    }
+    if (inputUser) inputUser.value = CloudSync.config.userId || "jcarlos";
+    if (inputServer) inputServer.value = CloudSync.config.serverUrl || "https://simo.liverohoa.com";
+    CloudSync.updateStatusBadge();
   });
 
-  const saveFormConfig = () => {
-    CloudSync.saveConfig({
-      serverUrl: inputUrl.value.trim(),
-      userId: inputUser.value.trim() || "aspirante_dian_01",
-      autoSync: chkAuto.checked
+  if (btnOpen) {
+    btnOpen.addEventListener("click", () => {
+      if (inputUser) inputUser.value = CloudSync.config.userId || "jcarlos";
+      if (inputServer) inputServer.value = CloudSync.config.serverUrl || "https://simo.liverohoa.com";
+      CloudSync.updateStatusBadge();
+      openModal(modal);
     });
+  }
+
+  const handleSave = async () => {
+    const rawUser = inputUser ? inputUser.value.trim() : "jcarlos";
+    const serverUrl = inputServer ? inputServer.value.trim() : "https://simo.liverohoa.com";
+    if (!rawUser) {
+      showCustomModal({
+        title: "ID Requerido",
+        message: "Por favor escribe tu nombre o ID de aspirante (ej: jcarlos).",
+        icon: "⚠️"
+      });
+      return;
+    }
+
+    if (serverUrl) {
+      CloudSync.config.serverUrl = serverUrl;
+    }
+
+    btnSave.textContent = "⏳ Conectando...";
+    btnSave.disabled = true;
+
+    try {
+      await CloudSync.login(rawUser);
+      closeModal(modal);
+      btnSave.textContent = "💾 Guardar e Iniciar Sesión";
+      btnSave.disabled = false;
+      showCustomModal({
+        title: "¡Sesión Activa!",
+        message: `Has iniciado sesión como "${rawUser}". Tu progreso, racha y preguntas se sincronizan solos en segundo plano.`,
+        icon: "👤"
+      });
+    } catch (e) {
+      btnSave.textContent = "💾 Guardar e Iniciar Sesión";
+      btnSave.disabled = false;
+      closeModal(modal);
+    }
   };
 
-  btnOpen.addEventListener("click", () => {
-    openModal(modal);
-  });
+  if (btnSave) btnSave.addEventListener("click", handleSave);
+  if (btnCloseX) btnCloseX.addEventListener("click", () => closeModal(modal));
+  if (btnClose) btnClose.addEventListener("click", () => closeModal(modal));
 
-  if (btnCloseX) btnCloseX.addEventListener("click", () => {
-    saveFormConfig();
-    closeModal(modal);
-  });
-
-  if (btnClose) btnClose.addEventListener("click", () => {
-    saveFormConfig();
-    closeModal(modal);
-    showCustomModal({
-      title: "Configuración Guardada",
-      message: "Se guardó la configuración de tu servidor.",
-      icon: "☁️"
-    });
-  });
-
-  if (btnPush) {
-    btnPush.addEventListener("click", async () => {
-      saveFormConfig();
-      if (!CloudSync.config.serverUrl) {
-        showCustomModal({
-          title: "Servidor Requerido",
-          message: "Por favor ingresa la URL de tu servidor (ej: http://192.168.1.15:3000)",
-          icon: "⚠️"
-        });
-        return;
-      }
-      statusEl.innerHTML = `<span style="color: #38bdf8;">⏳ Subiendo progreso a ${CloudSync.config.serverUrl}...</span>`;
+  if (btnManualSync) {
+    btnManualSync.addEventListener("click", async () => {
+      btnManualSync.textContent = "⏳ Sincronizando...";
+      btnManualSync.disabled = true;
       try {
-        await CloudSync.pushProgress();
-        statusEl.innerHTML = `<span style="color: #34d399;">✅ Sincronizado con éxito (${new Date().toLocaleTimeString()})</span>`;
-        showCustomModal({
-          title: "¡Progreso Subido!",
-          message: "Tus estadísticas, racha, simulacros y tarjetas SRS se guardaron en tu servidor.",
-          icon: "☁️"
-        });
+        await CloudSync.syncAll();
+        btnManualSync.textContent = "✅ ¡Sincronizado!";
+        setTimeout(() => {
+          btnManualSync.textContent = "🔄 Forzar Sincronización Ahora";
+          btnManualSync.disabled = false;
+        }, 1600);
       } catch (err) {
-        statusEl.innerHTML = `<span style="color: #f87171;">❌ Error: ${err.message}</span>`;
-        showCustomModal({
-          title: "Error al Sincronizar",
-          message: `No se pudo conectar al servidor: ${err.message}. Verifica que el servidor esté activo y con CORS permitido.`,
-          icon: "⚠️"
-        });
+        btnManualSync.textContent = "❌ Error";
+        setTimeout(() => {
+          btnManualSync.textContent = "🔄 Forzar Sincronización Ahora";
+          btnManualSync.disabled = false;
+        }, 1600);
       }
     });
   }
+}
 
-  if (btnPull) {
-    btnPull.addEventListener("click", async () => {
-      saveFormConfig();
-      if (!CloudSync.config.serverUrl) {
-        showCustomModal({
-          title: "Servidor Requerido",
-          message: "Por favor ingresa la URL de tu servidor.",
-          icon: "⚠️"
-        });
-        return;
-      }
-      statusEl.innerHTML = `<span style="color: #38bdf8;">⏳ Descargando progreso...</span>`;
-      try {
-        await CloudSync.pullProgress();
-        updateStreakUI();
-        updateDashboardCalculator();
-        statusEl.innerHTML = `<span style="color: #34d399;">✅ Progreso descargado con éxito.</span>`;
-        showCustomModal({
-          title: "¡Progreso Descargado!",
-          message: "Se actualizaron tus métricas y racha desde el servidor.",
-          icon: "📥"
-        });
-      } catch (err) {
-        statusEl.innerHTML = `<span style="color: #f87171;">❌ Error: ${err.message}</span>`;
-        showCustomModal({
-          title: "Error al Descargar",
-          message: `No se pudo obtener el progreso: ${err.message}`,
-          icon: "⚠️"
-        });
-      }
-    });
-  }
+function setupMobileNotificationPrompt() {
+  const modal = document.getElementById("mobileNotificationModal");
+  const btnEnable = document.getElementById("btnEnableMobileNotifications");
+  const btnDismiss = document.getElementById("btnDismissMobileNotifications");
 
-  if (btnPullQ) {
-    btnPullQ.addEventListener("click", async () => {
-      saveFormConfig();
-      if (!CloudSync.config.serverUrl) return;
-      statusEl.innerHTML = `<span style="color: #38bdf8;">⏳ Consultando banco de preguntas...</span>`;
+  if (!modal || !isMobileDevice()) return;
+  if (typeof Notification === "undefined") return;
+
+  if (Notification.permission !== "default") return;
+
+  // Invitar amistosamente tras breve pausa para no abrumar al aspirante
+  setTimeout(() => {
+    if (Notification.permission === "default" && !sessionStorage.getItem("simo_notif_prompt_dismissed")) {
+      openModal(modal);
+    }
+  }, 1400);
+
+  if (btnEnable) {
+    btnEnable.addEventListener("click", async () => {
+      closeModal(modal);
       try {
-        const questions = await CloudSync.pullQuestions();
-        if (questions && questions.length > 0) {
-          statusEl.innerHTML = `<span style="color: #34d399;">✅ ${questions.length} preguntas sincronizadas.</span>`;
+        const permission = await Notification.requestPermission();
+        if (permission === "granted") {
+          await StorageManager.set("backgroundTipsEnabled", true);
+          await StorageManager.set("backgroundTipsFormat", "notification");
+          const selectBgFormat = document.getElementById("selectBgFormat");
+          if (selectBgFormat) selectBgFormat.value = "notification";
+
+          try {
+            new Notification("🚀 SIMO Prep DIAN 2676", {
+              body: "¡Notificaciones de estudio activadas! Recibirás preguntas y claves de examen en tu celular.",
+              icon: "icons/icon192.png"
+            });
+          } catch (e) {}
+
           showCustomModal({
-            title: "Preguntas Actualizadas",
-            message: `Se sincronizaron ${questions.length} preguntas desde tu servidor.`,
-            icon: "📚"
+            title: "¡Notificaciones Activas!",
+            message: "Recibirás casos situacionales y tips periódicos directamente en tu celular.",
+            icon: "🔔"
           });
-        } else {
-          statusEl.innerHTML = `<span style="color: #f59e0b;">Sin preguntas nuevas en el servidor.</span>`;
         }
-      } catch (err) {
-        statusEl.innerHTML = `<span style="color: #f87171;">❌ ${err.message}</span>`;
+      } catch (e) {
+        console.warn("Error solicitando permisos de notificación:", e);
       }
     });
   }
+
+  if (btnDismiss) {
+    btnDismiss.addEventListener("click", () => {
+      sessionStorage.setItem("simo_notif_prompt_dismissed", "true");
+      closeModal(modal);
+    });
+  }
+
+  // Si instala la PWA en el celular
+  window.addEventListener("appinstalled", () => {
+    if (Notification.permission === "default") {
+      openModal(modal);
+    }
+  });
 }
 
 function setupInstallModal() {
@@ -2434,6 +2454,10 @@ function finishSimulacro() {
     }`,
     icon: passed ? "🏆" : "⚠️"
   });
+
+  if (typeof CloudSync !== "undefined" && CloudSync.config.autoSync) {
+    CloudSync.pushProgress().catch(() => {});
+  }
 }
 
 // =========================================================================

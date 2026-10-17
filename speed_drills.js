@@ -105,6 +105,34 @@ const SPEED_DRILLS = [
     afirmacion: "En las actuaciones administrativas tributarias, los plazos fijados en días por la ley se entienden y contabilizan como días calendario continuos incluyendo fines de semana.",
     esVerdadero: false,
     explicacion: "FALSO. Por expresa regla del Código de Régimen Político y Municipal (Ley 4 de 1913 Art. 62), los plazos en días se entienden como días HÁBILES, excluyendo sábados, domingos y feriados."
+  },
+  {
+    id: "sd_16",
+    tema: "Verbo Rector - Gestor III (Nivel Profesional)",
+    afirmacion: "En una situación de evasión tributaria masiva, la conducta esperada del Gestor III (Profesional) en el examen es elegir opciones cuyo verbo rector sea 'Archivar en carpetas' o 'Fotocopiar antecedentes' para apoyar operativamente a la dependencia.",
+    esVerdadero: false,
+    explicacion: "FALSO. En el nivel profesional (Ficha FT-TAH-1824), esas opciones son distractores de infra-valoración asistencial. El Gestor III debe 'Formular', 'Diseñar', 'Diagnosticar' y 'Estructurar' planes y metodologías con autonomía técnica."
+  },
+  {
+    id: "sd_17",
+    tema: "Verbo Rector - Analista IV (Nivel Técnico)",
+    afirmacion: "El Analista IV (Técnico en Fiscalización) tiene la potestad legal de 'Declarar el decomiso definitivo' de mercancías y 'Proferir de oficio la liquidación oficial de revisión' en sus actuaciones.",
+    esVerdadero: false,
+    explicacion: "FALSO. Estas opciones son distractores de usurpación funcional grave. El Analista IV 'Acompaña' la práctica de pruebas, 'Clasifica' insumos y 'Verifica' hechos, pero la potestad resolutiva y decisoria de fondo corresponde a los profesionales y autoridades con delegación expresa."
+  },
+  {
+    id: "sd_18",
+    tema: "Verbo Rector - Sustanciación vs. Decisión",
+    afirmacion: "En el procedimiento tributario y administrativo de la DIAN, los servidores que sustancian un expediente tienen la función de 'Proyectar' el acto administrativo motivado, mientras que la firma y notificación legal corresponde al funcionario con competencia delegada.",
+    esVerdadero: true,
+    explicacion: "VERDADERO. Esta distinción es fundamental: el profesional o auditor sustancia y proyecta; el Administrador Seccional o Director suscribe el acto definitivo (CPACA y Estatuto Tributario)."
+  },
+  {
+    id: "sd_19",
+    tema: "Verbo Rector - Ficha AT-FL-2010 Analista IV",
+    afirmacion: "Dentro de las funciones oficiales del Analista IV en la DIAN se encuentran expresamente: 'Acompañar' diligencias de pruebas, 'Intervenir' en destrucción de mercancías y 'Reportar' operaciones sospechosas (ROS).",
+    esVerdadero: true,
+    explicacion: "VERDADERO. Son tres de los verbos rectores pilares taxativamente establecidos en la Ficha AT-FL-2010 del empleo código 204 grado 04."
   }
 ];
 
@@ -179,6 +207,18 @@ const MNEMOTECNIAS = [
       "🎯 Conexión: Regresar solo al párrafo donde reposa el dato determinante (evita relecturas completas)."
     ],
     claveVisual: "No leas como novela: escanea como auditor y responde como juez."
+  },
+  {
+    id: "mnem_07",
+    titulo: "Regla V-N-C: Triángulo Psicométrico del Verbo Rector",
+    formula: "V (Verbo de Pregunta) ➔ N (Nivel del Cargo) ➔ C (Competencia Legal)",
+    descripcion: "Filtro en 3 pasos para acertar preguntas situacionales en 30 segundos:",
+    puntos: [
+      "📌 1. Verbo: ¿La pregunta pide 'Formular', 'Acompañar', 'Verificar' o 'Proyectar'?",
+      "💼 2. Nivel: Profesional = Formulación y Sustanciación / Técnico = Verificación y Apoyo operativo.",
+      "⚖️ 3. Competencia: Descarta opciones con atajos ilegales, pasividad o usurpación de directores."
+    ],
+    claveVisual: "Si el verbo no encaja en tu nivel, la opción es una trampa de papel."
   }
 ];
 

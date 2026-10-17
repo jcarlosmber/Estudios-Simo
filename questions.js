@@ -1,7 +1,7 @@
 // questions.js - Banco Maestro Multi-Perfil de Casos de Juicio Situacional (PJS) - DIAN 2676
 // Integra:
-// 1. GESTOR III (OPEC 242703 - Profesional): 110 Casos
-// 2. ANALISTA IV (OPEC 236760 - Técnico): 100 Casos
+// 1. GESTOR III (OPEC 242703 - Profesional): 113 Casos (incluye casos Verbo Rector)
+// 2. ANALISTA IV (OPEC 236760 - Técnico): 103 Casos (incluye casos Verbo Rector)
 
 (function(global) {
   // Obtener bancos de forma segura evitando colisiones de re-declaración const

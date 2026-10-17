@@ -3002,6 +3002,96 @@ const QUESTION_BANK_ANALISTA = [
     "respuestaCorrecta": "A",
     "norma": "Ley 1010 de 2006 (Acoso Laboral) y Código de Integridad",
     "citaNormativa": "«Mantengo un trato amable, cordial y respetuoso con mis compañeros de trabajo, promoviendo un ambiente armónico y libre de acoso.» (Código de Integridad)."
+  },
+  {
+    "id": "an4_vr_01",
+    "nivel": "Técnico",
+    "ejeId": "fiscalizacion_aduanera_procedimiento",
+    "ejeNombre": "Procedimiento de Fiscalización y Liquidación Tributaria y Aduanera",
+    "tipo": "Funcional (Eliminatorio - 65%)",
+    "tema": "Técnica del Verbo Rector en el Nivel Técnico - Acompañar la Práctica de Pruebas",
+    "caso": "En el marco de una investigación por presunto contrabando en un depósito habilitado, se decreta mediante auto formal una diligencia de inspección aduanera y práctica de pruebas sobre un lote de mercancías electrónicas. Al Analista IV se le comisiona formalmente para la diligencia junto al profesional auditor.",
+    "enunciado": "Conforme a la función 1 de su manual de funciones (AT-FL-2010), ¿cuál es el rol operativo y probatorio que debe ACOMPAÑAR y DESARROLLAR el Analista IV?",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "Acompañar la diligencia en terreno, cotejar físicamente los números de serie y marcas de las mercancías contra la declaración de importación y elaborar minuciosamente el acta técnica con firma de todos los intervinientes.",
+        "explicacion": "Correcta. El Analista IV cumple estrictamente su verbo rector 'Acompañar' diligencias de práctica de pruebas, ejecutando la verificación física material y elaborando el acta técnica para la cadena de custodia probatoria."
+      },
+      {
+        "id": "B",
+        "texto": "Declarar de plano el decomiso definitivo de toda la mercancía mediante resolución expedida y notificada en el acto por su propia cuenta, sin esperar el pronunciamiento del profesional auditor.",
+        "explicacion": "Incorrecta. Distractor de usurpación decisoria extrema; el Analista apoya y verifica la prueba, pero carece de competencia legal delegada para emitir fallos de decomiso o sanciones de fondo."
+      },
+      {
+        "id": "C",
+        "texto": "Permanecer sentado en el vehículo oficial sin intervenir en el cotejo físico ni firmar el acta, argumentando que las mercancías pesadas deben ser revisadas únicamente por el importador.",
+        "explicacion": "Incorrecta. Distractor de omisión/pasividad; constituye falta disciplinaria grave por incumplimiento de los deberes funcionales técnicos de acompañamiento y fe pública probatoria."
+      }
+    ],
+    "respuestaCorrecta": "A",
+    "norma": "Decreto Ley 071 de 2020 y Ficha Oficial AT-FL-2010 Función 1",
+    "citaNormativa": "«Acompañar las diligencias de práctica de pruebas decretadas dentro de una investigación, de acuerdo con la normativa vigente y los procedimientos establecidos.» (Ficha AT-FL-2010)."
+  },
+  {
+    "id": "an4_vr_02",
+    "nivel": "Técnico",
+    "ejeId": "gestion_documental",
+    "ejeNombre": "Gestión Documental y Trazabilidad de Expedientes",
+    "tipo": "Funcional (Eliminatorio - 65%)",
+    "tema": "Verbo Rector en el Nivel Técnico - Clasificar Información Preliminar",
+    "caso": "La División de Fiscalización recibe una serie de denuncias ciudadanas físicas y digitales acompañadas de facturas, fotografías y extractos bancarios que señalan la existencia de un esquema de evasión de IVA en una cadena de restaurantes.",
+    "enunciado": "De acuerdo con la función 3 de su manual (AT-FL-2010), ¿cuál es la labor técnica que debe CLASIFICAR y EJECUTAR el Analista IV con estos insumos?",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "Clasificar la información técnica y documental organizando las evidencias por fecha, sujeto y tipo de soporte, estructurando el expediente preliminar para el análisis sustantivo del equipo de fiscalización.",
+        "explicacion": "Correcta. Aplica con exactitud el verbo rector 'Clasificar la información necesaria para el análisis preliminar de los insumos y denuncias', asegurando la foliación técnica y la trazabilidad probatoria."
+      },
+      {
+        "id": "B",
+        "texto": "Desechar y triturar en la destructora de papel los documentos que contengan fotografías borrosas sin registrarlos en el sistema de gestión documental.",
+        "explicacion": "Incorrecta. Destrucción indebida de documentos con valor probatorio potencial y violación flagrante del régimen de archivo (Ley 594 de 2000)."
+      },
+      {
+        "id": "C",
+        "texto": "Proferir un Pliego de Cargos tributario notificando formalmente sanciones pecuniarias millonarias a los restaurantes involucrados.",
+        "explicacion": "Incorrecta. Extralimitación funcional absoluta; el Analista clasifica los insumos preparatorios, mientras que el pliego de cargos lo formula la autoridad competente tras investigación formal."
+      }
+    ],
+    "respuestaCorrecta": "A",
+    "norma": "Ficha AT-FL-2010 Función 3 y Acuerdo AGN 002 de 2014",
+    "citaNormativa": "«Clasificar la información necesaria para el análisis preliminar de los insumos y de las denuncias de fiscalización recibidas, de acuerdo con la normativa vigente, procedimientos y lineamientos institucionales.» (Ficha AT-FL-2010)."
+  },
+  {
+    "id": "an4_vr_03",
+    "nivel": "Técnico",
+    "ejeId": "fiscalizacion_aduanera_procedimiento",
+    "ejeNombre": "Procedimiento de Fiscalización y Liquidación Tributaria y Aduanera",
+    "tipo": "Funcional (Eliminatorio - 65%)",
+    "tema": "Verbo Rector en Materia Aduanera - Intervenir en Diligencias de Destrucción",
+    "caso": "Mediante resolución administrativa en firme, se ha ordenado la destrucción de un cargamento de alimentos perecederos en descomposición aprehendidos en zona primaria aduanera por representar riesgo biológico. Se designa al Analista IV para el procedimiento en la planta de tratamiento autorizada.",
+    "enunciado": "Conforme a la función 5 de su manual de funciones (AT-FL-2010), ¿cómo debe INTERVENIR el Analista IV durante la diligencia?",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "Intervenir presencialmente en la diligencia, verificar el pesaje y cotejo físico de las cantidades a destruir, constatar la inutilización total de la mercancía y levantar el acta circunstanciada con registro fotográfico y firmas de ley.",
+        "explicacion": "Correcta. Ejecuta con rigor el verbo rector 'Intervenir en las diligencias de destrucción de mercancía...', garantizando la autenticidad fáctica, ambiental y aduanera de la disposición final de los bienes."
+      },
+      {
+        "id": "B",
+        "texto": "Delegar verbalmente la diligencia en el chofer del camión recolector y firmar el acta en blanco desde la oficina sin haber presenciado la incineración de los productos.",
+        "explicacion": "Incorrecta. Falsedad ideológica en documento público, abandono del deber de custodia y violación del procedimiento aduanero reglado."
+      },
+      {
+        "id": "C",
+        "texto": "Suspender unilateralmente la destrucción y autorizar que los alimentos descompuestos sean donados a comedores comunitarios.",
+        "explicacion": "Incorrecta. Viola directrices sanitarias y aduaneras obligatorias, pone en grave riesgo la salud colectiva y desacata un acto administrativo en firme."
+      }
+    ],
+    "respuestaCorrecta": "A",
+    "norma": "Decreto 1165 de 2019 Art. 675 y Ficha AT-FL-2010 Función 5",
+    "citaNormativa": "«Intervenir en las diligencias de destrucción de mercancía averiada, defectuosa o impropia respecto del fin para el cual fue importada, de acuerdo con la normativa vigente, los procedimientos establecidos y las directrices institucionales.» (Ficha AT-FL-2010)."
   }
 ];
 
