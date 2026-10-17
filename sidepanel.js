@@ -104,6 +104,17 @@ document.addEventListener("DOMContentLoaded", async () => {
   updateStreakUI();
   loadNextPracticeQuestion();
 
+  // Sincronización Automática Silenciosa con https://simo.liverohoa.com
+  if (typeof CloudSync !== "undefined") {
+    CloudSync.init().then(async () => {
+      const remote = await CloudSync.pullProgress();
+      if (remote) {
+        updateStreakUI();
+        updateDashboardCalculator();
+      }
+    }).catch(() => {});
+  }
+
   if (typeof chrome !== "undefined" && chrome.storage && chrome.storage.onChanged) {
     chrome.storage.onChanged.addListener((changes, area) => {
       if (area === "local") {

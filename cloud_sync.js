@@ -1,10 +1,13 @@
-// cloud_sync.js - Módulo de Sincronización en la Nube para SIMO Prep (DIAN 2676)
-// Permite guardar y sincronizar progreso, racha, SRS y preguntas con un servidor propio
+// cloud_sync.js - Módulo de Sincronización Automática en la Nube (DIAN 2676)
+// Totalmente pre-configurado para https://simo.liverohoa.com con fallback transparente a http://
 
 const CloudSync = {
+  DEFAULT_HTTPS_URL: "https://simo.liverohoa.com",
+  DEFAULT_HTTP_URL: "http://simo.liverohoa.com",
+
   config: {
-    serverUrl: "",
-    userId: "aspirante_dian_01",
+    serverUrl: "https://simo.liverohoa.com",
+    userId: "jcarlos",
     autoSync: true,
     lastSyncTimestamp: null
   },
@@ -13,6 +16,15 @@ const CloudSync = {
     const savedConfig = await StorageManager.get("cloudSyncConfig", null);
     if (savedConfig) {
       this.config = { ...this.config, ...savedConfig };
+      // Asegurar que si estaba vacío, use el servidor por defecto
+      if (!this.config.serverUrl) {
+        this.config.serverUrl = this.DEFAULT_HTTPS_URL;
+      }
+    } else {
+      this.config.serverUrl = this.DEFAULT_HTTPS_URL;
+      this.config.userId = "jcarlos";
+      this.config.autoSync = true;
+      await this.saveConfig(this.config);
     }
   },
 
@@ -22,15 +34,39 @@ const CloudSync = {
   },
 
   /**
-   * Envía el progreso local al servidor del usuario
+   * Helper que intenta la petición en HTTPS y si falla por certificado/red, intenta en HTTP automáticamente
+   */
+  async smartFetch(endpoint, options = {}) {
+    const primaryUrl = (this.config.serverUrl || this.DEFAULT_HTTPS_URL).replace(/\/+$/, "");
+    const fallbackUrl = this.DEFAULT_HTTP_URL;
+
+    try {
+      const response = await fetch(`${primaryUrl}${endpoint}`, options);
+      if (response.ok) return response;
+      throw new Error(`Status ${response.status}`);
+    } catch (primaryErr) {
+      // Si la URL primaria era HTTPS y falló, reintenta en HTTP
+      if (primaryUrl.startsWith("https://")) {
+        try {
+          const fallbackResponse = await fetch(`${fallbackUrl}${endpoint}`, options);
+          if (fallbackResponse.ok) {
+            this.config.serverUrl = fallbackUrl;
+            return fallbackResponse;
+          }
+        } catch (fallbackErr) {
+          throw primaryErr;
+        }
+      }
+      throw primaryErr;
+    }
+  },
+
+  /**
+   * Envía el progreso local al servidor automáticamente
    */
   async pushProgress() {
-    if (!this.config.serverUrl) {
-      throw new Error("No has configurado la URL de tu servidor.");
-    }
-
     const payload = {
-      userId: this.config.userId,
+      userId: this.config.userId || "jcarlos",
       timestamp: new Date().toISOString(),
       stats: AppState.stats,
       srsCards: AppState.srsCards,
@@ -41,77 +77,73 @@ const CloudSync = {
       }
     };
 
-    const targetUrl = this.config.serverUrl.replace(/\/+$/, "") + "/sync/push";
+    try {
+      const response = await this.smartFetch("/sync/push", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
+      });
 
-    const response = await fetch(targetUrl, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(payload)
-    });
-
-    if (!response.ok) {
-      throw new Error(`Error en servidor (${response.status}): ${response.statusText}`);
+      const data = await response.json();
+      this.config.lastSyncTimestamp = new Date().toISOString();
+      await this.saveConfig(this.config);
+      console.log("[CloudSync Auto] Progreso sincronizado silenciosamente en la nube:", data);
+      return data;
+    } catch (err) {
+      console.warn("[CloudSync Auto] No se pudo sincronizar en segundo plano:", err.message);
+      return null;
     }
-
-    const data = await response.json();
-    this.config.lastSyncTimestamp = new Date().toISOString();
-    await this.saveConfig(this.config);
-    return data;
   },
 
   /**
-   * Descarga el progreso desde el servidor del usuario y actualiza la app
+   * Descarga el progreso desde el servidor y actualiza la app silenciosamente
    */
   async pullProgress() {
-    if (!this.config.serverUrl) {
-      throw new Error("No has configurado la URL de tu servidor.");
-    }
+    try {
+      const uid = encodeURIComponent(this.config.userId || "jcarlos");
+      const response = await this.smartFetch(`/sync/pull?userId=${uid}`, {
+        method: "GET",
+        headers: { "Content-Type": "application/json" }
+      });
 
-    const targetUrl = `${this.config.serverUrl.replace(/\/+$/, "")}/sync/pull?userId=${encodeURIComponent(this.config.userId)}`;
+      const remoteData = await response.json();
 
-    const response = await fetch(targetUrl, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json"
+      if (remoteData) {
+        if (remoteData.stats && typeof remoteData.stats.totalAnswered === "number") {
+          // Solo sobrescribe si los datos remotos tienen mayor o igual progreso
+          const localTotal = AppState.stats?.totalAnswered || 0;
+          const remoteTotal = remoteData.stats.totalAnswered;
+          if (remoteTotal >= localTotal) {
+            AppState.stats = remoteData.stats;
+            await StorageManager.set("stats", AppState.stats);
+          }
+        }
+
+        if (Array.isArray(remoteData.srsCards) && remoteData.srsCards.length > 0) {
+          AppState.srsCards = remoteData.srsCards;
+          await StorageManager.set("srsCards", AppState.srsCards);
+        }
+
+        this.config.lastSyncTimestamp = new Date().toISOString();
+        await this.saveConfig(this.config);
+        console.log("[CloudSync Auto] Progreso descargado y actualizado en la app:", remoteData);
+        return remoteData;
       }
-    });
-
-    if (!response.ok) {
-      throw new Error(`Error en servidor (${response.status}): ${response.statusText}`);
+    } catch (err) {
+      console.warn("[CloudSync Auto] No se pudo descargar progreso en segundo plano:", err.message);
+      return null;
     }
-
-    const remoteData = await response.json();
-
-    if (remoteData && remoteData.stats) {
-      AppState.stats = remoteData.stats;
-      await StorageManager.set("stats", AppState.stats);
-    }
-
-    if (remoteData && Array.isArray(remoteData.srsCards)) {
-      AppState.srsCards = remoteData.srsCards;
-      await StorageManager.set("srsCards", AppState.srsCards);
-    }
-
-    this.config.lastSyncTimestamp = new Date().toISOString();
-    await this.saveConfig(this.config);
-    return remoteData;
   },
 
   /**
    * Descarga o actualiza preguntas desde el servidor (opcional)
    */
   async pullQuestions() {
-    if (!this.config.serverUrl) return null;
-
     try {
-      const targetUrl = `${this.config.serverUrl.replace(/\/+$/, "")}/questions`;
-      const response = await fetch(targetUrl);
-      if (response.ok) {
+      const response = await this.smartFetch("/questions");
+      if (response && response.ok) {
         const questions = await response.json();
         if (Array.isArray(questions) && questions.length > 0) {
-          // Si el servidor envía nuevas preguntas, actualiza el banco local
           if (typeof window !== "undefined") {
             window.QUESTION_BANK = questions;
           }
