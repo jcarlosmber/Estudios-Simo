@@ -1,67 +1,73 @@
 // questions.js - Banco Maestro Multi-Perfil de Casos de Juicio Situacional (PJS) - DIAN 2676
 // Integra:
-// 1. GESTOR III (OPEC 242703 - Profesional): 110 Casos (Todos los ejes con mínimo 3 preguntas)
-// 2. ANALISTA IV (OPEC 236760 - Técnico): 100 Casos (Los 24 indicadores evaluados con mínimo 3 preguntas)
+// 1. GESTOR III (OPEC 242703 - Profesional): 110 Casos
+// 2. ANALISTA IV (OPEC 236760 - Técnico): 100 Casos
 
-const { QUESTION_BANK_GESTOR } = (function() {
-  if (typeof window !== "undefined" && window.QUESTION_BANK_GESTOR) {
-    return { QUESTION_BANK_GESTOR: window.QUESTION_BANK_GESTOR };
+(function(global) {
+  // Obtener bancos de forma segura evitando colisiones de re-declaración const
+  var gestor = null;
+  if (typeof global !== "undefined" && global.QUESTION_BANK_GESTOR) {
+    gestor = global.QUESTION_BANK_GESTOR;
+  } else if (typeof QUESTION_BANK_GESTOR !== "undefined") {
+    gestor = QUESTION_BANK_GESTOR;
+  } else {
+    try {
+      gestor = require('./questions_gestor_iii.js').QUESTION_BANK_GESTOR;
+    } catch (e) {
+      gestor = [];
+    }
   }
-  try {
-    return require('./questions_gestor_iii.js');
-  } catch (e) {
-    return { QUESTION_BANK_GESTOR: [] };
+
+  var analista = null;
+  if (typeof global !== "undefined" && global.QUESTION_BANK_ANALISTA) {
+    analista = global.QUESTION_BANK_ANALISTA;
+  } else if (typeof QUESTION_BANK_ANALISTA !== "undefined") {
+    analista = QUESTION_BANK_ANALISTA;
+  } else {
+    try {
+      analista = require('./questions_analista_iv.js').QUESTION_BANK_ANALISTA;
+    } catch (e) {
+      analista = [];
+    }
   }
-})();
 
-const { QUESTION_BANK_ANALISTA } = (function() {
-  if (typeof window !== "undefined" && window.QUESTION_BANK_ANALISTA) {
-    return { QUESTION_BANK_ANALISTA: window.QUESTION_BANK_ANALISTA };
-  }
-  try {
-    return require('./questions_analista_iv.js');
-  } catch (e) {
-    return { QUESTION_BANK_ANALISTA: [] };
-  }
-})();
-
-const QUESTION_BANKS = {
-  gestor_iii: QUESTION_BANK_GESTOR,
-  analista_iv: QUESTION_BANK_ANALISTA
-};
-
-function getQuestionsForProfile(profileId) {
-  return QUESTION_BANKS[profileId] || QUESTION_BANK_GESTOR;
-}
-
-// Compatibilidad retroactiva: QUESTION_BANK apunta por defecto al banco de Gestor III o al perfil activo en memoria
-let QUESTION_BANK = QUESTION_BANK_GESTOR;
-
-function setActiveQuestionBank(profileId) {
-  const bank = getQuestionsForProfile(profileId);
-  QUESTION_BANK = bank;
-  if (typeof window !== "undefined") {
-    window.QUESTION_BANK = bank;
-  }
-  return bank;
-}
-
-if (typeof window !== "undefined") {
-  window.QUESTION_BANKS = QUESTION_BANKS;
-  window.QUESTION_BANK_GESTOR = QUESTION_BANK_GESTOR;
-  window.QUESTION_BANK_ANALISTA = QUESTION_BANK_ANALISTA;
-  window.getQuestionsForProfile = getQuestionsForProfile;
-  window.setActiveQuestionBank = setActiveQuestionBank;
-  window.QUESTION_BANK = QUESTION_BANK;
-}
-
-if (typeof module !== "undefined" && module.exports) {
-  module.exports = {
-    QUESTION_BANKS,
-    QUESTION_BANK,
-    QUESTION_BANK_GESTOR,
-    QUESTION_BANK_ANALISTA,
-    getQuestionsForProfile,
-    setActiveQuestionBank
+  var questionBanks = {
+    gestor_iii: gestor || [],
+    analista_iv: analista || []
   };
-}
+
+  function getQuestionsForProfile(profileId) {
+    return questionBanks[profileId] || questionBanks.gestor_iii;
+  }
+
+  function setActiveQuestionBank(profileId) {
+    var bank = getQuestionsForProfile(profileId);
+    if (typeof global !== "undefined") {
+      global.QUESTION_BANK = bank;
+    }
+    return bank;
+  }
+
+  // Por defecto inicializar con el banco de Gestor III
+  var currentBank = questionBanks.gestor_iii;
+
+  if (typeof global !== "undefined") {
+    global.QUESTION_BANKS = questionBanks;
+    global.QUESTION_BANK_GESTOR = questionBanks.gestor_iii;
+    global.QUESTION_BANK_ANALISTA = questionBanks.analista_iv;
+    global.getQuestionsForProfile = getQuestionsForProfile;
+    global.setActiveQuestionBank = setActiveQuestionBank;
+    global.QUESTION_BANK = currentBank;
+  }
+
+  if (typeof module !== "undefined" && module.exports) {
+    module.exports = {
+      QUESTION_BANKS: questionBanks,
+      QUESTION_BANK: currentBank,
+      QUESTION_BANK_GESTOR: questionBanks.gestor_iii,
+      QUESTION_BANK_ANALISTA: questionBanks.analista_iv,
+      getQuestionsForProfile: getQuestionsForProfile,
+      setActiveQuestionBank: setActiveQuestionBank
+    };
+  }
+})(typeof window !== "undefined" ? window : (typeof global !== "undefined" ? global : this));

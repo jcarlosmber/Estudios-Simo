@@ -1059,11 +1059,26 @@ const PracticeTimer = {
 
 function loadNextPracticeQuestion() {
   const filter = AppState.currentEjeFilter;
-  let pool = (typeof QUESTION_BANK !== "undefined" && Array.isArray(QUESTION_BANK) && QUESTION_BANK.length > 0)
-    ? QUESTION_BANK 
-    : (typeof getQuestionsForProfile === "function" ? getQuestionsForProfile(AppState.activeProfileId) : []);
+  let pool = null;
+  if (typeof getQuestionsForProfile === "function") {
+    pool = getQuestionsForProfile(AppState.activeProfileId);
+  }
+  if (!pool || pool.length === 0) {
+    if (typeof window !== "undefined" && window.QUESTION_BANK && window.QUESTION_BANK.length > 0) {
+      pool = window.QUESTION_BANK;
+    } else if (typeof QUESTION_BANK !== "undefined" && Array.isArray(QUESTION_BANK) && QUESTION_BANK.length > 0) {
+      pool = QUESTION_BANK;
+    } else if (typeof window !== "undefined" && window.QUESTION_BANK_GESTOR && window.QUESTION_BANK_GESTOR.length > 0) {
+      pool = window.QUESTION_BANK_GESTOR;
+    } else {
+      pool = [];
+    }
+  }
 
-  if (!pool || pool.length === 0) return;
+  if (!pool || pool.length === 0) {
+    console.warn("[SIMO Prep] No hay preguntas disponibles en el banco.");
+    return;
+  }
 
   if (filter === "interleaving") {
     // Interleaving: prioriza alternar de eje temático respecto al caso anterior
@@ -1717,6 +1732,88 @@ function renderStatsTab() {
 
   document.getElementById("statIntegPerc").textContent = `${integAcc}%`;
   document.getElementById("statIntegBar").style.width = `${integAcc}%`;
+
+  updateDashboardCalculator();
+}
+
+function setupDashboardCalculator() {
+  const sliderFunc = document.getElementById("sliderFunc");
+  const sliderComp = document.getElementById("sliderComp");
+  const sliderInteg = document.getElementById("sliderInteg");
+  const sliderAntec = document.getElementById("sliderAntec");
+
+  if (!sliderFunc) return;
+
+  [sliderFunc, sliderComp, sliderInteg, sliderAntec].forEach((slider) => {
+    if (slider) slider.addEventListener("input", updateDashboardCalculator);
+  });
+
+  updateDashboardCalculator();
+}
+
+function updateDashboardCalculator() {
+  const sliderFunc = document.getElementById("sliderFunc");
+  const sliderComp = document.getElementById("sliderComp");
+  const sliderInteg = document.getElementById("sliderInteg");
+  const sliderAntec = document.getElementById("sliderAntec");
+
+  if (!sliderFunc) return;
+
+  const valFunc = parseFloat(sliderFunc.value) || 0;
+  const valComp = parseFloat(sliderComp ? sliderComp.value : 80) || 0;
+  const valInteg = parseFloat(sliderInteg ? sliderInteg.value : 85) || 0;
+  const valAntec = parseFloat(sliderAntec ? sliderAntec.value : 70) || 0;
+
+  const funcEl = document.getElementById("calcFuncVal");
+  const compEl = document.getElementById("calcCompVal");
+  const integEl = document.getElementById("calcIntegVal");
+  const antecEl = document.getElementById("calcAntecVal");
+
+  if (funcEl) funcEl.textContent = `${valFunc} pts`;
+  if (compEl) compEl.textContent = `${valComp} pts`;
+  if (integEl) integEl.textContent = `${valInteg} pts`;
+  if (antecEl) antecEl.textContent = `${valAntec} pts`;
+
+  // Ponderación oficial DIAN 2676:
+  // Funcionales: 65% (Mínimo eliminatorio 70.00 pts)
+  // Comportamentales: 15% (Clasificatorio)
+  // Integridad: 10% (Clasificatorio)
+  // Antecedentes: 10% (Clasificatorio)
+  const totalPonderado = (valFunc * 0.65) + (valComp * 0.15) + (valInteg * 0.10) + (valAntec * 0.10);
+  const totalScoreEl = document.getElementById("calcTotalScore");
+  if (totalScoreEl) {
+    totalScoreEl.textContent = totalPonderado.toFixed(2);
+  }
+
+  const badgeEl = document.getElementById("calcPassBadge");
+  const statusEl = document.getElementById("calcStatusText");
+  const apruebaFuncional = valFunc >= 70;
+
+  if (badgeEl) {
+    if (apruebaFuncional) {
+      badgeEl.className = "pass-badge passed";
+      badgeEl.textContent = "✅ Aprobado DIAN";
+      badgeEl.style.backgroundColor = "rgba(16, 185, 129, 0.2)";
+      badgeEl.style.color = "#34d399";
+      badgeEl.style.border = "1px solid #10b981";
+    } else {
+      badgeEl.className = "pass-badge failed";
+      badgeEl.textContent = "❌ Eliminado (<70 en Funcional)";
+      badgeEl.style.backgroundColor = "rgba(239, 68, 68, 0.2)";
+      badgeEl.style.color = "#f87171";
+      badgeEl.style.border = "1px solid #ef4444";
+    }
+  }
+
+  if (statusEl) {
+    if (apruebaFuncional) {
+      statusEl.textContent = `Supera el umbral eliminatorio con ${totalPonderado.toFixed(2)} pts totales.`;
+      statusEl.style.color = "#34d399";
+    } else {
+      statusEl.textContent = `Atención: La prueba funcional exige mínimo 70.00 pts (tienes ${valFunc}).`;
+      statusEl.style.color = "#f87171";
+    }
+  }
 }
 
 // Lógica de "Mi Cargo"
