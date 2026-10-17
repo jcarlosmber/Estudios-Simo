@@ -548,6 +548,9 @@ function showStreakMilestoneModal(count) {
 // =========================================================================
 function openModal(modalEl) {
   if (!modalEl) return;
+  if (modalEl.id === "jobModal" && typeof populateJobModalForm === "function") {
+    populateJobModalForm();
+  }
   modalEl.classList.add("active");
   document.body.classList.add("modal-open");
 }
@@ -834,7 +837,32 @@ function setupTipsModal() {
   if (btnCloseX) btnCloseX.addEventListener("click", () => closeModal(modal));
   if (btnClose) btnClose.addEventListener("click", () => closeModal(modal));
 
-  // Manejadores Popup Flash Ocasional
+  // Definición de Navegación de Subvistas en el Cuerpo de Práctica
+  window.setPracticeSubView = function(view) {
+    const vPractice = document.getElementById("subviewPractice");
+    const vLectura = document.getElementById("subviewLecturaCritica");
+    const vTipFlash = document.getElementById("subviewTipFlash");
+
+    const btnP = document.getElementById("btnActionPractice");
+    const btnL = document.getElementById("btnOpenLecturaModal");
+    const btnT = document.getElementById("btnRandomTipFlash");
+
+    if (vPractice) vPractice.style.display = view === "practice" ? "flex" : "none";
+    if (vLectura) vLectura.style.display = view === "lectura" ? "flex" : "none";
+    if (vTipFlash) vTipFlash.style.display = view === "tipFlash" ? "flex" : "none";
+
+    if (btnP) btnP.classList.toggle("active", view === "practice");
+    if (btnL) btnL.classList.toggle("active", view === "lectura");
+    if (btnT) btnT.classList.toggle("active", view === "tipFlash");
+
+    if (view === "tipFlash") {
+      showRandomTipFlash({ forced: true });
+    }
+
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  // Manejadores de Tip Flash en el Cuerpo
   const btnNextTipInModal = document.getElementById("btnNextTipFlashInModal");
   if (btnNextTipInModal) {
     btnNextTipInModal.addEventListener("click", () => {
@@ -843,60 +871,71 @@ function setupTipsModal() {
   }
 
   if (btnRandomFlash) {
-    btnRandomFlash.addEventListener("click", () => showRandomTipFlash({ forced: true }));
+    btnRandomFlash.addEventListener("click", () => {
+      if (AppState.currentTab !== "practice") {
+        switchTab("practice");
+      }
+      setPracticeSubView("tipFlash");
+    });
   }
-  if (btnClosePopupX) {
-    btnClosePopupX.addEventListener("click", () => closeModal(popupFlashModal));
+
+  const btnBackTip = document.getElementById("btnBackToPracticeFromTip");
+  if (btnBackTip) {
+    btnBackTip.addEventListener("click", () => setPracticeSubView("practice"));
   }
+
   if (btnClosePopup) {
-    btnClosePopup.addEventListener("click", () => closeModal(popupFlashModal));
+    btnClosePopup.addEventListener("click", () => setPracticeSubView("practice"));
   }
+
   if (btnVerTodasDesdePopup) {
     btnVerTodasDesdePopup.addEventListener("click", () => {
-      closeModal(popupFlashModal);
       openModal(modal);
     });
   }
 
-  // Manejadores Modal Comprensión Lectora Estratégica
-  const lecturaModal = document.getElementById("comprensionLectoraModal");
+  // Manejadores de Lectura Crítica en el Cuerpo
   const btnOpenLectura = document.getElementById("btnOpenLecturaModal");
-  const btnCloseLecturaX = document.getElementById("btnCloseLecturaModalX");
   const btnCloseLectura = document.getElementById("btnCloseLecturaModal");
+  const btnBackLectura = document.getElementById("btnBackToPracticeFromLectura");
   const btnVerTodasDesdeLectura = document.getElementById("btnVerTodasClavesDesdeLectura");
 
   if (btnOpenLectura) {
-    btnOpenLectura.addEventListener("click", () => openModal(lecturaModal));
-  }
-  if (btnCloseLecturaX) {
-    btnCloseLecturaX.addEventListener("click", () => closeModal(lecturaModal));
-  }
-  if (btnCloseLectura) {
-    btnCloseLectura.addEventListener("click", () => {
-      closeModal(lecturaModal);
-      if (typeof switchTab === "function") {
+    btnOpenLectura.addEventListener("click", () => {
+      if (AppState.currentTab !== "practice") {
         switchTab("practice");
       }
+      setPracticeSubView("lectura");
+    });
+  }
+
+  if (btnBackLectura) {
+    btnBackLectura.addEventListener("click", () => setPracticeSubView("practice"));
+  }
+
+  if (btnCloseLectura) {
+    btnCloseLectura.addEventListener("click", () => {
       const filterSelect = document.getElementById("selectEjeFilter");
       if (filterSelect) {
         filterSelect.value = "comprension_lectora";
         AppState.currentEjeFilter = "comprension_lectora";
       }
+      setPracticeSubView("practice");
       if (typeof startPracticeSession === "function") {
         startPracticeSession();
       }
     });
   }
+
   if (btnVerTodasDesdeLectura) {
     btnVerTodasDesdeLectura.addEventListener("click", () => {
-      closeModal(lecturaModal);
       openModal(modal);
       const filterComp = Array.from(filterBtns).find(b => b.getAttribute("data-cat") === "Comprensión Lectora");
       if (filterComp) filterComp.click();
     });
   }
 
-  // Interacción Cazador de Trampas Semánticas en el modal de lectura
+  // Interacción Cazador de Trampas Semánticas en Lectura Crítica
   document.querySelectorAll(".btn-trap-tester").forEach((btn) => {
     btn.addEventListener("click", () => {
       const trapId = btn.getAttribute("data-trap-id");
@@ -1258,7 +1297,6 @@ function showRandomTipFlash({ forced = false, customTip = null } = {}) {
     bodyEl.style.borderLeftColor = tip.color || "#f59e0b";
   }
 
-  openModal(modal);
   if (typeof SoundFX !== "undefined") SoundFX.playChime();
 }
 
@@ -1266,14 +1304,17 @@ function checkOccasionalTipTrigger(origin = "general") {
   if (!AppState.autoTips.enabled) return;
   AppState.autoTips.questionsSinceLastTip += 1;
 
-  // Cada 4 preguntas respondidas lanza un tip flash
+  // Cada 4 preguntas respondidas lanza un tip flash directamente en el cuerpo
   if (AppState.autoTips.questionsSinceLastTip >= AppState.autoTips.intervalQuestions) {
     AppState.autoTips.questionsSinceLastTip = 0;
     setTimeout(() => {
       const isAnyModalActive = document.querySelector(".modal-overlay.active");
       const isDrillRunning = typeof SpeedDrillState !== "undefined" && SpeedDrillState.timer !== null;
       if (!isAnyModalActive && !isDrillRunning) {
-        showRandomTipFlash({ forced: false });
+        showRandomTipFlash({ forced: true });
+        if (typeof setPracticeSubView === "function" && AppState.currentTab === "practice") {
+          setPracticeSubView("tipFlash");
+        }
       }
     }, 450);
   }
@@ -1487,6 +1528,7 @@ function setupNavigation() {
   if (btnSettingsOpenJob && modalSettings) {
     btnSettingsOpenJob.addEventListener("click", () => {
       closeModal(modalSettings);
+      if (typeof populateJobModalForm === "function") populateJobModalForm();
       const jobModal = document.getElementById("jobModal");
       if (jobModal) openModal(jobModal);
     });
@@ -1504,6 +1546,7 @@ function setupNavigation() {
   if (headerProfile) {
     headerProfile.addEventListener("click", (e) => {
       if (e.target && e.target.id === "profileSwitcher") return;
+      if (typeof populateJobModalForm === "function") populateJobModalForm();
       const jobModal = document.getElementById("jobModal");
       if (jobModal) openModal(jobModal);
     });
@@ -1542,6 +1585,9 @@ function switchTab(tabName) {
   if (filterBar) filterBar.style.display = tabName === "practice" ? "flex" : "none";
 
   if (tabName === "practice") {
+    if (typeof setPracticeSubView === "function") {
+      setPracticeSubView("practice");
+    }
     if (!AppState.practiceSession.active) {
       showPracticeCover();
     } else {
@@ -1678,6 +1724,9 @@ function setupPracticeLogic() {
     btnActionPractice.addEventListener("click", () => {
       if (AppState.currentTab !== "practice") {
         switchTab("practice");
+      }
+      if (typeof setPracticeSubView === "function") {
+        setPracticeSubView("practice");
       }
       if (!AppState.practiceSession.active) {
         startPracticeSession();
@@ -3340,6 +3389,56 @@ function updateDashboardCalculator() {
   }
 }
 
+// Función robusta de población del modal de cargo
+function populateJobModalForm(forcedProfileId = null) {
+  const profileId = forcedProfileId || AppState.activeProfileId || "gestor_iii";
+  AppState._pendingProfileId = profileId;
+
+  const defaultProfile = (typeof PROFILES_DATA !== "undefined" && PROFILES_DATA[profileId]) ? PROFILES_DATA[profileId] : null;
+  let job = defaultProfile || {};
+  if (!forcedProfileId && AppState.activeJob && AppState.activeJob.title) {
+    // Si el activeJob coincide con el perfil seleccionado o no hay forzado, usarlo
+    job = AppState.activeJob;
+  }
+
+  const inputTitle = document.getElementById("inputJobTitle");
+  const inputOpec = document.getElementById("inputJobOpec");
+  const selectLevel = document.getElementById("selectJobLevel");
+  const inputEntity = document.getElementById("inputJobEntity");
+  const inputPurpose = document.getElementById("inputJobPurpose");
+  const inputFunctions = document.getElementById("inputJobFunctions");
+
+  if (inputTitle) inputTitle.value = job.title || "";
+  if (inputOpec) inputOpec.value = job.opec || "";
+  if (selectLevel) selectLevel.value = job.level || "Profesional";
+  if (inputEntity) inputEntity.value = job.entity || "";
+  if (inputPurpose) inputPurpose.value = job.purpose || "";
+  if (inputFunctions) {
+    inputFunctions.value = Array.isArray(job.functions) ? job.functions.join("\n") : (job.functions || "");
+  }
+
+  // Resaltado visual del botón rápido activo
+  const btnQuickGestor = document.getElementById("btnQuickProfileGestor");
+  const btnQuickAnalista = document.getElementById("btnQuickProfileAnalista");
+  if (btnQuickGestor && btnQuickAnalista) {
+    if (profileId === "gestor_iii") {
+      btnQuickGestor.style.background = "rgba(56, 189, 248, 0.25)";
+      btnQuickGestor.style.borderColor = "#38bdf8";
+      btnQuickGestor.style.color = "#38bdf8";
+      btnQuickAnalista.style.background = "rgba(148, 163, 184, 0.15)";
+      btnQuickAnalista.style.borderColor = "rgba(148, 163, 184, 0.3)";
+      btnQuickAnalista.style.color = "#cbd5e1";
+    } else {
+      btnQuickAnalista.style.background = "rgba(56, 189, 248, 0.25)";
+      btnQuickAnalista.style.borderColor = "#38bdf8";
+      btnQuickAnalista.style.color = "#38bdf8";
+      btnQuickGestor.style.background = "rgba(148, 163, 184, 0.15)";
+      btnQuickGestor.style.borderColor = "rgba(148, 163, 184, 0.3)";
+      btnQuickGestor.style.color = "#cbd5e1";
+    }
+  }
+}
+
 // Lógica de "Mi Cargo"
 function setupJobConfig() {
   const modal = document.getElementById("jobModal");
@@ -3349,13 +3448,7 @@ function setupJobConfig() {
   const form = document.getElementById("jobForm");
 
   const openJobModal = () => {
-    const job = AppState.activeJob;
-    document.getElementById("inputJobTitle").value = job.title || "";
-    document.getElementById("inputJobOpec").value = job.opec || "";
-    document.getElementById("selectJobLevel").value = job.level || "Profesional";
-    document.getElementById("inputJobEntity").value = job.entity || "";
-    document.getElementById("inputJobPurpose").value = job.purpose || "";
-    document.getElementById("inputJobFunctions").value = (job.functions || []).join("\n");
+    populateJobModalForm();
     openModal(modal);
   };
 
@@ -3369,31 +3462,15 @@ function setupJobConfig() {
   const btnQuickGestor = document.getElementById("btnQuickProfileGestor");
   const btnQuickAnalista = document.getElementById("btnQuickProfileAnalista");
 
-  const fillFormWithProfile = (profile) => {
-    if (!profile) return;
-    document.getElementById("inputJobTitle").value = profile.title || "";
-    document.getElementById("inputJobOpec").value = profile.opec || "";
-    document.getElementById("selectJobLevel").value = profile.level || "Profesional";
-    document.getElementById("inputJobEntity").value = profile.entity || "";
-    document.getElementById("inputJobPurpose").value = profile.purpose || "";
-    document.getElementById("inputJobFunctions").value = (profile.functions || []).join("\n");
-  };
-
   if (btnQuickGestor) {
     btnQuickGestor.addEventListener("click", () => {
-      AppState._pendingProfileId = "gestor_iii";
-      if (typeof PROFILES_DATA !== "undefined" && PROFILES_DATA.gestor_iii) {
-        fillFormWithProfile(PROFILES_DATA.gestor_iii);
-      }
+      populateJobModalForm("gestor_iii");
     });
   }
 
   if (btnQuickAnalista) {
     btnQuickAnalista.addEventListener("click", () => {
-      AppState._pendingProfileId = "analista_iv";
-      if (typeof PROFILES_DATA !== "undefined" && PROFILES_DATA.analista_iv) {
-        fillFormWithProfile(PROFILES_DATA.analista_iv);
-      }
+      populateJobModalForm("analista_iv");
     });
   }
 
@@ -3412,7 +3489,7 @@ function setupJobConfig() {
     }
 
     applyProfile(targetProfileId, true, true);
-    closeModal();
+    closeModal(modal);
   });
 }
 
