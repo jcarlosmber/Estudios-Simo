@@ -1,5 +1,5 @@
 // sw.js - Service Worker para SIMO Prep (Soporte PWA e Instalación en Chrome/Móvil)
-const CACHE_NAME = 'simo-prep-v1';
+const CACHE_NAME = 'simo-prep-v2';
 const ASSETS_TO_CACHE = [
   './',
   './sidepanel.html',
@@ -15,10 +15,19 @@ const ASSETS_TO_CACHE = [
   './sound_effects.js',
   './cloud_sync.js',
   './manifest.webmanifest',
+  './icons/icon.svg',
+  './icons/icon16.png',
+  './icons/icon32.png',
   './icons/icon48.png',
+  './icons/icon72.png',
+  './icons/icon96.png',
   './icons/icon128.png',
   './icons/icon192.png',
-  './icons/icon512.png'
+  './icons/icon256.png',
+  './icons/icon512.png',
+  './icons/icon-maskable-192.png',
+  './icons/icon-maskable-512.png',
+  './icons/favicon.png'
 ];
 
 self.addEventListener('install', (event) => {
