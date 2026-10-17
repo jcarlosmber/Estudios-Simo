@@ -914,6 +914,12 @@ function setupNavigation() {
 }
 
 function switchTab(tabName) {
+  // Si salimos de speedDrill, limpiar su temporizador activo
+  if (typeof SpeedDrillState !== "undefined" && SpeedDrillState.timer) {
+    clearInterval(SpeedDrillState.timer);
+    SpeedDrillState.timer = null;
+  }
+
   AppState.currentTab = tabName;
 
   // Si se ingresa a una sub-herramienta de recursos, mantener iluminado 'recursos' en el bottom nav
@@ -925,7 +931,13 @@ function switchTab(tabName) {
   });
 
   document.querySelectorAll(".tab-content").forEach((c) => {
-    c.style.display = c.id === `tab-${tabName}` ? "flex" : "none";
+    if (c.id === `tab-${tabName}`) {
+      c.style.display = "flex";
+      c.style.flexDirection = "column";
+      c.style.width = "100%";
+    } else {
+      c.style.display = "none";
+    }
   });
 
   // Mostrar filtro de ejes únicamente en la pestaña de práctica
@@ -1235,11 +1247,12 @@ function renderPracticeQuestion(q) {
     }
   }
 
-  // Reset de la cacería de distractores
+  // Reset de la cacería de distractores (oculta mientras se responde)
   const huntBox = document.getElementById("distractorHuntBox");
-  const huntBtn = document.getElementById("btnDistractorHunt");
-  if (huntBox) huntBox.style.display = "none";
-  if (huntBtn) huntBtn.textContent = "🕵️ Cacería de Distractores: ¿Por qué fallan las otras opciones?";
+  if (huntBox) {
+    huntBox.style.display = "none";
+    huntBox.innerHTML = "";
+  }
 
   const optionsContainer = document.getElementById("optionsContainer");
   optionsContainer.innerHTML = "";
@@ -1274,6 +1287,46 @@ function evaluateAnswer(selectedId) {
   PracticeTimer.stop();
   const q = AppState.currentQuestion;
   const isCorrect = selectedId === q.respuestaCorrecta;
+
+  // Feedback visual en las opciones de la tarjeta
+  document.querySelectorAll(".option-item").forEach((el) => {
+    const optId = el.getAttribute("data-id");
+    el.style.pointerEvents = "none";
+    if (optId === q.respuestaCorrecta) {
+      el.style.borderColor = "var(--accent-green)";
+      el.style.backgroundColor = "rgba(16, 185, 129, 0.16)";
+      el.style.boxShadow = "0 4px 0 #047857";
+    } else if (optId === selectedId) {
+      el.style.borderColor = "var(--accent-red)";
+      el.style.backgroundColor = "rgba(239, 68, 68, 0.16)";
+      el.style.boxShadow = "0 4px 0 #991b1b";
+    }
+  });
+
+  // Mostrar Cacería de Distractores en la tarjeta ahora que ya se confirmó
+  const huntBox = document.getElementById("distractorHuntBox");
+  if (huntBox) {
+    const incorrectOpts = q.opciones.filter((o) => o.id !== q.respuestaCorrecta);
+    huntBox.innerHTML = `
+      <div style="font-weight: 800; color: #f59e0b; margin-bottom: 10px; font-size: 14px; display: flex; align-items: center; gap: 6px;">
+        <span>🎯</span>
+        <span>Cacería de Distractores: ¿Por qué fallan las otras opciones?</span>
+      </div>
+      ${incorrectOpts.map((o) => `
+        <div style="margin-bottom: 8px; padding: 10px 12px; background: rgba(239, 68, 68, 0.12); border-left: 3px solid var(--accent-red); border-radius: 8px;">
+          <strong style="color: #fca5a5; font-size: 13px;">❌ Opción ${o.id}:</strong>
+          <div style="color: #e2e8f0; font-size: 13px; margin-top: 3px; line-height: 1.5;">${o.explicacion}</div>
+        </div>
+      `).join("")}
+    `;
+    huntBox.style.display = "block";
+  }
+
+  // Alternar botones de acción en la tarjeta
+  const btnConfirm = document.getElementById("btnConfirmAnswer");
+  const btnNext = document.getElementById("btnNextQuestion");
+  if (btnConfirm) btnConfirm.style.display = "none";
+  if (btnNext) btnNext.style.display = "block";
 
   AppState.stats.totalAnswered += 1;
   if (isCorrect) AppState.stats.correctCount += 1;

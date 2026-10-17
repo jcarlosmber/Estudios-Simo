@@ -409,6 +409,23 @@ body {
   gap: 14px;
 }
 
+/* Pestañas de Contenido (Evita que el contenido se ponga horizontal al alternar tabs) */
+.tab-content {
+  display: flex;
+  flex-direction: column !important;
+  gap: 14px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+#tab-practice {
+  display: flex;
+  flex-direction: column !important;
+  gap: 14px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
 /* Tarjeta de Pregunta PJS */
 .question-card {
   background-color: var(--bg-surface);

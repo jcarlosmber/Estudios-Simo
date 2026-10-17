@@ -6,11 +6,11 @@
   <meta name="theme-color" content="#1e293b">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <link rel="manifest" href="manifest.webmanifest">
-  <link rel="icon" type="image/svg+xml" href="icons/icon.svg">
-  <link rel="icon" type="image/png" sizes="192x192" href="icons/icon192.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon.png">
-  <link rel="apple-touch-icon" href="icons/icon192.png">
+  <link rel="manifest" href="manifest.webmanifest?v=2">
+  <link rel="icon" type="image/svg+xml" href="icons/icon.svg?v=2">
+  <link rel="icon" type="image/png" sizes="192x192" href="icons/icon192.png?v=2">
+  <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon.png?v=2">
+  <link rel="apple-touch-icon" href="icons/icon192.png?v=2">
   <title>SIMO Prep - Entrenador CNSC / DIAN</title>
   <link rel="stylesheet" href="sidepanel.css">
 </head>
@@ -63,7 +63,7 @@
   <main class="main-container">
 
     <!-- 1. PESTAÑA: PRÁCTICA LIBRE -->
-    <section id="tab-practice" class="tab-content">
+    <section id="tab-practice" class="tab-content" style="display: flex; flex-direction: column; gap: 14px; width: 100%;">
       <!-- Barra de Acciones Rápidas Táctiles (Power-Ups de Estudio) -->
       <div class="practice-powerups-row">
         <button id="btnOpenTipsModal" class="duo-powerup-btn duo-powerup-gold" title="Banco de 41 Claves Maestras">
@@ -144,12 +144,9 @@
           <!-- Opciones A, B, C -->
         </div>
 
-        <!-- Botón Cacería de Distractores -->
-        <button id="btnDistractorHunt" class="btn-secondary" style="font-size: 13px; font-weight: 700; padding: 8px 12px; border-color: rgba(245, 158, 11, 0.4); color: #f59e0b; width: 100%; display: flex; align-items: center; justify-content: center; gap: 6px; margin-top: 2px;">
-          🕵️ Cacería de Distractores: ¿Por qué fallan las otras opciones?
-        </button>
-        <div id="distractorHuntBox" style="display: none; background: rgba(11, 17, 32, 0.85); border: 1px dashed rgba(245, 158, 11, 0.5); border-radius: 8px; padding: 12px; font-size: 13px; color: #fef08a; line-height: 1.55;">
-          <!-- Pistas socráticas -->
+        <!-- Cacería de Distractores (Solo visible tras confirmar la respuesta) -->
+        <div id="distractorHuntBox" style="display: none; background: rgba(11, 17, 32, 0.9); border: 1px dashed rgba(245, 158, 11, 0.45); border-radius: 14px; padding: 14px 16px; font-size: 13px; color: #fef08a; line-height: 1.55; margin-top: 4px;">
+          <!-- Pistas socráticas y desglose de distractores tras confirmar -->
         </div>
 
         <div class="actions-row">
@@ -1295,8 +1292,11 @@
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('./sw.js')
-          .then(reg => console.log('[SIMO Prep] Service Worker registrado exitosamente:', reg.scope))
+        navigator.serviceWorker.register('./sw.js?v=2')
+          .then(reg => {
+            console.log('[SIMO Prep] Service Worker registrado exitosamente:', reg.scope);
+            reg.update(); // Forzar actualización inmediata
+          })
           .catch(err => console.log('[SIMO Prep] Service Worker error:', err));
       });
     }
