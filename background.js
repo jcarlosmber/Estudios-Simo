@@ -61,6 +61,23 @@ function setupBackgroundAlarm(enabled, intervalMinutes) {
   });
 }
 
+// Helper para verificar horario de descanso / silencio (ej: 8:00 PM a 8:00 AM)
+function isQuietTime(stored = {}) {
+  const enabled = stored.quietHoursEnabled !== undefined ? stored.quietHoursEnabled : true;
+  if (!enabled) return false;
+
+  const start = stored.quietHoursStart !== undefined ? Number(stored.quietHoursStart) : 20; // 8:00 PM por defecto
+  const end = stored.quietHoursEnd !== undefined ? Number(stored.quietHoursEnd) : 8;       // 8:00 AM por defecto
+
+  const currentHour = new Date().getHours(); // 0 a 23
+  if (start > end) {
+    // Horario que cruza la medianoche (ej. 20 a 8)
+    return currentHour >= start || currentHour < end;
+  } else {
+    return currentHour >= start && currentHour < end;
+  }
+}
+
 // 4. Disparar cuando suene la alarma periódica
 chrome.alarms.onAlarm.addListener(async (alarm) => {
   if (alarm.name !== ALARM_NAME) return;
@@ -71,10 +88,19 @@ chrome.alarms.onAlarm.addListener(async (alarm) => {
     "backgroundAlternateMode",
     "lastDeliveryType",
     "lastBackgroundTipId",
-    "lastBackgroundQuestionId"
+    "lastBackgroundQuestionId",
+    "quietHoursEnabled",
+    "quietHoursStart",
+    "quietHoursEnd"
   ]);
 
   if (stored.backgroundTipsEnabled === false) return;
+
+  // Si está en horario de silencio / dormir (8pm a 8am), no enviar nada
+  if (isQuietTime(stored)) {
+    console.log("[SIMO Prep] Horario de silencio activo (8pm - 8am). Notificación cancelada.");
+    return;
+  }
 
   await deliverNextBackgroundItem(stored);
 });

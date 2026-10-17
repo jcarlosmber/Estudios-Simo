@@ -459,6 +459,9 @@ function setupTipsModal() {
   const selectBgInterval = document.getElementById("selectBgInterval");
   const selectBgFormat = document.getElementById("selectBgFormat");
   const selectBgMode = document.getElementById("selectBgMode");
+  const chkQuietHours = document.getElementById("chkQuietHours");
+  const selectQuietStart = document.getElementById("selectQuietStart");
+  const selectQuietEnd = document.getElementById("selectQuietEnd");
   const btnTestBgAlternate = document.getElementById("btnTestBgAlternate");
   const btnTestBgQuestion = document.getElementById("btnTestBgQuestion");
   const btnTestBgTip = document.getElementById("btnTestBackgroundTip");
@@ -475,17 +478,37 @@ function setupTipsModal() {
   StorageManager.get("backgroundAlternateMode", "alternate").then((mode) => {
     if (selectBgMode) selectBgMode.value = mode;
   });
+  StorageManager.get("quietHoursEnabled", true).then((enabled) => {
+    if (chkQuietHours) chkQuietHours.checked = enabled;
+  });
+  StorageManager.get("quietHoursStart", 20).then((start) => {
+    if (selectQuietStart) selectQuietStart.value = String(start);
+  });
+  StorageManager.get("quietHoursEnd", 8).then((end) => {
+    if (selectQuietEnd) selectQuietEnd.value = String(end);
+  });
 
   const syncBackgroundSettings = () => {
     const enabled = chkBgTips ? chkBgTips.checked : true;
     const intervalMinutes = selectBgInterval ? parseInt(selectBgInterval.value, 10) : 25;
     const format = selectBgFormat ? selectBgFormat.value : "popup";
     const mode = selectBgMode ? selectBgMode.value : "alternate";
+    const quietEnabled = chkQuietHours ? chkQuietHours.checked : true;
+    const quietStart = selectQuietStart ? parseInt(selectQuietStart.value, 10) : 20;
+    const quietEnd = selectQuietEnd ? parseInt(selectQuietEnd.value, 10) : 8;
 
     StorageManager.set("backgroundTipsEnabled", enabled);
     StorageManager.set("backgroundTipsInterval", intervalMinutes);
     StorageManager.set("backgroundTipsFormat", format);
     StorageManager.set("backgroundAlternateMode", mode);
+    StorageManager.set("quietHoursEnabled", quietEnabled);
+    StorageManager.set("quietHoursStart", quietStart);
+    StorageManager.set("quietHoursEnd", quietEnd);
+
+    // Si se activó formato notificación y el navegador soporta Web Notifications (PWA en celular)
+    if (format === "notification" && typeof Notification !== "undefined" && Notification.permission === "default") {
+      Notification.requestPermission();
+    }
 
     if (typeof chrome !== "undefined" && chrome.runtime && chrome.runtime.sendMessage) {
       chrome.runtime.sendMessage({
@@ -498,13 +521,25 @@ function setupTipsModal() {
 
   if (chkBgTips) chkBgTips.addEventListener("change", syncBackgroundSettings);
   if (selectBgInterval) selectBgInterval.addEventListener("change", syncBackgroundSettings);
-  if (selectBgFormat) selectBgFormat.addEventListener("change", syncBackgroundSettings);
+  if (selectBgFormat) {
+    selectBgFormat.addEventListener("change", () => {
+      if (selectBgFormat.value === "notification" && typeof Notification !== "undefined" && Notification.permission === "default") {
+        Notification.requestPermission();
+      }
+      syncBackgroundSettings();
+    });
+  }
   if (selectBgMode) selectBgMode.addEventListener("change", syncBackgroundSettings);
+  if (chkQuietHours) chkQuietHours.addEventListener("change", syncBackgroundSettings);
+  if (selectQuietStart) selectQuietStart.addEventListener("change", syncBackgroundSettings);
+  if (selectQuietEnd) selectQuietEnd.addEventListener("change", syncBackgroundSettings);
 
   if (btnTestBgAlternate) {
     btnTestBgAlternate.addEventListener("click", () => {
       if (typeof chrome !== "undefined" && chrome.runtime && chrome.runtime.sendMessage) {
         chrome.runtime.sendMessage({ action: "testBackgroundTip" });
+      } else {
+        showRandomTipFlash({ forced: true });
       }
     });
   }
@@ -513,6 +548,8 @@ function setupTipsModal() {
     btnTestBgQuestion.addEventListener("click", () => {
       if (typeof chrome !== "undefined" && chrome.runtime && chrome.runtime.sendMessage) {
         chrome.runtime.sendMessage({ action: "testBackgroundTip", forcedType: "question" });
+      } else {
+        openSituationalQuestionFlash();
       }
     });
   }
@@ -521,18 +558,42 @@ function setupTipsModal() {
     btnTestBgTip.addEventListener("click", () => {
       if (typeof chrome !== "undefined" && chrome.runtime && chrome.runtime.sendMessage) {
         chrome.runtime.sendMessage({ action: "testBackgroundTip", forcedType: "tip" });
+      } else {
+        showRandomTipFlash({ forced: true });
       }
     });
   }
 
   // Timer suave periódico (cada 7 minutos muestra un micro-tip flash de repaso si está en la app)
-  setInterval(() => {
+  setInterval(async () => {
     if (!AppState.autoTips.enabled) return;
+    
+    // Si estamos en horario de silencio / dormir (por ej 8pm a 8am), no molestar
+    const isQuiet = await isClientQuietTime();
+    if (isQuiet) return;
+
     const isAnyModalActive = document.querySelector(".modal-overlay.active");
     if (!isAnyModalActive && AppState.currentTab === "practice") {
       showRandomTipFlash({ forced: false });
     }
   }, 7 * 60 * 1000);
+}
+
+// Función auxiliar para verificar si la hora actual está dentro del horario de descanso configurado
+async function isClientQuietTime() {
+  const enabled = await StorageManager.get("quietHoursEnabled", true);
+  if (!enabled) return false;
+
+  const start = Number(await StorageManager.get("quietHoursStart", 20)); // 8:00 PM
+  const end = Number(await StorageManager.get("quietHoursEnd", 8));       // 8:00 AM
+
+  const currentHour = new Date().getHours();
+  if (start > end) {
+    // Cruza la medianoche (ej: de 20:00 a 08:00)
+    return currentHour >= start || currentHour < end;
+  } else {
+    return currentHour >= start && currentHour < end;
+  }
 }
 
 function showRandomTipFlash({ forced = false, customTip = null } = {}) {
