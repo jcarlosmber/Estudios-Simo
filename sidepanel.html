@@ -840,9 +840,9 @@
   </div>
 
   <!-- MODAL: RETROALIMENTACIÓN FORMATIVA -->
-  <div id="feedbackModal" class="modal-overlay">
-    <div class="modal-card" style="max-width: 620px; width: 95%; max-height: 90vh; padding: 24px; gap: 16px;">
-      <div style="display: flex; align-items: center; gap: 12px; border-bottom: 1px solid var(--border-color); padding-bottom: 12px;">
+  <div id="feedbackModal" class="modal-overlay" style="overflow-y: auto; -webkit-overflow-scrolling: touch;">
+    <div class="modal-card scrollable" style="max-width: 620px; width: 95%; max-height: 88vh; overflow-y: auto; overflow-x: hidden; -webkit-overflow-scrolling: touch; overscroll-behavior: contain; padding: 22px 20px; gap: 16px; box-sizing: border-box; scrollbar-width: thin;">
+      <div style="display: flex; align-items: center; gap: 12px; border-bottom: 1px solid var(--border-color); padding-bottom: 12px; flex-shrink: 0;">
         <div id="feedbackIcon" class="verdict-icon correct" style="width: 44px; height: 44px; font-size: 24px;">✓</div>
         <div style="flex: 1;">
           <div id="feedbackTitle" class="verdict-title correct" style="font-size: 20px; font-weight: 800;">¡Respuesta Correcta!</div>
@@ -895,7 +895,7 @@
         </div>
       </div>
 
-      <div id="feedbackModalActions" style="display: flex; gap: 10px; margin-top: 8px;">
+      <div id="feedbackModalActions" style="display: flex; gap: 10px; margin-top: 10px; position: sticky; bottom: -22px; background: rgba(13, 21, 39, 0.95); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); padding: 12px 0 4px 0; z-index: 10; border-top: 1px solid rgba(255, 255, 255, 0.1);">
         <button id="btnFinishSessionFromFeedback" class="btn-secondary" style="flex: 1; font-size: 14px; font-weight: 700; padding: 12px; background: rgba(239, 68, 68, 0.15); border: 1px solid rgba(239, 68, 68, 0.4); color: #fca5a5; cursor: pointer; border-radius: 8px;">
           🏁 Terminar Sesión
         </button>

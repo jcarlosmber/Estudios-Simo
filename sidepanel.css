@@ -1046,18 +1046,26 @@ body.modal-open {
 }
 
 /* Scrollbar personalizado y suave en modales */
-.modal-body::-webkit-scrollbar {
+.modal-body::-webkit-scrollbar,
+.modal-card.scrollable::-webkit-scrollbar,
+#feedbackModal .modal-card::-webkit-scrollbar {
   width: 6px;
 }
-.modal-body::-webkit-scrollbar-track {
+.modal-body::-webkit-scrollbar-track,
+.modal-card.scrollable::-webkit-scrollbar-track,
+#feedbackModal .modal-card::-webkit-scrollbar-track {
   background: rgba(0, 0, 0, 0.15);
 }
-.modal-body::-webkit-scrollbar-thumb {
+.modal-body::-webkit-scrollbar-thumb,
+.modal-card.scrollable::-webkit-scrollbar-thumb,
+#feedbackModal .modal-card::-webkit-scrollbar-thumb {
   background: rgba(255, 255, 255, 0.2);
   border-radius: 4px;
 }
-.modal-body::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.35);
+.modal-body::-webkit-scrollbar-thumb:hover,
+.modal-card.scrollable::-webkit-scrollbar-thumb:hover,
+#feedbackModal .modal-card::-webkit-scrollbar-thumb:hover {
+  background: rgba(56, 189, 248, 0.45);
 }
 
 /* Botón de cerrar accesible para pantalla táctil */

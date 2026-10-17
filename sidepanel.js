@@ -1392,6 +1392,11 @@ function openModal(modalEl) {
   if (modalEl.id === "jobModal" && typeof populateJobModalForm === "function") {
     populateJobModalForm();
   }
+  const card = modalEl.querySelector(".modal-card");
+  if (card) card.scrollTop = 0;
+  const body = modalEl.querySelector(".modal-body");
+  if (body) body.scrollTop = 0;
+  modalEl.scrollTop = 0;
   modalEl.classList.add("active");
   document.body.classList.add("modal-open");
 }
