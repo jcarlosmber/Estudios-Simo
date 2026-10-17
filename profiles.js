@@ -39,6 +39,7 @@ const PROFILES_DATA = {
       { id: "misionalidad", label: "🏛️ Misionalidad y Estructura DIAN" },
       { id: "mipg", label: "📐 Modelo MIPG y Desempeño FURAG" },
       { id: "indicadores", label: "📈 Indicadores de Gestión" },
+      { id: "comprension_lectora", label: "📖 Lectura Crítica y Casos Complejos" },
       { id: "razonamiento", label: "🧠 Razonamiento Analítico" },
       { id: "rendicion_cuentas", label: "📢 Rendición de Cuentas" }
     ]
@@ -72,8 +73,9 @@ const PROFILES_DATA = {
     ],
     filterOptions: [
       { id: "interleaving", label: "🌪️ Modo Intercalado (Interleaving - Mezcla Mixta)" },
-      { id: "todos", label: "⚡ Todos los Casos Analista IV (Banco Completo - 103 Casos)" },
+      { id: "todos", label: "⚡ Todos los Casos Analista IV (Banco Completo - 109 Casos)" },
       // Ejes Funcionales
+      { id: "comprension_lectora", label: "📖 Lectura Crítica y Casos Complejos (6)" },
       { id: "fiscalizacion_aduanera_procedimiento", label: "🔍 Fiscalización, Pruebas y Destrucción Aduanera (16)" },
       { id: "obligaciones_tributarias", label: "📋 Obligaciones Formales y Sustanciales (7)" },
       { id: "gestion_documental", label: "📁 Gestión Documental y Trazabilidad (7)" },

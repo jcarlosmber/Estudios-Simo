@@ -109,6 +109,219 @@ const StorageManager = {
   }
 };
 
+// =========================================================================
+// SISTEMA UNIVERSAL DE NOTIFICACIONES MÓVIL (PWA / ANDROID / ESCRITORIO)
+// =========================================================================
+async function sendDeviceNotification(title, options = {}) {
+  // 1. Entorno Extensión de Chrome en Escritorio
+  if (typeof chrome !== "undefined" && chrome.notifications && chrome.notifications.create) {
+    try {
+      chrome.notifications.create({
+        type: "basic",
+        iconUrl: "icons/icon128.png",
+        title: title,
+        message: options.body || "",
+        priority: 2
+      });
+      return true;
+    } catch (e) {
+      console.warn("[Notif] Error con chrome.notifications:", e);
+    }
+  }
+
+  // 2. Entorno Web / Celular / PWA
+  if (typeof Notification === "undefined") {
+    console.warn("[Notif] Notification API no soportada en este dispositivo.");
+    return false;
+  }
+
+  // Verificar o solicitar permiso
+  if (Notification.permission === "default") {
+    try {
+      const perm = await Notification.requestPermission();
+      if (perm !== "granted") return false;
+    } catch (e) {
+      return false;
+    }
+  } else if (Notification.permission !== "granted") {
+    return false;
+  }
+
+  const notifOptions = {
+    body: options.body || "",
+    icon: options.icon || "icons/icon192.png",
+    badge: options.badge || "icons/icon72.png",
+    vibrate: [200, 100, 200],
+    tag: options.tag || "simo-notif-" + Date.now(),
+    renotify: true,
+    data: options.data || { url: "./" }
+  };
+
+  // En Android Chrome y navegadores móviles es mandatorio usar registration.showNotification
+  if ("serviceWorker" in navigator) {
+    try {
+      let reg = await navigator.serviceWorker.getRegistration();
+      if (!reg) {
+        reg = await navigator.serviceWorker.ready;
+      }
+      if (reg && reg.showNotification) {
+        await reg.showNotification(title, notifOptions);
+        return true;
+      }
+    } catch (swErr) {
+      console.warn("[Notif] ServiceWorker showNotification falló:", swErr);
+    }
+  }
+
+  // Fallback para navegadores que permiten new Notification()
+  try {
+    new Notification(title, notifOptions);
+    return true;
+  } catch (err) {
+    console.warn("[Notif] Fallback new Notification() error:", err);
+  }
+
+  return false;
+}
+
+const TIPS_LECTURA_CRITICA = [
+  {
+    id: "lc_1",
+    titulo: "Lectura Inversa: Encuentra el Verbo Rector",
+    resumen: "Nunca leas el caso desde el inicio. Ve a la última frase interrogativa en negrilla para fijar el verbo rector (Notificar, Suspender, Rechazar, Proyectar).",
+    regla: "Saber qué te piden antes de leer el cuerpo del caso ahorra 50% de esfuerzo cognitivo."
+  },
+  {
+    id: "lc_2",
+    titulo: "Filtro Anti-Ruido: Hechos Probados vs. Emociones",
+    resumen: "Ignora adjetivos y enfados de usuarios. Rastrea únicamente fechas de radicación, actos administrativos notificados y cifras en firme.",
+    regla: "En derecho público solo lo probado en el expediente cuenta. Lo no documentado es distractor."
+  },
+  {
+    id: "lc_3",
+    titulo: "Radar de Cuantificadores Absolutos (Trampas)",
+    resumen: "Alerta máxima con 'siempre', 'nunca', 'únicamente', 'inapelable' o 'automáticamente'. Son distractores en un 95%.",
+    regla: "La clave prefiere 'previa verificación motivada', 'dentro del término' o 'conforme al debido proceso'."
+  },
+  {
+    id: "lc_4",
+    titulo: "Test del Rol: Cuidado con la Verdad Incompetente",
+    resumen: "Una opción puede citar una ley perfecta, pero si la acción le toca al Director Seccional o al Juez, es usurpación de funciones.",
+    regla: "Pregúntate siempre: ¿Está facultado mi cargo (Gestor / Analista) para tomar esta decisión por sí mismo?"
+  },
+  {
+    id: "lc_5",
+    titulo: "Fórmula E-P-C de Comprensión Rápida",
+    resumen: "Enunciado interrogativo ➔ Premisa fáctica probada con fechas ➔ Clave congruente con tu rol.",
+    regla: "Desarticula casos extensos de 4 párrafos en menos de 45 segundos aplicando el filtro E-P-C."
+  },
+  {
+    id: "lc_6",
+    titulo: "Técnica E-I-C de Análisis Forense",
+    resumen: "Escaneo visual (8 seg de fechas y UVT) ➔ Interrogante final ➔ Conexión al párrafo determinante.",
+    regla: "No leas como novela: escanea como auditor y responde como juez."
+  },
+  {
+    id: "lc_7",
+    titulo: "Triángulo V-N-C del Verbo Rector",
+    resumen: "V (Verbo de la pregunta) ➔ N (Nivel: Profesional vs Técnico) ➔ C (Competencia legal).",
+    regla: "Nivel Técnico apoya y verifica; Nivel Profesional sustenta, proyecta y formula."
+  }
+];
+
+let mobileBackgroundNotificationInterval = null;
+
+async function triggerMobileRandomNotification(forcedType = null) {
+  const mode = await StorageManager.get("backgroundAlternateMode", "alternate");
+  let type = forcedType;
+
+  if (!type) {
+    if (mode === "tips_only") type = "tip";
+    else if (mode === "questions_only") type = "question";
+    else if (mode === "lectura_only") type = "lectura";
+    else {
+      // Rotación triple continua: Pregunta ➔ Tip Flash ➔ Lectura Crítica ➔ Pregunta...
+      const cycle = ["question", "tip", "lectura"];
+      const lastType = await StorageManager.get("lastMobileNotifType", "lectura");
+      const lastIndex = cycle.indexOf(lastType);
+      const nextIndex = lastIndex >= 0 ? (lastIndex + 1) % cycle.length : 0;
+      type = cycle[nextIndex];
+      await StorageManager.set("lastMobileNotifType", type);
+    }
+  }
+
+  if (type === "question") {
+    const questions = typeof getCurrentQuestionBank === "function" ? getCurrentQuestionBank() : [];
+    if (questions && questions.length > 0) {
+      const q = questions[Math.floor(Math.random() * questions.length)];
+      const title = "🎯 Caso Situacional DIAN 2676";
+      const snippet = (q.contexto || q.pregunta || "").slice(0, 150) + "...";
+      return await sendDeviceNotification(title, {
+        body: snippet,
+        icon: "icons/icon192.png",
+        tag: "simo-question-" + (q.id || Date.now())
+      });
+    }
+  }
+
+  if (type === "lectura") {
+    const list = typeof TIPS_LECTURA_CRITICA !== "undefined" ? TIPS_LECTURA_CRITICA : [];
+    if (list && list.length > 0) {
+      const lc = list[Math.floor(Math.random() * list.length)];
+      const title = `📖 Lectura Crítica: ${lc.titulo}`;
+      return await sendDeviceNotification(title, {
+        body: `${lc.resumen}\n💡 ${lc.regla}`,
+        icon: "icons/icon192.png",
+        tag: "simo-lectura-" + (lc.id || Date.now())
+      });
+    }
+  }
+
+  // Tip / Fórmula
+  const tips = typeof TIPS_PJS_DATA !== "undefined" ? TIPS_PJS_DATA : [];
+  if (tips && tips.length > 0) {
+    const tip = tips[Math.floor(Math.random() * tips.length)];
+    const title = `💡 Clave: ${tip.titulo}`;
+    const bodyText = tip.formula 
+      ? `📐 ${tip.formula} • ${tip.resumenCorto}`
+      : tip.resumenCorto;
+    return await sendDeviceNotification(title, {
+      body: bodyText,
+      icon: "icons/icon192.png",
+      tag: "simo-tip-" + (tip.id || Date.now())
+    });
+  }
+
+  return false;
+}
+
+async function setupMobileBackgroundScheduler() {
+  if (typeof chrome !== "undefined" && chrome.alarms) {
+    return; // La extensión de PC usa chrome.alarms
+  }
+
+  if (mobileBackgroundNotificationInterval) {
+    clearInterval(mobileBackgroundNotificationInterval);
+    mobileBackgroundNotificationInterval = null;
+  }
+
+  const enabled = await StorageManager.get("backgroundTipsEnabled", true);
+  if (!enabled) return;
+
+  const intervalMinutes = Number(await StorageManager.get("backgroundTipsInterval", 25));
+  const intervalMs = Math.max(1, intervalMinutes) * 60 * 1000;
+
+  mobileBackgroundNotificationInterval = setInterval(async () => {
+    const isEnabled = await StorageManager.get("backgroundTipsEnabled", true);
+    if (!isEnabled) return;
+
+    const isQuiet = await isClientQuietTime();
+    if (isQuiet) return;
+
+    await triggerMobileRandomNotification();
+  }, intervalMs);
+}
+
 document.addEventListener("DOMContentLoaded", async () => {
   setupGlobalModals();
   await loadUserData();
@@ -129,14 +342,12 @@ document.addEventListener("DOMContentLoaded", async () => {
   setupMobileNotificationPrompt();
   setupInstallModal();
   await setupSoundToggleUI();
+  await setupMobileBackgroundScheduler();
 
   updateEjeFilterOptions(AppState.activeProfileId);
   updateJobProfileUI();
   updateStreakUI();
   showPracticeCover();
-  setTimeout(() => {
-    promptStartPracticeSession({ fromSwitch: false });
-  }, 400);
 
   // Sincronización Automática Silenciosa con https://simo.liverohoa.com (Progreso y Preguntas)
   if (typeof CloudSync !== "undefined") {
@@ -406,12 +617,99 @@ function setupTipsModal() {
   let currentCategory = "all";
   let currentSearch = "";
 
-  // Renderizar las 41 Claves Maestras con filtro de texto y categoría
+  // Renderizar las 46 Claves Maestras y Fórmulas Mnemotécnicas
   function renderTipsList() {
     if (!listContainer || typeof TIPS_PJS_DATA === "undefined") return;
     listContainer.innerHTML = "";
 
     const term = currentSearch.trim().toLowerCase();
+
+    // Vista especializada para la categoría Fórmulas & Mnemotecnias
+    if (currentCategory === "Fórmulas y Mnemotecnias") {
+      const infografiaBlock = document.createElement("div");
+      infografiaBlock.style.cssText = "display: flex; flex-direction: column; gap: 12px; margin-bottom: 8px;";
+      infografiaBlock.innerHTML = `
+        <div style="font-size: 13px; font-weight: 800; color: var(--accent-gold); text-transform: uppercase;">
+          🖼️ Infografías de Estudio Visual Clave
+        </div>
+        <div style="background-color: var(--bg-surface); border: 1px solid var(--border-color); border-radius: 12px; overflow: hidden; box-shadow: var(--shadow-sm);">
+          <a href="assets/infografia_lineas_defensa.jpg" target="_blank" style="display: block; text-decoration: none;">
+            <img src="assets/infografia_lineas_defensa.jpg" alt="Las Tres Líneas de Defensa" style="width: 100%; height: auto; display: block; cursor: pointer;" title="Clic para ampliar en nueva pestaña">
+          </a>
+          <div style="padding: 10px 12px; display: flex; justify-content: space-between; align-items: center;">
+            <div>
+              <div style="font-size: 13px; font-weight: 800; color: #f8fafc;">Fortaleza de las 3 Líneas de Defensa</div>
+              <div style="font-size: 11px; color: var(--text-secondary);">Sistema de Control Interno (Ley 87 de 1993 y MECI)</div>
+            </div>
+            <a href="assets/infografia_lineas_defensa.jpg" target="_blank" style="font-size: 11px; color: var(--accent-blue); text-decoration: none; font-weight: 700; border: 1px solid rgba(56,189,248,0.4); padding: 4px 8px; border-radius: 6px;">🔍 Ampliar</a>
+          </div>
+        </div>
+        <div style="background-color: var(--bg-surface); border: 1px solid var(--border-color); border-radius: 12px; overflow: hidden; box-shadow: var(--shadow-sm);">
+          <a href="assets/infografia_mipg.jpg" target="_blank" style="display: block; text-decoration: none;">
+            <img src="assets/infografia_mipg.jpg" alt="7 Dimensiones del MIPG" style="width: 100%; height: auto; display: block; cursor: pointer;" title="Clic para ampliar en nueva pestaña">
+          </a>
+          <div style="padding: 10px 12px; display: flex; justify-content: space-between; align-items: center;">
+            <div>
+              <div style="font-size: 13px; font-weight: 800; color: #f8fafc;">El Corazón y las 7 Dimensiones del MIPG</div>
+              <div style="font-size: 11px; color: var(--text-secondary);">Talento Humano articulando las políticas de gestión</div>
+            </div>
+            <a href="assets/infografia_mipg.jpg" target="_blank" style="font-size: 11px; color: var(--accent-blue); text-decoration: none; font-weight: 700; border: 1px solid rgba(56,189,248,0.4); padding: 4px 8px; border-radius: 6px;">🔍 Ampliar</a>
+          </div>
+        </div>
+        <div style="font-size: 13px; font-weight: 800; color: #c084fc; text-transform: uppercase; margin-top: 6px; letter-spacing: 0.5px;">
+          📐 Anclas y Fórmulas Mnemotécnicas
+        </div>
+      `;
+      listContainer.appendChild(infografiaBlock);
+
+      if (typeof MNEMOTECNIAS !== "undefined") {
+        MNEMOTECNIAS.forEach((m) => {
+          if (term && !m.titulo.toLowerCase().includes(term) && !m.formula.toLowerCase().includes(term) && !m.descripcion.toLowerCase().includes(term)) {
+            return;
+          }
+          const card = document.createElement("div");
+          card.style.cssText = `
+            background-color: var(--bg-surface);
+            border: 1px solid rgba(168, 85, 247, 0.35);
+            border-left: 4px solid #a855f7;
+            padding: 14px 16px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+          `;
+          const pointsHtml = m.puntos ? `
+            <ul style="font-size: 13px; line-height: 1.55; color: #cbd5e1; margin: 4px 0 0 18px; padding: 0;">
+              ${m.puntos.map(p => `<li style="margin-bottom: 4px;">${p}</li>`).join("")}
+            </ul>
+          ` : "";
+          card.innerHTML = `
+            <div style="font-size: 15px; font-weight: 800; color: #c084fc; display: flex; align-items: center; gap: 6px;">
+              <span>💡</span>
+              <span>${m.titulo}</span>
+            </div>
+            <div style="background-color: rgba(11, 17, 32, 0.85); border-left: 4px solid var(--accent-blue); padding: 9px 12px; border-radius: 6px; font-size: 13px; font-weight: 800; color: #38bdf8; font-family: 'Consolas', monospace;">
+              ${m.formula}
+            </div>
+            <div style="font-size: 13px; color: #f1f5f9; line-height: 1.5;">
+              ${m.descripcion}
+            </div>
+            ${pointsHtml}
+            <div style="background-color: rgba(245, 158, 11, 0.12); border: 1px dashed rgba(245, 158, 11, 0.4); padding: 7px 10px; border-radius: 6px; font-size: 12px; color: #fef08a; font-weight: 600;">
+              🔑 Ancla Visual: ${m.claveVisual}
+            </div>
+          `;
+          listContainer.appendChild(card);
+        });
+      }
+
+      if (countBadge) {
+        countBadge.textContent = "Mostrando fórmulas, infografías y anclas de memoria";
+      }
+      return;
+    }
+
     const filtered = TIPS_PJS_DATA.filter((tip) => {
       const matchCategory = currentCategory === "all" || tip.categoria === currentCategory;
       const matchSearch = !term ||
@@ -420,12 +718,13 @@ function setupTipsModal() {
         (tip.normaReferencia && tip.normaReferencia.toLowerCase().includes(term)) ||
         (tip.contenidoDetallado && tip.contenidoDetallado.toLowerCase().includes(term)) ||
         (tip.categoria && tip.categoria.toLowerCase().includes(term)) ||
+        (tip.formula && tip.formula.toLowerCase().includes(term)) ||
         String(tip.numero).includes(term);
       return matchCategory && matchSearch;
     });
 
     if (countBadge) {
-      countBadge.textContent = `Mostrando ${filtered.length} de ${TIPS_PJS_DATA.length} claves`;
+      countBadge.textContent = term ? `${filtered.length} claves encontradas` : "Claves y Fórmulas disponibles";
     }
 
     if (filtered.length === 0) {
@@ -505,11 +804,18 @@ function setupTipsModal() {
         b.style.color = "#cbd5e1";
         b.classList.remove("active");
       });
-      btn.style.background = "rgba(245, 158, 11, 0.2)";
-      btn.style.borderColor = "#f59e0b";
-      btn.style.color = "#f59e0b";
+      const cat = btn.getAttribute("data-cat");
+      if (cat === "Fórmulas y Mnemotecnias") {
+        btn.style.background = "rgba(168, 85, 247, 0.25)";
+        btn.style.borderColor = "#c084fc";
+        btn.style.color = "#c084fc";
+      } else {
+        btn.style.background = "rgba(245, 158, 11, 0.2)";
+        btn.style.borderColor = "#f59e0b";
+        btn.style.color = "#f59e0b";
+      }
       btn.classList.add("active");
-      currentCategory = btn.getAttribute("data-cat");
+      currentCategory = cat;
       renderTipsList();
     });
   });
@@ -529,6 +835,13 @@ function setupTipsModal() {
   if (btnClose) btnClose.addEventListener("click", () => closeModal(modal));
 
   // Manejadores Popup Flash Ocasional
+  const btnNextTipInModal = document.getElementById("btnNextTipFlashInModal");
+  if (btnNextTipInModal) {
+    btnNextTipInModal.addEventListener("click", () => {
+      showRandomTipFlash({ forced: true });
+    });
+  }
+
   if (btnRandomFlash) {
     btnRandomFlash.addEventListener("click", () => showRandomTipFlash({ forced: true }));
   }
@@ -559,7 +872,20 @@ function setupTipsModal() {
     btnCloseLecturaX.addEventListener("click", () => closeModal(lecturaModal));
   }
   if (btnCloseLectura) {
-    btnCloseLectura.addEventListener("click", () => closeModal(lecturaModal));
+    btnCloseLectura.addEventListener("click", () => {
+      closeModal(lecturaModal);
+      if (typeof switchTab === "function") {
+        switchTab("practice");
+      }
+      const filterSelect = document.getElementById("selectEjeFilter");
+      if (filterSelect) {
+        filterSelect.value = "comprension_lectora";
+        AppState.currentEjeFilter = "comprension_lectora";
+      }
+      if (typeof startPracticeSession === "function") {
+        startPracticeSession();
+      }
+    });
   }
   if (btnVerTodasDesdeLectura) {
     btnVerTodasDesdeLectura.addEventListener("click", () => {
@@ -569,6 +895,17 @@ function setupTipsModal() {
       if (filterComp) filterComp.click();
     });
   }
+
+  // Interacción Cazador de Trampas Semánticas en el modal de lectura
+  document.querySelectorAll(".btn-trap-tester").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const trapId = btn.getAttribute("data-trap-id");
+      const fb = document.getElementById(`trapFeedback${trapId}`);
+      if (fb) {
+        fb.style.display = fb.style.display === "none" ? "block" : "none";
+      }
+    });
+  });
 }
 
 // =========================================================================
@@ -594,6 +931,7 @@ function setupMicrolearningModal() {
   const btnTestBgAlternate = document.getElementById("btnTestBgAlternate");
   const btnTestBgQuestion = document.getElementById("btnTestBgQuestion");
   const btnTestBgTip = document.getElementById("btnTestBackgroundTip");
+  const btnTestBgLectura = document.getElementById("btnTestBgLectura");
 
   const updateIntensityBadge = (sec) => {
     if (!labelTimerIntensity) return;
@@ -696,6 +1034,8 @@ function setupMicrolearningModal() {
         intervalMinutes: intervalMinutes,
         questionTimerSeconds: questionTimerSec
       });
+    } else {
+      setupMobileBackgroundScheduler();
     }
   };
 
@@ -736,31 +1076,48 @@ function setupMicrolearningModal() {
 
   // Botones de prueba interactiva
   if (btnTestBgAlternate) {
-    btnTestBgAlternate.addEventListener("click", () => {
+    btnTestBgAlternate.addEventListener("click", async () => {
       if (typeof chrome !== "undefined" && chrome.runtime && chrome.runtime.sendMessage) {
         chrome.runtime.sendMessage({ action: "testBackgroundTip" });
       } else {
-        showRandomTipFlash({ forced: true });
+        const sent = await triggerMobileRandomNotification();
+        if (!sent && typeof Notification !== "undefined" && Notification.permission !== "granted") {
+          showCustomModal({
+            title: "Permisos de Notificación",
+            message: "Debes activar las notificaciones en tu celular (o permitir notificaciones en el navegador) para recibirlas.",
+            icon: "🔔"
+          });
+        }
       }
     });
   }
 
   if (btnTestBgQuestion) {
-    btnTestBgQuestion.addEventListener("click", () => {
+    btnTestBgQuestion.addEventListener("click", async () => {
       if (typeof chrome !== "undefined" && chrome.runtime && chrome.runtime.sendMessage) {
         chrome.runtime.sendMessage({ action: "testBackgroundTip", forcedType: "question" });
       } else {
-        openSituationalQuestionFlash();
+        await triggerMobileRandomNotification("question");
       }
     });
   }
 
   if (btnTestBgTip) {
-    btnTestBgTip.addEventListener("click", () => {
+    btnTestBgTip.addEventListener("click", async () => {
       if (typeof chrome !== "undefined" && chrome.runtime && chrome.runtime.sendMessage) {
         chrome.runtime.sendMessage({ action: "testBackgroundTip", forcedType: "tip" });
       } else {
-        showRandomTipFlash({ forced: true });
+        await triggerMobileRandomNotification("tip");
+      }
+    });
+  }
+
+  if (btnTestBgLectura) {
+    btnTestBgLectura.addEventListener("click", async () => {
+      if (typeof chrome !== "undefined" && chrome.runtime && chrome.runtime.sendMessage) {
+        chrome.runtime.sendMessage({ action: "testBackgroundTip", forcedType: "lectura" });
+      } else {
+        await triggerMobileRandomNotification("lectura");
       }
     });
   }
@@ -808,8 +1165,24 @@ function showRandomTipFlash({ forced = false, customTip = null } = {}) {
 
   let tip = customTip;
   if (!tip) {
-    const candidates = TIPS_PJS_DATA.filter(t => t.id !== AppState.autoTips.lastTipShownId);
-    const pool = candidates.length > 0 ? candidates : TIPS_PJS_DATA;
+    const mnemTips = (typeof MNEMOTECNIAS !== "undefined" ? MNEMOTECNIAS : []).map((m, idx) => ({
+      id: m.id,
+      isMnem: true,
+      numero: `F${idx + 1}`,
+      titulo: m.titulo,
+      categoria: "Fórmula Mnemotécnica",
+      icono: "📐",
+      color: "#c084fc",
+      normaReferencia: `Ancla Visual: ${m.claveVisual}`,
+      resumenCorto: m.descripcion,
+      formula: m.formula,
+      contenidoDetallado: m.puntos ? m.puntos.map(p => `• ${p}`).join("<br>") : m.claveVisual,
+      mnemRaw: m
+    }));
+
+    const fullPool = [...TIPS_PJS_DATA, ...mnemTips];
+    const candidates = fullPool.filter(t => t.id !== AppState.autoTips.lastTipShownId);
+    const pool = candidates.length > 0 ? candidates : fullPool;
     tip = pool[Math.floor(Math.random() * pool.length)];
   }
 
@@ -823,34 +1196,48 @@ function showRandomTipFlash({ forced = false, customTip = null } = {}) {
 
   if (iconEl) iconEl.textContent = tip.icono || "💡";
   if (badgeEl) {
-    badgeEl.textContent = `Tip Clave #${tip.numero} • ${tip.categoria}`;
+    badgeEl.textContent = tip.isMnem 
+      ? `Fórmula Mnemotécnica • ${tip.numero}`
+      : `Tip Clave #${tip.numero} • ${tip.categoria}`;
     badgeEl.style.color = tip.color || "#f59e0b";
   }
   if (titleEl) {
-    titleEl.textContent = `${tip.numero}. ${tip.titulo}`;
+    titleEl.textContent = tip.isMnem ? tip.titulo : `${tip.numero}. ${tip.titulo}`;
     titleEl.style.color = tip.color || "#f8fafc";
   }
   if (normaEl) normaEl.textContent = `📌 ${tip.normaReferencia}`;
   
-  // Banner fotográfico temático curado
-  const themeImg = typeof getImageForContext === "function" ? getImageForContext(tip) : null;
+  // Banner fotográfico o infografía temático curado
   const bannerContainer = document.getElementById("popupTipBannerContainer");
   const bannerImg = document.getElementById("popupTipBannerImg");
   const bannerBadge = document.getElementById("popupTipBannerBadge");
-  if (bannerContainer && themeImg) {
-    if (bannerImg) {
-      bannerImg.src = themeImg.url;
-      bannerImg.alt = themeImg.alt;
+  if (bannerContainer) {
+    if (tip.isMnem && tip.id === "mnem_03") {
+      if (bannerImg) bannerImg.src = "assets/infografia_lineas_defensa.jpg";
+      if (bannerBadge) bannerBadge.textContent = "Fortaleza de las 3 Líneas de Defensa (MECI)";
+      bannerContainer.style.display = "flex";
+    } else if (tip.isMnem && tip.id === "mnem_05") {
+      if (bannerImg) bannerImg.src = "assets/infografia_mipg.jpg";
+      if (bannerBadge) bannerBadge.textContent = "El Corazón y las 7 Dimensiones del MIPG";
+      bannerContainer.style.display = "flex";
+    } else {
+      const themeImg = typeof getImageForContext === "function" ? getImageForContext(tip) : null;
+      if (themeImg) {
+        if (bannerImg) {
+          bannerImg.src = themeImg.url;
+          bannerImg.alt = themeImg.alt;
+        }
+        if (bannerBadge) {
+          bannerBadge.textContent = themeImg.badge;
+        }
+        bannerContainer.style.display = "flex";
+      }
     }
-    if (bannerBadge) {
-      bannerBadge.textContent = themeImg.badge;
-    }
-    bannerContainer.style.display = "flex";
   }
 
   if (bodyEl) {
     const formulaHtml = tip.formula ? `
-      <div style="background: rgba(168, 85, 247, 0.16); border: 1px solid rgba(168, 85, 247, 0.45); border-left: 4px solid #a855f7; border-radius: 8px; padding: 10px 14px; margin: 12px 0 10px 0; display: flex; align-items: flex-start; gap: 10px;">
+      <div style="background: rgba(168, 85, 247, 0.18); border: 1px solid rgba(168, 85, 247, 0.45); border-left: 4px solid #c084fc; border-radius: 8px; padding: 10px 14px; margin: 12px 0 10px 0; display: flex; align-items: flex-start; gap: 10px;">
         <span style="font-size: 20px; line-height: 1;">📐</span>
         <div style="flex: 1;">
           <div style="font-size: 11px; font-weight: 800; color: #c084fc; text-transform: uppercase; letter-spacing: 0.5px;">Fórmula Mnemotécnica / Regla Rápida:</div>
@@ -1045,8 +1432,8 @@ function setupNavigation() {
   const hubTips = document.getElementById("hubCardTips");
   if (hubTips) {
     hubTips.addEventListener("click", () => {
-      const btn = document.getElementById("btnOpenTipsModal");
-      if (btn) btn.click();
+      const tipsModal = document.getElementById("tipsModal");
+      if (tipsModal) openModal(tipsModal);
     });
   }
 
@@ -1065,22 +1452,9 @@ function setupNavigation() {
     });
   }
 
-  const hubFlash = document.getElementById("hubCardFlash");
-  if (hubFlash) {
-    hubFlash.addEventListener("click", () => {
-      const btn = document.getElementById("btnRandomTipFlash");
-      if (btn) btn.click();
-    });
-  }
-
   const hubSRS = document.getElementById("hubCardSRS");
   if (hubSRS) {
     hubSRS.addEventListener("click", () => switchTab("srs"));
-  }
-
-  const hubFormulas = document.getElementById("hubCardFormulas");
-  if (hubFormulas) {
-    hubFormulas.addEventListener("click", () => switchTab("mnemotecnias"));
   }
 
   const hubJob = document.getElementById("hubCardJob");
@@ -1146,7 +1520,7 @@ function switchTab(tabName) {
   AppState.currentTab = tabName;
 
   // Si se ingresa a una sub-herramienta de recursos, mantener iluminado 'recursos' en el bottom nav
-  const activeNavKey = ["mnemotecnias", "srs", "jobFocus", "recursos"].includes(tabName) ? "recursos" : tabName;
+  const activeNavKey = ["srs", "jobFocus", "recursos"].includes(tabName) ? "recursos" : tabName;
 
   document.querySelectorAll(".nav-tab-item, .tab-btn").forEach((t) => {
     const dataTab = t.getAttribute("data-tab");
@@ -1170,7 +1544,6 @@ function switchTab(tabName) {
   if (tabName === "practice") {
     if (!AppState.practiceSession.active) {
       showPracticeCover();
-      promptStartPracticeSession({ fromSwitch: true });
     } else {
       hidePracticeCover();
     }
@@ -1180,7 +1553,6 @@ function switchTab(tabName) {
   if (tabName === "srs") renderSrsTab();
   if (tabName === "stats") renderStatsTab();
   if (tabName === "speedDrill") startSpeedDrill();
-  if (tabName === "mnemotecnias") renderMnemotecniasTab();
 
   window.scrollTo({ top: 0, behavior: "smooth" });
 }
@@ -1300,6 +1672,23 @@ function setupPracticeLogic() {
   const btnStartCover = document.getElementById("btnStartPracticeFromCover");
   const btnFinishCard = document.getElementById("btnFinishSessionFromCard");
   const btnFinishFeedback = document.getElementById("btnFinishSessionFromFeedback");
+  const btnActionPractice = document.getElementById("btnActionPractice");
+
+  if (btnActionPractice) {
+    btnActionPractice.addEventListener("click", () => {
+      if (AppState.currentTab !== "practice") {
+        switchTab("practice");
+      }
+      if (!AppState.practiceSession.active) {
+        startPracticeSession();
+      } else {
+        const questionCard = document.getElementById("practiceQuestionCard");
+        if (questionCard) {
+          questionCard.scrollIntoView({ behavior: "smooth" });
+        }
+      }
+    });
+  }
 
   if (btnStartCover) {
     btnStartCover.addEventListener("click", () => {
@@ -1351,6 +1740,53 @@ function setupPracticeLogic() {
       loadNextPracticeQuestion();
     });
   });
+
+  const btnScanner = document.getElementById("btnToggleScanner");
+  if (btnScanner) {
+    btnScanner.addEventListener("click", toggleCaseScanner);
+  }
+}
+
+// Escáner Rayos X para Lectura Crítica de Casos Situacionales
+let isScannerActive = false;
+function toggleCaseScanner() {
+  const caseEl = document.getElementById("qCaseText");
+  const btn = document.getElementById("btnToggleScanner");
+  if (!caseEl || !AppState.currentQuestion || !AppState.currentQuestion.caso) return;
+
+  isScannerActive = !isScannerActive;
+  if (!isScannerActive) {
+    caseEl.textContent = AppState.currentQuestion.caso;
+    if (btn) {
+      btn.style.background = "rgba(168, 85, 247, 0.15)";
+      btn.style.borderColor = "rgba(168, 85, 247, 0.4)";
+      btn.style.color = "#c084fc";
+      btn.innerHTML = "🔍 Escáner Rayos X";
+    }
+    return;
+  }
+
+  if (btn) {
+    btn.style.background = "rgba(168, 85, 247, 0.4)";
+    btn.style.borderColor = "#c084fc";
+    btn.style.color = "#ffffff";
+    btn.innerHTML = "✨ Rayos X Activo";
+  }
+
+  let text = AppState.currentQuestion.caso;
+  text = text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+
+  // 1. Fechas, plazos y números temporales (Dorado/Ámbar)
+  text = text.replace(/\b(\d+)\s*(meses|días|dias|años|horas|semanas|folios|páginas|paginas)\b/gi, '<mark style="background: rgba(245, 158, 11, 0.25); color: #fde68a; font-weight: 700; padding: 1px 4px; border-radius: 4px; border-bottom: 2px solid #f59e0b;">$1 $2</mark>');
+  text = text.replace(/\b(\d{1,2}\s+de\s+[a-záéíóú]+(?:\s+de\s+\d{4})?)\b/gi, '<mark style="background: rgba(245, 158, 11, 0.25); color: #fde68a; font-weight: 700; padding: 1px 4px; border-radius: 4px; border-bottom: 2px solid #f59e0b;">$1</mark>');
+
+  // 2. Actos administrativos, normas y montos monetarios (Azul/Cian)
+  text = text.replace(/\b(liquidación oficial(?:\s+de\s+revisión|\s+de\s+corrección)?|requerimiento especial|recurso de reconsideración|estatuto tributario|decreto\s+\d+|resolución|resolucion|artículo\s+\d+|articulo\s+\d+|auto de suspensión|póliza de seguro|\$\s*[\d\.\,]+)\b/gi, '<mark style="background: rgba(56, 189, 248, 0.25); color: #bae6fd; font-weight: 700; padding: 1px 4px; border-radius: 4px; border-bottom: 2px solid #38bdf8;">$1</mark>');
+
+  // 3. Palabras trampa / cuantificadores categóricos (Rojo sutil tachado)
+  text = text.replace(/\b(automática|automático|automáticamente|de plano|inapelable|inapelable de plano|de plano y sin fórmula de juicio|suspensión indefinida|condonación total y de plano|siempre|nunca|sin audiencia)\b/gi, '<mark style="background: rgba(239, 68, 68, 0.28); color: #fca5a5; font-weight: 700; padding: 1px 4px; border-radius: 4px; border-bottom: 2px solid #ef4444; text-decoration: line-through;">$1</mark>');
+
+  caseEl.innerHTML = text;
 }
 
 // Cronómetro reglamentario configurable por el usuario (Microaprendizaje / Práctica)
@@ -1569,6 +2005,7 @@ function loadNextPracticeQuestion() {
       if (filter === "trabajo_equipo") return q.ejeId && q.ejeId.startsWith("trabajo_equipo");
       if (filter === "orientacion_logro") return q.ejeId && q.ejeId.startsWith("orientacion_logro");
       if (filter === "orientacion_usuario") return q.ejeId && q.ejeId.startsWith("orientacion_usuario");
+      if (filter === "comprension_lectora") return q.ejeId === "comprension_lectora" || q.ejeId === "razonamiento";
       return q.ejeId === filter;
     });
     if (filtered.length > 0) pool = filtered;
@@ -1594,6 +2031,25 @@ function renderPracticeQuestion(q) {
   document.getElementById("qBadgeTopic").textContent = q.tema;
   document.getElementById("qCaseText").textContent = q.caso;
   document.getElementById("qEnunciado").textContent = q.enunciado;
+
+  // Actualizar métricas de velocidad de lectura (Lectura Crítica)
+  const caseWords = q.caso ? q.caso.trim().split(/\s+/).length : 0;
+  const targetSec = Math.max(25, Math.round(caseWords / 3.2));
+  const paceBadge = document.getElementById("caseReadingPaceBadge");
+  if (paceBadge) {
+    paceBadge.textContent = `⏱️ ${caseWords} palabras • Meta: ${targetSec}s`;
+    paceBadge.style.display = "inline-block";
+  }
+
+  // Reset del Escáner Rayos X a texto limpio para la nueva pregunta
+  isScannerActive = false;
+  const btnScanner = document.getElementById("btnToggleScanner");
+  if (btnScanner) {
+    btnScanner.style.background = "rgba(168, 85, 247, 0.15)";
+    btnScanner.style.borderColor = "rgba(168, 85, 247, 0.4)";
+    btnScanner.style.color = "#c084fc";
+    btnScanner.innerHTML = "🔍 Escáner Rayos X";
+  }
 
   // Ajustar banner de escena fotográfica curada (Unsplash / Wikimedia) según el caso
   const sceneBanner = document.getElementById("qSceneBannerContainer");
@@ -2706,16 +3162,16 @@ function setupMobileNotificationPrompt() {
           const selectBgFormat = document.getElementById("selectBgFormat");
           if (selectBgFormat) selectBgFormat.value = "notification";
 
-          try {
-            new Notification("🚀 SIMO Prep DIAN 2676", {
-              body: "¡Notificaciones de estudio activadas! Recibirás preguntas y claves de examen en tu celular.",
-              icon: "icons/icon192.png"
-            });
-          } catch (e) {}
+          await sendDeviceNotification("🚀 SIMO Prep DIAN 2676", {
+            body: "¡Notificaciones de estudio activadas! Recibirás preguntas y claves de examen en tu celular.",
+            icon: "icons/icon192.png"
+          });
+
+          setupMobileBackgroundScheduler();
 
           showCustomModal({
             title: "¡Notificaciones Activas!",
-            message: "Recibirás casos situacionales y tips periódicos directamente en tu celular.",
+            message: "Se envió un aviso de prueba. Recibirás casos situacionales y tips periódicos directamente en tu barra de notificaciones.",
             icon: "🔔"
           });
         }

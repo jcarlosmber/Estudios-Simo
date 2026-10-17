@@ -3392,6 +3392,186 @@ const QUESTION_BANK_GESTOR = [
     "respuestaCorrecta": "A",
     "norma": "Decreto 1499 de 2017 (MIPG) y Ficha FT-TAH-1824",
     "citaNormativa": "«Adelantar procesos de orientación, implementación, mejora y seguimiento en el cumplimiento de los planes, proyectos y sistemas de gestión establecidos por la Entidad.» (Ficha FT-TAH-1824)."
+  },
+  {
+    "id": "gestor_lc_01",
+    "nivel": "Profesional",
+    "ejeId": "comprension_lectora",
+    "ejeNombre": "Comprensión Lectora y Casos Complejos",
+    "tipo": "Funcional (Eliminatorio - 65%)",
+    "tema": "Desarticulación de Ruido Emocional y Verificación de Caducidad en Declaración de Importación",
+    "caso": "Un operador de comercio exterior presenta un extenso memorial de 12 páginas relatando graves perjuicios económicos ocasionados por bloqueos en vías nacionales, paros portuarios imprevistos y pérdidas de cosechas que afectaron sus flujos de caja. En medio del relato dramático, el importador solicita la condonación total y de plano de tributos aduaneros liquidados en una declaración con levante obtenido hace tres (3) meses, argumentando fuerza mayor insuperable. Al revisar el expediente digital, usted constata que la liquidación oficial de corrección ya fue notificada en debida forma y que el término perentorio de dos meses para interponer recurso de reconsideración venció hace quince (15) días sin que obrara recurso alguno radicado.",
+    "enunciado": "Aplicando la técnica de lectura inversa (enfoque en el núcleo fáctico probado vs. ruido narrativo) y las normas aduaneras del Decreto 1165 de 2019, ¿cuál es la determinación técnica que debe PROYECTAR el Gestor III?",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "Rechazar por extemporaneidad cualquier intento de impugnación y proyectar respuesta negativa a la solicitud de condonación, precisando que los actos administrativos tributarios y aduaneros en firme gozan de presunción de legalidad y ejecutoriedad, y que la administración tributaria carece de competencia para condonar tributos legalmente causados sin ley previa.",
+        "explicacion": "Correcta. La lectura crítica exige ignorar el ruido narrativo de las quejas económicas y centrarse en el hecho probado: el acto administrativo cobró firmeza por vencimiento del término legal de 2 meses (Art. 720 E.T. / Dec. 1165 de 2019) y no existen competencias administrativas para condonar deudas sin habilitación legal expresa del Congreso (Principio de Legalidad Tributaria)."
+      },
+      {
+        "id": "B",
+        "texto": "Conceder una rebaja de oficio del 50% de los aranceles liquidados en consideración a los reportes de prensa y paros portuarios certificados en el memorial, aplicando el principio de conmiseración social.",
+        "explicacion": "Incorrecta. Trampa de empatía subjetiva. Los servidores públicos no tienen potestad discrecional para alterar tributos ni liquidaciones en firme por razones de conmiseración personal."
+      },
+      {
+        "id": "C",
+        "texto": "Ordenar la suspensión indefinida del cobro coactivo y remitir el caso a la Defensoría del Contribuyente para que dicte sentencia judicial favorable al importador.",
+        "explicacion": "Incorrecta. Trampa de usurpación de funciones y cuantificador categórico ('suspensión indefinida'). La Defensoría no dicta sentencias judiciales."
+      }
+    ],
+    "respuestaCorrecta": "A",
+    "norma": "Constitución Política Art. 338, Estatuto Tributario Art. 720 y Decreto 1165 de 2019",
+    "citaNormativa": "«En tiempo de paz, solamente el Congreso, las asambleas departamentales y los concejos distritales y municipales podrán imponer contribuciones fiscales o parafiscales. La ley, las ordenanzas y los acuerdos deben fijar, directamente, los sujetos activos y pasivos, los hechos y las bases gravables, y las tarifas de los impuestos.» (Constitución Política, Art. 338)."
+  },
+  {
+    "id": "gestor_lc_02",
+    "nivel": "Profesional",
+    "ejeId": "comprension_lectora",
+    "ejeNombre": "Comprensión Lectora y Casos Complejos",
+    "tipo": "Funcional (Eliminatorio - 65%)",
+    "tema": "Detección de Trampa de Cuantificador Absoluto en Solicitud de Devolución con Garantía",
+    "caso": "Una sociedad anónima radica una solicitud de devolución de saldo a favor en IVA por $850.000.000 amparada con póliza de seguro bancaria, exigiendo en su memorial que la DIAN consigne los recursos en su cuenta bancaria de manera 'automática, inmediata e inapelable de plano', invocando el beneficio de devolución en 20 días hábiles del artículo 860 del Estatuto Tributario. Sin embargo, al cruzar la información en los sistemas de analítica institucional de la DIAN, el Gestor III identifica que dos de los principales proveedores de costos descontables de la sociedad figuran catalogados formalmente como proveedores ficticios mediante resolución ejecutoriada.",
+    "enunciado": "Identificando la trampa de los cuantificadores absolutos ('automático de plano') y la normativa de devoluciones, ¿cuál es el procedimiento legal que debe ADELANTAR el Gestor III?",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "Proyectar el auto de suspensión del término para devolver hasta por noventa (90) días conforme al artículo 857-1 del Estatuto Tributario, con el fin de que Fiscalización adelante la investigación previa ante la existencia de indicios fundados sobre la improcedencia del saldo por operaciones con proveedores ficticios.",
+        "explicacion": "Correcta. El artículo 857-1 del E.T. prevé taxativamente que incluso en devoluciones con garantía procede la suspensión de términos hasta por 90 días cuando se detectan indicios de inexactitud o proveedores ficticios. La palabra 'automático e inapelable' en la solicitud del contribuyente es un señuelo distractor."
+      },
+      {
+        "id": "B",
+        "texto": "Efectuar de inmediato y sin verificación alguna la orden de pago bancario, dado que la presentación de póliza de seguro prohíbe de forma absoluta cualquier tipo de control o cruce fiscal por parte de la DIAN.",
+        "explicacion": "Incorrecta. Cae en la trampa del cuantificador absoluto ('prohíbe de forma absoluta'). La garantía acelera el trámite ordinario pero no suprime la facultad legal de suspensión preventiva por fraude fiscal evidente."
+      },
+      {
+        "id": "C",
+        "texto": "Declarar la caducidad del derecho de propiedad de la empresa solicitante y confiscar la póliza de seguro a favor del fondo rotatorio del despacho sin motivación alguna.",
+        "explicacion": "Incorrecta. Distractor absurdo que viola el debido proceso y la prohibición constitucional de confiscación (Art. 34 C.P.)."
+      }
+    ],
+    "respuestaCorrecta": "A",
+    "norma": "Estatuto Tributario Art. 857-1 y Art. 860",
+    "citaNormativa": "«El término para devolver o compensar se suspenderá hasta por un término máximo de noventa (90) días, cuando la Administración Tributaria encuentre indicios de inexactitud en la declaración que origina el saldo a favor, o cuando dentro del proceso de determinación se hubiere proferido pliego de cargos por no declarar o por inexactitud.» (Estatuto Tributario, Art. 857-1)."
+  },
+  {
+    "id": "gestor_lc_03",
+    "nivel": "Profesional",
+    "ejeId": "comprension_lectora",
+    "ejeNombre": "Comprensión Lectora y Casos Complejos",
+    "tipo": "Funcional (Eliminatorio - 65%)",
+    "tema": "Lectura Inversa y Congruencia de Competencia en Proyección de Liquidación Oficial",
+    "caso": "En un proceso de determinación oficial del impuesto de renta de una corporación multinacional, se emitió previamente Requerimiento Especial proponiendo glosas a deducciones por regalías internacionales por $3.200.000.000. El contribuyente dio respuesta desvirtuando únicamente $600.000.000 mediante contratos certificados y dictámenes periciales, manteniendo la controversia sobre los $2.600.000.000 restantes. El expediente se encuentra en el despacho del Gestor III dentro de los seis (6) meses siguientes a la respuesta para decidir sobre la liquidación oficial.",
+    "enunciado": "Conforme al verbo rector 'PROYECTAR' y al principio de congruencia del artículo 711 del Estatuto Tributario, ¿cuál es el contenido jurídico que debe plasmar el Gestor III en el proyecto de acto administrativo?",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "Proyectar la Liquidación Oficial de Revisión manteniendo únicamente las glosas debidamente controvertidas y no desvirtuadas ($2.600.000.000) y aceptando la disminución probada ($600.000.000), garantizando que la liquidación se circunscriba a los hechos analizados en el Requerimiento Especial y su respuesta.",
+        "explicacion": "Correcta. Principio de congruencia (Art. 711 E.T.): La liquidación de revisión debe contraerse exclusivamente a los hechos y glosas propuestos en el requerimiento especial. Además, como servidor profesional, su verbo rector es 'proyectar' el acto para firma del Jefe de División."
+      },
+      {
+        "id": "B",
+        "texto": "Firmar como autor único y definitivo la clausura inmediata de todos los establecimientos de comercio de la multinacional en el territorio nacional por un término de cinco años.",
+        "explicacion": "Incorrecta. Falla de rol y competencia: la sanción de clausura de establecimiento no es materia de liquidación de revisión y un Gestor III no tiene facultades jurisdiccionales sancionatorias de cierre por 5 años."
+      },
+      {
+        "id": "C",
+        "texto": "Aprovechar el acto para incluir glosas enteramente nuevas por evasión de IVA y retención en la fuente que nunca fueron notificadas en el Requerimiento Especial.",
+        "explicacion": "Incorrecta. Violación flagrante del principio de correspondencia y debido proceso (Art. 711 E.T.), lo que acarrearía la nulidad absoluta del acto administrativo."
+      }
+    ],
+    "respuestaCorrecta": "A",
+    "norma": "Estatuto Tributario Art. 711 y Art. 712",
+    "citaNormativa": "«La liquidación de revisión deberá contraerse exclusivamente a la declaración del contribuyente y a los hechos que hubieren sido contemplados en el requerimiento especial o en su ampliación si la hubiere.» (Estatuto Tributario, Art. 711)."
+  },
+  {
+    "id": "gestor_lc_04",
+    "nivel": "Profesional",
+    "ejeId": "comprension_lectora",
+    "ejeNombre": "Comprensión Lectora y Casos Complejos",
+    "tipo": "Funcional (Eliminatorio - 65%)",
+    "tema": "Discriminación de Núcleo Probatorio vs Conjeturas en Precios de Transferencia",
+    "caso": "En un informe de auditoría tributaria remitido a su escritorio, el auditor de campo incluye 25 páginas con transcripciones de rumores de mercado sobre la mala reputación del gerente financiero de una empresa vinculada en el exterior, aduciendo que 'con seguridad evaden impuestos por su estilo de vida'. Entre los anexos documentales, figura el estudio técnico formal de precios de transferencia presentado en tiempo por el contribuyente, donde el método de Márgenes Netos de la Transacción (MNT) arroja una rentabilidad operativa del 1.8%, situándose sustancialmente por fuera del rango intercuartil de comparables independientes del mercado (cuyo límite inferior admisible es del 4.2%).",
+    "enunciado": "Descartando el ruido especulativo y extrayendo el núcleo fáctico con valor probatorio legal, ¿cuál es el dictamen analítico que debe ESTRUCTURAR el Gestor III?",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "Desestimar todas las conjeturas sobre el estilo de vida del directivo por carecer de aptitud probatoria legal, y fundamentar el pliego de modificaciones exclusivamente en la evidencia matemática y técnica: el desvío objetivo del margen operativo (1.8%) frente al rango intercuartil de mercado (4.2%), aplicando el ajuste a la mediana según el artículo 260-4 del Estatuto Tributario.",
+        "explicacion": "Correcta. La lectura crítica exige depurar el expediente de valoraciones subjetivas o chismes corporativos (ruido narrativo) y ceñirse al dato técnico verificable: la prueba pericial/financiera de que la transacción entre vinculados no cumplió el principio de plena competencia (arm's length) con ajuste a la mediana."
+      },
+      {
+        "id": "B",
+        "texto": "Redactar el requerimiento basándose prioritariamente en las apreciaciones sobre la vestimenta y viajes del gerente, pues la convicción íntima del auditor prevalece sobre las tablas estadísticas y normas de comparabilidad.",
+        "explicacion": "Incorrecta. Viola el régimen probatorio (Art. 742 E.T.), según el cual los actos de la administración deben fundarse en hechos probados objetivamente en el expediente."
+      },
+      {
+        "id": "C",
+        "texto": "Archivar todo el proceso de fiscalización asumiendo que los precios de transferencia solo aplican para empresas con más de 10.000 empleados en Colombia.",
+        "explicacion": "Incorrecta. Falsa premisa normativa; el régimen de precios de transferencia aplica por vinculación económica y topes de patrimonio/ingresos, no por número de empleados."
+      }
+    ],
+    "respuestaCorrecta": "A",
+    "norma": "Estatuto Tributario Art. 260-3, Art. 260-4 y Art. 742",
+    "citaNormativa": "«La determinación de los precios o montos de contraprestaciones que se hubieren utilizado en operaciones comparables entre partes independientes se realizará mediante la determinación de un rango de precios o márgenes de utilidad... Cuando el precio o margen se encuentre fuera de este rango, se ajustará a la mediana.» (Estatuto Tributario, Art. 260-4)."
+  },
+  {
+    "id": "gestor_lc_05",
+    "nivel": "Profesional",
+    "ejeId": "comprension_lectora",
+    "ejeNombre": "Comprensión Lectora y Casos Complejos",
+    "tipo": "Funcional (Eliminatorio - 65%)",
+    "tema": "Verificación Fáctica de Términos Procesales en Notificación Electrónica con Falla Técnica Alegada",
+    "caso": "Un contribuyente alega en un recurso que la Liquidación Oficial notificada por correo electrónico el día lunes 1 de octubre de 2025 es nula de pleno derecho, asegurando bajo juramento que no revisó su bandeja de entrada sino hasta el 20 de noviembre por problemas de conectividad en su finca de recreo. Al consultar el log de auditoría tecnológica y la constancia de entrega del servicio informático electrónico de la DIAN, se evidencia que el correo de notificación fue remitido y entregado exitosamente el 1 de octubre de 2025 a la dirección electrónica informada en el RUT, generándose el acuse de entrega sin reportes de contingencia ni caída de la plataforma DIAN en dicha fecha.",
+    "enunciado": "A la luz del artículo 566-1 del Estatuto Tributario y la regla de cómputo del término, ¿cuál es la premisa jurídica correcta que fundamenta la respuesta técnica del Gestor III?",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "La notificación electrónica se entiende surtida de pleno derecho para el contribuyente al quinto (5) día hábil siguiente a la fecha de entrega del correo en su bandeja registrada en el RUT; en consecuencia, los términos de ley para recurrir corrieron a partir de ese momento, siendo inoponibles las excusas de desconexión voluntaria no atribuibles a falla certificada de los sistemas de la DIAN.",
+        "explicacion": "Correcta. El artículo 566-1 del E.T. establece que la notificación electrónica surte efectos a partir del quinto día hábil siguiente al envío exitoso. El olvido o desatención del buzón por viaje o descanso no suspende los términos legales ni desvirtúa la constancia de entrega técnica."
+      },
+      {
+        "id": "B",
+        "texto": "Aceptar que la notificación no tuvo validez, toda vez que mientras el contribuyente no abra y lea personalmente el mensaje con confirmación biométrica, ningún término procesal puede correr jamás en Colombia.",
+        "explicacion": "Incorrecta. Distractor basado en cuantificador categórico ('ningún término puede correr jamás'). La ley tributaria no condiciona la validez de la notificación a la lectura voluntaria del administrado sino al depósito certificado en la dirección electrónica del RUT."
+      },
+      {
+        "id": "C",
+        "texto": "Revocar de oficio la liquidación oficial y declarar la prescripción inmediata de todos los impuestos del contribuyente por haber salido a descansar a su finca.",
+        "explicacion": "Incorrecta. Consecuencia jurídica inexistente y lesiva del patrimonio fiscal de la Nación."
+      }
+    ],
+    "respuestaCorrecta": "A",
+    "norma": "Estatuto Tributario Art. 566-1 (Notificación electrónica)",
+    "citaNormativa": "«La notificación electrónica se entenderá surtida para todos los efectos legales, cinco (5) días hábiles después de que el mensaje de datos sea entregado en la dirección electrónica reportada en el RUT.» (Estatuto Tributario, Art. 566-1)."
+  },
+  {
+    "id": "gestor_lc_06",
+    "nivel": "Profesional",
+    "ejeId": "comprension_lectora",
+    "ejeNombre": "Comprensión Lectora y Casos Complejos",
+    "tipo": "Funcional (Eliminatorio - 65%)",
+    "tema": "Descarte de Distractor por Incompetencia Jerárquica en Convenio Interinstitucional",
+    "caso": "En desarrollo de un convenio de cooperación interinstitucional entre la DIAN y la Policía Fiscal y Aduanera (POLFA) para mitigar el contrabando abierto de calzado en centros de acopio urbanos, un informe de inteligencia advierte que varias bodegas clandestinas almacenan contenedores descargados de noche. El informe sugiere que el Gestor III 'ordene inmediatamente el allanamiento forzoso con derribo de puertas sin orden judicial y capture de oficio a los arrendadores del inmueble'.",
+    "enunciado": "Efectuando el 'Test del Rol Profesional' y respetando los límites de competencia del empleo (Ficha FT-TAH-1824 y CPACA), ¿cuál es el curso de acción legítimo y eficaz del Gestor III?",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "Elaborar el diagnóstico técnico del riesgo tributario y aduanero con sustento en los inventarios y declaraciones, y proyectar la minuta de solicitud de registro y allanamiento ante la autoridad competente (Fiscalía General de la Nación o Juez de Control de Garantías) a través de la Dirección Seccional, coordinando con POLFA los apoyos logísticos en el marco del convenio.",
+        "explicacion": "Correcta. Filtro de competencia: Un Gestor III carece de funciones de policía judicial para derribar puertas o privar de la libertad a ciudadanos. Su rol profesional es estructurar el análisis técnico y proyectar la solicitud a las autoridades judiciales que la Constitución exige (Art. 28 C.P.)."
+      },
+      {
+        "id": "B",
+        "texto": "Ejecutar personalmente el derribo de las puertas de la bodega a la medianoche armado de herramientas de cerrajería, ejerciendo justicia por mano propia en nombre del convenio.",
+        "explicacion": "Incorrecta. Distractor flagrante de extralimitación de funciones, delito de violación de habitación ajena y prevaricato."
+      },
+      {
+        "id": "C",
+        "texto": "Ignorar la alerta de inteligencia y ordenar la destrucción de los convenios con la POLFA por considerarlos innecesarios para la fiscalización.",
+        "explicacion": "Incorrecta. Omisión del deber funcional y destrucción arbitraria de documentos institucionales de cooperación."
+      }
+    ],
+    "respuestaCorrecta": "A",
+    "norma": "Constitución Política Art. 28, CPACA Art. 6 y Ficha FT-TAH-1824",
+    "citaNormativa": "«Nadie puede ser molestado en su persona o familia, ni reducido a prisión o arresto, ni detenido, ni su domicilio registrado, sino en virtud de mandamiento escrito de autoridad judicial competente, con las formalidades legales y por motivo previamente definido en la ley.» (Constitución Política, Art. 28)."
   }
 ];
 

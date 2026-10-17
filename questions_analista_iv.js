@@ -3092,6 +3092,186 @@ const QUESTION_BANK_ANALISTA = [
     "respuestaCorrecta": "A",
     "norma": "Decreto 1165 de 2019 Art. 675 y Ficha AT-FL-2010 Función 5",
     "citaNormativa": "«Intervenir en las diligencias de destrucción de mercancía averiada, defectuosa o impropia respecto del fin para el cual fue importada, de acuerdo con la normativa vigente, los procedimientos establecidos y las directrices institucionales.» (Ficha AT-FL-2010)."
+  },
+  {
+    "id": "an4_lc_01",
+    "nivel": "Técnico",
+    "ejeId": "comprension_lectora",
+    "ejeNombre": "Comprensión Lectora y Casos Complejos",
+    "tipo": "Funcional (Eliminatorio - 65%)",
+    "tema": "Clasificación Fáctica y Descarte de Ruido en Memorial de Objeciones del Contribuyente",
+    "caso": "Un contribuyente investigado por omisión de ingresos aporta un memorial de 8 folios lleno de descargos emocionales, cartas de recomendación vecinal, diplomas honoríficos y recortes de periódico sobre su trayectoria cívica en el municipio. Entre todos esos documentos, adjunta fotocopia simple de tres (3) cotizaciones comerciales no aceptadas y un extracto bancario oficial con sello húmedo de certificación donde se evidencia que una consignación de $120.000.000 provino de la indemnización por expropiación judicial de un predio familiar decretada por el Juzgado Primero Civil del Circuito.",
+    "enunciado": "Aplicando la técnica de filtrado de ruido narrativo y conforme a la función 3 de su manual (clasificar información preliminar para fiscalización), ¿cuál es la labor probatoria técnica que debe REALIZAR el Analista IV?",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "Separar los diplomas, cartas de recomendación y cotizaciones por carecer de aptitud probatoria fiscal, y clasificar e incorporar al expediente el extracto bancario con la certificación de la indemnización judicial como prueba documental idónea para sustentar el origen no constitutivo de renta en el informe preliminar.",
+        "explicacion": "Correcta. La lectura crítica a nivel técnico exige discriminar entre documentos irrelevantes (ruido sentimental o cotizaciones no vinculantes) y el núcleo fáctico con valor probatorio legal (extracto certificado de indemnización judicial) para su correcta clasificación y trazabilidad en el expediente."
+      },
+      {
+        "id": "B",
+        "texto": "Archivar la investigación de inmediato con base exclusiva en los diplomas y cartas de buena conducta vecinal, presumiendo que las personas de buena reputación cívica no pagan impuestos.",
+        "explicacion": "Incorrecta. Falla de razonamiento lógico y probatorio; las cartas de recomendación ciudadana no desvirtúan ni sustituyen las obligaciones tributarias sustanciales."
+      },
+      {
+        "id": "C",
+        "texto": "Romper y desechar el extracto bancario por considerar que los jueces de la República no tienen autoridad frente a la DIAN.",
+        "explicacion": "Incorrecta. Destrucción arbitraria de prueba documental idónea, acarreando faltas gravísimas contra la fe pública y la administración de justicia."
+      }
+    ],
+    "respuestaCorrecta": "A",
+    "norma": "Estatuto Tributario Art. 742, Art. 743 y Ficha AT-FL-2010 Función 3",
+    "citaNormativa": "«La determinación de tributos y la imposición de sanciones deben fundarse en los hechos que aparezcan demostrados en el expediente, por los medios de prueba señalados en las leyes tributarias o en el Código General del Proceso.» (Estatuto Tributario, Art. 742)."
+  },
+  {
+    "id": "an4_lc_02",
+    "nivel": "Técnico",
+    "ejeId": "comprension_lectora",
+    "ejeNombre": "Comprensión Lectora y Casos Complejos",
+    "tipo": "Funcional (Eliminatorio - 65%)",
+    "tema": "Detección de Trampa Categórica en Requerimiento Ordinario de Información Documental",
+    "caso": "Durante una auditoría a un distribuidor mayorista de licores, el funcionario asignado elabora un borrador de Requerimiento Ordinario de Información. En el texto propuesto se ordena al contribuyente aportar toda la contabilidad física de los últimos diez (10) años 'en un término perentorio e improrrogable de 24 horas, so pena de ordenar de plano y sin fórmula de juicio el cierre inmediato del establecimiento de comercio'. Se solicita al Analista IV revisar la minuta documental antes de su trámite.",
+    "enunciado": "Al aplicar el radar de trampas de cuantificadores absolutos ('de plano y sin juicio') y las normas del Estatuto Tributario, ¿qué inconsistencia legal debe SEÑALAR el Analista IV?",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "Admitir que el plazo ordinario legal previsto en el artículo 651 del Estatuto Tributario para suministrar información no puede ser inferior a quince (15) días calendario, y advertir que la DIAN no puede decretar la sanción de clausura de plano sin surtir previamente el debido pliego de cargos y derecho de defensa.",
+        "explicacion": "Correcta. La lectura crítica identifica de inmediato las trampas categóricas e ilegales: plazos arbitrarios de 24 horas violan el término de mínimo 15 días del Art. 651 E.T., y la sanción de cierre jamás opera 'de plano' sin pliego de cargos y oportunidad de contradicción (debido proceso Art. 29 C.P.)."
+      },
+      {
+        "id": "B",
+        "texto": "Aprobar el texto aduciendo que la DIAN tiene potestades dictatoriales para exigir información en 10 minutos y arrestar preventivamente a los contadores.",
+        "explicacion": "Incorrecta. Distractor grotesco de abuso de autoridad y desconocimiento del régimen sancionatorio reglado."
+      },
+      {
+        "id": "C",
+        "texto": "Eliminar la solicitud de información y sustituirla por una invitación a almorzar con el contribuyente para negociar los libros contables.",
+        "explicacion": "Incorrecta. Conducta corrupta sancionada disciplinaria y penalmente (cohecho y concusión)."
+      }
+    ],
+    "respuestaCorrecta": "A",
+    "norma": "Estatuto Tributario Art. 651 y Art. 657",
+    "citaNormativa": "«El plazo para suministrar la información requerida no podrá ser inferior a quince (15) días calendario contados a partir de la fecha de notificación del requerimiento.» (Estatuto Tributario, Art. 651)."
+  },
+  {
+    "id": "an4_lc_03",
+    "nivel": "Técnico",
+    "ejeId": "comprension_lectora",
+    "ejeNombre": "Comprensión Lectora y Casos Complejos",
+    "tipo": "Funcional (Eliminatorio - 65%)",
+    "tema": "Lectura Inversa de Verbo Rector Operativo en Acta de Pruebas Tributarias",
+    "caso": "En una diligencia de inspección tributaria a una fábrica textil en el marco de una investigación por compras inexistentes, el equipo de fiscalización se dispone a inspeccionar los libros diarios y tarjetas kardex de inventarios. El contribuyente se niega inicialmente a exhibir los soportes alegando secreto industrial, pero tras la explicación del marco legal accede a exhibir los libros de contabilidad del año gravable investigado.",
+    "enunciado": "Conforme a la función 1 de su manual de funciones (AT-FL-2010: 'Acompañar las diligencias de práctica de pruebas decretadas...'), ¿cuál es la actuación operativa y técnica que corresponde al Analista IV?",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "Acompañar activamente la diligencia, verificar el estado físico de los libros y folios exhibidos, cotejar las facturas electrónicas de compra seleccionadas para la muestra, y redactar con rigor cronológico los hechos presenciados en el proyecto de Acta de Inspección para firma conjunta.",
+        "explicacion": "Correcta. El verbo rector 'Acompañar' y la función técnica exigen verificación operativa in situ, registro fáctico de los hallazgos y elaboración del acta circunstanciada de la diligencia con estricto apego a los hechos observados."
+      },
+      {
+        "id": "B",
+        "texto": "Dictar sentencia de revocatoria de la personería jurídica de la fábrica de confecciones y ordenar la subasta privada de las máquinas de coser en la acera del frente.",
+        "explicacion": "Incorrecta. Trampa de usurpación total de competencias jurisdiccionales; un Analista técnico no puede revocar personerías jurídicas ni rematar bienes sin proceso de cobro ni orden judicial."
+      },
+      {
+        "id": "C",
+        "texto": "Retirarse de la fábrica antes de iniciar la diligencia aduciendo que la labor de pruebas es exclusiva de los celadores del edificio.",
+        "explicacion": "Incorrecta. Desacato de la orden de comisión y abandono injustificado de las funciones probatorias de su empleo."
+      }
+    ],
+    "respuestaCorrecta": "A",
+    "norma": "Estatuto Tributario Art. 779, Art. 782 y Ficha AT-FL-2010 Función 1",
+    "citaNormativa": "«De la diligencia de inspección tributaria se levantará un acta que contenga todos los hechos demostrados, las observaciones de los funcionarios y del contribuyente, y las pruebas recaudadas.» (Estatuto Tributario, Art. 779)."
+  },
+  {
+    "id": "an4_lc_04",
+    "nivel": "Técnico",
+    "ejeId": "comprension_lectora",
+    "ejeNombre": "Comprensión Lectora y Casos Complejos",
+    "tipo": "Funcional (Eliminatorio - 65%)",
+    "tema": "Identificación de Datos Probados vs Apreciaciones Subjetivas en Reporte de Denuncia",
+    "caso": "Llega a la bandeja de fiscalización una denuncia ciudadana anónima en la que el quejoso utiliza calificativos desobligantes contra el propietario de un supermercado, afirmando que 'es un mal vecino que hace fiestas ruidosas y con toda certeza evade el IVA porque compra autos caros'. Sin embargo, al final del escrito, el denunciante adjunta una relación de 15 tirillas de pago POS expedidas a clientes por montos superiores a 5 UVT ($235.000) en las que se lee expresamente 'Factura no válida como soporte fiscal' y se evidencia que no fueron transmitidas al servidor de la DIAN.",
+    "enunciado": "Descartando el ruido subjetivo y extrayendo el núcleo de mérito fiscal, ¿cómo debe CLASIFICAR el Analista IV esta información conforme a su función 3?",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "Descartar los comentarios sobre la conducta vecinal por ser ruido irrelevante, y clasificar técnicamente la denuncia como mérito con indicio objetivo de incumplimiento del sistema de facturación electrónica (expedición de documentos no autorizados y no transmisión a la DIAN), remitiendo el informe preliminar al área de fiscalización.",
+        "explicacion": "Correcta. La lectura crítica permite aislar los rencores personales del denunciante (ruido) y captar la evidencia fáctica y objetiva: documentos POS por encima de los topes legales sin transmisión a la DIAN, lo cual constituye una infracción formal sancionable bajo el artículo 657 del E.T."
+      },
+      {
+        "id": "B",
+        "texto": "Archivar de plano la denuncia y sancionar al denunciante con arresto domiciliario por haberse quejado del ruido de las fiestas.",
+        "explicacion": "Incorrecta. Desconoce el valor probatorio de las tirillas adjuntas y asume facultades penales inexistentes."
+      },
+      {
+        "id": "C",
+        "texto": "Abrir una investigación policiva por perturbación de la tranquilidad vecinal e imponer multas de tránsito al propietario.",
+        "explicacion": "Incorrecta. Desviación de la competencia tributaria hacia asuntos de convivencia ciudadana propios de la Policía Nacional."
+      }
+    ],
+    "respuestaCorrecta": "A",
+    "norma": "Estatuto Tributario Art. 616-1, Art. 657 y Resolución 000165 de 2023",
+    "citaNormativa": "«El documento equivalente expedido por máquinas registradoras con sistema POS no otorga derecho a costos ni deducciones en el impuesto sobre la renta... La expedición sin los requisitos legales dará lugar a la sanción de clausura del establecimiento.» (Estatuto Tributario, Art. 616-1)."
+  },
+  {
+    "id": "an4_lc_05",
+    "nivel": "Técnico",
+    "ejeId": "comprension_lectora",
+    "ejeNombre": "Comprensión Lectora y Casos Complejos",
+    "tipo": "Funcional (Eliminatorio - 65%)",
+    "tema": "Cómputo Fáctico de Términos y Verificación de Extemporaneidad en Memorial sin Recurso Formal",
+    "caso": "Un comerciante fue notificado personalmente el día 2 de mayo de una Resolución Sanción por no expedir factura electrónica. El día 15 de julio del mismo año radica un memorial titulado 'Carta de inconformidad y solicitud de perdón', sin invocar artículos de ley ni señalar formalmente 'Recurso de Reconsideración', pero argumentando de manera extensa que el fallo sancionatorio fue injusto y solicitando que se revoque la sanción. El Analista IV tiene la tarea de revisar los términos y folios del expediente para preparar el informe de estado procesal.",
+    "enunciado": "Conforme al artículo 720 del Estatuto Tributario y las reglas de lectura crítica para el cómputo de términos procesales, ¿cuál es el análisis fáctico y procesal que debe CONSIGNAR el Analista IV?",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "Determinar que el memorial, a pesar de su título informal, materialmente controvierte el fondo del acto; no obstante, fue radicado transcurridos más de dos (2) meses desde la notificación personal (del 2 de mayo al 15 de julio), por lo cual el término perentorio legal venció el 2 de julio, encontrándose el escrito irremediablemente extemporáneo y el acto sancionatorio debidamente ejecutoriado.",
+        "explicacion": "Correcta. La lectura crítica procesal prevalece sobre el nombre formal del escrito (principio de eficacia y prevalencia del derecho sustancial): es una impugnación material, pero el dato temporal es implacable: el plazo de 2 meses del Art. 720 del E.T. venció el 2 de julio, operando la firmeza del acto administrativo."
+      },
+      {
+        "id": "B",
+        "texto": "Considerar que el término de dos meses solo empieza a contar cuando el contribuyente consiga un abogado graduado con honores, por lo que el escrito radicado en julio siempre se considerará oportuno.",
+        "explicacion": "Incorrecta. Cae en la trampa del cuantificador categórico ('siempre se considerará oportuno') e inventa una regla contraria al cómputo objetivo de los términos procesales."
+      },
+      {
+        "id": "C",
+        "texto": "Eliminar el memorial del sistema para que no quede constancia de que el ciudadano radicó una queja en la entidad.",
+        "explicacion": "Incorrecta. Falta gravísima contra la custodia documental y el archivo público (Ley General de Archivos 594 de 2000)."
+      }
+    ],
+    "respuestaCorrecta": "A",
+    "norma": "Estatuto Tributario Art. 720, CPACA Art. 87 y Ficha AT-FL-2010 Función 9",
+    "citaNormativa": "«El recurso de reconsideración deberá interponerse ante la oficina competente, dentro de los dos (2) meses siguientes a la notificación del respectivo acto.» (Estatuto Tributario, Art. 720)."
+  },
+  {
+    "id": "an4_lc_06",
+    "nivel": "Técnico",
+    "ejeId": "comprension_lectora",
+    "ejeNombre": "Comprensión Lectora y Casos Complejos",
+    "tipo": "Funcional (Eliminatorio - 65%)",
+    "tema": "Desarticulación de Incompetencia de Nivel en Diligencia de Inspección Aduanera",
+    "caso": "Durante una inspección física a un contenedor de confecciones importadas en el depósito habilitado, el importador ofrece resistencia física verbal agresiva y amenaza con demandar a todos los funcionarios. El profesional a cargo de la comisión se retira temporalmente para solicitar apoyo de seguridad. En ese instante, el representante del importador exige al Analista IV que 'le firme de inmediato el acta de levante definitivo de las mercancías sin esperar al profesional, con la condición de retirar las amenazas'.",
+    "enunciado": "Efectuando el 'Test del Rol' según el manual de funciones (AT-FL-2010) y el Decreto 1165 de 2019, ¿cuál es la conducta técnica que debe ADOPTAR el Analista IV?",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "Rehusarse a firmar el levante definitivo advirtiendo que su rol como Analista IV es de apoyo técnico y acompañamiento probatorio, careciendo de competencia legal para autorizar el levante de mercancías de forma autónoma, y esperar el retorno del profesional con el personal de seguridad para continuar la diligencia conforme al procedimiento aduanero reglado.",
+        "explicacion": "Correcta. Test del rol y de legalidad: La autorización de levante es un acto aduanero de decisión reservado a los inspectores competentes. El Analista IV no puede usurpar funciones decisorias bajo intimidación o coacción externa."
+      },
+      {
+        "id": "B",
+        "texto": "Firmar de inmediato la entrega y levante de todas las mercancías para calmar al importador y evitar cualquier tipo de molestia.",
+        "explicacion": "Incorrecta. Usurpación de funciones de nivel superior, favorecimiento de contrabando y expedición de actos nulos por falta absoluta de competencia."
+      },
+      {
+        "id": "C",
+        "texto": "Prender fuego a las mercancías dentro del contenedor para no tener que inspeccionarlas.",
+        "explicacion": "Incorrecta. Conducta ilícita tipificada como daño en bien ajeno e incendio en instalación portuaria."
+      }
+    ],
+    "respuestaCorrecta": "A",
+    "norma": "Decreto 1165 de 2019 Art. 185 y Ficha AT-FL-2010 Función 2",
+    "citaNormativa": "«Apoyar la ejecución de acciones de fiscalización, en el marco de su competencia y jurisdicción, tendientes a la verificación del cumplimiento de las obligaciones tributarias, aduaneras o cambiarias, de acuerdo con la normativa vigente y procedimientos establecidos.» (Ficha AT-FL-2010)."
   }
 ];
 

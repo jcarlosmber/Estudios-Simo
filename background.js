@@ -10,6 +10,51 @@ importScripts("image_catalog.js");
 const ALARM_NAME = "periodicBackgroundTip";
 const DEFAULT_INTERVAL_MINUTES = 25;
 
+const TIPS_LECTURA_CRITICA = [
+  {
+    id: "lc_1",
+    titulo: "Lectura Inversa: Encuentra el Verbo Rector",
+    resumen: "Nunca leas el caso desde el inicio. Ve a la última frase interrogativa en negrilla para fijar el verbo rector (Notificar, Suspender, Rechazar, Proyectar).",
+    regla: "Saber qué te piden antes de leer el cuerpo del caso ahorra 50% de esfuerzo cognitivo."
+  },
+  {
+    id: "lc_2",
+    titulo: "Filtro Anti-Ruido: Hechos Probados vs. Emociones",
+    resumen: "Ignora adjetivos y enfados de usuarios. Rastrea únicamente fechas de radicación, actos administrativos notificados y cifras en firme.",
+    regla: "En derecho público solo lo probado en el expediente cuenta. Lo no documentado es distractor."
+  },
+  {
+    id: "lc_3",
+    titulo: "Radar de Cuantificadores Absolutos (Trampas)",
+    resumen: "Alerta máxima con 'siempre', 'nunca', 'únicamente', 'inapelable' o 'automáticamente'. Son distractores en un 95%.",
+    regla: "La clave prefiere 'previa verificación motivada', 'dentro del término' o 'conforme al debido proceso'."
+  },
+  {
+    id: "lc_4",
+    titulo: "Test del Rol: Cuidado con la Verdad Incompetente",
+    resumen: "Una opción puede citar una ley perfecta, pero si la acción le toca al Director Seccional o al Juez, es usurpación de funciones.",
+    regla: "Pregúntate siempre: ¿Está facultado mi cargo (Gestor / Analista) para tomar esta decisión por sí mismo?"
+  },
+  {
+    id: "lc_5",
+    titulo: "Fórmula E-P-C de Comprensión Rápida",
+    resumen: "Enunciado interrogativo ➔ Premisa fáctica probada con fechas ➔ Clave congruente con tu rol.",
+    regla: "Desarticula casos extensos de 4 párrafos en menos de 45 segundos aplicando el filtro E-P-C."
+  },
+  {
+    id: "lc_6",
+    titulo: "Técnica E-I-C de Análisis Forense",
+    resumen: "Escaneo visual (8 seg de fechas y UVT) ➔ Interrogante final ➔ Conexión al párrafo determinante.",
+    regla: "No leas como novela: escanea como auditor y responde como juez."
+  },
+  {
+    id: "lc_7",
+    titulo: "Triángulo V-N-C del Verbo Rector",
+    resumen: "V (Verbo de la pregunta) ➔ N (Nivel: Profesional vs Técnico) ➔ C (Competencia legal).",
+    regla: "Nivel Técnico apoya y verifica; Nivel Profesional sustenta, proyecta y formula."
+  }
+];
+
 // 1. Configuración al instalar la extensión
 chrome.runtime.onInstalled.addListener(async () => {
   if (chrome.sidePanel && chrome.sidePanel.setPanelBehavior) {
@@ -107,11 +152,11 @@ chrome.alarms.onAlarm.addListener(async (alarm) => {
   await deliverNextBackgroundItem(stored);
 });
 
-// Alternar entre Tip y Pregunta Situacional
+// Alternar entre Pregunta, Tip Flash y Lectura Crítica
 async function deliverNextBackgroundItem(stored = {}, forcedType = null) {
   const format = stored.backgroundTipsFormat || "popup";
   const alternateMode = stored.backgroundAlternateMode || "alternate";
-  const lastType = stored.lastDeliveryType || "question";
+  const lastType = stored.lastDeliveryType || "lectura";
 
   let nextType = forcedType;
   if (!nextType) {
@@ -119,9 +164,14 @@ async function deliverNextBackgroundItem(stored = {}, forcedType = null) {
       nextType = "tip";
     } else if (alternateMode === "questions_only") {
       nextType = "question";
+    } else if (alternateMode === "lectura_only") {
+      nextType = "lectura";
     } else {
-      // Modo alternado: Si el anterior fue tip, ahora toca pregunta, y viceversa
-      nextType = lastType === "tip" ? "question" : "tip";
+      // Rotación triple: Pregunta ➔ Tip Flash ➔ Lectura Crítica ➔ Pregunta...
+      const rotationCycle = ["question", "tip", "lectura"];
+      const lastIndex = rotationCycle.indexOf(lastType);
+      const nextIndex = lastIndex >= 0 ? (lastIndex + 1) % rotationCycle.length : 0;
+      nextType = rotationCycle[nextIndex];
     }
   }
 
@@ -129,9 +179,50 @@ async function deliverNextBackgroundItem(stored = {}, forcedType = null) {
 
   if (nextType === "question" && typeof QUESTION_BANK !== "undefined" && QUESTION_BANK.length > 0) {
     await deliverQuestionFlash(format, stored.lastBackgroundQuestionId);
+  } else if (nextType === "lectura") {
+    await deliverLecturaFlash(format, stored.lastBackgroundLecturaId);
   } else {
     await deliverTipFlash(format, stored.lastBackgroundTipId);
   }
+}
+
+// Entrega de TIP de Lectura Crítica
+async function deliverLecturaFlash(format, lastLecturaId) {
+  const candidates = TIPS_LECTURA_CRITICA.filter((l) => l.id !== lastLecturaId);
+  const pool = candidates.length > 0 ? candidates : TIPS_LECTURA_CRITICA;
+  const lc = pool[Math.floor(Math.random() * pool.length)];
+
+  await chrome.storage.local.set({ lastBackgroundLecturaId: lc.id });
+
+  if (format === "popup" || format === "inpage") {
+    try {
+      const [activeTab] = await chrome.tabs.query({ active: true, currentWindow: true });
+      if (activeTab && activeTab.id && activeTab.url && !activeTab.url.startsWith("chrome://") && !activeTab.url.startsWith("edge://")) {
+        await injectInPageTipModal(activeTab.id, {
+          titulo: lc.titulo,
+          categoria: "Comprensión Lectora",
+          icono: "📖",
+          color: "#38bdf8",
+          resumenCorto: lc.resumen,
+          normaReferencia: "Estrategia de Examen CNSC / DIAN",
+          contenidoDetallado: lc.regla,
+          formula: "Enunciado interrogativo ➔ Núcleo fáctico probatorio ➔ Clave congruente"
+        });
+        return;
+      }
+    } catch (err) {
+      console.warn("Fallo inyección lectura in-page, fallback a notificación:", err);
+    }
+  }
+
+  const notifId = `simo_lectura_${lc.id}_${Date.now()}`;
+  chrome.notifications.create(notifId, {
+    type: "basic",
+    iconUrl: "icons/icon128.png",
+    title: `📖 Lectura Crítica • ${lc.titulo}`,
+    message: `${lc.resumen}\n💡 ${lc.regla}`,
+    priority: 2
+  });
 }
 
 // Entrega de TIP situacional
@@ -1344,8 +1435,15 @@ chrome.runtime.onMessage.addListener(async (message, sender, sendResponse) => {
     const srsCards = stored.srsCards || [];
     const now = new Date();
     let daysToAdd = 1;
-    if (difficulty === "good") daysToAdd = 2;
-    if (difficulty === "easy") daysToAdd = 5;
+    let leitnerBox = 1;
+    if (difficulty === "good") {
+      daysToAdd = 3;
+      leitnerBox = 2;
+    }
+    if (difficulty === "easy") {
+      daysToAdd = 7;
+      leitnerBox = 3;
+    }
 
     const nextReview = new Date(now.getTime() + daysToAdd * 24 * 60 * 60 * 1000).toISOString().slice(0, 10);
     const existingIdx = srsCards.findIndex((c) => c.question && c.question.id === question.id);
@@ -1355,6 +1453,7 @@ chrome.runtime.onMessage.addListener(async (message, sender, sendResponse) => {
       question: question,
       nextReviewDate: nextReview,
       difficulty: difficulty,
+      leitnerBox: leitnerBox,
       repetitions: existingIdx >= 0 ? (srsCards[existingIdx].repetitions || 1) + 1 : 1,
       feynmanNotes: existingNotes
     };

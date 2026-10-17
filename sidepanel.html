@@ -66,9 +66,9 @@
     <section id="tab-practice" class="tab-content" style="display: flex; flex-direction: column; gap: 14px; width: 100%;">
       <!-- Barra de Acciones Rápidas Táctiles (Power-Ups de Estudio) -->
       <div class="practice-powerups-row">
-        <button id="btnOpenTipsModal" class="duo-powerup-btn duo-powerup-gold" title="Banco de 46 Claves Maestras">
-          <span>💡</span>
-          <span>46 Claves PJS</span>
+        <button id="btnActionPractice" class="duo-powerup-btn duo-powerup-gold" title="Iniciar o continuar práctica de casos">
+          <span>🎯</span>
+          <span>Práctica</span>
         </button>
         <button id="btnOpenLecturaModal" class="duo-powerup-btn duo-powerup-blue" title="Técnicas de Comprensión Lectora para el Examen">
           <span>📖</span>
@@ -154,7 +154,15 @@
         </div>
 
         <div class="case-box">
-          <div class="case-heading">Caso Situacional (Pruebas Escritas DIAN)</div>
+          <div class="case-heading" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
+            <span>Caso Situacional (Pruebas Escritas DIAN)</span>
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <span id="caseReadingPaceBadge" style="display: none; font-size: 11px; font-weight: 700; color: #38bdf8; background: rgba(56, 189, 248, 0.12); padding: 3px 8px; border-radius: 12px; border: 1px solid rgba(56, 189, 248, 0.3);">⏱️ 40s</span>
+              <button id="btnToggleScanner" type="button" style="background: rgba(168, 85, 247, 0.15); border: 1px solid rgba(168, 85, 247, 0.4); color: #c084fc; font-size: 11px; font-weight: 800; padding: 4px 10px; border-radius: 6px; cursor: pointer; display: flex; align-items: center; gap: 4px; transition: all 0.2s;" title="Alternar Resaltado de Núcleo Fáctico vs Ruido">
+                🔍 Escáner Rayos X
+              </button>
+            </div>
+          </div>
           <div id="qCaseText" class="case-text">Cargando caso...</div>
         </div>
 
@@ -244,7 +252,7 @@
         <div class="duo-hub-card gold" id="hubCardTips">
           <div class="hub-card-icon">💡</div>
           <div class="hub-card-content">
-            <div class="hub-card-title">46 Claves Maestras PJS</div>
+            <div class="hub-card-title">Claves Maestras PJS</div>
             <div class="hub-card-desc">Estrategias psicométricas, régimen tributario y aduanero oficial</div>
           </div>
           <span class="hub-card-arrow">➔</span>
@@ -268,29 +276,11 @@
           <span class="hub-card-arrow">➔</span>
         </div>
 
-        <div class="duo-hub-card purple" id="hubCardFlash">
-          <div class="hub-card-icon">🎲</div>
-          <div class="hub-card-content">
-            <div class="hub-card-title">Tip Flash Aleatorio</div>
-            <div class="hub-card-desc">Píldora rápida de repaso conceptual con normas de referencia</div>
-          </div>
-          <span class="hub-card-arrow">➔</span>
-        </div>
-
         <div class="duo-hub-card green" id="hubCardSRS">
           <div class="hub-card-icon">🎴</div>
           <div class="hub-card-content">
             <div class="hub-card-title">Flashcards Leitner y Quiz Relámpago</div>
             <div class="hub-card-desc">Repaso activo 3D por niveles y quiz cronometrado de errores</div>
-          </div>
-          <span class="hub-card-arrow">➔</span>
-        </div>
-
-        <div class="duo-hub-card indigo" id="hubCardFormulas">
-          <div class="hub-card-icon">📐</div>
-          <div class="hub-card-content">
-            <div class="hub-card-title">Fórmulas e Infografías</div>
-            <div class="hub-card-desc">3 Líneas de defensa, 7 dimensiones MIPG y anclas de memoria</div>
           </div>
           <span class="hub-card-arrow">➔</span>
         </div>
@@ -303,54 +293,6 @@
           </div>
           <span class="hub-card-arrow">➔</span>
         </div>
-      </div>
-    </section>
-
-    <!-- PESTAÑA: MNEMOTECNIAS Y FÓRMULAS DE MEMORIA RÁPIDA -->
-    <section id="tab-mnemotecnias" class="tab-content" style="display: none; flex-direction: column; gap: 16px;">
-      <button type="button" class="btn-back-to-recursos">⬅️ Volver a Biblioteca de Recursos</button>
-      <div style="display: flex; justify-content: space-between; align-items: center;">
-        <div>
-          <h3 style="font-size: 16px; font-weight: 800; color: var(--text-primary);">Fórmulas e Infografías Visuales</h3>
-          <p style="font-size: 13px; color: var(--text-secondary);">Anclas de memoria y mapas conceptuales del concurso</p>
-        </div>
-      </div>
-
-      <!-- Galería de Infografías Clave -->
-      <div style="display: flex; flex-direction: column; gap: 12px;">
-        <div style="font-size: 13px; font-weight: 800; color: var(--accent-gold); text-transform: uppercase;">
-          🖼️ Infografías de Estudio Visual
-        </div>
-
-        <div style="background-color: var(--bg-surface); border: 1px solid var(--border-color); border-radius: 12px; overflow: hidden; box-shadow: var(--shadow-sm);">
-          <a href="assets/infografia_lineas_defensa.jpg" target="_blank" style="display: block; text-decoration: none;">
-            <img src="assets/infografia_lineas_defensa.jpg" alt="Las Tres Líneas de Defensa" style="width: 100%; height: auto; display: block; cursor: pointer;" title="Clic para ampliar en nueva pestaña">
-          </a>
-          <div style="padding: 10px 12px; display: flex; justify-content: space-between; align-items: center;">
-            <div>
-              <div style="font-size: 13px; font-weight: 800; color: #f8fafc;">Fortaleza de las 3 Líneas de Defensa</div>
-              <div style="font-size: 11px; color: var(--text-secondary);">Sistema de Control Interno (Ley 87 de 1993 y MECI)</div>
-            </div>
-            <a href="assets/infografia_lineas_defensa.jpg" target="_blank" style="font-size: 11px; color: var(--accent-blue); text-decoration: none; font-weight: 700; border: 1px solid rgba(56,189,248,0.4); padding: 4px 8px; border-radius: 6px;">🔍 Ampliar</a>
-          </div>
-        </div>
-
-        <div style="background-color: var(--bg-surface); border: 1px solid var(--border-color); border-radius: 12px; overflow: hidden; box-shadow: var(--shadow-sm);">
-          <a href="assets/infografia_mipg.jpg" target="_blank" style="display: block; text-decoration: none;">
-            <img src="assets/infografia_mipg.jpg" alt="7 Dimensiones del MIPG" style="width: 100%; height: auto; display: block; cursor: pointer;" title="Clic para ampliar en nueva pestaña">
-          </a>
-          <div style="padding: 10px 12px; display: flex; justify-content: space-between; align-items: center;">
-            <div>
-              <div style="font-size: 13px; font-weight: 800; color: #f8fafc;">El Corazón y las 7 Dimensiones del MIPG</div>
-              <div style="font-size: 11px; color: var(--text-secondary);">Talento Humano articulando las políticas de gestión</div>
-            </div>
-            <a href="assets/infografia_mipg.jpg" target="_blank" style="font-size: 11px; color: var(--accent-blue); text-decoration: none; font-weight: 700; border: 1px solid rgba(56,189,248,0.4); padding: 4px 8px; border-radius: 6px;">🔍 Ampliar</a>
-          </div>
-        </div>
-      </div>
-
-      <div id="mnemotecniasContainer" style="display: flex; flex-direction: column; gap: 12px;">
-        <!-- Tarjetas de mnemotecnias -->
       </div>
     </section>
 
@@ -925,7 +867,7 @@
           <span style="font-size: 24px;">💡</span>
           <div>
             <h3 style="font-size: 17px; font-weight: 800; color: var(--accent-gold); margin: 0; line-height: 1.2;">
-              46 Claves Maestras PJS
+              Claves Maestras PJS
             </h3>
             <p style="font-size: 12px; color: var(--text-secondary); margin: 2px 0 0 0;">
               Estrategias psicométricas y régimen oficial DIAN (OPEC 242703)
@@ -948,9 +890,10 @@
 
         <!-- Filtros rápidos por categoría con scroll horizontal táctil -->
         <div style="display: flex; gap: 6px; align-items: center; overflow-x: auto; padding-bottom: 4px; -webkit-overflow-scrolling: touch;">
-          <button class="tip-filter-btn active" data-cat="all" style="background: rgba(245, 158, 11, 0.2); border: 1px solid #f59e0b; color: #f59e0b; padding: 5px 12px; border-radius: 12px; font-size: 12px; font-weight: 700; cursor: pointer; white-space: nowrap;">Todas (46)</button>
-          <button class="tip-filter-btn" data-cat="Verbo Rector" style="background: rgba(168, 85, 247, 0.2); border: 1px solid #a855f7; color: #c084fc; padding: 5px 12px; border-radius: 12px; font-size: 12px; font-weight: 700; cursor: pointer; white-space: nowrap;">⚡ Verbo Rector (5)</button>
-          <button class="tip-filter-btn" data-cat="Comprensión Lectora" style="background: rgba(56, 189, 248, 0.15); border: 1px solid #38bdf8; color: #38bdf8; padding: 5px 12px; border-radius: 12px; font-size: 12px; font-weight: 700; cursor: pointer; white-space: nowrap;">📖 Comprensión (21)</button>
+          <button class="tip-filter-btn" data-cat="all" style="background: rgba(245, 158, 11, 0.2); border: 1px solid #f59e0b; color: #f59e0b; padding: 5px 12px; border-radius: 12px; font-size: 12px; font-weight: 700; cursor: pointer; white-space: nowrap;">Todas</button>
+          <button class="tip-filter-btn" data-cat="Fórmulas y Mnemotecnias" style="background: rgba(168, 85, 247, 0.2); border: 1px solid #a855f7; color: #c084fc; padding: 5px 12px; border-radius: 12px; font-size: 12px; font-weight: 700; cursor: pointer; white-space: nowrap;">📐 Fórmulas & Infografías</button>
+          <button class="tip-filter-btn" data-cat="Verbo Rector" style="background: rgba(168, 85, 247, 0.2); border: 1px solid #a855f7; color: #c084fc; padding: 5px 12px; border-radius: 12px; font-size: 12px; font-weight: 700; cursor: pointer; white-space: nowrap;">⚡ Verbo Rector</button>
+          <button class="tip-filter-btn" data-cat="Comprensión Lectora" style="background: rgba(56, 189, 248, 0.15); border: 1px solid #38bdf8; color: #38bdf8; padding: 5px 12px; border-radius: 12px; font-size: 12px; font-weight: 700; cursor: pointer; white-space: nowrap;">📖 Comprensión</button>
           <button class="tip-filter-btn" data-cat="Régimen Aduanero" style="background: rgba(2, 132, 199, 0.15); border: 1px solid #0284c7; color: #38bdf8; padding: 5px 12px; border-radius: 12px; font-size: 12px; font-weight: 700; cursor: pointer; white-space: nowrap;">🚢 Aduanas (Dec. 1165)</button>
           <button class="tip-filter-btn" data-cat="Procedimiento Tributario" style="background: rgba(225, 29, 72, 0.15); border: 1px solid #e11d48; color: #f43f5e; padding: 5px 12px; border-radius: 12px; font-size: 12px; font-weight: 700; cursor: pointer; white-space: nowrap;">🏪 Facturación & Clausura</button>
           <button class="tip-filter-btn" data-cat="Constitución y Legalidad" style="background: rgba(255,255,255,0.05); border: 1px solid var(--border-color); color: #cbd5e1; padding: 5px 12px; border-radius: 12px; font-size: 12px; font-weight: 600; cursor: pointer; white-space: nowrap;">⚖️ Legalidad</button>
@@ -959,7 +902,7 @@
         </div>
 
         <div style="display: flex; justify-content: space-between; align-items: center; font-size: 12px; color: #94a3b8; padding: 0 2px;">
-          <span id="tipsCountBadge">Mostrando 46 claves</span>
+          <span id="tipsCountBadge">Claves y Fórmulas disponibles</span>
           <span style="font-size: 11px; color: #64748b;">Desliza para ver fundamentos y reglas rápidas</span>
         </div>
 
@@ -1023,9 +966,10 @@
               Tipo de Píldora:
             </label>
             <select id="selectBgMode" style="width: 100%; box-sizing: border-box; background: #0b1120; border: 1px solid rgba(255,255,255,0.2); color: #fff; padding: 8px 10px; border-radius: 6px; font-size: 13px; outline: none; cursor: pointer;">
-              <option value="alternate" selected>🔄 Alternar Tips y Preguntas</option>
+              <option value="alternate" selected>🔄 Alternar: Pregunta, Tip Flash y Lectura Crítica</option>
               <option value="questions_only">🎯 Solo Preguntas Situacionales</option>
-              <option value="tips_only">💡 Solo Claves y Tips</option>
+              <option value="tips_only">💡 Solo Tips y Fórmulas</option>
+              <option value="lectura_only">📖 Solo Tips de Lectura Crítica</option>
             </select>
           </div>
 
@@ -1121,15 +1065,18 @@
           <div style="font-size: 11px; font-weight: 800; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px;">
             🧪 Probar Envío Inmediato:
           </div>
-          <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px;">
-            <button id="btnTestBgAlternate" type="button" style="background: rgba(56, 189, 248, 0.15); border: 1px solid #38bdf8; color: #38bdf8; padding: 8px 6px; border-radius: 8px; font-size: 12px; font-weight: 700; cursor: pointer; text-align: center;" title="Probar alternado">
-              ⚡ Siguiente
+          <div style="display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 6px;">
+            <button id="btnTestBgAlternate" type="button" style="background: rgba(56, 189, 248, 0.15); border: 1px solid #38bdf8; color: #38bdf8; padding: 8px 4px; border-radius: 8px; font-size: 11px; font-weight: 700; cursor: pointer; text-align: center;" title="Probar rotación continua">
+              ⚡ Rotación
             </button>
-            <button id="btnTestBgQuestion" type="button" style="background: rgba(34, 197, 94, 0.15); border: 1px solid #22c55e; color: #4ade80; padding: 8px 6px; border-radius: 8px; font-size: 12px; font-weight: 700; cursor: pointer; text-align: center;" title="Probar pregunta situacional">
+            <button id="btnTestBgQuestion" type="button" style="background: rgba(34, 197, 94, 0.15); border: 1px solid #22c55e; color: #4ade80; padding: 8px 4px; border-radius: 8px; font-size: 11px; font-weight: 700; cursor: pointer; text-align: center;" title="Probar pregunta situacional">
               🎯 Pregunta
             </button>
-            <button id="btnTestBackgroundTip" type="button" style="background: rgba(245, 158, 11, 0.15); border: 1px solid #f59e0b; color: #f59e0b; padding: 8px 6px; border-radius: 8px; font-size: 12px; font-weight: 700; cursor: pointer; text-align: center;" title="Probar tip">
+            <button id="btnTestBackgroundTip" type="button" style="background: rgba(245, 158, 11, 0.15); border: 1px solid #f59e0b; color: #f59e0b; padding: 8px 4px; border-radius: 8px; font-size: 11px; font-weight: 700; cursor: pointer; text-align: center;" title="Probar tip flash">
               💡 Tip Flash
+            </button>
+            <button id="btnTestBgLectura" type="button" style="background: rgba(168, 85, 247, 0.15); border: 1px solid #a855f7; color: #c084fc; padding: 8px 4px; border-radius: 8px; font-size: 11px; font-weight: 700; cursor: pointer; text-align: center;" title="Probar tip de lectura crítica">
+              📖 Lectura
             </button>
           </div>
         </div>
@@ -1216,6 +1163,39 @@
           </div>
         </div>
 
+        <!-- Laboratorio Interactivo: Cazador de Trampas Semánticas CNSC -->
+        <div style="background: rgba(15, 23, 42, 0.85); border: 1px solid rgba(56, 189, 248, 0.3); border-radius: 10px; padding: 14px 16px;">
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
+            <div style="font-size: 14px; font-weight: 800; color: #38bdf8; display: flex; align-items: center; gap: 6px;">
+              <span>🎯</span>
+              <span>Laboratorio Táctico: ¿Trampa o Clave Segura? (Pruébalo)</span>
+            </div>
+            <span style="font-size: 10px; color: var(--text-secondary); text-transform: uppercase; font-weight: 700;">Toca para evaluar</span>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 8px;">
+            <button type="button" class="btn-trap-tester" data-trap-id="1" style="text-align: left; background: rgba(239, 68, 68, 0.12); border: 1px solid rgba(239, 68, 68, 0.35); padding: 8px 12px; border-radius: 6px; color: #fca5a5; font-size: 13px; cursor: pointer; transition: all 0.2s;">
+              ❌ <em>"...ordenar de plano y automáticamente sin audiencia previa..."</em>
+            </button>
+            <div id="trapFeedback1" style="display: none; font-size: 12px; background: rgba(0,0,0,0.4); padding: 8px 12px; border-radius: 6px; color: #fecaca; line-height: 1.45;">
+              🚨 <strong>TRAMPA CLÁSICA CNSC:</strong> Viola el principio fundamental del debido proceso (Art. 29 C.P.). En derecho tributario/aduanero, ningún acto sancionatorio opera "de plano" sin pliego de cargos ni oportunidad de defensa.
+            </div>
+
+            <button type="button" class="btn-trap-tester" data-trap-id="2" style="text-align: left; background: rgba(16, 185, 129, 0.12); border: 1px solid rgba(16, 185, 129, 0.35); padding: 8px 12px; border-radius: 6px; color: #6ee7b7; font-size: 13px; cursor: pointer; transition: all 0.2s;">
+              ✅ <em>"...proyectar el auto motivado garantizando el término legal..."</em>
+            </button>
+            <div id="trapFeedback2" style="display: none; font-size: 12px; background: rgba(0,0,0,0.4); padding: 8px 12px; border-radius: 6px; color: #a7f3d0; line-height: 1.45;">
+              💎 <strong>LENGUAJE DE CLAVE OFICIAL:</strong> Cumple el rol profesional (proyectar), respeta la motivación del acto y garantiza los términos de contradicción legales.
+            </div>
+
+            <button type="button" class="btn-trap-tester" data-trap-id="3" style="text-align: left; background: rgba(245, 158, 11, 0.12); border: 1px solid rgba(245, 158, 11, 0.35); padding: 8px 12px; border-radius: 6px; color: #fcd34d; font-size: 13px; cursor: pointer; transition: all 0.2s;">
+              ⚠️ <em>"...declarar la extinción penal del dominio del contenedor..."</em>
+            </button>
+            <div id="trapFeedback3" style="display: none; font-size: 12px; background: rgba(0,0,0,0.4); padding: 8px 12px; border-radius: 6px; color: #fde68a; line-height: 1.45;">
+              🚨 <strong>TRAMPA DE INCOMPETENCIA (USURPACIÓN):</strong> Una figura legal real pero competencia exclusiva de la Fiscalía y Jueces de Extinción de Dominio, no de un funcionario DIAN.
+            </div>
+          </div>
+        </div>
+
         <!-- Matriz Rápida Resumen -->
         <div style="background: rgba(245, 158, 11, 0.1); border: 1px solid rgba(245, 158, 11, 0.3); border-radius: 8px; padding: 14px 16px;">
           <div style="font-size: 14px; font-weight: 800; color: #f59e0b; margin-bottom: 6px;">
@@ -1229,7 +1209,7 @@
 
       <div class="modal-footer">
         <button id="btnVerTodasClavesDesdeLectura" style="background: none; border: none; color: #38bdf8; font-size: 13px; font-weight: 700; text-decoration: underline; cursor: pointer;">
-          Ver las 46 Claves 💡
+          Ver Claves y Fórmulas 💡
         </button>
         <button id="btnCloseLecturaModal" class="btn-primary" style="font-size: 14px; font-weight: 700; padding: 10px 20px;">
           ¡Anotado! Ir a Practicar Casos 🚀
@@ -1278,14 +1258,17 @@
             Recordatorios periódicos activos
           </label>
           <button id="btnVerTodasClavesDesdePopup" style="background: none; border: none; color: #38bdf8; font-size: 13px; font-weight: 700; text-decoration: underline; cursor: pointer;">
-            Ver las 46 Claves 📖
+            Ver Claves y Fórmulas 📐
           </button>
         </div>
       </div>
 
-      <div class="modal-footer" style="padding: 12px 20px;">
-        <button id="btnClosePopupTip" class="btn-primary" style="width: 100%; font-size: 15px; font-weight: 700; padding: 12px; border-radius: 8px;">
-          ¡Anotado! Continuar con la prueba 🚀
+      <div class="modal-footer" style="padding: 12px 20px; display: flex; gap: 8px;">
+        <button id="btnNextTipFlashInModal" type="button" class="btn-secondary" style="flex: 1; font-size: 13px; font-weight: 700; padding: 11px 8px; border-radius: 8px; border: 1px solid rgba(168, 85, 247, 0.45); color: #c084fc; background: rgba(168, 85, 247, 0.12); cursor: pointer;">
+          🎲 Otra Fórmula / Tip
+        </button>
+        <button id="btnClosePopupTip" class="btn-primary" style="flex: 1.2; font-size: 14px; font-weight: 700; padding: 11px 12px; border-radius: 8px;">
+          ¡Anotado! Continuar 🚀
         </button>
       </div>
     </div>
