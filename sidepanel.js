@@ -5075,6 +5075,52 @@ function populateJobModalForm(forcedProfileId = null) {
     if (btnQuickAnalista) btnQuickAnalista.classList.add("active");
     if (badgeAnalista) badgeAnalista.style.display = "inline-block";
   }
+
+  // Renderizar dinámicamente los Ejes e Indicadores Oficiales a Evaluar en SIMO
+  const ejesContainer = document.getElementById("jobModalEjesContainer");
+  const countBadge = document.getElementById("jobModalEjesCountBadge");
+
+  if (ejesContainer) {
+    const rawOptions = (defaultProfile && Array.isArray(defaultProfile.filterOptions))
+      ? defaultProfile.filterOptions
+      : [];
+    const activeFilters = rawOptions.filter(f => f && f.id !== "todos" && f.id !== "interleaving");
+
+    if (countBadge) {
+      countBadge.textContent = `${activeFilters.length} Indicadores Oficiales`;
+    }
+
+    if (activeFilters.length === 0) {
+      ejesContainer.innerHTML = '<span style="font-size: 12px; color: #94a3b8; font-style: italic;">No hay ejes preconfigurados para este cargo.</span>';
+    } else {
+      ejesContainer.innerHTML = activeFilters.map(f => {
+        const idLower = (f.id || "").toLowerCase();
+        const isIntegridad = idLower.includes("integridad") || ["compromiso", "diligencia", "honestidad", "justicia", "respeto"].includes(idLower);
+        const isComportamental = idLower.includes("comportament") || idLower.includes("adaptabilidad") || idLower.includes("etico") || idLower.includes("comunicacion") || idLower.includes("logro") || idLower.includes("usuario") || idLower.includes("solucion") || idLower.includes("trabajo_equipo");
+
+        let borderCol = "rgba(56, 189, 248, 0.4)";
+        let bgCol = "rgba(2, 132, 199, 0.15)";
+        let textCol = "#e0f2fe";
+        let tagType = "Funcional";
+
+        if (isIntegridad) {
+          borderCol = "rgba(245, 158, 11, 0.45)";
+          bgCol = "rgba(245, 158, 11, 0.14)";
+          textCol = "#fef3c7";
+          tagType = "Integridad";
+        } else if (isComportamental) {
+          borderCol = "rgba(168, 85, 247, 0.45)";
+          bgCol = "rgba(168, 85, 247, 0.14)";
+          textCol = "#f3e8ff";
+          tagType = "Comportamental";
+        }
+
+        return `<span title="Componente: ${tagType}" style="font-size: 11.5px; font-weight: 700; color: ${textCol}; background: ${bgCol}; border: 1px solid ${borderCol}; padding: 4px 10px; border-radius: 8px; display: inline-flex; align-items: center; gap: 5px; transition: transform 0.15s ease;">
+          ${f.label}
+        </span>`;
+      }).join("");
+    }
+  }
 }
 
 // Lógica de "Mi Cargo"
