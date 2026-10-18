@@ -1496,6 +1496,159 @@ function setupTipsModal() {
   let currentCategory = "all";
   let currentSearch = "";
 
+  // Estado y elementos del Modo Una por Una (Aleatoria)
+  let tipsMode = "single";
+  let singleTipHistory = [];
+  let singleTipHistoryIndex = -1;
+
+  const btnModeSingle = document.getElementById("btnTipsModeSingle");
+  const btnModeList = document.getElementById("btnTipsModeList");
+  const containerSingle = document.getElementById("tipsSingleContainer");
+  const containerList = document.getElementById("tipsListModeContainer");
+  const counterBadge = document.getElementById("tipsCounterBadge");
+
+  const singleTipIcon = document.getElementById("singleTipIcon");
+  const singleTipCat = document.getElementById("singleTipCategoryBadge");
+  const singleTipNum = document.getElementById("singleTipNumberBadge");
+  const singleTipTitle = document.getElementById("singleTipTitle");
+  const singleTipNorma = document.getElementById("singleTipNorma");
+  const singleTipResumen = document.getElementById("singleTipResumen");
+  const singleTipContenido = document.getElementById("singleTipContenido");
+  const singleTipImgContainer = document.getElementById("singleTipImageContainer");
+  const singleTipImg = document.getElementById("singleTipImage");
+  const btnSinglePrev = document.getElementById("btnSingleTipPrev");
+  const btnSingleNext = document.getElementById("btnSingleTipNextRandom");
+  const btnSingleNextTop = document.getElementById("btnSingleTipNextRandomTop");
+
+  function switchTipsMode(mode) {
+    tipsMode = mode;
+    if (mode === "single") {
+      if (btnModeSingle) {
+        btnModeSingle.style.background = "rgba(245, 158, 11, 0.25)";
+        btnModeSingle.style.borderColor = "#f59e0b";
+        btnModeSingle.style.color = "#f59e0b";
+        btnModeSingle.style.fontWeight = "800";
+      }
+      if (btnModeList) {
+        btnModeList.style.background = "transparent";
+        btnModeList.style.borderColor = "rgba(255,255,255,0.12)";
+        btnModeList.style.color = "#94a3b8";
+        btnModeList.style.fontWeight = "700";
+      }
+      if (containerSingle) containerSingle.style.display = "flex";
+      if (containerList) containerList.style.display = "none";
+      if (singleTipHistory.length === 0) {
+        showRandomSingleTip(true);
+      }
+    } else {
+      if (btnModeList) {
+        btnModeList.style.background = "rgba(56, 189, 248, 0.2)";
+        btnModeList.style.borderColor = "#38bdf8";
+        btnModeList.style.color = "#38bdf8";
+        btnModeList.style.fontWeight = "800";
+      }
+      if (btnModeSingle) {
+        btnModeSingle.style.background = "transparent";
+        btnModeSingle.style.borderColor = "rgba(255,255,255,0.12)";
+        btnModeSingle.style.color = "#94a3b8";
+        btnModeSingle.style.fontWeight = "700";
+      }
+      if (containerSingle) containerSingle.style.display = "none";
+      if (containerList) containerList.style.display = "flex";
+      renderTipsList();
+    }
+  }
+
+  if (btnModeSingle) btnModeSingle.addEventListener("click", () => switchTipsMode("single"));
+  if (btnModeList) btnModeList.addEventListener("click", () => switchTipsMode("list"));
+
+  function renderSingleTipCard(tip) {
+    if (!tip) return;
+    const all = typeof TIPS_PJS_DATA !== "undefined" ? TIPS_PJS_DATA : [];
+    const total = all.length;
+    const currentNum = tip.id || tip.numero || (all.indexOf(tip) + 1);
+
+    if (counterBadge) counterBadge.textContent = `${total} Claves`;
+    if (singleTipIcon) singleTipIcon.textContent = tip.icono || "💡";
+    if (singleTipCat) {
+      singleTipCat.textContent = tip.categoria || "Juicio Situacional";
+      singleTipCat.style.color = tip.color || "#f59e0b";
+      singleTipCat.style.background = `rgba(245, 158, 11, 0.18)`;
+    }
+    if (singleTipNum) {
+      singleTipNum.textContent = `🎲 Clave Maestra #${currentNum} de ${total}`;
+    }
+    if (singleTipTitle) singleTipTitle.textContent = tip.titulo || "Clave de Juicio Situacional";
+    if (singleTipNorma) singleTipNorma.textContent = tip.normaReferencia || "Marco Legal DIAN / CNSC";
+    if (singleTipResumen) {
+      singleTipResumen.innerHTML = `<strong>Premisa de Descarte:</strong> ${tip.resumenCorto || ""}`;
+      singleTipResumen.style.borderLeftColor = tip.color || "#f59e0b";
+    }
+    if (singleTipContenido) {
+      singleTipContenido.innerHTML = tip.contenidoDetallado || tip.resumenCorto || "";
+    }
+
+    // Infografía si aplica
+    if (singleTipImgContainer && singleTipImg) {
+      const imgPath = typeof ImageCatalog !== "undefined" ? ImageCatalog.getTipImage(tip.titulo, tip.categoria) : null;
+      if (imgPath) {
+        singleTipImg.src = imgPath;
+        singleTipImgContainer.style.display = "block";
+      } else {
+        singleTipImgContainer.style.display = "none";
+      }
+    }
+
+    // Estado del botón anterior
+    if (btnSinglePrev) {
+      btnSinglePrev.disabled = (singleTipHistoryIndex <= 0);
+      btnSinglePrev.style.opacity = (singleTipHistoryIndex <= 0) ? "0.4" : "1";
+    }
+  }
+
+  function showRandomSingleTip(forced = false) {
+    const list = typeof TIPS_PJS_DATA !== "undefined" ? TIPS_PJS_DATA : [];
+    if (!list || list.length === 0) return;
+
+    let nextTip;
+    if (singleTipHistory.length > 0 && singleTipHistoryIndex < singleTipHistory.length - 1 && !forced) {
+      singleTipHistoryIndex++;
+      nextTip = singleTipHistory[singleTipHistoryIndex];
+    } else {
+      let attempts = 0;
+      let randIdx;
+      do {
+        randIdx = Math.floor(Math.random() * list.length);
+        attempts++;
+      } while (attempts < 10 && list.length > 1 && singleTipHistory.length > 0 && list[randIdx] === singleTipHistory[singleTipHistoryIndex]);
+
+      nextTip = list[randIdx];
+      singleTipHistoryIndex++;
+      singleTipHistory = singleTipHistory.slice(0, singleTipHistoryIndex);
+      singleTipHistory.push(nextTip);
+    }
+
+    renderSingleTipCard(nextTip);
+  }
+
+  function showPrevSingleTip() {
+    if (singleTipHistoryIndex > 0) {
+      singleTipHistoryIndex--;
+      const prevTip = singleTipHistory[singleTipHistoryIndex];
+      renderSingleTipCard(prevTip);
+    }
+  }
+
+  if (btnSingleNext) btnSingleNext.addEventListener("click", () => showRandomSingleTip(true));
+  if (btnSingleNextTop) btnSingleNextTop.addEventListener("click", () => showRandomSingleTip(true));
+  if (btnSinglePrev) btnSinglePrev.addEventListener("click", () => showPrevSingleTip());
+
+  window.openTipsModalSingleRandom = function() {
+    openModal(modal);
+    switchTipsMode("single");
+    showRandomSingleTip(true);
+  };
+
   // Renderizar las 46 Claves Maestras y Fórmulas Mnemotécnicas
   function renderTipsList() {
     if (!listContainer || typeof TIPS_PJS_DATA === "undefined") return;
@@ -1708,8 +1861,9 @@ function setupTipsModal() {
     });
   }
 
-  // Apertura y Cierre Modal Principal de Claves
-  if (btnOpen) btnOpen.addEventListener("click", () => openModal(modal));
+  // Apertura y Cierre Modal Principal de Claves (Abre una por una y aleatorio)
+  if (btnOpen) btnOpen.addEventListener("click", () => window.openTipsModalSingleRandom());
+  if (btnVerTodasDesdePopup) btnVerTodasDesdePopup.addEventListener("click", () => window.openTipsModalSingleRandom());
   if (btnCloseX) btnCloseX.addEventListener("click", () => closeModal(modal));
   if (btnClose) btnClose.addEventListener("click", () => closeModal(modal));
 
@@ -1889,31 +2043,43 @@ function setupTipsModal() {
     const vPractice = document.getElementById("subviewPractice");
     const vLectura = document.getElementById("subviewLecturaCritica");
     const vTipFlash = document.getElementById("subviewTipFlash");
-    const vVerbos = document.getElementById("subviewVerbosRectores");
+    const vSRS = document.getElementById("subviewSRS");
 
     const btnP = document.getElementById("btnActionPractice");
     const btnL = document.getElementById("btnOpenLecturaModal");
     const btnT = document.getElementById("btnRandomTipFlash");
-    const btnV = document.getElementById("btnOpenVerbosModal");
+    const btnSRS = document.getElementById("btnActionSRS");
 
     if (vPractice) vPractice.style.display = view === "practice" ? "flex" : "none";
     if (vLectura) vLectura.style.display = view === "lectura" ? "flex" : "none";
     if (vTipFlash) vTipFlash.style.display = view === "tipFlash" ? "flex" : "none";
-    if (vVerbos) vVerbos.style.display = view === "verbos" ? "flex" : "none";
+    if (vSRS) vSRS.style.display = view === "srs" ? "flex" : "none";
 
     if (btnP) btnP.classList.toggle("active", view === "practice");
     if (btnL) btnL.classList.toggle("active", view === "lectura");
     if (btnT) btnT.classList.toggle("active", view === "tipFlash");
-    if (btnV) btnV.classList.toggle("active", view === "verbos");
+    if (btnSRS) btnSRS.classList.toggle("active", view === "srs");
+
+    // Pausar reloj de preguntas si se pasa a subvista (SRS, lectura o tip)
+    if (typeof PracticeTimer !== "undefined") {
+      if (view === "practice") {
+        PracticeTimer.resume();
+      } else {
+        PracticeTimer.pause();
+      }
+    }
 
     if (view === "tipFlash") {
       showRandomTipFlash({ forced: true });
     } else if (view === "lectura") {
       window.showLecturaTip("current");
-    } else if (view === "verbos") {
-      if (typeof window.syncVerbosViewProfile === "function") {
-        window.syncVerbosViewProfile();
+    } else if (view === "srs") {
+      if (typeof renderSrsTab === "function") {
+        renderSrsTab();
       }
+    } else if (view === "verbos") {
+      switchTab("verbos");
+      return;
     }
 
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -1999,26 +2165,26 @@ function setupTipsModal() {
     });
   }
 
-  // Manejadores de Verbos Rectores en el Cuerpo
-  const btnOpenVerbos = document.getElementById("btnOpenVerbosModal");
-  const btnCloseVerbos = document.getElementById("btnCloseVerbosModal");
-  const btnBackVerbos = document.getElementById("btnBackToPracticeFromVerbos");
+  // Manejadores de Flashcards & Quiz Relámpago en el Cuerpo de Práctica
+  const btnActionSRS = document.getElementById("btnActionSRS");
+  const btnCloseSRS = document.getElementById("btnCloseSRSModal");
+  const btnBackSRS = document.getElementById("btnBackToPracticeFromSRS");
 
-  if (btnOpenVerbos) {
-    btnOpenVerbos.addEventListener("click", () => {
+  if (btnActionSRS) {
+    btnActionSRS.addEventListener("click", () => {
       if (AppState.currentTab !== "practice") {
         switchTab("practice");
       }
-      setPracticeSubView("verbos");
+      setPracticeSubView("srs");
     });
   }
 
-  if (btnCloseVerbos) {
-    btnCloseVerbos.addEventListener("click", () => setPracticeSubView("practice"));
+  if (btnCloseSRS) {
+    btnCloseSRS.addEventListener("click", () => setPracticeSubView("practice"));
   }
 
-  if (btnBackVerbos) {
-    btnBackVerbos.addEventListener("click", () => setPracticeSubView("practice"));
+  if (btnBackSRS) {
+    btnBackSRS.addEventListener("click", () => setPracticeSubView("practice"));
   }
 }
 
@@ -2559,8 +2725,12 @@ function setupNavigation() {
   const hubTips = document.getElementById("hubCardTips");
   if (hubTips) {
     hubTips.addEventListener("click", () => {
-      const tipsModal = document.getElementById("tipsModal");
-      if (tipsModal) openModal(tipsModal);
+      if (typeof window.openTipsModalSingleRandom === "function") {
+        window.openTipsModalSingleRandom();
+      } else {
+        const tipsModal = document.getElementById("tipsModal");
+        if (tipsModal) openModal(tipsModal);
+      }
     });
   }
 
@@ -2582,18 +2752,18 @@ function setupNavigation() {
   const hubVerbos = document.getElementById("hubCardVerbos");
   if (hubVerbos) {
     hubVerbos.addEventListener("click", () => {
-      if (typeof window.openVerbosModal === "function") {
-        window.openVerbosModal();
-      } else {
-        const btn = document.getElementById("btnOpenVerbosModal");
-        if (btn) btn.click();
-      }
+      switchTab("verbos");
     });
   }
 
   const hubSRS = document.getElementById("hubCardSRS");
   if (hubSRS) {
-    hubSRS.addEventListener("click", () => switchTab("srs"));
+    hubSRS.addEventListener("click", () => {
+      switchTab("practice");
+      if (typeof setPracticeSubView === "function") {
+        setPracticeSubView("srs");
+      }
+    });
   }
 
   const hubJob = document.getElementById("hubCardJob");
@@ -2677,16 +2847,41 @@ function setupNavigation() {
 }
 
 function switchTab(tabName) {
-  // Si salimos de speedDrill, limpiar su temporizador activo
-  if (typeof SpeedDrillState !== "undefined" && SpeedDrillState.timer) {
-    clearInterval(SpeedDrillState.timer);
-    SpeedDrillState.timer = null;
+  // Redireccionar accesos a SRS directamente a la subvista de Práctica
+  if (tabName === "srs") {
+    switchTab("practice");
+    if (typeof setPracticeSubView === "function") {
+      setPracticeSubView("srs");
+    }
+    return;
+  }
+
+  // Control estricto de temporizadores al cambiar de vista:
+  // Si no está en 'speedDrill', pausar inmediatamente los relojes de Speed Drill
+  if (typeof SpeedDrillState !== "undefined") {
+    if (tabName !== "speedDrill") {
+      if (SpeedDrillState.cazaTimer) {
+        clearInterval(SpeedDrillState.cazaTimer);
+        SpeedDrillState.cazaTimer = null;
+      }
+      if (SpeedDrillState.timer) {
+        clearInterval(SpeedDrillState.timer);
+        SpeedDrillState.timer = null;
+      }
+    }
+  }
+
+  // Si no está en 'practice', pausar inmediatamente el reloj de práctica
+  if (typeof PracticeTimer !== "undefined") {
+    if (tabName !== "practice") {
+      PracticeTimer.pause();
+    }
   }
 
   AppState.currentTab = tabName;
 
   // Si se ingresa a una sub-herramienta de recursos, mantener iluminado 'recursos' en el bottom nav
-  const activeNavKey = ["srs", "jobFocus", "recursos"].includes(tabName) ? "recursos" : tabName;
+  const activeNavKey = ["jobFocus", "verbos", "recursos"].includes(tabName) ? "recursos" : tabName;
 
   document.querySelectorAll(".nav-tab-item, .tab-btn").forEach((t) => {
     const dataTab = t.getAttribute("data-tab");
@@ -2719,8 +2914,30 @@ function switchTab(tabName) {
   }
 
   if (tabName === "jobFocus") renderJobFocusTab();
+  if (tabName === "verbos") {
+    if (typeof window.syncVerbosViewProfile === "function") {
+      window.syncVerbosViewProfile();
+    }
+  }
   if (tabName === "srs") renderSrsTab();
   if (tabName === "stats") renderStatsTab();
+
+  // Reanudar relojes solo si se ingresa a la vista respectiva
+  if (tabName === "speedDrill" && typeof SpeedDrillState !== "undefined") {
+    if (SpeedDrillState.mode === "caza") {
+      if (typeof resumeSpeedCazaTimer === "function") resumeSpeedCazaTimer();
+    } else {
+      if (typeof resumeSpeedVFTimer === "function") resumeSpeedVFTimer();
+    }
+  }
+  if (tabName === "practice" && typeof PracticeTimer !== "undefined") {
+    const vPractice = document.getElementById("subviewPractice");
+    if (vPractice && vPractice.style.display !== "none") {
+      PracticeTimer.resume();
+    } else {
+      PracticeTimer.pause();
+    }
+  }
   if (tabName === "speedDrill") startSpeedDrill();
   if (tabName === "simulacro") renderSimulacroTab();
 
@@ -3222,6 +3439,9 @@ const PracticeTimer = {
   },
   pause() {
     this.isPaused = true;
+  },
+  resume() {
+    this.isPaused = false;
   },
   updateUI() {
     const timerEl = document.getElementById("practiceQuestionTimer");
@@ -5922,15 +6142,35 @@ function setupDiaDModal() {
     if (chk) chk.addEventListener("change", saveState);
   });
 
-  const openModal = () => { if (modal) modal.style.display = "flex"; };
-  const closeModal = () => { if (modal) modal.style.display = "none"; saveState(); };
+  const handleOpenDiaD = () => {
+    if (modal) {
+      if (typeof window.openModal === "function") {
+        window.openModal(modal);
+      } else {
+        modal.classList.add("active");
+        modal.style.display = "flex";
+      }
+    }
+  };
 
-  if (hubCard) hubCard.addEventListener("click", openModal);
-  if (closeX) closeX.addEventListener("click", closeModal);
-  if (closeBtn) closeBtn.addEventListener("click", closeModal);
+  const handleCloseDiaD = () => {
+    saveState();
+    if (modal) {
+      if (typeof window.closeModal === "function") {
+        window.closeModal(modal);
+      } else {
+        modal.classList.remove("active");
+        modal.style.display = "none";
+      }
+    }
+  };
+
+  if (hubCard) hubCard.addEventListener("click", handleOpenDiaD);
+  if (closeX) closeX.addEventListener("click", handleCloseDiaD);
+  if (closeBtn) closeBtn.addEventListener("click", handleCloseDiaD);
   if (modal) {
     modal.addEventListener("click", (e) => {
-      if (e.target === modal) closeModal();
+      if (e.target === modal) handleCloseDiaD();
     });
   }
 }
@@ -5982,7 +6222,7 @@ const SpeedDrillState = {
   cazaScore: 0,
   cazaCurrentCase: null,
   cazaTimer: null,
-  cazaTimeLeft: 20,
+  cazaTimeLeft: 60,
   cazaIsAnswered: false,
 
   // Estado V/F Legal (35 Casos)
@@ -6099,6 +6339,122 @@ async function startSpeedDrill() {
 // -------------------------------------------------------------------------
 // LÓGICA MODO CAZA-DISTRACTORES (100 CASOS)
 // -------------------------------------------------------------------------
+function resolveVerboEvaluado(currentCase) {
+  if (!currentCase) return "Verbo Rector";
+
+  const raw = currentCase.verboEvaluado || currentCase.verbo;
+  if (raw && typeof raw === "string" && raw.trim() !== "" && raw.toLowerCase() !== "undefined") {
+    return raw.trim();
+  }
+
+  // 1. Extraer citas de verbos/acciones entre comillas en la explicación
+  // Ej: 'Evaluar' y 'Proyectar informes', 'Diseñar metodologías', 'Comprobar'
+  if (currentCase.explicacion && typeof currentCase.explicacion === "string") {
+    const quotedMatches = [];
+    const quoteRegex = /['"‘“]([A-ZÁÉÍÓÚÑa-záéíóúñ\s/,-]+)['"’”]/g;
+    let match;
+    while ((match = quoteRegex.exec(currentCase.explicacion)) !== null) {
+      const candidate = match[1].trim();
+      // Si la primera palabra termina en infinitivo o es un verbo de acción
+      if (/^[A-ZÁÉÍÓÚÑ][a-záéíóúñ]*(?:ar|er|ir)\b/i.test(candidate)) {
+        const words = candidate.split(/\s+/);
+        if (words.length <= 4) {
+          quotedMatches.push(candidate);
+        }
+      }
+    }
+    if (quotedMatches.length > 0) {
+      const unique = [...new Set(quotedMatches)];
+      const result = unique.slice(0, 2).join(" / ");
+      currentCase.verboEvaluado = result;
+      return result;
+    }
+  }
+
+  // 2. Extraer de la acción planteada (opcionTexto)
+  if (currentCase.opcionTexto && typeof currentCase.opcionTexto === "string") {
+    const text = currentCase.opcionTexto.trim().replace(/^«|»$/g, "").trim();
+    const firstWordMatch = text.match(/^([A-ZÁÉÍÓÚÑa-záéíóúñ]+(?:ar|er|ir|se))/i);
+    const andVerbMatch = text.match(/\by\s+([a-záéíóúñ]+(?:ar|er|ir|se))\b/i);
+
+    const cap = (s) => (s ? s.charAt(0).toUpperCase() + s.slice(1) : "");
+    const v1 = firstWordMatch ? cap(firstWordMatch[1]) : "";
+    const v2 = andVerbMatch ? cap(andVerbMatch[1]) : "";
+
+    if (v1 && v2 && v1.toLowerCase() !== v2.toLowerCase()) {
+      const result = `${v1} / ${v2}`;
+      currentCase.verboEvaluado = result;
+      return result;
+    } else if (v1) {
+      currentCase.verboEvaluado = v1;
+      return v1;
+    } else {
+      const firstWord = text.split(/\s+/)[0].replace(/[^a-zA-ZáéíóúÁÉÍÓÚñÑ]/g, "");
+      if (firstWord) {
+        const result = cap(firstWord);
+        currentCase.verboEvaluado = result;
+        return result;
+      }
+    }
+  }
+
+  const fallback = "Acción Evaluada";
+  currentCase.verboEvaluado = fallback;
+  return fallback;
+}
+
+function resumeSpeedCazaTimer() {
+  if (typeof SpeedDrillState === "undefined") return;
+  if (SpeedDrillState.cazaTimer) clearInterval(SpeedDrillState.cazaTimer);
+  if (SpeedDrillState.cazaIsAnswered || SpeedDrillState.cazaTimeLeft <= 0) return;
+
+  const timerEl = document.getElementById("speedCazaTimer");
+  SpeedDrillState.cazaTimer = setInterval(() => {
+    SpeedDrillState.cazaTimeLeft -= 1;
+    if (timerEl) timerEl.textContent = `⏳ ${SpeedDrillState.cazaTimeLeft}s`;
+
+    if (SpeedDrillState.cazaTimeLeft <= 10 && SpeedDrillState.cazaTimeLeft > 0) {
+      if (typeof SoundFX !== "undefined" && SoundFX.playTick) SoundFX.playTick();
+      if (timerEl) {
+        timerEl.style.color = "#ef4444";
+        SimoFX.heartbeat(timerEl);
+      }
+    }
+
+    if (SpeedDrillState.cazaTimeLeft <= 0) {
+      clearInterval(SpeedDrillState.cazaTimer);
+      SpeedDrillState.cazaTimer = null;
+      handleSpeedCazaTimeout();
+    }
+  }, 1000);
+}
+
+function resumeSpeedVFTimer() {
+  if (typeof SpeedDrillState === "undefined") return;
+  if (SpeedDrillState.timer) clearInterval(SpeedDrillState.timer);
+  if (SpeedDrillState.isAnswered || SpeedDrillState.timeLeft <= 0) return;
+
+  const timerEl = document.getElementById("speedDrillTimer");
+  SpeedDrillState.timer = setInterval(() => {
+    SpeedDrillState.timeLeft -= 1;
+    if (timerEl) timerEl.textContent = `⏳ ${SpeedDrillState.timeLeft}s`;
+
+    if (SpeedDrillState.timeLeft <= 5 && SpeedDrillState.timeLeft > 0) {
+      if (typeof SoundFX !== "undefined" && SoundFX.playTick) SoundFX.playTick();
+      if (timerEl) {
+        timerEl.style.display = "inline-block";
+        SimoFX.heartbeat(timerEl);
+      }
+    }
+
+    if (SpeedDrillState.timeLeft <= 0) {
+      clearInterval(SpeedDrillState.timer);
+      SpeedDrillState.timer = null;
+      handleSpeedDrillTimeout();
+    }
+  }, 1000);
+}
+
 function initSpeedCaza() {
   let source = [];
   if (typeof CAZA_DISTRACTORES_100 !== "undefined" && Array.isArray(CAZA_DISTRACTORES_100) && CAZA_DISTRACTORES_100.length > 0) {
@@ -6108,6 +6464,13 @@ function initSpeedCaza() {
   }
 
   if (source.length === 0) return;
+
+  // Pre-resolver y asegurar que cada caso tenga su verbo evaluado sin 'undefined'
+  source.forEach((item) => {
+    if (!item.verboEvaluado || item.verboEvaluado === "undefined") {
+      item.verboEvaluado = resolveVerboEvaluado(item);
+    }
+  });
 
   // Barajar completamente los 100 casos de forma aleatoria (Fisher-Yates)
   SpeedDrillState.cazaPool = simoShuffle([...source]);
@@ -6139,7 +6502,7 @@ function renderSpeedCazaCard() {
   const currentCase = pool[SpeedDrillState.cazaIndex];
   SpeedDrillState.cazaCurrentCase = currentCase;
   SpeedDrillState.cazaIsAnswered = false;
-  SpeedDrillState.cazaTimeLeft = 20;
+  SpeedDrillState.cazaTimeLeft = 60; // 1 minuto (60s)
 
   // Actualizar UI
   const badgeRem = document.getElementById("speedCazaRemainingBadge");
@@ -6158,7 +6521,7 @@ function renderSpeedCazaCard() {
     cargoBadge.style.color = (currentCase.perfilTarget && currentCase.perfilTarget.includes("analista")) ? "#c084fc" : "#38bdf8";
   }
   if (timerEl) {
-    timerEl.textContent = `⏳ 20s`;
+    timerEl.textContent = `⏳ 60s`;
     timerEl.style.color = "#fca5a5";
   }
   if (contextoEl) contextoEl.textContent = currentCase.contexto;
@@ -6171,24 +6534,8 @@ function renderSpeedCazaCard() {
     btn.style.pointerEvents = "auto";
   });
 
-  // Temporizador de 20 segundos
-  SpeedDrillState.cazaTimer = setInterval(() => {
-    SpeedDrillState.cazaTimeLeft -= 1;
-    if (timerEl) timerEl.textContent = `⏳ ${SpeedDrillState.cazaTimeLeft}s`;
-
-    if (SpeedDrillState.cazaTimeLeft <= 5 && SpeedDrillState.cazaTimeLeft > 0) {
-      if (typeof SoundFX !== "undefined" && SoundFX.playTick) SoundFX.playTick();
-      if (timerEl) {
-        timerEl.style.color = "#ef4444";
-        SimoFX.heartbeat(timerEl);
-      }
-    }
-
-    if (SpeedDrillState.cazaTimeLeft <= 0) {
-      clearInterval(SpeedDrillState.cazaTimer);
-      handleSpeedCazaTimeout();
-    }
-  }, 1000);
+  // Iniciar temporizador oficial de 60s
+  resumeSpeedCazaTimer();
 }
 
 function handleSpeedCazaAnswer(chosenType, clickedBtn = null) {
@@ -6258,8 +6605,9 @@ function handleSpeedCazaAnswer(chosenType, clickedBtn = null) {
   }
 
   if (explEl) {
+    const verboFinal = resolveVerboEvaluado(currentCase);
     explEl.innerHTML = `
-      <div style="margin-bottom: 4px;"><strong>Verbo Evaluado:</strong> <span style="color: #38bdf8;">${currentCase.verboEvaluado}</span></div>
+      <div style="margin-bottom: 4px;"><strong>Verbo Evaluado:</strong> <span style="color: #38bdf8; font-weight: 700;">${verboFinal}</span></div>
       <div>${currentCase.explicacion}</div>
     `;
   }
@@ -6305,8 +6653,9 @@ function handleSpeedCazaTimeout() {
     verdictEl.style.color = "var(--accent-gold)";
   }
   if (explEl) {
+    const verboFinal = resolveVerboEvaluado(currentCase);
     explEl.innerHTML = `
-      <div style="margin-bottom: 4px;"><strong>Verbo Evaluado:</strong> <span style="color: #38bdf8;">${currentCase.verboEvaluado}</span></div>
+      <div style="margin-bottom: 4px;"><strong>Verbo Evaluado:</strong> <span style="color: #38bdf8; font-weight: 700;">${verboFinal}</span></div>
       <div>${currentCase.explicacion}</div>
     `;
   }
@@ -6372,22 +6721,7 @@ function renderSpeedDrillCard() {
   const timerEl = document.getElementById("speedDrillTimer");
   timerEl.textContent = `⏳ 15s`;
 
-  clearInterval(SpeedDrillState.timer);
-  SpeedDrillState.timer = setInterval(() => {
-    SpeedDrillState.timeLeft -= 1;
-    timerEl.textContent = `⏳ ${SpeedDrillState.timeLeft}s`;
-
-    if (SpeedDrillState.timeLeft <= 5 && SpeedDrillState.timeLeft > 0) {
-      if (typeof SoundFX !== "undefined" && SoundFX.playTick) SoundFX.playTick();
-      timerEl.style.display = "inline-block";
-      SimoFX.heartbeat(timerEl);
-    }
-
-    if (SpeedDrillState.timeLeft <= 0) {
-      clearInterval(SpeedDrillState.timer);
-      handleSpeedDrillTimeout();
-    }
-  }, 1000);
+  resumeSpeedVFTimer();
 }
 
 function handleSpeedDrillAnswer(userChoice) {
@@ -6538,40 +6872,27 @@ function renderMnemotecniasTab() {
 // MÓDULO: DECODIFICADOR DE VERBOS RECTORES & CAZA-DISTRACTORES (DAFP / CNSC)
 // =========================================================================
 function setupVerbosRectoresModule() {
-  const btnOpen = document.getElementById("btnOpenVerbosModal");
-  const subview = document.getElementById("subviewVerbosRectores");
+  const sectionVerbos = document.getElementById("tab-verbos");
   const btnClose = document.getElementById("btnCloseVerbosModal");
-  const btnBack = document.getElementById("btnBackToPracticeFromVerbos");
 
-  if (!subview) return;
+  // Botones de retorno a biblioteca de recursos
+  document.querySelectorAll(".btn-back-to-recursos").forEach((btn) => {
+    btn.addEventListener("click", () => switchTab("recursos"));
+  });
 
-  if (btnOpen) {
-    btnOpen.addEventListener("click", () => {
-      openVerbosModal();
-    });
-  }
   if (btnClose) {
-    btnClose.addEventListener("click", () => {
-      setPracticeSubView("practice");
-    });
-  }
-  if (btnBack) {
-    btnBack.addEventListener("click", () => {
-      setPracticeSubView("practice");
-    });
+    btnClose.addEventListener("click", () => switchTab("recursos"));
   }
 
-  // Setup tabs internas
+  // Setup tabs internas (3 pestañas: buscador 97 verbos, infografia y reglas de oro)
   const tabBtns = {
     buscador: document.getElementById("tabBtnVerbosBuscador"),
-    caza: document.getElementById("tabBtnVerbosCaza"),
     infografia: document.getElementById("tabBtnVerbosInfografia"),
     reglas: document.getElementById("tabBtnVerbosReglas")
   };
 
   const sections = {
     buscador: document.getElementById("sectionVerbosBuscador"),
-    caza: document.getElementById("sectionVerbosCaza"),
     infografia: document.getElementById("sectionVerbosInfografia"),
     reglas: document.getElementById("sectionVerbosReglas")
   };
@@ -6597,14 +6918,9 @@ function setupVerbosRectoresModule() {
         sections[k].style.display = (k === tabKey) ? "flex" : "none";
       }
     });
-
-    if (tabKey === "caza") {
-      initCazaDistractores();
-    }
   }
 
   if (tabBtns.buscador) tabBtns.buscador.addEventListener("click", () => switchVerbosTab("buscador"));
-  if (tabBtns.caza) tabBtns.caza.addEventListener("click", () => switchVerbosTab("caza"));
   if (tabBtns.infografia) tabBtns.infografia.addEventListener("click", () => switchVerbosTab("infografia"));
   if (tabBtns.reglas) tabBtns.reglas.addEventListener("click", () => switchVerbosTab("reglas"));
 
@@ -6927,3 +7243,36 @@ function setupVerbosRectoresModule() {
   }
 }
 
+
+// Pausa global de relojes cuando la pestaña o ventana pierde el foco / visibilidad
+document.addEventListener("visibilitychange", () => {
+  if (document.hidden) {
+    if (typeof PracticeTimer !== "undefined") PracticeTimer.pause();
+    if (typeof SpeedDrillState !== "undefined") {
+      if (SpeedDrillState.cazaTimer) {
+        clearInterval(SpeedDrillState.cazaTimer);
+        SpeedDrillState.cazaTimer = null;
+      }
+      if (SpeedDrillState.timer) {
+        clearInterval(SpeedDrillState.timer);
+        SpeedDrillState.timer = null;
+      }
+    }
+  } else {
+    // Al volver a la ventana, reanudar si estamos en la vista adecuada
+    if (AppState.currentTab === "practice") {
+      const vPractice = document.getElementById("subviewPractice");
+      if (vPractice && vPractice.style.display !== "none") {
+        if (typeof PracticeTimer !== "undefined") PracticeTimer.resume();
+      }
+    } else if (AppState.currentTab === "speedDrill") {
+      if (typeof SpeedDrillState !== "undefined") {
+        if (SpeedDrillState.mode === "caza") {
+          if (typeof resumeSpeedCazaTimer === "function") resumeSpeedCazaTimer();
+        } else {
+          if (typeof resumeSpeedVFTimer === "function") resumeSpeedVFTimer();
+        }
+      }
+    }
+  }
+});

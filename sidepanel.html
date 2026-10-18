@@ -71,9 +71,9 @@
           <span>🎯</span>
           <span>Práctica</span>
         </button>
-        <button id="btnOpenVerbosModal" class="duo-powerup-btn duo-powerup-purple" title="Decodificador de Verbos Rectores y Caza-Distractores">
-          <span>🧭</span>
-          <span>Verbos Rectores</span>
+        <button id="btnActionSRS" class="duo-powerup-btn duo-powerup-green" title="Flashcards Leitner 3D y Quiz Relámpago">
+          <span>🎴</span>
+          <span>Flashcards & Quiz</span>
         </button>
         <button id="btnOpenLecturaModal" class="duo-powerup-btn duo-powerup-blue" title="Técnicas de Comprensión Lectora para el Examen">
           <span>📖</span>
@@ -309,222 +309,86 @@
         </div>
       </div>
 
-      <!-- 4. VISTA EN CUERPO: DECODIFICADOR DE VERBOS RECTORES & CAZA-DISTRACTORES -->
-      <div id="subviewVerbosRectores" style="display: none; flex-direction: column; gap: 14px; width: 100%; max-width: 100%; min-width: 0; box-sizing: border-box;">
-        <div style="background-color: var(--bg-surface); border: 2px solid #a855f7; border-radius: var(--radius-md); padding: 16px 14px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); display: flex; flex-direction: column; gap: 14px; width: 100%; max-width: 100%; min-width: 0; box-sizing: border-box;">
+      <!-- 4. VISTA EN CUERPO: FLASHCARDS LEITNER 3D Y QUIZ RELÁMPAGO -->
+      <div id="subviewSRS" style="display: none; flex-direction: column; gap: 14px; width: 100%; max-width: 100%; min-width: 0; box-sizing: border-box;">
+        <div style="background-color: var(--bg-surface); border: 2px solid #10b981; border-radius: var(--radius-md); padding: 16px 14px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); display: flex; flex-direction: column; gap: 14px; width: 100%; max-width: 100%; min-width: 0; box-sizing: border-box;">
           
-          <!-- Encabezado del Subview en Cuerpo -->
-          <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(168, 85, 247, 0.25); padding-bottom: 12px; gap: 8px;">
+          <!-- Encabezado de Flashcards en Cuerpo -->
+          <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(16, 185, 129, 0.25); padding-bottom: 12px; gap: 8px;">
             <div style="display: flex; align-items: center; gap: 10px; min-width: 0; flex: 1;">
-              <span style="font-size: 24px; flex-shrink: 0;">🧭</span>
+              <span style="font-size: 24px; flex-shrink: 0;">🎴</span>
               <div style="min-width: 0; flex: 1;">
                 <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
                   <span style="font-size: 15.5px; font-weight: 800; color: #f8fafc;">
-                    Decodificador de Verbos Rectores
+                    Flashcards Leitner 3D
                   </span>
-                  <span id="verbosBadgePerfil" style="font-size: 11px; font-weight: 800; color: #38bdf8; background: rgba(56, 189, 248, 0.15); border: 1px solid rgba(56, 189, 248, 0.3); padding: 2px 8px; border-radius: 12px;">
-                    GESTOR III
+                  <span id="srsPendingBadge" style="font-size: 11px; background-color: rgba(56, 189, 248, 0.15); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.35); padding: 3px 8px; border-radius: 12px; font-weight: 800;">
+                    0 en baraja
                   </span>
                 </div>
-                <div style="font-size: 11.5px; color: #cbd5e1; margin-top: 2px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
-                  Catálogo Oficial DAFP / DASCD (97 Verbos) & Caza-Distractores CNSC
+                <div style="font-size: 11.5px; color: #cbd5e1; margin-top: 2px;">
+                  Repaso activo espaciado y Quiz Relámpago de Errores
                 </div>
               </div>
             </div>
-            <button id="btnCloseVerbosModal" type="button" style="background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.15); color: #f8fafc; font-size: 16px; width: 32px; height: 32px; min-width: 32px; border-radius: 8px; cursor: pointer; display: flex; align-items: center; justify-content: center; flex-shrink: 0;" title="Volver a la Práctica">
+            <button id="btnCloseSRSModal" type="button" style="background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.15); color: #f8fafc; font-size: 16px; width: 32px; height: 32px; min-width: 32px; border-radius: 8px; cursor: pointer; display: flex; align-items: center; justify-content: center; flex-shrink: 0;" title="Volver a la Práctica">
               ✕
             </button>
           </div>
 
-          <!-- Pestañas internas de navegación -->
-          <div style="display: flex; background: rgba(15, 23, 42, 0.85); border-bottom: 1px solid rgba(255, 255, 255, 0.08); padding: 6px 6px; gap: 6px; overflow-x: auto; border-radius: 8px; width: 100%; max-width: 100%; min-width: 0; box-sizing: border-box; scrollbar-width: none; -webkit-overflow-scrolling: touch;">
-            <button id="tabBtnVerbosBuscador" class="verbos-tab-btn active" style="padding: 7px 11px; font-size: 12px; font-weight: 800; border-radius: 8px; border: 1px solid #a855f7; background: rgba(168, 85, 247, 0.25); color: #f3e8ff; cursor: pointer; white-space: nowrap; flex: 0 0 auto; display: flex; align-items: center; gap: 5px;">
-              <span>🔍</span> 97 Verbos
-            </button>
-            <button id="tabBtnVerbosCaza" class="verbos-tab-btn" style="padding: 7px 11px; font-size: 12px; font-weight: 700; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1); background: transparent; color: #94a3b8; cursor: pointer; white-space: nowrap; flex: 0 0 auto; display: flex; align-items: center; gap: 5px;">
-              <span>⚡</span> Caza-Distractores
-            </button>
-            <button id="tabBtnVerbosInfografia" class="verbos-tab-btn" style="padding: 7px 11px; font-size: 12px; font-weight: 700; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1); background: transparent; color: #94a3b8; cursor: pointer; white-space: nowrap; flex: 0 0 auto; display: flex; align-items: center; gap: 5px;">
-              <span>🖼️</span> Infografía Cargo
-            </button>
-            <button id="tabBtnVerbosReglas" class="verbos-tab-btn" style="padding: 7px 11px; font-size: 12px; font-weight: 700; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1); background: transparent; color: #94a3b8; cursor: pointer; white-space: nowrap; flex: 0 0 auto; display: flex; align-items: center; gap: 5px;">
-              <span>⚖️</span> Reglas de Oro
+          <!-- Banner de Acción Rápida: Quiz Relámpago -->
+          <div id="quizRelampagoBanner" style="background: linear-gradient(135deg, rgba(99, 102, 241, 0.22) 0%, rgba(245, 158, 11, 0.18) 100%); border: 1px solid rgba(99, 102, 241, 0.45); border-radius: 10px; padding: 12px 14px; display: flex; align-items: center; justify-content: space-between; gap: 10px;">
+            <div style="flex: 1;">
+              <div style="font-size: 13px; font-weight: 800; color: #f8fafc; display: flex; align-items: center; gap: 6px;">
+                <span>⚡ Quiz Relámpago de Errores</span>
+                <span style="font-size: 9px; background: #f59e0b; color: #0b1120; font-weight: 800; padding: 1px 6px; border-radius: 4px;">EXPRESS</span>
+              </div>
+              <div style="font-size: 11px; color: #cbd5e1; margin-top: 2px;">
+                Prueba de fuego cronometrada (45s) para dominar tus preguntas guardadas.
+              </div>
+            </div>
+            <button id="btnStartQuizRelampago" style="background: linear-gradient(135deg, #f59e0b, #ef4444); color: #0b1120; border: none; font-size: 11px; font-weight: 800; padding: 8px 14px; border-radius: 8px; cursor: pointer; white-space: nowrap; box-shadow: 0 4px 12px rgba(245, 158, 11, 0.35); transition: transform 0.15s ease;">
+              ⚡ Iniciar Quiz
             </button>
           </div>
 
-          <!-- Contenido de las pestañas -->
-          <div style="display: flex; flex-direction: column; gap: 14px;">
-
-            <!-- SECCIÓN 1: BUSCADOR DE 97 VERBOS -->
-            <div id="sectionVerbosBuscador" style="display: flex; flex-direction: column; gap: 12px;">
-              <div style="position: relative;">
-                <input type="text" id="inputBuscarVerbo" placeholder="Escribe un verbo (ej: Analizar, Aprobar, Verificar, Diseñar)..." style="width: 100%; box-sizing: border-box; background: rgba(15, 23, 42, 0.9); border: 1.5px solid rgba(168, 85, 247, 0.4); border-radius: 10px; padding: 10px 14px 10px 38px; color: #f8fafc; font-size: 13.5px; font-weight: 600; outline: none;">
-                <span style="position: absolute; left: 12px; top: 50%; transform: translateY(-50%); font-size: 15px; color: #a855f7;">🔍</span>
-              </div>
-
-              <!-- Filtros de píldoras rápidas -->
-              <div style="display: flex; gap: 6px; flex-wrap: wrap;">
-                <button id="filterVerboTodos" class="verbos-pill-filter active" style="font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 20px; border: 1px solid #a855f7; background: rgba(168, 85, 247, 0.2); color: #f3e8ff; cursor: pointer;">
-                  Todos (97)
-                </button>
-                <button id="filterVerboPropios" class="verbos-pill-filter" style="font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 20px; border: 1px solid rgba(52, 211, 153, 0.3); background: rgba(52, 211, 153, 0.1); color: #34d399; cursor: pointer;">
-                  ✅ Propios de mi Cargo
-                </button>
-                <button id="filterVerboDistractores" class="verbos-pill-filter" style="font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 20px; border: 1px solid rgba(244, 63, 94, 0.3); background: rgba(244, 63, 94, 0.1); color: #fb7185; cursor: pointer;">
-                  ⚠️ Distractores de mi Cargo
-                </button>
-              </div>
-
-              <!-- Contador y Estado -->
-              <div style="display: flex; justify-content: space-between; align-items: center; font-size: 11.5px; color: #94a3b8; border-bottom: 1px solid rgba(255,255,255,0.06); padding-bottom: 6px;">
-                <span id="verbosCounterText">Mostrando 97 verbos</span>
-                <span style="color: #c084fc; font-weight: 600;">Toca cualquier verbo para evaluar</span>
-              </div>
-
-              <!-- Lista de Verbos Renderizados -->
-              <div id="listaVerbosContainer" style="display: flex; flex-direction: column; gap: 8px; max-height: 52vh; overflow-y: auto; padding-right: 4px;">
-                <!-- Renderizado dinámico desde JS -->
-              </div>
-            </div>
-
-            <!-- SECCIÓN 2: SPEED DRILL CAZA-DISTRACTORES -->
-            <div id="sectionVerbosCaza" style="display: none; flex-direction: column; gap: 14px;">
-              <div style="background: rgba(168, 85, 247, 0.1); border: 1px solid rgba(168, 85, 247, 0.3); border-radius: 12px; padding: 12px 14px; display: flex; justify-content: space-between; align-items: center;">
-                <div>
-                  <div style="font-size: 14px; font-weight: 800; color: #f8fafc;">⚡ Desafío Caza-Distractores</div>
-                  <div style="font-size: 11.5px; color: #cbd5e1; margin-top: 2px;">
-                    Identifica si la acción es función legítima o trampa de examen.
-                  </div>
-                </div>
-                <div style="text-align: right;">
-                  <div id="cazaScoreText" style="font-size: 15px; font-weight: 800; color: #34d399;">0 / 0</div>
-                  <div style="font-size: 10.5px; color: #94a3b8;">Aciertos</div>
-                </div>
-              </div>
-
-              <!-- Tarjeta del Caso Rápido -->
-              <div id="cazaCardBox" style="background: rgba(15, 23, 42, 0.85); border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 12px; padding: 16px; display: flex; flex-direction: column; gap: 12px;">
-                <div style="display: flex; justify-content: space-between; align-items: center;">
-                  <span id="cazaBadgeNivel" style="font-size: 11px; font-weight: 800; color: #38bdf8; background: rgba(56, 189, 248, 0.15); padding: 3px 8px; border-radius: 6px;">
-                    Nivel Profesional (Gestor III)
-                  </span>
-                  <span id="cazaProgressStep" style="font-size: 11.5px; color: #94a3b8; font-weight: 700;">Caso 1 de 8</span>
-                </div>
-
-                <div id="cazaContextoText" style="font-size: 13px; color: #cbd5e1; line-height: 1.5; font-style: italic; background: rgba(0,0,0,0.25); padding: 10px 12px; border-radius: 8px; border-left: 3px solid #38bdf8;">
-                  Cargando situación...
-                </div>
-
-                <div style="font-size: 12px; font-weight: 700; color: #94a3b8;">Opción de respuesta planteada:</div>
-                <div id="cazaOpcionText" style="font-size: 13.5px; font-weight: 700; color: #f8fafc; line-height: 1.5; background: rgba(255,255,255,0.04); padding: 12px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.08);">
-                  Cargando acción...
-                </div>
-
-                <!-- Botones de Juicio Rápido -->
-                <div id="cazaButtonsContainer" style="display: flex; flex-direction: column; gap: 8px; margin-top: 4px;">
-                  <button type="button" class="btn-caza-action" data-answer="ACCION_CORRECTA" style="padding: 10px 14px; font-size: 12.5px; font-weight: 800; border-radius: 8px; border: 1px solid rgba(52, 211, 153, 0.4); background: rgba(52, 211, 153, 0.12); color: #34d399; cursor: pointer; text-align: left; display: flex; align-items: center; gap: 8px;">
-                    <span>✅</span> 1. Es una ACCIÓN CORRECTA y propia de mi cargo
-                  </button>
-                  <button type="button" class="btn-caza-action" data-answer="DISTRACTOR_EXTRALIMITACION" style="padding: 10px 14px; font-size: 12.5px; font-weight: 800; border-radius: 8px; border: 1px solid rgba(244, 63, 94, 0.4); background: rgba(244, 63, 94, 0.12); color: #fb7185; cursor: pointer; text-align: left; display: flex; align-items: center; gap: 8px;">
-                    <span>⚠️</span> 2. Es un DISTRACTOR POR EXTRALIMITACIÓN (excede mi jerarquía)
-                  </button>
-                  <button type="button" class="btn-caza-action" data-answer="DISTRACTOR_PASIVIDAD" style="padding: 10px 14px; font-size: 12.5px; font-weight: 800; border-radius: 8px; border: 1px solid rgba(245, 158, 11, 0.4); background: rgba(245, 158, 11, 0.12); color: #fbbf24; cursor: pointer; text-align: left; display: flex; align-items: center; gap: 8px;">
-                    <span>🛑</span> 3. Es un DISTRACTOR POR PASIVIDAD U OMISIÓN (desempeño bajo)
-                  </button>
-                </div>
-
-                <!-- Retroalimentación del Caza-Distractor -->
-                <div id="cazaFeedbackBox" style="display: none; flex-direction: column; gap: 8px; padding: 12px; border-radius: 8px; margin-top: 4px;">
-                  <div id="cazaFeedbackTitle" style="font-size: 13.5px; font-weight: 800;"></div>
-                  <div id="cazaFeedbackDesc" style="font-size: 12px; line-height: 1.5; color: #e2e8f0;"></div>
-                  <button id="btnCazaNextCase" type="button" style="margin-top: 6px; padding: 9px 16px; font-size: 12.5px; font-weight: 800; background: linear-gradient(135deg, #a855f7, #7c3aed); border: none; color: #fff; border-radius: 6px; cursor: pointer; align-self: flex-end;">
-                    Siguiente Caso ➔
-                  </button>
-                </div>
-              </div>
-            </div>
-
-            <!-- SECCIÓN 3: INFOGRAFÍA OFICIAL POR NIVEL -->
-            <div id="sectionVerbosInfografia" style="display: none; flex-direction: column; gap: 12px;">
-              <div style="display: flex; gap: 6px; overflow-x: auto; padding-bottom: 4px;">
-                <button id="btnInfoNivelPro" class="info-nivel-btn active" data-img="assets/verbos/Funciones profesional.png" style="font-size: 11px; font-weight: 800; padding: 6px 12px; border-radius: 8px; border: 1px solid #38bdf8; background: rgba(56, 189, 248, 0.2); color: #38bdf8; cursor: pointer; white-space: nowrap;">
-                  Profesional (Gestor III)
-                </button>
-                <button id="btnInfoNivelTec" class="info-nivel-btn" data-img="assets/verbos/Funciones tenico.png" style="font-size: 11px; font-weight: 700; padding: 6px 12px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1); background: transparent; color: #94a3b8; cursor: pointer; white-space: nowrap;">
-                  Técnico (Analista IV)
-                </button>
-                <button id="btnInfoNivelAsi" class="info-nivel-btn" data-img="assets/verbos/Funciones asistencial.png" style="font-size: 11px; font-weight: 700; padding: 6px 12px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1); background: transparent; color: #94a3b8; cursor: pointer; white-space: nowrap;">
-                  Asistencial
-                </button>
-                <button id="btnInfoNivelAse" class="info-nivel-btn" data-img="assets/verbos/Funciones asesores.png" style="font-size: 11px; font-weight: 700; padding: 6px 12px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1); background: transparent; color: #94a3b8; cursor: pointer; white-space: nowrap;">
-                  Asesor
-                </button>
-              </div>
-
-              <div style="background: rgba(15, 23, 42, 0.9); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; overflow: hidden; display: flex; flex-direction: column; align-items: center;">
-                <div style="width: 100%; display: flex; justify-content: space-between; align-items: center; padding: 8px 12px; background: rgba(0,0,0,0.3); border-bottom: 1px solid rgba(255,255,255,0.06);">
-                  <span id="infoNivelTitle" style="font-size: 12px; font-weight: 800; color: #f8fafc;">
-                    Lámina Oficial: Funciones Nivel Profesional (DAFP)
-                  </span>
-                  <a id="linkOpenFullImg" href="assets/verbos/Funciones profesional.png" target="_blank" style="font-size: 11px; color: #38bdf8; text-decoration: none; font-weight: 700;">
-                    Abrir en pestaña ↗
-                  </a>
-                </div>
-                <div style="width: 100%; max-height: 52vh; overflow: auto; padding: 8px; display: flex; justify-content: center; background: #070d19;">
-                  <img id="imgVerbosInfografia" src="assets/verbos/Funciones profesional.png" alt="Lámina de funciones oficiales" style="max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 16px rgba(0,0,0,0.5);">
-                </div>
-              </div>
-            </div>
-
-            <!-- SECCIÓN 4: REGLAS DE ORO DE LOS DISTRACTORES -->
-            <div id="sectionVerbosReglas" style="display: none; flex-direction: column; gap: 12px;">
-              <div style="background: linear-gradient(135deg, rgba(88, 28, 135, 0.25), rgba(15, 23, 42, 0.8)); border: 1px solid rgba(168, 85, 247, 0.35); border-radius: 12px; padding: 14px;">
-                <div style="font-size: 13.5px; font-weight: 800; color: #c084fc; margin-bottom: 6px;">
-                  📐 La Estructura Obligatoria de Toda Función Pública
-                </div>
-                <div style="font-size: 12.5px; color: #cbd5e1; line-height: 1.55;">
-                  En el examen de la CNSC y DIAN, toda función y opción correcta se compone estrictamente de tres elementos:
-                </div>
-                <div style="margin-top: 8px; background: rgba(0,0,0,0.4); padding: 10px; border-radius: 8px; font-family: monospace; font-size: 12px; color: #38bdf8; text-align: center; border: 1px solid rgba(56, 189, 248, 0.3);">
-                  Función = [Verbo Rector (Infinitivo)] + [Objeto] + [Condición de Calidad / Norma]
-                </div>
-              </div>
-
-              <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; width: 100%; box-sizing: border-box;">
-                <div style="background: rgba(15, 23, 42, 0.7); border: 1px solid rgba(56, 189, 248, 0.25); border-radius: 10px; padding: 12px; display: flex; flex-direction: column; gap: 6px;">
-                  <span style="font-size: 12.5px; font-weight: 800; color: #38bdf8;">Gestor III (Profesional)</span>
-                  <div style="font-size: 11.5px; color: #cbd5e1; line-height: 1.5;">
-                    • <strong>Verbos clave:</strong> <em>Analizar, Formular, Proyectar, Fiscalizar, Investigar, Evaluar</em>.<br>
-                    • <strong>Trampa a evitar:</strong> Distractores de pasividad (archivar sin revisar, esperar instrucciones pasivas). El profesional decide y proyecta.
-                  </div>
-                </div>
-
-                <div style="background: rgba(15, 23, 42, 0.7); border: 1px solid rgba(168, 85, 247, 0.25); border-radius: 10px; padding: 12px; display: flex; flex-direction: column; gap: 6px;">
-                  <span style="font-size: 12.5px; font-weight: 800; color: #c084fc;">Analista IV (Técnico)</span>
-                  <div style="font-size: 11.5px; color: #cbd5e1; line-height: 1.5;">
-                    • <strong>Verbos clave:</strong> <em>Apoyar, Verificar, Comprobar, Operar, Consolidar, Rendir informes</em>.<br>
-                    • <strong>Trampa a evitar:</strong> Distractores por extralimitación (diseñar modelos, formular políticas, aprobar amnistías). El técnico comprueba y reporta.
-                  </div>
-                </div>
-              </div>
-
-              <div style="background: rgba(15, 23, 42, 0.7); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 10px; padding: 12px; font-size: 11.5px; color: #cbd5e1; line-height: 1.55;">
-                • <strong>Nivel Directivo:</strong> Es el único con potestad de <em>Aprobar, Ordenar y Asignar</em>.<br>
-                • <strong>Nivel Asesor:</strong> <em>Recomienda y Conceptúa</em>, pero nunca emite mandamientos ni firma resoluciones resolutivas.
-              </div>
-            </div>
-
+          <!-- Filtros por Cajas del Sistema Leitner -->
+          <div class="leitner-box-filters" id="leitnerFilters">
+            <button class="leitner-filter-btn active" data-box="all">
+              <span class="count" id="countBoxAll">0</span>
+              <span>Todas</span>
+            </button>
+            <button class="leitner-filter-btn" data-box="1" style="border-left: 2px solid #ef4444;">
+              <span class="count" id="countBox1" style="color: #f87171;">0</span>
+              <span>🔴 Caja 1</span>
+            </button>
+            <button class="leitner-filter-btn" data-box="2" style="border-left: 2px solid #f59e0b;">
+              <span class="count" id="countBox2" style="color: #fbbf24;">0</span>
+              <span>🟡 Caja 2</span>
+            </button>
+            <button class="leitner-filter-btn" data-box="3" style="border-left: 2px solid #10b981;">
+              <span class="count" id="countBox3" style="color: #34d399;">0</span>
+              <span>🟢 Caja 3</span>
+            </button>
           </div>
 
-          <!-- Botón de retorno a la práctica en el pie del card -->
-          <div style="display: flex; justify-content: flex-end; margin-top: 6px; padding-top: 10px; border-top: 1px solid rgba(168, 85, 247, 0.25);">
-            <button id="btnBackToPracticeFromVerbos" type="button" class="btn-primary" style="font-size: 14px; font-weight: 700; padding: 11px 22px; border-radius: 8px; cursor: pointer; display: flex; align-items: center; gap: 8px; background: linear-gradient(135deg, #a855f7, #7c3aed); border: none; color: #fff; box-shadow: 0 4px 14px rgba(168, 85, 247, 0.35);">
+          <!-- Contenedor Interactivo del Quiz Relámpago (se activa dinámicamente) -->
+          <div id="quizRelampagoArea" style="display: none; flex-direction: column; gap: 12px;"></div>
+
+          <!-- Baraja Dinámica de Flashcards 3D -->
+          <div id="srsListContainer" style="display: flex; flex-direction: column; gap: 14px;">
+            <!-- Tarjetas interactivas 3D inyectadas por JavaScript -->
+          </div>
+
+          <!-- Botón de retorno al pie -->
+          <div style="display: flex; justify-content: flex-end; margin-top: 6px; padding-top: 10px; border-top: 1px solid rgba(16, 185, 129, 0.25);">
+            <button id="btnBackToPracticeFromSRS" type="button" class="btn-primary" style="font-size: 14px; font-weight: 700; padding: 11px 22px; border-radius: 8px; cursor: pointer; display: flex; align-items: center; gap: 8px; background: linear-gradient(135deg, #10b981, #059669); border: none; color: #fff; box-shadow: 0 4px 14px rgba(16, 185, 129, 0.35);">
               <span>🎯 Volver a la Práctica 🚀</span>
             </button>
           </div>
         </div>
       </div>
-    </section>
+      </section>
 
     <!-- PESTAÑA: SPEED DRILL (MICROAPRENDIZAJE V/F & CAZA-DISTRACTORES CON TEMPORIZADOR) -->
     <section id="tab-speedDrill" class="tab-content" style="display: none; flex-direction: column; gap: 14px;">
@@ -535,7 +399,7 @@
           <span>⚡</span> Caza-Distractores (100)
         </button>
         <button id="btnSpeedModeVF" type="button" class="speed-mode-toggle-btn" style="flex: 1; padding: 9px 8px; font-size: 12px; font-weight: 700; border-radius: 8px; border: 1.5px solid transparent; background: transparent; color: #94a3b8; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 5px; transition: all 0.2s;">
-          <span>📜</span> Afirmaciones V/F (35)
+          <span>📜</span> Afirmaciones V/F (100)
         </button>
       </div>
 
@@ -560,7 +424,7 @@
 
           <div style="display: flex; justify-content: space-between; align-items: center; background: rgba(11,17,32,0.85); padding: 8px 12px; border-radius: 6px; border: 1px solid rgba(168, 85, 247, 0.25);">
             <span id="speedCazaCargoBadge" style="font-size: 12px; color: #38bdf8; font-weight: 800;">Gestor III</span>
-            <span id="speedCazaTimer" style="font-size: 14px; font-weight: 800; color: #fca5a5; font-family: monospace;">⏳ 20s</span>
+            <span id="speedCazaTimer" style="font-size: 14px; font-weight: 800; color: #fca5a5; font-family: monospace;">⏳ 60s</span>
           </div>
 
           <!-- Situación Contextual -->
@@ -604,7 +468,7 @@
         </div>
       </div>
 
-      <!-- MODO 2: AFIRMACIONES LEGALES V/F (35) -->
+      <!-- MODO 2: AFIRMACIONES LEGALES V/F (100) -->
       <div id="speedVFContainer" style="display: none; flex-direction: column; gap: 14px; width: 100%;">
         <div style="background-color: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 18px; display: flex; flex-direction: column; gap: 14px;">
           <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
@@ -614,7 +478,7 @@
             </div>
             <div style="display: flex; align-items: center; gap: 8px;">
               <span id="speedDrillRemainingBadge" style="background: rgba(56, 189, 248, 0.15); border: 1px solid rgba(56, 189, 248, 0.35); padding: 3px 10px; border-radius: 12px; font-size: 11px; font-weight: 700; color: #38bdf8;">
-                35 restantes
+                100 restantes
               </span>
               <div style="background: rgba(245, 158, 11, 0.15); border: 1px solid rgba(245, 158, 11, 0.4); padding: 4px 12px; border-radius: 20px; font-size: 13px; font-weight: 800; color: var(--accent-gold);">
                 🔥 Racha: <span id="speedDrillStreak">0</span>
@@ -933,16 +797,7 @@
           <div class="hub-card-icon">🧭</div>
           <div class="hub-card-content">
             <div class="hub-card-title" style="color: #d8b4fe;">Decodificador de Verbos Rectores</div>
-            <div class="hub-card-desc">Catálogo Oficial DAFP (97 verbos), Caza-Distractores y límites de competencia</div>
-          </div>
-          <span class="hub-card-arrow">➔</span>
-        </div>
-
-        <div class="duo-hub-card green" id="hubCardSRS">
-          <div class="hub-card-icon">🎴</div>
-          <div class="hub-card-content">
-            <div class="hub-card-title">Flashcards Leitner y Quiz Relámpago</div>
-            <div class="hub-card-desc">Repaso activo 3D por niveles y quiz cronometrado de errores</div>
+            <div class="hub-card-desc">Catálogo Oficial DAFP (97 verbos), Infografía y Reglas de Oro</div>
           </div>
           <span class="hub-card-arrow">➔</span>
         </div>
@@ -1010,65 +865,169 @@
       </div>
     </section>
 
-    <!-- 3. PESTAÑA: FLASHCARDS INTERACTIVAS 3D (SISTEMA LEITNER Y QUIZ RELÁMPAGO) -->
-    <section id="tab-srs" class="tab-content" style="display: none; flex-direction: column; gap: 12px;">
-      <button type="button" class="btn-back-to-recursos">⬅️ Volver a Biblioteca de Recursos</button>
-      
-      <!-- Encabezado con estado y contador de baraja -->
-      <div style="display: flex; justify-content: space-between; align-items: center;">
-        <div>
-          <h3 style="font-size: 15px; font-weight: 800; color: var(--text-primary); margin: 0;">Flashcards Leitner 3D</h3>
-          <p style="font-size: 11px; color: var(--text-secondary); margin: 2px 0 0 0;">Repaso activo espaciado y Quiz Relámpago de Errores</p>
-        </div>
-        <span id="srsPendingBadge" style="font-size: 11px; background-color: rgba(56, 189, 248, 0.15); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.35); padding: 4px 10px; border-radius: 12px; font-weight: 800;">
-          0 en baraja
-        </span>
-      </div>
-
-      <!-- Banner de Acción Rápida: Quiz Relámpago -->
-      <div id="quizRelampagoBanner" style="background: linear-gradient(135deg, rgba(99, 102, 241, 0.22) 0%, rgba(245, 158, 11, 0.18) 100%); border: 1px solid rgba(99, 102, 241, 0.45); border-radius: 10px; padding: 12px 14px; display: flex; align-items: center; justify-content: space-between; gap: 10px;">
-        <div style="flex: 1;">
-          <div style="font-size: 13px; font-weight: 800; color: #f8fafc; display: flex; align-items: center; gap: 6px;">
-            <span>⚡ Quiz Relámpago de Errores</span>
-            <span style="font-size: 9px; background: #f59e0b; color: #0b1120; font-weight: 800; padding: 1px 6px; border-radius: 4px;">EXPRESS</span>
+    <!-- PESTAÑA: DECODIFICADOR DE VERBOS RECTORES (RECURSOS) -->
+    <section id="tab-verbos" class="tab-content" style="display: none; flex-direction: column; gap: 14px; width: 100%;">
+      <button type="button" class="btn-back-to-recursos" style="align-self: flex-start; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); color: #38bdf8; font-size: 12px; font-weight: 700; padding: 7px 14px; border-radius: 8px; cursor: pointer; display: flex; align-items: center; gap: 6px;">
+        ⬅️ Volver a Biblioteca de Recursos
+      </button>
+        <div style="background-color: var(--bg-surface); border: 2px solid #a855f7; border-radius: var(--radius-md); padding: 16px 14px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); display: flex; flex-direction: column; gap: 14px; width: 100%; max-width: 100%; min-width: 0; box-sizing: border-box;">
+          
+          <!-- Encabezado del Subview en Cuerpo -->
+          <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(168, 85, 247, 0.25); padding-bottom: 12px; gap: 8px;">
+            <div style="display: flex; align-items: center; gap: 10px; min-width: 0; flex: 1;">
+              <span style="font-size: 24px; flex-shrink: 0;">🧭</span>
+              <div style="min-width: 0; flex: 1;">
+                <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+                  <span style="font-size: 15.5px; font-weight: 800; color: #f8fafc;">
+                    Decodificador de Verbos Rectores
+                  </span>
+                  <span id="verbosBadgePerfil" style="font-size: 11px; font-weight: 800; color: #38bdf8; background: rgba(56, 189, 248, 0.15); border: 1px solid rgba(56, 189, 248, 0.3); padding: 2px 8px; border-radius: 12px;">
+                    GESTOR III
+                  </span>
+                </div>
+                <div style="font-size: 11.5px; color: #cbd5e1; margin-top: 2px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+                  Catálogo Oficial DAFP / DASCD (97 Verbos), Infografía & Reglas de Oro
+                </div>
+              </div>
+            </div>
+            <button id="btnCloseVerbosModal" type="button" style="background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.15); color: #f8fafc; font-size: 16px; width: 32px; height: 32px; min-width: 32px; border-radius: 8px; cursor: pointer; display: flex; align-items: center; justify-content: center; flex-shrink: 0;" title="Volver a Recursos" class="btn-back-to-recursos">
+              ✕
+            </button>
           </div>
-          <div style="font-size: 11px; color: #cbd5e1; margin-top: 2px;">
-            Prueba de fuego cronometrada (45s) para dominar tus preguntas guardadas.
+
+          <!-- Pestañas internas de navegación -->
+          <div style="display: flex; background: rgba(15, 23, 42, 0.85); border-bottom: 1px solid rgba(255, 255, 255, 0.08); padding: 6px 6px; gap: 6px; overflow-x: auto; border-radius: 8px; width: 100%; max-width: 100%; min-width: 0; box-sizing: border-box; scrollbar-width: none; -webkit-overflow-scrolling: touch;">
+            <button id="tabBtnVerbosBuscador" class="verbos-tab-btn active" style="padding: 7px 11px; font-size: 12px; font-weight: 800; border-radius: 8px; border: 1px solid #a855f7; background: rgba(168, 85, 247, 0.25); color: #f3e8ff; cursor: pointer; white-space: nowrap; flex: 0 0 auto; display: flex; align-items: center; gap: 5px;">
+              <span>🔍</span> 97 Verbos
+            </button>
+            <button id="tabBtnVerbosCaza" class="verbos-tab-btn" style="padding: 7px 11px; font-size: 12px; font-weight: 700; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1); background: transparent; color: #94a3b8; cursor: pointer; white-space: nowrap; flex: 0 0 auto; display: flex; align-items: center; gap: 5px;">
+              <span>⚡</span> Caza-Distractores
+            </button>
+            <button id="tabBtnVerbosInfografia" class="verbos-tab-btn" style="padding: 7px 11px; font-size: 12px; font-weight: 700; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1); background: transparent; color: #94a3b8; cursor: pointer; white-space: nowrap; flex: 0 0 auto; display: flex; align-items: center; gap: 5px;">
+              <span>🖼️</span> Infografía Cargo
+            </button>
+            <button id="tabBtnVerbosReglas" class="verbos-tab-btn" style="padding: 7px 11px; font-size: 12px; font-weight: 700; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1); background: transparent; color: #94a3b8; cursor: pointer; white-space: nowrap; flex: 0 0 auto; display: flex; align-items: center; gap: 5px;">
+              <span>⚖️</span> Reglas de Oro
+            </button>
+          </div>
+
+          <!-- Contenido de las pestañas -->
+          <div style="display: flex; flex-direction: column; gap: 14px;">
+
+            <!-- SECCIÓN 1: BUSCADOR DE 97 VERBOS -->
+            <div id="sectionVerbosBuscador" style="display: flex; flex-direction: column; gap: 12px;">
+              <div style="position: relative;">
+                <input type="text" id="inputBuscarVerbo" placeholder="Escribe un verbo (ej: Analizar, Aprobar, Verificar, Diseñar)..." style="width: 100%; box-sizing: border-box; background: rgba(15, 23, 42, 0.9); border: 1.5px solid rgba(168, 85, 247, 0.4); border-radius: 10px; padding: 10px 14px 10px 38px; color: #f8fafc; font-size: 13.5px; font-weight: 600; outline: none;">
+                <span style="position: absolute; left: 12px; top: 50%; transform: translateY(-50%); font-size: 15px; color: #a855f7;">🔍</span>
+              </div>
+
+              <!-- Filtros de píldoras rápidas -->
+              <div style="display: flex; gap: 6px; flex-wrap: wrap;">
+                <button id="filterVerboTodos" class="verbos-pill-filter active" style="font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 20px; border: 1px solid #a855f7; background: rgba(168, 85, 247, 0.2); color: #f3e8ff; cursor: pointer;">
+                  Todos (97)
+                </button>
+                <button id="filterVerboPropios" class="verbos-pill-filter" style="font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 20px; border: 1px solid rgba(52, 211, 153, 0.3); background: rgba(52, 211, 153, 0.1); color: #34d399; cursor: pointer;">
+                  ✅ Propios de mi Cargo
+                </button>
+                <button id="filterVerboDistractores" class="verbos-pill-filter" style="font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 20px; border: 1px solid rgba(244, 63, 94, 0.3); background: rgba(244, 63, 94, 0.1); color: #fb7185; cursor: pointer;">
+                  ⚠️ Distractores de mi Cargo
+                </button>
+              </div>
+
+              <!-- Contador y Estado -->
+              <div style="display: flex; justify-content: space-between; align-items: center; font-size: 11.5px; color: #94a3b8; border-bottom: 1px solid rgba(255,255,255,0.06); padding-bottom: 6px;">
+                <span id="verbosCounterText">Mostrando 97 verbos</span>
+                <span style="color: #c084fc; font-weight: 600;">Toca cualquier verbo para evaluar</span>
+              </div>
+
+              <!-- Lista de Verbos Renderizados -->
+              <div id="listaVerbosContainer" style="display: flex; flex-direction: column; gap: 8px; max-height: 52vh; overflow-y: auto; padding-right: 4px;">
+                <!-- Renderizado dinámico desde JS -->
+              </div>
+            </div>
+
+            <!-- SECCIÓN 3: INFOGRAFÍA OFICIAL POR NIVEL -->
+            <div id="sectionVerbosInfografia" style="display: none; flex-direction: column; gap: 12px;">
+              <div style="display: flex; gap: 6px; overflow-x: auto; padding-bottom: 4px;">
+                <button id="btnInfoNivelPro" class="info-nivel-btn active" data-img="assets/verbos/Funciones profesional.png" style="font-size: 11px; font-weight: 800; padding: 6px 12px; border-radius: 8px; border: 1px solid #38bdf8; background: rgba(56, 189, 248, 0.2); color: #38bdf8; cursor: pointer; white-space: nowrap;">
+                  Profesional (Gestor III)
+                </button>
+                <button id="btnInfoNivelTec" class="info-nivel-btn" data-img="assets/verbos/Funciones tenico.png" style="font-size: 11px; font-weight: 700; padding: 6px 12px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1); background: transparent; color: #94a3b8; cursor: pointer; white-space: nowrap;">
+                  Técnico (Analista IV)
+                </button>
+                <button id="btnInfoNivelAsi" class="info-nivel-btn" data-img="assets/verbos/Funciones asistencial.png" style="font-size: 11px; font-weight: 700; padding: 6px 12px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1); background: transparent; color: #94a3b8; cursor: pointer; white-space: nowrap;">
+                  Asistencial
+                </button>
+                <button id="btnInfoNivelAse" class="info-nivel-btn" data-img="assets/verbos/Funciones asesores.png" style="font-size: 11px; font-weight: 700; padding: 6px 12px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1); background: transparent; color: #94a3b8; cursor: pointer; white-space: nowrap;">
+                  Asesor
+                </button>
+              </div>
+
+              <div style="background: rgba(15, 23, 42, 0.9); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; overflow: hidden; display: flex; flex-direction: column; align-items: center;">
+                <div style="width: 100%; display: flex; justify-content: space-between; align-items: center; padding: 8px 12px; background: rgba(0,0,0,0.3); border-bottom: 1px solid rgba(255,255,255,0.06);">
+                  <span id="infoNivelTitle" style="font-size: 12px; font-weight: 800; color: #f8fafc;">
+                    Lámina Oficial: Funciones Nivel Profesional (DAFP)
+                  </span>
+                  <a id="linkOpenFullImg" href="assets/verbos/Funciones profesional.png" target="_blank" style="font-size: 11px; color: #38bdf8; text-decoration: none; font-weight: 700;">
+                    Abrir en pestaña ↗
+                  </a>
+                </div>
+                <div style="width: 100%; max-height: 52vh; overflow: auto; padding: 8px; display: flex; justify-content: center; background: #070d19;">
+                  <img id="imgVerbosInfografia" src="assets/verbos/Funciones profesional.png" alt="Lámina de funciones oficiales" style="max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 16px rgba(0,0,0,0.5);">
+                </div>
+              </div>
+            </div>
+
+            <!-- SECCIÓN 4: REGLAS DE ORO DE LOS DISTRACTORES -->
+            <div id="sectionVerbosReglas" style="display: none; flex-direction: column; gap: 12px;">
+              <div style="background: linear-gradient(135deg, rgba(88, 28, 135, 0.25), rgba(15, 23, 42, 0.8)); border: 1px solid rgba(168, 85, 247, 0.35); border-radius: 12px; padding: 14px;">
+                <div style="font-size: 13.5px; font-weight: 800; color: #c084fc; margin-bottom: 6px;">
+                  📐 La Estructura Obligatoria de Toda Función Pública
+                </div>
+                <div style="font-size: 12.5px; color: #cbd5e1; line-height: 1.55;">
+                  En el examen de la CNSC y DIAN, toda función y opción correcta se compone estrictamente de tres elementos:
+                </div>
+                <div style="margin-top: 8px; background: rgba(0,0,0,0.4); padding: 10px; border-radius: 8px; font-family: monospace; font-size: 12px; color: #38bdf8; text-align: center; border: 1px solid rgba(56, 189, 248, 0.3);">
+                  Función = [Verbo Rector (Infinitivo)] + [Objeto] + [Condición de Calidad / Norma]
+                </div>
+              </div>
+
+              <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; width: 100%; box-sizing: border-box;">
+                <div style="background: rgba(15, 23, 42, 0.7); border: 1px solid rgba(56, 189, 248, 0.25); border-radius: 10px; padding: 12px; display: flex; flex-direction: column; gap: 6px;">
+                  <span style="font-size: 12.5px; font-weight: 800; color: #38bdf8;">Gestor III (Profesional)</span>
+                  <div style="font-size: 11.5px; color: #cbd5e1; line-height: 1.5;">
+                    • <strong>Verbos clave:</strong> <em>Analizar, Formular, Proyectar, Fiscalizar, Investigar, Evaluar</em>.<br>
+                    • <strong>Trampa a evitar:</strong> Distractores de pasividad (archivar sin revisar, esperar instrucciones pasivas). El profesional decide y proyecta.
+                  </div>
+                </div>
+
+                <div style="background: rgba(15, 23, 42, 0.7); border: 1px solid rgba(168, 85, 247, 0.25); border-radius: 10px; padding: 12px; display: flex; flex-direction: column; gap: 6px;">
+                  <span style="font-size: 12.5px; font-weight: 800; color: #c084fc;">Analista IV (Técnico)</span>
+                  <div style="font-size: 11.5px; color: #cbd5e1; line-height: 1.5;">
+                    • <strong>Verbos clave:</strong> <em>Apoyar, Verificar, Comprobar, Operar, Consolidar, Rendir informes</em>.<br>
+                    • <strong>Trampa a evitar:</strong> Distractores por extralimitación (diseñar modelos, formular políticas, aprobar amnistías). El técnico comprueba y reporta.
+                  </div>
+                </div>
+              </div>
+
+              <div style="background: rgba(15, 23, 42, 0.7); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 10px; padding: 12px; font-size: 11.5px; color: #cbd5e1; line-height: 1.55;">
+                • <strong>Nivel Directivo:</strong> Es el único con potestad de <em>Aprobar, Ordenar y Asignar</em>.<br>
+                • <strong>Nivel Asesor:</strong> <em>Recomienda y Conceptúa</em>, pero nunca emite mandamientos ni firma resoluciones resolutivas.
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Botón de retorno a recursos en el pie del card -->
+          <div style="display: flex; justify-content: flex-end; margin-top: 6px; padding-top: 10px; border-top: 1px solid rgba(168, 85, 247, 0.25);">
+            <button type="button" class="btn-back-to-recursos btn-primary" style="font-size: 14px; font-weight: 700; padding: 11px 22px; border-radius: 8px; cursor: pointer; display: flex; align-items: center; gap: 8px; background: linear-gradient(135deg, #a855f7, #7c3aed); border: none; color: #fff; box-shadow: 0 4px 14px rgba(168, 85, 247, 0.35);">
+              <span>⬅️ Volver a Biblioteca de Recursos</span>
+            </button>
           </div>
         </div>
-        <button id="btnStartQuizRelampago" style="background: linear-gradient(135deg, #f59e0b, #ef4444); color: #0b1120; border: none; font-size: 11px; font-weight: 800; padding: 8px 14px; border-radius: 8px; cursor: pointer; white-space: nowrap; box-shadow: 0 4px 12px rgba(245, 158, 11, 0.35); transition: transform 0.15s ease;">
-          ⚡ Iniciar Quiz
-        </button>
-      </div>
-
-      <!-- Filtros por Cajas del Sistema Leitner -->
-      <div class="leitner-box-filters" id="leitnerFilters">
-        <button class="leitner-filter-btn active" data-box="all">
-          <span class="count" id="countBoxAll">0</span>
-          <span>Todas</span>
-        </button>
-        <button class="leitner-filter-btn" data-box="1" style="border-left: 2px solid #ef4444;">
-          <span class="count" id="countBox1" style="color: #f87171;">0</span>
-          <span>🔴 Caja 1</span>
-        </button>
-        <button class="leitner-filter-btn" data-box="2" style="border-left: 2px solid #f59e0b;">
-          <span class="count" id="countBox2" style="color: #fbbf24;">0</span>
-          <span>🟡 Caja 2</span>
-        </button>
-        <button class="leitner-filter-btn" data-box="3" style="border-left: 2px solid #10b981;">
-          <span class="count" id="countBox3" style="color: #34d399;">0</span>
-          <span>🟢 Caja 3</span>
-        </button>
-      </div>
-
-      <!-- Contenedor Interactivo del Quiz Relámpago (se activa dinámicamente) -->
-      <div id="quizRelampagoArea" style="display: none; flex-direction: column; gap: 12px;"></div>
-
-      <!-- Baraja Dinámica de Flashcards 3D -->
-      <div id="srsListContainer" style="display: flex; flex-direction: column; gap: 14px;">
-        <!-- Tarjetas interactivas 3D inyectadas por JavaScript -->
       </div>
     </section>
+    
 
     <!-- 4. PESTAÑA: SIMULACRO CRONOMETRADO TIPO DIAN 2676 -->
     <section id="tab-simulacro" class="tab-content" style="display: none;">
@@ -1664,40 +1623,119 @@
       </div>
 
       <div class="modal-body">
-        <!-- Barra de herramientas: Buscador y Acceso a Microaprendizaje -->
-        <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap;">
-          <div style="position: relative; flex: 1; min-width: 200px;">
-            <input type="text" id="inputSearchTips" placeholder="🔍 Buscar clave o tema (ej. factura, aduana, lectura)..." style="width: 100%; box-sizing: border-box; background: #0b1120; border: 1px solid rgba(255,255,255,0.15); color: #f8fafc; padding: 9px 12px; border-radius: 8px; font-size: 13px; outline: none;">
+        <!-- Selector de Modo de Visualización (Por defecto: Una por una aleatoria) -->
+        <div style="display: flex; justify-content: space-between; align-items: center; background: rgba(15, 23, 42, 0.85); border: 1px solid rgba(255, 255, 255, 0.08); padding: 8px 10px; border-radius: 10px; gap: 8px; flex-wrap: wrap;">
+          <div style="display: flex; align-items: center; gap: 6px;">
+            <button id="btnTipsModeSingle" type="button" style="background: rgba(245, 158, 11, 0.25); border: 1.5px solid #f59e0b; color: #f59e0b; padding: 6px 12px; border-radius: 8px; font-size: 12px; font-weight: 800; cursor: pointer; display: flex; align-items: center; gap: 5px;">
+              <span>🎲</span> Una por Una (Aleatoria)
+            </button>
+            <button id="btnTipsModeList" type="button" style="background: transparent; border: 1.5px solid rgba(255,255,255,0.12); color: #94a3b8; padding: 6px 12px; border-radius: 8px; font-size: 12px; font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 5px;">
+              <span>📋</span> Ver Todas (Catálogo)
+            </button>
           </div>
-          <button id="btnOpenMicrolearningFromTips" type="button" style="background: rgba(56, 189, 248, 0.12); border: 1px solid rgba(56, 189, 248, 0.35); color: #38bdf8; font-size: 12px; font-weight: 700; padding: 9px 12px; border-radius: 8px; cursor: pointer; display: flex; align-items: center; gap: 6px; white-space: nowrap;">
-            <span>🔔</span> Configurar Microaprendizaje
-          </button>
+          <span id="tipsCounterBadge" style="font-size: 11.5px; font-weight: 800; color: #38bdf8; background: rgba(56, 189, 248, 0.12); padding: 3px 9px; border-radius: 12px; border: 1px solid rgba(56, 189, 248, 0.3);">
+            46 Claves
+          </span>
         </div>
 
-        <!-- Filtros rápidos por categoría con scroll horizontal táctil -->
-        <div style="display: flex; gap: 6px; align-items: center; overflow-x: auto; padding-bottom: 4px; -webkit-overflow-scrolling: touch;">
-          <button class="tip-filter-btn" data-cat="all" style="background: rgba(245, 158, 11, 0.2); border: 1px solid #f59e0b; color: #f59e0b; padding: 5px 12px; border-radius: 12px; font-size: 12px; font-weight: 700; cursor: pointer; white-space: nowrap;">Todas</button>
-          <button class="tip-filter-btn" data-cat="Fórmulas y Mnemotecnias" style="background: rgba(168, 85, 247, 0.2); border: 1px solid #a855f7; color: #c084fc; padding: 5px 12px; border-radius: 12px; font-size: 12px; font-weight: 700; cursor: pointer; white-space: nowrap;">📐 Fórmulas & Infografías</button>
-          <button class="tip-filter-btn" data-cat="Verbo Rector" style="background: rgba(168, 85, 247, 0.2); border: 1px solid #a855f7; color: #c084fc; padding: 5px 12px; border-radius: 12px; font-size: 12px; font-weight: 700; cursor: pointer; white-space: nowrap;">⚡ Verbo Rector</button>
-          <button class="tip-filter-btn" data-cat="Comprensión Lectora" style="background: rgba(56, 189, 248, 0.15); border: 1px solid #38bdf8; color: #38bdf8; padding: 5px 12px; border-radius: 12px; font-size: 12px; font-weight: 700; cursor: pointer; white-space: nowrap;">📖 Comprensión</button>
-          <button class="tip-filter-btn" data-cat="Régimen Aduanero" style="background: rgba(2, 132, 199, 0.15); border: 1px solid #0284c7; color: #38bdf8; padding: 5px 12px; border-radius: 12px; font-size: 12px; font-weight: 700; cursor: pointer; white-space: nowrap;">🚢 Aduanas (Dec. 1165)</button>
-          <button class="tip-filter-btn" data-cat="Procedimiento Tributario" style="background: rgba(225, 29, 72, 0.15); border: 1px solid #e11d48; color: #f43f5e; padding: 5px 12px; border-radius: 12px; font-size: 12px; font-weight: 700; cursor: pointer; white-space: nowrap;">🏪 Facturación & Clausura</button>
-          <button class="tip-filter-btn" data-cat="Constitución y Legalidad" style="background: rgba(255,255,255,0.05); border: 1px solid var(--border-color); color: #cbd5e1; padding: 5px 12px; border-radius: 12px; font-size: 12px; font-weight: 600; cursor: pointer; white-space: nowrap;">⚖️ Legalidad</button>
-          <button class="tip-filter-btn" data-cat="Estructura Orgánica DIAN" style="background: rgba(59, 130, 246, 0.15); border: 1px solid #3b82f6; color: #60a5fa; padding: 5px 12px; border-radius: 12px; font-size: 12px; font-weight: 700; cursor: pointer; white-space: nowrap;">🏛️ Estructura & Carrera</button>
-          <button class="tip-filter-btn" data-cat="Régimen Especial Aduanero" style="background: rgba(6, 182, 212, 0.15); border: 1px solid #06b6d4; color: #22d3ee; padding: 5px 12px; border-radius: 12px; font-size: 12px; font-weight: 700; cursor: pointer; white-space: nowrap;">🚢 Zonas Francas</button>
-          <button class="tip-filter-btn" data-cat="Procedimientos Institucionales" style="background: rgba(16, 185, 129, 0.15); border: 1px solid #10b981; color: #34d399; padding: 5px 12px; border-radius: 12px; font-size: 12px; font-weight: 700; cursor: pointer; white-space: nowrap;">📬 PQRSF & Denuncias</button>
-          <button class="tip-filter-btn" data-cat="Técnica de Examen" style="background: rgba(255,255,255,0.05); border: 1px solid var(--border-color); color: #cbd5e1; padding: 5px 12px; border-radius: 12px; font-size: 12px; font-weight: 600; cursor: pointer; white-space: nowrap;">🎯 Técnica</button>
-          <button class="tip-filter-btn" data-cat="Ética e Integridad" style="background: rgba(255,255,255,0.05); border: 1px solid var(--border-color); color: #cbd5e1; padding: 5px 12px; border-radius: 12px; font-size: 12px; font-weight: 600; cursor: pointer; white-space: nowrap;">🛡️ Integridad</button>
+        <!-- MODO 1: VISTA UNA POR UNA Y DE FORMA ALEATORIA (POR DEFECTO) -->
+        <div id="tipsSingleContainer" style="display: flex; flex-direction: column; gap: 14px; width: 100%;">
+          <div id="singleTipCard" style="background: rgba(11, 17, 32, 0.88); border: 1.5px solid rgba(245, 158, 11, 0.45); border-radius: 14px; padding: 18px 16px; display: flex; flex-direction: column; gap: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.6);">
+            
+            <!-- Fila Superior: Categoría, Número y Botón Rápido Siguiente -->
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 8px;">
+              <div style="display: flex; align-items: center; gap: 10px;">
+                <span id="singleTipIcon" style="font-size: 28px;">💡</span>
+                <div>
+                  <span id="singleTipCategoryBadge" style="font-size: 11px; font-weight: 800; background: rgba(245, 158, 11, 0.2); color: #f59e0b; padding: 3px 8px; border-radius: 6px; text-transform: uppercase;">
+                    Juicio Situacional
+                  </span>
+                  <div id="singleTipNumberBadge" style="font-size: 11px; color: #94a3b8; margin-top: 3px; font-weight: 700;">
+                    🎲 Clave Aleatoria 1 de 46
+                  </div>
+                </div>
+              </div>
+              <button id="btnSingleTipNextRandomTop" type="button" style="background: linear-gradient(135deg, #f59e0b, #d97706); border: none; color: #0b1120; font-size: 12px; font-weight: 800; padding: 6px 12px; border-radius: 8px; cursor: pointer; display: flex; align-items: center; gap: 4px; box-shadow: 0 2px 8px rgba(245, 158, 11, 0.35);">
+                🎲 Otra Clave ➔
+              </button>
+            </div>
+
+            <!-- Título de la Clave -->
+            <h3 id="singleTipTitle" style="font-size: 17.5px; font-weight: 800; color: #f8fafc; margin: 0; line-height: 1.35;">
+              Título de la Clave
+            </h3>
+
+            <!-- Soporte Legal -->
+            <div id="singleTipNormaContainer" style="display: flex; align-items: center; gap: 6px;">
+              <span style="font-size: 12px; color: #38bdf8; font-weight: 700; background: rgba(56, 189, 248, 0.12); padding: 3px 8px; border-radius: 6px; border: 1px solid rgba(56, 189, 248, 0.25);">
+                📖 <span id="singleTipNorma">Norma</span>
+              </span>
+            </div>
+
+            <!-- Resumen Clave / Premisa Situacional -->
+            <div id="singleTipResumen" style="font-size: 13.5px; color: #f8fafc; line-height: 1.5; font-style: italic; background: rgba(245, 158, 11, 0.08); border-left: 3px solid #f59e0b; padding: 10px 12px; border-radius: 0 8px 8px 0;">
+              Resumen
+            </div>
+
+            <!-- Contenido Detallado -->
+            <div id="singleTipContenido" style="font-size: 13.5px; color: #cbd5e1; line-height: 1.6; max-height: 300px; overflow-y: auto; padding-right: 4px;">
+              Contenido
+            </div>
+
+            <!-- Bloque de Imagen / Infografía si aplica -->
+            <div id="singleTipImageContainer" style="display: none; border-radius: 10px; overflow: hidden; border: 1px solid var(--border-color); margin-top: 4px;">
+              <img id="singleTipImage" src="" alt="Infografía" style="width: 100%; height: auto; display: block;">
+            </div>
+
+            <!-- Botones de Navegación Inferior -->
+            <div style="display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-top: 6px; border-top: 1px solid rgba(255, 255, 255, 0.08); padding-top: 12px;">
+              <button id="btnSingleTipPrev" type="button" style="background: rgba(255, 255, 255, 0.06); border: 1px solid rgba(255, 255, 255, 0.15); color: #cbd5e1; font-size: 13px; font-weight: 700; padding: 10px 16px; border-radius: 8px; cursor: pointer; display: flex; align-items: center; gap: 6px;">
+                ⬅️ Anterior
+              </button>
+              <button id="btnSingleTipNextRandom" type="button" style="background: linear-gradient(135deg, #f59e0b, #d97706); border: none; color: #0b1120; font-size: 13px; font-weight: 800; padding: 10px 20px; border-radius: 8px; cursor: pointer; display: flex; align-items: center; gap: 6px; box-shadow: 0 4px 14px rgba(245, 158, 11, 0.35);">
+                🎲 Siguiente Clave Aleatoria ➔
+              </button>
+            </div>
+          </div>
         </div>
 
-        <div style="display: flex; justify-content: space-between; align-items: center; font-size: 12px; color: #94a3b8; padding: 0 2px;">
-          <span id="tipsCountBadge">Claves y Fórmulas disponibles</span>
-          <span style="font-size: 11px; color: #64748b;">Desliza para ver fundamentos y reglas rápidas</span>
-        </div>
+        <!-- MODO 2: CATÁLOGO COMPLETO (OCULTO POR DEFECTO) -->
+        <div id="tipsListModeContainer" style="display: none; flex-direction: column; gap: 12px; width: 100%;">
+          <!-- Barra de herramientas: Buscador y Acceso a Microaprendizaje -->
+          <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap;">
+            <div style="position: relative; flex: 1; min-width: 200px;">
+              <input type="text" id="inputSearchTips" placeholder="🔍 Buscar clave o tema (ej. factura, aduana, lectura)..." style="width: 100%; box-sizing: border-box; background: #0b1120; border: 1px solid rgba(255,255,255,0.15); color: #f8fafc; padding: 9px 12px; border-radius: 8px; font-size: 13px; outline: none;">
+            </div>
+            <button id="btnOpenMicrolearningFromTips" type="button" style="background: rgba(56, 189, 248, 0.12); border: 1px solid rgba(56, 189, 248, 0.35); color: #38bdf8; font-size: 12px; font-weight: 700; padding: 9px 12px; border-radius: 8px; cursor: pointer; display: flex; align-items: center; gap: 6px; white-space: nowrap;">
+              <span>🔔</span> Configurar Microaprendizaje
+            </button>
+          </div>
 
-        <!-- Contenedor dinámico de los tips (scroll fluido único sin scrolls anidados) -->
-        <div id="tipsListContainer" style="display: flex; flex-direction: column; gap: 12px;">
-          <!-- Se inyectan dinámicamente con tips_data.js -->
+          <!-- Filtros rápidos por categoría con scroll horizontal táctil -->
+          <div style="display: flex; gap: 6px; align-items: center; overflow-x: auto; padding-bottom: 4px; -webkit-overflow-scrolling: touch;">
+            <button class="tip-filter-btn" data-cat="all" style="background: rgba(245, 158, 11, 0.2); border: 1px solid #f59e0b; color: #f59e0b; padding: 5px 12px; border-radius: 12px; font-size: 12px; font-weight: 700; cursor: pointer; white-space: nowrap;">Todas</button>
+            <button class="tip-filter-btn" data-cat="Fórmulas y Mnemotecnias" style="background: rgba(168, 85, 247, 0.2); border: 1px solid #a855f7; color: #c084fc; padding: 5px 12px; border-radius: 12px; font-size: 12px; font-weight: 700; cursor: pointer; white-space: nowrap;">📐 Fórmulas & Infografías</button>
+            <button class="tip-filter-btn" data-cat="Verbo Rector" style="background: rgba(168, 85, 247, 0.2); border: 1px solid #a855f7; color: #c084fc; padding: 5px 12px; border-radius: 12px; font-size: 12px; font-weight: 700; cursor: pointer; white-space: nowrap;">⚡ Verbo Rector</button>
+            <button class="tip-filter-btn" data-cat="Comprensión Lectora" style="background: rgba(56, 189, 248, 0.15); border: 1px solid #38bdf8; color: #38bdf8; padding: 5px 12px; border-radius: 12px; font-size: 12px; font-weight: 700; cursor: pointer; white-space: nowrap;">📖 Comprensión</button>
+            <button class="tip-filter-btn" data-cat="Régimen Aduanero" style="background: rgba(2, 132, 199, 0.15); border: 1px solid #0284c7; color: #38bdf8; padding: 5px 12px; border-radius: 12px; font-size: 12px; font-weight: 700; cursor: pointer; white-space: nowrap;">🚢 Aduanas (Dec. 1165)</button>
+            <button class="tip-filter-btn" data-cat="Procedimiento Tributario" style="background: rgba(225, 29, 72, 0.15); border: 1px solid #e11d48; color: #f43f5e; padding: 5px 12px; border-radius: 12px; font-size: 12px; font-weight: 700; cursor: pointer; white-space: nowrap;">🏪 Facturación & Clausura</button>
+            <button class="tip-filter-btn" data-cat="Constitución y Legalidad" style="background: rgba(255,255,255,0.05); border: 1px solid var(--border-color); color: #cbd5e1; padding: 5px 12px; border-radius: 12px; font-size: 12px; font-weight: 600; cursor: pointer; white-space: nowrap;">⚖️ Legalidad</button>
+            <button class="tip-filter-btn" data-cat="Estructura Orgánica DIAN" style="background: rgba(59, 130, 246, 0.15); border: 1px solid #3b82f6; color: #60a5fa; padding: 5px 12px; border-radius: 12px; font-size: 12px; font-weight: 700; cursor: pointer; white-space: nowrap;">🏛️ Estructura & Carrera</button>
+            <button class="tip-filter-btn" data-cat="Régimen Especial Aduanero" style="background: rgba(6, 182, 212, 0.15); border: 1px solid #06b6d4; color: #22d3ee; padding: 5px 12px; border-radius: 12px; font-size: 12px; font-weight: 700; cursor: pointer; white-space: nowrap;">🚢 Zonas Francas</button>
+            <button class="tip-filter-btn" data-cat="Procedimientos Institucionales" style="background: rgba(16, 185, 129, 0.15); border: 1px solid #10b981; color: #34d399; padding: 5px 12px; border-radius: 12px; font-size: 12px; font-weight: 700; cursor: pointer; white-space: nowrap;">📬 PQRSF & Denuncias</button>
+            <button class="tip-filter-btn" data-cat="Técnica de Examen" style="background: rgba(255,255,255,0.05); border: 1px solid var(--border-color); color: #cbd5e1; padding: 5px 12px; border-radius: 12px; font-size: 12px; font-weight: 600; cursor: pointer; white-space: nowrap;">🎯 Técnica</button>
+            <button class="tip-filter-btn" data-cat="Ética e Integridad" style="background: rgba(255,255,255,0.05); border: 1px solid var(--border-color); color: #cbd5e1; padding: 5px 12px; border-radius: 12px; font-size: 12px; font-weight: 600; cursor: pointer; white-space: nowrap;">🛡️ Integridad</button>
+          </div>
+
+          <div style="display: flex; justify-content: space-between; align-items: center; font-size: 12px; color: #94a3b8; padding: 0 2px;">
+            <span id="tipsCountBadge">Claves y Fórmulas disponibles</span>
+            <span style="font-size: 11px; color: #64748b;">Desliza para ver fundamentos y reglas rápidas</span>
+          </div>
+
+          <!-- Contenedor dinámico de los tips -->
+          <div id="tipsListContainer" style="display: flex; flex-direction: column; gap: 12px;">
+            <!-- Se inyectan dinámicamente con tips_data.js -->
+          </div>
         </div>
       </div>
 
