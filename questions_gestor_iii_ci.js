@@ -3589,15 +3589,18 @@ const QUESTION_BANK_GESTOR_CI = [
     "opciones": [
       {
         "id": "A",
-        "texto": "Sostener que la DIAN es una Unidad Administrativa Especial del orden nacional, de carácter técnico y adscrita al Ministerio de Hacienda, creada por la fusión de la DIN y la DAN con competencia integral sobre tributos del orden nacional, aduaneros y régimen cambiario."
+        "texto": "Sostener que la DIAN es una Unidad Administrativa Especial del orden nacional, de carácter técnico y adscrita al Ministerio de Hacienda, creada por la fusión de la DIN y la DAN con competencia integral sobre tributos del orden nacional, aduaneros y régimen cambiario.",
+        "explicacion": "Correcta. La DIAN fue creada como Unidad Administrativa Especial (UAE) mediante el Decreto 2117 de 1992, al fusionar el 1º de junio de 1993 la Dirección de Impuestos Nacionales (DIN) y la Dirección de Aduanas Nacionales (DAN), consolidada orgánicamente en el Decreto 1071 de 1999 y Decreto 4048 de 2008, con personería jurídica, autonomía y adscripción al Ministerio de Hacienda, ejerciendo la administración y control unitario de las obligaciones tributarias, aduaneras y cambiarias."
       },
       {
         "id": "B",
-        "texto": "Argumentar que la DIAN es un establecimiento público descentralizado territorialmente con autonomía judicial plena e independencia jerárquica total respecto del Ministerio de Hacienda y Crédito Público."
+        "texto": "Argumentar que la DIAN es un establecimiento público descentralizado territorialmente con autonomía judicial plena e independencia jerárquica total respecto del Ministerio de Hacienda y Crédito Público.",
+        "explicacion": "Incorrecta. La DIAN es una Unidad Administrativa Especial (UAE) del orden nacional, con personería jurídica y autonomía técnica, adscrita al Ministerio de Hacienda."
       },
       {
         "id": "C",
-        "texto": "Reconocer que la DIAN solo tiene competencia tributaria interna, debiendo remitir el componente arancelario y aduanero al Ministerio de Comercio, Industria y Turismo para su liquidación final."
+        "texto": "Reconocer que la DIAN solo tiene competencia tributaria interna, debiendo remitir el componente arancelario y aduanero al Ministerio de Comercio, Industria y Turismo para su liquidación final.",
+        "explicacion": "Incorrecta. La DIAN concentra de forma unitaria la competencia tributaria, aduanera y cambiaria, sin fragmentación hacia otros ministerios."
       }
     ],
     "respuestaCorrecta": "A",
@@ -3619,15 +3622,18 @@ const QUESTION_BANK_GESTOR_CI = [
     "opciones": [
       {
         "id": "A",
-        "texto": "Asumir la sustanciación y trámite de la devolución en la Dirección Seccional Delegada por haber operado la radicación física dentro de su jurisdicción geográfica."
+        "texto": "Asumir la sustanciación y trámite de la devolución en la Dirección Seccional Delegada por haber operado la radicación física dentro de su jurisdicción geográfica.",
+        "explicacion": "Incorrecta. Carece de competencia material y funcional: los Grandes Contribuyentes están asignados por resolución expresa a la Dirección Seccional de Grandes Contribuyentes."
       },
       {
         "id": "B",
-        "texto": "Remitir el expediente inmediatamente por competencia a la Dirección Seccional de Grandes Contribuyentes de Bogotá, notificando al contribuyente conforme al principio de competencia territorial y funcional de la DIAN."
+        "texto": "Remitir el expediente inmediatamente por competencia a la Dirección Seccional de Grandes Contribuyentes de Bogotá, notificando al contribuyente conforme al principio de competencia territorial y funcional de la DIAN.",
+        "explicacion": "Correcta. Conforme a los Decretos 4048 de 2008 y 1742 de 2020, la Dirección Seccional de Grandes Contribuyentes tiene competencia privativa y preferente para la administración, fiscalización, liquidación, discusión y cobro de los tributos de los sujetos calificados en dicha categoría, por lo que cualquier actuación radicada en otra seccional debe remitirse a la dependencia competente sin vulnerar el debido proceso."
       },
       {
         "id": "C",
-        "texto": "Rechazar de plano y definitivamente la solicitud de devolución mediante auto sancionatorio sin posibilidad de remitirla a la seccional competente."
+        "texto": "Rechazar de plano y definitivamente la solicitud de devolución mediante auto sancionatorio sin posibilidad de remitirla a la seccional competente.",
+        "explicacion": "Incorrecta. Vulnera el debido proceso administrativo; cuando una petición se radica ante una dependencia sin competencia interna, debe remitirse a la dependencia competente."
       }
     ],
     "respuestaCorrecta": "B",
@@ -3649,15 +3655,18 @@ const QUESTION_BANK_GESTOR_CI = [
     "opciones": [
       {
         "id": "A",
-        "texto": "Aceptar el tiquete POS como soporte válido de costos y deducciones sin importar la solicitud del adquiriente ni el valor de la operación."
+        "texto": "Aceptar el tiquete POS como soporte válido de costos y deducciones sin importar la solicitud del adquiriente ni el valor de la operación.",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: El Plan Estratégico de TI (PETI), el Art. 616-1 del E.T. y la Resolución 000165 de 2023 establecen la universalización del sistema de facturación electrónica con validación previa. El tiquete POS no otorga derecho a costos ni deducciones en el impuesto sobre la renta ni impuestos descontables en IVA, y cuando el comprador solicite la factura electrónica de venta, el emisor está obligado a expedirla con transmisión inmediata y validación previa por la DIAN."
       },
       {
         "id": "B",
-        "texto": "Determinar el incumplimiento del deber formal de facturar, dado que si el adquirente exige la factura electrónica de venta, el obligado debe generarla y transmitirla con validación previa en tiempo real a la DIAN, y el tiquete POS sin validación no da derecho a costos ni deducciones en renta."
+        "texto": "Determinar el incumplimiento del deber formal de facturar, dado que si el adquirente exige la factura electrónica de venta, el obligado debe generarla y transmitirla con validación previa en tiempo real a la DIAN, y el tiquete POS sin validación no da derecho a costos ni deducciones en renta.",
+        "explicacion": "Correcta. El Plan Estratégico de TI (PETI), el Art. 616-1 del E.T. y la Resolución 000165 de 2023 establecen la universalización del sistema de facturación electrónica con validación previa. El tiquete POS no otorga derecho a costos ni deducciones en el impuesto sobre la renta ni impuestos descontables en IVA, y cuando el comprador solicite la factura electrónica de venta, el emisor está obligado a expedirla con transmisión inmediata y validación previa por la DIAN."
       },
       {
         "id": "C",
-        "texto": "Sancionar al comprador que solicitó la factura por entorpecer la actividad comercial del establecimiento."
+        "texto": "Sancionar al comprador que solicitó la factura por entorpecer la actividad comercial del establecimiento.",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: El Plan Estratégico de TI (PETI), el Art. 616-1 del E.T. y la Resolución 000165 de 2023 establecen la universalización del sistema de facturación electrónica con validación previa. El tiquete POS no otorga derecho a costos ni deducciones en el impuesto sobre la renta ni impuestos descontables en IVA, y cuando el comprador solicite la factura electrónica de venta, el emisor está obligado a expedirla con transmisión inmediata y validación previa por la DIAN."
       }
     ],
     "respuestaCorrecta": "B",
@@ -3679,15 +3688,18 @@ const QUESTION_BANK_GESTOR_CI = [
     "opciones": [
       {
         "id": "A",
-        "texto": "Descartar los reportes automáticos por provenir de algoritmos computacionales y limitarse a esperar una denuncia física en papel."
+        "texto": "Descartar los reportes automáticos por provenir de algoritmos computacionales y limitarse a esperar una denuncia física en papel.",
+        "explicacion": "Incorrecta. La inacción u omisión de denuncia e investigación incumple los deberes misionales y compromete la responsabilidad del servidor público."
       },
       {
         "id": "B",
-        "texto": "Incorporar las alertas y perfiles de riesgo del MGR (Modelo de Gestión de Riesgo) como insumo para proferir emplazamientos previos por inexactitud o requerimientos ordinarios de información, sustentados en la facultad del Art. 684-4 del Estatuto Tributario."
+        "texto": "Incorporar las alertas y perfiles de riesgo del MGR (Modelo de Gestión de Riesgo) como insumo para proferir emplazamientos previos por inexactitud o requerimientos ordinarios de información, sustentados en la facultad del Art. 684-4 del Estatuto Tributario.",
+        "explicacion": "Correcta. El Art. 684-4 del Estatuto Tributario y el eje de Analítica del PETI autorizan a la DIAN a implementar modelos de gestión de riesgo fundamentados en cruces informáticos y analítica de datos. La información extraída permite expedir pliegos de cargos, emplazamientos o requerimientos conforme a las etapas procesales regladas, respetando el debido proceso y la contradicción."
       },
       {
         "id": "C",
-        "texto": "Clausurar inmediatamente las empresas inmobiliarias de manera indefinida sin otorgar término para responder ni practicar pliego de cargos."
+        "texto": "Clausurar inmediatamente las empresas inmobiliarias de manera indefinida sin otorgar término para responder ni practicar pliego de cargos.",
+        "explicacion": "Incorrecta. La imposición de sanciones de plano sin pliego de cargos ni traslado para descargos vulnera el artículo 29 de la Constitución Política (debido proceso)."
       }
     ],
     "respuestaCorrecta": "B",
@@ -3709,15 +3721,18 @@ const QUESTION_BANK_GESTOR_CI = [
     "opciones": [
       {
         "id": "A",
-        "texto": "Aprobar la propuesta porque la única razón de ser de la DIAN es la imposición coactiva de multas y sanciones a la ciudadanía."
+        "texto": "Aprobar la propuesta porque la única razón de ser de la DIAN es la imposición coactiva de multas y sanciones a la ciudadanía.",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: El Plan Estratégico Institucional de la DIAN y el Decreto 4048 de 2008 establecen que la misión institucional combina de manera armónica dos pilares: facilitar el cumplimiento voluntario de las obligaciones tributarias, aduaneras y cambiarias, y al mismo tiempo combatir con rigor la evasión, el contrabando y la corrupción, asegurando la sostenibilidad fiscal de la Nación."
       },
       {
         "id": "B",
-        "texto": "Alinear los objetivos equilibrando la facilitación del cumplimiento voluntario de las obligaciones con la lucha frontal contra el fraude y el contrabando, en concordancia con la misión de garantizar la sostenibilidad fiscal del Estado y facilitar el comercio legítimo."
+        "texto": "Alinear los objetivos equilibrando la facilitación del cumplimiento voluntario de las obligaciones con la lucha frontal contra el fraude y el contrabando, en concordancia con la misión de garantizar la sostenibilidad fiscal del Estado y facilitar el comercio legítimo.",
+        "explicacion": "Correcta. El Plan Estratégico Institucional de la DIAN y el Decreto 4048 de 2008 establecen que la misión institucional combina de manera armónica dos pilares: facilitar el cumplimiento voluntario de las obligaciones tributarias, aduaneras y cambiarias, y al mismo tiempo combatir con rigor la evasión, el contrabando y la corrupción, asegurando la sostenibilidad fiscal de la Nación."
       },
       {
         "id": "C",
-        "texto": "Suspender todo tipo de control aduanero y tributario para no generar inconformidades entre los comerciantes de la región."
+        "texto": "Suspender todo tipo de control aduanero y tributario para no generar inconformidades entre los comerciantes de la región.",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: El Plan Estratégico Institucional de la DIAN y el Decreto 4048 de 2008 establecen que la misión institucional combina de manera armónica dos pilares: facilitar el cumplimiento voluntario de las obligaciones tributarias, aduaneras y cambiarias, y al mismo tiempo combatir con rigor la evasión, el contrabando y la corrupción, asegurando la sostenibilidad fiscal de la Nación."
       }
     ],
     "respuestaCorrecta": "B",
@@ -3739,15 +3754,18 @@ const QUESTION_BANK_GESTOR_CI = [
     "opciones": [
       {
         "id": "A",
-        "texto": "Aceptar la orden del jefe inmediato sin objeción, puesto que los planes de bienestar son facultativos y pueden cancelarse verbalmente por cualquier superior."
+        "texto": "Aceptar la orden del jefe inmediato sin objeción, puesto que los planes de bienestar son facultativos y pueden cancelarse verbalmente por cualquier superior.",
+        "explicacion": "Incorrecta. Los planes de capacitación y bienestar son mandatos legales del Sistema Específico de Carrera DIAN y del Decreto Ley 1567 de 1998."
       },
       {
         "id": "B",
-        "texto": "Recordar que los programas de capacitación y bienestar laboral son mandatos legales del Sistema Específico de Carrera DIAN y del Decreto Ley 1567 de 1998, diseñados para garantizar el desarrollo integral, el clima laboral óptimo y la salud de los servidores públicos."
+        "texto": "Recordar que los programas de capacitación y bienestar laboral son mandatos legales del Sistema Específico de Carrera DIAN y del Decreto Ley 1567 de 1998, diseñados para garantizar el desarrollo integral, el clima laboral óptimo y la salud de los servidores públicos.",
+        "explicacion": "Correcta. El Plan Estratégico de Talento Humano y Bien-Estar DIAN 2023 se fundamenta en el Decreto Ley 71 de 2020 y el Decreto Ley 1567 de 1998, los cuales obligan a las entidades públicas a formular e implementar programas de estímulos, bienestar social y capacitación como parte de los derechos de los servidores públicos para fomentar la calidad de vida laboral y el desempeño institucional."
       },
       {
         "id": "C",
-        "texto": "Promover el abandono colectivo e indefinido de los puestos de trabajo de todos los funcionarios sin agotar los canales institucionales de concertación."
+        "texto": "Promover el abandono colectivo e indefinido de los puestos de trabajo de todos los funcionarios sin agotar los canales institucionales de concertación.",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: El Plan Estratégico de Talento Humano y Bien-Estar DIAN 2023 se fundamenta en el Decreto Ley 71 de 2020 y el Decreto Ley 1567 de 1998, los cuales obligan a las entidades públicas a formular e implementar programas de estímulos, bienestar social y capacitación como parte de los derechos de los servidores públicos para fomentar la calidad de vida laboral y el desempeño institucional."
       }
     ],
     "respuestaCorrecta": "B",
@@ -3769,15 +3787,18 @@ const QUESTION_BANK_GESTOR_CI = [
     "opciones": [
       {
         "id": "A",
-        "texto": "Investiga con anterioridad la información disponible para estar prevenido ante posibles quejas de los usuarios."
+        "texto": "Investiga con anterioridad la información disponible para estar prevenido ante posibles quejas de los usuarios.",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: La competencia de 'Aporte Técnico-Profesional' (Nivel Profesional - Decreto 815 de 2018) implica no solo conocer la norma, sino aplicar activamente los conocimientos técnicos especializados para generar soluciones innovadoras y metodologías que optimicen la gestión del área."
       },
       {
         "id": "B",
-        "texto": "Espera a que la Dirección General emita instrucciones formales y mientras tanto continúa aplicando la normativa anterior."
+        "texto": "Espera a que la Dirección General emita instrucciones formales y mientras tanto continúa aplicando la normativa anterior.",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: La competencia de 'Aporte Técnico-Profesional' (Nivel Profesional - Decreto 815 de 2018) implica no solo conocer la norma, sino aplicar activamente los conocimientos técnicos especializados para generar soluciones innovadoras y metodologías que optimicen la gestión del área."
       },
       {
         "id": "C",
-        "texto": "Estudia los cambios normativos anticipadamente y diseña una propuesta metodológica que facilite la transición operativa del equipo sin traumatismos en los términos procesales."
+        "texto": "Estudia los cambios normativos anticipadamente y diseña una propuesta metodológica que facilite la transición operativa del equipo sin traumatismos en los términos procesales.",
+        "explicacion": "Correcta. La competencia de 'Aporte Técnico-Profesional' (Nivel Profesional - Decreto 815 de 2018) implica no solo conocer la norma, sino aplicar activamente los conocimientos técnicos especializados para generar soluciones innovadoras y metodologías que optimicen la gestión del área."
       }
     ],
     "respuestaCorrecta": "C",
@@ -3799,15 +3820,18 @@ const QUESTION_BANK_GESTOR_CI = [
     "opciones": [
       {
         "id": "A",
-        "texto": "Analizar el flujo integral del proceso, identificar actividades redundantes y formular un plan de racionalización apoyado en la firma digital para reducir los tiempos de respuesta."
+        "texto": "Analizar el flujo integral del proceso, identificar actividades redundantes y formular un plan de racionalización apoyado en la firma digital para reducir los tiempos de respuesta.",
+        "explicacion": "Correcta. La competencia de 'Gestión de Procedimientos' exige al profesional planificar, hacer seguimiento y ajustar continuamente las actividades para asegurar el cumplimiento eficiente, oportuno y con calidad de los objetivos de la entidad pública."
       },
       {
         "id": "B",
-        "texto": "Aumentar su jornada laboral de manera no autorizada para imprimir más documentos físicos por día."
+        "texto": "Aumentar su jornada laboral de manera no autorizada para imprimir más documentos físicos por día.",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: La competencia de 'Gestión de Procedimientos' exige al profesional planificar, hacer seguimiento y ajustar continuamente las actividades para asegurar el cumplimiento eficiente, oportuno y con calidad de los objetivos de la entidad pública."
       },
       {
         "id": "C",
-        "texto": "Desentenderse de los retrasos argumentando que la culpa es exclusiva del sistema informático central."
+        "texto": "Desentenderse de los retrasos argumentando que la culpa es exclusiva del sistema informático central.",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: La competencia de 'Gestión de Procedimientos' exige al profesional planificar, hacer seguimiento y ajustar continuamente las actividades para asegurar el cumplimiento eficiente, oportuno y con calidad de los objetivos de la entidad pública."
       }
     ],
     "respuestaCorrecta": "A",
@@ -3829,15 +3853,18 @@ const QUESTION_BANK_GESTOR_CI = [
     "opciones": [
       {
         "id": "A",
-        "texto": "Adopta la decisión fundándose rigurosamente en las pruebas contables, cruces exógenos y doctrina jurídica vinculante, estructurando un concepto técnico sólido e inobjetable."
+        "texto": "Adopta la decisión fundándose rigurosamente en las pruebas contables, cruces exógenos y doctrina jurídica vinculante, estructurando un concepto técnico sólido e inobjetable.",
+        "explicacion": "Correcta. La 'Instrumentación de Decisiones' en el nivel profesional consiste en tomar decisiones fundamentadas en información válida, objetiva y rigurosa, asumiendo la responsabilidad técnica de sus efectos legales y fiscales."
       },
       {
         "id": "B",
-        "texto": "Archiva el expediente para evitar litigios futuros contra la administración tributaria."
+        "texto": "Archiva el expediente para evitar litigios futuros contra la administración tributaria.",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: La 'Instrumentación de Decisiones' en el nivel profesional consiste en tomar decisiones fundamentadas en información válida, objetiva y rigurosa, asumiendo la responsabilidad técnica de sus efectos legales y fiscales."
       },
       {
         "id": "C",
-        "texto": "Traslada la decisión a un comité informal sin dejar registro escrito ni sustento probatorio."
+        "texto": "Traslada la decisión a un comité informal sin dejar registro escrito ni sustento probatorio.",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: La 'Instrumentación de Decisiones' en el nivel profesional consiste en tomar decisiones fundamentadas en información válida, objetiva y rigurosa, asumiendo la responsabilidad técnica de sus efectos legales y fiscales."
       }
     ],
     "respuestaCorrecta": "A",
@@ -3859,15 +3886,18 @@ const QUESTION_BANK_GESTOR_CI = [
     "opciones": [
       {
         "id": "A",
-        "texto": "Responderle en el mismo tono defensivo para hacer respetar la autoridad estatal."
+        "texto": "Responderle en el mismo tono defensivo para hacer respetar la autoridad estatal.",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: La 'Comunicación Efectiva' en el servicio público exige transmitir información de manera clara, oportuna y empática, manteniendo la calma ante situaciones de conflicto y garantizando la adecuada orientación ciudadana."
       },
       {
         "id": "B",
-        "texto": "Escuchar activamente al ciudadano, mantener la serenidad y explicarle con claridad y lenguaje accesible los motivos jurídicos de la medida y los mecanismos legales que tiene para solicitar el desembargo."
+        "texto": "Escuchar activamente al ciudadano, mantener la serenidad y explicarle con claridad y lenguaje accesible los motivos jurídicos de la medida y los mecanismos legales que tiene para solicitar el desembargo.",
+        "explicacion": "Correcta. La 'Comunicación Efectiva' en el servicio público exige transmitir información de manera clara, oportuna y empática, manteniendo la calma ante situaciones de conflicto y garantizando la adecuada orientación ciudadana."
       },
       {
         "id": "C",
-        "texto": "Llamar a la fuerza pública de inmediato sin escuchar el motivo de la reclamación."
+        "texto": "Llamar a la fuerza pública de inmediato sin escuchar el motivo de la reclamación.",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: La 'Comunicación Efectiva' en el servicio público exige transmitir información de manera clara, oportuna y empática, manteniendo la calma ante situaciones de conflicto y garantizando la adecuada orientación ciudadana."
       }
     ],
     "respuestaCorrecta": "B",
@@ -3889,15 +3919,18 @@ const QUESTION_BANK_GESTOR_CI = [
     "opciones": [
       {
         "id": "A",
-        "texto": "Imponer su criterio profesional de manera unilateral sin consultar la opinión técnica de los contadores."
+        "texto": "Imponer su criterio profesional de manera unilateral sin consultar la opinión técnica de los contadores.",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: El 'Liderazgo de Grupos de Trabajo' implica guiar, coordinar y alinear los esfuerzos del equipo hacia el cumplimiento de las metas institucionales, promoviendo un clima participativo, sinérgico y de respeto técnico."
       },
       {
         "id": "B",
-        "texto": "Convocar mesas técnicas de trabajo para concertar criterios, distribuir roles según las fortalezas individuales y motivar al equipo hacia el logro del objetivo común con metas claras."
+        "texto": "Convocar mesas técnicas de trabajo para concertar criterios, distribuir roles según las fortalezas individuales y motivar al equipo hacia el logro del objetivo común con metas claras.",
+        "explicacion": "Correcta. El 'Liderazgo de Grupos de Trabajo' implica guiar, coordinar y alinear los esfuerzos del equipo hacia el cumplimiento de las metas institucionales, promoviendo un clima participativo, sinérgico y de respeto técnico."
       },
       {
         "id": "C",
-        "texto": "Dejar que cada miembro actúe por su cuenta y que el informe final sea un mosaico desarticulado de opiniones contradictorias."
+        "texto": "Dejar que cada miembro actúe por su cuenta y que el informe final sea un mosaico desarticulado de opiniones contradictorias.",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: El 'Liderazgo de Grupos de Trabajo' implica guiar, coordinar y alinear los esfuerzos del equipo hacia el cumplimiento de las metas institucionales, promoviendo un clima participativo, sinérgico y de respeto técnico."
       }
     ],
     "respuestaCorrecta": "B",
@@ -3919,15 +3952,18 @@ const QUESTION_BANK_GESTOR_CI = [
     "opciones": [
       {
         "id": "A",
-        "texto": "Priorizar y reprogramar las acciones críticas de notificación, optimizar el uso de los sistemas de envío electrónico y concentrar los esfuerzos en los casos con mayor impacto fiscal para alcanzar la meta establecida."
+        "texto": "Priorizar y reprogramar las acciones críticas de notificación, optimizar el uso de los sistemas de envío electrónico y concentrar los esfuerzos en los casos con mayor impacto fiscal para alcanzar la meta establecida.",
+        "explicacion": "Correcta. La 'Orientación a Resultados' exige encaminar todos los actos hacia la consecución de los fines, metas y objetivos institucionales, con altos estándares de calidad, eficacia y sentido de urgencia."
       },
       {
         "id": "B",
-        "texto": "Solicitar una rebaja de la meta argumentando que el trimestre fue más corto de lo habitual."
+        "texto": "Solicitar una rebaja de la meta argumentando que el trimestre fue más corto de lo habitual.",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: La 'Orientación a Resultados' exige encaminar todos los actos hacia la consecución de los fines, metas y objetivos institucionales, con altos estándares de calidad, eficacia y sentido de urgencia."
       },
       {
         "id": "C",
-        "texto": "Notificar actos incompletos o con fallas para inflar artificialmente las cifras de cierre."
+        "texto": "Notificar actos incompletos o con fallas para inflar artificialmente las cifras de cierre.",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: La 'Orientación a Resultados' exige encaminar todos los actos hacia la consecución de los fines, metas y objetivos institucionales, con altos estándares de calidad, eficacia y sentido de urgencia."
       }
     ],
     "respuestaCorrecta": "A",
@@ -3949,15 +3985,18 @@ const QUESTION_BANK_GESTOR_CI = [
     "opciones": [
       {
         "id": "A",
-        "texto": "Indicarle de manera despectiva que todo se hace por internet y que si no sabe debe contratar a un contador."
+        "texto": "Indicarle de manera despectiva que todo se hace por internet y que si no sabe debe contratar a un contador.",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: La 'Orientación al Usuario' es una competencia esencial del servidor público que busca satisfacer las necesidades de la ciudadanía con enfoque diferencial, accesibilidad, respeto, oportunidad y trato digno."
       },
       {
         "id": "B",
-        "texto": "Atenderlo con calidez y paciencia, orientarlo paso a paso en el punto de contacto asistido y facilitarle la autogestión de su solicitud garantizando su derecho de acceso."
+        "texto": "Atenderlo con calidez y paciencia, orientarlo paso a paso en el punto de contacto asistido y facilitarle la autogestión de su solicitud garantizando su derecho de acceso.",
+        "explicacion": "Correcta. La 'Orientación al Usuario' es una competencia esencial del servidor público que busca satisfacer las necesidades de la ciudadanía con enfoque diferencial, accesibilidad, respeto, oportunidad y trato digno."
       },
       {
         "id": "C",
-        "texto": "Cobrarle una tarifa personal para hacerle el trámite desde su cuenta privada."
+        "texto": "Cobrarle una tarifa personal para hacerle el trámite desde su cuenta privada.",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: La 'Orientación al Usuario' es una competencia esencial del servidor público que busca satisfacer las necesidades de la ciudadanía con enfoque diferencial, accesibilidad, respeto, oportunidad y trato digno."
       }
     ],
     "respuestaCorrecta": "B",
@@ -3979,15 +4018,18 @@ const QUESTION_BANK_GESTOR_CI = [
     "opciones": [
       {
         "id": "A",
-        "texto": "Proponer el uso de herramientas de analítica digital y cruces de datos con pasarelas de pago y operadores logísticos de envíos para rastrear transacciones digitales no declaradas."
+        "texto": "Proponer el uso de herramientas de analítica digital y cruces de datos con pasarelas de pago y operadores logísticos de envíos para rastrear transacciones digitales no declaradas.",
+        "explicacion": "Correcta. La competencia de 'Creatividad e Innovación' implica generar alternativas novedosas y viables para mejorar los procesos y enfrentar desafíos emergentes en la administración tributaria y aduanera."
       },
       {
         "id": "B",
-        "texto": "Concluir que el comercio electrónico no puede ser fiscalizado y descartar cualquier acción institucional."
+        "texto": "Concluir que el comercio electrónico no puede ser fiscalizado y descartar cualquier acción institucional.",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: La competencia de 'Creatividad e Innovación' implica generar alternativas novedosas y viables para mejorar los procesos y enfrentar desafíos emergentes en la administración tributaria y aduanera."
       },
       {
         "id": "C",
-        "texto": "Prohibir el uso de internet a nivel nacional mediante un decreto interno."
+        "texto": "Prohibir el uso de internet a nivel nacional mediante un decreto interno.",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: La competencia de 'Creatividad e Innovación' implica generar alternativas novedosas y viables para mejorar los procesos y enfrentar desafíos emergentes en la administración tributaria y aduanera."
       }
     ],
     "respuestaCorrecta": "A",
@@ -4009,15 +4051,18 @@ const QUESTION_BANK_GESTOR_CI = [
     "opciones": [
       {
         "id": "A",
-        "texto": "Negarse a utilizar los nuevos aplicativos y radicar quejas permanentes contra la reestructuración."
+        "texto": "Negarse a utilizar los nuevos aplicativos y radicar quejas permanentes contra la reestructuración.",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: La 'Adaptabilidad al Cambio' faculta al servidor para ajustar su comportamiento y enfoque ante transformaciones en la estructura, procedimientos o tecnología de la entidad, manteniendo la productividad y motivación."
       },
       {
         "id": "B",
-        "texto": "Asumir con disposición constructiva el cambio, capacitarse con rapidez en las nuevas metodologías y colaborar activamente en la puesta en marcha de la nueva división."
+        "texto": "Asumir con disposición constructiva el cambio, capacitarse con rapidez en las nuevas metodologías y colaborar activamente en la puesta en marcha de la nueva división.",
+        "explicacion": "Correcta. La 'Adaptabilidad al Cambio' faculta al servidor para ajustar su comportamiento y enfoque ante transformaciones en la estructura, procedimientos o tecnología de la entidad, manteniendo la productividad y motivación."
       },
       {
         "id": "C",
-        "texto": "Solicitar una incapacidad médica prolongada para no participar en la transición."
+        "texto": "Solicitar una incapacidad médica prolongada para no participar en la transición.",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: La 'Adaptabilidad al Cambio' faculta al servidor para ajustar su comportamiento y enfoque ante transformaciones en la estructura, procedimientos o tecnología de la entidad, manteniendo la productividad y motivación."
       }
     ],
     "respuestaCorrecta": "B",
@@ -4039,15 +4084,18 @@ const QUESTION_BANK_GESTOR_CI = [
     "opciones": [
       {
         "id": "A",
-        "texto": "Tomar partido personal por el compañero más afín y descalificar públicamente al otro colega."
+        "texto": "Tomar partido personal por el compañero más afín y descalificar públicamente al otro colega.",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: El 'Trabajo en Equipo' promueve la cooperación, la confianza y la búsqueda conjunta de soluciones constructivas frente a discrepancias técnicas, anteponiendo los objetivos institucionales sobre posturas individuales."
       },
       {
         "id": "B",
-        "texto": "Generar un espacio de diálogo técnico respetuoso, revisar la doctrina unificada de la DIAN y orientar la discusión hacia un consenso fundamentado en la ley."
+        "texto": "Generar un espacio de diálogo técnico respetuoso, revisar la doctrina unificada de la DIAN y orientar la discusión hacia un consenso fundamentado en la ley.",
+        "explicacion": "Correcta. El 'Trabajo en Equipo' promueve la cooperación, la confianza y la búsqueda conjunta de soluciones constructivas frente a discrepancias técnicas, anteponiendo los objetivos institucionales sobre posturas individuales."
       },
       {
         "id": "C",
-        "texto": "Desentenderse del conflicto y esperar a que la jefatura sancione a ambos funcionarios."
+        "texto": "Desentenderse del conflicto y esperar a que la jefatura sancione a ambos funcionarios.",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: El 'Trabajo en Equipo' promueve la cooperación, la confianza y la búsqueda conjunta de soluciones constructivas frente a discrepancias técnicas, anteponiendo los objetivos institucionales sobre posturas individuales."
       }
     ],
     "respuestaCorrecta": "B",
@@ -4069,15 +4117,18 @@ const QUESTION_BANK_GESTOR_CI = [
     "opciones": [
       {
         "id": "A",
-        "texto": "Aprobar la devolución de inmediato para evitar roces laborales y asegurar su permanencia."
+        "texto": "Aprobar la devolución de inmediato para evitar roces laborales y asegurar su permanencia.",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: La integridad ética y la toma de decisiones objetiva obligan al servidor público a anteponer el interés general y la legalidad sobre presiones indebidas, garantizando la igualdad y la protección del patrimonio público."
       },
       {
         "id": "B",
-        "texto": "Rechazar cualquier trato preferencial injustificado, exigir la verificación probatoria estricta de los soportes y sustentar el informe por escrito de forma técnica y transparente."
+        "texto": "Rechazar cualquier trato preferencial injustificado, exigir la verificación probatoria estricta de los soportes y sustentar el informe por escrito de forma técnica y transparente.",
+        "explicacion": "Correcta. La integridad ética y la toma de decisiones objetiva obligan al servidor público a anteponer el interés general y la legalidad sobre presiones indebidas, garantizando la igualdad y la protección del patrimonio público."
       },
       {
         "id": "C",
-        "texto": "Filtrar los documentos confidenciales a la prensa de manera anónima sin tramitar el expediente."
+        "texto": "Filtrar los documentos confidenciales a la prensa de manera anónima sin tramitar el expediente.",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: La integridad ética y la toma de decisiones objetiva obligan al servidor público a anteponer el interés general y la legalidad sobre presiones indebidas, garantizando la igualdad y la protección del patrimonio público."
       }
     ],
     "respuestaCorrecta": "B",
@@ -4099,15 +4150,18 @@ const QUESTION_BANK_GESTOR_CI = [
     "opciones": [
       {
         "id": "A",
-        "texto": "Elaborar un cronograma de trabajo priorizando los expedientes por orden estricto de vencimiento de términos, identificando las pruebas pendientes y asignando tiempos específicos a cada proyecto."
+        "texto": "Elaborar un cronograma de trabajo priorizando los expedientes por orden estricto de vencimiento de términos, identificando las pruebas pendientes y asignando tiempos específicos a cada proyecto.",
+        "explicacion": "Correcta. La 'Planeación' permite anticipar requerimientos, definir prioridades críticas en función de plazos perentorios y optimizar los tiempos de ejecución para evitar el acaecimiento de silencios administrativos perjudiciales para la administración."
       },
       {
         "id": "B",
-        "texto": "Comenzar por el expediente más fácil y dejar los complejos para el último día hábil."
+        "texto": "Comenzar por el expediente más fácil y dejar los complejos para el último día hábil.",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: La 'Planeación' permite anticipar requerimientos, definir prioridades críticas en función de plazos perentorios y optimizar los tiempos de ejecución para evitar el acaecimiento de silencios administrativos perjudiciales para la administración."
       },
       {
         "id": "C",
-        "texto": "Solicitar una prórroga colectiva de términos que la ley aduanera no contempla."
+        "texto": "Solicitar una prórroga colectiva de términos que la ley aduanera no contempla.",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: La 'Planeación' permite anticipar requerimientos, definir prioridades críticas en función de plazos perentorios y optimizar los tiempos de ejecución para evitar el acaecimiento de silencios administrativos perjudiciales para la administración."
       }
     ],
     "respuestaCorrecta": "A",
@@ -4129,15 +4183,18 @@ const QUESTION_BANK_GESTOR_CI = [
     "opciones": [
       {
         "id": "A",
-        "texto": "Medir exclusivamente operativos de choque aislados sin importar su impacto a largo plazo."
+        "texto": "Medir exclusivamente operativos de choque aislados sin importar su impacto a largo plazo.",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: El 'Pensamiento Estratégico' permite al profesional comprender la interrelación entre las funciones específicas de su cargo y los grandes objetivos del Estado, anticipando escenarios de impacto macroeconómico y social."
       },
       {
         "id": "B",
-        "texto": "Conectar los controles aduaneros operativos con la formalización del comercio, la seguridad de las cadenas de suministro y el impacto en la competitividad y recaudo nacional sostenible."
+        "texto": "Conectar los controles aduaneros operativos con la formalización del comercio, la seguridad de las cadenas de suministro y el impacto en la competitividad y recaudo nacional sostenible.",
+        "explicacion": "Correcta. El 'Pensamiento Estratégico' permite al profesional comprender la interrelación entre las funciones específicas de su cargo y los grandes objetivos del Estado, anticipando escenarios de impacto macroeconómico y social."
       },
       {
         "id": "C",
-        "texto": "Suprimir los controles aduaneros para favorecer el consumo sin restricciones."
+        "texto": "Suprimir los controles aduaneros para favorecer el consumo sin restricciones.",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: El 'Pensamiento Estratégico' permite al profesional comprender la interrelación entre las funciones específicas de su cargo y los grandes objetivos del Estado, anticipando escenarios de impacto macroeconómico y social."
       }
     ],
     "respuestaCorrecta": "B",
@@ -4159,15 +4216,18 @@ const QUESTION_BANK_GESTOR_CI = [
     "opciones": [
       {
         "id": "A",
-        "texto": "Abstenerse de resolver expedientes de esa temática hasta que la DIAN le financie un posgrado especializado."
+        "texto": "Abstenerse de resolver expedientes de esa temática hasta que la DIAN le financie un posgrado especializado.",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: El 'Aprendizaje Continuo' impulsa al servidor público a adquirir y actualizar constantemente sus competencias técnicas y normativas, aplicando el conocimiento adquirido en beneficio de la excelencia institucional."
       },
       {
         "id": "B",
-        "texto": "Asumir la iniciativa de autoaprendizaje, estudiar de forma autónoma la jurisprudencia, doctrina y fuentes oficiales, y compartir los conocimientos adquiridos con su equipo."
+        "texto": "Asumir la iniciativa de autoaprendizaje, estudiar de forma autónoma la jurisprudencia, doctrina y fuentes oficiales, y compartir los conocimientos adquiridos con su equipo.",
+        "explicacion": "Correcta. El 'Aprendizaje Continuo' impulsa al servidor público a adquirir y actualizar constantemente sus competencias técnicas y normativas, aplicando el conocimiento adquirido en beneficio de la excelencia institucional."
       },
       {
         "id": "C",
-        "texto": "Delegar todos los casos complejos a los funcionarios provisionales recién ingresados."
+        "texto": "Delegar todos los casos complejos a los funcionarios provisionales recién ingresados.",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: El 'Aprendizaje Continuo' impulsa al servidor público a adquirir y actualizar constantemente sus competencias técnicas y normativas, aplicando el conocimiento adquirido en beneficio de la excelencia institucional."
       }
     ],
     "respuestaCorrecta": "B",
@@ -4189,15 +4249,18 @@ const QUESTION_BANK_GESTOR_CI = [
     "opciones": [
       {
         "id": "A",
-        "texto": "Emitir una opinión rápida basada en intuición personal sin revisar las sentencias de unificación de la Corte Constitucional ni del Consejo de Estado."
+        "texto": "Emitir una opinión rápida basada en intuición personal sin revisar las sentencias de unificación de la Corte Constitucional ni del Consejo de Estado.",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: La 'Experticia Técnica' se traduce en el dominio especializado de la disciplina y el marco normativo, permitiendo resolver problemas complejos con criterio jurídico y técnico de alta precisión."
       },
       {
         "id": "B",
-        "texto": "Aplicar con rigor y profundidad los precedentes jurisprudenciales obligatorios, las normas tributarias vigentes y los principios de hermenéutica jurídica, estructurando un análisis coherente e irrebatible."
+        "texto": "Aplicar con rigor y profundidad los precedentes jurisprudenciales obligatorios, las normas tributarias vigentes y los principios de hermenéutica jurídica, estructurando un análisis coherente e irrebatible.",
+        "explicacion": "Correcta. La 'Experticia Técnica' se traduce en el dominio especializado de la disciplina y el marco normativo, permitiendo resolver problemas complejos con criterio jurídico y técnico de alta precisión."
       },
       {
         "id": "C",
-        "texto": "Copiar textualmente un concepto obsoleto emitido hace diez años antes de la reforma legal."
+        "texto": "Copiar textualmente un concepto obsoleto emitido hace diez años antes de la reforma legal.",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: La 'Experticia Técnica' se traduce en el dominio especializado de la disciplina y el marco normativo, permitiendo resolver problemas complejos con criterio jurídico y técnico de alta precisión."
       }
     ],
     "respuestaCorrecta": "B",
@@ -4219,15 +4282,18 @@ const QUESTION_BANK_GESTOR_CI = [
     "opciones": [
       {
         "id": "A",
-        "texto": "Ocultar el error y permitir la notificación del acto para evitar un llamado de atención de su superior."
+        "texto": "Ocultar el error y permitir la notificación del acto para evitar un llamado de atención de su superior.",
+        "explicacion": "Incorrecta. Ocultar o alterar información vulnera frontalmente el valor de la Honestidad y el principio de transparencia del servidor público."
       },
       {
         "id": "B",
-        "texto": "Informar de inmediato a su jefe sobre el error cometido, asumiendo con transparencia la equivocación y gestionando la corrección del acto antes de su notificación legal."
+        "texto": "Informar de inmediato a su jefe sobre el error cometido, asumiendo con transparencia la equivocación y gestionando la corrección del acto antes de su notificación legal.",
+        "explicacion": "Correcta. El valor de la HONESTIDAD en el Código de Integridad del Servicio Público establece: 'Siempre digo la verdad, incluso cuando cometo errores, porque es humano cometerlos pero no es correcto esconderlos'. Actuar con transparencia protege el patrimonio público y la validez de los actos administrativos."
       },
       {
         "id": "C",
-        "texto": "Alterar el archivo digital en secreto y culpar a un compañero de la falla en el sistema."
+        "texto": "Alterar el archivo digital en secreto y culpar a un compañero de la falla en el sistema.",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: El valor de la HONESTIDAD en el Código de Integridad del Servicio Público establece: 'Siempre digo la verdad, incluso cuando cometo errores, porque es humano cometerlos pero no es correcto esconderlos'. Actuar con transparencia protege el patrimonio público y la validez de los actos administrativos."
       }
     ],
     "respuestaCorrecta": "B",
@@ -4249,15 +4315,18 @@ const QUESTION_BANK_GESTOR_CI = [
     "opciones": [
       {
         "id": "A",
-        "texto": "Aceptar los boletos argumentando que se trata de una cortesía privada sin compromiso formal."
+        "texto": "Aceptar los boletos argumentando que se trata de una cortesía privada sin compromiso formal.",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: El Código de Integridad prohíbe tajantemente recibir favores, regalos o incentivos: 'No acepto incentivos, favores ni ningún otro tipo de beneficio que me ofrezcan personas interesadas en un proceso de toma de decisiones'. Dicha conducta configura además posibles delitos contra la administración pública (cohecho)."
       },
       {
         "id": "B",
-        "texto": "Rechazar categóricamente el beneficio, advertirle sobre la ilegalidad de su conducta y reportar de inmediato el hecho ante la Oficina de Control Disciplinario Interno y la Fiscalía."
+        "texto": "Rechazar categóricamente el beneficio, advertirle sobre la ilegalidad de su conducta y reportar de inmediato el hecho ante la Oficina de Control Disciplinario Interno y la Fiscalía.",
+        "explicacion": "Correcta. El Código de Integridad prohíbe tajantemente recibir favores, regalos o incentivos: 'No acepto incentivos, favores ni ningún otro tipo de beneficio que me ofrezcan personas interesadas en un proceso de toma de decisiones'. Dicha conducta configura además posibles delitos contra la administración pública (cohecho)."
       },
       {
         "id": "C",
-        "texto": "Guardar silencio y recibir el obsequio a nombre de todo el grupo de trabajo."
+        "texto": "Guardar silencio y recibir el obsequio a nombre de todo el grupo de trabajo.",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: El Código de Integridad prohíbe tajantemente recibir favores, regalos o incentivos: 'No acepto incentivos, favores ni ningún otro tipo de beneficio que me ofrezcan personas interesadas en un proceso de toma de decisiones'. Dicha conducta configura además posibles delitos contra la administración pública (cohecho)."
       }
     ],
     "respuestaCorrecta": "B",
@@ -4279,15 +4348,18 @@ const QUESTION_BANK_GESTOR_CI = [
     "opciones": [
       {
         "id": "A",
-        "texto": "Burlarse del nuevo funcionario y excluirlo de las futuras reuniones de trabajo."
+        "texto": "Burlarse del nuevo funcionario y excluirlo de las futuras reuniones de trabajo.",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: El valor del RESPETO establece: 'Reconozco, valoro y trato de manera digna a todas las personas... Abro la ventana del diálogo y la comprensión, a pesar de que los demás tengan perspectivas y opiniones distintas a las mías'."
       },
       {
         "id": "B",
-        "texto": "Escuchar con atención y apertura los argumentos planteados, debatiendo sobre el mérito técnico de la idea con consideración y cortesía, sin importar la antigüedad del interlocutor."
+        "texto": "Escuchar con atención y apertura los argumentos planteados, debatiendo sobre el mérito técnico de la idea con consideración y cortesía, sin importar la antigüedad del interlocutor.",
+        "explicacion": "Correcta. El valor del RESPETO establece: 'Reconozco, valoro y trato de manera digna a todas las personas... Abro la ventana del diálogo y la comprensión, a pesar de que los demás tengan perspectivas y opiniones distintas a las mías'."
       },
       {
         "id": "C",
-        "texto": "Exigirle que guarde silencio hasta que cumpla al menos 5 años de servicio en la entidad."
+        "texto": "Exigirle que guarde silencio hasta que cumpla al menos 5 años de servicio en la entidad.",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: El valor del RESPETO establece: 'Reconozco, valoro y trato de manera digna a todas las personas... Abro la ventana del diálogo y la comprensión, a pesar de que los demás tengan perspectivas y opiniones distintas a las mías'."
       }
     ],
     "respuestaCorrecta": "B",
@@ -4309,15 +4381,18 @@ const QUESTION_BANK_GESTOR_CI = [
     "opciones": [
       {
         "id": "A",
-        "texto": "Cerrar inmediatamente las ventanillas en punto de las 5:00 p.m. y marcharse ignorando la contingencia ciudadana."
+        "texto": "Cerrar inmediatamente las ventanillas en punto de las 5:00 p.m. y marcharse ignorando la contingencia ciudadana.",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: El valor del COMPROMISO exige: 'Soy consciente de la importancia de mi rol como servidor público y estoy en disposición permanente para comprender y resolver las necesidades de las personas con las que me relaciono en mis labores'."
       },
       {
         "id": "B",
-        "texto": "Asumir con empatía y sentido de servicio la situación, coordinar con la jefatura la recepción manual o radicación de contingencia y atender a los ciudadanos presentes para evitarles sanciones injustas."
+        "texto": "Asumir con empatía y sentido de servicio la situación, coordinar con la jefatura la recepción manual o radicación de contingencia y atender a los ciudadanos presentes para evitarles sanciones injustas.",
+        "explicacion": "Correcta. El valor del COMPROMISO exige: 'Soy consciente de la importancia de mi rol como servidor público y estoy en disposición permanente para comprender y resolver las necesidades de las personas con las que me relaciono en mis labores'."
       },
       {
         "id": "C",
-        "texto": "Apagar las luces de la sala de espera para presionar la salida de los usuarios."
+        "texto": "Apagar las luces de la sala de espera para presionar la salida de los usuarios.",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: El valor del COMPROMISO exige: 'Soy consciente de la importancia de mi rol como servidor público y estoy en disposición permanente para comprender y resolver las necesidades de las personas con las que me relaciono en mis labores'."
       }
     ],
     "respuestaCorrecta": "B",
@@ -4339,15 +4414,18 @@ const QUESTION_BANK_GESTOR_CI = [
     "opciones": [
       {
         "id": "A",
-        "texto": "Guardar silencio para no ser sancionado disciplinariamente por el descuido."
+        "texto": "Guardar silencio para no ser sancionado disciplinariamente por el descuido.",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: El valor de la DILIGENCIA impone: 'Uso responsablemente los recursos informáticos y protejo la información a mi cargo'. Ante un incidente de seguridad, actuar con celeridad y reporte transparente es un imperativo ético indispensable para mitigar riesgos sobre la reserva legal."
       },
       {
         "id": "B",
-        "texto": "Reportar de inmediato la inconsistencia al oficial de seguridad de la información y a su jefe inmediato, solicitando el cambio urgente de credenciales y auditoría de accesos."
+        "texto": "Reportar de inmediato la inconsistencia al oficial de seguridad de la información y a su jefe inmediato, solicitando el cambio urgente de credenciales y auditoría de accesos.",
+        "explicacion": "Correcta. El valor de la DILIGENCIA impone: 'Uso responsablemente los recursos informáticos y protejo la información a mi cargo'. Ante un incidente de seguridad, actuar con celeridad y reporte transparente es un imperativo ético indispensable para mitigar riesgos sobre la reserva legal."
       },
       {
         "id": "C",
-        "texto": "Borrar el historial de navegación para fingir que la máquina estuvo apagada."
+        "texto": "Borrar el historial de navegación para fingir que la máquina estuvo apagada.",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: El valor de la DILIGENCIA impone: 'Uso responsablemente los recursos informáticos y protejo la información a mi cargo'. Ante un incidente de seguridad, actuar con celeridad y reporte transparente es un imperativo ético indispensable para mitigar riesgos sobre la reserva legal."
       }
     ],
     "respuestaCorrecta": "B",
@@ -4369,15 +4447,18 @@ const QUESTION_BANK_GESTOR_CI = [
     "opciones": [
       {
         "id": "A",
-        "texto": "Aprobarle la solicitud por tratarse de un lazo familiar sagrado."
+        "texto": "Aprobarle la solicitud por tratarse de un lazo familiar sagrado.",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: El valor de la JUSTICIA dispone: 'Actúo con imparcialidad garantizando los derechos de las personas, con equidad, igualdad y sin discriminación'. El conflicto de interés derivado del parentesco hasta el cuarto grado de consanguinidad obliga al funcionario a manifestar su impedimento legal."
       },
       {
         "id": "B",
-        "texto": "Declararse impedido de inmediato conforme al Código de Procedimiento Administrativo y de lo Contencioso Administrativo (CPACA), remitiendo el expediente a su superior para que asigne otro funcionario."
+        "texto": "Declararse impedido de inmediato conforme al Código de Procedimiento Administrativo y de lo Contencioso Administrativo (CPACA), remitiendo el expediente a su superior para que asigne otro funcionario.",
+        "explicacion": "Correcta. El valor de la JUSTICIA dispone: 'Actúo con imparcialidad garantizando los derechos de las personas, con equidad, igualdad y sin discriminación'. El conflicto de interés derivado del parentesco hasta el cuarto grado de consanguinidad obliga al funcionario a manifestar su impedimento legal."
       },
       {
         "id": "C",
-        "texto": "Archivar el expediente sin auto ni justificación."
+        "texto": "Archivar el expediente sin auto ni justificación.",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: El valor de la JUSTICIA dispone: 'Actúo con imparcialidad garantizando los derechos de las personas, con equidad, igualdad y sin discriminación'. El conflicto de interés derivado del parentesco hasta el cuarto grado de consanguinidad obliga al funcionario a manifestar su impedimento legal."
       }
     ],
     "respuestaCorrecta": "B",
@@ -4399,15 +4480,18 @@ const QUESTION_BANK_GESTOR_CI = [
     "opciones": [
       {
         "id": "A",
-        "texto": "Es una práctica admisible siempre que el funcionario no descuide su horario de trabajo."
+        "texto": "Es una práctica admisible siempre que el funcionario no descuide su horario de trabajo.",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: El Código de Integridad es taxativo: 'No uso recursos públicos para fines personales relacionados con mi familia, mis estudios y mis pasatiempos (esto incluye el tiempo laboral, elementos y bienes asignados)'. Dicho acto constituye falta disciplinaria gravísima."
       },
       {
         "id": "B",
-        "texto": "Es una infracción grave al deber de honestidad y diligencia, pues los recursos públicos no deben destinarse a fines particulares o familiares, acarreando responsabilidad disciplinaria y fiscal."
+        "texto": "Es una infracción grave al deber de honestidad y diligencia, pues los recursos públicos no deben destinarse a fines particulares o familiares, acarreando responsabilidad disciplinaria y fiscal.",
+        "explicacion": "Correcta. El Código de Integridad es taxativo: 'No uso recursos públicos para fines personales relacionados con mi familia, mis estudios y mis pasatiempos (esto incluye el tiempo laboral, elementos y bienes asignados)'. Dicho acto constituye falta disciplinaria gravísima."
       },
       {
         "id": "C",
-        "texto": "Debe autorizarse formalmente por la Comisión de Personal para fomentar el emprendimiento familiar."
+        "texto": "Debe autorizarse formalmente por la Comisión de Personal para fomentar el emprendimiento familiar.",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: El Código de Integridad es taxativo: 'No uso recursos públicos para fines personales relacionados con mi familia, mis estudios y mis pasatiempos (esto incluye el tiempo laboral, elementos y bienes asignados)'. Dicho acto constituye falta disciplinaria gravísima."
       }
     ],
     "respuestaCorrecta": "B",
@@ -4429,15 +4513,18 @@ const QUESTION_BANK_GESTOR_CI = [
     "opciones": [
       {
         "id": "A",
-        "texto": "El nivel preconvencional: obedecer ciegamente la directiva únicamente para evitar castigos o sanciones de sus superiores."
+        "texto": "El nivel preconvencional: obedecer ciegamente la directiva únicamente para evitar castigos o sanciones de sus superiores.",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: Las pruebas de integridad de la CNSC evalúan el razonamiento moral según la escala de Kohlberg. El nivel posconvencional (el más alto y deseable en servidores públicos) guía el comportamiento mediante principios éticos universales, el deber constitucional y la primacía del bien común por encima de presiones coyunturales o intereses particulares."
       },
       {
         "id": "B",
-        "texto": "El nivel convencional: seguir la costumbre mayoritaria del grupo sin cuestionar la legalidad de la orden."
+        "texto": "El nivel convencional: seguir la costumbre mayoritaria del grupo sin cuestionar la legalidad de la orden.",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: Las pruebas de integridad de la CNSC evalúan el razonamiento moral según la escala de Kohlberg. El nivel posconvencional (el más alto y deseable en servidores públicos) guía el comportamiento mediante principios éticos universales, el deber constitucional y la primacía del bien común por encima de presiones coyunturales o intereses particulares."
       },
       {
         "id": "C",
-        "texto": "El nivel posconvencional: defender los principios constitucionales de igualdad, legalidad y moralidad pública, haciendo prevalecer el interés general y el mandato imperativo de la ley sobre directrices arbitrarias."
+        "texto": "El nivel posconvencional: defender los principios constitucionales de igualdad, legalidad y moralidad pública, haciendo prevalecer el interés general y el mandato imperativo de la ley sobre directrices arbitrarias.",
+        "explicacion": "Correcta. Las pruebas de integridad de la CNSC evalúan el razonamiento moral según la escala de Kohlberg. El nivel posconvencional (el más alto y deseable en servidores públicos) guía el comportamiento mediante principios éticos universales, el deber constitucional y la primacía del bien común por encima de presiones coyunturales o intereses particulares."
       }
     ],
     "respuestaCorrecta": "C",
@@ -4459,15 +4546,18 @@ const QUESTION_BANK_GESTOR_CI = [
     "opciones": [
       {
         "id": "A",
-        "texto": "Negar la información sin motivación legal inventando una causal inexistente de reserva de seguridad nacional."
+        "texto": "Negar la información sin motivación legal inventando una causal inexistente de reserva de seguridad nacional.",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: El Código de Integridad establece: 'Facilito el acceso a la información pública, completa, veraz, oportuna y comprensible'. Salvo las excepciones taxativas de ley (reserva tributaria individual del Art. 583 E.T.), la información institucional sobre gestión y metas es pública por mandato de la Ley 1712 de 2014."
       },
       {
         "id": "B",
-        "texto": "Garantizar la entrega oportuna y completa de la información pública requerida, toda vez que los informes de gestión no están amparados por reserva legal tributaria y rige el principio de máxima divulgación."
+        "texto": "Garantizar la entrega oportuna y completa de la información pública requerida, toda vez que los informes de gestión no están amparados por reserva legal tributaria y rige el principio de máxima divulgación.",
+        "explicacion": "Correcta. El Código de Integridad establece: 'Facilito el acceso a la información pública, completa, veraz, oportuna y comprensible'. Salvo las excepciones taxativas de ley (reserva tributaria individual del Art. 583 E.T.), la información institucional sobre gestión y metas es pública por mandato de la Ley 1712 de 2014."
       },
       {
         "id": "C",
-        "texto": "Cobrar una suma exorbitante por cada copia para desmotivar al peticionario."
+        "texto": "Cobrar una suma exorbitante por cada copia para desmotivar al peticionario.",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: El Código de Integridad establece: 'Facilito el acceso a la información pública, completa, veraz, oportuna y comprensible'. Salvo las excepciones taxativas de ley (reserva tributaria individual del Art. 583 E.T.), la información institucional sobre gestión y metas es pública por mandato de la Ley 1712 de 2014."
       }
     ],
     "respuestaCorrecta": "B",
@@ -4489,15 +4579,18 @@ const QUESTION_BANK_GESTOR_CI = [
     "opciones": [
       {
         "id": "A",
-        "texto": "Hacerse el de la vista gorda porque no es su función fiscalizar a sus colegas y no desea ganarse enemigos."
+        "texto": "Hacerse el de la vista gorda porque no es su función fiscalizar a sus colegas y no desea ganarse enemigos.",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: El Código de Integridad del Servicio Público ordena de manera perentoria: 'Denuncio las faltas, delitos o violación de derechos de los que tengo conocimiento en el ejercicio de mi cargo, siempre'. La omisión de denuncia constituye además falta disciplinaria y penal (prevaricato por omisión)."
       },
       {
         "id": "B",
-        "texto": "Denunciar de manera inmediata, reservada y documentada los hechos ante la Oficina de Control Disciplinario Interno y la Dirección de Fiscalización, aportando las evidencias encontradas."
+        "texto": "Denunciar de manera inmediata, reservada y documentada los hechos ante la Oficina de Control Disciplinario Interno y la Dirección de Fiscalización, aportando las evidencias encontradas.",
+        "explicacion": "Correcta. El Código de Integridad del Servicio Público ordena de manera perentoria: 'Denuncio las faltas, delitos o violación de derechos de los que tengo conocimiento en el ejercicio de mi cargo, siempre'. La omisión de denuncia constituye además falta disciplinaria y penal (prevaricato por omisión)."
       },
       {
         "id": "C",
-        "texto": "Pedirle al compañero una parte de las ganancias para no delatarlo."
+        "texto": "Pedirle al compañero una parte de las ganancias para no delatarlo.",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: El Código de Integridad del Servicio Público ordena de manera perentoria: 'Denuncio las faltas, delitos o violación de derechos de los que tengo conocimiento en el ejercicio de mi cargo, siempre'. La omisión de denuncia constituye además falta disciplinaria y penal (prevaricato por omisión)."
       }
     ],
     "respuestaCorrecta": "B",
@@ -4509,10 +4602,6 @@ const QUESTION_BANK_GESTOR_CI = [
     "nivel": "Profesional"
   }
 ];
-
-if (typeof window !== "undefined") {
-  window.QUESTION_BANK_GESTOR_CI = QUESTION_BANK_GESTOR_CI;
-}
 
 if (typeof module !== "undefined" && module.exports) {
   module.exports = { QUESTION_BANK_GESTOR_CI };

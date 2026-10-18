@@ -1393,7 +1393,7 @@ async function injectInPageQuestionModal(tabId, qData) {
                 <span>Opción ${opt.id} ${isThisCorrect ? '— CLAVE OFICIAL CNSC/DIAN' : '— DISTRACTOR'}</span>
               </div>
               <div class="breakdown-body">
-                ${opt.explicacion}
+                ${opt.explicacion || (isThisCorrect ? (q.justificacion || "Opción correcta conforme a la norma.") : (q.justificacion ? `Distractor descartado: ${q.justificacion}` : "Opción incorrecta según los criterios de la prueba."))}
               </div>
             </div>
           `;

@@ -3363,7 +3363,6 @@ const QUESTION_BANK_ANALISTA = [
     "norma": "Ley 1437 de 2011 (Art. 5, num. 2) y Ley 1712 de 2014 (Arts. 3, 7 y 8)",
     "citaNormativa": "«Toda persona tiene derecho a conocer el estado de cualquier actuación o trámite... Los sujetos obligados deben facilitar el ejercicio del derecho de acceso a la información, excluyendo exigencias o requisitos que puedan obstruirlo o impedirlo.» (Guía de Orientación al Aspirante DIAN 2676, FUAA - CNSC, Pág. 16-17)."
   },
-  // --- CASOS MISIONALES OFICIALES DIAN (Aduanas, Cambiario y Procedimiento Tributario - Nivel Técnico) ---
   {
     "id": "tec_dian_aduanas_pjs_01",
     "nivel": "Técnico",
@@ -4564,7 +4563,6 @@ const QUESTION_BANK_ANALISTA = [
     "norma": "Estatuto Tributario, Arts. 26 y 107",
     "citaNormativa": "«De la renta bruta se deducen los gastos realizados durante el año gravable en el desarrollo de cualquier actividad productora de renta, siempre que tengan relación de causalidad con las actividades productoras de renta y que sean necesarias y proporcionadas.» (Estatuto Tributario, Art. 107)."
   },
-  // --- CASOS TRANSVERSALES CNSC FASE 2 (Gestión Pública, Contratación, Constitución y Comportamentales - Nivel Técnico) ---
   {
     "id": "tec_dian_gp_pjs_01",
     "nivel": "Técnico",
@@ -5015,7 +5013,6 @@ const QUESTION_BANK_ANALISTA = [
     "norma": "Decreto 815 de 2018 y Manual de Competencias Laborales DIAN",
     "citaNormativa": "«Trabajo en equipo y colaboración: Trabajar de forma coordinada y constructiva con los demás para alcanzar metas conjuntas, propiciando un ambiente de respeto y sinergia laboral.» (Decreto 815 de 2018)."
   },
-  // --- CASOS RAZONAMIENTO CUANTITATIVO, LÓGICO Y VERBAL FASE 3 (Competencias Básicas CNSC - Nivel Técnico) ---
   {
     "id": "tec_dian_raz_log_01",
     "nivel": "Técnico",
@@ -5466,7 +5463,6 @@ const QUESTION_BANK_ANALISTA = [
     "norma": "Competencias Básicas CNSC - Silogismos Lógicos y Razonamiento Deductivo",
     "citaNormativa": "«En el razonamiento deductivo silogístico, la conclusión se deriva necesariamente de la relación lógica universal entre la premisa mayor y la premisa menor.»"
   },
-  // --- CASOS COMPORTAMENTALES OFICIALES DIAN, POLÍTICA DE SERVICIO Y CÓDIGO DE INTEGRIDAD (Fase 4 - Nivel Técnico) ---
   {
     "id": "tec_dian_comp_ser_01",
     "nivel": "Técnico",
@@ -5917,7 +5913,6 @@ const QUESTION_BANK_ANALISTA = [
     "norma": "Estatuto Tributario, Art. 583 (Reserva de la Información Tributaria) y Código de Ética DIAN",
     "citaNormativa": "«La información tributaria respecto de las bases gravables y la determinación privada de los impuestos que figuren en las declaraciones tributarias, tendrá el carácter de información reservada.» (Estatuto Tributario, Art. 583)."
   },
-  // --- CASOS MISIONALES ESPECIALIZADOS FASE 5 (Fiscalización, Cobro Coactivo, Aduanas Dec 0920/2023 y Cambiario DCIN-83 - Nivel Técnico) ---
   {
     "id": "tec_dian_mis_trib_01",
     "nivel": "Técnico",
@@ -6518,7 +6513,6 @@ const QUESTION_BANK_ANALISTA = [
     "norma": "Resolución Externa 1 de 2018 (Art. 9) y Decreto Ley 2245 de 2011",
     "citaNormativa": "«Los residentes que efectúen operaciones de cambio deberán conservar los documentos que acrediten el cumplimiento de las obligaciones cambiarias durante el término de caducidad de la acción sancionatoria (5 años).» (Régimen Cambiario DIAN / BanRep)."
   },
-  // --- CASOS COMPETENCIAS BÁSICAS ORGANIZACIONALES FASE 6 (Disciplinario Ley 1952, Contratación Ley 80, MIPG/MECI, Archivo Ley 594, Antitrámites - Nivel Técnico) ---
   {
     "id": "tec_dian_cbo_disc_01",
     "nivel": "Técnico",
@@ -7119,7 +7113,6 @@ const QUESTION_BANK_ANALISTA = [
     "norma": "Ley 1474 de 2011, Art. 73 (Plan Anticorrupción y de Atención al Ciudadano)",
     "citaNormativa": "«Cada entidad del orden nacional, departamental y municipal deberá elaborar anualmente una estrategia de lucha contra la corrupción y de atención al ciudadano que contemplará el mapa de riesgos de corrupción, la racionalización de trámites y los mecanismos de rendición de cuentas y transparencia.» (Ley 1474 de 2011, Art. 73)."
   },
-  // --- CASOS ACUERDO DE CONVOCATORIA CNSC Y SISTEMA ESPECÍFICO DE CARRERA DIAN (Fase 7 - Nivel Técnico) ---
   {
     "id": "tec_dian_conv_reg_01",
     "nivel": "Técnico",
@@ -7570,7 +7563,6 @@ const QUESTION_BANK_ANALISTA = [
     "norma": "Ley 909 de 2004, Art. 31 Numeral 4 y Acuerdos de Convocatoria CNSC",
     "citaNormativa": "«Las listas de elegibles tendrán una vigencia de dos (2) años. Con base en ellas y en estricto orden de mérito, las entidades proveerán las vacantes definitivas que se generen en los mismos empleos.» (Ley 909 de 2004, Art. 31)."
   },
-  // --- CASOS GUÍAS, ESTRUCTURA ORGÁNICA DIAN, ZONAS FRANCAS, PETI Y PQSR (Fase 8 - Nivel Técnico) ---
   {
     "id": "tec_dian_guias_org_01",
     "perfil": "ANALISTA_IV",
@@ -7582,15 +7574,18 @@ const QUESTION_BANK_ANALISTA = [
     "opciones": [
       {
         "id": "A",
-        "texto": "Sostener que la DIAN es una Unidad Administrativa Especial del orden nacional, de carácter técnico y adscrita al Ministerio de Hacienda, creada por la fusión de la DIN y la DAN con competencia integral sobre tributos del orden nacional, aduaneros y régimen cambiario."
+        "texto": "Sostener que la DIAN es una Unidad Administrativa Especial del orden nacional, de carácter técnico y adscrita al Ministerio de Hacienda, creada por la fusión de la DIN y la DAN con competencia integral sobre tributos del orden nacional, aduaneros y régimen cambiario.",
+        "explicacion": "Correcta. La DIAN fue creada como Unidad Administrativa Especial (UAE) mediante el Decreto 2117 de 1992, al fusionar el 1º de junio de 1993 la Dirección de Impuestos Nacionales (DIN) y la Dirección de Aduanas Nacionales (DAN), consolidada orgánicamente en el Decreto 1071 de 1999 y Decreto 4048 de 2008, con personería jurídica, autonomía y adscripción al Ministerio de Hacienda, ejerciendo la administración y control unitario de las obligaciones tributarias, aduaneras y cambiarias."
       },
       {
         "id": "B",
-        "texto": "Argumentar que la DIAN es un establecimiento público descentralizado territorialmente con autonomía judicial plena e independencia jerárquica total respecto del Ministerio de Hacienda y Crédito Público."
+        "texto": "Argumentar que la DIAN es un establecimiento público descentralizado territorialmente con autonomía judicial plena e independencia jerárquica total respecto del Ministerio de Hacienda y Crédito Público.",
+        "explicacion": "Incorrecta. La DIAN es una Unidad Administrativa Especial (UAE) del orden nacional, con personería jurídica y autonomía técnica, adscrita al Ministerio de Hacienda."
       },
       {
         "id": "C",
-        "texto": "Reconocer que la DIAN solo tiene competencia tributaria interna, debiendo remitir el componente arancelario y aduanero al Ministerio de Comercio, Industria y Turismo para su liquidación final."
+        "texto": "Reconocer que la DIAN solo tiene competencia tributaria interna, debiendo remitir el componente arancelario y aduanero al Ministerio de Comercio, Industria y Turismo para su liquidación final.",
+        "explicacion": "Incorrecta. La DIAN concentra de forma unitaria la competencia tributaria, aduanera y cambiaria, sin fragmentación hacia otros ministerios."
       }
     ],
     "respuestaCorrecta": "A",
@@ -7612,15 +7607,18 @@ const QUESTION_BANK_ANALISTA = [
     "opciones": [
       {
         "id": "A",
-        "texto": "Asumir la sustanciación y trámite de la devolución en la Dirección Seccional Delegada por haber operado la radicación física dentro de su jurisdicción geográfica."
+        "texto": "Asumir la sustanciación y trámite de la devolución en la Dirección Seccional Delegada por haber operado la radicación física dentro de su jurisdicción geográfica.",
+        "explicacion": "Incorrecta. Carece de competencia material y funcional: los Grandes Contribuyentes están asignados por resolución expresa a la Dirección Seccional de Grandes Contribuyentes."
       },
       {
         "id": "B",
-        "texto": "Remitir el expediente inmediatamente por competencia a la Dirección Seccional de Grandes Contribuyentes de Bogotá, notificando al contribuyente conforme al principio de competencia territorial y funcional de la DIAN."
+        "texto": "Remitir el expediente inmediatamente por competencia a la Dirección Seccional de Grandes Contribuyentes de Bogotá, notificando al contribuyente conforme al principio de competencia territorial y funcional de la DIAN.",
+        "explicacion": "Correcta. Conforme a los Decretos 4048 de 2008 y 1742 de 2020, la Dirección Seccional de Grandes Contribuyentes tiene competencia privativa y preferente para la administración, fiscalización, liquidación, discusión y cobro de los tributos de los sujetos calificados en dicha categoría, por lo que cualquier actuación radicada en otra seccional debe remitirse a la dependencia competente sin vulnerar el debido proceso."
       },
       {
         "id": "C",
-        "texto": "Rechazar de plano y definitivamente la solicitud de devolución mediante auto sancionatorio sin posibilidad de remitirla a la seccional competente."
+        "texto": "Rechazar de plano y definitivamente la solicitud de devolución mediante auto sancionatorio sin posibilidad de remitirla a la seccional competente.",
+        "explicacion": "Incorrecta. Vulnera el debido proceso administrativo; cuando una petición se radica ante una dependencia sin competencia interna, debe remitirse a la dependencia competente."
       }
     ],
     "respuestaCorrecta": "B",
@@ -7642,15 +7640,18 @@ const QUESTION_BANK_ANALISTA = [
     "opciones": [
       {
         "id": "A",
-        "texto": "Exigir el pago previo de todos los gravámenes arancelarios porque la zona franca hace parte física del territorio colombiano y genera tributos en el puerto de arribo."
+        "texto": "Exigir el pago previo de todos los gravámenes arancelarios porque la zona franca hace parte física del territorio colombiano y genera tributos en el puerto de arribo.",
+        "explicacion": "Incorrecta. El Decreto 2147 de 2016 establece que la introducción de mercancías del exterior a Zona Franca no constituye importación y no genera tributos aduaneros en esa etapa."
       },
       {
         "id": "B",
-        "texto": "Autorizar el ingreso a la Zona Franca al amparo del principio de extraterritorialidad aduanera, mediante el Formulario de Movimiento de Mercancías (FMM) autorizado por el Usuario Operador, sin que se causen ni liquiden tributos aduaneros en esta etapa."
+        "texto": "Autorizar el ingreso a la Zona Franca al amparo del principio de extraterritorialidad aduanera, mediante el Formulario de Movimiento de Mercancías (FMM) autorizado por el Usuario Operador, sin que se causen ni liquiden tributos aduaneros en esta etapa.",
+        "explicacion": "Correcta. El Decreto 2147 de 2016 consagra el principio de extraterritorialidad aduanera de las zonas francas: la introducción de bienes procedentes del exterior por parte de un usuario industrial o comercial calificado no constituye importación definitiva ni causa tributos aduaneros; la operación se ampara en el documento de transporte consignado a la zona franca y el Formulario de Movimiento de Mercancías (FMM) debidamente aprobado por el Usuario Operador."
       },
       {
         "id": "C",
-        "texto": "Obligar a transformar la planta generadora en chatarra antes del ingreso si no cuenta con registro de importación reembolsable del Banco de la República."
+        "texto": "Obligar a transformar la planta generadora en chatarra antes del ingreso si no cuenta con registro de importación reembolsable del Banco de la República.",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: El Decreto 2147 de 2016 consagra el principio de extraterritorialidad aduanera de las zonas francas: la introducción de bienes procedentes del exterior por parte de un usuario industrial o comercial calificado no constituye importación definitiva ni causa tributos aduaneros; la operación se ampara en el documento de transporte consignado a la zona franca y el Formulario de Movimiento de Mercancías (FMM) debidamente aprobado por el Usuario Operador."
       }
     ],
     "respuestaCorrecta": "B",
@@ -7672,15 +7673,18 @@ const QUESTION_BANK_ANALISTA = [
     "opciones": [
       {
         "id": "A",
-        "texto": "Liquidar el arancel e IVA sobre el 100% del valor total en aduana del producto terminado, sin discriminar el valor agregado nacional."
+        "texto": "Liquidar el arancel e IVA sobre el 100% del valor total en aduana del producto terminado, sin discriminar el valor agregado nacional.",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: Según el Decreto 2147 de 2016 y la normativa aduanera nacional, cuando un bien procesado en zona franca se introduce al TAN, la base gravable para liquidar el arancel aduanero corresponde exclusivamente al valor en aduana de las materias primas e insumos extranjeros incorporados en su elaboración, acreditados debidamente en el Certificado de Integración expedido por el Usuario Operador, aplicando la subpartida arancelaria del producto final."
       },
       {
         "id": "B",
-        "texto": "Liquidar el arancel aduanero únicamente sobre el valor CIF de las materias primas e insumos extranjeros incorporados en el bien final, con base en el Certificado de Integración expedido por el Usuario Operador."
+        "texto": "Liquidar el arancel aduanero únicamente sobre el valor CIF de las materias primas e insumos extranjeros incorporados en el bien final, con base en el Certificado de Integración expedido por el Usuario Operador.",
+        "explicacion": "Correcta. Según el Decreto 2147 de 2016 y la normativa aduanera nacional, cuando un bien procesado en zona franca se introduce al TAN, la base gravable para liquidar el arancel aduanero corresponde exclusivamente al valor en aduana de las materias primas e insumos extranjeros incorporados en su elaboración, acreditados debidamente en el Certificado de Integración expedido por el Usuario Operador, aplicando la subpartida arancelaria del producto final."
       },
       {
         "id": "C",
-        "texto": "Exonerar de todo pago de arancel e IVA a la mercancía de manera indefinida por haberse producido dentro del territorio de una Zona Franca colombiana."
+        "texto": "Exonerar de todo pago de arancel e IVA a la mercancía de manera indefinida por haberse producido dentro del territorio de una Zona Franca colombiana.",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: Según el Decreto 2147 de 2016 y la normativa aduanera nacional, cuando un bien procesado en zona franca se introduce al TAN, la base gravable para liquidar el arancel aduanero corresponde exclusivamente al valor en aduana de las materias primas e insumos extranjeros incorporados en su elaboración, acreditados debidamente en el Certificado de Integración expedido por el Usuario Operador, aplicando la subpartida arancelaria del producto final."
       }
     ],
     "respuestaCorrecta": "B",
@@ -7702,15 +7706,18 @@ const QUESTION_BANK_ANALISTA = [
     "opciones": [
       {
         "id": "A",
-        "texto": "Aplicar un plazo uniforme de 15 días hábiles a todas las solicitudes sin importar su naturaleza jurídica por encontrarse en el mismo radicado."
+        "texto": "Aplicar un plazo uniforme de 15 días hábiles a todas las solicitudes sin importar su naturaleza jurídica por encontrarse en el mismo radicado.",
+        "explicacion": "Incorrecta. El procedimiento oficial PR-CAC-0043 y la Ley 1755 de 2015 fijan 10 días hábiles para peticiones de información y copias, y términos perentorios específicos según la modalidad."
       },
       {
         "id": "B",
-        "texto": "Tramitar la entrega de copias en 10 días hábiles, la queja ciudadana en 15 días hábiles y la consulta jurídica institucional en un término de hasta 30 días hábiles, informando al peticionario la debida separación de competencias."
+        "texto": "Tramitar la entrega de copias en 10 días hábiles, la queja ciudadana en 15 días hábiles y la consulta jurídica institucional en un término de hasta 30 días hábiles, informando al peticionario la debida separación de competencias.",
+        "explicacion": "Correcta. El Procedimiento PR-CAC-0043 de la DIAN y el Art. 14 de la Ley 1437 de 2015 (sustituido por la Ley 1755 de 2015) estipulan términos legales perentorios diferenciados: las peticiones de información y documentos prescriben a los diez (10) días hábiles; las peticiones de interés general, quejas y reclamos a los quince (15) días hábiles; y las consultas jurídicas sobre materias a cargo de la entidad a los treinta (30) días hábiles."
       },
       {
         "id": "C",
-        "texto": "Conceder 6 meses de espera para responder la totalidad de las solicitudes mediante una sola respuesta acumulada anual."
+        "texto": "Conceder 6 meses de espera para responder la totalidad de las solicitudes mediante una sola respuesta acumulada anual.",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: El Procedimiento PR-CAC-0043 de la DIAN y el Art. 14 de la Ley 1437 de 2015 (sustituido por la Ley 1755 de 2015) estipulan términos legales perentorios diferenciados: las peticiones de información y documentos prescriben a los diez (10) días hábiles; las peticiones de interés general, quejas y reclamos a los quince (15) días hábiles; y las consultas jurídicas sobre materias a cargo de la entidad a los treinta (30) días hábiles."
       }
     ],
     "respuestaCorrecta": "B",
@@ -7732,15 +7739,18 @@ const QUESTION_BANK_ANALISTA = [
     "opciones": [
       {
         "id": "A",
-        "texto": "Publicar los anexos y el nombre completo del denunciante en la cartelera física de la sede seccional para que el investigado ejerza contradicción inmediata."
+        "texto": "Publicar los anexos y el nombre completo del denunciante en la cartelera física de la sede seccional para que el investigado ejerza contradicción inmediata.",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: Bajo el Procedimiento PR-CAC-0043 de la DIAN, las denuncias por evasión tributaria, contrabando o infracciones aduaneras deben tramitarse bajo absoluta reserva legal de los datos del denunciante y remitirse a la Dirección de Gestión de Fiscalización (Aduanera o Tributaria) para que se incorporen en las matrices de gestión de riesgo fiscal e inicien las auditorías pertinentes."
       },
       {
         "id": "B",
-        "texto": "Clasificar la denuncia con estricta reserva de identidad, radicarla en el módulo de denuncias y remitirla inmediatamente a la Dirección de Gestión de Fiscalización para el análisis de riesgo y apertura del programa de control correspondiente."
+        "texto": "Clasificar la denuncia con estricta reserva de identidad, radicarla en el módulo de denuncias y remitirla inmediatamente a la Dirección de Gestión de Fiscalización para el análisis de riesgo y apertura del programa de control correspondiente.",
+        "explicacion": "Correcta. Bajo el Procedimiento PR-CAC-0043 de la DIAN, las denuncias por evasión tributaria, contrabando o infracciones aduaneras deben tramitarse bajo absoluta reserva legal de los datos del denunciante y remitirse a la Dirección de Gestión de Fiscalización (Aduanera o Tributaria) para que se incorporen en las matrices de gestión de riesgo fiscal e inicien las auditorías pertinentes."
       },
       {
         "id": "C",
-        "texto": "Archivar la denuncia de plano porque las denuncias fiscales deben ser formuladas exclusivamente ante la Fiscalía General de la Nación."
+        "texto": "Archivar la denuncia de plano porque las denuncias fiscales deben ser formuladas exclusivamente ante la Fiscalía General de la Nación.",
+        "explicacion": "Incorrecta. La inacción u omisión de denuncia e investigación incumple los deberes misionales y compromete la responsabilidad del servidor público."
       }
     ],
     "respuestaCorrecta": "B",
@@ -7762,15 +7772,18 @@ const QUESTION_BANK_ANALISTA = [
     "opciones": [
       {
         "id": "A",
-        "texto": "Aceptar el tiquete POS como soporte válido de costos y deducciones sin importar la solicitud del adquiriente ni el valor de la operación."
+        "texto": "Aceptar el tiquete POS como soporte válido de costos y deducciones sin importar la solicitud del adquiriente ni el valor de la operación.",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: El Plan Estratégico de TI (PETI), el Art. 616-1 del E.T. y la Resolución 000165 de 2023 establecen la universalización del sistema de facturación electrónica con validación previa. El tiquete POS no otorga derecho a costos ni deducciones en el impuesto sobre la renta ni impuestos descontables en IVA, y cuando el comprador solicite la factura electrónica de venta, el emisor está obligado a expedirla con transmisión inmediata y validación previa por la DIAN."
       },
       {
         "id": "B",
-        "texto": "Determinar el incumplimiento del deber formal de facturar, dado que si el adquirente exige la factura electrónica de venta, el obligado debe generarla y transmitirla con validación previa en tiempo real a la DIAN, y el tiquete POS sin validación no da derecho a costos ni deducciones en renta."
+        "texto": "Determinar el incumplimiento del deber formal de facturar, dado que si el adquirente exige la factura electrónica de venta, el obligado debe generarla y transmitirla con validación previa en tiempo real a la DIAN, y el tiquete POS sin validación no da derecho a costos ni deducciones en renta.",
+        "explicacion": "Correcta. El Plan Estratégico de TI (PETI), el Art. 616-1 del E.T. y la Resolución 000165 de 2023 establecen la universalización del sistema de facturación electrónica con validación previa. El tiquete POS no otorga derecho a costos ni deducciones en el impuesto sobre la renta ni impuestos descontables en IVA, y cuando el comprador solicite la factura electrónica de venta, el emisor está obligado a expedirla con transmisión inmediata y validación previa por la DIAN."
       },
       {
         "id": "C",
-        "texto": "Sancionar al comprador que solicitó la factura por entorpecer la actividad comercial del establecimiento."
+        "texto": "Sancionar al comprador que solicitó la factura por entorpecer la actividad comercial del establecimiento.",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: El Plan Estratégico de TI (PETI), el Art. 616-1 del E.T. y la Resolución 000165 de 2023 establecen la universalización del sistema de facturación electrónica con validación previa. El tiquete POS no otorga derecho a costos ni deducciones en el impuesto sobre la renta ni impuestos descontables en IVA, y cuando el comprador solicite la factura electrónica de venta, el emisor está obligado a expedirla con transmisión inmediata y validación previa por la DIAN."
       }
     ],
     "respuestaCorrecta": "B",
@@ -7792,15 +7805,18 @@ const QUESTION_BANK_ANALISTA = [
     "opciones": [
       {
         "id": "A",
-        "texto": "Descartar los reportes automáticos por provenir de algoritmos computacionales y limitarse a esperar una denuncia física en papel."
+        "texto": "Descartar los reportes automáticos por provenir de algoritmos computacionales y limitarse a esperar una denuncia física en papel.",
+        "explicacion": "Incorrecta. La inacción u omisión de denuncia e investigación incumple los deberes misionales y compromete la responsabilidad del servidor público."
       },
       {
         "id": "B",
-        "texto": "Incorporar las alertas y perfiles de riesgo del MGR (Modelo de Gestión de Riesgo) como insumo para proferir emplazamientos previos por inexactitud o requerimientos ordinarios de información, sustentados en la facultad del Art. 684-4 del Estatuto Tributario."
+        "texto": "Incorporar las alertas y perfiles de riesgo del MGR (Modelo de Gestión de Riesgo) como insumo para proferir emplazamientos previos por inexactitud o requerimientos ordinarios de información, sustentados en la facultad del Art. 684-4 del Estatuto Tributario.",
+        "explicacion": "Correcta. El Art. 684-4 del Estatuto Tributario y el eje de Analítica del PETI autorizan a la DIAN a implementar modelos de gestión de riesgo fundamentados en cruces informáticos y analítica de datos. La información extraída permite expedir pliegos de cargos, emplazamientos o requerimientos conforme a las etapas procesales regladas, respetando el debido proceso y la contradicción."
       },
       {
         "id": "C",
-        "texto": "Clausurar inmediatamente las empresas inmobiliarias de manera indefinida sin otorgar término para responder ni practicar pliego de cargos."
+        "texto": "Clausurar inmediatamente las empresas inmobiliarias de manera indefinida sin otorgar término para responder ni practicar pliego de cargos.",
+        "explicacion": "Incorrecta. La imposición de sanciones de plano sin pliego de cargos ni traslado para descargos vulnera el artículo 29 de la Constitución Política (debido proceso)."
       }
     ],
     "respuestaCorrecta": "B",
@@ -7822,15 +7838,18 @@ const QUESTION_BANK_ANALISTA = [
     "opciones": [
       {
         "id": "A",
-        "texto": "Aprobar la propuesta porque la única razón de ser de la DIAN es la imposición coactiva de multas y sanciones a la ciudadanía."
+        "texto": "Aprobar la propuesta porque la única razón de ser de la DIAN es la imposición coactiva de multas y sanciones a la ciudadanía.",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: El Plan Estratégico Institucional de la DIAN y el Decreto 4048 de 2008 establecen que la misión institucional combina de manera armónica dos pilares: facilitar el cumplimiento voluntario de las obligaciones tributarias, aduaneras y cambiarias, y al mismo tiempo combatir con rigor la evasión, el contrabando y la corrupción, asegurando la sostenibilidad fiscal de la Nación."
       },
       {
         "id": "B",
-        "texto": "Alinear los objetivos equilibrando la facilitación del cumplimiento voluntario de las obligaciones con la lucha frontal contra el fraude y el contrabando, en concordancia con la misión de garantizar la sostenibilidad fiscal del Estado y facilitar el comercio legítimo."
+        "texto": "Alinear los objetivos equilibrando la facilitación del cumplimiento voluntario de las obligaciones con la lucha frontal contra el fraude y el contrabando, en concordancia con la misión de garantizar la sostenibilidad fiscal del Estado y facilitar el comercio legítimo.",
+        "explicacion": "Correcta. El Plan Estratégico Institucional de la DIAN y el Decreto 4048 de 2008 establecen que la misión institucional combina de manera armónica dos pilares: facilitar el cumplimiento voluntario de las obligaciones tributarias, aduaneras y cambiarias, y al mismo tiempo combatir con rigor la evasión, el contrabando y la corrupción, asegurando la sostenibilidad fiscal de la Nación."
       },
       {
         "id": "C",
-        "texto": "Suspender todo tipo de control aduanero y tributario para no generar inconformidades entre los comerciantes de la región."
+        "texto": "Suspender todo tipo de control aduanero y tributario para no generar inconformidades entre los comerciantes de la región.",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: El Plan Estratégico Institucional de la DIAN y el Decreto 4048 de 2008 establecen que la misión institucional combina de manera armónica dos pilares: facilitar el cumplimiento voluntario de las obligaciones tributarias, aduaneras y cambiarias, y al mismo tiempo combatir con rigor la evasión, el contrabando y la corrupción, asegurando la sostenibilidad fiscal de la Nación."
       }
     ],
     "respuestaCorrecta": "B",
@@ -7852,15 +7871,18 @@ const QUESTION_BANK_ANALISTA = [
     "opciones": [
       {
         "id": "A",
-        "texto": "Aceptar la orden del jefe inmediato sin objeción, puesto que los planes de bienestar son facultativos y pueden cancelarse verbalmente por cualquier superior."
+        "texto": "Aceptar la orden del jefe inmediato sin objeción, puesto que los planes de bienestar son facultativos y pueden cancelarse verbalmente por cualquier superior.",
+        "explicacion": "Incorrecta. Los planes de capacitación y bienestar son mandatos legales del Sistema Específico de Carrera DIAN y del Decreto Ley 1567 de 1998."
       },
       {
         "id": "B",
-        "texto": "Recordar que los programas de capacitación y bienestar laboral son mandatos legales del Sistema Específico de Carrera DIAN y del Decreto Ley 1567 de 1998, diseñados para garantizar el desarrollo integral, el clima laboral óptimo y la salud de los servidores públicos."
+        "texto": "Recordar que los programas de capacitación y bienestar laboral son mandatos legales del Sistema Específico de Carrera DIAN y del Decreto Ley 1567 de 1998, diseñados para garantizar el desarrollo integral, el clima laboral óptimo y la salud de los servidores públicos.",
+        "explicacion": "Correcta. El Plan Estratégico de Talento Humano y Bien-Estar DIAN 2023 se fundamenta en el Decreto Ley 71 de 2020 y el Decreto Ley 1567 de 1998, los cuales obligan a las entidades públicas a formular e implementar programas de estímulos, bienestar social y capacitación como parte de los derechos de los servidores públicos para fomentar la calidad de vida laboral y el desempeño institucional."
       },
       {
         "id": "C",
-        "texto": "Promover el abandono colectivo e indefinido de los puestos de trabajo de todos los funcionarios sin agotar los canales institucionales de concertación."
+        "texto": "Promover el abandono colectivo e indefinido de los puestos de trabajo de todos los funcionarios sin agotar los canales institucionales de concertación.",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: El Plan Estratégico de Talento Humano y Bien-Estar DIAN 2023 se fundamenta en el Decreto Ley 71 de 2020 y el Decreto Ley 1567 de 1998, los cuales obligan a las entidades públicas a formular e implementar programas de estímulos, bienestar social y capacitación como parte de los derechos de los servidores públicos para fomentar la calidad de vida laboral y el desempeño institucional."
       }
     ],
     "respuestaCorrecta": "B",
@@ -7882,15 +7904,18 @@ const QUESTION_BANK_ANALISTA = [
     "opciones": [
       {
         "id": "A",
-        "texto": "Pagar el 100% de la prima porque se trata de un derecho salarial ciego e incondicionado que no depende en ningún caso del rendimiento individual ni colectivo."
+        "texto": "Pagar el 100% de la prima porque se trata de un derecho salarial ciego e incondicionado que no depende en ningún caso del rendimiento individual ni colectivo.",
+        "explicacion": "Incorrecta. La prima de productividad del Decreto 1268 de 1999 exige expresamente el cumplimiento de metas y una calificación satisfactoria del desempeño."
       },
       {
         "id": "B",
-        "texto": "Negar el reconocimiento de la prima de productividad, dado que el Decreto 1268 de 1999 condiciona taxativamente su pago al cumplimiento de metas de gestión institucionales y a un nivel satisfactorio en la evaluación del desempeño individual."
+        "texto": "Negar el reconocimiento de la prima de productividad, dado que el Decreto 1268 de 1999 condiciona taxativamente su pago al cumplimiento de metas de gestión institucionales y a un nivel satisfactorio en la evaluación del desempeño individual.",
+        "explicacion": "Correcta. El Decreto Ley 1268 de 1999 regula el régimen salarial y prestacional de los servidores de la contribución en la DIAN. La Prima de Productividad tiene como presupuesto obligatorio el cumplimiento de las metas institucionales de recaudo y control, así como una calificación de servicios satisfactoria o sobresaliente por parte del funcionario en el periodo evaluado."
       },
       {
         "id": "C",
-        "texto": "Duplicar el pago de la prima para compensar la baja calificación obtenida por el funcionario."
+        "texto": "Duplicar el pago de la prima para compensar la baja calificación obtenida por el funcionario.",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: El Decreto Ley 1268 de 1999 regula el régimen salarial y prestacional de los servidores de la contribución en la DIAN. La Prima de Productividad tiene como presupuesto obligatorio el cumplimiento de las metas institucionales de recaudo y control, así como una calificación de servicios satisfactoria o sobresaliente por parte del funcionario en el periodo evaluado."
       }
     ],
     "respuestaCorrecta": "B",
@@ -7912,15 +7937,18 @@ const QUESTION_BANK_ANALISTA = [
     "opciones": [
       {
         "id": "A",
-        "texto": "Reemplazar al Director General de la DIAN y modificar por decreto las partidas arancelarias de la mercancía."
+        "texto": "Reemplazar al Director General de la DIAN y modificar por decreto las partidas arancelarias de la mercancía.",
+        "explicacion": "Incorrecta. La Defensoría del Contribuyente es un órgano de mediación y protección de garantías ciudadanas, sin facultades normativas ni directivas generales."
       },
       {
         "id": "B",
-        "texto": "Velar por el respeto de los derechos del contribuyente y usuario aduanero, actuando como mediador y formulando recomendaciones de trámite prioritario e investigaciones ante los entes competentes por dilación injustificada."
+        "texto": "Velar por el respeto de los derechos del contribuyente y usuario aduanero, actuando como mediador y formulando recomendaciones de trámite prioritario e investigaciones ante los entes competentes por dilación injustificada.",
+        "explicacion": "Correcta. La Defensoría del Contribuyente y del Usuario Aduanero de la DIAN (Decreto 4048 de 2008, Art. 53 y Dec. 1742 de 2020) es una dependencia especial que garantiza la debida protección y efectividad de los derechos de los usuarios y contribuyentes frente a actuaciones arbitrarias, dilaciones injustificadas o vulneraciones de garantías procedimentales en la administración tributaria y aduanera."
       },
       {
         "id": "C",
-        "texto": "Negar la atención por considerar que la Defensoría únicamente atiende litigios laborales de los empleados internos de la DIAN."
+        "texto": "Negar la atención por considerar que la Defensoría únicamente atiende litigios laborales de los empleados internos de la DIAN.",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: La Defensoría del Contribuyente y del Usuario Aduanero de la DIAN (Decreto 4048 de 2008, Art. 53 y Dec. 1742 de 2020) es una dependencia especial que garantiza la debida protección y efectividad de los derechos de los usuarios y contribuyentes frente a actuaciones arbitrarias, dilaciones injustificadas o vulneraciones de garantías procedimentales en la administración tributaria y aduanera."
       }
     ],
     "respuestaCorrecta": "B",
@@ -7942,15 +7970,18 @@ const QUESTION_BANK_ANALISTA = [
     "opciones": [
       {
         "id": "A",
-        "texto": "Apoyar la incineración para acelerar la limpieza física de las instalaciones administrativas."
+        "texto": "Apoyar la incineración para acelerar la limpieza física de las instalaciones administrativas.",
+        "explicacion": "Incorrecta. Destruir o enajenar expedientes tributarios viola la Ley 594 de 2000 (Ley General de Archivos) y la reserva legal documental."
       },
       {
         "id": "B",
-        "texto": "Frenar la destrucción de expedientes, exigiendo el cumplimiento estricto de las Tablas de Retención Documental (TRD) y las transferencias secundarias, recordando que los expedientes tributarios y aduaneros tienen reserva legal y tiempos de conservación regulados por la Ley 594 de 2000."
+        "texto": "Frenar la destrucción de expedientes, exigiendo el cumplimiento estricto de las Tablas de Retención Documental (TRD) y las transferencias secundarias, recordando que los expedientes tributarios y aduaneros tienen reserva legal y tiempos de conservación regulados por la Ley 594 de 2000.",
+        "explicacion": "Correcta. El PINAR DIAN y la Ley General de Archivos (Ley 594 de 2000) prohíben la eliminación indiscriminada de documentos públicos sin aplicar las Tablas de Retención Documental (TRD) debidamente aprobadas por el Comité de Archivo Institucional. Además, los expedientes tributarios poseen valor probatorio fiscal y fiscalizable durante el término de firmeza de las declaraciones y cobro coactivo."
       },
       {
         "id": "C",
-        "texto": "Regalar los expedientes a recicladores informales para obtener fondos de bienestar para la división."
+        "texto": "Regalar los expedientes a recicladores informales para obtener fondos de bienestar para la división.",
+        "explicacion": "Incorrecta. Destruir o enajenar expedientes tributarios viola la Ley 594 de 2000 (Ley General de Archivos) y la reserva legal documental."
       }
     ],
     "respuestaCorrecta": "B",
@@ -7972,15 +8003,18 @@ const QUESTION_BANK_ANALISTA = [
     "opciones": [
       {
         "id": "A",
-        "texto": "Declarar 'No Admitido' en la etapa de VRM, dado que en los concursos de ascenso los requisitos mínimos de estudio y experiencia del empleo deben cumplirse y acreditarse de manera obligatoria a la fecha de cierre de inscripciones."
+        "texto": "Declarar 'No Admitido' en la etapa de VRM, dado que en los concursos de ascenso los requisitos mínimos de estudio y experiencia del empleo deben cumplirse y acreditarse de manera obligatoria a la fecha de cierre de inscripciones.",
+        "explicacion": "Correcta. Tanto la Ley 1960 de 2019 como el Acuerdo No. 08 de 2022 de la CNSC disponen que para participar en la modalidad de ascenso es obligatorio ostentar derechos de carrera y cumplir a cabalidad con la totalidad de los requisitos mínimos de estudio y experiencia exigidos para el cargo en la OPEC al momento del cierre de inscripciones, sin excepciones ni plazos posteriores."
       },
       {
         "id": "B",
-        "texto": "Otorgarle un plazo de gracia de 2 años después de posesionado para que termine las materias universitarias pendientes."
+        "texto": "Otorgarle un plazo de gracia de 2 años después de posesionado para que termine las materias universitarias pendientes.",
+        "explicacion": "Incorrecta. En los concursos de mérito de la CNSC, los requisitos mínimos son de cumplimiento obligatorio y estricto al momento del cierre de inscripciones."
       },
       {
         "id": "C",
-        "texto": "Homologar de forma automática el título profesional por el solo hecho de ser servidor de carrera en la DIAN."
+        "texto": "Homologar de forma automática el título profesional por el solo hecho de ser servidor de carrera en la DIAN.",
+        "explicacion": "Incorrecta. En los concursos de mérito de la CNSC, los requisitos mínimos son de cumplimiento obligatorio y estricto al momento del cierre de inscripciones."
       }
     ],
     "respuestaCorrecta": "A",
@@ -8002,15 +8036,18 @@ const QUESTION_BANK_ANALISTA = [
     "opciones": [
       {
         "id": "A",
-        "texto": "Aceptar la reclamación y promediar los antecedentes porque el posgrado compensa el déficit de puntaje en la prueba escrita."
+        "texto": "Aceptar la reclamación y promediar los antecedentes porque el posgrado compensa el déficit de puntaje en la prueba escrita.",
+        "explicacion": "Incorrecta. La prueba funcional tiene carácter eliminatorio; no aprobarla impide acceder a la valoración de antecedentes sin excepción."
       },
       {
         "id": "B",
-        "texto": "Rechazar la reclamación y confirmar la exclusión del concurso, ya que la prueba de competencias funcionales tiene carácter estrictamente eliminatorio y su no aprobación impide acceder a la etapa clasificatoria de Valoración de Antecedentes."
+        "texto": "Rechazar la reclamación y confirmar la exclusión del concurso, ya que la prueba de competencias funcionales tiene carácter estrictamente eliminatorio y su no aprobación impide acceder a la etapa clasificatoria de Valoración de Antecedentes.",
+        "explicacion": "Correcta. El Acuerdo de Convocatoria DIAN y la Guía de Orientación al Aspirante establecen que la prueba sobre competencias funcionales tiene carácter eliminatorio. Quien no alcance el puntaje mínimo aprobatorio (70.00 puntos) queda automáticamente excluido del proceso de selección y no continúa a la etapa clasificatoria de Valoración de Antecedentes ni de Competencias Comportamentales."
       },
       {
         "id": "C",
-        "texto": "Repetir la prueba escrita de manera personalizada al aspirante para evitar demandas contenciosas."
+        "texto": "Repetir la prueba escrita de manera personalizada al aspirante para evitar demandas contenciosas.",
+        "explicacion": "Incorrecta. La prueba funcional tiene carácter eliminatorio; no aprobarla impide acceder a la valoración de antecedentes sin excepción."
       }
     ],
     "respuestaCorrecta": "B",
@@ -8021,7 +8058,6 @@ const QUESTION_BANK_ANALISTA = [
     "competencia": "Reglas de Ponderación y Estructura de Pruebas CNSC",
     "nivel": "Técnico"
   },
-  // --- CASOS OFIMÁTICA, COMPORTAMENTALES DEC. 815, INTEGRIDAD Y PROTOCOLOS DIAN 2676 (Fase 9 - Nivel Técnico) ---
   {
     "id": "tec_dian_ofim_01",
     "perfil": "ANALISTA_IV",
@@ -8033,15 +8069,18 @@ const QUESTION_BANK_ANALISTA = [
     "opciones": [
       {
         "id": "A",
-        "texto": "Presiona la combinación de teclas Control + U."
+        "texto": "Presiona la combinación de teclas Control + U.",
+        "explicacion": "Correcta. En Microsoft Word en español, el atajo de teclado oficial para abrir un nuevo documento en blanco es Control + U. La combinación Control + N se utiliza para aplicar formato de negrita al texto seleccionado."
       },
       {
         "id": "B",
-        "texto": "Presiona la combinación de teclas Control + N."
+        "texto": "Presiona la combinación de teclas Control + N.",
+        "explicacion": "Incorrecta. En Microsoft Word en español, Control + N aplica el formato de negrita (Bold) al texto seleccionado, no abre un nuevo documento."
       },
       {
         "id": "C",
-        "texto": "Presiona la combinación de teclas Alt + N."
+        "texto": "Presiona la combinación de teclas Alt + N.",
+        "explicacion": "Incorrecta. Alt + N activa la pestaña Insertar en la cinta de opciones mediante el acceso por teclado de Office."
       }
     ],
     "respuestaCorrecta": "A",
@@ -8063,15 +8102,18 @@ const QUESTION_BANK_ANALISTA = [
     "opciones": [
       {
         "id": "A",
-        "texto": "Selecciona el contenido y usa la abreviatura Control + C."
+        "texto": "Selecciona el contenido y usa la abreviatura Control + C.",
+        "explicacion": "Incorrecta. Control + C es el atajo universal para Copiar el elemento seleccionado al portapapeles."
       },
       {
         "id": "B",
-        "texto": "Selecciona el contenido y usa la abreviatura Control + T (o Control + E en versiones tradicionales de centrado)."
+        "texto": "Selecciona el contenido y usa la abreviatura Control + T (o Control + E en versiones tradicionales de centrado).",
+        "explicacion": "Correcta. En Microsoft Word, la función de centrar texto se ejecuta mediante el comando de teclado Control + T (o Control + E según la versión lingüística de Office). Control + C está reservado para la función Copiar."
       },
       {
         "id": "C",
-        "texto": "Selecciona el contenido y usa la abreviatura Alt + E."
+        "texto": "Selecciona el contenido y usa la abreviatura Alt + E.",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: En Microsoft Word, la función de centrar texto se ejecuta mediante el comando de teclado Control + T (o Control + E según la versión lingüística de Office). Control + C está reservado para la función Copiar."
       }
     ],
     "respuestaCorrecta": "B",
@@ -8093,15 +8135,18 @@ const QUESTION_BANK_ANALISTA = [
     "opciones": [
       {
         "id": "A",
-        "texto": "Cierra el programa sin guardar cambios perdiendo todo el trabajo de la mañana."
+        "texto": "Cierra el programa sin guardar cambios perdiendo todo el trabajo de la mañana.",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: La combinación Control + Z es el estándar universal de Microsoft Office y Windows para deshacer inmediatamente la última acción efectuada, restaurando el contenido eliminado."
       },
       {
         "id": "B",
-        "texto": "Presiona la combinación de teclas Control + Z para deshacer la última acción."
+        "texto": "Presiona la combinación de teclas Control + Z para deshacer la última acción.",
+        "explicacion": "Correcta. La combinación Control + Z es el estándar universal de Microsoft Office y Windows para deshacer inmediatamente la última acción efectuada, restaurando el contenido eliminado."
       },
       {
         "id": "C",
-        "texto": "Presiona la combinación de teclas Control + Y para avanzar a la siguiente página."
+        "texto": "Presiona la combinación de teclas Control + Y para avanzar a la siguiente página.",
+        "explicacion": "Incorrecta. Control + Y es el comando para Rehacer la última acción revertida, mientras que Deshacer es Control + Z."
       }
     ],
     "respuestaCorrecta": "B",
@@ -8123,15 +8168,18 @@ const QUESTION_BANK_ANALISTA = [
     "opciones": [
       {
         "id": "A",
-        "texto": "Insertar un salto de página utilizando la combinación de teclas Control + Enter (Intro)."
+        "texto": "Insertar un salto de página utilizando la combinación de teclas Control + Enter (Intro).",
+        "explicacion": "Correcta. En Microsoft Word, la inserción de un Salto de Página mediante el atajo Control + Enter garantiza que el nuevo texto comience en la página siguiente de manera limpia, evitando desplazamientos involuntarios cuando se modifiquen los párrafos precedentes."
       },
       {
         "id": "B",
-        "texto": "Presionar la barra espaciadora hasta que el texto ruede al siguiente folio."
+        "texto": "Presionar la barra espaciadora hasta que el texto ruede al siguiente folio.",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: En Microsoft Word, la inserción de un Salto de Página mediante el atajo Control + Enter garantiza que el nuevo texto comience en la página siguiente de manera limpia, evitando desplazamientos involuntarios cuando se modifiquen los párrafos precedentes."
       },
       {
         "id": "C",
-        "texto": "Reducir el tamaño de la fuente a 2 puntos para que quepa en la misma hoja."
+        "texto": "Reducir el tamaño de la fuente a 2 puntos para que quepa en la misma hoja.",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: En Microsoft Word, la inserción de un Salto de Página mediante el atajo Control + Enter garantiza que el nuevo texto comience en la página siguiente de manera limpia, evitando desplazamientos involuntarios cuando se modifiquen los párrafos precedentes."
       }
     ],
     "respuestaCorrecta": "A",
@@ -8153,15 +8201,18 @@ const QUESTION_BANK_ANALISTA = [
     "opciones": [
       {
         "id": "A",
-        "texto": "Copiar y pegar manualmente los 500 registros uno por uno en documentos separados."
+        "texto": "Copiar y pegar manualmente los 500 registros uno por uno en documentos separados.",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: La Combinación de Correspondencia en Word permite conectar un documento modelo con un origen de datos (hoja de cálculo de Excel o base de datos), insertando campos combinados como NIT, nombre y valor adeudado para generar masivamente oficios personalizados de forma exacta y automatizada."
       },
       {
         "id": "B",
-        "texto": "Utilizar el Asistente para Combinación de Correspondencia (Mail Merge) vinculando el archivo de Excel como origen de datos e insertando los campos combinados."
+        "texto": "Utilizar el Asistente para Combinación de Correspondencia (Mail Merge) vinculando el archivo de Excel como origen de datos e insertando los campos combinados.",
+        "explicacion": "Correcta. La Combinación de Correspondencia en Word permite conectar un documento modelo con un origen de datos (hoja de cálculo de Excel o base de datos), insertando campos combinados como NIT, nombre y valor adeudado para generar masivamente oficios personalizados de forma exacta y automatizada."
       },
       {
         "id": "C",
-        "texto": "Crear una macro en bloc de notas para imprimir las hojas sin formato."
+        "texto": "Crear una macro en bloc de notas para imprimir las hojas sin formato.",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: La Combinación de Correspondencia en Word permite conectar un documento modelo con un origen de datos (hoja de cálculo de Excel o base de datos), insertando campos combinados como NIT, nombre y valor adeudado para generar masivamente oficios personalizados de forma exacta y automatizada."
       }
     ],
     "respuestaCorrecta": "B",
@@ -8183,15 +8234,18 @@ const QUESTION_BANK_ANALISTA = [
     "opciones": [
       {
         "id": "A",
-        "texto": "Hacer clic en 'Conservar formato de origen'."
+        "texto": "Hacer clic en 'Conservar formato de origen'.",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: La opción 'Conservar solo texto' elimina las etiquetas HTML, estilos ajenos, hipervínculos indeseados y colores de fondo, adoptando automáticamente la tipografía y el interlineado del documento de destino en Word."
       },
       {
         "id": "B",
-        "texto": "Hacer clic en Pegado Especial y seleccionar 'Conservar solo texto' (o Texto sin formato)."
+        "texto": "Hacer clic en Pegado Especial y seleccionar 'Conservar solo texto' (o Texto sin formato).",
+        "explicacion": "Correcta. La opción 'Conservar solo texto' elimina las etiquetas HTML, estilos ajenos, hipervínculos indeseados y colores de fondo, adoptando automáticamente la tipografía y el interlineado del documento de destino en Word."
       },
       {
         "id": "C",
-        "texto": "Pegar como imagen no editable para evitar alteraciones."
+        "texto": "Pegar como imagen no editable para evitar alteraciones.",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: La opción 'Conservar solo texto' elimina las etiquetas HTML, estilos ajenos, hipervínculos indeseados y colores de fondo, adoptando automáticamente la tipografía y el interlineado del documento de destino en Word."
       }
     ],
     "respuestaCorrecta": "B",
@@ -8213,15 +8267,18 @@ const QUESTION_BANK_ANALISTA = [
     "opciones": [
       {
         "id": "A",
-        "texto": "Hacer un solo clic en el centro de cualquier palabra."
+        "texto": "Hacer un solo clic en el centro de cualquier palabra.",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: En Microsoft Word, hacer triple clic dentro de un párrafo selecciona automáticamente todo el párrafo completo. El doble clic selecciona únicamente la palabra sobre la que se presiona."
       },
       {
         "id": "B",
-        "texto": "Hacer doble clic sobre la primera letra del párrafo."
+        "texto": "Hacer doble clic sobre la primera letra del párrafo.",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: En Microsoft Word, hacer triple clic dentro de un párrafo selecciona automáticamente todo el párrafo completo. El doble clic selecciona únicamente la palabra sobre la que se presiona."
       },
       {
         "id": "C",
-        "texto": "Hacer triple clic en cualquier parte dentro del párrafo."
+        "texto": "Hacer triple clic en cualquier parte dentro del párrafo.",
+        "explicacion": "Correcta. En Microsoft Word, hacer triple clic dentro de un párrafo selecciona automáticamente todo el párrafo completo. El doble clic selecciona únicamente la palabra sobre la que se presiona."
       }
     ],
     "respuestaCorrecta": "C",
@@ -8243,15 +8300,18 @@ const QUESTION_BANK_ANALISTA = [
     "opciones": [
       {
         "id": "A",
-        "texto": "=SUMAR(B2-B13)"
+        "texto": "=SUMAR(B2-B13)",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: La sintaxis estándar en Excel para sumar un rango continuo de celdas utiliza la función SUMA con el operador de rango de dos puntos: '=SUMA(B2:B13)'."
       },
       {
         "id": "B",
-        "texto": "=SUMA(B2:B13)"
+        "texto": "=SUMA(B2:B13)",
+        "explicacion": "Correcta. La sintaxis estándar en Excel para sumar un rango continuo de celdas utiliza la función SUMA con el operador de rango de dos puntos: '=SUMA(B2:B13)'."
       },
       {
         "id": "C",
-        "texto": "=TOTAL(B2..B13)"
+        "texto": "=TOTAL(B2..B13)",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: La sintaxis estándar en Excel para sumar un rango continuo de celdas utiliza la función SUMA con el operador de rango de dos puntos: '=SUMA(B2:B13)'."
       }
     ],
     "respuestaCorrecta": "B",
@@ -8273,15 +8333,18 @@ const QUESTION_BANK_ANALISTA = [
     "opciones": [
       {
         "id": "A",
-        "texto": "=ALTO(C2:C50)"
+        "texto": "=ALTO(C2:C50)",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: La función MAX en Microsoft Excel devuelve el valor numérico máximo de un conjunto de valores contenidos en un rango de celdas ('=MAX(C2:C50)')."
       },
       {
         "id": "B",
-        "texto": "=MAYOR(C2:C50)"
+        "texto": "=MAYOR(C2:C50)",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: La función MAX en Microsoft Excel devuelve el valor numérico máximo de un conjunto de valores contenidos en un rango de celdas ('=MAX(C2:C50)')."
       },
       {
         "id": "C",
-        "texto": "=MAX(C2:C50)"
+        "texto": "=MAX(C2:C50)",
+        "explicacion": "Correcta. La función MAX en Microsoft Excel devuelve el valor numérico máximo de un conjunto de valores contenidos en un rango de celdas ('=MAX(C2:C50)')."
       }
     ],
     "respuestaCorrecta": "C",
@@ -8303,15 +8366,18 @@ const QUESTION_BANK_ANALISTA = [
     "opciones": [
       {
         "id": "A",
-        "texto": "=PROMEDIO(D2:D13)"
+        "texto": "=PROMEDIO(D2:D13)",
+        "explicacion": "Correcta. La función PROMEDIO en Excel suma los valores del rango especificado y los divide automáticamente entre la cantidad de celdas numéricas que contiene el rango."
       },
       {
         "id": "B",
-        "texto": "=MEDIA(D2:D13)"
+        "texto": "=MEDIA(D2:D13)",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: La función PROMEDIO en Excel suma los valores del rango especificado y los divide automáticamente entre la cantidad de celdas numéricas que contiene el rango."
       },
       {
         "id": "C",
-        "texto": "=SUMA(D2:D13)/10"
+        "texto": "=SUMA(D2:D13)/10",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: La función PROMEDIO en Excel suma los valores del rango especificado y los divide automáticamente entre la cantidad de celdas numéricas que contiene el rango."
       }
     ],
     "respuestaCorrecta": "A",
@@ -8333,15 +8399,18 @@ const QUESTION_BANK_ANALISTA = [
     "opciones": [
       {
         "id": "A",
-        "texto": "=SI(E2>59000000, \"OBLIGADO\", \"NO OBLIGADO\")"
+        "texto": "=SI(E2>59000000, \"OBLIGADO\", \"NO OBLIGADO\")",
+        "explicacion": "Correcta. La función condicional SI evalúa una prueba lógica y devuelve un valor si es verdadera y otro si es falsa: '=SI(prueba_lógica, [valor_si_verdadero], [valor_si_falso])'. Al tratarse de cadenas de texto, deben encerrarse entre comillas dobles."
       },
       {
         "id": "B",
-        "texto": "=CONDICION(E2>59000000, OBLIGADO, NO)"
+        "texto": "=CONDICION(E2>59000000, OBLIGADO, NO)",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: La función condicional SI evalúa una prueba lógica y devuelve un valor si es verdadera y otro si es falsa: '=SI(prueba_lógica, [valor_si_verdadero], [valor_si_falso])'. Al tratarse de cadenas de texto, deben encerrarse entre comillas dobles."
       },
       {
         "id": "C",
-        "texto": "=VERDADERO_FALSO(E2, 59000000, \"OBLIGADO\")"
+        "texto": "=VERDADERO_FALSO(E2, 59000000, \"OBLIGADO\")",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: La función condicional SI evalúa una prueba lógica y devuelve un valor si es verdadera y otro si es falsa: '=SI(prueba_lógica, [valor_si_verdadero], [valor_si_falso])'. Al tratarse de cadenas de texto, deben encerrarse entre comillas dobles."
       }
     ],
     "respuestaCorrecta": "A",
@@ -8363,15 +8432,18 @@ const QUESTION_BANK_ANALISTA = [
     "opciones": [
       {
         "id": "A",
-        "texto": "=BUSCARV(A2, Hoja1!$A$2:$D$10000, 2, FALSO)"
+        "texto": "=BUSCARV(A2, Hoja1!$A$2:$D$10000, 2, FALSO)",
+        "explicacion": "Correcta. La función BUSCARV busca un valor en la primera columna de una tabla hacia la izquierda y devuelve el valor de la columna especificada (columna 2). El argumento FALSO (o 0) garantiza una coincidencia exacta del NIT y las referencias absolutas ($) fijan la matriz."
       },
       {
         "id": "B",
-        "texto": "=ENCONTRAR(A2, Hoja1!A2:D10000, 2)"
+        "texto": "=ENCONTRAR(A2, Hoja1!A2:D10000, 2)",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: La función BUSCARV busca un valor en la primera columna de una tabla hacia la izquierda y devuelve el valor de la columna especificada (columna 2). El argumento FALSO (o 0) garantiza una coincidencia exacta del NIT y las referencias absolutas ($) fijan la matriz."
       },
       {
         "id": "C",
-        "texto": "=EXTRAER(A2, 2, VERDADERO)"
+        "texto": "=EXTRAER(A2, 2, VERDADERO)",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: La función BUSCARV busca un valor en la primera columna de una tabla hacia la izquierda y devuelve el valor de la columna especificada (columna 2). El argumento FALSO (o 0) garantiza una coincidencia exacta del NIT y las referencias absolutas ($) fijan la matriz."
       }
     ],
     "respuestaCorrecta": "A",
@@ -8393,15 +8465,18 @@ const QUESTION_BANK_ANALISTA = [
     "opciones": [
       {
         "id": "A",
-        "texto": "=B2*H1"
+        "texto": "=B2*H1",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: El signo de pesos ($) antes de la letra de la columna y del número de fila ($H$1) crea una referencia absoluta fija. Al copiar o arrastrar la fórmula a otras celdas, la referencia a H1 permanece inmutable mientras que B2 cambia a B3, B4 de forma relativa."
       },
       {
         "id": "B",
-        "texto": "=B2*$H$1"
+        "texto": "=B2*$H$1",
+        "explicacion": "Correcta. El signo de pesos ($) antes de la letra de la columna y del número de fila ($H$1) crea una referencia absoluta fija. Al copiar o arrastrar la fórmula a otras celdas, la referencia a H1 permanece inmutable mientras que B2 cambia a B3, B4 de forma relativa."
       },
       {
         "id": "C",
-        "texto": "=B2&#H1"
+        "texto": "=B2&#H1",
+        "explicacion": "Incorrecta. El ampersand (&) es un operador de concatenación de cadenas de texto en Excel, no de fijación de celdas."
       }
     ],
     "respuestaCorrecta": "B",
@@ -8423,15 +8498,18 @@ const QUESTION_BANK_ANALISTA = [
     "opciones": [
       {
         "id": "A",
-        "texto": "Ordenar manualmente los 100.000 datos e ir sumando seccional por seccional con una calculadora externa."
+        "texto": "Ordenar manualmente los 100.000 datos e ir sumando seccional por seccional con una calculadora externa.",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: Las Tablas Dinámicas en Excel son la herramienta idónea para explorar, resumir, calcular y analizar grandes volúmenes de datos en segundos, permitiendo realizar comparaciones, detectar patrones y generar informes gerenciales multidimensionales de manera automática."
       },
       {
         "id": "B",
-        "texto": "Insertar una Tabla Dinámica (Pivot Table) arrastrando el campo Seccional a Filas, el campo Mes a Columnas y el campo Valor CIF a Valores."
+        "texto": "Insertar una Tabla Dinámica (Pivot Table) arrastrando el campo Seccional a Filas, el campo Mes a Columnas y el campo Valor CIF a Valores.",
+        "explicacion": "Correcta. Las Tablas Dinámicas en Excel son la herramienta idónea para explorar, resumir, calcular y analizar grandes volúmenes de datos en segundos, permitiendo realizar comparaciones, detectar patrones y generar informes gerenciales multidimensionales de manera automática."
       },
       {
         "id": "C",
-        "texto": "Exportar el archivo a formato Word para hacer una tabla de texto."
+        "texto": "Exportar el archivo a formato Word para hacer una tabla de texto.",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: Las Tablas Dinámicas en Excel son la herramienta idónea para explorar, resumir, calcular y analizar grandes volúmenes de datos en segundos, permitiendo realizar comparaciones, detectar patrones y generar informes gerenciales multidimensionales de manera automática."
       }
     ],
     "respuestaCorrecta": "B",
@@ -8453,15 +8531,18 @@ const QUESTION_BANK_ANALISTA = [
     "opciones": [
       {
         "id": "A",
-        "texto": "En el campo 'Para' para que todos sepan quiénes más recibieron la circular."
+        "texto": "En el campo 'Para' para que todos sepan quiénes más recibieron la circular.",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: El campo CCO (Con Copia Oculta) en el correo electrónico impide que los destinatarios vean las direcciones de las demás personas que reciben el mensaje. En el sector público, su uso es obligatorio al enviar correos masivos a ciudadanos para dar estricto cumplimiento al régimen general de protección de datos personales de la Ley 1581 de 2012."
       },
       {
         "id": "B",
-        "texto": "En el campo 'CC' (Con Copia) para garantizar la transparencia pública de los datos."
+        "texto": "En el campo 'CC' (Con Copia) para garantizar la transparencia pública de los datos.",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: El campo CCO (Con Copia Oculta) en el correo electrónico impide que los destinatarios vean las direcciones de las demás personas que reciben el mensaje. En el sector público, su uso es obligatorio al enviar correos masivos a ciudadanos para dar estricto cumplimiento al régimen general de protección de datos personales de la Ley 1581 de 2012."
       },
       {
         "id": "C",
-        "texto": "En el campo 'CCO' (Con Copia Oculta) para garantizar que los correos electrónicos permanezcan confidenciales y ocultos para los demás receptores."
+        "texto": "En el campo 'CCO' (Con Copia Oculta) para garantizar que los correos electrónicos permanezcan confidenciales y ocultos para los demás receptores.",
+        "explicacion": "Correcta. El campo CCO (Con Copia Oculta) en el correo electrónico impide que los destinatarios vean las direcciones de las demás personas que reciben el mensaje. En el sector público, su uso es obligatorio al enviar correos masivos a ciudadanos para dar estricto cumplimiento al régimen general de protección de datos personales de la Ley 1581 de 2012."
       }
     ],
     "respuestaCorrecta": "C",
@@ -8483,15 +8564,18 @@ const QUESTION_BANK_ANALISTA = [
     "opciones": [
       {
         "id": "A",
-        "texto": "Configurar una 'Regla de Correo' (Rules) en Outlook que especifique la condición del asunto y la acción de mover el elemento a la carpeta seleccionada."
+        "texto": "Configurar una 'Regla de Correo' (Rules) en Outlook que especifique la condición del asunto y la acción de mover el elemento a la carpeta seleccionada.",
+        "explicacion": "Correcta. Las Reglas en Microsoft Outlook permiten automatizar la gestión y organización del correo electrónico institucional, aplicando acciones predefinidas (como mover mensajes, marcarlos con banderas o reenviarlos) con base en criterios específicos como remitente, palabras en el asunto o destinatarios."
       },
       {
         "id": "B",
-        "texto": "Eliminar la cuenta de correo y abrir una cuenta personal de mensajería comercial."
+        "texto": "Eliminar la cuenta de correo y abrir una cuenta personal de mensajería comercial.",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: Las Reglas en Microsoft Outlook permiten automatizar la gestión y organización del correo electrónico institucional, aplicando acciones predefinidas (como mover mensajes, marcarlos con banderas o reenviarlos) con base en criterios específicos como remitente, palabras en el asunto o destinatarios."
       },
       {
         "id": "C",
-        "texto": "Esperar al final de la semana para clasificar manualmente los 600 correos acumulados."
+        "texto": "Esperar al final de la semana para clasificar manualmente los 600 correos acumulados.",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: Las Reglas en Microsoft Outlook permiten automatizar la gestión y organización del correo electrónico institucional, aplicando acciones predefinidas (como mover mensajes, marcarlos con banderas o reenviarlos) con base en criterios específicos como remitente, palabras en el asunto o destinatarios."
       }
     ],
     "respuestaCorrecta": "A",
@@ -8513,15 +8597,18 @@ const QUESTION_BANK_ANALISTA = [
     "opciones": [
       {
         "id": "A",
-        "texto": "En el panel de 'Notas' de cada diapositiva para visualizarse mediante la 'Vista Moderador' (Presenter View) sin proyectarse al público."
+        "texto": "En el panel de 'Notas' de cada diapositiva para visualizarse mediante la 'Vista Moderador' (Presenter View) sin proyectarse al público.",
+        "explicacion": "Correcta. El panel de Notas en PowerPoint permite al expositor ingresar notas y datos clave que se visualizan exclusivamente en la pantalla del moderador (Vista Moderador) durante la exposición, mientras que la audiencia solo observa la diapositiva en la pantalla principal de proyección."
       },
       {
         "id": "B",
-        "texto": "En el título de la diapositiva en fuente color blanco sobre fondo blanco."
+        "texto": "En el título de la diapositiva en fuente color blanco sobre fondo blanco.",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: El panel de Notas en PowerPoint permite al expositor ingresar notas y datos clave que se visualizan exclusivamente en la pantalla del moderador (Vista Moderador) durante la exposición, mientras que la audiencia solo observa la diapositiva en la pantalla principal de proyección."
       },
       {
         "id": "C",
-        "texto": "En un correo electrónico impreso en papel sostenido en la mano."
+        "texto": "En un correo electrónico impreso en papel sostenido en la mano.",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: El panel de Notas en PowerPoint permite al expositor ingresar notas y datos clave que se visualizan exclusivamente en la pantalla del moderador (Vista Moderador) durante la exposición, mientras que la audiencia solo observa la diapositiva en la pantalla principal de proyección."
       }
     ],
     "respuestaCorrecta": "A",
@@ -8543,15 +8630,18 @@ const QUESTION_BANK_ANALISTA = [
     "opciones": [
       {
         "id": "A",
-        "texto": "Formato de texto enriquecido .RTF editable."
+        "texto": "Formato de texto enriquecido .RTF editable.",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: El formato PDF (y en especial PDF/A para preservación a largo plazo) es el estándar legal y técnico en la administración pública colombiana para el intercambio de documentos oficiales firmados, puesto que asegura la inmutabilidad relativa del contenido, la compatibilidad multiplataforma y la integridad del diseño."
       },
       {
         "id": "B",
-        "texto": "Formato PDF (Portable Document Format) / PDF-A para archivo digital seguro."
+        "texto": "Formato PDF (Portable Document Format) / PDF-A para archivo digital seguro.",
+        "explicacion": "Correcta. El formato PDF (y en especial PDF/A para preservación a largo plazo) es el estándar legal y técnico en la administración pública colombiana para el intercambio de documentos oficiales firmados, puesto que asegura la inmutabilidad relativa del contenido, la compatibilidad multiplataforma y la integridad del diseño."
       },
       {
         "id": "C",
-        "texto": "Formato de bloc de notas sin formato .TXT."
+        "texto": "Formato de bloc de notas sin formato .TXT.",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: El formato PDF (y en especial PDF/A para preservación a largo plazo) es el estándar legal y técnico en la administración pública colombiana para el intercambio de documentos oficiales firmados, puesto que asegura la inmutabilidad relativa del contenido, la compatibilidad multiplataforma y la integridad del diseño."
       }
     ],
     "respuestaCorrecta": "B",
@@ -8573,15 +8663,18 @@ const QUESTION_BANK_ANALISTA = [
     "opciones": [
       {
         "id": "A",
-        "texto": "Seleccionar los archivos, hacer clic derecho, elegir 'Enviar a' y seleccionar 'Carpeta comprimida (en zip)'."
+        "texto": "Seleccionar los archivos, hacer clic derecho, elegir 'Enviar a' y seleccionar 'Carpeta comprimida (en zip)'.",
+        "explicacion": "Correcta. La compresión nativa en formato ZIP de Windows permite empaquetar múltiples archivos en un único contenedor y reducir su tamaño en bytes mediante algoritmos de compresión sin pérdida, facilitando su transmisión segura y ordenada por canales telemáticos."
       },
       {
         "id": "B",
-        "texto": "Eliminar 40 de los 45 archivos para que el correo no rebote."
+        "texto": "Eliminar 40 de los 45 archivos para que el correo no rebote.",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: La compresión nativa en formato ZIP de Windows permite empaquetar múltiples archivos en un único contenedor y reducir su tamaño en bytes mediante algoritmos de compresión sin pérdida, facilitando su transmisión segura y ordenada por canales telemáticos."
       },
       {
         "id": "C",
-        "texto": "Cambiar la extensión de los archivos a .exe para que pesen menos."
+        "texto": "Cambiar la extensión de los archivos a .exe para que pesen menos.",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: La compresión nativa en formato ZIP de Windows permite empaquetar múltiples archivos en un único contenedor y reducir su tamaño en bytes mediante algoritmos de compresión sin pérdida, facilitando su transmisión segura y ordenada por canales telemáticos."
       }
     ],
     "respuestaCorrecta": "A",
@@ -8603,15 +8696,18 @@ const QUESTION_BANK_ANALISTA = [
     "opciones": [
       {
         "id": "A",
-        "texto": "Dejar la pantalla encendida confiando en la buena fe de los transeúntes."
+        "texto": "Dejar la pantalla encendida confiando en la buena fe de los transeúntes.",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: El atajo Tecla Windows + L bloquea de forma instantánea la sesión de usuario en Windows, exigiendo la contraseña o autenticación biométrica para reingresar. En entidades de la contribución como la DIAN, esta práctica es un deber formal de seguridad de la información obligatorio para proteger la reserva tributaria (Art. 583 E.T.)."
       },
       {
         "id": "B",
-        "texto": "Presionar la tecla del logotipo de Windows + L para bloquear la estación de trabajo de inmediato."
+        "texto": "Presionar la tecla del logotipo de Windows + L para bloquear la estación de trabajo de inmediato.",
+        "explicacion": "Correcta. El atajo Tecla Windows + L bloquea de forma instantánea la sesión de usuario en Windows, exigiendo la contraseña o autenticación biométrica para reingresar. En entidades de la contribución como la DIAN, esta práctica es un deber formal de seguridad de la información obligatorio para proteger la reserva tributaria (Art. 583 E.T.)."
       },
       {
         "id": "C",
-        "texto": "Apagar el monitor sin cerrar la sesión ni bloquear el sistema operativo."
+        "texto": "Apagar el monitor sin cerrar la sesión ni bloquear el sistema operativo.",
+        "explicacion": "Incorrecta. Apagar solo la pantalla no bloquea la sesión en el sistema operativo, permitiendo que cualquier persona use el equipo con sus credenciales institucionales."
       }
     ],
     "respuestaCorrecta": "B",
@@ -8633,15 +8729,18 @@ const QUESTION_BANK_ANALISTA = [
     "opciones": [
       {
         "id": "A",
-        "texto": "Investiga con anterioridad la información disponible para estar prevenido ante posibles quejas de los usuarios."
+        "texto": "Investiga con anterioridad la información disponible para estar prevenido ante posibles quejas de los usuarios.",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: La competencia de 'Aporte Técnico-Profesional' (Nivel Técnico/Asistencial - Decreto 815 de 2018) implica no solo conocer la norma, sino aplicar activamente los conocimientos técnicos especializados para generar soluciones innovadoras y metodologías que optimicen la gestión del área."
       },
       {
         "id": "B",
-        "texto": "Espera a que la Dirección General emita instrucciones formales y mientras tanto continúa aplicando la normativa anterior."
+        "texto": "Espera a que la Dirección General emita instrucciones formales y mientras tanto continúa aplicando la normativa anterior.",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: La competencia de 'Aporte Técnico-Profesional' (Nivel Técnico/Asistencial - Decreto 815 de 2018) implica no solo conocer la norma, sino aplicar activamente los conocimientos técnicos especializados para generar soluciones innovadoras y metodologías que optimicen la gestión del área."
       },
       {
         "id": "C",
-        "texto": "Estudia los cambios normativos anticipadamente y diseña una propuesta metodológica que facilite la transición operativa del equipo sin traumatismos en los términos procesales."
+        "texto": "Estudia los cambios normativos anticipadamente y diseña una propuesta metodológica que facilite la transición operativa del equipo sin traumatismos en los términos procesales.",
+        "explicacion": "Correcta. La competencia de 'Aporte Técnico-Profesional' (Nivel Técnico/Asistencial - Decreto 815 de 2018) implica no solo conocer la norma, sino aplicar activamente los conocimientos técnicos especializados para generar soluciones innovadoras y metodologías que optimicen la gestión del área."
       }
     ],
     "respuestaCorrecta": "C",
@@ -8663,15 +8762,18 @@ const QUESTION_BANK_ANALISTA = [
     "opciones": [
       {
         "id": "A",
-        "texto": "Analizar el flujo integral del proceso, identificar actividades redundantes y formular un plan de racionalización apoyado en la firma digital para reducir los tiempos de respuesta."
+        "texto": "Analizar el flujo integral del proceso, identificar actividades redundantes y formular un plan de racionalización apoyado en la firma digital para reducir los tiempos de respuesta.",
+        "explicacion": "Correcta. La competencia de 'Gestión de Procedimientos' exige al profesional planificar, hacer seguimiento y ajustar continuamente las actividades para asegurar el cumplimiento eficiente, oportuno y con calidad de los objetivos de la entidad pública."
       },
       {
         "id": "B",
-        "texto": "Aumentar su jornada laboral de manera no autorizada para imprimir más documentos físicos por día."
+        "texto": "Aumentar su jornada laboral de manera no autorizada para imprimir más documentos físicos por día.",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: La competencia de 'Gestión de Procedimientos' exige al profesional planificar, hacer seguimiento y ajustar continuamente las actividades para asegurar el cumplimiento eficiente, oportuno y con calidad de los objetivos de la entidad pública."
       },
       {
         "id": "C",
-        "texto": "Desentenderse de los retrasos argumentando que la culpa es exclusiva del sistema informático central."
+        "texto": "Desentenderse de los retrasos argumentando que la culpa es exclusiva del sistema informático central.",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: La competencia de 'Gestión de Procedimientos' exige al profesional planificar, hacer seguimiento y ajustar continuamente las actividades para asegurar el cumplimiento eficiente, oportuno y con calidad de los objetivos de la entidad pública."
       }
     ],
     "respuestaCorrecta": "A",
@@ -8693,15 +8795,18 @@ const QUESTION_BANK_ANALISTA = [
     "opciones": [
       {
         "id": "A",
-        "texto": "Adopta la decisión fundándose rigurosamente en las pruebas contables, cruces exógenos y doctrina jurídica vinculante, estructurando un concepto técnico sólido e inobjetable."
+        "texto": "Adopta la decisión fundándose rigurosamente en las pruebas contables, cruces exógenos y doctrina jurídica vinculante, estructurando un concepto técnico sólido e inobjetable.",
+        "explicacion": "Correcta. La 'Instrumentación de Decisiones' en el nivel profesional consiste en tomar decisiones fundamentadas en información válida, objetiva y rigurosa, asumiendo la responsabilidad técnica de sus efectos legales y fiscales."
       },
       {
         "id": "B",
-        "texto": "Archiva el expediente para evitar litigios futuros contra la administración tributaria."
+        "texto": "Archiva el expediente para evitar litigios futuros contra la administración tributaria.",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: La 'Instrumentación de Decisiones' en el nivel profesional consiste en tomar decisiones fundamentadas en información válida, objetiva y rigurosa, asumiendo la responsabilidad técnica de sus efectos legales y fiscales."
       },
       {
         "id": "C",
-        "texto": "Traslada la decisión a un comité informal sin dejar registro escrito ni sustento probatorio."
+        "texto": "Traslada la decisión a un comité informal sin dejar registro escrito ni sustento probatorio.",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: La 'Instrumentación de Decisiones' en el nivel profesional consiste en tomar decisiones fundamentadas en información válida, objetiva y rigurosa, asumiendo la responsabilidad técnica de sus efectos legales y fiscales."
       }
     ],
     "respuestaCorrecta": "A",
@@ -8723,15 +8828,18 @@ const QUESTION_BANK_ANALISTA = [
     "opciones": [
       {
         "id": "A",
-        "texto": "Responderle en el mismo tono defensivo para hacer respetar la autoridad estatal."
+        "texto": "Responderle en el mismo tono defensivo para hacer respetar la autoridad estatal.",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: La 'Comunicación Efectiva' en el servicio público exige transmitir información de manera clara, oportuna y empática, manteniendo la calma ante situaciones de conflicto y garantizando la adecuada orientación ciudadana."
       },
       {
         "id": "B",
-        "texto": "Escuchar activamente al ciudadano, mantener la serenidad y explicarle con claridad y lenguaje accesible los motivos jurídicos de la medida y los mecanismos legales que tiene para solicitar el desembargo."
+        "texto": "Escuchar activamente al ciudadano, mantener la serenidad y explicarle con claridad y lenguaje accesible los motivos jurídicos de la medida y los mecanismos legales que tiene para solicitar el desembargo.",
+        "explicacion": "Correcta. La 'Comunicación Efectiva' en el servicio público exige transmitir información de manera clara, oportuna y empática, manteniendo la calma ante situaciones de conflicto y garantizando la adecuada orientación ciudadana."
       },
       {
         "id": "C",
-        "texto": "Llamar a la fuerza pública de inmediato sin escuchar el motivo de la reclamación."
+        "texto": "Llamar a la fuerza pública de inmediato sin escuchar el motivo de la reclamación.",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: La 'Comunicación Efectiva' en el servicio público exige transmitir información de manera clara, oportuna y empática, manteniendo la calma ante situaciones de conflicto y garantizando la adecuada orientación ciudadana."
       }
     ],
     "respuestaCorrecta": "B",
@@ -8753,15 +8861,18 @@ const QUESTION_BANK_ANALISTA = [
     "opciones": [
       {
         "id": "A",
-        "texto": "Imponer su criterio profesional de manera unilateral sin consultar la opinión técnica de los contadores."
+        "texto": "Imponer su criterio profesional de manera unilateral sin consultar la opinión técnica de los contadores.",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: El 'Liderazgo de Grupos de Trabajo' implica guiar, coordinar y alinear los esfuerzos del equipo hacia el cumplimiento de las metas institucionales, promoviendo un clima participativo, sinérgico y de respeto técnico."
       },
       {
         "id": "B",
-        "texto": "Convocar mesas técnicas de trabajo para concertar criterios, distribuir roles según las fortalezas individuales y motivar al equipo hacia el logro del objetivo común con metas claras."
+        "texto": "Convocar mesas técnicas de trabajo para concertar criterios, distribuir roles según las fortalezas individuales y motivar al equipo hacia el logro del objetivo común con metas claras.",
+        "explicacion": "Correcta. El 'Liderazgo de Grupos de Trabajo' implica guiar, coordinar y alinear los esfuerzos del equipo hacia el cumplimiento de las metas institucionales, promoviendo un clima participativo, sinérgico y de respeto técnico."
       },
       {
         "id": "C",
-        "texto": "Dejar que cada miembro actúe por su cuenta y que el informe final sea un mosaico desarticulado de opiniones contradictorias."
+        "texto": "Dejar que cada miembro actúe por su cuenta y que el informe final sea un mosaico desarticulado de opiniones contradictorias.",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: El 'Liderazgo de Grupos de Trabajo' implica guiar, coordinar y alinear los esfuerzos del equipo hacia el cumplimiento de las metas institucionales, promoviendo un clima participativo, sinérgico y de respeto técnico."
       }
     ],
     "respuestaCorrecta": "B",
@@ -8783,15 +8894,18 @@ const QUESTION_BANK_ANALISTA = [
     "opciones": [
       {
         "id": "A",
-        "texto": "Priorizar y reprogramar las acciones críticas de notificación, optimizar el uso de los sistemas de envío electrónico y concentrar los esfuerzos en los casos con mayor impacto fiscal para alcanzar la meta establecida."
+        "texto": "Priorizar y reprogramar las acciones críticas de notificación, optimizar el uso de los sistemas de envío electrónico y concentrar los esfuerzos en los casos con mayor impacto fiscal para alcanzar la meta establecida.",
+        "explicacion": "Correcta. La 'Orientación a Resultados' exige encaminar todos los actos hacia la consecución de los fines, metas y objetivos institucionales, con altos estándares de calidad, eficacia y sentido de urgencia."
       },
       {
         "id": "B",
-        "texto": "Solicitar una rebaja de la meta argumentando que el trimestre fue más corto de lo habitual."
+        "texto": "Solicitar una rebaja de la meta argumentando que el trimestre fue más corto de lo habitual.",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: La 'Orientación a Resultados' exige encaminar todos los actos hacia la consecución de los fines, metas y objetivos institucionales, con altos estándares de calidad, eficacia y sentido de urgencia."
       },
       {
         "id": "C",
-        "texto": "Notificar actos incompletos o con fallas para inflar artificialmente las cifras de cierre."
+        "texto": "Notificar actos incompletos o con fallas para inflar artificialmente las cifras de cierre.",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: La 'Orientación a Resultados' exige encaminar todos los actos hacia la consecución de los fines, metas y objetivos institucionales, con altos estándares de calidad, eficacia y sentido de urgencia."
       }
     ],
     "respuestaCorrecta": "A",
@@ -8813,15 +8927,18 @@ const QUESTION_BANK_ANALISTA = [
     "opciones": [
       {
         "id": "A",
-        "texto": "Indicarle de manera despectiva que todo se hace por internet y que si no sabe debe contratar a un contador."
+        "texto": "Indicarle de manera despectiva que todo se hace por internet y que si no sabe debe contratar a un contador.",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: La 'Orientación al Usuario' es una competencia esencial del servidor público que busca satisfacer las necesidades de la ciudadanía con enfoque diferencial, accesibilidad, respeto, oportunidad y trato digno."
       },
       {
         "id": "B",
-        "texto": "Atenderlo con calidez y paciencia, orientarlo paso a paso en el punto de contacto asistido y facilitarle la autogestión de su solicitud garantizando su derecho de acceso."
+        "texto": "Atenderlo con calidez y paciencia, orientarlo paso a paso en el punto de contacto asistido y facilitarle la autogestión de su solicitud garantizando su derecho de acceso.",
+        "explicacion": "Correcta. La 'Orientación al Usuario' es una competencia esencial del servidor público que busca satisfacer las necesidades de la ciudadanía con enfoque diferencial, accesibilidad, respeto, oportunidad y trato digno."
       },
       {
         "id": "C",
-        "texto": "Cobrarle una tarifa personal para hacerle el trámite desde su cuenta privada."
+        "texto": "Cobrarle una tarifa personal para hacerle el trámite desde su cuenta privada.",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: La 'Orientación al Usuario' es una competencia esencial del servidor público que busca satisfacer las necesidades de la ciudadanía con enfoque diferencial, accesibilidad, respeto, oportunidad y trato digno."
       }
     ],
     "respuestaCorrecta": "B",
@@ -8843,15 +8960,18 @@ const QUESTION_BANK_ANALISTA = [
     "opciones": [
       {
         "id": "A",
-        "texto": "Proponer el uso de herramientas de analítica digital y cruces de datos con pasarelas de pago y operadores logísticos de envíos para rastrear transacciones digitales no declaradas."
+        "texto": "Proponer el uso de herramientas de analítica digital y cruces de datos con pasarelas de pago y operadores logísticos de envíos para rastrear transacciones digitales no declaradas.",
+        "explicacion": "Correcta. La competencia de 'Creatividad e Innovación' implica generar alternativas novedosas y viables para mejorar los procesos y enfrentar desafíos emergentes en la administración tributaria y aduanera."
       },
       {
         "id": "B",
-        "texto": "Concluir que el comercio electrónico no puede ser fiscalizado y descartar cualquier acción institucional."
+        "texto": "Concluir que el comercio electrónico no puede ser fiscalizado y descartar cualquier acción institucional.",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: La competencia de 'Creatividad e Innovación' implica generar alternativas novedosas y viables para mejorar los procesos y enfrentar desafíos emergentes en la administración tributaria y aduanera."
       },
       {
         "id": "C",
-        "texto": "Prohibir el uso de internet a nivel nacional mediante un decreto interno."
+        "texto": "Prohibir el uso de internet a nivel nacional mediante un decreto interno.",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: La competencia de 'Creatividad e Innovación' implica generar alternativas novedosas y viables para mejorar los procesos y enfrentar desafíos emergentes en la administración tributaria y aduanera."
       }
     ],
     "respuestaCorrecta": "A",
@@ -8873,15 +8993,18 @@ const QUESTION_BANK_ANALISTA = [
     "opciones": [
       {
         "id": "A",
-        "texto": "Negarse a utilizar los nuevos aplicativos y radicar quejas permanentes contra la reestructuración."
+        "texto": "Negarse a utilizar los nuevos aplicativos y radicar quejas permanentes contra la reestructuración.",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: La 'Adaptabilidad al Cambio' faculta al servidor para ajustar su comportamiento y enfoque ante transformaciones en la estructura, procedimientos o tecnología de la entidad, manteniendo la productividad y motivación."
       },
       {
         "id": "B",
-        "texto": "Asumir con disposición constructiva el cambio, capacitarse con rapidez en las nuevas metodologías y colaborar activamente en la puesta en marcha de la nueva división."
+        "texto": "Asumir con disposición constructiva el cambio, capacitarse con rapidez en las nuevas metodologías y colaborar activamente en la puesta en marcha de la nueva división.",
+        "explicacion": "Correcta. La 'Adaptabilidad al Cambio' faculta al servidor para ajustar su comportamiento y enfoque ante transformaciones en la estructura, procedimientos o tecnología de la entidad, manteniendo la productividad y motivación."
       },
       {
         "id": "C",
-        "texto": "Solicitar una incapacidad médica prolongada para no participar en la transición."
+        "texto": "Solicitar una incapacidad médica prolongada para no participar en la transición.",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: La 'Adaptabilidad al Cambio' faculta al servidor para ajustar su comportamiento y enfoque ante transformaciones en la estructura, procedimientos o tecnología de la entidad, manteniendo la productividad y motivación."
       }
     ],
     "respuestaCorrecta": "B",
@@ -8903,15 +9026,18 @@ const QUESTION_BANK_ANALISTA = [
     "opciones": [
       {
         "id": "A",
-        "texto": "Tomar partido personal por el compañero más afín y descalificar públicamente al otro colega."
+        "texto": "Tomar partido personal por el compañero más afín y descalificar públicamente al otro colega.",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: El 'Trabajo en Equipo' promueve la cooperación, la confianza y la búsqueda conjunta de soluciones constructivas frente a discrepancias técnicas, anteponiendo los objetivos institucionales sobre posturas individuales."
       },
       {
         "id": "B",
-        "texto": "Generar un espacio de diálogo técnico respetuoso, revisar la doctrina unificada de la DIAN y orientar la discusión hacia un consenso fundamentado en la ley."
+        "texto": "Generar un espacio de diálogo técnico respetuoso, revisar la doctrina unificada de la DIAN y orientar la discusión hacia un consenso fundamentado en la ley.",
+        "explicacion": "Correcta. El 'Trabajo en Equipo' promueve la cooperación, la confianza y la búsqueda conjunta de soluciones constructivas frente a discrepancias técnicas, anteponiendo los objetivos institucionales sobre posturas individuales."
       },
       {
         "id": "C",
-        "texto": "Desentenderse del conflicto y esperar a que la jefatura sancione a ambos funcionarios."
+        "texto": "Desentenderse del conflicto y esperar a que la jefatura sancione a ambos funcionarios.",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: El 'Trabajo en Equipo' promueve la cooperación, la confianza y la búsqueda conjunta de soluciones constructivas frente a discrepancias técnicas, anteponiendo los objetivos institucionales sobre posturas individuales."
       }
     ],
     "respuestaCorrecta": "B",
@@ -8933,15 +9059,18 @@ const QUESTION_BANK_ANALISTA = [
     "opciones": [
       {
         "id": "A",
-        "texto": "Aprobar la devolución de inmediato para evitar roces laborales y asegurar su permanencia."
+        "texto": "Aprobar la devolución de inmediato para evitar roces laborales y asegurar su permanencia.",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: La integridad ética y la toma de decisiones objetiva obligan al servidor público a anteponer el interés general y la legalidad sobre presiones indebidas, garantizando la igualdad y la protección del patrimonio público."
       },
       {
         "id": "B",
-        "texto": "Rechazar cualquier trato preferencial injustificado, exigir la verificación probatoria estricta de los soportes y sustentar el informe por escrito de forma técnica y transparente."
+        "texto": "Rechazar cualquier trato preferencial injustificado, exigir la verificación probatoria estricta de los soportes y sustentar el informe por escrito de forma técnica y transparente.",
+        "explicacion": "Correcta. La integridad ética y la toma de decisiones objetiva obligan al servidor público a anteponer el interés general y la legalidad sobre presiones indebidas, garantizando la igualdad y la protección del patrimonio público."
       },
       {
         "id": "C",
-        "texto": "Filtrar los documentos confidenciales a la prensa de manera anónima sin tramitar el expediente."
+        "texto": "Filtrar los documentos confidenciales a la prensa de manera anónima sin tramitar el expediente.",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: La integridad ética y la toma de decisiones objetiva obligan al servidor público a anteponer el interés general y la legalidad sobre presiones indebidas, garantizando la igualdad y la protección del patrimonio público."
       }
     ],
     "respuestaCorrecta": "B",
@@ -8963,15 +9092,18 @@ const QUESTION_BANK_ANALISTA = [
     "opciones": [
       {
         "id": "A",
-        "texto": "Elaborar un cronograma de trabajo priorizando los expedientes por orden estricto de vencimiento de términos, identificando las pruebas pendientes y asignando tiempos específicos a cada proyecto."
+        "texto": "Elaborar un cronograma de trabajo priorizando los expedientes por orden estricto de vencimiento de términos, identificando las pruebas pendientes y asignando tiempos específicos a cada proyecto.",
+        "explicacion": "Correcta. La 'Planeación' permite anticipar requerimientos, definir prioridades críticas en función de plazos perentorios y optimizar los tiempos de ejecución para evitar el acaecimiento de silencios administrativos perjudiciales para la administración."
       },
       {
         "id": "B",
-        "texto": "Comenzar por el expediente más fácil y dejar los complejos para el último día hábil."
+        "texto": "Comenzar por el expediente más fácil y dejar los complejos para el último día hábil.",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: La 'Planeación' permite anticipar requerimientos, definir prioridades críticas en función de plazos perentorios y optimizar los tiempos de ejecución para evitar el acaecimiento de silencios administrativos perjudiciales para la administración."
       },
       {
         "id": "C",
-        "texto": "Solicitar una prórroga colectiva de términos que la ley aduanera no contempla."
+        "texto": "Solicitar una prórroga colectiva de términos que la ley aduanera no contempla.",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: La 'Planeación' permite anticipar requerimientos, definir prioridades críticas en función de plazos perentorios y optimizar los tiempos de ejecución para evitar el acaecimiento de silencios administrativos perjudiciales para la administración."
       }
     ],
     "respuestaCorrecta": "A",
@@ -8993,15 +9125,18 @@ const QUESTION_BANK_ANALISTA = [
     "opciones": [
       {
         "id": "A",
-        "texto": "Medir exclusivamente operativos de choque aislados sin importar su impacto a largo plazo."
+        "texto": "Medir exclusivamente operativos de choque aislados sin importar su impacto a largo plazo.",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: El 'Pensamiento Estratégico' permite al profesional comprender la interrelación entre las funciones específicas de su cargo y los grandes objetivos del Estado, anticipando escenarios de impacto macroeconómico y social."
       },
       {
         "id": "B",
-        "texto": "Conectar los controles aduaneros operativos con la formalización del comercio, la seguridad de las cadenas de suministro y el impacto en la competitividad y recaudo nacional sostenible."
+        "texto": "Conectar los controles aduaneros operativos con la formalización del comercio, la seguridad de las cadenas de suministro y el impacto en la competitividad y recaudo nacional sostenible.",
+        "explicacion": "Correcta. El 'Pensamiento Estratégico' permite al profesional comprender la interrelación entre las funciones específicas de su cargo y los grandes objetivos del Estado, anticipando escenarios de impacto macroeconómico y social."
       },
       {
         "id": "C",
-        "texto": "Suprimir los controles aduaneros para favorecer el consumo sin restricciones."
+        "texto": "Suprimir los controles aduaneros para favorecer el consumo sin restricciones.",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: El 'Pensamiento Estratégico' permite al profesional comprender la interrelación entre las funciones específicas de su cargo y los grandes objetivos del Estado, anticipando escenarios de impacto macroeconómico y social."
       }
     ],
     "respuestaCorrecta": "B",
@@ -9023,15 +9158,18 @@ const QUESTION_BANK_ANALISTA = [
     "opciones": [
       {
         "id": "A",
-        "texto": "Abstenerse de resolver expedientes de esa temática hasta que la DIAN le financie un posgrado especializado."
+        "texto": "Abstenerse de resolver expedientes de esa temática hasta que la DIAN le financie un posgrado especializado.",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: El 'Aprendizaje Continuo' impulsa al servidor público a adquirir y actualizar constantemente sus competencias técnicas y normativas, aplicando el conocimiento adquirido en beneficio de la excelencia institucional."
       },
       {
         "id": "B",
-        "texto": "Asumir la iniciativa de autoaprendizaje, estudiar de forma autónoma la jurisprudencia, doctrina y fuentes oficiales, y compartir los conocimientos adquiridos con su equipo."
+        "texto": "Asumir la iniciativa de autoaprendizaje, estudiar de forma autónoma la jurisprudencia, doctrina y fuentes oficiales, y compartir los conocimientos adquiridos con su equipo.",
+        "explicacion": "Correcta. El 'Aprendizaje Continuo' impulsa al servidor público a adquirir y actualizar constantemente sus competencias técnicas y normativas, aplicando el conocimiento adquirido en beneficio de la excelencia institucional."
       },
       {
         "id": "C",
-        "texto": "Delegar todos los casos complejos a los funcionarios provisionales recién ingresados."
+        "texto": "Delegar todos los casos complejos a los funcionarios provisionales recién ingresados.",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: El 'Aprendizaje Continuo' impulsa al servidor público a adquirir y actualizar constantemente sus competencias técnicas y normativas, aplicando el conocimiento adquirido en beneficio de la excelencia institucional."
       }
     ],
     "respuestaCorrecta": "B",
@@ -9053,15 +9191,18 @@ const QUESTION_BANK_ANALISTA = [
     "opciones": [
       {
         "id": "A",
-        "texto": "Emitir una opinión rápida basada en intuición personal sin revisar las sentencias de unificación de la Corte Constitucional ni del Consejo de Estado."
+        "texto": "Emitir una opinión rápida basada en intuición personal sin revisar las sentencias de unificación de la Corte Constitucional ni del Consejo de Estado.",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: La 'Experticia Técnica' se traduce en el dominio especializado de la disciplina y el marco normativo, permitiendo resolver problemas complejos con criterio jurídico y técnico de alta precisión."
       },
       {
         "id": "B",
-        "texto": "Aplicar con rigor y profundidad los precedentes jurisprudenciales obligatorios, las normas tributarias vigentes y los principios de hermenéutica jurídica, estructurando un análisis coherente e irrebatible."
+        "texto": "Aplicar con rigor y profundidad los precedentes jurisprudenciales obligatorios, las normas tributarias vigentes y los principios de hermenéutica jurídica, estructurando un análisis coherente e irrebatible.",
+        "explicacion": "Correcta. La 'Experticia Técnica' se traduce en el dominio especializado de la disciplina y el marco normativo, permitiendo resolver problemas complejos con criterio jurídico y técnico de alta precisión."
       },
       {
         "id": "C",
-        "texto": "Copiar textualmente un concepto obsoleto emitido hace diez años antes de la reforma legal."
+        "texto": "Copiar textualmente un concepto obsoleto emitido hace diez años antes de la reforma legal.",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: La 'Experticia Técnica' se traduce en el dominio especializado de la disciplina y el marco normativo, permitiendo resolver problemas complejos con criterio jurídico y técnico de alta precisión."
       }
     ],
     "respuestaCorrecta": "B",
@@ -9083,15 +9224,18 @@ const QUESTION_BANK_ANALISTA = [
     "opciones": [
       {
         "id": "A",
-        "texto": "Ocultar el error y permitir la notificación del acto para evitar un llamado de atención de su superior."
+        "texto": "Ocultar el error y permitir la notificación del acto para evitar un llamado de atención de su superior.",
+        "explicacion": "Incorrecta. Ocultar o alterar información vulnera frontalmente el valor de la Honestidad y el principio de transparencia del servidor público."
       },
       {
         "id": "B",
-        "texto": "Informar de inmediato a su jefe sobre el error cometido, asumiendo con transparencia la equivocación y gestionando la corrección del acto antes de su notificación legal."
+        "texto": "Informar de inmediato a su jefe sobre el error cometido, asumiendo con transparencia la equivocación y gestionando la corrección del acto antes de su notificación legal.",
+        "explicacion": "Correcta. El valor de la HONESTIDAD en el Código de Integridad del Servicio Público establece: 'Siempre digo la verdad, incluso cuando cometo errores, porque es humano cometerlos pero no es correcto esconderlos'. Actuar con transparencia protege el patrimonio público y la validez de los actos administrativos."
       },
       {
         "id": "C",
-        "texto": "Alterar el archivo digital en secreto y culpar a un compañero de la falla en el sistema."
+        "texto": "Alterar el archivo digital en secreto y culpar a un compañero de la falla en el sistema.",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: El valor de la HONESTIDAD en el Código de Integridad del Servicio Público establece: 'Siempre digo la verdad, incluso cuando cometo errores, porque es humano cometerlos pero no es correcto esconderlos'. Actuar con transparencia protege el patrimonio público y la validez de los actos administrativos."
       }
     ],
     "respuestaCorrecta": "B",
@@ -9113,15 +9257,18 @@ const QUESTION_BANK_ANALISTA = [
     "opciones": [
       {
         "id": "A",
-        "texto": "Aceptar los boletos argumentando que se trata de una cortesía privada sin compromiso formal."
+        "texto": "Aceptar los boletos argumentando que se trata de una cortesía privada sin compromiso formal.",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: El Código de Integridad prohíbe tajantemente recibir favores, regalos o incentivos: 'No acepto incentivos, favores ni ningún otro tipo de beneficio que me ofrezcan personas interesadas en un proceso de toma de decisiones'. Dicha conducta configura además posibles delitos contra la administración pública (cohecho)."
       },
       {
         "id": "B",
-        "texto": "Rechazar categóricamente el beneficio, advertirle sobre la ilegalidad de su conducta y reportar de inmediato el hecho ante la Oficina de Control Disciplinario Interno y la Fiscalía."
+        "texto": "Rechazar categóricamente el beneficio, advertirle sobre la ilegalidad de su conducta y reportar de inmediato el hecho ante la Oficina de Control Disciplinario Interno y la Fiscalía.",
+        "explicacion": "Correcta. El Código de Integridad prohíbe tajantemente recibir favores, regalos o incentivos: 'No acepto incentivos, favores ni ningún otro tipo de beneficio que me ofrezcan personas interesadas en un proceso de toma de decisiones'. Dicha conducta configura además posibles delitos contra la administración pública (cohecho)."
       },
       {
         "id": "C",
-        "texto": "Guardar silencio y recibir el obsequio a nombre de todo el grupo de trabajo."
+        "texto": "Guardar silencio y recibir el obsequio a nombre de todo el grupo de trabajo.",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: El Código de Integridad prohíbe tajantemente recibir favores, regalos o incentivos: 'No acepto incentivos, favores ni ningún otro tipo de beneficio que me ofrezcan personas interesadas en un proceso de toma de decisiones'. Dicha conducta configura además posibles delitos contra la administración pública (cohecho)."
       }
     ],
     "respuestaCorrecta": "B",
@@ -9143,15 +9290,18 @@ const QUESTION_BANK_ANALISTA = [
     "opciones": [
       {
         "id": "A",
-        "texto": "Burlarse del nuevo funcionario y excluirlo de las futuras reuniones de trabajo."
+        "texto": "Burlarse del nuevo funcionario y excluirlo de las futuras reuniones de trabajo.",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: El valor del RESPETO establece: 'Reconozco, valoro y trato de manera digna a todas las personas... Abro la ventana del diálogo y la comprensión, a pesar de que los demás tengan perspectivas y opiniones distintas a las mías'."
       },
       {
         "id": "B",
-        "texto": "Escuchar con atención y apertura los argumentos planteados, debatiendo sobre el mérito técnico de la idea con consideración y cortesía, sin importar la antigüedad del interlocutor."
+        "texto": "Escuchar con atención y apertura los argumentos planteados, debatiendo sobre el mérito técnico de la idea con consideración y cortesía, sin importar la antigüedad del interlocutor.",
+        "explicacion": "Correcta. El valor del RESPETO establece: 'Reconozco, valoro y trato de manera digna a todas las personas... Abro la ventana del diálogo y la comprensión, a pesar de que los demás tengan perspectivas y opiniones distintas a las mías'."
       },
       {
         "id": "C",
-        "texto": "Exigirle que guarde silencio hasta que cumpla al menos 5 años de servicio en la entidad."
+        "texto": "Exigirle que guarde silencio hasta que cumpla al menos 5 años de servicio en la entidad.",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: El valor del RESPETO establece: 'Reconozco, valoro y trato de manera digna a todas las personas... Abro la ventana del diálogo y la comprensión, a pesar de que los demás tengan perspectivas y opiniones distintas a las mías'."
       }
     ],
     "respuestaCorrecta": "B",
@@ -9173,15 +9323,18 @@ const QUESTION_BANK_ANALISTA = [
     "opciones": [
       {
         "id": "A",
-        "texto": "Cerrar inmediatamente las ventanillas en punto de las 5:00 p.m. y marcharse ignorando la contingencia ciudadana."
+        "texto": "Cerrar inmediatamente las ventanillas en punto de las 5:00 p.m. y marcharse ignorando la contingencia ciudadana.",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: El valor del COMPROMISO exige: 'Soy consciente de la importancia de mi rol como servidor público y estoy en disposición permanente para comprender y resolver las necesidades de las personas con las que me relaciono en mis labores'."
       },
       {
         "id": "B",
-        "texto": "Asumir con empatía y sentido de servicio la situación, coordinar con la jefatura la recepción manual o radicación de contingencia y atender a los ciudadanos presentes para evitarles sanciones injustas."
+        "texto": "Asumir con empatía y sentido de servicio la situación, coordinar con la jefatura la recepción manual o radicación de contingencia y atender a los ciudadanos presentes para evitarles sanciones injustas.",
+        "explicacion": "Correcta. El valor del COMPROMISO exige: 'Soy consciente de la importancia de mi rol como servidor público y estoy en disposición permanente para comprender y resolver las necesidades de las personas con las que me relaciono en mis labores'."
       },
       {
         "id": "C",
-        "texto": "Apagar las luces de la sala de espera para presionar la salida de los usuarios."
+        "texto": "Apagar las luces de la sala de espera para presionar la salida de los usuarios.",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: El valor del COMPROMISO exige: 'Soy consciente de la importancia de mi rol como servidor público y estoy en disposición permanente para comprender y resolver las necesidades de las personas con las que me relaciono en mis labores'."
       }
     ],
     "respuestaCorrecta": "B",
@@ -9203,15 +9356,18 @@ const QUESTION_BANK_ANALISTA = [
     "opciones": [
       {
         "id": "A",
-        "texto": "Guardar silencio para no ser sancionado disciplinariamente por el descuido."
+        "texto": "Guardar silencio para no ser sancionado disciplinariamente por el descuido.",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: El valor de la DILIGENCIA impone: 'Uso responsablemente los recursos informáticos y protejo la información a mi cargo'. Ante un incidente de seguridad, actuar con celeridad y reporte transparente es un imperativo ético indispensable para mitigar riesgos sobre la reserva legal."
       },
       {
         "id": "B",
-        "texto": "Reportar de inmediato la inconsistencia al oficial de seguridad de la información y a su jefe inmediato, solicitando el cambio urgente de credenciales y auditoría de accesos."
+        "texto": "Reportar de inmediato la inconsistencia al oficial de seguridad de la información y a su jefe inmediato, solicitando el cambio urgente de credenciales y auditoría de accesos.",
+        "explicacion": "Correcta. El valor de la DILIGENCIA impone: 'Uso responsablemente los recursos informáticos y protejo la información a mi cargo'. Ante un incidente de seguridad, actuar con celeridad y reporte transparente es un imperativo ético indispensable para mitigar riesgos sobre la reserva legal."
       },
       {
         "id": "C",
-        "texto": "Borrar el historial de navegación para fingir que la máquina estuvo apagada."
+        "texto": "Borrar el historial de navegación para fingir que la máquina estuvo apagada.",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: El valor de la DILIGENCIA impone: 'Uso responsablemente los recursos informáticos y protejo la información a mi cargo'. Ante un incidente de seguridad, actuar con celeridad y reporte transparente es un imperativo ético indispensable para mitigar riesgos sobre la reserva legal."
       }
     ],
     "respuestaCorrecta": "B",
@@ -9233,15 +9389,18 @@ const QUESTION_BANK_ANALISTA = [
     "opciones": [
       {
         "id": "A",
-        "texto": "Aprobarle la solicitud por tratarse de un lazo familiar sagrado."
+        "texto": "Aprobarle la solicitud por tratarse de un lazo familiar sagrado.",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: El valor de la JUSTICIA dispone: 'Actúo con imparcialidad garantizando los derechos de las personas, con equidad, igualdad y sin discriminación'. El conflicto de interés derivado del parentesco hasta el cuarto grado de consanguinidad obliga al funcionario a manifestar su impedimento legal."
       },
       {
         "id": "B",
-        "texto": "Declararse impedido de inmediato conforme al Código de Procedimiento Administrativo y de lo Contencioso Administrativo (CPACA), remitiendo el expediente a su superior para que asigne otro funcionario."
+        "texto": "Declararse impedido de inmediato conforme al Código de Procedimiento Administrativo y de lo Contencioso Administrativo (CPACA), remitiendo el expediente a su superior para que asigne otro funcionario.",
+        "explicacion": "Correcta. El valor de la JUSTICIA dispone: 'Actúo con imparcialidad garantizando los derechos de las personas, con equidad, igualdad y sin discriminación'. El conflicto de interés derivado del parentesco hasta el cuarto grado de consanguinidad obliga al funcionario a manifestar su impedimento legal."
       },
       {
         "id": "C",
-        "texto": "Archivar el expediente sin auto ni justificación."
+        "texto": "Archivar el expediente sin auto ni justificación.",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: El valor de la JUSTICIA dispone: 'Actúo con imparcialidad garantizando los derechos de las personas, con equidad, igualdad y sin discriminación'. El conflicto de interés derivado del parentesco hasta el cuarto grado de consanguinidad obliga al funcionario a manifestar su impedimento legal."
       }
     ],
     "respuestaCorrecta": "B",
@@ -9263,15 +9422,18 @@ const QUESTION_BANK_ANALISTA = [
     "opciones": [
       {
         "id": "A",
-        "texto": "Es una práctica admisible siempre que el funcionario no descuide su horario de trabajo."
+        "texto": "Es una práctica admisible siempre que el funcionario no descuide su horario de trabajo.",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: El Código de Integridad es taxativo: 'No uso recursos públicos para fines personales relacionados con mi familia, mis estudios y mis pasatiempos (esto incluye el tiempo laboral, elementos y bienes asignados)'. Dicho acto constituye falta disciplinaria gravísima."
       },
       {
         "id": "B",
-        "texto": "Es una infracción grave al deber de honestidad y diligencia, pues los recursos públicos no deben destinarse a fines particulares o familiares, acarreando responsabilidad disciplinaria y fiscal."
+        "texto": "Es una infracción grave al deber de honestidad y diligencia, pues los recursos públicos no deben destinarse a fines particulares o familiares, acarreando responsabilidad disciplinaria y fiscal.",
+        "explicacion": "Correcta. El Código de Integridad es taxativo: 'No uso recursos públicos para fines personales relacionados con mi familia, mis estudios y mis pasatiempos (esto incluye el tiempo laboral, elementos y bienes asignados)'. Dicho acto constituye falta disciplinaria gravísima."
       },
       {
         "id": "C",
-        "texto": "Debe autorizarse formalmente por la Comisión de Personal para fomentar el emprendimiento familiar."
+        "texto": "Debe autorizarse formalmente por la Comisión de Personal para fomentar el emprendimiento familiar.",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: El Código de Integridad es taxativo: 'No uso recursos públicos para fines personales relacionados con mi familia, mis estudios y mis pasatiempos (esto incluye el tiempo laboral, elementos y bienes asignados)'. Dicho acto constituye falta disciplinaria gravísima."
       }
     ],
     "respuestaCorrecta": "B",
@@ -9293,15 +9455,18 @@ const QUESTION_BANK_ANALISTA = [
     "opciones": [
       {
         "id": "A",
-        "texto": "El nivel preconvencional: obedecer ciegamente la directiva únicamente para evitar castigos o sanciones de sus superiores."
+        "texto": "El nivel preconvencional: obedecer ciegamente la directiva únicamente para evitar castigos o sanciones de sus superiores.",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: Las pruebas de integridad de la CNSC evalúan el razonamiento moral según la escala de Kohlberg. El nivel posconvencional (el más alto y deseable en servidores públicos) guía el comportamiento mediante principios éticos universales, el deber constitucional y la primacía del bien común por encima de presiones coyunturales o intereses particulares."
       },
       {
         "id": "B",
-        "texto": "El nivel convencional: seguir la costumbre mayoritaria del grupo sin cuestionar la legalidad de la orden."
+        "texto": "El nivel convencional: seguir la costumbre mayoritaria del grupo sin cuestionar la legalidad de la orden.",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: Las pruebas de integridad de la CNSC evalúan el razonamiento moral según la escala de Kohlberg. El nivel posconvencional (el más alto y deseable en servidores públicos) guía el comportamiento mediante principios éticos universales, el deber constitucional y la primacía del bien común por encima de presiones coyunturales o intereses particulares."
       },
       {
         "id": "C",
-        "texto": "El nivel posconvencional: defender los principios constitucionales de igualdad, legalidad y moralidad pública, haciendo prevalecer el interés general y el mandato imperativo de la ley sobre directrices arbitrarias."
+        "texto": "El nivel posconvencional: defender los principios constitucionales de igualdad, legalidad y moralidad pública, haciendo prevalecer el interés general y el mandato imperativo de la ley sobre directrices arbitrarias.",
+        "explicacion": "Correcta. Las pruebas de integridad de la CNSC evalúan el razonamiento moral según la escala de Kohlberg. El nivel posconvencional (el más alto y deseable en servidores públicos) guía el comportamiento mediante principios éticos universales, el deber constitucional y la primacía del bien común por encima de presiones coyunturales o intereses particulares."
       }
     ],
     "respuestaCorrecta": "C",
@@ -9323,15 +9488,18 @@ const QUESTION_BANK_ANALISTA = [
     "opciones": [
       {
         "id": "A",
-        "texto": "Negar la información sin motivación legal inventando una causal inexistente de reserva de seguridad nacional."
+        "texto": "Negar la información sin motivación legal inventando una causal inexistente de reserva de seguridad nacional.",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: El Código de Integridad establece: 'Facilito el acceso a la información pública, completa, veraz, oportuna y comprensible'. Salvo las excepciones taxativas de ley (reserva tributaria individual del Art. 583 E.T.), la información institucional sobre gestión y metas es pública por mandato de la Ley 1712 de 2014."
       },
       {
         "id": "B",
-        "texto": "Garantizar la entrega oportuna y completa de la información pública requerida, toda vez que los informes de gestión no están amparados por reserva legal tributaria y rige el principio de máxima divulgación."
+        "texto": "Garantizar la entrega oportuna y completa de la información pública requerida, toda vez que los informes de gestión no están amparados por reserva legal tributaria y rige el principio de máxima divulgación.",
+        "explicacion": "Correcta. El Código de Integridad establece: 'Facilito el acceso a la información pública, completa, veraz, oportuna y comprensible'. Salvo las excepciones taxativas de ley (reserva tributaria individual del Art. 583 E.T.), la información institucional sobre gestión y metas es pública por mandato de la Ley 1712 de 2014."
       },
       {
         "id": "C",
-        "texto": "Cobrar una suma exorbitante por cada copia para desmotivar al peticionario."
+        "texto": "Cobrar una suma exorbitante por cada copia para desmotivar al peticionario.",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: El Código de Integridad establece: 'Facilito el acceso a la información pública, completa, veraz, oportuna y comprensible'. Salvo las excepciones taxativas de ley (reserva tributaria individual del Art. 583 E.T.), la información institucional sobre gestión y metas es pública por mandato de la Ley 1712 de 2014."
       }
     ],
     "respuestaCorrecta": "B",
@@ -9353,15 +9521,18 @@ const QUESTION_BANK_ANALISTA = [
     "opciones": [
       {
         "id": "A",
-        "texto": "Hacerse el de la vista gorda porque no es su función fiscalizar a sus colegas y no desea ganarse enemigos."
+        "texto": "Hacerse el de la vista gorda porque no es su función fiscalizar a sus colegas y no desea ganarse enemigos.",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: El Código de Integridad del Servicio Público ordena de manera perentoria: 'Denuncio las faltas, delitos o violación de derechos de los que tengo conocimiento en el ejercicio de mi cargo, siempre'. La omisión de denuncia constituye además falta disciplinaria y penal (prevaricato por omisión)."
       },
       {
         "id": "B",
-        "texto": "Denunciar de manera inmediata, reservada y documentada los hechos ante la Oficina de Control Disciplinario Interno y la Dirección de Fiscalización, aportando las evidencias encontradas."
+        "texto": "Denunciar de manera inmediata, reservada y documentada los hechos ante la Oficina de Control Disciplinario Interno y la Dirección de Fiscalización, aportando las evidencias encontradas.",
+        "explicacion": "Correcta. El Código de Integridad del Servicio Público ordena de manera perentoria: 'Denuncio las faltas, delitos o violación de derechos de los que tengo conocimiento en el ejercicio de mi cargo, siempre'. La omisión de denuncia constituye además falta disciplinaria y penal (prevaricato por omisión)."
       },
       {
         "id": "C",
-        "texto": "Pedirle al compañero una parte de las ganancias para no delatarlo."
+        "texto": "Pedirle al compañero una parte de las ganancias para no delatarlo.",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: El Código de Integridad del Servicio Público ordena de manera perentoria: 'Denuncio las faltas, delitos o violación de derechos de los que tengo conocimiento en el ejercicio de mi cargo, siempre'. La omisión de denuncia constituye además falta disciplinaria y penal (prevaricato por omisión)."
       }
     ],
     "respuestaCorrecta": "B",
@@ -9383,15 +9554,18 @@ const QUESTION_BANK_ANALISTA = [
     "opciones": [
       {
         "id": "A",
-        "texto": "Marcar únicamente con lápiz de mina negra No. 2 rellenando completamente el óvalo de la opción elegida, sin tachones ni marcas por fuera del círculo para garantizar la lectura óptica por el escáner."
+        "texto": "Marcar únicamente con lápiz de mina negra No. 2 rellenando completamente el óvalo de la opción elegida, sin tachones ni marcas por fuera del círculo para garantizar la lectura óptica por el escáner.",
+        "explicacion": "Correcta. La Guía de Orientación al Aspirante para las pruebas escritas DIAN 2676 estipula que la hoja de respuestas es procesada por lectores ópticos de alta velocidad que requieren estrictamente el uso de lápiz de grafito No. 2 y el llenado completo y uniforme del óvalo correspondiente, advirtiendo que marcas tenues, cruces o tachaduras pueden invalidar la lectura de la pregunta."
       },
       {
         "id": "B",
-        "texto": "Colocar un visto bueno con marcador fluorescente para que el lector óptico lo detecte más rápido."
+        "texto": "Colocar un visto bueno con marcador fluorescente para que el lector óptico lo detecte más rápido.",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: La Guía de Orientación al Aspirante para las pruebas escritas DIAN 2676 estipula que la hoja de respuestas es procesada por lectores ópticos de alta velocidad que requieren estrictamente el uso de lápiz de grafito No. 2 y el llenado completo y uniforme del óvalo correspondiente, advirtiendo que marcas tenues, cruces o tachaduras pueden invalidar la lectura de la pregunta."
       },
       {
         "id": "C",
-        "texto": "Escribir la letra A, B o C con esfero azul en el margen de la hoja óptica."
+        "texto": "Escribir la letra A, B o C con esfero azul en el margen de la hoja óptica.",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: La Guía de Orientación al Aspirante para las pruebas escritas DIAN 2676 estipula que la hoja de respuestas es procesada por lectores ópticos de alta velocidad que requieren estrictamente el uso de lápiz de grafito No. 2 y el llenado completo y uniforme del óvalo correspondiente, advirtiendo que marcas tenues, cruces o tachaduras pueden invalidar la lectura de la pregunta."
       }
     ],
     "respuestaCorrecta": "A",
@@ -9413,15 +9587,18 @@ const QUESTION_BANK_ANALISTA = [
     "opciones": [
       {
         "id": "A",
-        "texto": "Permitirle responder llamadas si se trata de una urgencia familiar justificada."
+        "texto": "Permitirle responder llamadas si se trata de una urgencia familiar justificada.",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: La Guía de Orientación al Aspirante y los Acuerdos de Convocatoria de la CNSC sancionan de forma taxativa con la ANULACIÓN INMEDIATA del examen y la exclusión del concurso a cualquier aspirante que manipule teléfonos móviles, relojes inteligentes o cualquier dispositivo electrónico durante la sesión de la prueba."
       },
       {
         "id": "B",
-        "texto": "Anular de manera inmediata la prueba del aspirante, levantar el acta de anulación por manipulación de dispositivo móvil o electrónico y ordenar su retiro del recinto sin derecho a reclamo posterior."
+        "texto": "Anular de manera inmediata la prueba del aspirante, levantar el acta de anulación por manipulación de dispositivo móvil o electrónico y ordenar su retiro del recinto sin derecho a reclamo posterior.",
+        "explicacion": "Correcta. La Guía de Orientación al Aspirante y los Acuerdos de Convocatoria de la CNSC sancionan de forma taxativa con la ANULACIÓN INMEDIATA del examen y la exclusión del concurso a cualquier aspirante que manipule teléfonos móviles, relojes inteligentes o cualquier dispositivo electrónico durante la sesión de la prueba."
       },
       {
         "id": "C",
-        "texto": "Descontarle 5 puntos de la calificación final pero dejarle terminar el examen."
+        "texto": "Descontarle 5 puntos de la calificación final pero dejarle terminar el examen.",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: La Guía de Orientación al Aspirante y los Acuerdos de Convocatoria de la CNSC sancionan de forma taxativa con la ANULACIÓN INMEDIATA del examen y la exclusión del concurso a cualquier aspirante que manipule teléfonos móviles, relojes inteligentes o cualquier dispositivo electrónico durante la sesión de la prueba."
       }
     ],
     "respuestaCorrecta": "B",
@@ -9443,15 +9620,18 @@ const QUESTION_BANK_ANALISTA = [
     "opciones": [
       {
         "id": "A",
-        "texto": "Acudir a la sede física del Ministerio de Hacienda durante el mes siguiente a la publicación."
+        "texto": "Acudir a la sede física del Ministerio de Hacienda durante el mes siguiente a la publicación.",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: El Decreto Ley 760 de 2005 y la Guía de Orientación al Aspirante DIAN 2676 consagran un término perentorio de cinco (5) días hábiles a partir de la publicación de resultados para presentar reclamaciones de forma exclusiva a través de la plataforma SIMO."
       },
       {
         "id": "B",
-        "texto": "Radicar la reclamación exclusivamente a través del Sistema SIMO dentro de los cinco (5) días hábiles siguientes a la publicación de los resultados."
+        "texto": "Radicar la reclamación exclusivamente a través del Sistema SIMO dentro de los cinco (5) días hábiles siguientes a la publicación de los resultados.",
+        "explicacion": "Correcta. El Decreto Ley 760 de 2005 y la Guía de Orientación al Aspirante DIAN 2676 consagran un término perentorio de cinco (5) días hábiles a partir de la publicación de resultados para presentar reclamaciones de forma exclusiva a través de la plataforma SIMO."
       },
       {
         "id": "C",
-        "texto": "Enviar un mensaje por redes sociales oficiales de la CNSC en cualquier momento."
+        "texto": "Enviar un mensaje por redes sociales oficiales de la CNSC en cualquier momento.",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: El Decreto Ley 760 de 2005 y la Guía de Orientación al Aspirante DIAN 2676 consagran un término perentorio de cinco (5) días hábiles a partir de la publicación de resultados para presentar reclamaciones de forma exclusiva a través de la plataforma SIMO."
       }
     ],
     "respuestaCorrecta": "B",
@@ -9473,15 +9653,18 @@ const QUESTION_BANK_ANALISTA = [
     "opciones": [
       {
         "id": "A",
-        "texto": "Dos (2) horas exactas (120 minutos)."
+        "texto": "Dos (2) horas exactas (120 minutos).",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: La Guía Oficial de Orientación al Aspirante para el Proceso de Selección DIAN 2676 establece una jornada única de aplicación con una duración máxima de cuatro horas y treinta minutos (4 horas y 30 minutos) para responder la totalidad de los módulos de pruebas escritas."
       },
       {
         "id": "B",
-        "texto": "Cuatro horas y treinta minutos (4 horas y 30 minutos / 270 minutos)."
+        "texto": "Cuatro horas y treinta minutos (4 horas y 30 minutos / 270 minutos).",
+        "explicacion": "Correcta. La Guía Oficial de Orientación al Aspirante para el Proceso de Selección DIAN 2676 establece una jornada única de aplicación con una duración máxima de cuatro horas y treinta minutos (4 horas y 30 minutos) para responder la totalidad de los módulos de pruebas escritas."
       },
       {
         "id": "C",
-        "texto": "Ocho (8) horas con receso para almorzar."
+        "texto": "Ocho (8) horas con receso para almorzar.",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: La Guía Oficial de Orientación al Aspirante para el Proceso de Selección DIAN 2676 establece una jornada única de aplicación con una duración máxima de cuatro horas y treinta minutos (4 horas y 30 minutos) para responder la totalidad de los módulos de pruebas escritas."
       }
     ],
     "respuestaCorrecta": "B",
@@ -9503,15 +9686,18 @@ const QUESTION_BANK_ANALISTA = [
     "opciones": [
       {
         "id": "A",
-        "texto": "Enviar copias no controladas por correo a cualquier persona que las solicite."
+        "texto": "Enviar copias no controladas por correo a cualquier persona que las solicite.",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: Por mandato del Decreto Ley 760 de 2005 y la Ley 909 de 2004, las pruebas de concurso público gozan de reserva legal. El acceso a pruebas se efectúa en una jornada especial presencial y custodiada, prohibiendo la toma de fotografías, apuntes mecánicos o copias que vulneren la reserva del banco de preguntas."
       },
       {
         "id": "B",
-        "texto": "Citar al aspirante a una sesión presencial de acceso a pruebas bajo estricta reserva, donde podrá consultar personalmente su cuadernillo y hoja de respuestas sin ingresar celulares ni cámaras, y sin posibilidad de retirar copia física ni digital."
+        "texto": "Citar al aspirante a una sesión presencial de acceso a pruebas bajo estricta reserva, donde podrá consultar personalmente su cuadernillo y hoja de respuestas sin ingresar celulares ni cámaras, y sin posibilidad de retirar copia física ni digital.",
+        "explicacion": "Correcta. Por mandato del Decreto Ley 760 de 2005 y la Ley 909 de 2004, las pruebas de concurso público gozan de reserva legal. El acceso a pruebas se efectúa en una jornada especial presencial y custodiada, prohibiendo la toma de fotografías, apuntes mecánicos o copias que vulneren la reserva del banco de preguntas."
       },
       {
         "id": "C",
-        "texto": "Publicar el examen completo en la página web pública de la universidad operadora."
+        "texto": "Publicar el examen completo en la página web pública de la universidad operadora.",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: Por mandato del Decreto Ley 760 de 2005 y la Ley 909 de 2004, las pruebas de concurso público gozan de reserva legal. El acceso a pruebas se efectúa en una jornada especial presencial y custodiada, prohibiendo la toma de fotografías, apuntes mecánicos o copias que vulneren la reserva del banco de preguntas."
       }
     ],
     "respuestaCorrecta": "B",
@@ -9522,7 +9708,6 @@ const QUESTION_BANK_ANALISTA = [
     "competencia": "Reserva Legal y Acceso a Pruebas CNSC",
     "nivel": "Técnico"
   },
-  // --- CASOS ESPECIALES DE VERBOS RECTORES Y DELIMITACIÓN FUNCIONAL CNSC/DIAN ---
   {
     "id": "dian_vr_analista_01",
     "nivel": "Técnico",
@@ -9624,10 +9809,6 @@ const QUESTION_BANK_ANALISTA = [
   }
 ];
 
-
-if (typeof window !== "undefined") {
-  window.QUESTION_BANK_ANALISTA = QUESTION_BANK_ANALISTA;
-}
 if (typeof module !== "undefined" && module.exports) {
   module.exports = { QUESTION_BANK_ANALISTA };
 }

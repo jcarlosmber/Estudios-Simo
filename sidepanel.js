@@ -3003,6 +3003,10 @@ function applyProfile(profileId, save = true, showNotification = false) {
   if (AppState.currentTab === "srs") renderSrsTab();
   if (AppState.currentTab === "stats") renderStatsTab();
 
+  if (typeof initSpeedCaza === "function") {
+    initSpeedCaza(profileId);
+  }
+
   if (showNotification) {
     showCustomModal({
       title: `Perfil Cambiado: ${profile.shortTitle || profile.title}`,
@@ -3765,12 +3769,14 @@ function evaluateAnswer(selectedId) {
         <span>🎯</span>
         <span>Cacería de Distractores: ¿Por qué fallan las otras opciones?</span>
       </div>
-      ${incorrectOpts.map((o) => `
+      ${incorrectOpts.map((o) => {
+        const explText = o.explicacion || (q.justificacion ? `Distractor descartado: ${q.justificacion}` : "Opción incorrecta según la normativa y los criterios técnicos evaluados.");
+        return `
         <div style="margin-bottom: 8px; padding: 10px 12px; background: rgba(239, 68, 68, 0.12); border-left: 3px solid var(--accent-red); border-radius: 8px;">
           <strong style="color: #fca5a5; font-size: 13px;">❌ Opción ${o.id}:</strong>
-          <div style="color: #e2e8f0; font-size: 13px; margin-top: 3px; line-height: 1.5;">${o.explicacion}</div>
+          <div style="color: #e2e8f0; font-size: 13px; margin-top: 3px; line-height: 1.5;">${explText}</div>
         </div>
-      `).join("")}
+      `;}).join("")}
     `;
     huntBox.style.display = "block";
   }
@@ -3911,7 +3917,7 @@ function openFeedbackModal(isCorrect, q) {
         <span>Opción ${opt.id} ${isThisCorrect ? "— CLAVE OFICIAL CNSC/DIAN" : "— DISTRACTOR"}</span>
       </div> 
       <div style="font-size: 15px; color: #e2e8f0; line-height: 1.6;">
-        ${opt.explicacion}
+        ${opt.explicacion || (isThisCorrect ? (q.justificacion || "Opción correcta conforme a la normativa aplicable.") : (q.justificacion ? `Distractor descartado: ${q.justificacion}` : "Opción incorrecta según los criterios de la prueba."))}
       </div>
     `;
     breakdownContainer.appendChild(item);
@@ -6075,7 +6081,7 @@ function reviewSimAnswers() {
         ${isCorrect ? '✓ Respuesta Correcta' : `✕ Marcaste Opción ${userAns || 'Sin Responder'} (Correcta era: ${q.respuestaCorrecta})`}
       </div>
       <div style="font-size: 12px; color: #cbd5e1; margin-top: 6px; line-height: 1.5;">
-        ${q.opciones.find(o => o.id === q.respuestaCorrecta)?.explicacion || ''}
+        ${q.opciones.find(o => o.id === q.respuestaCorrecta)?.explicacion || q.justificacion || 'Respuesta correcta fundamentada en la normativa legal vigente.'}
       </div>
       ${q.citaNormativa ? `
         <div style="margin-top: 8px; padding-top: 6px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 11px; color: #38bdf8; font-style: italic;">
@@ -6197,12 +6203,14 @@ function setupDistractorHunt() {
         <div style="font-weight: 800; color: #f59e0b; margin-bottom: 8px; font-size: 14px;">
           🎯 Clave Socrática para Descartar los Distractores:
         </div>
-        ${incorrectOpts.map((o) => `
+        ${incorrectOpts.map((o) => {
+          const explText = o.explicacion || (q.justificacion ? `Distractor descartado: ${q.justificacion}` : "Opción incorrecta según la normativa y los criterios técnicos evaluados.");
+          return `
           <div style="margin-bottom: 8px; padding: 8px 10px; background: rgba(239, 68, 68, 0.12); border-left: 3px solid var(--accent-red); border-radius: 4px;">
             <strong style="color: #fca5a5;">Por qué descartar la Opción ${o.id}:</strong><br>
-            <span style="color: #e2e8f0;">${o.explicacion}</span>
+            <span style="color: #e2e8f0;">${explText}</span>
           </div>
-        `).join("")}
+        `;}).join("")}
       `;
       box.style.display = "block";
       btn.textContent = "🙈 Ocultar Cacería de Distractores";
@@ -6455,15 +6463,23 @@ function resumeSpeedVFTimer() {
   }, 1000);
 }
 
-function initSpeedCaza() {
+function initSpeedCaza(profileId) {
+  const currentProfileId = profileId || AppState.activeProfileId || (document.getElementById("profileSwitcher") ? document.getElementById("profileSwitcher").value : "gestor_iii");
+
   let source = [];
-  if (typeof CAZA_DISTRACTORES_100 !== "undefined" && Array.isArray(CAZA_DISTRACTORES_100) && CAZA_DISTRACTORES_100.length > 0) {
-    source = CAZA_DISTRACTORES_100;
+  if (typeof getCazaDistractoresForProfile === "function") {
+    source = getCazaDistractoresForProfile(currentProfileId);
+  } else if (typeof CAZA_DISTRACTORES_BY_PROFILE !== "undefined" && CAZA_DISTRACTORES_BY_PROFILE[currentProfileId]) {
+    source = CAZA_DISTRACTORES_BY_PROFILE[currentProfileId];
+  } else if (typeof CAZA_DISTRACTORES_100 !== "undefined" && Array.isArray(CAZA_DISTRACTORES_100)) {
+    source = CAZA_DISTRACTORES_100.filter(c => c.perfilTarget === currentProfileId);
+    if (source.length === 0) source = CAZA_DISTRACTORES_100;
   } else if (typeof VERBOS_RECTORES_DATA !== "undefined" && Array.isArray(VERBOS_RECTORES_DATA.SPEED_DRILLS_VERBOS)) {
-    source = VERBOS_RECTORES_DATA.SPEED_DRILLS_VERBOS;
+    source = VERBOS_RECTORES_DATA.SPEED_DRILLS_VERBOS.filter(c => !c.perfilTarget || c.perfilTarget === currentProfileId);
+    if (source.length === 0) source = VERBOS_RECTORES_DATA.SPEED_DRILLS_VERBOS;
   }
 
-  if (source.length === 0) return;
+  if (!source || source.length === 0) return;
 
   // Pre-resolver y asegurar que cada caso tenga su verbo evaluado sin 'undefined'
   source.forEach((item) => {
@@ -6472,7 +6488,7 @@ function initSpeedCaza() {
     }
   });
 
-  // Barajar completamente los 100 casos de forma aleatoria (Fisher-Yates)
+  // Barajar completamente los 100 casos exclusivos del cargo activo de forma aleatoria (Fisher-Yates)
   SpeedDrillState.cazaPool = simoShuffle([...source]);
   SpeedDrillState.cazaIndex = 0;
   SpeedDrillState.cazaScore = 0;
