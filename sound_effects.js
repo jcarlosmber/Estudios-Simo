@@ -8,7 +8,7 @@ const SoundFX = {
 
   // Inicializar estado de sonido
   init(initialEnabled = true) {
-    this.enabled = (initialEnabled !== false);
+    this.enabled = (initialEnabled !== false && initialEnabled !== "false");
   },
 
   // Desbloqueo forzado del AudioContext ante cualquier gesto del usuario
@@ -47,7 +47,9 @@ const SoundFX = {
       if (ctx.state === "suspended") {
         ctx.resume().then(() => {
           try { fn(ctx); } catch (e) {}
-        }).catch(() => {});
+        }).catch(() => {
+          try { fn(ctx); } catch (e) {}
+        });
       } else {
         fn(ctx);
       }
@@ -63,18 +65,19 @@ const SoundFX = {
       freqs.forEach((freq, idx) => {
         const osc = ctx.createOscillator();
         const gain = ctx.createGain();
+        const startTime = Math.max(ctx.currentTime, now) + idx * 0.12 + 0.005;
         osc.type = "sine";
-        osc.frequency.setValueAtTime(freq, now + idx * 0.12);
+        osc.frequency.setValueAtTime(freq, startTime);
 
-        gain.gain.setValueAtTime(0.001, now + idx * 0.12);
-        gain.gain.linearRampToValueAtTime(0.28, now + idx * 0.12 + 0.02);
-        gain.gain.linearRampToValueAtTime(0.001, now + idx * 0.12 + 0.45);
+        gain.gain.setValueAtTime(0.001, startTime);
+        gain.gain.linearRampToValueAtTime(0.32, startTime + 0.02);
+        gain.gain.linearRampToValueAtTime(0.001, startTime + 0.45);
 
         osc.connect(gain);
         gain.connect(ctx.destination);
 
-        osc.start(now + idx * 0.12);
-        osc.stop(now + idx * 0.12 + 0.48);
+        osc.start(startTime);
+        osc.stop(startTime + 0.48);
       });
     });
   },
@@ -88,18 +91,20 @@ const SoundFX = {
       notes.forEach((freq, idx) => {
         const osc = ctx.createOscillator();
         const gain = ctx.createGain();
-        osc.type = "triangle";
-        osc.frequency.setValueAtTime(freq, now + idx * 0.08);
+        const startTime = Math.max(ctx.currentTime, now) + idx * 0.08 + 0.005;
 
-        gain.gain.setValueAtTime(0.001, now + idx * 0.08);
-        gain.gain.linearRampToValueAtTime(0.35, now + idx * 0.08 + 0.02);
-        gain.gain.linearRampToValueAtTime(0.001, now + idx * 0.08 + 0.35);
+        osc.type = "triangle";
+        osc.frequency.setValueAtTime(freq, startTime);
+
+        gain.gain.setValueAtTime(0.001, startTime);
+        gain.gain.linearRampToValueAtTime(0.40, startTime + 0.02);
+        gain.gain.linearRampToValueAtTime(0.001, startTime + 0.35);
 
         osc.connect(gain);
         gain.connect(ctx.destination);
 
-        osc.start(now + idx * 0.08);
-        osc.stop(now + idx * 0.08 + 0.38);
+        osc.start(startTime);
+        osc.stop(startTime + 0.38);
       });
     });
   },
@@ -114,23 +119,24 @@ const SoundFX = {
         const osc = ctx.createOscillator();
         const gain = ctx.createGain();
         const filter = ctx.createBiquadFilter();
+        const startTime = Math.max(ctx.currentTime, now) + idx * 0.16 + 0.005;
 
         osc.type = "sawtooth";
-        osc.frequency.setValueAtTime(freq, now + idx * 0.16);
+        osc.frequency.setValueAtTime(freq, startTime);
 
         filter.type = "lowpass";
-        filter.frequency.setValueAtTime(550, now + idx * 0.16);
+        filter.frequency.setValueAtTime(550, startTime);
 
-        gain.gain.setValueAtTime(0.001, now + idx * 0.16);
-        gain.gain.linearRampToValueAtTime(0.26, now + idx * 0.16 + 0.03);
-        gain.gain.linearRampToValueAtTime(0.001, now + idx * 0.16 + 0.32);
+        gain.gain.setValueAtTime(0.001, startTime);
+        gain.gain.linearRampToValueAtTime(0.30, startTime + 0.03);
+        gain.gain.linearRampToValueAtTime(0.001, startTime + 0.32);
 
         osc.connect(filter);
         filter.connect(gain);
         gain.connect(ctx.destination);
 
-        osc.start(now + idx * 0.16);
-        osc.stop(now + idx * 0.16 + 0.35);
+        osc.start(startTime);
+        osc.stop(startTime + 0.35);
       });
     });
   },

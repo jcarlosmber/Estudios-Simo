@@ -3122,6 +3122,7 @@ function updateSelectedEjeProgressBar() {
   }
 
   const matchingQuestions = getQuestionsForFilter(pool, currentFilter, currentProfileId);
+  const total = matchingQuestions.length;
   const studiedSet = new Set(AppState.practiceStudiedIds || []);
   if (Array.isArray(AppState.practiceCorrectIds)) {
     AppState.practiceCorrectIds.forEach((id) => studiedSet.add(id));
@@ -3759,7 +3760,10 @@ function renderPracticeQuestion(q) {
     `;
 
     item.addEventListener("click", () => {
-      if (typeof SoundFX !== "undefined") SoundFX.unlock();
+      if (typeof SoundFX !== "undefined") {
+        SoundFX.unlock();
+        if (SoundFX.playPop) SoundFX.playPop();
+      }
       document.querySelectorAll(".option-item").forEach((el) => el.classList.remove("selected"));
       item.classList.add("selected");
       AppState.selectedOption = opt.id;
@@ -3773,31 +3777,77 @@ function renderPracticeQuestion(q) {
 function evaluateAnswer(selectedId) {
   PracticeTimer.stop();
   const q = AppState.currentQuestion;
+  if (!q) return;
   const isCorrect = selectedId === q.respuestaCorrecta;
 
-  // Desbloqueo forzado de audio
-  if (typeof SoundFX !== "undefined") SoundFX.unlock();
+  // 1. REPRODUCCIÓN INMEDIATA DE AUDIO (Cero latencia, estilo Caza-Distractores)
+  if (typeof SoundFX !== "undefined") {
+    try {
+      SoundFX.unlock();
+      if (isCorrect) {
+        if (SoundFX.playCorrect) SoundFX.playCorrect();
+      } else {
+        if (SoundFX.playIncorrect) SoundFX.playIncorrect();
+        else if (SoundFX.playWrong) SoundFX.playWrong();
+      }
+    } catch (e) {
+      console.warn("[SoundFX] Error al reproducir audio:", e);
+    }
+  }
 
-  // Feedback visual en las opciones de la tarjeta
+  // Feedback visual en las opciones de la tarjeta con estilo Caza-Distractores
   document.querySelectorAll(".option-item").forEach((el) => {
     const optId = el.getAttribute("data-id");
     el.style.pointerEvents = "none";
     if (optId === q.respuestaCorrecta) {
       el.style.borderColor = "var(--accent-green)";
-      el.style.backgroundColor = "rgba(16, 185, 129, 0.16)";
-      el.style.boxShadow = "0 4px 0 #047857";
+      el.style.backgroundColor = "rgba(16, 185, 129, 0.18)";
+      el.style.boxShadow = "0 4px 12px rgba(16, 185, 129, 0.35)";
+      const keyEl = el.querySelector(".option-key");
+      if (keyEl) {
+        keyEl.style.backgroundColor = "var(--accent-green)";
+        keyEl.style.color = "#0b1120";
+        keyEl.textContent = "✓";
+      }
     } else if (optId === selectedId) {
       el.style.borderColor = "var(--accent-red)";
-      el.style.backgroundColor = "rgba(239, 68, 68, 0.16)";
-      el.style.boxShadow = "0 4px 0 #991b1b";
+      el.style.backgroundColor = "rgba(239, 68, 68, 0.18)";
+      el.style.boxShadow = "0 4px 12px rgba(239, 68, 68, 0.35)";
+      const keyEl = el.querySelector(".option-key");
+      if (keyEl) {
+        keyEl.style.backgroundColor = "var(--accent-red)";
+        keyEl.style.color = "#ffffff";
+        keyEl.textContent = "✕";
+      }
     }
   });
 
-  // Mostrar Cacería de Distractores en la tarjeta ahora que ya se confirmó
+  // Mostrar Cacería de Distractores en la tarjeta con banner de veredicto estilo Caza-Distractores
   const huntBox = document.getElementById("distractorHuntBox");
   if (huntBox) {
     const incorrectOpts = q.opciones.filter((o) => o.id !== q.respuestaCorrecta);
+    const verdictBannerHtml = isCorrect
+      ? `
+        <div style="background: rgba(16, 185, 129, 0.18); border: 1.5px solid #10b981; border-radius: 10px; padding: 12px 14px; margin-bottom: 12px; display: flex; align-items: center; gap: 10px;">
+          <span style="font-size: 26px;">🎯</span>
+          <div>
+            <div style="font-size: 15px; font-weight: 800; color: #34d399;">🎯 ¡ACERTASTE! Discriminación perfecta (+1 Acierto)</div>
+            <div style="font-size: 13px; color: #a7f3d0; margin-top: 2px;">Identificaste la clave oficial: <strong>Opción ${q.respuestaCorrecta}</strong></div>
+          </div>
+        </div>
+      `
+      : `
+        <div style="background: rgba(239, 68, 68, 0.18); border: 1.5px solid #ef4444; border-radius: 10px; padding: 12px 14px; margin-bottom: 12px; display: flex; align-items: center; gap: 10px;">
+          <span style="font-size: 26px;">❌</span>
+          <div>
+            <div style="font-size: 15px; font-weight: 800; color: #f87171;">❌ TRAMPA CAÍDA: La opción era la ${q.respuestaCorrecta}</div>
+            <div style="font-size: 13px; color: #fca5a5; margin-top: 2px;">Seleccionaste la Opción ${selectedId} (distractor). Revisa el análisis a continuación.</div>
+          </div>
+        </div>
+      `;
+
     huntBox.innerHTML = `
+      ${verdictBannerHtml}
       <div style="font-weight: 800; color: #f59e0b; margin-bottom: 10px; font-size: 14px; display: flex; align-items: center; gap: 6px;">
         <span>🎯</span>
         <span>Cacería de Distractores: ¿Por qué fallan las otras opciones?</span>
@@ -3848,10 +3898,11 @@ function evaluateAnswer(selectedId) {
   updateSelectedEjeProgressBar();
   updatePracticeProgressPill();
 
-  if (q.tipo.includes("Funcional")) {
+  const tipoStr = (q && q.tipo) ? q.tipo : "";
+  if (tipoStr.includes("Funcional")) {
     AppState.stats.functionalTotal += 1;
     if (isCorrect) AppState.stats.functionalCorrect += 1;
-  } else if (q.tipo.includes("Comportamental")) {
+  } else if (tipoStr.includes("Comportamental")) {
     AppState.stats.behavioralTotal += 1;
     if (isCorrect) AppState.stats.behavioralCorrect += 1;
   } else {
@@ -3868,27 +3919,23 @@ function evaluateAnswer(selectedId) {
   if (!isCorrect) {
     addToSrsQueue(q, "hard");
     AppState.sessionStreak = 0;
-    if (typeof SoundFX !== "undefined") {
-      SoundFX.unlock();
-      SoundFX.playIncorrect();
+    if (selectedOptEl) {
+      SimoFX.shake(selectedOptEl);
+      SimoFX.floatText(selectedOptEl, "⚠️ Caíste en la trampa", "#fca5a5");
     }
     SimoFX.shake(document.getElementById("practiceCardContainer"));
-    SimoFX.floatText(selectedOptEl, "📚 A repasar", "#fca5a5");
   } else {
     AppState.sessionStreak = (AppState.sessionStreak || 0) + 1;
-    SimoFX.burst(selectedOptEl, ["✨", "⭐", "💫", "✅"], 16, 120);
-    SimoFX.floatText(selectedOptEl, `+${AppState.sessionStreak * 50} XP`, "#34d399");
+    if (selectedOptEl) {
+      SimoFX.burst(selectedOptEl, ["⚡", "✨", "🎯"], 16, 120);
+      SimoFX.floatText(selectedOptEl, "⚡ ¡Acertaste! (+1 Acierto)", "#34d399");
+    }
     SimoFX.flameBoost();
-    if (typeof SoundFX !== "undefined") {
-      SoundFX.unlock();
-      // Reproducir SIEMPRE el arpegio mayor de respuesta correcta
-      SoundFX.playCorrect();
-      if ([3, 5, 10, 15, 20].includes(AppState.sessionStreak)) {
-        setTimeout(() => {
-          if (SoundFX.playFanfare) SoundFX.playFanfare();
-          showStreakMilestoneModal(AppState.sessionStreak);
-        }, 300);
-      }
+    if ([3, 5, 10, 15, 20].includes(AppState.sessionStreak)) {
+      setTimeout(() => {
+        if (typeof SoundFX !== "undefined" && SoundFX.playFanfare) SoundFX.playFanfare();
+        showStreakMilestoneModal(AppState.sessionStreak);
+      }, 400);
     }
   }
 
@@ -3899,6 +3946,7 @@ function openFeedbackModal(isCorrect, q) {
   const modal = document.getElementById("feedbackModal");
   const icon = document.getElementById("feedbackIcon");
   const title = document.getElementById("feedbackTitle");
+  const sub = document.getElementById("feedbackSub");
   const normText = document.getElementById("feedbackNormText");
   const breakdownContainer = document.getElementById("feedbackOptionsBreakdown");
 
@@ -3909,9 +3957,19 @@ function openFeedbackModal(isCorrect, q) {
 
   if (isCorrect) {
     icon.className = "verdict-icon correct";
-    icon.textContent = "✓";
+    icon.textContent = "🎯";
+    icon.style.background = "rgba(16, 185, 129, 0.2)";
+    icon.style.borderColor = "#10b981";
+    icon.style.color = "#34d399";
+
     title.className = "verdict-title correct";
-    title.textContent = "¡Respuesta Correcta!";
+    title.textContent = "🎯 ¡ACERTASTE! Discriminación perfecta (+1 Acierto)";
+    title.style.color = "#34d399";
+
+    if (sub) {
+      sub.textContent = `Opción ${q.respuestaCorrecta} es la Clave Oficial CNSC/DIAN • ${q.tema || "Juicio Situacional"}`;
+      sub.style.color = "#86efac";
+    }
 
     if (streakBadge && AppState.sessionStreak > 0) {
       streakTitle.textContent = `¡Racha Activa: ${AppState.sessionStreak} aciertos consecutivos! 🔥`;
@@ -3924,9 +3982,20 @@ function openFeedbackModal(isCorrect, q) {
     }
   } else {
     icon.className = "verdict-icon incorrect";
-    icon.textContent = "✕";
+    icon.textContent = "❌";
+    icon.style.background = "rgba(239, 68, 68, 0.2)";
+    icon.style.borderColor = "#ef4444";
+    icon.style.color = "#f87171";
+
     title.className = "verdict-title incorrect";
-    title.textContent = "Respuesta Incorrecta";
+    title.textContent = `❌ TRAMPA CAÍDA: La opción era la ${q.respuestaCorrecta}`;
+    title.style.color = "#f87171";
+
+    if (sub) {
+      sub.textContent = `Caíste en un distractor de juicio situacional • La clave oficial es la Opción ${q.respuestaCorrecta}`;
+      sub.style.color = "#fca5a5";
+    }
+
     if (streakBadge) streakBadge.style.display = "none";
   }
 
