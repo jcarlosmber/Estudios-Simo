@@ -4603,6 +4603,12 @@ const QUESTION_BANK_GESTOR_CI = [
   }
 ];
 
+if (typeof window !== "undefined") {
+  window.QUESTION_BANK_GESTOR_CI = QUESTION_BANK_GESTOR_CI;
+}
+if (typeof global !== "undefined") {
+  global.QUESTION_BANK_GESTOR_CI = QUESTION_BANK_GESTOR_CI;
+}
 if (typeof module !== "undefined" && module.exports) {
   module.exports = { QUESTION_BANK_GESTOR_CI };
 }

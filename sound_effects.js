@@ -1,5 +1,6 @@
 // sound_effects.js - Sintetizador de Efectos de Sonido con Web Audio API para SIMO Prep
-// 100% nativo, sin archivos de audio externos (cero latencia y cero dependencias).
+// 100% nativo, sin archivos de audio externos (cero latencia, cero dependencias).
+// Optimizado para auto-reanudación en navegadores Chrome y Edge (desbloqueo instantáneo con interacción).
 
 const SoundFX = {
   ctx: null,
@@ -7,10 +8,23 @@ const SoundFX = {
 
   // Inicializar estado de sonido
   init(initialEnabled = true) {
-    this.enabled = initialEnabled;
+    this.enabled = (initialEnabled !== false);
   },
 
-  // Obtener o crear contexto de audio seguro
+  // Desbloqueo forzado del AudioContext ante cualquier gesto del usuario
+  unlock() {
+    try {
+      const AudioCtx = window.AudioContext || window.webkitAudioContext;
+      if (!this.ctx && AudioCtx) {
+        this.ctx = new AudioCtx();
+      }
+      if (this.ctx && this.ctx.state === "suspended") {
+        this.ctx.resume().catch(() => {});
+      }
+    } catch (e) {}
+  },
+
+  // Obtener contexto de audio seguro
   getCtx() {
     if (!this.ctx) {
       const AudioCtx = window.AudioContext || window.webkitAudioContext;
@@ -24,12 +38,25 @@ const SoundFX = {
     return this.ctx;
   },
 
-  // 1. 🔔 Campana armónica doble al aparecer el popup o tip flash (587Hz -> 880Hz)
-  playChime() {
+  // Ejecución segura garantizada: si el contexto está suspendido, espera a que se reanude
+  _withContext(fn) {
     if (!this.enabled) return;
     try {
       const ctx = this.getCtx();
       if (!ctx) return;
+      if (ctx.state === "suspended") {
+        ctx.resume().then(() => {
+          try { fn(ctx); } catch (e) {}
+        }).catch(() => {});
+      } else {
+        fn(ctx);
+      }
+    } catch (e) {}
+  },
+
+  // 1. 🔔 Campana armónica doble al aparecer el popup o tip flash (587Hz -> 880Hz)
+  playChime() {
+    this._withContext((ctx) => {
       const now = ctx.currentTime;
       const freqs = [587.33, 880.0];
 
@@ -39,27 +66,22 @@ const SoundFX = {
         osc.type = "sine";
         osc.frequency.setValueAtTime(freq, now + idx * 0.12);
 
-        gain.gain.setValueAtTime(0.0001, now + idx * 0.12);
-        gain.gain.exponentialRampToValueAtTime(0.22, now + idx * 0.12 + 0.02);
-        gain.gain.exponentialRampToValueAtTime(0.0001, now + idx * 0.12 + 0.48);
+        gain.gain.setValueAtTime(0.001, now + idx * 0.12);
+        gain.gain.linearRampToValueAtTime(0.28, now + idx * 0.12 + 0.02);
+        gain.gain.linearRampToValueAtTime(0.001, now + idx * 0.12 + 0.45);
 
         osc.connect(gain);
         gain.connect(ctx.destination);
 
         osc.start(now + idx * 0.12);
-        osc.stop(now + idx * 0.12 + 0.52);
+        osc.stop(now + idx * 0.12 + 0.48);
       });
-    } catch (e) {
-      // Ignorar fallos de autoplay silenciosamente
-    }
+    });
   },
 
-  // 2. ✅ Respuesta Correcta: Arpegio mayor ascendente triunfal (C5, E5, G5, C6)
+  // 2. ✅ Respuesta Correcta: Arpegio mayor ascendente triunfal y brillante (Do5, Mi5, Sol5, Do6)
   playCorrect() {
-    if (!this.enabled) return;
-    try {
-      const ctx = this.getCtx();
-      if (!ctx) return;
+    this._withContext((ctx) => {
       const now = ctx.currentTime;
       const notes = [523.25, 659.25, 783.99, 1046.50]; // Do5, Mi5, Sol5, Do6
 
@@ -67,27 +89,24 @@ const SoundFX = {
         const osc = ctx.createOscillator();
         const gain = ctx.createGain();
         osc.type = "triangle";
-        osc.frequency.setValueAtTime(freq, now + idx * 0.07);
+        osc.frequency.setValueAtTime(freq, now + idx * 0.08);
 
-        gain.gain.setValueAtTime(0.0001, now + idx * 0.07);
-        gain.gain.exponentialRampToValueAtTime(0.24, now + idx * 0.07 + 0.02);
-        gain.gain.exponentialRampToValueAtTime(0.0001, now + idx * 0.07 + 0.32);
+        gain.gain.setValueAtTime(0.001, now + idx * 0.08);
+        gain.gain.linearRampToValueAtTime(0.35, now + idx * 0.08 + 0.02);
+        gain.gain.linearRampToValueAtTime(0.001, now + idx * 0.08 + 0.35);
 
         osc.connect(gain);
         gain.connect(ctx.destination);
 
-        osc.start(now + idx * 0.07);
-        osc.stop(now + idx * 0.07 + 0.35);
+        osc.start(now + idx * 0.08);
+        osc.stop(now + idx * 0.08 + 0.38);
       });
-    } catch (e) {}
+    });
   },
 
-  // 3. ❌ Respuesta Incorrecta: Tono doble suave descendente y reflexivo (F4 -> C#4)
+  // 3. ❌ Respuesta Incorrecta: Tono doble suave descendente y reflexivo (Fa4 -> Do#4)
   playIncorrect() {
-    if (!this.enabled) return;
-    try {
-      const ctx = this.getCtx();
-      if (!ctx) return;
+    this._withContext((ctx) => {
       const now = ctx.currentTime;
       const notes = [349.23, 277.18]; // Fa4 -> Do#4
 
@@ -102,62 +121,58 @@ const SoundFX = {
         filter.type = "lowpass";
         filter.frequency.setValueAtTime(550, now + idx * 0.16);
 
-        gain.gain.setValueAtTime(0.0001, now + idx * 0.16);
-        gain.gain.exponentialRampToValueAtTime(0.2, now + idx * 0.16 + 0.03);
-        gain.gain.exponentialRampToValueAtTime(0.0001, now + idx * 0.16 + 0.3);
+        gain.gain.setValueAtTime(0.001, now + idx * 0.16);
+        gain.gain.linearRampToValueAtTime(0.26, now + idx * 0.16 + 0.03);
+        gain.gain.linearRampToValueAtTime(0.001, now + idx * 0.16 + 0.32);
 
         osc.connect(filter);
         filter.connect(gain);
         gain.connect(ctx.destination);
 
         osc.start(now + idx * 0.16);
-        osc.stop(now + idx * 0.16 + 0.33);
+        osc.stop(now + idx * 0.16 + 0.35);
       });
-    } catch (e) {}
+    });
+  },
+
+  playWrong() {
+    this.playIncorrect();
   },
 
   // 4. ⏱️ Tick sutil de cuenta regresiva (últimos 5 segundos en Speed Drill)
   playTick() {
-    if (!this.enabled) return;
-    try {
-      const ctx = this.getCtx();
-      if (!ctx) return;
+    this._withContext((ctx) => {
       const now = ctx.currentTime;
-
       const osc = ctx.createOscillator();
       const gain = ctx.createGain();
       osc.type = "sine";
       osc.frequency.setValueAtTime(920, now);
 
-      gain.gain.setValueAtTime(0.0001, now);
-      gain.gain.exponentialRampToValueAtTime(0.12, now + 0.005);
-      gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.04);
+      gain.gain.setValueAtTime(0.001, now);
+      gain.gain.linearRampToValueAtTime(0.18, now + 0.005);
+      gain.gain.linearRampToValueAtTime(0.001, now + 0.04);
 
       osc.connect(gain);
       gain.connect(ctx.destination);
 
       osc.start(now);
       osc.stop(now + 0.05);
-    } catch (e) {}
+    });
   },
 
   // 5. ⏳ Alerta de tiempo agotado en Speed Drill
   playTimeout() {
-    if (!this.enabled) return;
-    try {
-      const ctx = this.getCtx();
-      if (!ctx) return;
+    this._withContext((ctx) => {
       const now = ctx.currentTime;
-
       [440, 370].forEach((freq, idx) => {
         const osc = ctx.createOscillator();
         const gain = ctx.createGain();
         osc.type = "triangle";
         osc.frequency.setValueAtTime(freq, now + idx * 0.14);
 
-        gain.gain.setValueAtTime(0.0001, now + idx * 0.14);
-        gain.gain.exponentialRampToValueAtTime(0.22, now + idx * 0.14 + 0.02);
-        gain.gain.exponentialRampToValueAtTime(0.0001, now + idx * 0.14 + 0.22);
+        gain.gain.setValueAtTime(0.001, now + idx * 0.14);
+        gain.gain.linearRampToValueAtTime(0.26, now + idx * 0.14 + 0.02);
+        gain.gain.linearRampToValueAtTime(0.001, now + idx * 0.14 + 0.22);
 
         osc.connect(gain);
         gain.connect(ctx.destination);
@@ -165,41 +180,34 @@ const SoundFX = {
         osc.start(now + idx * 0.14);
         osc.stop(now + idx * 0.14 + 0.25);
       });
-    } catch (e) {}
+    });
   },
 
   // 6. 🧠 Sonido de burbuja/pop placentero al calificar tarjeta SRS o guardar Feynman
   playPop() {
-    if (!this.enabled) return;
-    try {
-      const ctx = this.getCtx();
-      if (!ctx) return;
+    this._withContext((ctx) => {
       const now = ctx.currentTime;
-
       const osc = ctx.createOscillator();
       const gain = ctx.createGain();
       osc.type = "sine";
-      osc.frequency.setValueAtTime(320, now);
-      osc.frequency.exponentialRampToValueAtTime(760, now + 0.09);
+      osc.frequency.setValueAtTime(340, now);
+      osc.frequency.exponentialRampToValueAtTime(820, now + 0.09);
 
-      gain.gain.setValueAtTime(0.0001, now);
-      gain.gain.exponentialRampToValueAtTime(0.25, now + 0.02);
-      gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.11);
+      gain.gain.setValueAtTime(0.001, now);
+      gain.gain.linearRampToValueAtTime(0.30, now + 0.02);
+      gain.gain.linearRampToValueAtTime(0.001, now + 0.12);
 
       osc.connect(gain);
       gain.connect(ctx.destination);
 
       osc.start(now);
-      osc.stop(now + 0.12);
-    } catch (e) {}
+      osc.stop(now + 0.13);
+    });
   },
 
   // 7. 🏆 Fanfarria triunfal de hito de racha y celebración
   playFanfare() {
-    if (!this.enabled) return;
-    try {
-      const ctx = this.getCtx();
-      if (!ctx) return;
+    this._withContext((ctx) => {
       const now = ctx.currentTime;
       const fanfareNotes = [
         { f: 523.25, time: 0, dur: 0.12 },
@@ -215,9 +223,9 @@ const SoundFX = {
         osc.type = "triangle";
         osc.frequency.setValueAtTime(note.f, now + note.time);
 
-        gain.gain.setValueAtTime(0.0001, now + note.time);
-        gain.gain.exponentialRampToValueAtTime(0.28, now + note.time + 0.02);
-        gain.gain.exponentialRampToValueAtTime(0.0001, now + note.time + note.dur);
+        gain.gain.setValueAtTime(0.001, now + note.time);
+        gain.gain.linearRampToValueAtTime(0.35, now + note.time + 0.02);
+        gain.gain.linearRampToValueAtTime(0.001, now + note.time + note.dur);
 
         osc.connect(gain);
         gain.connect(ctx.destination);
@@ -225,9 +233,19 @@ const SoundFX = {
         osc.start(now + note.time);
         osc.stop(now + note.time + note.dur + 0.05);
       });
-    } catch (e) {}
+    });
   }
 };
+
+// Auto-desbloqueo global en primera interacción del usuario
+if (typeof window !== "undefined") {
+  const unlockAudioListener = () => {
+    SoundFX.unlock();
+  };
+  window.addEventListener("click", unlockAudioListener, { passive: true });
+  window.addEventListener("touchstart", unlockAudioListener, { passive: true });
+  window.addEventListener("keydown", unlockAudioListener, { passive: true });
+}
 
 if (typeof module !== "undefined" && module.exports) {
   module.exports = SoundFX;

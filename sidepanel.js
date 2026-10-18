@@ -3122,17 +3122,18 @@ function updateSelectedEjeProgressBar() {
   }
 
   const matchingQuestions = getQuestionsForFilter(pool, currentFilter, currentProfileId);
-  const total = matchingQuestions.length;
-
   const studiedSet = new Set(AppState.practiceStudiedIds || []);
   if (Array.isArray(AppState.practiceCorrectIds)) {
     AppState.practiceCorrectIds.forEach((id) => studiedSet.add(id));
+  }
+  if (Array.isArray(AppState.practiceSeenIds)) {
+    AppState.practiceSeenIds.forEach((id) => studiedSet.add(id));
   }
   const studiedCount = matchingQuestions.filter((q) => studiedSet.has(q.id)).length;
   const pct = total > 0 ? Math.round((studiedCount / total) * 100) : 0;
 
   bar.style.width = `${pct}%`;
-  text.textContent = `${pct}% estudiado (${studiedCount}/${total})`;
+  text.textContent = `${pct}% estudiado (${studiedCount} de ${total})`;
 
   if (pct === 100) {
     bar.style.background = "linear-gradient(90deg, #10b981, #059669)";
@@ -3306,6 +3307,7 @@ function setupPracticeLogic() {
 
   btnConfirm.addEventListener("click", () => {
     if (!AppState.selectedOption) return;
+    if (typeof SoundFX !== "undefined") SoundFX.unlock();
     evaluateAnswer(AppState.selectedOption);
   });
 
@@ -3629,19 +3631,46 @@ function loadNextPracticeQuestion() {
   }
 
   renderPracticeQuestion(q);
-  updatePracticeProgressPill(candidates.length, unvisited.length);
+  updatePracticeProgressPill(candidates.length);
   updateSelectedEjeProgressBar();
 }
 
-function updatePracticeProgressPill(totalPoolCount, remainingCount) {
+function updatePracticeProgressPill(overrideTotal) {
   const pill = document.getElementById("qBadgeProgressPill");
   if (!pill) return;
-  const total = typeof totalPoolCount === "number" ? totalPoolCount : 0;
-  const remaining = typeof remainingCount === "number" ? remainingCount : total;
-  const completed = Math.max(0, total - remaining);
+
+  const currentProfileId = AppState.activeProfileId || "gestor_iii";
+  let pool = null;
+  if (typeof getQuestionsForProfile === "function") {
+    pool = getQuestionsForProfile(currentProfileId);
+  }
+  if (!pool || pool.length === 0) {
+    pool = (typeof QUESTION_BANK !== "undefined" && Array.isArray(QUESTION_BANK)) ? QUESTION_BANK : [];
+  }
+
+  const currentFilter = AppState.currentEjeFilter || "todos";
+  const matching = getQuestionsForFilter(pool, currentFilter, currentProfileId);
+  const total = overrideTotal || matching.length || pool.length || 0;
+
+  // Preguntas respondidas en esta sesión activa
+  const answeredSession = AppState.practiceSession?.questionsAnswered || 0;
+
+  // Total acumulado histórico estudiado en este filtro
+  const studiedSet = new Set(AppState.practiceStudiedIds || []);
+  if (Array.isArray(AppState.practiceCorrectIds)) {
+    AppState.practiceCorrectIds.forEach((id) => studiedSet.add(id));
+  }
+  if (Array.isArray(AppState.practiceSeenIds)) {
+    AppState.practiceSeenIds.forEach((id) => studiedSet.add(id));
+  }
+  const studiedCount = matching.filter((q) => studiedSet.has(q.id)).length;
 
   if (total > 0) {
-    pill.textContent = `🎯 ${completed}/${total} (${remaining} restantes)`;
+    if (answeredSession > 0) {
+      pill.textContent = `🎯 ${answeredSession} de ${total} respondidas (${studiedCount} estudiadas)`;
+    } else {
+      pill.textContent = `🎯 Caso 1 de ${total} (${studiedCount} estudiadas)`;
+    }
     pill.style.display = "inline-flex";
   } else {
     pill.style.display = "none";
@@ -3730,6 +3759,7 @@ function renderPracticeQuestion(q) {
     `;
 
     item.addEventListener("click", () => {
+      if (typeof SoundFX !== "undefined") SoundFX.unlock();
       document.querySelectorAll(".option-item").forEach((el) => el.classList.remove("selected"));
       item.classList.add("selected");
       AppState.selectedOption = opt.id;
@@ -3744,6 +3774,9 @@ function evaluateAnswer(selectedId) {
   PracticeTimer.stop();
   const q = AppState.currentQuestion;
   const isCorrect = selectedId === q.respuestaCorrecta;
+
+  // Desbloqueo forzado de audio
+  if (typeof SoundFX !== "undefined") SoundFX.unlock();
 
   // Feedback visual en las opciones de la tarjeta
   document.querySelectorAll(".option-item").forEach((el) => {
@@ -3796,6 +3829,10 @@ function evaluateAnswer(selectedId) {
     AppState.practiceStudiedIds.push(q.id);
     StorageManager.set("practiceStudiedIds_" + AppState.activeProfileId, AppState.practiceStudiedIds);
   }
+  if (!AppState.practiceSeenIds) AppState.practiceSeenIds = [];
+  if (!AppState.practiceSeenIds.includes(q.id)) {
+    AppState.practiceSeenIds.push(q.id);
+  }
 
   if (isCorrect) {
     AppState.practiceSession.correctCount = (AppState.practiceSession.correctCount || 0) + 1;
@@ -3806,8 +3843,10 @@ function evaluateAnswer(selectedId) {
     }
   }
 
+  // Refrescar indicadores de progreso inmediatamente al confirmar
   updateEjeFilterOptions(AppState.activeProfileId);
   updateSelectedEjeProgressBar();
+  updatePracticeProgressPill();
 
   if (q.tipo.includes("Funcional")) {
     AppState.stats.functionalTotal += 1;
@@ -3829,7 +3868,10 @@ function evaluateAnswer(selectedId) {
   if (!isCorrect) {
     addToSrsQueue(q, "hard");
     AppState.sessionStreak = 0;
-    if (typeof SoundFX !== "undefined") SoundFX.playIncorrect();
+    if (typeof SoundFX !== "undefined") {
+      SoundFX.unlock();
+      SoundFX.playIncorrect();
+    }
     SimoFX.shake(document.getElementById("practiceCardContainer"));
     SimoFX.floatText(selectedOptEl, "📚 A repasar", "#fca5a5");
   } else {
@@ -3838,11 +3880,14 @@ function evaluateAnswer(selectedId) {
     SimoFX.floatText(selectedOptEl, `+${AppState.sessionStreak * 50} XP`, "#34d399");
     SimoFX.flameBoost();
     if (typeof SoundFX !== "undefined") {
+      SoundFX.unlock();
+      // Reproducir SIEMPRE el arpegio mayor de respuesta correcta
+      SoundFX.playCorrect();
       if ([3, 5, 10, 15, 20].includes(AppState.sessionStreak)) {
-        SoundFX.playFanfare();
-        setTimeout(() => showStreakMilestoneModal(AppState.sessionStreak), 380);
-      } else {
-        SoundFX.playCorrect();
+        setTimeout(() => {
+          if (SoundFX.playFanfare) SoundFX.playFanfare();
+          showStreakMilestoneModal(AppState.sessionStreak);
+        }, 300);
       }
     }
   }

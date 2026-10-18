@@ -10109,6 +10109,12 @@ const QUESTION_BANK_GESTOR = [
   }
 ];
 
+if (typeof window !== "undefined") {
+  window.QUESTION_BANK_GESTOR = QUESTION_BANK_GESTOR;
+}
+if (typeof global !== "undefined") {
+  global.QUESTION_BANK_GESTOR = QUESTION_BANK_GESTOR;
+}
 if (typeof module !== "undefined" && module.exports) {
   module.exports = { QUESTION_BANK_GESTOR };
 }
