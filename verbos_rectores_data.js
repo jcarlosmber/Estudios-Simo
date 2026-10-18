@@ -243,7 +243,7 @@
     const v = VERBOS_CATALOGO.find(item => item.verbo.toLowerCase() === verboStr.trim().toLowerCase());
     if (!v) return null;
 
-    const esGestor = (profileId === 'gestor_iii');
+    const esGestor = (profileId === 'gestor_iii' || profileId === 'gestor_iii_ci' || (profileId && profileId.includes('gestor')));
     const nivelTarget = esGestor ? 'PRO' : 'TEC';
 
     const esPropio = v.niveles[nivelTarget];

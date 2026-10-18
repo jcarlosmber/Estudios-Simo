@@ -1404,7 +1404,10 @@ function openModal(modalEl) {
   const body = modalEl.querySelector(".modal-body");
   if (body) body.scrollTop = 0;
   modalEl.scrollTop = 0;
-  modalEl.classList.add("active");
+  modalEl.style.display = "flex";
+  requestAnimationFrame(() => {
+    modalEl.classList.add("active");
+  });
   document.body.classList.add("modal-open");
 }
 
@@ -1415,6 +1418,11 @@ function closeModal(modalEl) {
   if (!anyActive) {
     document.body.classList.remove("modal-open");
   }
+  setTimeout(() => {
+    if (!modalEl.classList.contains("active")) {
+      modalEl.style.display = "";
+    }
+  }, 240);
 }
 
 function setupGlobalModals() {
@@ -2525,6 +2533,18 @@ function setupNavigation() {
     hubLectura.addEventListener("click", () => {
       const btn = document.getElementById("btnOpenLecturaModal");
       if (btn) btn.click();
+    });
+  }
+
+  const hubVerbos = document.getElementById("hubCardVerbos");
+  if (hubVerbos) {
+    hubVerbos.addEventListener("click", () => {
+      if (typeof window.openVerbosModal === "function") {
+        window.openVerbosModal();
+      } else {
+        const btn = document.getElementById("btnOpenVerbosModal");
+        if (btn) btn.click();
+      }
     });
   }
 
@@ -6443,22 +6463,29 @@ function setupVerbosRectoresModule() {
   // Abrir modal y sincronizar con perfil activo
   function openVerbosModal() {
     const profile = AppState.activeProfileId || "gestor_iii";
+    const isGestor = profile === "gestor_iii" || profile === "gestor_iii_ci" || (profile && profile.includes("gestor"));
     const badge = document.getElementById("verbosBadgePerfil");
     if (badge) {
-      badge.textContent = (profile === "gestor_iii") ? "GESTOR III (Profesional)" : "ANALISTA IV (Técnico)";
-      badge.style.color = (profile === "gestor_iii") ? "#38bdf8" : "#c084fc";
-      badge.style.borderColor = (profile === "gestor_iii") ? "#38bdf8" : "#c084fc";
+      badge.textContent = isGestor ? "GESTOR III (Profesional)" : "ANALISTA IV (Técnico)";
+      badge.style.color = isGestor ? "#38bdf8" : "#c084fc";
+      badge.style.borderColor = isGestor ? "#38bdf8" : "#c084fc";
     }
 
     const btnPro = document.getElementById("btnInfoNivelPro");
     const btnTec = document.getElementById("btnInfoNivelTec");
-    if (profile === "gestor_iii" && btnPro) btnPro.click();
-    if (profile === "analista_iv" && btnTec) btnTec.click();
+    if (isGestor && btnPro) btnPro.click();
+    else if (btnTec) btnTec.click();
 
     switchVerbosTab("buscador");
     renderVerbosList();
-    openModal(modal);
+
+    if (modal) {
+      modal.style.display = "flex";
+      openModal(modal);
+    }
   }
+
+  window.openVerbosModal = openVerbosModal;
 
   function renderVerbosList() {
     const container = document.getElementById("listaVerbosContainer");

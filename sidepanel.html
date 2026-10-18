@@ -71,7 +71,7 @@
           <span>🎯</span>
           <span>Práctica</span>
         </button>
-        <button id="btnOpenVerbosModal" class="duo-powerup-btn" style="background: linear-gradient(135deg, rgba(168, 85, 247, 0.22), rgba(124, 58, 237, 0.28)); border: 1.5px solid #a855f7; color: #f3e8ff; box-shadow: 0 2px 10px rgba(168, 85, 247, 0.2);" title="Decodificador de Verbos Rectores y Caza-Distractores">
+        <button id="btnOpenVerbosModal" class="duo-powerup-btn" onclick="if(window.openVerbosModal) window.openVerbosModal();" style="background: linear-gradient(135deg, rgba(168, 85, 247, 0.22), rgba(124, 58, 237, 0.28)); border: 1.5px solid #a855f7; color: #f3e8ff; box-shadow: 0 2px 10px rgba(168, 85, 247, 0.2); cursor: pointer;" title="Decodificador de Verbos Rectores y Caza-Distractores">
           <span>🧭</span>
           <span>Verbos Rectores</span>
         </button>
@@ -630,6 +630,15 @@
           <div class="hub-card-content">
             <div class="hub-card-title">Radar de Comprensión Lectora</div>
             <div class="hub-card-desc">Desarticula casos largos (>100 palabras) en menos de 45 segundos</div>
+          </div>
+          <span class="hub-card-arrow">➔</span>
+        </div>
+
+        <div class="duo-hub-card purple" id="hubCardVerbos" onclick="if(window.openVerbosModal) window.openVerbosModal();" style="border-left: 4px solid #a855f7; cursor: pointer;">
+          <div class="hub-card-icon">🧭</div>
+          <div class="hub-card-content">
+            <div class="hub-card-title" style="color: #d8b4fe;">Decodificador de Verbos Rectores</div>
+            <div class="hub-card-desc">Catálogo Oficial DAFP (97 verbos), Caza-Distractores y límites de competencia</div>
           </div>
           <span class="hub-card-arrow">➔</span>
         </div>
@@ -2053,8 +2062,8 @@
       </div>
 
   <!-- MODAL: DECODIFICADOR DE VERBOS RECTORES Y CAZA-DISTRACTORES -->
-  <div id="modalVerbosRectores" class="modal" style="display: none; align-items: center; justify-content: center; z-index: 99999; background: rgba(5, 10, 20, 0.85); backdrop-filter: blur(8px);">
-    <div class="modal-dialog" style="max-width: 620px; width: 92%; max-height: 90vh; display: flex; flex-direction: column; background: #0b1120; border: 1.5px solid rgba(168, 85, 247, 0.4); border-radius: 16px; overflow: hidden; box-shadow: 0 12px 40px rgba(0, 0, 0, 0.7);">
+  <div id="modalVerbosRectores" class="modal-overlay" style="z-index: 10050;">
+    <div class="modal-card" style="max-width: 640px; width: 94%; max-height: 90vh; display: flex; flex-direction: column; background: #0b1120; border: 1.5px solid rgba(168, 85, 247, 0.45); border-radius: 16px; overflow: hidden; box-shadow: 0 15px 50px rgba(0, 0, 0, 0.85);">
       
       <!-- Modal Header -->
       <div style="background: linear-gradient(135deg, rgba(88, 28, 135, 0.5) 0%, rgba(15, 23, 42, 0.9) 100%); padding: 14px 18px; border-bottom: 1px solid rgba(168, 85, 247, 0.3); display: flex; justify-content: space-between; align-items: center;">
