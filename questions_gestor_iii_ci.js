@@ -6,6 +6,7 @@
 // Metodologías de Auditorías de Sistemas TI, Gestión del Riesgo, Fiscalidad Internacional TACI,
 // Principios de Contabilidad Pública (CGN), Conceptos de Contratación Estatal, Estructura y Misionalidad DIAN,
 // Razonamiento Analítico, Competencias Comportamentales Profesionales (Niveles 1, 3 y 4) y Valores de Integridad.
+// Claves 100% balanceadas en proporción equitativa (A: 50, B: 50, C: 50).
 
 const QUESTION_BANK_GESTOR_CI = [
   {
@@ -25,7 +26,7 @@ const QUESTION_BANK_GESTOR_CI = [
       },
       {
         "id": "B",
-        "texto": "Solicitar que los administradores envíen un correo electrónico informal cada fin de mes resumiendo las modificaciones manuales que hayan efectuado en las tablas de base de datos.",
+        "texto": "Permitir las modificaciones directas en base de datos siempre que se cuente con la autorización verbal del jefe de soporte informático.",
         "explicacion": "Incorrecta. Un correo informal carece de integridad técnica, no constituye evidencia auditable inmutable y vulnera las buenas prácticas de seguridad informática gubernamental."
       },
       {
@@ -85,16 +86,16 @@ const QUESTION_BANK_GESTOR_CI = [
       },
       {
         "id": "B",
-        "texto": "Utilizar Técnicas de Auditoría Asistidas por Computador (TAACs / software de análisis de datos) para ejecutar pruebas de integridad de datos al 100% del universo, recreando las reglas de validación del sistema para identificar pagos anómalos o duplicados.",
-        "explicacion": "Correcta. Las TAACs (CAATs) permiten analizar el 100% de la población de datos electrónicos, contrastar parámetros de negocio y detectar inconsistencias con precisión analítica inalcanzable mediante muestreo manual."
+        "texto": "Delegar la auditoría al mismo desarrollador de software que programó el módulo de devoluciones para que entregue una constancia juramentada de que no hay errores.",
+        "explicacion": "Incorrecta. Viola la independencia y objetividad de la auditoría; quien diseña u opera el control no puede ser el auditor independiente que certifique su eficacia."
       },
       {
         "id": "C",
-        "texto": "Delegar la auditoría al mismo desarrollador de software que programó el módulo de devoluciones para que entregue una constancia juramentada de que no hay errores.",
-        "explicacion": "Incorrecta. Viola la independencia y objetividad de la auditoría; quien diseña u opera el control no puede ser el auditor independiente que certifique su eficacia."
+        "texto": "Utilizar Técnicas de Auditoría Asistidas por Computador (TAACs / software de análisis de datos) para ejecutar pruebas de integridad de datos al 100% del universo, recreando las reglas de validación del sistema para identificar pagos anómalos o duplicados.",
+        "explicacion": "Correcta. Las TAACs (CAATs) permiten analizar el 100% de la población de datos electrónicos, contrastar parámetros de negocio y detectar inconsistencias con precisión analítica inalcanzable mediante muestreo manual."
       }
     ],
-    "respuestaCorrecta": "B",
+    "respuestaCorrecta": "C",
     "norma": "Normas Globales de Auditoría Interna (IIA) y Guía de Auditoría con TAACs (ISACA)",
     "citaNormativa": "«Los auditores internos deben considerar el uso de herramientas de análisis de datos basadas en tecnología para mejorar la cobertura, precisión y profundidad de los procedimientos de aseguramiento.» (Norma 1220.A2 IIA)."
   },
@@ -110,13 +111,13 @@ const QUESTION_BANK_GESTOR_CI = [
     "opciones": [
       {
         "id": "A",
-        "texto": "Aceptar la asignación con entusiasmo, ya que su conocimiento previo del área le permitirá hacer una auditoría más rápida y condescendiente con sus antiguos compañeros.",
-        "explicacion": "Incorrecta. Manifiesta un claro conflicto de intereses e impedimento de objetividad real y percibida."
+        "texto": "Declarar de manera formal e inmediata su impedimento ante el Jefe de la Oficina de Control Interno por menoscabo a la objetividad individual, absteniéndose de intervenir en la auditoría de actividades sobre las cuales ejerció responsabilidad operativa en el último año.",
+        "explicacion": "Correcta. La Norma del IIA sobre menoscabo a la independencia u objetividad establece expresamente que los auditores no deben auditar operaciones sobre las que tuvieron responsabilidad gerencial u operativa en un período previo (típicamente al menos un año)."
       },
       {
         "id": "B",
-        "texto": "Declarar de manera formal e inmediata su impedimento ante el Jefe de la Oficina de Control Interno por menoscabo a la objetividad individual, absteniéndose de intervenir en la auditoría de actividades sobre las cuales ejerció responsabilidad operativa en el último año.",
-        "explicacion": "Correcta. La Norma del IIA sobre menoscabo a la independencia u objetividad establece expresamente que los auditores no deben auditar operaciones sobre las que tuvieron responsabilidad gerencial u operativa en un período previo (típicamente al menos un año)."
+        "texto": "Aceptar la asignación con entusiasmo, ya que su conocimiento previo del área le permitirá hacer una auditoría más rápida y condescendiente con sus antiguos compañeros.",
+        "explicacion": "Incorrecta. Manifiesta un claro conflicto de intereses e impedimento de objetividad real y percibida."
       },
       {
         "id": "C",
@@ -124,7 +125,7 @@ const QUESTION_BANK_GESTOR_CI = [
         "explicacion": "Incorrecta. Constituye una falta ética grave y un engaño documental que vulnera el principio de integridad y transparencia de la función pública."
       }
     ],
-    "respuestaCorrecta": "B",
+    "respuestaCorrecta": "A",
     "norma": "Normas Globales de Auditoría Interna del IIA (Norma 1130 - Menoscabo a la Independencia u Objetividad)",
     "citaNormativa": "«Los auditores internos no deben asumir la responsabilidad operativa de auditar funciones o actividades sobre las cuales hayan tenido autoridad directa o responsabilidad en el año inmediatamente anterior.» (Norma 1130.A1 IIA)."
   },
@@ -140,13 +141,13 @@ const QUESTION_BANK_GESTOR_CI = [
     "opciones": [
       {
         "id": "A",
-        "texto": "Porque la evidencia obtenida carece de los atributos de suficiencia (cantidad) y propiedad (relevancia y fiabilidad), siendo indispensable corroborar documentalmente los hechos antes de formular conclusiones vinculantes.",
-        "explicacion": "Correcta. La NIA 500 exige que el auditor obtenga evidencia 'suficiente y adecuada' (apropiada). Un testimonio telefónico anónimo no validado carece de fiabilidad y sustento probatorio para formular un hallazgo formal."
+        "texto": "Porque en auditoría de control interno cualquier denuncia ciudadana debe ser aceptada como prueba plena sin necesidad de verificación.",
+        "explicacion": "Incorrecta. Las denuncias son insumos o indicios de riesgo, no constituyen prueba plena por sí solas en los papeles de trabajo de auditoría."
       },
       {
         "id": "B",
-        "texto": "Porque en auditoría de control interno cualquier denuncia ciudadana debe ser aceptada como prueba plena sin necesidad de verificación.",
-        "explicacion": "Incorrecta. Las denuncias son insumos o indicios de riesgo, no constituyen prueba plena por sí solas en los papeles de trabajo de auditoría."
+        "texto": "Porque la evidencia obtenida carece de los atributos de suficiencia (cantidad) y propiedad (relevancia y fiabilidad), siendo indispensable corroborar documentalmente los hechos antes de formular conclusiones vinculantes.",
+        "explicacion": "Correcta. La NIA 500 exige que el auditor obtenga evidencia 'suficiente y adecuada' (apropiada). Un testimonio telefónico anónimo no validado carece de fiabilidad y sustento probatorio para formular un hallazgo formal."
       },
       {
         "id": "C",
@@ -154,7 +155,7 @@ const QUESTION_BANK_GESTOR_CI = [
         "explicacion": "Incorrecta. Todo pago estatal está sujeto a control previo, concomitante y posterior de auditoría; la razón técnica es la falta de evidencia de soporte idónea."
       }
     ],
-    "respuestaCorrecta": "A",
+    "respuestaCorrecta": "B",
     "norma": "NIA 500 (Evidencia de Auditoría) y Marco Internacional de Práctica Profesional (IIA Norma 2310)",
     "citaNormativa": "«El auditor diseñará y aplicará procedimientos de auditoría de forma que le permitan obtener evidencia de auditoría suficiente y adecuada para poder alcanzar conclusiones razonables en las que basar su opinión.» (NIA 500, Art. 4)."
   },
@@ -170,21 +171,21 @@ const QUESTION_BANK_GESTOR_CI = [
     "opciones": [
       {
         "id": "A",
-        "texto": "Debe redactarse incorporando los cuatro elementos metodológicos obligatorios: Condición (lo que es), Criterio (norma técnica de archivo que debió cumplirse), Causa (origen de la falla) y Efecto (impacto en la pérdida de documentos o prescripción).",
-        "explicacion": "Correcta. La metodología técnica universal de auditoría exige que todo hallazgo contenga: Condición (situación detectada), Criterio (norma o estándar vulnerado), Causa (por qué ocurrió) y Efecto (consecuencia o riesgo materializado)."
-      },
-      {
-        "id": "B",
         "texto": "Debe dejarse tal como está, puesto que la percepción estética del auditor es suficiente para ordenar procesos disciplinarios.",
         "explicacion": "Incorrecta. La auditoría no se basa en percepciones subjetivas o estéticas, sino en desviaciones objetivas frente a criterios y estándares normativos."
       },
       {
-        "id": "C",
+        "id": "B",
         "texto": "Debe suprimirse cualquier mención a la causa para evitar comprometer a los directores seccionales responsables del área.",
         "explicacion": "Incorrecta. La identificación de la causa-raíz es el elemento medular que permite plantear acciones correctivas efectivas en el plan de mejoramiento institucional."
+      },
+      {
+        "id": "C",
+        "texto": "Debe redactarse incorporando los cuatro elementos metodológicos obligatorios: Condición (lo que es), Criterio (norma técnica de archivo que debió cumplirse), Causa (origen de la falla) y Efecto (impacto en la pérdida de documentos o prescripción).",
+        "explicacion": "Correcta. La metodología técnica universal de auditoría exige que todo hallazgo contenga: Condición (situación detectada), Criterio (norma o estándar vulnerado), Causa (por qué ocurrió) y Efecto (consecuencia o riesgo materializado)."
       }
     ],
-    "respuestaCorrecta": "A",
+    "respuestaCorrecta": "C",
     "norma": "Guía de Auditoría para Entidades Públicas (DAFP / CGR)",
     "citaNormativa": "«Todo hallazgo de auditoría debe constar de Condición, Criterio, Causa y Efecto, proporcionando la base fáctica y analítica necesaria para formular planes de mejoramiento orientados a la causa-raíz.»"
   },
@@ -230,13 +231,13 @@ const QUESTION_BANK_GESTOR_CI = [
     "opciones": [
       {
         "id": "A",
-        "texto": "La cláusula del 'Beneficiario Efectivo' y la Cláusula Principal de Propósito (PPT) de las acciones BEPS, verificando que la entidad receptora no sea un mero vehículo interpuesto para acceder indebidamente a las tarifas reducidas del convenio.",
-        "explicacion": "Correcta. En los CDI y las directrices BEPS (Acción 6) de la OCDE, los beneficios de tarifa reducida solo aplican al verdadero beneficiario efectivo con sustancia económica. Las sociedades instrumentales interpuestas pierden los beneficios tributarios del convenio."
+        "texto": "El pago de una tasa adicional voluntaria para convalidar el uso del convenio sin investigar la identidad de los beneficiarios reales.",
+        "explicacion": "Incorrecta. La ley tributaria no permite convalidar maniobras abusivas mediante pagos voluntarios; la norma antielusión exige desconocer la transacción ficticia."
       },
       {
         "id": "B",
-        "texto": "El pago de una tasa adicional voluntaria para convalidar el uso del convenio sin investigar la identidad de los beneficiarios reales.",
-        "explicacion": "Incorrecta. La ley tributaria no permite convalidar maniobras abusivas mediante pagos voluntarios; la norma antielusión exige desconocer la transacción ficticia."
+        "texto": "La cláusula del 'Beneficiario Efectivo' y la Cláusula Principal de Propósito (PPT) de las acciones BEPS, verificando que la entidad receptora no sea un mero vehículo interpuesto para acceder indebidamente a las tarifas reducidas del convenio.",
+        "explicacion": "Correcta. En los CDI y las directrices BEPS (Acción 6) de la OCDE, los beneficios de tarifa reducida solo aplican al verdadero beneficiario efectivo con sustancia económica. Las sociedades instrumentales interpuestas pierden los beneficios tributarios del convenio."
       },
       {
         "id": "C",
@@ -244,7 +245,7 @@ const QUESTION_BANK_GESTOR_CI = [
         "explicacion": "Incorrecta. El certificado de residencia fiscal y la prueba del beneficiario efectivo son requisitos formales e insustituibles para la procedencia de cualquier CDI."
       }
     ],
-    "respuestaCorrecta": "A",
+    "respuestaCorrecta": "B",
     "norma": "Estatuto Tributario Art. 869 y Convenios de Doble Imposición (Modelo OCDE - Acción 6 BEPS)",
     "citaNormativa": "«No se otorgará ningún beneficio contemplado en un Convenio Tributario si es razonable concluir que la obtención de dicho beneficio fue uno de los propósitos principales de la transacción o arreglo...» (Regla General Anti-Abuso / PPT)."
   },
@@ -265,16 +266,16 @@ const QUESTION_BANK_GESTOR_CI = [
       },
       {
         "id": "B",
-        "texto": "El principio de Devengo y el criterio de Prudencia en el reconocimiento de Provisiones y Pasivos Contingentes, que exige registrar oportunamente las obligaciones probables derivadas de litigios para reflejar fielmente la situación financiera de la entidad pública.",
-        "explicacion": "Correcta. El marco normativo para Entidades de Gobierno de la CGN establece que las contingencias judiciales deben evaluarse periódicamente (probable, posible o remota) y registrar una provisión contable cuando la salida de recursos sea probable y cuantificable de forma fiable."
+        "texto": "El principio de Caja estricto que prohíbe registrar cualquier tipo de pasivo antes de que exista sentencia ejecutoriada del Consejo de Estado.",
+        "explicacion": "Incorrecta. La contabilidad pública moderna en Colombia opera bajo la base de acumulación (devengo), no bajo caja estricta; las provisiones se reconocen antes de la sentencia ejecutoriada cuando la pérdida es probable."
       },
       {
         "id": "C",
-        "texto": "El principio de Caja estricto que prohíbe registrar cualquier tipo de pasivo antes de que exista sentencia ejecutoriada del Consejo de Estado.",
-        "explicacion": "Incorrecta. La contabilidad pública moderna en Colombia opera bajo la base de acumulación (devengo), no bajo caja estricta; las provisiones se reconocen antes de la sentencia ejecutoriada cuando la pérdida es probable."
+        "texto": "El principio de Devengo y el criterio de Prudencia en el reconocimiento de Provisiones y Pasivos Contingentes, que exige registrar oportunamente las obligaciones probables derivadas de litigios para reflejar fielmente la situación financiera de la entidad pública.",
+        "explicacion": "Correcta. El marco normativo para Entidades de Gobierno de la CGN establece que las contingencias judiciales deben evaluarse periódicamente (probable, posible o remota) y registrar una provisión contable cuando la salida de recursos sea probable y cuantificable de forma fiable."
       }
     ],
-    "respuestaCorrecta": "B",
+    "respuestaCorrecta": "C",
     "norma": "Resolución 533 de 2015 de la CGN (Marco Normativo para Entidades de Gobierno) y Marco Conceptual de la Contabilidad Pública",
     "citaNormativa": "«Los hechos económicos se reconocen en el momento en que suceden y no solamente cuando se recibe o paga dinero en efectivo o su equivalente, bajo la base del devengo, garantizando la prudencia y revelación de provisiones probables.» (CGN)."
   },
@@ -290,13 +291,13 @@ const QUESTION_BANK_GESTOR_CI = [
     "opciones": [
       {
         "id": "A",
-        "texto": "Ninguno, porque las mercancías de contrabando incautadas no forman parte de los inventarios ni de las cuentas de orden del sector público.",
-        "explicacion": "Incorrecta. Todo bien aprehendido o decomisado a favor de la Nación debe tener trazabilidad contable rigurosa en cuentas de orden o activos, según su situación jurídica."
+        "texto": "Genera subestimación de activos y falta de revelación adecuada en los Estados Financieros, además de propiciar el riesgo de pérdida, sustracción o deterioro de bienes sin control patrimonial auditable.",
+        "explicacion": "Correcta. El Régimen de Contabilidad Pública exige la conciliación permanente entre el inventario físico de recintos aduaneros y las cuentas contables de bienes en custodia / decomisados, evitando la invisibilidad patrimonial."
       },
       {
         "id": "B",
-        "texto": "Genera subestimación de activos y falta de revelación adecuada en los Estados Financieros, además de propiciar el riesgo de pérdida, sustracción o deterioro de bienes sin control patrimonial auditable.",
-        "explicacion": "Correcta. El Régimen de Contabilidad Pública exige la conciliación permanente entre el inventario físico de recintos aduaneros y las cuentas contables de bienes en custodia / decomisados, evitando la invisibilidad patrimonial."
+        "texto": "Ninguno, porque las mercancías de contrabando incautadas no forman parte de los inventarios ni de las cuentas de orden del sector público.",
+        "explicacion": "Incorrecta. Todo bien aprehendido o decomisado a favor de la Nación debe tener trazabilidad contable rigurosa en cuentas de orden o activos, según su situación jurídica."
       },
       {
         "id": "C",
@@ -304,7 +305,7 @@ const QUESTION_BANK_GESTOR_CI = [
         "explicacion": "Incorrecta. La disposición de mercancías decomisadas sigue un procedimiento aduanero reglado estricto y no puede usarse para tapar desbalances contables."
       }
     ],
-    "respuestaCorrecta": "B",
+    "respuestaCorrecta": "A",
     "norma": "Régimen de Contabilidad Pública (CGN) y Manual de Procedimientos Contables DIAN",
     "citaNormativa": "«Los bienes muebles e inmuebles administrados, en custodia o en proceso de extinción de dominio o decomiso deben registrarse en las cuentas correspondientes, garantizando su control físico y financiero.»"
   },
@@ -355,16 +356,16 @@ const QUESTION_BANK_GESTOR_CI = [
       },
       {
         "id": "B",
-        "texto": "Evaluando el diseño, implementación y operatividad práctica del control mediante pruebas de recorrido y muestreo de efectividad, para determinar si el riesgo residual bajó a un nivel aceptable según el apetito de riesgo institucional.",
-        "explicacion": "Correcta. La evaluación del riesgo residual exige probar la eficacia operativa de los controles (diseño + ejecución + evidencia histórica), verificando si la exposición remanente se sitúa dentro de los rangos tolerables por la Alta Dirección."
+        "texto": "Trasladando la responsabilidad de la valoración del riesgo residual a la Policía Fiscal y Aduanera (POLFA).",
+        "explicacion": "Incorrecta. La valoración de riesgos institucionales es responsabilidad interna de la DIAN en su marco de MIPG y Control Interno."
       },
       {
         "id": "C",
-        "texto": "Trasladando la responsabilidad de la valoración del riesgo residual a la Policía Fiscal y Aduanera (POLFA).",
-        "explicacion": "Incorrecta. La valoración de riesgos institucionales es responsabilidad interna de la DIAN en su marco de MIPG y Control Interno."
+        "texto": "Evaluando el diseño, implementación y operatividad práctica del control mediante pruebas de recorrido y muestreo de efectividad, para determinar si el riesgo residual bajó a un nivel aceptable según el apetito de riesgo institucional.",
+        "explicacion": "Correcta. La evaluación del riesgo residual exige probar la eficacia operativa de los controles (diseño + ejecución + evidencia histórica), verificando si la exposición remanente se sitúa dentro de los rangos tolerables por la Alta Dirección."
       }
     ],
-    "respuestaCorrecta": "B",
+    "respuestaCorrecta": "C",
     "norma": "ISO 31000 y Manual de Gestión Integral del Riesgo DIAN",
     "citaNormativa": "«El riesgo residual es el nivel de riesgo que permanece después de implementar los controles. Su valoración requiere verificar no solo el diseño formal del control sino su efectividad en la operación diaria.»"
   },
@@ -380,13 +381,13 @@ const QUESTION_BANK_GESTOR_CI = [
     "opciones": [
       {
         "id": "A",
-        "texto": "Confirmar que la Oficina de Control Interno debe coadministrar y firmar los actos administrativos para compartir la responsabilidad disciplinaria con el Director Seccional.",
-        "explicacion": "Incorrecta. La coadministración está expresamente prohibida a las Oficinas de Control Interno por la Ley 87 de 1993 y desnaturaliza su rol evaluador."
+        "texto": "Aclarar que la Oficina de Control Interno actúa como la 'Tercera Línea' brindando aseguramiento y asesoría independiente y objetiva; la 'Primera Línea' (dueños de proceso) y la 'Segunda Línea' (supervisores y áreas técnicas) son las únicas facultadas para diseñar y ejecutar los controles operativos diarios sin coadministración de los auditores.",
+        "explicacion": "Correcta. La Ley 87 de 1993 y el modelo MECI integrado en MIPG establecen con total claridad que el control interno no es coadministrador; la evaluación independiente (3ª línea) perdería objetividad si interviniera en aprobaciones operativas."
       },
       {
         "id": "B",
-        "texto": "Aclarar que la Oficina de Control Interno actúa como la 'Tercera Línea' brindando aseguramiento y asesoría independiente y objetiva; la 'Primera Línea' (dueños de proceso) y la 'Segunda Línea' (supervisores y áreas técnicas) son las únicas facultadas para diseñar y ejecutar los controles operativos diarios sin coadministración de los auditores.",
-        "explicacion": "Correcta. La Ley 87 de 1993 y el modelo MECI integrado en MIPG establecen con total claridad que el control interno no es coadministrador; la evaluación independiente (3ª línea) perdería objetividad si interviniera en aprobaciones operativas."
+        "texto": "Confirmar que la Oficina de Control Interno debe coadministrar y firmar los actos administrativos para compartir la responsabilidad disciplinaria con el Director Seccional.",
+        "explicacion": "Incorrecta. La coadministración está expresamente prohibida a las Oficinas de Control Interno por la Ley 87 de 1993 y desnaturaliza su rol evaluador."
       },
       {
         "id": "C",
@@ -394,7 +395,7 @@ const QUESTION_BANK_GESTOR_CI = [
         "explicacion": "Incorrecta. La Constitución de 1991 abolió el control previo y perceptivo en los órganos de control, instituyendo el control posterior y selectivo."
       }
     ],
-    "respuestaCorrecta": "B",
+    "respuestaCorrecta": "A",
     "norma": "Ley 87 de 1993, Decreto 1499 de 2017 y Lineamiento de 3 Líneas de Defensa (DAFP)",
     "citaNormativa": "«En ningún caso, el ejercicio de las funciones del responsable de la oficina de control interno podrá ser previo o perceptivo ni implicará coadministración en las decisiones propias de la administración activa.» (Ley 87 de 1993, Art. 12)."
   },
@@ -410,13 +411,13 @@ const QUESTION_BANK_GESTOR_CI = [
     "opciones": [
       {
         "id": "A",
-        "texto": "El principio de Autocontrol, el cual exige que cada servidor público evalúe, controle y corrija oportunamente su propio trabajo y el cumplimiento de las tareas asignadas en el marco de sus funciones.",
-        "explicacion": "Correcta. El Autocontrol es la capacidad de cada servidor de diagnosticar, monitorear y subsanar desviaciones en su labor diaria sin esperar auditorías externas o posteriores."
+        "texto": "El principio de Jerarquía vertical militar que releva al funcionario de toda responsabilidad personal.",
+        "explicacion": "Incorrecta. La función pública civil en Colombia se fundamenta en la responsabilidad individual del servidor (Art. 6 C.P.) y el autocontrol."
       },
       {
         "id": "B",
-        "texto": "El principio de Jerarquía vertical militar que releva al funcionario de toda responsabilidad personal.",
-        "explicacion": "Incorrecta. La función pública civil en Colombia se fundamenta en la responsabilidad individual del servidor (Art. 6 C.P.) y el autocontrol."
+        "texto": "El principio de Autocontrol, el cual exige que cada servidor público evalúe, controle y corrija oportunamente su propio trabajo y el cumplimiento de las tareas asignadas en el marco de sus funciones.",
+        "explicacion": "Correcta. El Autocontrol es la capacidad de cada servidor de diagnosticar, monitorear y subsanar desviaciones en su labor diaria sin esperar auditorías externas o posteriores."
       },
       {
         "id": "C",
@@ -424,7 +425,7 @@ const QUESTION_BANK_GESTOR_CI = [
         "explicacion": "Incorrecta. No existe tal figura; los actos preparatorios con errores inducen a la nulidad del acto administrativo final."
       }
     ],
-    "respuestaCorrecta": "A",
+    "respuestaCorrecta": "B",
     "norma": "Ley 87 de 1993, Art. 2 y Marco Conceptual del MECI (DAFP)",
     "citaNormativa": "«El autocontrol es la capacidad que ostenta cada servidor público para considerar, controlar y aplicar en su función diaria los métodos y procedimientos establecidos, garantizando la eficacia y legalidad de sus actuaciones.»"
   },
@@ -445,16 +446,16 @@ const QUESTION_BANK_GESTOR_CI = [
       },
       {
         "id": "B",
-        "texto": "Construir una matriz de priorización basada en riesgos, evaluando el impacto presupuestal, los riesgos residuales altos/extremos de los mapas de riesgo, los cambios regulatorios recientes, las denuncias ciudadanas y los resultados de autodiagnósticos FURAG.",
-        "explicacion": "Correcta. El estándar internacional del IIA y la Guía DAFP para el Plan Anual de Auditoría exigen que este sea 100% basado en riesgos, asignando recursos de auditoría donde mayor sea el impacto potencial en los objetivos institucionales."
+        "texto": "Auditar exactamente las mismas 5 áreas del año anterior sin variar el alcance ni verificar si los riesgos cambiaron.",
+        "explicacion": "Incorrecta. Un plan estático y repetitivo incumple las directrices del MIPG y omite la evaluación de riesgos emergentes."
       },
       {
         "id": "C",
-        "texto": "Auditar exactamente las mismas 5 áreas del año anterior sin variar el alcance ni verificar si los riesgos cambiaron.",
-        "explicacion": "Incorrecta. Un plan estático y repetitivo incumple las directrices del MIPG y omite la evaluación de riesgos emergentes."
+        "texto": "Construir una matriz de priorización basada en riesgos, evaluando el impacto presupuestal, los riesgos residuales altos/extremos de los mapas de riesgo, los cambios regulatorios recientes, las denuncias ciudadanas y los resultados de autodiagnósticos FURAG.",
+        "explicacion": "Correcta. El estándar internacional del IIA y la Guía DAFP para el Plan Anual de Auditoría exigen que este sea 100% basado en riesgos, asignando recursos de auditoría donde mayor sea el impacto potencial en los objetivos institucionales."
       }
     ],
-    "respuestaCorrecta": "B",
+    "respuestaCorrecta": "C",
     "norma": "Decreto 1499 de 2017, Manual Operativo del MIPG y Norma IIA 2010 (Planificación)",
     "citaNormativa": "«El Director de Auditoría Interna debe establecer un plan de auditoría basado en riesgos para determinar las prioridades de la actividad de auditoría interna, consistente con las metas de la organización.» (Norma 2010 IIA)."
   },
@@ -530,21 +531,21 @@ const QUESTION_BANK_GESTOR_CI = [
     "opciones": [
       {
         "id": "A",
-        "texto": "Implementar un tablero de control (dashboard) con alertas tempranas semaforizadas a 10, 5 y 2 días del vencimiento, acompañado de mesas de trabajo semanales de seguimiento y una plantilla estandarizada de respuestas que garantice suficiencia técnica y jurídica oportuna.",
-        "explicacion": "Correcta. Combina automatización, seguimiento preventivo proactivo y herramientas operativas que atacan directamente el cuello de botella temporal y de calidad."
-      },
-      {
-        "id": "B",
         "texto": "Radicar solicitudes masivas de prórroga a los entes de control para ganar tiempo sin cambiar la forma de trabajo.",
         "explicacion": "Incorrecta. Las prórrogas indiscriminadas dilatan la respuesta y no resuelven la ineficiencia interna."
       },
       {
-        "id": "C",
+        "id": "B",
         "texto": "Instruir a los funcionarios para que respondan con cartas genéricas sin contestar de fondo las preguntas de los órganos de control.",
         "explicacion": "Incorrecta. Viola el deber de colaboración armónica entre poderes públicos y puede constituir falta disciplinaria gravísima."
+      },
+      {
+        "id": "C",
+        "texto": "Implementar un tablero de control (dashboard) con alertas tempranas semaforizadas a 10, 5 y 2 días del vencimiento, acompañado de mesas de trabajo semanales de seguimiento y una plantilla estandarizada de respuestas que garantice suficiencia técnica y jurídica oportuna.",
+        "explicacion": "Correcta. Combina automatización, seguimiento preventivo proactivo y herramientas operativas que atacan directamente el cuello de botella temporal y de calidad."
       }
     ],
-    "respuestaCorrecta": "A",
+    "respuestaCorrecta": "C",
     "norma": "Manual de Funciones PC-CI-3006, Función 7 y Decreto 815 de 2018",
     "citaNormativa": "«Guiar a las dependencias en las respuestas entre la entidad, entes de control y partes interesadas... verificando que se cumplan los criterios de oportunidad y pertinencia.»"
   },
@@ -560,13 +561,13 @@ const QUESTION_BANK_GESTOR_CI = [
     "opciones": [
       {
         "id": "A",
-        "texto": "Acceder a la petición del directivo a cambio de ser postulado a una comisión de servicios en el exterior.",
-        "explicacion": "Incorrecta. Constituye cohecho, corrupción y falta disciplinaria gravísima sancionable con destitución e inhabilidad general."
+        "texto": "Mantener con firmeza, objetividad y respeto la evidencia documental y la calificación técnica del hallazgo en el informe oficial, dejando constancia de los papeles de trabajo y comunicando formalmente la situación al Jefe de Control Interno bajo las salvaguardas de integridad pública.",
+        "explicacion": "Correcta. El Comportamiento Ético Nivel 4 exige mantener la rectitud, objetividad profesional y resistencia irreductible ante cualquier tipo de presión política o jerárquica, salvaguardando el interés general y la verdad."
       },
       {
         "id": "B",
-        "texto": "Mantener con firmeza, objetividad y respeto la evidencia documental y la calificación técnica del hallazgo en el informe oficial, dejando constancia de los papeles de trabajo y comunicando formalmente la situación al Jefe de Control Interno bajo las salvaguardas de integridad pública.",
-        "explicacion": "Correcta. El Comportamiento Ético Nivel 4 exige mantener la rectitud, objetividad profesional y resistencia irreductible ante cualquier tipo de presión política o jerárquica, salvaguardando el interés general y la verdad."
+        "texto": "Acceder a la petición del directivo a cambio de ser postulado a una comisión de servicios en el exterior.",
+        "explicacion": "Incorrecta. Constituye cohecho, corrupción y falta disciplinaria gravísima sancionable con destitución e inhabilidad general."
       },
       {
         "id": "C",
@@ -574,7 +575,7 @@ const QUESTION_BANK_GESTOR_CI = [
         "explicacion": "Incorrecta. Vulnera la reserva de los papeles de trabajo de auditoría y los conductos regulares legales."
       }
     ],
-    "respuestaCorrecta": "B",
+    "respuestaCorrecta": "A",
     "norma": "Código de Integridad del Servicio Público, Ley 1952 de 2019 (Código General Disciplinario) y Normas IIA",
     "citaNormativa": "«Comportamiento Ético Nivel 4: Actúa con probidad y rectitud, antepone el bien común al particular y defiende los principios institucionales aun en situaciones de alta presión o conflicto.»"
   },
@@ -590,7 +591,7 @@ const QUESTION_BANK_GESTOR_CI = [
     "opciones": [
       {
         "id": "A",
-        "texto": "Responder con igual agresividad y amenazar con denunciar a los funcionarios inmediatamente ante la Fiscalía General.",
+        "texto": "Interrumpir la reunión y retirarse de las instalaciones sin emitir el informe de auditoría preliminar ni levantar acta de lo sucedido.",
         "explicacion": "Incorrecta. Escala el conflicto, vulnera el trato respetuoso y desvía la auditoría hacia confrontaciones improductivas."
       },
       {
@@ -620,21 +621,21 @@ const QUESTION_BANK_GESTOR_CI = [
     "opciones": [
       {
         "id": "A",
-        "texto": "Reorganizar el plan de trabajo propio y de su equipo de apoyo aplicando muestreo estadístico optimizado y herramientas analíticas digitales, reprogramando actividades no esenciales para asegurar la entrega de informes de alta calidad técnica en los plazos legales, superando los estándares esperados.",
-        "explicacion": "Correcta. El Nivel 4 de Orientación al Logro se caracteriza por la autogestión proactiva, el uso eficiente de metodologías ágiles y el compromiso inquebrantable con metas de alto impacto institucional superando obstáculos."
-      },
-      {
-        "id": "B",
         "texto": "Proponer la cancelación de las auditorías pendientes justificándose en que 'el año ya se acabó'.",
         "explicacion": "Incorrecta. Refleja pasividad y falta de compromiso con el Plan Anual de Auditoría institucional."
       },
       {
-        "id": "C",
+        "id": "B",
         "texto": "Copiar y pegar informes de vigencias anteriores cambiándoles únicamente la fecha para cumplir con la estadística numérica.",
         "explicacion": "Incorrecta. Constituye fraude documental y falta grave contra la ética pública."
+      },
+      {
+        "id": "C",
+        "texto": "Reorganizar el plan de trabajo propio y de su equipo de apoyo aplicando muestreo estadístico optimizado y herramientas analíticas digitales, reprogramando actividades no esenciales para asegurar la entrega de informes de alta calidad técnica en los plazos legales, superando los estándares esperados.",
+        "explicacion": "Correcta. El Nivel 4 de Orientación al Logro se caracteriza por la autogestión proactiva, el uso eficiente de metodologías ágiles y el compromiso inquebrantable con metas de alto impacto institucional superando obstáculos."
       }
     ],
-    "respuestaCorrecta": "A",
+    "respuestaCorrecta": "C",
     "norma": "Decreto 815 de 2018 (Orientación al Logro)",
     "citaNormativa": "«Orientación al Logro Nivel 4: Supera los estándares de desempeño establecidos, optimiza procesos y recursos para alcanzar metas ambiciosas y demuestra resiliencia ante contingencias operativas.»"
   },
@@ -650,13 +651,13 @@ const QUESTION_BANK_GESTOR_CI = [
     "opciones": [
       {
         "id": "A",
-        "texto": "Negar la solicitud alegando reserva absoluta sobre todos los documentos de la DIAN sin excepción.",
-        "explicacion": "Incorrecta. Los informes definitivos de auditoría son documentos públicos no sometidos a reserva, salvo partes estrictamente amparadas por reserva tributaria o secreto industrial."
+        "texto": "Suministrar el informe definitivo de auditoría de forma oportuna, clara y en lenguaje comprensible (lenguaje claro), disociando previamente datos personales protegidos por reserva tributaria si los hubiere, facilitando el legítimo ejercicio del control social.",
+        "explicacion": "Correcta. La Ley 1712 de 2014 consagra el principio de máxima publicidad y transparencia. Los informes finales de control interno son de dominio público y deben entregarse oportunamente con respeto al ciudadano."
       },
       {
         "id": "B",
-        "texto": "Suministrar el informe definitivo de auditoría de forma oportuna, clara y en lenguaje comprensible (lenguaje claro), disociando previamente datos personales protegidos por reserva tributaria si los hubiere, facilitando el legítimo ejercicio del control social.",
-        "explicacion": "Correcta. La Ley 1712 de 2014 consagra el principio de máxima publicidad y transparencia. Los informes finales de control interno son de dominio público y deben entregarse oportunamente con respeto al ciudadano."
+        "texto": "Negar la solicitud alegando reserva absoluta sobre todos los documentos de la DIAN sin excepción.",
+        "explicacion": "Incorrecta. Los informes definitivos de auditoría son documentos públicos no sometidos a reserva, salvo partes estrictamente amparadas por reserva tributaria o secreto industrial."
       },
       {
         "id": "C",
@@ -664,7 +665,7 @@ const QUESTION_BANK_GESTOR_CI = [
         "explicacion": "Incorrecta. Es una conducta arbitraria y contraria al principio de gratuidad en el acceso a la información pública."
       }
     ],
-    "respuestaCorrecta": "B",
+    "respuestaCorrecta": "A",
     "norma": "Ley 1712 de 2014 (Transparencia y Acceso a la Información) y Código de Integridad",
     "citaNormativa": "«Toda persona tiene derecho a solicitar y recibir información que esté en posesión de los sujetos obligados... garantizando el principio de máxima publicidad y lenguaje claro.»"
   },
@@ -715,16 +716,16 @@ const QUESTION_BANK_GESTOR_CI = [
       },
       {
         "id": "B",
-        "texto": "Determinar que existe una concentración crítica de riesgo fiscal en el estrato superior de facturación con alta tasa de error material (35%), lo que amerita focalizar las auditorías de aseguramiento y recomendar al área de fiscalización la inspección profunda de este segmento prioritario.",
-        "explicacion": "Correcta. El razonamiento analítico riguroso interpreta la concentración de riesgos, cuantifica la significatividad del hallazgo y orienta las recomendaciones de control y fiscalización con criterio de costo-beneficio."
+        "texto": "Afirmar que como el 65% de la muestra estuvo bien, el sistema no presenta ningún problema y no se requieren acciones.",
+        "explicacion": "Incorrecta. Un 35% de desviación en el estrato que concentra el 80% del volumen financiero representa una materialidad de riesgo inaceptable para la administración tributaria."
       },
       {
         "id": "C",
-        "texto": "Afirmar que como el 65% de la muestra estuvo bien, el sistema no presenta ningún problema y no se requieren acciones.",
-        "explicacion": "Incorrecta. Un 35% de desviación en el estrato que concentra el 80% del volumen financiero representa una materialidad de riesgo inaceptable para la administración tributaria."
+        "texto": "Determinar que existe una concentración crítica de riesgo fiscal en el estrato superior de facturación con alta tasa de error material (35%), lo que amerita focalizar las auditorías de aseguramiento y recomendar al área de fiscalización la inspección profunda de este segmento prioritario.",
+        "explicacion": "Correcta. El razonamiento analítico riguroso interpreta la concentración de riesgos, cuantifica la significatividad del hallazgo y orienta las recomendaciones de control y fiscalización con criterio de costo-beneficio."
       }
     ],
-    "respuestaCorrecta": "B",
+    "respuestaCorrecta": "C",
     "norma": "NIA 530 (Muestreo de Auditoría) y Técnicas de Análisis Cuantitativo",
     "citaNormativa": "«El auditor debe estratificar la población cuando la dispersión de valores sea amplia, permitiendo concentrar los procedimientos en partidas de mayor valor relativo o riesgo.»"
   },
@@ -805,16 +806,16 @@ const QUESTION_BANK_GESTOR_CI = [
       },
       {
         "id": "B",
-        "texto": "Adoptar la medida cautelar de aprehensión de la mercancía, expedir el acta respectiva motivada, iniciar el proceso de decomiso aduanero y dar traslado a la Fiscalía por presunto fraude a la renta de aduanas.",
-        "explicacion": "Correcta. El régimen de aduanas vigente faculta a la DIAN para aplicar la aprehensión inmediata ante discrepancias sustanciales en naturaleza, valor o código arancelario que alteren los tributos aduaneros, remitiendo copias a la justicia penal."
+        "texto": "Devolver la mercancía al país de origen sin iniciar ningún registro administrativo para no afectar las estadísticas comerciales de la aduana.",
+        "explicacion": "Incorrecta. Desconoce la potestad aduanera y omite el deber legal de persecución de conductas ilícitas que atentan contra la industria nacional y el recaudo público."
       },
       {
         "id": "C",
-        "texto": "Devolver la mercancía al país de origen sin iniciar ningún registro administrativo para no afectar las estadísticas comerciales de la aduana.",
-        "explicacion": "Incorrecta. Desconoce la potestad aduanera y omite el deber legal de persecución de conductas ilícitas que atentan contra la industria nacional y el recaudo público."
+        "texto": "Adoptar la medida cautelar de aprehensión de la mercancía, expedir el acta respectiva motivada, iniciar el proceso de decomiso aduanero y dar traslado a la Fiscalía por presunto fraude a la renta de aduanas.",
+        "explicacion": "Correcta. El régimen de aduanas vigente faculta a la DIAN para aplicar la aprehensión inmediata ante discrepancias sustanciales en naturaleza, valor o código arancelario que alteren los tributos aduaneros, remitiendo copias a la justicia penal."
       }
     ],
-    "respuestaCorrecta": "B",
+    "respuestaCorrecta": "C",
     "norma": "Decreto 1165 de 2019, Arts. 3 y 647 (Régimen de Aduanas)",
     "citaNormativa": "«La aprehensión es la medida cautelar mediante la cual la autoridad aduanera toma posesión de las mercancías respecto de las cuales se configure alguna de las causales previstas en el presente Decreto... dando traslado a la autoridad judicial competente cuando los hechos puedan constituir delito.» (Decreto 1165 de 2019, Art. 647)."
   },
@@ -860,13 +861,13 @@ const QUESTION_BANK_GESTOR_CI = [
     "opciones": [
       {
         "id": "A",
-        "texto": "Diseñar un programa institucional de transferencia y captura del conocimiento tácito a explícito, construyendo guías metodológicas, lecciones aprendidas y talleres de mentoría cruzada.",
-        "explicacion": "Correcta. La Dimensión de Gestión del Conocimiento del MIPG tiene como objetivo preservar la memoria institucional, convertir el conocimiento tácito de los expertos en conocimiento explícito y asegurar la continuidad operativa de la entidad."
+        "texto": "Solicitar una prórroga forzosa indefinida de los nombramientos de los funcionarios para posponer su jubilación legal.",
+        "explicacion": "Incorrecta. Vulnera el régimen prestacional y los derechos adquiridos de los servidores públicos consagrados en la ley."
       },
       {
         "id": "B",
-        "texto": "Solicitar una prórroga forzosa indefinida de los nombramientos de los funcionarios para posponer su jubilación legal.",
-        "explicacion": "Incorrecta. Vulnera el régimen prestacional y los derechos adquiridos de los servidores públicos consagrados en la ley."
+        "texto": "Diseñar un programa institucional de transferencia y captura del conocimiento tácito a explícito, construyendo guías metodológicas, lecciones aprendidas y talleres de mentoría cruzada.",
+        "explicacion": "Correcta. La Dimensión de Gestión del Conocimiento del MIPG tiene como objetivo preservar la memoria institucional, convertir el conocimiento tácito de los expertos en conocimiento explícito y asegurar la continuidad operativa de la entidad."
       },
       {
         "id": "C",
@@ -874,7 +875,7 @@ const QUESTION_BANK_GESTOR_CI = [
         "explicacion": "Incorrecta. Afecta directamente la misión de control fiscal y recaudo tributario del Estado."
       }
     ],
-    "respuestaCorrecta": "A",
+    "respuestaCorrecta": "B",
     "norma": "Manual Operativo MIPG, Dimensión 6 (Gestión del Conocimiento y la Innovación)",
     "citaNormativa": "«Las entidades públicas deben salvaguardar la memoria institucional, promoviendo la transformación del conocimiento tácito de sus servidores expertos en conocimiento explícito, accesible y documentado para la sostenibilidad del servicio público.» (DAFP, Manual Operativo MIPG)."
   },
@@ -895,16 +896,16 @@ const QUESTION_BANK_GESTOR_CI = [
       },
       {
         "id": "B",
-        "texto": "Existe una alerta de riesgo por posible creación de empresas fachada y facturas ficticias para apropiación fraudulenta de recursos del IVA; se debe focalizar un cruce de medios magnéticos y suspender cautelarmente la devolución hasta la auditoría previa.",
-        "explicacion": "Correcta. El razonamiento analítico en la DIAN exige correlacionar datos de ventas, compras, temporalidad de proveedores y desbalances estadísticos para proteger el patrimonio fiscal."
+        "texto": "Cerrar inmediatamente las instalaciones físicas de todas las empresas del sector agroindustrial sin permitirles presentar descargos.",
+        "explicacion": "Incorrecta. Vulnera el debido proceso constitucional y legal; las medidas cautelares y auditorías deben sustentarse en el marco del Estatuto Tributario."
       },
       {
         "id": "C",
-        "texto": "Cerrar inmediatamente las instalaciones físicas de todas las empresas del sector agroindustrial sin permitirles presentar descargos.",
-        "explicacion": "Incorrecta. Vulnera el debido proceso constitucional y legal; las medidas cautelares y auditorías deben sustentarse en el marco del Estatuto Tributario."
+        "texto": "Existe una alerta de riesgo por posible creación de empresas fachada y facturas ficticias para apropiación fraudulenta de recursos del IVA; se debe focalizar un cruce de medios magnéticos y suspender cautelarmente la devolución hasta la auditoría previa.",
+        "explicacion": "Correcta. El razonamiento analítico en la DIAN exige correlacionar datos de ventas, compras, temporalidad de proveedores y desbalances estadísticos para proteger el patrimonio fiscal."
       }
     ],
-    "respuestaCorrecta": "B",
+    "respuestaCorrecta": "C",
     "norma": "Estatuto Tributario, Arts. 850, 857-1 y 671 (Control a Devoluciones de IVA)",
     "citaNormativa": "«La Administración Tributaria podrá suspender el término para la devolución hasta por noventa (90) días, cuando se adviertan indicios de inexactitud en la declaración o compras sustentadas en proveedores inexistentes o ficticios.» (Estatuto Tributario, Art. 857-1)."
   },
@@ -920,13 +921,13 @@ const QUESTION_BANK_GESTOR_CI = [
     "opciones": [
       {
         "id": "A",
-        "texto": "Descartar cualquier investigación porque cada empresario es libre de fijar los gastos que desee sin importar el destino del pago.",
-        "explicacion": "Incorrecta. La DIAN tiene facultades legales expresas para aplicar el régimen de precios de transferencia y la cláusula general antielusión (E.T. Art. 869)."
+        "texto": "Estructurar un programa de auditoría tributaria internacional focalizado en precios de transferencia y sustancia económica de los pagos al exterior, requiriendo los contratos, entregables tangibles y la demostración de la realidad material de las consultorías.",
+        "explicacion": "Correcta. Conforme al Estatuto Tributario y las directrices OCDE adoptadas por la DIAN, las transacciones con jurisdicciones no cooperantes o de baja tributación exigen demostrar la sustancia económica real para evitar el traslado artificial de utilidades."
       },
       {
         "id": "B",
-        "texto": "Estructurar un programa de auditoría tributaria internacional focalizado en precios de transferencia y sustancia económica de los pagos al exterior, requiriendo los contratos, entregables tangibles y la demostración de la realidad material de las consultorías.",
-        "explicacion": "Correcta. Conforme al Estatuto Tributario y las directrices OCDE adoptadas por la DIAN, las transacciones con jurisdicciones no cooperantes o de baja tributación exigen demostrar la sustancia económica real para evitar el traslado artificial de utilidades."
+        "texto": "Descartar cualquier investigación porque cada empresario es libre de fijar los gastos que desee sin importar el destino del pago.",
+        "explicacion": "Incorrecta. La DIAN tiene facultades legales expresas para aplicar el régimen de precios de transferencia y la cláusula general antielusión (E.T. Art. 869)."
       },
       {
         "id": "C",
@@ -934,7 +935,7 @@ const QUESTION_BANK_GESTOR_CI = [
         "explicacion": "Incorrecta. Toda sanción debe estar precedida de requerimiento especial o pliego de cargos garantizando el derecho de contradicción y defensa."
       }
     ],
-    "respuestaCorrecta": "B",
+    "respuestaCorrecta": "A",
     "norma": "Estatuto Tributario, Art. 260-1 y Art. 869 (Cláusula General Antielusión)",
     "citaNormativa": "«La Administración Tributaria podrá recaracterizar o reconfigurar toda operación o serie de operaciones que constituyan abuso en materia tributaria, desconociendo sus efectos cuando carezcan de un propósito económico y comercial real y sustantivo.» (Estatuto Tributario, Art. 869)."
   },
@@ -950,13 +951,13 @@ const QUESTION_BANK_GESTOR_CI = [
     "opciones": [
       {
         "id": "A",
-        "texto": "El líder del subproceso comete un error, ya que los líderes de los procesos operativos constituyen la Primera Línea y son los dueños directos de gestionar los riesgos y aplicar los controles en el día a día; Control Interno actúa como Tercera Línea de aseguramiento y evaluación independiente.",
-        "explicacion": "Correcta. Según la Ley 87 de 1993, el MECI y el marco del IIA adaptado por el DAFP, la 1ª Línea es la gestión operativa (dueña del riesgo), la 2ª Línea es la supervisión técnica/riesgos, y la 3ª Línea (auditoría interna) evalúa de forma independiente y no ejecuta controles de gestión."
+        "texto": "El líder del subproceso tiene razón, puesto que los funcionarios operativos solo deben ejecutar trámites sin preocuparse por mapas de riesgo ni matrices de control.",
+        "explicacion": "Incorrecta. El autocontrol y la autogestión son principios rectores obligatorios de todo servidor público en el Sistema de Control Interno."
       },
       {
         "id": "B",
-        "texto": "El líder del subproceso tiene razón, puesto que los funcionarios operativos solo deben ejecutar trámites sin preocuparse por mapas de riesgo ni matrices de control.",
-        "explicacion": "Incorrecta. El autocontrol y la autogestión son principios rectores obligatorios de todo servidor público en el Sistema de Control Interno."
+        "texto": "El líder del subproceso comete un error, ya que los líderes de los procesos operativos constituyen la Primera Línea y son los dueños directos de gestionar los riesgos y aplicar los controles en el día a día; Control Interno actúa como Tercera Línea de aseguramiento y evaluación independiente.",
+        "explicacion": "Correcta. Según la Ley 87 de 1993, el MECI y el marco del IIA adaptado por el DAFP, la 1ª Línea es la gestión operativa (dueña del riesgo), la 2ª Línea es la supervisión técnica/riesgos, y la 3ª Línea (auditoría interna) evalúa de forma independiente y no ejecuta controles de gestión."
       },
       {
         "id": "C",
@@ -964,7 +965,7 @@ const QUESTION_BANK_GESTOR_CI = [
         "explicacion": "Incorrecta. El Sistema de Control Interno es preventivo y de gestión administrativa interna, previo a la acción de los entes penales externos."
       }
     ],
-    "respuestaCorrecta": "A",
+    "respuestaCorrecta": "B",
     "norma": "Ley 87 de 1993, Art. 2 y Marco Internacional de las Tres Líneas (DAFP / MECI)",
     "citaNormativa": "«El autocontrol es la capacidad de cada servidor de considerar el control como inherente a su labor diaria. La primera línea es la dueña directa del riesgo operativo; la Oficina de Control Interno actúa en tercera línea como evaluadora independiente.» (Ley 87 de 1993)."
   },
@@ -985,16 +986,16 @@ const QUESTION_BANK_GESTOR_CI = [
       },
       {
         "id": "B",
-        "texto": "Implementar controles preventivos y automáticos mediante validaciones cruzadas en el sistema informático, segregación estricta de funciones entre quien proyecta y quien autoriza el desembargo, y bitácoras de auditoría no modificables.",
-        "explicacion": "Correcta. La adecuada gestión de riesgos institucionales exige pasar de controles detectives/reactivos a controles preventivos y sistemáticos con segregación de funciones (Guía DAFP para la Gestión del Riesgo)."
+        "texto": "Delegar la potestad de autorizar embargos y desembargos en personal contratista para agilizar el flujo de expedientes represados.",
+        "explicacion": "Incorrecta. El ejercicio de facultades públicas de coacción tributaria y cautelares no puede ser delegado en contratistas de prestación de servicios por mandato constitucional y de carrera."
       },
       {
         "id": "C",
-        "texto": "Delegar la potestad de autorizar embargos y desembargos en personal contratista para agilizar el flujo de expedientes represados.",
-        "explicacion": "Incorrecta. El ejercicio de facultades públicas de coacción tributaria y cautelares no puede ser delegado en contratistas de prestación de servicios por mandato constitucional y de carrera."
+        "texto": "Implementar controles preventivos y automáticos mediante validaciones cruzadas en el sistema informático, segregación estricta de funciones entre quien proyecta y quien autoriza el desembargo, y bitácoras de auditoría no modificables.",
+        "explicacion": "Correcta. La adecuada gestión de riesgos institucionales exige pasar de controles detectives/reactivos a controles preventivos y sistemáticos con segregación de funciones (Guía DAFP para la Gestión del Riesgo)."
       }
     ],
-    "respuestaCorrecta": "B",
+    "respuestaCorrecta": "C",
     "norma": "Constitución Política Art. 123 y Guía de Administración del Riesgo de Corrupción (DAFP)",
     "citaNormativa": "«El diseño de controles frente a riesgos de corrupción exige la segregación de funciones incompatibles y la implementación de controles preventivos automáticos, garantizando que el ejercicio de potestades de embargo sea indelegable y trazable.» (DAFP, Guía del Riesgo)."
   },
@@ -1075,16 +1076,16 @@ const QUESTION_BANK_GESTOR_CI = [
       },
       {
         "id": "B",
-        "texto": "Que el convenio estipule expresamente la estricta reserva tributaria (Art. 583 E.T.), los protocolos de seguridad de la información, el principio de finalidad y la trazabilidad de accesos restringidos exclusivamente a investigaciones penales o aduaneras en curso.",
-        "explicacion": "Correcta. La cooperación interinstitucional debe respetar los límites constitucionales de reserva tributaria y protección de datos personales consagrados en la ley."
+        "texto": "La prohibición absoluta de suscribir cualquier tipo de convenio de intercambio de información con organismos de seguridad del Estado.",
+        "explicacion": "Incorrecta. Los convenios interinstitucionales para combatir el contrabando y lavado de activos son indispensables y están autorizados por ley bajo protocolos de reserva."
       },
       {
         "id": "C",
-        "texto": "La prohibición absoluta de suscribir cualquier tipo de convenio de intercambio de información con organismos de seguridad del Estado.",
-        "explicacion": "Incorrecta. Los convenios interinstitucionales para combatir el contrabando y lavado de activos son indispensables y están autorizados por ley bajo protocolos de reserva."
+        "texto": "Que el convenio estipule expresamente la estricta reserva tributaria, los protocolos de seguridad de la información, el principio de finalidad y la trazabilidad de accesos restringidos exclusivamente a investigaciones penales o aduaneras en curso.",
+        "explicacion": "Correcta. La cooperación interinstitucional debe respetar los límites constitucionales de reserva tributaria y protección de datos personales consagrados en la ley."
       }
     ],
-    "respuestaCorrecta": "B",
+    "respuestaCorrecta": "C",
     "norma": "Estatuto Tributario, Art. 583 y Ley Estatutaria 1581 de 2012 (Habeas Data)",
     "citaNormativa": "«La información tributaria respecto de las bases gravables y la determinación privada de los impuestos tiene el carácter de reserva y sólo podrá ser suministrada para los fines propios de la administración y los juicios o investigaciones que tramiten las autoridades competentes.» (Estatuto Tributario, Art. 583)."
   },
@@ -1100,13 +1101,13 @@ const QUESTION_BANK_GESTOR_CI = [
     "opciones": [
       {
         "id": "A",
-        "texto": "Aceptar la propuesta, ya que la rendición de cuentas es un acto protocolario unilateral donde la entidad solo tiene la obligación de divulgar cifras agregadas.",
-        "explicacion": "Incorrecta. La rendición de cuentas no es un monólogo ni un acto cosmético; se fundamenta en los tres elementos: información de calidad, diálogo bidireccional e incentivos."
+        "texto": "Asegurar que el proceso contemple lenguaje claro, publicación previa de informes comprensibles, mesas de diálogo deliberativo con gremios y veedurías ciudadanas, y respuesta obligatoria fundamentada a las inquietudes formuladas.",
+        "explicacion": "Correcta. La Ley 1757 de 2015 y la política de transparencia del MIPG establecen que la rendición de cuentas debe ser permanente, inclusiva, en lenguaje claro y con espacios efectivos de interlocución ciudadana."
       },
       {
         "id": "B",
-        "texto": "Asegurar que el proceso contemple lenguaje claro, publicación previa de informes comprensibles, mesas de diálogo deliberativo con gremios y veedurías ciudadanas, y respuesta obligatoria fundamentada a las inquietudes formuladas.",
-        "explicacion": "Correcta. La Ley 1757 de 2015 y la política de transparencia del MIPG establecen que la rendición de cuentas debe ser permanente, inclusiva, en lenguaje claro y con espacios efectivos de interlocución ciudadana."
+        "texto": "Aceptar la propuesta, ya que la rendición de cuentas es un acto protocolario unilateral donde la entidad solo tiene la obligación de divulgar cifras agregadas.",
+        "explicacion": "Incorrecta. La rendición de cuentas no es un monólogo ni un acto cosmético; se fundamenta en los tres elementos: información de calidad, diálogo bidireccional e incentivos."
       },
       {
         "id": "C",
@@ -1114,7 +1115,7 @@ const QUESTION_BANK_GESTOR_CI = [
         "explicacion": "Incorrecta. El control social y la participación ciudadana en la gestión pública son derechos de ejercicio libre y totalmente gratuito."
       }
     ],
-    "respuestaCorrecta": "B",
+    "respuestaCorrecta": "A",
     "norma": "Ley 1757 de 2015, Arts. 48 a 52 (Estatuto de Participación Ciudadana)",
     "citaNormativa": "«La rendición de cuentas es el proceso conformado por un conjunto de normas, procedimientos y metodologías que comprende la información, el diálogo y la responsabilidad, garantizando que la ciudadanía pueda deliberar y recibir explicaciones sobre la gestión pública.» (Ley 1757 de 2015, Art. 48)."
   },
@@ -1130,13 +1131,13 @@ const QUESTION_BANK_GESTOR_CI = [
     "opciones": [
       {
         "id": "A",
-        "texto": "Rechazar categóricamente la invitación y el ofrecimiento, dejar constancia escrita inmediata del hecho en el expediente administrativo y radicar formalmente la denuncia ante la Oficina de Control Disciplinario Interno y la Fiscalía General.",
-        "explicacion": "Correcta. El Nivel 4 de Comportamiento Ético en la DIAN exige no solo rechazar cualquier beneficio indebido directo o indirecto, sino promover activamente la cultura de legalidad, proteger la entidad y denunciar los actos corruptos formalmente."
+        "texto": "Aceptar la reunión privada solo para escuchar la propuesta con el fin de obtener mayor evidencia testimonial sin reportarla a sus superiores.",
+        "explicacion": "Inadecuada. Pone en riesgo la integridad del servidor, vulnera el código de conducta y el debido proceso de las visitas oficiales de fiscalización."
       },
       {
         "id": "B",
-        "texto": "Aceptar la reunión privada solo para escuchar la propuesta con el fin de obtener mayor evidencia testimonial sin reportarla a sus superiores.",
-        "explicacion": "Inadecuada. Pone en riesgo la integridad del servidor, vulnera el código de conducta y el debido proceso de las visitas oficiales de fiscalización."
+        "texto": "Rechazar categóricamente la invitación y el ofrecimiento, dejar constancia escrita inmediata del hecho en el expediente administrativo y radicar formalmente la denuncia ante la Oficina de Control Disciplinario Interno y la Fiscalía General.",
+        "explicacion": "Correcta. El Nivel 4 de Comportamiento Ético en la DIAN exige no solo rechazar cualquier beneficio indebido directo o indirecto, sino promover activamente la cultura de legalidad, proteger la entidad y denunciar los actos corruptos formalmente."
       },
       {
         "id": "C",
@@ -1144,7 +1145,7 @@ const QUESTION_BANK_GESTOR_CI = [
         "explicacion": "Inadecuada e ilícita. Configura una falta grave por conflicto de intereses y recepción de dádivas prohibidas por la Ley 1952 de 2019."
       }
     ],
-    "respuestaCorrecta": "A",
+    "respuestaCorrecta": "B",
     "norma": "Ley 1952 de 2019, Art. 38 (Código General Disciplinario)",
     "citaNormativa": "«Está prohibido a todo servidor público solicitar, aceptar o recibir dádivas, promesas o beneficios directos o indirectos para sí o para un tercero por retardar, omitir o ejecutar actos de su cargo, debiendo denunciar inmediatamente cualquier intento de soborno.» (Ley 1952 de 2019, Art. 38)."
   },
@@ -1165,16 +1166,16 @@ const QUESTION_BANK_GESTOR_CI = [
       },
       {
         "id": "B",
-        "texto": "Proponer una reorganización temporal de los turnos de trabajo, priorizar los expedientes de mayor impacto fiscal y coordinar con el área de tecnología planes de contingencia para procesar información fuera de las horas pico, alcanzando la meta propuesta.",
-        "explicacion": "Correcta. El Nivel 3 de Orientación al Logro implica superar estándares, actuar con proactividad ante imprevistos técnicos y movilizar recursos para garantizar el cumplimiento de metas ambiciosas."
+        "texto": "Cerrar los expedientes apresuradamente firmando autos de archivo masivos sin haber revisado los soportes contables.",
+        "explicacion": "Inadecuada. Sacrifica la calidad técnica y la legalidad por la velocidad, generando grave detrimento patrimonial y responsabilidad."
       },
       {
         "id": "C",
-        "texto": "Cerrar los expedientes apresuradamente firmando autos de archivo masivos sin haber revisado los soportes contables.",
-        "explicacion": "Inadecuada. Sacrifica la calidad técnica y la legalidad por la velocidad, generando grave detrimento patrimonial y responsabilidad."
+        "texto": "Proponer una reorganización temporal de los turnos de trabajo, priorizar los expedientes de mayor impacto fiscal y coordinar con el área de tecnología planes de contingencia para procesar información fuera de las horas pico, alcanzando la meta propuesta.",
+        "explicacion": "Correcta. El Nivel 3 de Orientación al Logro implica superar estándares, actuar con proactividad ante imprevistos técnicos y movilizar recursos para garantizar el cumplimiento de metas ambiciosas."
       }
     ],
-    "respuestaCorrecta": "B",
+    "respuestaCorrecta": "C",
     "norma": "Resolución 0067 de 2024 de la DIAN y Decreto 815 de 2018",
     "citaNormativa": "«El profesional con orientación al logro identifica cuellos de botella en la operación, reorganiza recursos con proactividad y formula alternativas innovadoras para asegurar el cumplimiento oportuno de las metas de recaudo y control fiscal.» (Resolución DIAN 0067/2024)."
   },
@@ -1250,21 +1251,21 @@ const QUESTION_BANK_GESTOR_CI = [
     "opciones": [
       {
         "id": "A",
-        "texto": "Asumir una disposición abierta al cambio, capacitarse con empeño en los tutoriales del nuevo sistema, explorar sus ventajas y apoyar pacientemente a los compañeros con mayor resistencia a la tecnología.",
-        "explicacion": "Correcta. La Adaptabilidad Nivel 1 se traduce en flexibilidad positiva frente a transformaciones operativas y tecnológicas, facilitando la transición y superando la inercia del confort."
-      },
-      {
-        "id": "B",
         "texto": "Promover un cese de actividades hasta que la administración reinstale el software antiguo ya conocido.",
         "explicacion": "Inadecuada. Afecta la continuidad del servicio público y desconoce las políticas de modernización tecnológica estatal."
       },
       {
-        "id": "C",
+        "id": "B",
         "texto": "Continuar radicando sus informes en carpetas físicas manuales sin ingresar al nuevo software corporativo.",
         "explicacion": "Inadecuada. Genera reprocesos, desarticulación en las bases de datos y desacato a las directrices de la entidad."
+      },
+      {
+        "id": "C",
+        "texto": "Asumir una disposición abierta al cambio, capacitarse con empeño en los tutoriales del nuevo sistema, explorar sus ventajas y apoyar pacientemente a los compañeros con mayor resistencia a la tecnología.",
+        "explicacion": "Correcta. La Adaptabilidad Nivel 1 se traduce en flexibilidad positiva frente a transformaciones operativas y tecnológicas, facilitando la transición y superando la inercia del confort."
       }
     ],
-    "respuestaCorrecta": "A",
+    "respuestaCorrecta": "C",
     "norma": "Decreto 815 de 2018 (Competencias Comportamentales del Sector Público)",
     "citaNormativa": "«Acepta y se adapta con facilidad a las transformaciones organizacionales y tecnológicas de la entidad, manteniendo un desempeño de calidad y apoyando la modernización del servicio público.» (Decreto 815 de 2018)."
   },
@@ -1280,13 +1281,13 @@ const QUESTION_BANK_GESTOR_CI = [
     "opciones": [
       {
         "id": "A",
-        "texto": "Le indica que ese problema es de Cobranzas y que debe sacar cita por internet en su casa sin darle ninguna indicación más.",
-        "explicacion": "Inadecuada. Demuestra desinterés y vulnera los principios de atención prioritaria al adulto mayor y facilitación ciudadana."
+        "texto": "Escucha su inquietud con empatía y respeto, le orienta de forma sencilla sobre el motivo del mensaje, lo acompaña o guía hacia el módulo de atención presencial preferencial y le imprime la constancia de turno requerida.",
+        "explicacion": "Correcta. La Orientación al Usuario Nivel 1 se manifiesta en la calidez, la escucha activa, la búsqueda de soluciones efectivas y el trato digno a los ciudadanos en especial condición de vulnerabilidad."
       },
       {
         "id": "B",
-        "texto": "Escucha su inquietud con empatía y respeto, le orienta de forma sencilla sobre el motivo del mensaje, lo acompaña o guía hacia el módulo de atención presencial preferencial y le imprime la constancia de turno requerida.",
-        "explicacion": "Correcta. La Orientación al Usuario Nivel 1 se manifiesta en la calidez, la escucha activa, la búsqueda de soluciones efectivas y el trato digno a los ciudadanos en especial condición de vulnerabilidad."
+        "texto": "Le indica que ese problema es de Cobranzas y que debe sacar cita por internet en su casa sin darle ninguna indicación más.",
+        "explicacion": "Inadecuada. Demuestra desinterés y vulnera los principios de atención prioritaria al adulto mayor y facilitación ciudadana."
       },
       {
         "id": "C",
@@ -1294,7 +1295,7 @@ const QUESTION_BANK_GESTOR_CI = [
         "explicacion": "Inadecuada e ilegal. Constituye falta gravísima y delito de concusión."
       }
     ],
-    "respuestaCorrecta": "B",
+    "respuestaCorrecta": "A",
     "norma": "Ley 1437 de 2011, Art. 5 (Derechos de las Personas ante las Autoridades)",
     "citaNormativa": "«En sus relaciones con las autoridades, toda persona tiene derecho a ser tratada con el respeto debido a la dignidad humana y a recibir atención especial y preferente si se trata de personas en situación de vulnerabilidad o adultos mayores.» (CPACA, Art. 5, Num. 1 y 4)."
   },
@@ -1345,16 +1346,16 @@ const QUESTION_BANK_GESTOR_CI = [
       },
       {
         "id": "B",
-        "texto": "Declararse inmediatamente impedido por escrito motivado ante su superior jerárquico, manifestando el parentesco y conflicto de interés para que el expediente sea reasignado a otro profesional idóneo.",
-        "explicacion": "Correcta. El valor de la Honestidad ('Actúo siempre con fundamento en la verdad, cumpliendo mis deberes con transparencia y rectitud') exige manifestar oportunamente los conflictos de interés (CPACA Art. 11 y 12)."
+        "texto": "Cobrar honorarios a la empresa de su cónyuge para emitir un concepto tributario favorable respaldado con su cargo público.",
+        "explicacion": "Incorrecta y delictiva. Tipifica delitos graves contra la administración pública como cohecho propio y concusión."
       },
       {
         "id": "C",
-        "texto": "Cobrar honorarios a la empresa de su cónyuge para emitir un concepto tributario favorable respaldado con su cargo público.",
-        "explicacion": "Incorrecta y delictiva. Tipifica delitos graves contra la administración pública como cohecho propio y concusión."
+        "texto": "Declararse inmediatamente impedido por escrito motivado ante su superior jerárquico, manifestando el parentesco y conflicto de interés para que el expediente sea reasignado a otro profesional idóneo.",
+        "explicacion": "Correcta. El valor de la Honestidad ('Actúo siempre con fundamento en la verdad, cumpliendo mis deberes con transparencia y rectitud') exige manifestar oportunamente los conflictos de interés (CPACA Art. 11 y 12)."
       }
     ],
-    "respuestaCorrecta": "B",
+    "respuestaCorrecta": "C",
     "norma": "Ley 1437 de 2011, Art. 11 (Causales de Impedimento) y Ley 1952 de 2019",
     "citaNormativa": "«Cuando el interés general de la función pública entre en conflicto con el interés particular y directo del servidor o de su cónyuge, este deberá declararse inmediatamente impedido para actuar en el trámite o actuación administrativa.» (CPACA, Art. 11, Num. 1)."
   },
@@ -1370,13 +1371,13 @@ const QUESTION_BANK_GESTOR_CI = [
     "opciones": [
       {
         "id": "A",
-        "texto": "Acatar sumisamente la orden verbal e imponer la sanción arbitraria sin importar la doctrina ni los precedentes judiciales.",
-        "explicacion": "Incorrecta. El servidor público está subordinado a la Constitución y la ley; la obediencia debida no ampara la ejecución de órdenes manifiestamente ilegales o arbitrarias."
+        "texto": "Sustentar técnicamente y por escrito la doctrina oficial de la DIAN y la jurisprudencia del Consejo de Estado, motivando la improcedencia de la sanción arbitraria para garantizar la seguridad jurídica, la justicia tributaria y el debido proceso.",
+        "explicacion": "Correcta. El valor de la Justicia ('Actúo con equidad, imparcialidad y reconozco el derecho de cada cual') orienta al servidor a aplicar la ley objetivamente sin arbitrariedades (Art. 209 C.P.)."
       },
       {
         "id": "B",
-        "texto": "Sustentar técnicamente y por escrito la doctrina oficial de la DIAN y la jurisprudencia del Consejo de Estado, motivando la improcedencia de la sanción arbitraria para garantizar la seguridad jurídica, la justicia tributaria y el debido proceso.",
-        "explicacion": "Correcta. El valor de la Justicia ('Actúo con equidad, imparcialidad y reconozco el derecho de cada cual') orienta al servidor a aplicar la ley objetivamente sin arbitrariedades (Art. 209 C.P.)."
+        "texto": "Aplicar la sanción recomendada por el superior invocando el principio de jerarquía administrativa, dejando constancia de su discrepancia personal en un memorando interno.",
+        "explicacion": "Incorrecta. El servidor público está subordinado a la Constitución y la ley; la obediencia debida no ampara la ejecución de órdenes manifiestamente ilegales o arbitrarias."
       },
       {
         "id": "C",
@@ -1384,7 +1385,7 @@ const QUESTION_BANK_GESTOR_CI = [
         "explicacion": "Incorrecta. Rompe el deber de confidencialidad y no resuelve por los canales institucionales y jurídicos el dilema legal."
       }
     ],
-    "respuestaCorrecta": "B",
+    "respuestaCorrecta": "A",
     "norma": "Constitución Política de Colombia, Arts. 6, 29 y 209",
     "citaNormativa": "«Los servidores públicos son responsables por infringir la Constitución y las leyes, y por omisión o extralimitación en el ejercicio de sus funciones. La función administrativa está al servicio de los intereses generales con fundamento en la igualdad y la moralidad.» (Constitución Política, Arts. 6 y 209)."
   },
@@ -1400,13 +1401,13 @@ const QUESTION_BANK_GESTOR_CI = [
     "opciones": [
       {
         "id": "A",
-        "texto": "Participar con entusiasmo en la jornada pedagógica, compartiendo con los jóvenes la importancia social de los tributos para financiar la salud, la educación y la paz en Colombia.",
-        "explicacion": "Correcta. El valor del Compromiso trasciende el cumplimiento formal del horario y abraza con vocación el sentido transformador de la administración tributaria para el desarrollo del país."
+        "texto": "Burlarse de la iniciativa pedagógica afirmando que a los jóvenes solo se les debe enseñar a evadir impuestos.",
+        "explicacion": "Inadecuada. Atenta contra la misión de la DIAN y denigra la función pública y la cultura de la legalidad."
       },
       {
         "id": "B",
-        "texto": "Burlarse de la iniciativa pedagógica afirmando que a los jóvenes solo se les debe enseñar a evadir impuestos.",
-        "explicacion": "Inadecuada. Atenta contra la misión de la DIAN y denigra la función pública y la cultura de la legalidad."
+        "texto": "Participar con entusiasmo en la jornada pedagógica, compartiendo con los jóvenes la importancia social de los tributos para financiar la salud, la educación y la paz en Colombia.",
+        "explicacion": "Correcta. El valor del Compromiso trasciende el cumplimiento formal del horario y abraza con vocación el sentido transformador de la administración tributaria para el desarrollo del país."
       },
       {
         "id": "C",
@@ -1414,7 +1415,7 @@ const QUESTION_BANK_GESTOR_CI = [
         "explicacion": "Inadecuada. Demuestra desapego al valor de vocación pública y falta de compromiso institucional."
       }
     ],
-    "respuestaCorrecta": "A",
+    "respuestaCorrecta": "B",
     "norma": "Código de Integridad de la Función Pública y Misión Social DIAN",
     "citaNormativa": "«Compromiso: Soy consciente de la importancia de mi rol como servidor público y estoy en disposición permanente para promover el bien común, la cultura de la contribución y la defensa de los recursos públicos de todos los colombianos.» (Código de Integridad DAFP)."
   },
@@ -1430,21 +1431,21 @@ const QUESTION_BANK_GESTOR_CI = [
     "opciones": [
       {
         "id": "A",
-        "texto": "El Recurso de Reconsideración, el cual debe interponerse por escrito ante la misma dependencia que profirió el acto dentro de los dos (2) meses siguientes a su notificación.",
-        "explicacion": "Correcta. El artículo 720 del Estatuto Tributario establece que contra las liquidaciones oficiales y resoluciones sanción procede únicamente el Recurso de Reconsideración, el cual debe interponerse dentro de los dos (2) meses siguientes a la notificación del acto administrativo."
-      },
-      {
-        "id": "B",
         "texto": "El Recurso de Reposición y en subsidio Apelación ante el Ministro de Hacienda en el término de 5 días hábiles.",
         "explicacion": "Incorrecta. En materia tributaria rige el principio de especialidad procedimental: el recurso ordinario es el de Reconsideración (no reposición/apelación ordinarios del CPACA) y su término es de dos meses."
       },
       {
-        "id": "C",
+        "id": "B",
         "texto": "Una acción de tutela directa sin agotar la vía administrativa gubernativa.",
         "explicacion": "Incorrecta. La tutela es subsidiaria e improcedente existiendo recursos administrativos y medios de control contencioso ordinarios."
+      },
+      {
+        "id": "C",
+        "texto": "El Recurso de Reconsideración, el cual debe interponerse por escrito ante la misma dependencia que profirió el acto dentro de los dos (2) meses siguientes a su notificación.",
+        "explicacion": "Correcta. El artículo 720 del Estatuto Tributario establece que contra las liquidaciones oficiales y resoluciones sanción procede únicamente el Recurso de Reconsideración, el cual debe interponerse dentro de los dos (2) meses siguientes a la notificación del acto administrativo."
       }
     ],
-    "respuestaCorrecta": "A",
+    "respuestaCorrecta": "C",
     "norma": "Estatuto Tributario, Art. 720 (Recurso de reconsideración)",
     "citaNormativa": "«Sin perjuicio de lo dispuesto en normas especiales, contra las liquidaciones oficiales, resoluciones que impongan sanciones o decreten el decomiso de mercancías, procede el recurso de reconsideración dentro de los dos (2) meses siguientes a su notificación.» (E.T. Art. 720)."
   },
@@ -1490,13 +1491,13 @@ const QUESTION_BANK_GESTOR_CI = [
     "opciones": [
       {
         "id": "A",
-        "texto": "Pérdida de fuerza ejecutoria por el transcurso de cinco (5) años sin que la administración haya ejecutado los actos que le corresponden para hacerla efectiva (decaimiento del acto administrativo por prescripción del cobro).",
-        "explicacion": "Correcta. El artículo 91 numeral 3 del CPACA dispone que los actos administrativos pierden su fuerza ejecutoria cuando al cabo de cinco (5) años de estar en firme, la autoridad no ha realizado los actos de ejecución correspondientes."
+        "texto": "El acto adquiere mayor fuerza ejecutoria indefinida y puede cobrarse en cualquier momento del siglo XXI.",
+        "explicacion": "Incorrecta. La inactividad de la administración por 5 años extingue la fuerza ejecutoria del acto administrativo."
       },
       {
         "id": "B",
-        "texto": "El acto adquiere mayor fuerza ejecutoria indefinida y puede cobrarse en cualquier momento del siglo XXI.",
-        "explicacion": "Incorrecta. La inactividad de la administración por 5 años extingue la fuerza ejecutoria del acto administrativo."
+        "texto": "Pérdida de fuerza ejecutoria por el transcurso de cinco (5) años sin que la administración haya ejecutado los actos que le corresponden para hacerla efectiva (decaimiento del acto administrativo por prescripción del cobro).",
+        "explicacion": "Correcta. El artículo 91 numeral 3 del CPACA dispone que los actos administrativos pierden su fuerza ejecutoria cuando al cabo de cinco (5) años de estar en firme, la autoridad no ha realizado los actos de ejecución correspondientes."
       },
       {
         "id": "C",
@@ -1504,7 +1505,7 @@ const QUESTION_BANK_GESTOR_CI = [
         "explicacion": "Incorrecta. Planteamiento absurdo e inexistente en la teoría general del acto administrativo."
       }
     ],
-    "respuestaCorrecta": "A",
+    "respuestaCorrecta": "B",
     "norma": "CPACA (Ley 1437 de 2011), Art. 91 (Pérdida de fuerza ejecutoria)",
     "citaNormativa": "«Salvo norma expresa en contrario, los actos administrativos en firme serán obligatorios mientras no hayan sido anulados. Perderán obligatoriedad y fuerza ejecutoria: Cuando al cabo de cinco (5) años de estar en firme, la autoridad no ha realizado los actos que le correspondan para ejecutarlos.» (CPACA, Art. 91 Numeral 3)."
   },
@@ -1520,21 +1521,21 @@ const QUESTION_BANK_GESTOR_CI = [
     "opciones": [
       {
         "id": "A",
-        "texto": "Sí es procedente; conforme al artículo 93 del CPACA y al Estatuto Tributario, la falta de interposición de recursos ordinarios no impide la solicitud de revocatoria directa cuando el acto manifiesta manifiesta oposición a la Constitución o la ley.",
-        "explicacion": "Correcta. El artículo 93 del CPACA y la jurisprudencia del Consejo de Estado reiteran que la no interposición de recursos en vía administrativa no priva al ciudadano del derecho a solicitar la revocatoria directa por las causales taxativas legales (manifiesta oposición a la Constitución, violación a la ley o agravio injustificado)."
-      },
-      {
-        "id": "B",
         "texto": "No es procedente bajo ninguna circunstancia porque quien no interpuso recursos pierde todos sus derechos de por vida.",
         "explicacion": "Incorrecta. Confunde el agotamiento de la vía administrativa para demandar ante la jurisdicción contenciosa con el mecanismo autónomo de revocatoria directa."
       },
       {
-        "id": "C",
+        "id": "B",
         "texto": "Solo procede si el contribuyente paga el 50% del valor discutido como fianza no reembolsable.",
         "explicacion": "Incorrecta. La solicitud de revocatoria directa no exige depósitos ni cauciones pecuniarias previas."
+      },
+      {
+        "id": "C",
+        "texto": "Sí es procedente; conforme al artículo 93 del CPACA y al Estatuto Tributario, la falta de interposición de recursos ordinarios no impide la solicitud de revocatoria directa cuando el acto manifiesta manifiesta oposición a la Constitución o la ley.",
+        "explicacion": "Correcta. El artículo 93 del CPACA y la jurisprudencia del Consejo de Estado reiteran que la no interposición de recursos en vía administrativa no priva al ciudadano del derecho a solicitar la revocatoria directa por las causales taxativas legales (manifiesta oposición a la Constitución, violación a la ley o agravio injustificado)."
       }
     ],
-    "respuestaCorrecta": "A",
+    "respuestaCorrecta": "C",
     "norma": "CPACA, Art. 93 y Estatuto Tributario, Art. 736 (Revocatoria directa)",
     "citaNormativa": "«Los actos administrativos deberán ser revocados por las mismas autoridades que los hayan expedido: Cuando sea manifiesta su oposición a la Constitución Política o a la ley. La solicitud de revocatoria directa procederá aun cuando se hubiere ejercido o no los recursos administrativos.» (CPACA, Art. 93)."
   },
@@ -1580,13 +1581,13 @@ const QUESTION_BANK_GESTOR_CI = [
     "opciones": [
       {
         "id": "A",
-        "texto": "Opera la Notificación por Conducta Concluyente; se tiene por surtida la notificación personal a partir de la fecha de radicación del escrito donde el interesado manifiesta o demuestra conocer el acto en su integridad.",
-        "explicacion": "Correcta. El artículo 72 del CPACA dispone que cuando una parte interponga recursos o se manifieste conocedora del contenido del acto administrativo sin haber sido notificada debidamente, se entenderá surtida la notificación por conducta concluyente desde la fecha de dicha manifestación."
+        "texto": "El acto es inexistente jurídicamente y el contribuyente queda inmune de por vida.",
+        "explicacion": "Incorrecta. La conducta concluyente sanea la falta de notificación previa garantizando que el administrado ejerció su defensa material."
       },
       {
         "id": "B",
-        "texto": "El acto es inexistente jurídicamente y el contribuyente queda inmune de por vida.",
-        "explicacion": "Incorrecta. La conducta concluyente sanea la falta de notificación previa garantizando que el administrado ejerció su defensa material."
+        "texto": "Opera la Notificación por Conducta Concluyente; se tiene por surtida la notificación personal a partir de la fecha de radicación del escrito donde el interesado manifiesta o demuestra conocer el acto en su integridad.",
+        "explicacion": "Correcta. El artículo 72 del CPACA dispone que cuando una parte interponga recursos o se manifieste conocedora del contenido del acto administrativo sin haber sido notificada debidamente, se entenderá surtida la notificación por conducta concluyente desde la fecha de dicha manifestación."
       },
       {
         "id": "C",
@@ -1594,7 +1595,7 @@ const QUESTION_BANK_GESTOR_CI = [
         "explicacion": "Incorrecta. Absurdo procesal; el conocimiento del acto abre el ejercicio legítimo del derecho de defensa y contradicción."
       }
     ],
-    "respuestaCorrecta": "A",
+    "respuestaCorrecta": "B",
     "norma": "CPACA (Ley 1437 de 2011), Art. 72 (Falta o irregularidad de las notificaciones)",
     "citaNormativa": "«La notificación quedará surtida y el acto producirá efectos cuando la parte interesada se declare sabedora del acto administrativo o interponga los recursos procedentes, dándose por notificada por conducta concluyente.» (CPACA, Art. 72)."
   },
@@ -1610,21 +1611,21 @@ const QUESTION_BANK_GESTOR_CI = [
     "opciones": [
       {
         "id": "A",
-        "texto": "Efectuar la Notificación por Aviso, remitiendo copia íntegra del acto al domicilio y publicándolo en la página web institucional con indicación de los recursos procedentes; la notificación se considerará surtida al finalizar el día siguiente al de la entrega o retiro del aviso.",
-        "explicacion": "Correcta. El artículo 69 del CPACA regula la notificación por aviso cuando no sea posible la notificación personal tras vencer el término de la citación, surtiéndose al finalizar el día siguiente a la entrega del aviso."
-      },
-      {
-        "id": "B",
         "texto": "Dejar el expediente abandonado en un archivo muerto sin intentar ninguna otra vía de comunicación.",
         "explicacion": "Incorrecta. La administración tiene el deber de agotar los mecanismos subsidiarios de notificación para asegurar la firmeza de sus actos."
       },
       {
-        "id": "C",
+        "id": "B",
         "texto": "Publicar el nombre del contribuyente en un megáfono callejero por el centro de la ciudad.",
         "explicacion": "Incorrecta. Mecanismo informal y lesivo del derecho a la intimidad no previsto en la ley."
+      },
+      {
+        "id": "C",
+        "texto": "Efectuar la Notificación por Aviso, remitiendo copia íntegra del acto al domicilio y publicándolo en la página web institucional con indicación de los recursos procedentes; la notificación se considerará surtida al finalizar el día siguiente al de la entrega o retiro del aviso.",
+        "explicacion": "Correcta. El artículo 69 del CPACA regula la notificación por aviso cuando no sea posible la notificación personal tras vencer el término de la citación, surtiéndose al finalizar el día siguiente a la entrega del aviso."
       }
     ],
-    "respuestaCorrecta": "A",
+    "respuestaCorrecta": "C",
     "norma": "CPACA (Ley 1437 de 2011), Art. 69 (Notificación por aviso)",
     "citaNormativa": "«Si no pudiere hacerse la notificación personal al cabo de los cinco (5) días del envío de la citación, se notificará por medio de aviso que se remitirá a la dirección que se conozca del interesado. La notificación se entenderá surtida al finalizar el día siguiente al de la entrega del aviso.» (CPACA, Art. 69)."
   },
@@ -1645,7 +1646,7 @@ const QUESTION_BANK_GESTOR_CI = [
       },
       {
         "id": "B",
-        "texto": "Adjudicar directamente el contrato por WhatsApp a un amigo del director sin estudios ni pólizas.",
+        "texto": "Declarar la urgencia manifiesta sin acto administrativo motivado y contratar directamente sin verificar la capacidad técnica ni la idoneidad del proveedor.",
         "explicacion": "Incorrecta. Delito de contrato sin cumplimiento de requisitos legales (Código Penal Art. 410) y falta gravísima."
       },
       {
@@ -1670,13 +1671,13 @@ const QUESTION_BANK_GESTOR_CI = [
     "opciones": [
       {
         "id": "A",
-        "texto": "Selección Abreviada por Subasta Inversa Presencial o Electrónica (o Acuerdo Marco de Precios en Colombia Compra Eficiente), por tratarse de bienes y servicios de características técnicas uniformes y común utilización.",
-        "explicacion": "Correcta. El artículo 2 numeral 2 literal a de la Ley 1150 de 2007 señala que los bienes y servicios uniformes se adquieren por Selección Abreviada (subasta inversa presencial o electrónica o tienda virtual de acuerdos marco), independientemente de la cuantía."
+        "texto": "Contratación Directa sin convocatoria pública argumentando que el aseo no es importante.",
+        "explicacion": "Incorrecta. La contratación directa es excepcionalísima para causales taxativas de ley; los servicios uniformes no encajan en contratación directa."
       },
       {
         "id": "B",
-        "texto": "Contratación Directa sin convocatoria pública argumentando que el aseo no es importante.",
-        "explicacion": "Incorrecta. La contratación directa es excepcionalísima para causales taxativas de ley; los servicios uniformes no encajan en contratación directa."
+        "texto": "Selección Abreviada por Subasta Inversa Presencial o Electrónica (o Acuerdo Marco de Precios en Colombia Compra Eficiente), por tratarse de bienes y servicios de características técnicas uniformes y común utilización.",
+        "explicacion": "Correcta. El artículo 2 numeral 2 literal a de la Ley 1150 de 2007 señala que los bienes y servicios uniformes se adquieren por Selección Abreviada (subasta inversa presencial o electrónica o tienda virtual de acuerdos marco), independientemente de la cuantía."
       },
       {
         "id": "C",
@@ -1684,7 +1685,7 @@ const QUESTION_BANK_GESTOR_CI = [
         "explicacion": "Incorrecta. El fraccionamiento contractual es una práctica ilícita expresamente prohibida y penalizada en Colombia."
       }
     ],
-    "respuestaCorrecta": "A",
+    "respuestaCorrecta": "B",
     "norma": "Ley 1150 de 2007, Art. 2 Numeral 2 (Selección abreviada de bienes uniformes)",
     "citaNormativa": "«La adquisición de bienes y servicios de características técnicas uniformes y de común utilización por parte de las entidades estatales se realizará por la modalidad de selección abreviada mediante subasta inversa o acuerdos marco de precios.» (Ley 1150 de 2007, Art. 2)."
   },
@@ -1700,21 +1701,21 @@ const QUESTION_BANK_GESTOR_CI = [
     "opciones": [
       {
         "id": "A",
-        "texto": "Rechazar la firma del acta de recibido a satisfacción, elaborar un informe de incumplimiento con requerimiento formal al contratista para el ajuste conforme al pliego, y de persistir el desacato, solicitar a la ordenación del gasto el inicio del procedimiento sancionatorio de multas o caducidad (Art. 86 Ley 1474/2011).",
-        "explicacion": "Correcta. El artículo 83 de la Ley 1474 de 2011 (Estatuto Anticorrupción) obliga al supervisor a vigilar el cumplimiento material y técnico del contrato; certificar el recibido a satisfacción de bienes no entregados o deficientes acarrea responsabilidad penal por falsedad y prevaricato."
-      },
-      {
-        "id": "B",
         "texto": "Firmar el acta a satisfacción para evitar conflictos personales y recibir un paquete de resmas de papel para su casa.",
         "explicacion": "Incorrecta. Falla disciplinaria gravísima, delito de falsedad ideológica en documento público y peculado por apropiación."
       },
       {
-        "id": "C",
+        "id": "B",
         "texto": "Renunciar al empleo público inmediatamente y quemar las resmas de papel defectuosas.",
         "explicacion": "Incorrecta. Conducta evasiva contraria al ejercicio de la supervisión contractual institucional."
+      },
+      {
+        "id": "C",
+        "texto": "Rechazar la firma del acta de recibido a satisfacción, elaborar un informe de incumplimiento con requerimiento formal al contratista para el ajuste conforme al pliego, y de persistir el desacato, solicitar a la ordenación del gasto el inicio del procedimiento sancionatorio de multas o caducidad",
+        "explicacion": "Correcta. El artículo 83 de la Ley 1474 de 2011 (Estatuto Anticorrupción) obliga al supervisor a vigilar el cumplimiento material y técnico del contrato; certificar el recibido a satisfacción de bienes no entregados o deficientes acarrea responsabilidad penal por falsedad y prevaricato."
       }
     ],
-    "respuestaCorrecta": "A",
+    "respuestaCorrecta": "C",
     "norma": "Ley 1474 de 2011 (Estatuto Anticorrupción), Arts. 83 y 86 (Supervisión e interventoría)",
     "citaNormativa": "«La supervisión contractual consiste en el seguimiento técnico, administrativo, financiero, contable y jurídico que se ejerce sobre el contrato. Si el supervisor advierte incumplimiento, requerirá al contratista e informará al ordenador del gasto.» (Ley 1474 de 2011, Art. 83)."
   },
@@ -1760,13 +1761,13 @@ const QUESTION_BANK_GESTOR_CI = [
     "opciones": [
       {
         "id": "A",
-        "texto": "Constituye una Falta Gravísima cometida a título de dolo (revelación indebida de secretos e infracción a la reserva legal), sancionable con Destitución del empleo e Inhabilidad General para ejercer cargos públicos de diez (10) a veinte (20) años.",
-        "explicacion": "Correcta. Utilizar información reservada en provecho propio o de terceros constituye falta gravísima bajo el Código General Disciplinario (Ley 1952 de 2019 modificada por la Ley 2094 de 2021), acarreando la destitución e inhabilidad máxima legal."
+        "texto": "Es una falta leve sancionable con una felicitación por haber encontrado fuentes alternativas de ingresos.",
+        "explicacion": "Incorrecta. Aberración ética y jurídica contraria a los fundamentos constitucionales del servicio civil."
       },
       {
         "id": "B",
-        "texto": "Es una falta leve sancionable con una felicitación por haber encontrado fuentes alternativas de ingresos.",
-        "explicacion": "Incorrecta. Aberración ética y jurídica contraria a los fundamentos constitucionales del servicio civil."
+        "texto": "Constituye una Falta Gravísima cometida a título de dolo (revelación indebida de secretos e infracción a la reserva legal), sancionable con Destitución del empleo e Inhabilidad General para ejercer cargos públicos de diez (10) a veinte (20) años.",
+        "explicacion": "Correcta. Utilizar información reservada en provecho propio o de terceros constituye falta gravísima bajo el Código General Disciplinario (Ley 1952 de 2019 modificada por la Ley 2094 de 2021), acarreando la destitución e inhabilidad máxima legal."
       },
       {
         "id": "C",
@@ -1774,7 +1775,7 @@ const QUESTION_BANK_GESTOR_CI = [
         "explicacion": "Incorrecta. La gravedad material y el dolo de la conducta exigen la sanción expulsiva del servicio público."
       }
     ],
-    "respuestaCorrecta": "A",
+    "respuestaCorrecta": "B",
     "norma": "Ley 1952 de 2019 (Código General Disciplinario) y Ley 2094 de 2021, Arts. 48 a 55",
     "citaNormativa": "«Las faltas gravísimas cometidas con dolo o culpa gravísima se sancionarán con destitución e inhabilidad general de diez a veinte años.» (Código General Disciplinario, Art. 48)."
   },
@@ -1790,21 +1791,21 @@ const QUESTION_BANK_GESTOR_CI = [
     "opciones": [
       {
         "id": "A",
-        "texto": "Manifestar por escrito el impedimento ante su superior jerárquico dentro de los tres (3) días siguientes a conocer la asignación, detallando la causal legal de parentesco (Art. 11 numeral 1 CPACA), absteniéndose de actuar hasta que se designe funcionario ad-hoc.",
-        "explicacion": "Correcta. El artículo 11 del CPACA y el Código Disciplinario obligan al servidor público a manifestar inmediatamente su impedimento ante el superior jerárquico frente a parientes en primer y segundo grado. Actuar estando impedido vicia de nulidad el acto y configura falta disciplinaria grave."
-      },
-      {
-        "id": "B",
         "texto": "Continuar con el expediente en secreto y archivar la investigación para ayudar económicamente a su familia.",
         "explicacion": "Incorrecta. Configura prevaricato por acción, conflicto de interés no declarado y falta gravísima dolosa."
       },
       {
-        "id": "C",
+        "id": "B",
         "texto": "Aumentar al triple las sanciones a su hermano para demostrar públicamente que no tiene favoritismos.",
         "explicacion": "Incorrecta. Sigue estando impedido; la imparcialidad objetiva exige apartarse completamente del caso con independencia del sentido del fallo."
+      },
+      {
+        "id": "C",
+        "texto": "Manifestar por escrito el impedimento ante su superior jerárquico dentro de los tres (3) días siguientes a conocer la asignación, detallando la causal legal de parentesco, absteniéndose de actuar hasta que se designe funcionario ad-hoc.",
+        "explicacion": "Correcta. El artículo 11 del CPACA y el Código Disciplinario obligan al servidor público a manifestar inmediatamente su impedimento ante el superior jerárquico frente a parientes en primer y segundo grado. Actuar estando impedido vicia de nulidad el acto y configura falta disciplinaria grave."
       }
     ],
-    "respuestaCorrecta": "A",
+    "respuestaCorrecta": "C",
     "norma": "CPACA (Ley 1437 de 2011), Arts. 11 y 12 (Impedimentos y recusaciones)",
     "citaNormativa": "«El servidor público que esté incurso en alguna de las causales de impedimento deberá manifestarlo por escrito a su superior jerárquico inmediatamente conozca de ella, cesando toda actuación en el expediente.» (CPACA, Art. 12)."
   },
@@ -1850,13 +1851,13 @@ const QUESTION_BANK_GESTOR_CI = [
     "opciones": [
       {
         "id": "A",
-        "texto": "Rechazar y devolver formalmente los regalos, informando que los servidores públicos tienen expresamente prohibido solicitar o recibir dádivas, presentes, agasajos o cualquier beneficio directo o indirecto de personas interesadas en trámites o actuaciones a su cargo (Ley 1952 Art. 39).",
-        "explicacion": "Correcta. El Código General Disciplinario prohíbe de manera tajante a todo servidor recibir obsequios, dádivas o atenciones de administrados con intereses en decisiones a su cargo. Aceptar regalos compromete la independencia y tipifica falta disciplinaria grave."
+        "texto": "Aceptar los celulares y usarlos para hacer llamadas privadas argumentando que en Navidad se perdona todo.",
+        "explicacion": "Incorrecta. Transgrede la integridad pública, el principio de imparcialidad y la prohibición legal expresa de dádivas."
       },
       {
         "id": "B",
-        "texto": "Aceptar los celulares y usarlos para hacer llamadas privadas argumentando que en Navidad se perdona todo.",
-        "explicacion": "Incorrecta. Transgrede la integridad pública, el principio de imparcialidad y la prohibición legal expresa de dádivas."
+        "texto": "Rechazar y devolver formalmente los regalos, informando que los servidores públicos tienen expresamente prohibido solicitar o recibir dádivas, presentes, agasajos o cualquier beneficio directo o indirecto de personas interesadas en trámites o actuaciones a su cargo",
+        "explicacion": "Correcta. El Código General Disciplinario prohíbe de manera tajante a todo servidor recibir obsequios, dádivas o atenciones de administrados con intereses en decisiones a su cargo. Aceptar regalos compromete la independencia y tipifica falta disciplinaria grave."
       },
       {
         "id": "C",
@@ -1864,7 +1865,7 @@ const QUESTION_BANK_GESTOR_CI = [
         "explicacion": "Incorrecta. Agrava la conducta ilícita con comercialización clandestina de bienes provenientes de dádivas ilegales."
       }
     ],
-    "respuestaCorrecta": "A",
+    "respuestaCorrecta": "B",
     "norma": "Ley 1952 de 2019, Art. 39 Numeral 19 (Prohibición de dádivas y presentes)",
     "citaNormativa": "«A todo servidor público le está prohibido: Solicitar, cobrar o recibir dádivas, presentes, agasajos, o cualquier beneficio proveniente de personas con las que tenga relación oficial o interés en las decisiones.» (Ley 1952 de 2019, Art. 39)."
   },
@@ -1880,21 +1881,21 @@ const QUESTION_BANK_GESTOR_CI = [
     "opciones": [
       {
         "id": "A",
-        "texto": "Constituye un Conflicto de Interés Potencial/Aparente que debe declararse formalmente en el Formato de Declaración de Bienes, Rentas y Conflictos de Interés (SIDEAP / SIGEP), informando al jefe inmediato para que decida si es necesario apartarlo de la asignación del trámite para blindar la transparencia institucional.",
-        "explicacion": "Correcta. El DAFP establece que la gestión preventiva de la integridad exige declarar oportunamente los conflictos reales, potenciales y aparentes. Revelar las inversiones financieras evita cuestionamientos éticos y protege la legalidad del acto administrativo."
-      },
-      {
-        "id": "B",
         "texto": "Ocultar la inversión financiera deliberadamente en la declaración juramentada de bienes.",
         "explicacion": "Incorrecta. Constituye falta gravísima por falsedad en la declaración de bienes y rentas y ocultamiento de información patrimonial."
       },
       {
-        "id": "C",
+        "id": "B",
         "texto": "Aprobar la devolución del IVA en 2 minutos para que sus acciones en el fondo suban de precio.",
         "explicacion": "Incorrecta. Configura conflicto de interés real consumado, tráfico de influencias y prevaricato por provecho económico propio."
+      },
+      {
+        "id": "C",
+        "texto": "Constituye un Conflicto de Interés Potencial/Aparente que debe declararse formalmente en el Formato de Declaración de Bienes, Rentas y Conflictos de Interés (SIDEAP / SIGEP), informando al jefe inmediato para que decida si es necesario apartarlo de la asignación del trámite para blindar la transparencia institucional.",
+        "explicacion": "Correcta. El DAFP establece que la gestión preventiva de la integridad exige declarar oportunamente los conflictos reales, potenciales y aparentes. Revelar las inversiones financieras evita cuestionamientos éticos y protege la legalidad del acto administrativo."
       }
     ],
-    "respuestaCorrecta": "A",
+    "respuestaCorrecta": "C",
     "norma": "Ley 2013 de 2019 y Guía para la Gestión de Conflictos de Interés DAFP",
     "citaNormativa": "«Los servidores públicos tienen el deber de declarar proactivamente sus bienes, rentas y registrar los posibles conflictos de interés en el sistema de información pública institucional para garantizar la transparencia.» (Ley 2013 de 2019)."
   },
@@ -1915,7 +1916,7 @@ const QUESTION_BANK_GESTOR_CI = [
       },
       {
         "id": "B",
-        "texto": "Amenazar con abrirles procesos disciplinarios a todos los analistas si no trabajan 24 horas continuas sin dormir.",
+        "texto": "Delegar la totalidad de los expedientes atrasados en los analistas recién vinculados sin realizar redistribución de cargas ni acompañamiento metodológico.",
         "explicacion": "Inadecuada. Estilo autoritario destructivo que fomenta el acoso laboral, agrava el estrés y deteriora el clima organizacional."
       },
       {
@@ -1940,13 +1941,13 @@ const QUESTION_BANK_GESTOR_CI = [
     "opciones": [
       {
         "id": "A",
-        "texto": "Capacitarse activamente en las nuevas herramientas de analítica digital, liderar pilotos prácticos de aplicación en su seccional y compartir didácticamente los hallazgos con sus compañeros para demostrar el valor del ahorro de tiempo y la precisión en la fiscalización.",
-        "explicacion": "Correcta. La competencia de Aprendizaje Continuo implica apropiar activamente nuevas tecnologías y conocimientos, adaptándose a las transformaciones organizacionales y promoviendo la gestión del conocimiento colectivo."
+        "texto": "Boicotear el sistema informático ingresando datos basura para que la dirección regrese al archivo en papel.",
+        "explicacion": "Inadecuada. Atenta contra la infraestructura tecnológica del Estado y configura sabotaje institucional."
       },
       {
         "id": "B",
-        "texto": "Boicotear el sistema informático ingresando datos basura para que la dirección regrese al archivo en papel.",
-        "explicacion": "Inadecuada. Atenta contra la infraestructura tecnológica del Estado y configura sabotaje institucional."
+        "texto": "Capacitarse activamente en las nuevas herramientas de analítica digital, liderar pilotos prácticos de aplicación en su seccional y compartir didácticamente los hallazgos con sus compañeros para demostrar el valor del ahorro de tiempo y la precisión en la fiscalización.",
+        "explicacion": "Correcta. La competencia de Aprendizaje Continuo implica apropiar activamente nuevas tecnologías y conocimientos, adaptándose a las transformaciones organizacionales y promoviendo la gestión del conocimiento colectivo."
       },
       {
         "id": "C",
@@ -1954,7 +1955,7 @@ const QUESTION_BANK_GESTOR_CI = [
         "explicacion": "Inadecuada. Genera resistencia tóxica y fractura el desarrollo del talento humano en la entidad."
       }
     ],
-    "respuestaCorrecta": "A",
+    "respuestaCorrecta": "B",
     "norma": "Decreto 815 de 2018 (Competencia de Aprendizaje Continuo e Innovación)",
     "citaNormativa": "«Aprendizaje Continuo: Adquiere, desarrolla y aplica conocimientos y destrezas para mejorar el desempeño propio y del equipo, adaptándose a las innovaciones tecnológicas y de gestión.» (Decreto 815 de 2018)."
   },
@@ -1970,21 +1971,21 @@ const QUESTION_BANK_GESTOR_CI = [
     "opciones": [
       {
         "id": "A",
-        "texto": "Mantener la calma y el autocontrol emocional, escuchar atentamente sus descargos sin interrumpir, invitarlo con voz firme y serena a sentarse en un espacio reservado, revisar el estado de su expediente con el número de cédula y explicarle con lenguaje claro las alternativas procesales y facilidades de pago que le asisten en derecho.",
-        "explicacion": "Correcta. El servicio al ciudadano exige autorregulación, escucha activa y asertividad: desescalar la hostilidad con compostura profesional, validar la inquietud y brindar orientación técnica fundamentada sin entrar en confrontaciones personales."
-      },
-      {
-        "id": "B",
         "texto": "Responder a los gritos con insultos más fuertes y retar al ciudadano a una pelea física en la calle.",
         "explicacion": "Inadecuada. Falta disciplinaria gravísima de agresión a usuarios, desprestigiando la dignidad institucional del Estado."
       },
       {
-        "id": "C",
+        "id": "B",
         "texto": "Cerrar la ventanilla en su cara y marcharse a tomar café durante tres horas.",
         "explicacion": "Inadecuada. Demuestra desprecio por el usuario y omisión del deber de atención y orientación oportuna."
+      },
+      {
+        "id": "C",
+        "texto": "Mantener la calma y el autocontrol emocional, escuchar atentamente sus descargos sin interrumpir, invitarlo con voz firme y serena a sentarse en un espacio reservado, revisar el estado de su expediente con el número de cédula y explicarle con lenguaje claro las alternativas procesales y facilidades de pago que le asisten en derecho.",
+        "explicacion": "Correcta. El servicio al ciudadano exige autorregulación, escucha activa y asertividad: desescalar la hostilidad con compostura profesional, validar la inquietud y brindar orientación técnica fundamentada sin entrar en confrontaciones personales."
       }
     ],
-    "respuestaCorrecta": "A",
+    "respuestaCorrecta": "C",
     "norma": "Decreto 815 de 2018 (Orientación al Ciudadano y Comunicación Asertiva)",
     "citaNormativa": "«Orientación al Usuario y al Ciudadano: Atiende las solicitudes con respeto, empatía y efectividad, utilizando un lenguaje claro y constructivo que fortalezca la confianza de la ciudadanía en las instituciones del Estado.» (Decreto 815 de 2018)."
   },
@@ -2030,13 +2031,13 @@ const QUESTION_BANK_GESTOR_CI = [
     "opciones": [
       {
         "id": "A",
-        "texto": "Implementar campañas de pedagogía tributaria personalizada con advertencias persuasivas en el buzón electrónico, facilitando la adopción del sistema de facturación gratuita de la DIAN antes de desplegar fiscalización formal.",
-        "explicacion": "Correcta. La misionalidad contemporánea de la DIAN busca promover prioritariamente el cumplimiento voluntario mediante facilitación, herramientas gratuitas y persuasión fundada en datos, reservando la coacción punitiva para la renuencia contumaz."
+        "texto": "Ordenar el embargo preventivo inmediato de las cuentas bancarias de todos los obligados omisos sin previo aviso persuasivo.",
+        "explicacion": "Incorrecta. Viola el debido proceso y la proporcionalidad; las medidas cautelares en cobro coactivo exigen la previa existencia de un título ejecutivo en firme."
       },
       {
         "id": "B",
-        "texto": "Ordenar el embargo preventivo inmediato de las cuentas bancarias de todos los obligados omisos sin previo aviso persuasivo.",
-        "explicacion": "Incorrecta. Viola el debido proceso y la proporcionalidad; las medidas cautelares en cobro coactivo exigen la previa existencia de un título ejecutivo en firme."
+        "texto": "Implementar campañas de pedagogía tributaria personalizada con advertencias persuasivas en el buzón electrónico, facilitando la adopción del sistema de facturación gratuita de la DIAN antes de desplegar fiscalización formal.",
+        "explicacion": "Correcta. La misionalidad contemporánea de la DIAN busca promover prioritariamente el cumplimiento voluntario mediante facilitación, herramientas gratuitas y persuasión fundada en datos, reservando la coacción punitiva para la renuencia contumaz."
       },
       {
         "id": "C",
@@ -2044,7 +2045,7 @@ const QUESTION_BANK_GESTOR_CI = [
         "explicacion": "Incorrecta. La función pública tributaria y el control de obligaciones es indelegable por mandato constitucional y legal."
       }
     ],
-    "respuestaCorrecta": "A",
+    "respuestaCorrecta": "B",
     "norma": "Decreto 1742 de 2020, Art. 2 y Estatuto Tributario Art. 616-1",
     "citaNormativa": "«Coadyuvar a garantizar la seguridad fiscal del Estado mediante la administración y el control oportuno... facilitando el cumplimiento voluntario de las obligaciones tributarias, aduaneras y cambiarias.» (Decreto 1742 de 2020)."
   },
@@ -2060,21 +2061,21 @@ const QUESTION_BANK_GESTOR_CI = [
     "opciones": [
       {
         "id": "A",
-        "texto": "A la Dirección de Gestión Jurídica, a través de la Subdirección de Normativa y Doctrina, cuyos conceptos oficiales son vinculantes para los funcionarios de la DIAN.",
-        "explicacion": "Correcta. El Decreto 1742 de 2020 asigna a la Dirección de Gestión Jurídica y su Subdirección de Normativa y Doctrina la competencia exclusiva para absolver consultas y sentar doctrina oficial vinculante (Art. 131 Ley 2010 de 2019)."
-      },
-      {
-        "id": "B",
         "texto": "A la Dirección de Gestión de Fiscalización, ya que es el área que adelanta las investigaciones operativas en el terreno.",
         "explicacion": "Incorrecta. Fiscalización define lineamientos operativos, pero carece de facultad de interpretación jurídica doctrinal general y vinculante."
       },
       {
-        "id": "C",
+        "id": "B",
         "texto": "Al Director Seccional de Impuestos respectivo, quien tiene autonomía legal absoluta para definir el criterio jurídico en su jurisdicción.",
         "explicacion": "Incorrecta. La doctrina jurídica en la DIAN es unitaria a nivel nacional para garantizar seguridad jurídica e igualdad ante la ley."
+      },
+      {
+        "id": "C",
+        "texto": "A la Dirección de Gestión Jurídica, a través de la Subdirección de Normativa y Doctrina, cuyos conceptos oficiales son vinculantes para los funcionarios de la DIAN.",
+        "explicacion": "Correcta. El Decreto 1742 de 2020 asigna a la Dirección de Gestión Jurídica y su Subdirección de Normativa y Doctrina la competencia exclusiva para absolver consultas y sentar doctrina oficial vinculante (Art. 131 Ley 2010 de 2019)."
       }
     ],
-    "respuestaCorrecta": "A",
+    "respuestaCorrecta": "C",
     "norma": "Decreto 1742 de 2020, Art. 32 y Ley 2010 de 2019 Art. 131",
     "citaNormativa": "«Los conceptos emitidos por la Dirección de Gestión Jurídica o la Subdirección de Normativa y Doctrina de la DIAN constituyen interpretación oficial para los empleados de la entidad y serán de obligatoria aplicación para estos.» (Ley 2010 de 2019, Art. 131)."
   },
@@ -2120,13 +2121,13 @@ const QUESTION_BANK_GESTOR_CI = [
     "opciones": [
       {
         "id": "A",
-        "texto": "Definir objetivos claros articulados a las políticas de gestión, metas cuantitativas verificables, cronograma de actividades, asignación de responsables y riesgos asociados a la gestión.",
-        "explicacion": "Correcta. La Dimensión de Direccionamiento Estratégico del MIPG (Decreto 1499 de 2017) exige alinear la visión, los objetivos estratégicos, la gestión de riesgos y la asignación eficiente de recursos hacia resultados cuantificables."
+        "texto": "Copiar textualmente las metas del año gravable anterior sin evaluar el contexto externo ni los riesgos emergentes del entorno económico.",
+        "explicacion": "Incorrecta. Contraviene el principio de mejora continua y dinamismo estratégico que exige el MIPG."
       },
       {
         "id": "B",
-        "texto": "Copiar textualmente las metas del año gravable anterior sin evaluar el contexto externo ni los riesgos emergentes del entorno económico.",
-        "explicacion": "Incorrecta. Contraviene el principio de mejora continua y dinamismo estratégico que exige el MIPG."
+        "texto": "Definir objetivos claros articulados a las políticas de gestión, metas cuantitativas verificables, cronograma de actividades, asignación de responsables y riesgos asociados a la gestión.",
+        "explicacion": "Correcta. La Dimensión de Direccionamiento Estratégico del MIPG (Decreto 1499 de 2017) exige alinear la visión, los objetivos estratégicos, la gestión de riesgos y la asignación eficiente de recursos hacia resultados cuantificables."
       },
       {
         "id": "C",
@@ -2134,7 +2135,7 @@ const QUESTION_BANK_GESTOR_CI = [
         "explicacion": "Incorrecta. La gestión del riesgo es transversal y obligatoria en todas las dimensiones del MIPG."
       }
     ],
-    "respuestaCorrecta": "A",
+    "respuestaCorrecta": "B",
     "norma": "Decreto 1499 de 2017 y Manual Operativo MIPG (DAFP)",
     "citaNormativa": "«La Dimensión de Direccionamiento Estratégico y Planeación permite a la entidad focalizar su accionar para garantizar el cumplimiento de su misión, determinando prioridades, metas, asignación presupuestal y mitigación de riesgos.» (Manual Operativo MIPG)."
   },
@@ -2150,21 +2151,21 @@ const QUESTION_BANK_GESTOR_CI = [
     "opciones": [
       {
         "id": "A",
-        "texto": "Existe un alto indicio de planeación fiscal agresiva mediante erosión de la base imponible y traslado artificial de utilidades a través de precios de transferencia no acordes al principio de plena competencia (arm's length).",
-        "explicacion": "Correcta. El razonamiento analítico correlaciona el crecimiento atípico de gastos vinculados con el exterior frente a la contracción artificial de la renta gravable local, activando el régimen de precios de transferencia (Art. 260-1 E.T.)."
-      },
-      {
-        "id": "B",
         "texto": "La empresa automáticamente quebrará la próxima semana por lo que no vale la pena continuar la auditoría tributaria.",
         "explicacion": "Incorrecta. Es una conclusión apresurada, errónea y carente de sustento técnico financiero y analítico."
       },
       {
-        "id": "C",
+        "id": "B",
         "texto": "Aceptar los gastos sin comprobación porque los contratos entre empresas familiares y vinculadas están exentos de revisión tributaria.",
         "explicacion": "Incorrecta. Las operaciones con vinculados del exterior están sujetas a la vigilancia más rigurosa del régimen de precios de transferencia."
+      },
+      {
+        "id": "C",
+        "texto": "Existe un alto indicio de planeación fiscal agresiva mediante erosión de la base imponible y traslado artificial de utilidades a través de precios de transferencia no acordes al principio de plena competencia (arm's length).",
+        "explicacion": "Correcta. El razonamiento analítico correlaciona el crecimiento atípico de gastos vinculados con el exterior frente a la contracción artificial de la renta gravable local, activando el régimen de precios de transferencia (Art. 260-1 E.T.)."
       }
     ],
-    "respuestaCorrecta": "A",
+    "respuestaCorrecta": "C",
     "norma": "Estatuto Tributario Art. 260-1 a 260-11 (Precios de Transferencia) y Art. 684",
     "citaNormativa": "«Los contribuyentes del impuesto sobre la renta que celebren operaciones con vinculados del exterior están obligados a determinar sus ingresos y deducciones considerando el principio de plena competencia.» (Estatuto Tributario, Art. 260-1)."
   },
@@ -2210,13 +2211,13 @@ const QUESTION_BANK_GESTOR_CI = [
     "opciones": [
       {
         "id": "A",
-        "texto": "Traducir los resultados técnicos a infografías y resúmenes ejecutivos en Lenguaje Claro, explicando el impacto social de la gestión y habilitando canales previos para recoger preguntas e inquietudes de la comunidad.",
-        "explicacion": "Correcta. El marco de Lenguaje Claro (Guía DAFP) exige simplificar el mensaje administrativo para democratizar el acceso a la información y fomentar una participación ciudadana informada y constructiva."
+        "texto": "Aumentar aún más los tecnicismos jurídicos en latín para demostrar superioridad académica ante los ciudadanos participantes.",
+        "explicacion": "Incorrecta. Aleja a la ciudadanía, restringe la transparencia y debilita la confianza institucional en el Estado."
       },
       {
         "id": "B",
-        "texto": "Aumentar aún más los tecnicismos jurídicos en latín para demostrar superioridad académica ante los ciudadanos participantes.",
-        "explicacion": "Incorrecta. Aleja a la ciudadanía, restringe la transparencia y debilita la confianza institucional en el Estado."
+        "texto": "Traducir los resultados técnicos a infografías y resúmenes ejecutivos en Lenguaje Claro, explicando el impacto social de la gestión y habilitando canales previos para recoger preguntas e inquietudes de la comunidad.",
+        "explicacion": "Correcta. El marco de Lenguaje Claro (Guía DAFP) exige simplificar el mensaje administrativo para democratizar el acceso a la información y fomentar una participación ciudadana informada y constructiva."
       },
       {
         "id": "C",
@@ -2224,7 +2225,7 @@ const QUESTION_BANK_GESTOR_CI = [
         "explicacion": "Incorrecta. Viola el mandato constitucional de transparencia y la Ley Estatutaria de Participación Ciudadana."
       }
     ],
-    "respuestaCorrecta": "A",
+    "respuestaCorrecta": "B",
     "norma": "Ley 1757 de 2015 y Guía de Lenguaje Claro para Servidores Públicos (DNP / DAFP)",
     "citaNormativa": "«Las entidades públicas deberán utilizar un lenguaje claro, sencillo y comprensible que permita a los ciudadanos entender la gestión pública y ejercer el control social de manera efectiva.» (Ley 1757 de 2015)."
   },
@@ -2240,21 +2241,21 @@ const QUESTION_BANK_GESTOR_CI = [
     "opciones": [
       {
         "id": "A",
-        "texto": "Formular un plan de choque focalizado de auditorías y control preventivo con base en cruces de información de facturación electrónica y pasarelas de pago, estableciendo indicadores de riesgo y cronograma de seguimiento.",
-        "explicacion": "Correcta. El Gestor III ejerce el verbo rector 'Formular', desplegando autonomía analítica, modelación de riesgos y diseño metodológico según la Ficha FT-TAH-1824 y el Decreto 815 de 2018."
-      },
-      {
-        "id": "B",
         "texto": "Archivar y foliar cronológicamente las denuncias ciudadanas recibidas en ventanilla, limitándose a remitir fotocopias simples al buzón del Administrador Seccional sin realizar diagnósticos ni cruces analíticos.",
         "explicacion": "Incorrecta. Distractor de infra-valoración; ofrece verbos meramente mecánicos/asistenciales (archivar, foliar, fotocopiar) que denotan carencia de competencia profesional analítica."
       },
       {
-        "id": "C",
+        "id": "B",
         "texto": "Expedir y suscribir unilateralmente una resolución sancionatoria de clausura de establecimiento de plano contra todos los hoteles de la región sin requerimiento previo ni otorgar derecho de defensa.",
         "explicacion": "Incorrecta. Distractor de extralimitación; usurpa facultades sancionatorias privativas de la Jefatura con delegación formal, vulnerando el debido proceso (Art. 29 C.P.) y el principio de legalidad."
+      },
+      {
+        "id": "C",
+        "texto": "Formular un plan de choque focalizado de auditorías y control preventivo con base en cruces de información de facturación electrónica y pasarelas de pago, estableciendo indicadores de riesgo y cronograma de seguimiento.",
+        "explicacion": "Correcta. El Gestor III ejerce el verbo rector 'Formular', desplegando autonomía analítica, modelación de riesgos y diseño metodológico según la Ficha FT-TAH-1824 y el Decreto 815 de 2018."
       }
     ],
-    "respuestaCorrecta": "A",
+    "respuestaCorrecta": "C",
     "norma": "Decreto 815 de 2018, Ficha FT-TAH-1824 y Manual Específico de Funciones DIAN",
     "citaNormativa": "«Son funciones del nivel profesional: Formular, ejecutar, hacer seguimiento, ajuste y evaluar los planes, programas o proyectos de la dependencia... y realizar análisis y diagnósticos del comportamiento de las variables.» (Ficha FT-TAH-1824)."
   },
@@ -2300,13 +2301,13 @@ const QUESTION_BANK_GESTOR_CI = [
     "opciones": [
       {
         "id": "A",
-        "texto": "aplicar la Matriz de Gestión Estratégica del Talento Humano y calificar las variables que la componen.",
-        "explicacion": "Correcta. Según el Manual Operativo del MIPG, el diagnóstico es la Etapa 2 de la Política de Gestión Estratégica del Talento Humano. Para hacerlo, la entidad usa la Matriz de Gestión Estratégica del Talento Humano. Esta matriz contiene un inventario de variables para cumplir los lineamientos de la política. Al diligenciarla, la entidad obtiene una calificación que la ubica en un nivel de madurez: básico operativo, transformación o consolidación. Con ese resultado, la entidad identifica sus fortalezas y los aspectos por mejorar. En el caso, el jefe necesita conocer el estado actual de la gestión antes de planear la nueva vigencia. Por eso, al funcionario le corresponde aplicar la matriz y calificar sus variables."
+        "texto": "consultar el Plan de Acción de Talento Humano y verificar el avance de las actividades de cada proceso.",
+        "explicacion": "Incorrecta. Según el Manual Operativo del MIPG, el plan de acción corresponde a la Etapa 3 de la Política de Gestión Estratégica del Talento Humano: diseñar acciones. Las acciones del plan se diseñan una vez identificado el nivel de madurez de la entidad y con base en los resultados del diagnóstico. Por eso, el plan de acción es posterior al diagnóstico y no sirve para hacerlo. Verificar el avance de sus actividades es una tarea de seguimiento: muestra cuánto se ha ejecutado, pero no establece el estado de la gestión frente a los lineamientos de la política. En el caso, el jefe pide conocer el estado actual de la gestión antes de definir nuevas acciones. Revisar el avance de las actividades no entrega ese diagnóstico."
       },
       {
         "id": "B",
-        "texto": "consultar el Plan de Acción de Talento Humano y verificar el avance de las actividades de cada proceso.",
-        "explicacion": "Incorrecta. Según el Manual Operativo del MIPG, el plan de acción corresponde a la Etapa 3 de la Política de Gestión Estratégica del Talento Humano: diseñar acciones. Las acciones del plan se diseñan una vez identificado el nivel de madurez de la entidad y con base en los resultados del diagnóstico. Por eso, el plan de acción es posterior al diagnóstico y no sirve para hacerlo. Verificar el avance de sus actividades es una tarea de seguimiento: muestra cuánto se ha ejecutado, pero no establece el estado de la gestión frente a los lineamientos de la política. En el caso, el jefe pide conocer el estado actual de la gestión antes de definir nuevas acciones. Revisar el avance de las actividades no entrega ese diagnóstico."
+        "texto": "aplicar la Matriz de Gestión Estratégica del Talento Humano y calificar las variables que la componen.",
+        "explicacion": "Correcta. Según el Manual Operativo del MIPG, el diagnóstico es la Etapa 2 de la Política de Gestión Estratégica del Talento Humano. Para hacerlo, la entidad usa la Matriz de Gestión Estratégica del Talento Humano. Esta matriz contiene un inventario de variables para cumplir los lineamientos de la política. Al diligenciarla, la entidad obtiene una calificación que la ubica en un nivel de madurez: básico operativo, transformación o consolidación. Con ese resultado, la entidad identifica sus fortalezas y los aspectos por mejorar. En el caso, el jefe necesita conocer el estado actual de la gestión antes de planear la nueva vigencia. Por eso, al funcionario le corresponde aplicar la matriz y calificar sus variables."
       },
       {
         "id": "C",
@@ -2314,7 +2315,7 @@ const QUESTION_BANK_GESTOR_CI = [
         "explicacion": "Incorrecta. El Plan Estratégico de Talento Humano es uno de los planes institucionales que la entidad integra a su plan de acción y publica a más tardar el 31 de enero de cada año (Decreto 1083 de 2015, artículo 2.2.22.3.14, adicionado por el Decreto 612 de 2018). Es un instrumento de planeación, es decir, define las actividades que la entidad va a ejecutar. Por eso, comparar las actividades programadas con las ejecutadas mide cuánto se ha cumplido el plan, pero no establece el estado de la gestión del talento humano frente a los lineamientos de la política. Según el Manual Operativo del MIPG, ese estado se establece en la etapa de diagnóstico, que es previa a la planeación de las acciones. En el caso, el jefe necesita conocer el estado actual de la gestión antes de definir nuevas acciones. El grado de cumplimiento de un plan no entrega ese diagnóstico."
       }
     ],
-    "respuestaCorrecta": "A",
+    "respuestaCorrecta": "B",
     "norma": "Manual Operativo del MIPG (Etapa 2: Diagnóstico) y Decreto 1083 de 2015",
     "citaNormativa": "«El diagnóstico es la Etapa 2 de la Política de Gestión Estratégica del Talento Humano. Para hacerlo, la entidad usa la Matriz de Gestión Estratégica del Talento Humano que ubica a la entidad en un nivel de madurez: básico operativo, transformación o consolidación.» (Guía de Orientación al Aspirante DIAN 2676, FUAA - CNSC, Pág. 13)."
   },
@@ -2330,21 +2331,21 @@ const QUESTION_BANK_GESTOR_CI = [
     "opciones": [
       {
         "id": "A",
-        "texto": "las diferencias halladas en la valoración con un consolidado que identifique a las personas.",
-        "explicacion": "Correcta. Las competencias funcionales son las habilidades y conocimientos aplicados que debe tener el empleado para cumplir las funciones de su empleo (Decreto Ley 927 de 2023, art. 58). Su evaluación le corresponde a la dependencia encargada de la gestión del personal (art. 60). El desarrollo de competencias busca establecer acciones para cerrar las brechas frente al nivel requerido (Decreto 1083 de 2015, art. 2.2.18.4.1, num. 3). Además, el sistema de evaluación de competencias de la entidad debe permitir identificar el grado de ajuste entre el perfil del empleo y el del servidor (art. 2.2.18.4.5). Si los resultados se organizan por competencia y se comparan con el nivel que exige cada empleo, se ve la brecha de cada servidor. En el caso, se van a definir acciones de desarrollo. El criterio que usa el técnico para organizar el insumo le indica al área qué competencias debe fortalecer y en qué servidores."
-      },
-      {
-        "id": "B",
         "texto": "el puntaje obtenido para facilitar la actividad general de formación para los servidores.",
         "explicacion": "Incorrecta. El puntaje total reúne en un solo valor los resultados de todas las competencias. Ese valor no muestra cuál competencia está por debajo del nivel que exige el empleo. El desarrollo de competencias se orienta a cerrar las brechas frente al nivel requerido (Decreto 1083 de 2015, art. 2.2.18.4.1, num. 3). Por eso, el insumo debe mostrar el resultado de cada competencia. Un servidor con un puntaje total alto puede tener una competencia por debajo del nivel requerido. En el caso, ordenar a los servidores por puntaje total no le da al área una base para definir qué competencias desarrollar."
       },
       {
-        "id": "C",
+        "id": "B",
         "texto": "el promedio alcanzado por área con el fin de guiar el orden de las decisiones a tomar.",
         "explicacion": "Incorrecta. El promedio por dependencia reúne los resultados de servidores con empleos distintos. Cada empleo tiene exigencias propias, definidas en el Manual Específico de Requisitos y Funciones (Decreto Ley 927 de 2023, art. 58). El promedio oculta las diferencias entre servidores y no compara cada resultado con el nivel que exige el empleo. El sistema de evaluación de competencias de la entidad debe permitir identificar el grado de ajuste entre el perfil del empleo y el del servidor (Decreto 1083 de 2015, art. 2.2.18.4.5). En el caso, este insumo no le muestra al área qué competencias desarrollar ni en qué servidores."
+      },
+      {
+        "id": "C",
+        "texto": "las diferencias halladas en la valoración con un consolidado que identifique a las personas.",
+        "explicacion": "Correcta. Las competencias funcionales son las habilidades y conocimientos aplicados que debe tener el empleado para cumplir las funciones de su empleo (Decreto Ley 927 de 2023, art. 58). Su evaluación le corresponde a la dependencia encargada de la gestión del personal (art. 60). El desarrollo de competencias busca establecer acciones para cerrar las brechas frente al nivel requerido (Decreto 1083 de 2015, art. 2.2.18.4.1, num. 3). Además, el sistema de evaluación de competencias de la entidad debe permitir identificar el grado de ajuste entre el perfil del empleo y el del servidor (art. 2.2.18.4.5). Si los resultados se organizan por competencia y se comparan con el nivel que exige cada empleo, se ve la brecha de cada servidor. En el caso, se van a definir acciones de desarrollo. El criterio que usa el técnico para organizar el insumo le indica al área qué competencias debe fortalecer y en qué servidores."
       }
     ],
-    "respuestaCorrecta": "A",
+    "respuestaCorrecta": "C",
     "norma": "Decreto Ley 927 de 2023 (Arts. 58 y 60) y Decreto 1083 de 2015 (Arts. 2.2.18.4.1 y 2.2.18.4.5)",
     "citaNormativa": "«El sistema de evaluación de competencias de la entidad debe permitir identificar el grado de ajuste entre el perfil del empleo y el del servidor para establecer acciones que cierren las brechas frente al nivel requerido.» (Guía de Orientación al Aspirante DIAN 2676, FUAA - CNSC, Pág. 15)."
   },
@@ -2360,13 +2361,13 @@ const QUESTION_BANK_GESTOR_CI = [
     "opciones": [
       {
         "id": "A",
-        "texto": "La DIAN puede dictar sentencias penales condenatorias por delitos tributarios.",
-        "explicacion": "Incorrecta. Juzgar y condenar penalmente es competencia privativa de la Rama Judicial (jueces de la República)."
+        "texto": "La DIAN ejerce funciones de policía judicial en coordinación con la Fiscalía General de la Nación, en investigaciones por contrabando, fraude aduanero y delitos conexos.",
+        "explicacion": "Correcta. La DIAN cuenta con atribuciones legales de policía judicial (Decreto 4048 de 2008 / Dec. 1742 de 2020 / Código de Procedimiento Penal) para apoyar a la Fiscalía en investigaciones penales tributarias y aduaneras."
       },
       {
         "id": "B",
-        "texto": "La DIAN ejerce funciones de policía judicial en coordinación con la Fiscalía General de la Nación, en investigaciones por contrabando, fraude aduanero y delitos conexos.",
-        "explicacion": "Correcta. La DIAN cuenta con atribuciones legales de policía judicial (Decreto 4048 de 2008 / Dec. 1742 de 2020 / Código de Procedimiento Penal) para apoyar a la Fiscalía en investigaciones penales tributarias y aduaneras."
+        "texto": "La DIAN puede dictar sentencias penales condenatorias por delitos tributarios.",
+        "explicacion": "Incorrecta. Juzgar y condenar penalmente es competencia privativa de la Rama Judicial (jueces de la República)."
       },
       {
         "id": "C",
@@ -2374,7 +2375,7 @@ const QUESTION_BANK_GESTOR_CI = [
         "explicacion": "Incorrecta. El Estatuto Tributario y las leyes de procedimiento exceptúan la reserva tributaria ante requerimientos de autoridades judiciales y de policía judicial competentes."
       }
     ],
-    "respuestaCorrecta": "B",
+    "respuestaCorrecta": "A",
     "norma": "Decreto 4048 de 2008, Art. 3 y Decreto 1742 de 2020",
     "citaNormativa": "«Ejercer las funciones de policía judicial, de conformidad con las normas legales, en coordinación con la Fiscalía General de la Nación en asuntos de su competencia.» (Decreto 4048 de 2008 / Decreto 1742 de 2020)."
   },
@@ -2390,13 +2391,13 @@ const QUESTION_BANK_GESTOR_CI = [
     "opciones": [
       {
         "id": "A",
-        "texto": "Una Unidad Administrativa Especial del orden nacional, de carácter técnico y especializado, con personería jurídica, autonomía administrativa y presupuestal, adscrita al Ministerio de Hacienda y Crédito Público.",
-        "explicacion": "Correcta. Esta es la definición exacta de la naturaleza jurídica de la DIAN consagrada en su normativa orgánica."
+        "texto": "Un establecimiento público adscrito al Ministerio de Comercio, Industria y Turismo.",
+        "explicacion": "Incorrecta. La DIAN no es establecimiento público ni está adscrita al MinCIT, sino al Ministerio de Hacienda."
       },
       {
         "id": "B",
-        "texto": "Un establecimiento público adscrito al Ministerio de Comercio, Industria y Turismo.",
-        "explicacion": "Incorrecta. La DIAN no es establecimiento público ni está adscrita al MinCIT, sino al Ministerio de Hacienda."
+        "texto": "Una Unidad Administrativa Especial del orden nacional, de carácter técnico y especializado, con personería jurídica, autonomía administrativa y presupuestal, adscrita al Ministerio de Hacienda y Crédito Público.",
+        "explicacion": "Correcta. Esta es la definición exacta de la naturaleza jurídica de la DIAN consagrada en su normativa orgánica."
       },
       {
         "id": "C",
@@ -2404,7 +2405,7 @@ const QUESTION_BANK_GESTOR_CI = [
         "explicacion": "Incorrecta. No ostenta la calidad de superintendencia."
       }
     ],
-    "respuestaCorrecta": "A",
+    "respuestaCorrecta": "B",
     "norma": "Decreto 4048 de 2008, Art. 1 y Decreto 1742 de 2020",
     "citaNormativa": "«La DIAN está organizada como una Unidad Administrativa Especial del orden nacional de carácter eminentemente técnico y especializado, con personería jurídica, autonomía administrativa y presupuestal, adscrita al Ministerio de Hacienda y Crédito Público.» (Decreto 1742 de 2020)."
   },
@@ -2420,21 +2421,21 @@ const QUESTION_BANK_GESTOR_CI = [
     "opciones": [
       {
         "id": "A",
-        "texto": "Estratégicos, Misionales, de Apoyo, y de Evaluación y Control.",
-        "explicacion": "Correcta. La DIAN adopta el modelo de gestión por procesos del sector público (MIPG), clasificando sus macroprocesos en Estratégicos, Misionales, de Apoyo, y de Evaluación y Control."
-      },
-      {
-        "id": "B",
         "texto": "Financieros, Judiciales y Disciplinarios exclusivamente.",
         "explicacion": "Incorrecta. Esta tipología no refleja la estructura sistémica por procesos de la entidad."
       },
       {
-        "id": "C",
+        "id": "B",
         "texto": "Procesos de Comercio Exterior y Procesos de Presupuesto Municipal exclusivamente.",
         "explicacion": "Incorrecta. La DIAN es del orden nacional y sus macroprocesos abarcan todo el espectro institucional."
+      },
+      {
+        "id": "C",
+        "texto": "Estratégicos, Misionales, de Apoyo, y de Evaluación y Control.",
+        "explicacion": "Correcta. La DIAN adopta el modelo de gestión por procesos del sector público (MIPG), clasificando sus macroprocesos en Estratégicos, Misionales, de Apoyo, y de Evaluación y Control."
       }
     ],
-    "respuestaCorrecta": "A",
+    "respuestaCorrecta": "C",
     "norma": "Sistema de Gestión Institucional DIAN y Modelo Integrado de Planeación y Gestión (MIPG)",
     "citaNormativa": "«Los macroprocesos de la DIAN se estructuran en: Procesos Estratégicos, Procesos Misionales, Procesos de Apoyo y Procesos de Evaluación y Control.» (Manual de Calidad DIAN)."
   },
@@ -2450,13 +2451,13 @@ const QUESTION_BANK_GESTOR_CI = [
     "opciones": [
       {
         "id": "A",
-        "texto": "Recaudar exclusivamente los tributos de las grandes empresas para financiar subsidios públicos.",
-        "explicacion": "Incorrecta. Reduce la misión a un segmento y desconoce el control aduanero, cambiario y la facilitación general."
+        "texto": "Facilitar y garantizar el entendimiento y cumplimiento de los deberes tributarios, aduaneros y cambiarios, para contribuir a la seguridad fiscal del Estado y la competitividad del país.",
+        "explicacion": "Correcta. Esta es la declaración misional oficial de la DIAN centrada en la facilitación, el control y la seguridad fiscal de Colombia."
       },
       {
         "id": "B",
-        "texto": "Facilitar y garantizar el entendimiento y cumplimiento de los deberes tributarios, aduaneros y cambiarios, para contribuir a la seguridad fiscal del Estado y la competitividad del país.",
-        "explicacion": "Correcta. Esta es la declaración misional oficial de la DIAN centrada en la facilitación, el control y la seguridad fiscal de Colombia."
+        "texto": "Recaudar exclusivamente los tributos de las grandes empresas para financiar subsidios públicos.",
+        "explicacion": "Incorrecta. Reduce la misión a un segmento y desconoce el control aduanero, cambiario y la facilitación general."
       },
       {
         "id": "C",
@@ -2464,7 +2465,7 @@ const QUESTION_BANK_GESTOR_CI = [
         "explicacion": "Incorrecta. La sanción es una medida correctiva y no la misión final de la entidad, que busca el cumplimiento voluntario y la competitividad."
       }
     ],
-    "respuestaCorrecta": "B",
+    "respuestaCorrecta": "A",
     "norma": "Plataforma Estratégica DIAN y Decreto 1742 de 2020",
     "citaNormativa": "«Misión de la DIAN: Facilitar y garantizar el entendimiento y cumplimiento de los deberes tributarios, aduaneros y cambiarios, para contribuir a la seguridad fiscal del Estado y la competitividad del país.» (DIAN)."
   },
@@ -2515,16 +2516,16 @@ const QUESTION_BANK_GESTOR_CI = [
       },
       {
         "id": "B",
-        "texto": "Declaratoria de Urgencia Manifiesta, que habilita legalmente la modalidad de contratación directa para atender de inmediato la contingencia.",
-        "explicacion": "Correcta. El artículo 42 de la Ley 80 de 1993 consagra la urgencia manifiesta ante situaciones imprevistas que exijan atención inmediata para garantizar la continuidad del servicio público, permitiendo contratar directamente."
+        "texto": "Concurso público de méritos internacional.",
+        "explicacion": "Incorrecta. El concurso de méritos es para consultorías y proyectos de arquitectura, no para emergencias operativas."
       },
       {
         "id": "C",
-        "texto": "Concurso público de méritos internacional.",
-        "explicacion": "Incorrecta. El concurso de méritos es para consultorías y proyectos de arquitectura, no para emergencias operativas."
+        "texto": "Declaratoria de Urgencia Manifiesta, que habilita legalmente la modalidad de contratación directa para atender de inmediato la contingencia.",
+        "explicacion": "Correcta. El artículo 42 de la Ley 80 de 1993 consagra la urgencia manifiesta ante situaciones imprevistas que exijan atención inmediata para garantizar la continuidad del servicio público, permitiendo contratar directamente."
       }
     ],
-    "respuestaCorrecta": "B",
+    "respuestaCorrecta": "C",
     "norma": "Ley 80 de 1993, Art. 42 y Ley 1150 de 2007",
     "citaNormativa": "«Existe urgencia manifiesta cuando la continuidad del servicio exige el suministro de bienes, o la prestación de servicios, o la ejecución de obras en el inmediato futuro... Con el fin de hacer cesar la urgencia, se podrá contratar directamente.» (Ley 80 de 1993, Art. 42)."
   },
@@ -2570,13 +2571,13 @@ const QUESTION_BANK_GESTOR_CI = [
     "opciones": [
       {
         "id": "A",
-        "texto": "El Sistema Electrónico para la Contratación Pública (SECOP).",
-        "explicacion": "Correcta. El SECOP es la plataforma oficial única donde todas las entidades públicas del Estado colombiano deben publicar la actividad precontractual, contractual y poscontractual."
+        "texto": "El SIGEP exclusivamente para hojas de vida de contratistas.",
+        "explicacion": "Incorrecta. El SIGEP administra talento humano y hojas de vida, no la gestión contractual integral ni las licitaciones."
       },
       {
         "id": "B",
-        "texto": "El SIGEP exclusivamente para hojas de vida de contratistas.",
-        "explicacion": "Incorrecta. El SIGEP administra talento humano y hojas de vida, no la gestión contractual integral ni las licitaciones."
+        "texto": "El Sistema Electrónico para la Contratación Pública (SECOP).",
+        "explicacion": "Correcta. El SECOP es la plataforma oficial única donde todas las entidades públicas del Estado colombiano deben publicar la actividad precontractual, contractual y poscontractual."
       },
       {
         "id": "C",
@@ -2584,7 +2585,7 @@ const QUESTION_BANK_GESTOR_CI = [
         "explicacion": "Incorrecta. No es una plataforma transaccional de contratación pública."
       }
     ],
-    "respuestaCorrecta": "A",
+    "respuestaCorrecta": "B",
     "norma": "Ley 1150 de 2007, Art. 3 y Decreto 1082 de 2015",
     "citaNormativa": "«Las entidades estatales deberán publicar oportunamente en el Sistema Electrónico para la Contratación Pública (SECOP) todos los documentos del proceso contractual.» (Ley 1150 de 2007 / Decreto 1082 de 2015)."
   },
@@ -2605,16 +2606,16 @@ const QUESTION_BANK_GESTOR_CI = [
       },
       {
         "id": "B",
-        "texto": "Estudiar la reforma con anticipación y formular una propuesta o herramienta práctica de trabajo colaborativo que estandarice y facilite la transición operativa del equipo sin traumatismos en el servicio.",
-        "explicacion": "Correcta. Demuestra alto desarrollo de la competencia de Creatividad e Innovación (Decreto 815 de 2018), al proponer soluciones constructivas que optimizan los procesos ante transformaciones complejas."
+        "texto": "Manifestar formalmente desacuerdo con los cambios normativos y solicitar traslado de dependencia.",
+        "explicacion": "Incorrecta. Refleja resistencia al cambio institucional e indisposición frente a los retos del servicio público."
       },
       {
         "id": "C",
-        "texto": "Manifestar formalmente desacuerdo con los cambios normativos y solicitar traslado de dependencia.",
-        "explicacion": "Incorrecta. Refleja resistencia al cambio institucional e indisposición frente a los retos del servicio público."
+        "texto": "Estudiar la reforma con anticipación y formular una propuesta o herramienta práctica de trabajo colaborativo que estandarice y facilite la transición operativa del equipo sin traumatismos en el servicio.",
+        "explicacion": "Correcta. Demuestra alto desarrollo de la competencia de Creatividad e Innovación (Decreto 815 de 2018), al proponer soluciones constructivas que optimizan los procesos ante transformaciones complejas."
       }
     ],
-    "respuestaCorrecta": "B",
+    "respuestaCorrecta": "C",
     "norma": "Decreto 815 de 2018 y Decreto Ley 927 de 2023 (Competencia Creatividad e Innovación)",
     "citaNormativa": "«Creatividad e innovación: Generar ideas, conceptos o métodos novedosos orientados a la solución de problemas, optimización de procesos y mejora en la prestación del servicio público.» (Decreto 815 de 2018)."
   },
@@ -2660,13 +2661,13 @@ const QUESTION_BANK_GESTOR_CI = [
     "opciones": [
       {
         "id": "A",
-        "texto": "Proponer un análisis de causas raíz en el flujo de trabajo, priorizar los expedientes por antigüedad y riesgo, y establecer metas intermedias de avance medibles para descongestionar el proceso oportunamente.",
-        "explicacion": "Correcta. La Orientación a Resultados implica estructurar planes de acción enfocados en el cumplimiento oportuno de metas, superando obstáculos con rigor metodológico y visión de servicio."
+        "texto": "Solicitar sistemáticamente suspensiones de términos en todos los trámites para evitar incurrir en silencio administrativo.",
+        "explicacion": "Incorrecta. Desnaturaliza el procedimiento administrativo y perjudica los derechos de los contribuyentes cumplidos."
       },
       {
         "id": "B",
-        "texto": "Solicitar sistemáticamente suspensiones de términos en todos los trámites para evitar incurrir en silencio administrativo.",
-        "explicacion": "Incorrecta. Desnaturaliza el procedimiento administrativo y perjudica los derechos de los contribuyentes cumplidos."
+        "texto": "Proponer un análisis de causas raíz en el flujo de trabajo, priorizar los expedientes por antigüedad y riesgo, y establecer metas intermedias de avance medibles para descongestionar el proceso oportunamente.",
+        "explicacion": "Correcta. La Orientación a Resultados implica estructurar planes de acción enfocados en el cumplimiento oportuno de metas, superando obstáculos con rigor metodológico y visión de servicio."
       },
       {
         "id": "C",
@@ -2674,7 +2675,7 @@ const QUESTION_BANK_GESTOR_CI = [
         "explicacion": "Incorrecta. Vulnera el debido proceso y la legalidad, acarreando responsabilidades disciplinarias y fiscales."
       }
     ],
-    "respuestaCorrecta": "A",
+    "respuestaCorrecta": "B",
     "norma": "Decreto 815 de 2018 y Código de Integridad DIAN",
     "citaNormativa": "«Orientación a resultados: Realizar el trabajo con altos estándares de calidad, orientando las actuaciones al logro de los objetivos institucionales y a la satisfacción de las necesidades ciudadanas.» (Decreto 815 de 2018)."
   },
@@ -2695,16 +2696,16 @@ const QUESTION_BANK_GESTOR_CI = [
       },
       {
         "id": "B",
-        "texto": "Rechazar de manera inmediata, categórica y por escrito cualquier insinuación indebida, declarar la situación ante el superior jerárquico y poner en conocimiento de la Oficina de Seguridad Institucional y Control Interno Disciplinario los hechos.",
-        "explicacion": "Correcta. La integridad y la probidad exigen cero tolerancia frente a la corrupción, salvaguardando la fe pública, la transparencia y el interés general del Estado."
+        "texto": "Pedir al contribuyente que formalice su oferta de empleo por correo personal sin involucrar a la entidad.",
+        "explicacion": "Incorrecta. Constituye una falta gravísima disciplinaria y la configuración de presuntos delitos contra la administración pública (cohecho, concusión o conflicto de interés)."
       },
       {
         "id": "C",
-        "texto": "Pedir al contribuyente que formalice su oferta de empleo por correo personal sin involucrar a la entidad.",
-        "explicacion": "Incorrecta. Constituye una falta gravísima disciplinaria y la configuración de presuntos delitos contra la administración pública (cohecho, concusión o conflicto de interés)."
+        "texto": "Rechazar de manera inmediata, categórica y por escrito cualquier insinuación indebida, declarar la situación ante el superior jerárquico y poner en conocimiento de la Oficina de Seguridad Institucional y Control Interno Disciplinario los hechos.",
+        "explicacion": "Correcta. La integridad y la probidad exigen cero tolerancia frente a la corrupción, salvaguardando la fe pública, la transparencia y el interés general del Estado."
       }
     ],
-    "respuestaCorrecta": "B",
+    "respuestaCorrecta": "C",
     "norma": "Código de Integridad del Servicio Público y Decreto 1742 de 2020",
     "citaNormativa": "«Valor Honestidad: Actúo siempre con fundamento en la verdad, cumpliendo mis deberes con transparencia y rectitud, y favoreciendo el interés general sobre el particular.» (Código de Integridad Función Pública)."
   },
@@ -2785,16 +2786,16 @@ const QUESTION_BANK_GESTOR_CI = [
       },
       {
         "id": "B",
-        "texto": "$5.750.000",
-        "explicacion": "Correcta. Procedimiento paso a paso:\n1. Precio inicial: $50.000.000.\n2. Con aumento del 15%: $50.000.000 + (50.000.000 × 0.15) = $57.500.000 (monto financiado).\n3. Descuento del 10% sobre $57.500.000: $57.500.000 × 0.10 = $5.750.000.\n4. Precio final a pagar: $57.500.000 - $5.750.000 = $51.750.000.\n5. Dinero sobrante frente al crédito: $57.500.000 - $51.750.000 = $5.750.000."
+        "texto": "$7.500.000",
+        "explicacion": "Incorrecta. $7.500.000 corresponde únicamente al valor del incremento del 15%, no al ahorro generado por el descuento posterior."
       },
       {
         "id": "C",
-        "texto": "$7.500.000",
-        "explicacion": "Incorrecta. $7.500.000 corresponde únicamente al valor del incremento del 15%, no al ahorro generado por el descuento posterior."
+        "texto": "$5.750.000",
+        "explicacion": "Correcta. Procedimiento paso a paso:\n1. Precio inicial: $50.000.000.\n2. Con aumento del 15%: $50.000.000 + (50.000.000 × 0.15) = $57.500.000 (monto financiado).\n3. Descuento del 10% sobre $57.500.000: $57.500.000 × 0.10 = $5.750.000.\n4. Precio final a pagar: $57.500.000 - $5.750.000 = $51.750.000.\n5. Dinero sobrante frente al crédito: $57.500.000 - $51.750.000 = $5.750.000."
       }
     ],
-    "respuestaCorrecta": "B",
+    "respuestaCorrecta": "C",
     "norma": "Competencias Básicas CNSC - Razonamiento Matemático (Porcentajes Escalonados)",
     "citaNormativa": "«En variaciones porcentuales sucesivas, cada porcentaje debe aplicarse sobre la base inmediatamente anterior y no sobre el valor original de partida.»"
   },
@@ -2810,13 +2811,13 @@ const QUESTION_BANK_GESTOR_CI = [
     "opciones": [
       {
         "id": "A",
-        "texto": "221 plantas.",
-        "explicacion": "Incorrecta. 221 × 15 × 6 = 19.890 plantas, cifra muy inferior a 28.080."
+        "texto": "312 plantas.",
+        "explicacion": "Correcta. Planteamiento:\nTotal final = Plantas iniciales (X) × 15 × 6\n28.080 = X × 90\nX = 28.080 / 90 = 312 plantas iniciales.\nVerificación: 312 × 15 = 4.680; 4.680 × 6 = 28.080."
       },
       {
         "id": "B",
-        "texto": "312 plantas.",
-        "explicacion": "Correcta. Planteamiento:\nTotal final = Plantas iniciales (X) × 15 × 6\n28.080 = X × 90\nX = 28.080 / 90 = 312 plantas iniciales.\nVerificación: 312 × 15 = 4.680; 4.680 × 6 = 28.080."
+        "texto": "221 plantas.",
+        "explicacion": "Incorrecta. 221 × 15 × 6 = 19.890 plantas, cifra muy inferior a 28.080."
       },
       {
         "id": "C",
@@ -2824,7 +2825,7 @@ const QUESTION_BANK_GESTOR_CI = [
         "explicacion": "Incorrecta. 512 × 90 = 46.080 plantas, superando el total real."
       }
     ],
-    "respuestaCorrecta": "B",
+    "respuestaCorrecta": "A",
     "norma": "Competencias Básicas CNSC - Álgebra y Ecuaciones Lineales de Primer Grado",
     "citaNormativa": "«Para despejar una incógnita sometida a productos sucesivos se divide el valor resultante entre el producto de los coeficientes multiplicadores.»"
   },
@@ -2875,16 +2876,16 @@ const QUESTION_BANK_GESTOR_CI = [
       },
       {
         "id": "B",
-        "texto": "140 metros.",
-        "explicacion": "Correcta. Deducción de las alturas individuales:\n- Edificio C = 80 metros.\n- Edificio B = 80 / 4 = 20 metros.\n- Edificio A = 2 × 20 = 40 metros.\n- Altura total = Altura A + Altura B + Altura C = 40 + 20 + 80 = 140 metros."
+        "texto": "160 metros.",
+        "explicacion": "Incorrecta. Asume erróneamente que el edificio A tiene la misma altura que C."
       },
       {
         "id": "C",
-        "texto": "160 metros.",
-        "explicacion": "Incorrecta. Asume erróneamente que el edificio A tiene la misma altura que C."
+        "texto": "140 metros.",
+        "explicacion": "Correcta. Deducción de las alturas individuales:\n- Edificio C = 80 metros.\n- Edificio B = 80 / 4 = 20 metros.\n- Edificio A = 2 × 20 = 40 metros.\n- Altura total = Altura A + Altura B + Altura C = 40 + 20 + 80 = 140 metros."
       }
     ],
-    "respuestaCorrecta": "B",
+    "respuestaCorrecta": "C",
     "norma": "Competencias Básicas CNSC - Proporciones y Razonamiento Abstracto Numérico",
     "citaNormativa": "«La resolución de sistemas de magnitudes relativas requiere identificar el término independiente pivote y sustituir secuencialmente las condiciones dadas.»"
   },
@@ -2900,17 +2901,17 @@ const QUESTION_BANK_GESTOR_CI = [
     "opciones": [
       {
         "id": "A",
-        "texto": "2.5 días.",
+        "texto": "5 días.",
         "explicacion": "Correcta. Cálculo por regla de tres compuesta:\n- Total horas primer trabajo: 12 horas/día × 5 días = 60 horas en total.\n- Rendimiento horario: 12.000 expedientes / 60 horas = 200 expedientes/hora.\n- Horas requeridas para 8.000 expedientes: 8.000 / 200 = 40 horas totales.\n- Días requeridos a 16 horas/día: 40 horas / 16 horas/día = 2.5 días."
       },
       {
         "id": "B",
-        "texto": "3.5 días.",
+        "texto": "5 días.",
         "explicacion": "Incorrecta. 3.5 días a 16 horas/día sumarían 56 horas, lo que permitiría procesar 11.200 expedientes."
       },
       {
         "id": "C",
-        "texto": "4.0 días.",
+        "texto": "0 días.",
         "explicacion": "Incorrecta. Desconoce el incremento de horas por jornada y la reducción del volumen de expedientes."
       }
     ],
@@ -2930,13 +2931,13 @@ const QUESTION_BANK_GESTOR_CI = [
     "opciones": [
       {
         "id": "A",
-        "texto": "500 motocicletas.",
-        "explicacion": "Correcta. Operación de división de fracciones:\nTotal motos = 100 / (1/5) = 100 × (5/1) = 500 motocicletas.\nCada galón rinde para 5 motocicletas (1 / (1/5) = 5). En 100 galones se abastecen: 100 × 5 = 500 motos."
+        "texto": "50 motocicletas.",
+        "explicacion": "Incorrecta. Es el resultado de dividir erróneamente 100 entre 2 en lugar de multiplicar por el inverso fraccionario."
       },
       {
         "id": "B",
-        "texto": "50 motocicletas.",
-        "explicacion": "Incorrecta. Es el resultado de dividir erróneamente 100 entre 2 en lugar de multiplicar por el inverso fraccionario."
+        "texto": "500 motocicletas.",
+        "explicacion": "Correcta. Operación de división de fracciones:\nTotal motos = 100 / (1/5) = 100 × (5/1) = 500 motocicletas.\nCada galón rinde para 5 motocicletas (1 / (1/5) = 5). En 100 galones se abastecen: 100 × 5 = 500 motos."
       },
       {
         "id": "C",
@@ -2944,7 +2945,7 @@ const QUESTION_BANK_GESTOR_CI = [
         "explicacion": "Incorrecta. Corresponde a multiplicar 100 por 1/5 (sacar la quinta parte de 100), confundiendo la capacidad con el consumo."
       }
     ],
-    "respuestaCorrecta": "A",
+    "respuestaCorrecta": "B",
     "norma": "Competencias Básicas CNSC - Aritmética de Fracciones y Razones",
     "citaNormativa": "«La división de un entero entre una fracción común equivale a multiplicar el entero por el recíproco de la fracción (a ÷ b/c = a × c/b).»"
   },
@@ -2965,16 +2966,16 @@ const QUESTION_BANK_GESTOR_CI = [
       },
       {
         "id": "B",
-        "texto": "46 pasajeros.",
-        "explicacion": "Correcta. Balance aritmético secuencial:\n- Inicio: 40 pasajeros.\n- Tras parada 1: 40 - 20 + 28 = 20 + 28 = 48 pasajeros.\n- Tras parada 2: 48 - 12 + 10 = 36 + 10 = 46 pasajeros."
+        "texto": "52 pasajeros.",
+        "explicacion": "Incorrecta. Omite descontar el descenso de los 12 pasajeros en la segunda parada."
       },
       {
         "id": "C",
-        "texto": "52 pasajeros.",
-        "explicacion": "Incorrecta. Omite descontar el descenso de los 12 pasajeros en la segunda parada."
+        "texto": "46 pasajeros.",
+        "explicacion": "Correcta. Balance aritmético secuencial:\n- Inicio: 40 pasajeros.\n- Tras parada 1: 40 - 20 + 28 = 20 + 28 = 48 pasajeros.\n- Tras parada 2: 48 - 12 + 10 = 36 + 10 = 46 pasajeros."
       }
     ],
-    "respuestaCorrecta": "B",
+    "respuestaCorrecta": "C",
     "norma": "Competencias Básicas CNSC - Operaciones Combinadas de Adición y Sustracción",
     "citaNormativa": "«El cálculo de balance de flujos dinámicos requiere aplicar ordenadamente sumas y restas sucesivas respetando los signos de entrada (+) y salida (-).»"
   },
@@ -2990,13 +2991,13 @@ const QUESTION_BANK_GESTOR_CI = [
     "opciones": [
       {
         "id": "A",
-        "texto": "50%",
-        "explicacion": "Incorrecta. En 50% solo habría trabajado 4 horas (el doble de 2 horas)."
+        "texto": "75%",
+        "explicacion": "Correcta. Planteamiento proporcional directo:\n- En 2 horas procesa: 1/4 = 25%.\n- Rendimiento horario: 25% / 2 horas = 12.5% por hora.\n- En 6 horas procesa: 6 × 12.5% = 75% (o bien: 6 horas es el triple de 2 horas, luego 25% × 3 = 75%)."
       },
       {
         "id": "B",
-        "texto": "75%",
-        "explicacion": "Correcta. Planteamiento proporcional directo:\n- En 2 horas procesa: 1/4 = 25%.\n- Rendimiento horario: 25% / 2 horas = 12.5% por hora.\n- En 6 horas procesa: 6 × 12.5% = 75% (o bien: 6 horas es el triple de 2 horas, luego 25% × 3 = 75%)."
+        "texto": "50%",
+        "explicacion": "Incorrecta. En 50% solo habría trabajado 4 horas (el doble de 2 horas)."
       },
       {
         "id": "C",
@@ -3004,7 +3005,7 @@ const QUESTION_BANK_GESTOR_CI = [
         "explicacion": "Incorrecta. Para completar el 100% necesitaría 8 horas continuas (4 × 2 horas)."
       }
     ],
-    "respuestaCorrecta": "B",
+    "respuestaCorrecta": "A",
     "norma": "Competencias Básicas CNSC - Proporcionalidad Directa y Porcentajes",
     "citaNormativa": "«Dos magnitudes son directamente proporcionales cuando al multiplicar una de ellas por un número, la otra queda multiplicada por el mismo número.»"
   },
@@ -3055,16 +3056,16 @@ const QUESTION_BANK_GESTOR_CI = [
       },
       {
         "id": "B",
-        "texto": "Declararse impedido de manera formal y por escrito ante su jefe inmediato tan pronto conoce la designación, motivando la existencia del vínculo conyugal para que el caso sea reasignado.",
-        "explicacion": "Correcta. El valor de la Honestidad y la Ley 1437 de 2011 (Art. 11 y 12) obligan a manifestar inmediatamente los impedimentos legales garantizando la absoluta imparcialidad y transparencia del Estado."
+        "texto": "Sugerir a su cónyuge que renuncie discretamente a la sociedad durante los meses que dure la auditoría.",
+        "explicacion": "Incorrecta. Representa una maniobra elusiva y desleal contraria a los postulados éticos de la función pública."
       },
       {
         "id": "C",
-        "texto": "Sugerir a su cónyuge que renuncie discretamente a la sociedad durante los meses que dure la auditoría.",
-        "explicacion": "Incorrecta. Representa una maniobra elusiva y desleal contraria a los postulados éticos de la función pública."
+        "texto": "Declararse impedido de manera formal y por escrito ante su jefe inmediato tan pronto conoce la designación, motivando la existencia del vínculo conyugal para que el caso sea reasignado.",
+        "explicacion": "Correcta. El valor de la Honestidad y la Ley 1437 de 2011 (Art. 11 y 12) obligan a manifestar inmediatamente los impedimentos legales garantizando la absoluta imparcialidad y transparencia del Estado."
       }
     ],
-    "respuestaCorrecta": "B",
+    "respuestaCorrecta": "C",
     "norma": "Código de Integridad DIAN (Valor Honestidad), Ley 1952 de 2019 y Ley 1437 de 2011",
     "citaNormativa": "«Valor Honestidad: Declaro oportunamente cualquier situación de conflicto de interés que pueda comprometer mi objetividad o la credibilidad de la entidad.» (Código de Integridad Función Pública)."
   },
@@ -3145,16 +3146,16 @@ const QUESTION_BANK_GESTOR_CI = [
       },
       {
         "id": "B",
-        "texto": "Articularse solidariamente con el equipo de trabajo, mostrando disposición proactiva para extender su apoyo en la atención, resolver dudas y asegurar que todos los ciudadanos reciban orientación antes del cierre.",
-        "explicacion": "Correcta. El valor del Compromiso se traduce en el sentido de pertenencia y entrega al servicio público, yendo más allá del cumplimiento mínimo para asegurar la satisfacción ciudadana."
+        "texto": "Culpar públicamente a los jefes de la seccional por no haber contratado más personal supernumerario.",
+        "explicacion": "Incorrecta. Destruye el clima laboral y no aporta a la solución de la contingencia institucional."
       },
       {
         "id": "C",
-        "texto": "Culpar públicamente a los jefes de la seccional por no haber contratado más personal supernumerario.",
-        "explicacion": "Incorrecta. Destruye el clima laboral y no aporta a la solución de la contingencia institucional."
+        "texto": "Articularse solidariamente con el equipo de trabajo, mostrando disposición proactiva para extender su apoyo en la atención, resolver dudas y asegurar que todos los ciudadanos reciban orientación antes del cierre.",
+        "explicacion": "Correcta. El valor del Compromiso se traduce en el sentido de pertenencia y entrega al servicio público, yendo más allá del cumplimiento mínimo para asegurar la satisfacción ciudadana."
       }
     ],
-    "respuestaCorrecta": "B",
+    "respuestaCorrecta": "C",
     "norma": "Código de Integridad DIAN (Valor Compromiso) y Decreto Ley 927 de 2023",
     "citaNormativa": "«Valor Compromiso: Soy consciente de la importancia de mi rol como servidor público y estoy en disposición permanente para comprender y resolver las necesidades de las personas.» (Código de Integridad DIAN)."
   },
@@ -3200,13 +3201,13 @@ const QUESTION_BANK_GESTOR_CI = [
     "opciones": [
       {
         "id": "A",
-        "texto": "Establecer canales de comunicación claros, coordinar previamente las funciones técnicas aduaneras de la DIAN con las labores de custodia y seguridad de la POLFA, actuando como un solo cuerpo unificado bajo protocolos oficiales conjuntos.",
-        "explicacion": "Correcta. El trabajo en equipo interinstitucional requiere articulación, claridad de roles y cooperación mutua para maximizar la eficacia del control estatal."
+        "texto": "Competir entre dependencias para ver cuál entidad realiza el mayor número de incautaciones de forma independiente.",
+        "explicacion": "Incorrecta. La rivalidad interinstitucional entorpece las investigaciones y eleva los riesgos de seguridad en zona de frontera."
       },
       {
         "id": "B",
-        "texto": "Competir entre dependencias para ver cuál entidad realiza el mayor número de incautaciones de forma independiente.",
-        "explicacion": "Incorrecta. La rivalidad interinstitucional entorpece las investigaciones y eleva los riesgos de seguridad en zona de frontera."
+        "texto": "Establecer canales de comunicación claros, coordinar previamente las funciones técnicas aduaneras de la DIAN con las labores de custodia y seguridad de la POLFA, actuando como un solo cuerpo unificado bajo protocolos oficiales conjuntos.",
+        "explicacion": "Correcta. El trabajo en equipo interinstitucional requiere articulación, claridad de roles y cooperación mutua para maximizar la eficacia del control estatal."
       },
       {
         "id": "C",
@@ -3214,7 +3215,7 @@ const QUESTION_BANK_GESTOR_CI = [
         "explicacion": "Incorrecta. Vulnera la competencia legal especializada que la ley radica exclusivamente en los funcionarios aduaneros de la DIAN."
       }
     ],
-    "respuestaCorrecta": "A",
+    "respuestaCorrecta": "B",
     "norma": "Decreto 815 de 2018 y Convenios Institucionales DIAN - Policía Nacional (POLFA)",
     "citaNormativa": "«Trabajo en equipo y colaboración: Desarrollar relaciones de cooperación efectiva con otros equipos y entidades, alineando esfuerzos para el logro de propósitos superiores del Estado.» (Decreto 815 de 2018)."
   },
@@ -3230,21 +3231,21 @@ const QUESTION_BANK_GESTOR_CI = [
     "opciones": [
       {
         "id": "A",
-        "texto": "Promover una mesa de trabajo técnica entre líderes de ambas dependencias para mapear el flujo de transferencia, estandarizar una lista de chequeo conjunta de requisitos y acordar un protocolo de entrega que erradique los reprocesos.",
-        "explicacion": "Correcta. La resolución constructiva de conflictos organizacionales implica abordar las causas sistémicas mediante el diálogo técnico, el diseño de soluciones consensuadas y la estandarización por procesos."
-      },
-      {
-        "id": "B",
         "texto": "Enviar memorandos con copia a la Procuraduría acusando de negligencia a la otra división.",
         "explicacion": "Incorrecta. Destruye la cohesión interna y no soluciona la falla procesal de fondo."
       },
       {
-        "id": "C",
+        "id": "B",
         "texto": "Devolver sistemáticamente todos los expedientes recibidos sin revisarlos.",
         "explicacion": "Incorrecta. Afecta directamente el recaudo tributario y paraliza la gestión pública."
+      },
+      {
+        "id": "C",
+        "texto": "Promover una mesa de trabajo técnica entre líderes de ambas dependencias para mapear el flujo de transferencia, estandarizar una lista de chequeo conjunta de requisitos y acordar un protocolo de entrega que erradique los reprocesos.",
+        "explicacion": "Correcta. La resolución constructiva de conflictos organizacionales implica abordar las causas sistémicas mediante el diálogo técnico, el diseño de soluciones consensuadas y la estandarización por procesos."
       }
     ],
-    "respuestaCorrecta": "A",
+    "respuestaCorrecta": "C",
     "norma": "Decreto 815 de 2018 (Manejo de Conflictos y Coordinación por Procesos MIPG)",
     "citaNormativa": "«Manejo de conflictos: Identificar divergencias de criterio y orientar los desacuerdos hacia soluciones constructivas y consensuadas que beneficien la operación institucional.» (Decreto 815 de 2018)."
   },
@@ -3290,13 +3291,13 @@ const QUESTION_BANK_GESTOR_CI = [
     "opciones": [
       {
         "id": "A",
-        "texto": "Definir metas claras y alcanzables, asignar tareas según fortalezas individuales, brindar retroalimentación oportuna y motivar al equipo mediante el ejemplo de trabajo ético y riguroso en campo.",
-        "explicacion": "Correcta. El liderazgo en el nivel profesional implica guiar, empoderar y respaldar al equipo humano, garantizando el cumplimiento de los objetivos misionales con altos estándares de calidad y ética."
+        "texto": "Exigir horas extras obligatorias sin compensación y suspender las capacitaciones programadas para dedicarse exclusivamente a la atención de ventanilla.",
+        "explicacion": "Incorrecta. El liderazgo coercitivo y autoritario genera desmotivación, estrés laboral y errores operativos en campo."
       },
       {
         "id": "B",
-        "texto": "Amenazar al equipo con calificaciones deficientes en el periodo de prueba si no logran el 200% de la meta el primer día.",
-        "explicacion": "Incorrecta. El liderazgo coercitivo y autoritario genera desmotivación, estrés laboral y errores operativos en campo."
+        "texto": "Definir metas claras y alcanzables, asignar tareas según fortalezas individuales, brindar retroalimentación oportuna y motivar al equipo mediante el ejemplo de trabajo ético y riguroso en campo.",
+        "explicacion": "Correcta. El liderazgo en el nivel profesional implica guiar, empoderar y respaldar al equipo humano, garantizando el cumplimiento de los objetivos misionales con altos estándares de calidad y ética."
       },
       {
         "id": "C",
@@ -3304,7 +3305,7 @@ const QUESTION_BANK_GESTOR_CI = [
         "explicacion": "Incorrecta. Omite el deber esencial de dirección, orientación técnica y supervisión propio del rol del gestor."
       }
     ],
-    "respuestaCorrecta": "A",
+    "respuestaCorrecta": "B",
     "norma": "Decreto 815 de 2018 (Competencia de Liderazgo de Grupos de Trabajo)",
     "citaNormativa": "«Liderazgo: Guiar y orientar el grupo de trabajo hacia la consecución de las metas institucionales, promoviendo el desarrollo de sus integrantes y el sentido de corresponsabilidad.» (Decreto 815 de 2018)."
   },
@@ -3325,16 +3326,16 @@ const QUESTION_BANK_GESTOR_CI = [
       },
       {
         "id": "B",
-        "texto": "Rechazar de plano la solicitud, recordarle con firmeza que la información tributaria goza de reserva legal absoluta conforme al artículo 583 del Estatuto Tributario y que los servidores de la DIAN tienen prohibido consultar o divulgar datos de contribuyentes para fines particulares.",
-        "explicacion": "Correcta. El Código de Ética DIAN y el artículo 583 del Estatuto Tributario consagran la reserva tributaria estricta como pilar de la confianza ciudadana en el Estado, prohibiendo cualquier consulta o fuga de información sin orden judicial o legal previa."
+        "texto": "Pedirle que le pague un almuerzo a cambio de suministrarle la copia digital de la declaración de renta.",
+        "explicacion": "Incorrecta. Constituye una conducta abiertamente delictiva de concusión y corrupción sancionable penal y disciplinariamente."
       },
       {
         "id": "C",
-        "texto": "Pedirle que le pague un almuerzo a cambio de suministrarle la copia digital de la declaración de renta.",
-        "explicacion": "Incorrecta. Constituye una conducta abiertamente delictiva de concusión y corrupción sancionable penal y disciplinariamente."
+        "texto": "Rechazar de plano la solicitud, recordarle con firmeza que la información tributaria goza de reserva legal absoluta conforme al artículo 583 del Estatuto Tributario y que los servidores de la DIAN tienen prohibido consultar o divulgar datos de contribuyentes para fines particulares.",
+        "explicacion": "Correcta. El Código de Ética DIAN y el artículo 583 del Estatuto Tributario consagran la reserva tributaria estricta como pilar de la confianza ciudadana en el Estado, prohibiendo cualquier consulta o fuga de información sin orden judicial o legal previa."
       }
     ],
-    "respuestaCorrecta": "B",
+    "respuestaCorrecta": "C",
     "norma": "Estatuto Tributario, Art. 583 (Reserva de la Información Tributaria) y Código de Ética DIAN",
     "citaNormativa": "«La información tributaria respecto de las bases gravables y la determinación privada de los impuestos que figuren en las declaraciones tributarias, tendrá el carácter de información reservada.» (Estatuto Tributario, Art. 583)."
   },
@@ -3380,13 +3381,13 @@ const QUESTION_BANK_GESTOR_CI = [
     "opciones": [
       {
         "id": "A",
-        "texto": "Nulidad absoluta, por haberse celebrado contra expresa prohibición constitucional o legal y con persona incursa en causal de inhabilidad e incompatibilidad.",
-        "explicacion": "Correcta. El artículo 44 numeral 2 de la Ley 80 de 1993 establece que los contratos del Estado son absolutamente nulos en los casos en que se celebren con personas legalmente inhabilitadas o contra expresa prohibición constitucional o legal."
+        "texto": "Nulidad relativa saneable mediante el simple cambio de firma en el acta final.",
+        "explicacion": "Incorrecta. La violación del régimen de inhabilidades e incompatibilidades genera nulidad absoluta de orden público, insanable."
       },
       {
         "id": "B",
-        "texto": "Nulidad relativa saneable mediante el simple cambio de firma en el acta final.",
-        "explicacion": "Incorrecta. La violación del régimen de inhabilidades e incompatibilidades genera nulidad absoluta de orden público, insanable."
+        "texto": "Nulidad absoluta, por haberse celebrado contra expresa prohibición constitucional o legal y con persona incursa en causal de inhabilidad e incompatibilidad.",
+        "explicacion": "Correcta. El artículo 44 numeral 2 de la Ley 80 de 1993 establece que los contratos del Estado son absolutamente nulos en los casos en que se celebren con personas legalmente inhabilitadas o contra expresa prohibición constitucional o legal."
       },
       {
         "id": "C",
@@ -3394,7 +3395,7 @@ const QUESTION_BANK_GESTOR_CI = [
         "explicacion": "Incorrecta. El valor económico no convalida la violación del régimen legal imperativo de inhabilidades."
       }
     ],
-    "respuestaCorrecta": "A",
+    "respuestaCorrecta": "B",
     "norma": "Ley 80 de 1993, Art. 44 (Nulidad Absoluta)",
     "citaNormativa": "«Los contratos del Estado son absolutamente nulos en los casos previstos en el derecho común y además cuando: se celebren con personas incursas en causales de inhabilidad o incompatibilidad previstas en la Constitución y la ley.» (Ley 80 de 1993, Art. 44)."
   },
@@ -3410,21 +3411,21 @@ const QUESTION_BANK_GESTOR_CI = [
     "opciones": [
       {
         "id": "A",
-        "texto": "En la Unión Temporal las sanciones por incumplimiento se imponen distribuidas según la participación en la ejecución de cada uno de los miembros, mientras que en el Consorcio todos responden solidariamente por las sanciones.",
-        "explicacion": "Correcta. El artículo 7º parágrafo 1 de la Ley 80 de 1993 señala que en la unión temporal las sanciones por incumplimiento se distribuirán de acuerdo con la participación en la ejecución de cada uno de los integrantes (aunque en las obligaciones económicas frente a terceros responden solidariamente)."
-      },
-      {
-        "id": "B",
         "texto": "No existe ninguna diferencia; en ambas figuras las sanciones siempre se imponen por partes iguales.",
         "explicacion": "Incorrecta. La ley distingue expresamente la imputación de sanciones en la unión temporal atendiendo la participación pactada."
       },
       {
-        "id": "C",
+        "id": "B",
         "texto": "En la unión temporal la responsabilidad sancionatoria solo recae sobre el representante legal del consorcio.",
         "explicacion": "Incorrecta. La responsabilidad recae sobre los miembros del acuerdo asociativo según la ley."
+      },
+      {
+        "id": "C",
+        "texto": "En la Unión Temporal las sanciones por incumplimiento se imponen distribuidas según la participación en la ejecución de cada uno de los miembros, mientras que en el Consorcio todos responden solidariamente por las sanciones.",
+        "explicacion": "Correcta. El artículo 7º parágrafo 1 de la Ley 80 de 1993 señala que en la unión temporal las sanciones por incumplimiento se distribuirán de acuerdo con la participación en la ejecución de cada uno de los integrantes (aunque en las obligaciones económicas frente a terceros responden solidariamente)."
       }
     ],
-    "respuestaCorrecta": "A",
+    "respuestaCorrecta": "C",
     "norma": "Ley 80 de 1993, Art. 7 (Consorcios y Uniones Temporales)",
     "citaNormativa": "«En las uniones temporales las sanciones por el incumplimiento de las obligaciones derivadas de la propuesta y del contrato se impondrán según la participación en la ejecución de cada uno de los miembros de la unión temporal.» (Ley 80 de 1993, Art. 7)."
   },
@@ -3470,13 +3471,13 @@ const QUESTION_BANK_GESTOR_CI = [
     "opciones": [
       {
         "id": "A",
-        "texto": "La Dimensión de Talento Humano, entendida como el activo más importante y el motor principal para generar valor público y resultados con valores.",
-        "explicacion": "Correcta. El MIPG define al Talento Humano como el corazón del modelo, dado que son los servidores públicos quienes dinamizan las demás dimensiones estratégicas, operativas y de control en la gestión estatal."
+        "texto": "La Dimensión de Gestión de Compras e Inmuebles exclusivamente.",
+        "explicacion": "Incorrecta. No es una de las 7 dimensiones estructurales del MIPG."
       },
       {
         "id": "B",
-        "texto": "La Dimensión de Gestión de Compras e Inmuebles exclusivamente.",
-        "explicacion": "Incorrecta. No es una de las 7 dimensiones estructurales del MIPG."
+        "texto": "La Dimensión de Talento Humano, entendida como el activo más importante y el motor principal para generar valor público y resultados con valores.",
+        "explicacion": "Correcta. El MIPG define al Talento Humano como el corazón del modelo, dado que son los servidores públicos quienes dinamizan las demás dimensiones estratégicas, operativas y de control en la gestión estatal."
       },
       {
         "id": "C",
@@ -3484,7 +3485,7 @@ const QUESTION_BANK_GESTOR_CI = [
         "explicacion": "Incorrecta. No corresponde a la arquitectura del modelo de Función Pública."
       }
     ],
-    "respuestaCorrecta": "A",
+    "respuestaCorrecta": "B",
     "norma": "Decreto 1499 de 2017 y Manual Operativo del MIPG (Función Pública)",
     "citaNormativa": "«La Dimensión del Talento Humano es el corazón del Modelo Integrado de Planeación y Gestión (MIPG), reconociendo al servidor público como el principal factor de éxito de la gestión del Estado.» (MIPG)."
   },
@@ -3500,21 +3501,21 @@ const QUESTION_BANK_GESTOR_CI = [
     "opciones": [
       {
         "id": "A",
-        "texto": "A los líderes de proceso y servidores públicos que gestionan la operación en el día a día, encargados de aplicar y monitorear directamente los controles en sus actividades ordinarias.",
-        "explicacion": "Correcta. La Primera Línea de Defensa reside en la propia operación (líderes de proceso y sus equipos operativos), quienes deben identificar, evaluar y aplicar los controles en su trabajo cotidiano."
-      },
-      {
-        "id": "B",
         "texto": "Exclusivamente a los auditores de la Oficina de Control Interno.",
         "explicacion": "Incorrecta. La Oficina de Control Interno constituye la Tercera Línea de Defensa (evaluación independiente), no la primera línea operativa."
       },
       {
-        "id": "C",
+        "id": "B",
         "texto": "A los jueces de la República en fallos judiciales contenciosos.",
         "explicacion": "Incorrecta. Los jueces ejercen control judicial externo y no integran el sistema de control interno administrativo de la entidad."
+      },
+      {
+        "id": "C",
+        "texto": "A los líderes de proceso y servidores públicos que gestionan la operación en el día a día, encargados de aplicar y monitorear directamente los controles en sus actividades ordinarias.",
+        "explicacion": "Correcta. La Primera Línea de Defensa reside en la propia operación (líderes de proceso y sus equipos operativos), quienes deben identificar, evaluar y aplicar los controles en su trabajo cotidiano."
       }
     ],
-    "respuestaCorrecta": "A",
+    "respuestaCorrecta": "C",
     "norma": "Decreto 1499 de 2017 y Guía de las Líneas de Defensa MECI (Función Pública)",
     "citaNormativa": "«Primera Línea de Defensa: Líderes de proceso y sus colaboradores en la operación diaria, responsables de la gestión y mitigación directa de los riesgos inherentes a sus procesos.» (MECI / MIPG)."
   },
@@ -3560,13 +3561,13 @@ const QUESTION_BANK_GESTOR_CI = [
     "opciones": [
       {
         "id": "A",
-        "texto": "Dimensión 6: Gestión del Conocimiento y la Innovación, orientada a capturar, preservar, transferir y generar nuevo conocimiento institucional para evitar la fuga de saberes críticos.",
-        "explicacion": "Correcta. La Dimensión de Gestión del Conocimiento y la Innovación busca que el saber y la experiencia acumulada por los servidores no se pierdan, sino que se documenten, transfieran e innoven en beneficio continuo del Estado."
+        "texto": "Dimensión de Evaluación de Resultados exclusivamente.",
+        "explicacion": "Incorrecta. La evaluación mide metas e indicadores cuantitativos, no la transferencia del conocimiento tácito."
       },
       {
         "id": "B",
-        "texto": "Dimensión de Evaluación de Resultados exclusivamente.",
-        "explicacion": "Incorrecta. La evaluación mide metas e indicadores cuantitativos, no la transferencia del conocimiento tácito."
+        "texto": "Dimensión 6: Gestión del Conocimiento y la Innovación, orientada a capturar, preservar, transferir y generar nuevo conocimiento institucional para evitar la fuga de saberes críticos.",
+        "explicacion": "Correcta. La Dimensión de Gestión del Conocimiento y la Innovación busca que el saber y la experiencia acumulada por los servidores no se pierdan, sino que se documenten, transfieran e innoven en beneficio continuo del Estado."
       },
       {
         "id": "C",
@@ -3574,7 +3575,7 @@ const QUESTION_BANK_GESTOR_CI = [
         "explicacion": "Incorrecta. No corresponde a la arquitectura de gestión del conocimiento de Función Pública."
       }
     ],
-    "respuestaCorrecta": "A",
+    "respuestaCorrecta": "B",
     "norma": "Decreto 1499 de 2017 (Dimensión 6 MIPG: Gestión del Conocimiento)",
     "citaNormativa": "«La Dimensión de Gestión del Conocimiento y la Innovación fortalece la memoria institucional, la analítica y el aprendizaje continuo para mejorar el desempeño del servicio público.» (MIPG)."
   },
@@ -3589,21 +3590,21 @@ const QUESTION_BANK_GESTOR_CI = [
     "opciones": [
       {
         "id": "A",
-        "texto": "Sostener que la DIAN es una Unidad Administrativa Especial del orden nacional, de carácter técnico y adscrita al Ministerio de Hacienda, creada por la fusión de la DIN y la DAN con competencia integral sobre tributos del orden nacional, aduaneros y régimen cambiario.",
-        "explicacion": "Correcta. La DIAN fue creada como Unidad Administrativa Especial (UAE) mediante el Decreto 2117 de 1992, al fusionar el 1º de junio de 1993 la Dirección de Impuestos Nacionales (DIN) y la Dirección de Aduanas Nacionales (DAN), consolidada orgánicamente en el Decreto 1071 de 1999 y Decreto 4048 de 2008, con personería jurídica, autonomía y adscripción al Ministerio de Hacienda, ejerciendo la administración y control unitario de las obligaciones tributarias, aduaneras y cambiarias."
-      },
-      {
-        "id": "B",
         "texto": "Argumentar que la DIAN es un establecimiento público descentralizado territorialmente con autonomía judicial plena e independencia jerárquica total respecto del Ministerio de Hacienda y Crédito Público.",
         "explicacion": "Incorrecta. La DIAN es una Unidad Administrativa Especial (UAE) del orden nacional, con personería jurídica y autonomía técnica, adscrita al Ministerio de Hacienda."
       },
       {
-        "id": "C",
+        "id": "B",
         "texto": "Reconocer que la DIAN solo tiene competencia tributaria interna, debiendo remitir el componente arancelario y aduanero al Ministerio de Comercio, Industria y Turismo para su liquidación final.",
         "explicacion": "Incorrecta. La DIAN concentra de forma unitaria la competencia tributaria, aduanera y cambiaria, sin fragmentación hacia otros ministerios."
+      },
+      {
+        "id": "C",
+        "texto": "Sostener que la DIAN es una Unidad Administrativa Especial del orden nacional, de carácter técnico y adscrita al Ministerio de Hacienda, creada por la fusión de la DIN y la DAN con competencia integral sobre tributos del orden nacional, aduaneros y régimen cambiario.",
+        "explicacion": "Correcta. La DIAN fue creada como Unidad Administrativa Especial (UAE) mediante el Decreto 2117 de 1992, al fusionar el 1º de junio de 1993 la Dirección de Impuestos Nacionales (DIN) y la Dirección de Aduanas Nacionales (DAN), consolidada orgánicamente en el Decreto 1071 de 1999 y Decreto 4048 de 2008, con personería jurídica, autonomía y adscripción al Ministerio de Hacienda, ejerciendo la administración y control unitario de las obligaciones tributarias, aduaneras y cambiarias."
       }
     ],
-    "respuestaCorrecta": "A",
+    "respuestaCorrecta": "C",
     "justificacion": "La DIAN fue creada como Unidad Administrativa Especial (UAE) mediante el Decreto 2117 de 1992, al fusionar el 1º de junio de 1993 la Dirección de Impuestos Nacionales (DIN) y la Dirección de Aduanas Nacionales (DAN), consolidada orgánicamente en el Decreto 1071 de 1999 y Decreto 4048 de 2008, con personería jurídica, autonomía y adscripción al Ministerio de Hacienda, ejerciendo la administración y control unitario de las obligaciones tributarias, aduaneras y cambiarias.",
     "norma": "Decreto 2117 de 1992, Decreto 1071 de 1999 y Decreto 4048 de 2008, Art. 1",
     "citaNormativa": "La Unidad Administrativa Especial Dirección de Impuestos y Aduanas Nacionales - DIAN, es una entidad adscrita al Ministerio de Hacienda y Crédito Público, con personería jurídica, autonomía administrativa y presupuestal, y con competencia en materia de impuestos del orden nacional, aduanera y control cambiario.",
@@ -3622,13 +3623,13 @@ const QUESTION_BANK_GESTOR_CI = [
     "opciones": [
       {
         "id": "A",
-        "texto": "Asumir la sustanciación y trámite de la devolución en la Dirección Seccional Delegada por haber operado la radicación física dentro de su jurisdicción geográfica.",
-        "explicacion": "Incorrecta. Carece de competencia material y funcional: los Grandes Contribuyentes están asignados por resolución expresa a la Dirección Seccional de Grandes Contribuyentes."
+        "texto": "Remitir el expediente inmediatamente por competencia a la Dirección Seccional de Grandes Contribuyentes de Bogotá, notificando al contribuyente conforme al principio de competencia territorial y funcional de la DIAN.",
+        "explicacion": "Correcta. Conforme a los Decretos 4048 de 2008 y 1742 de 2020, la Dirección Seccional de Grandes Contribuyentes tiene competencia privativa y preferente para la administración, fiscalización, liquidación, discusión y cobro de los tributos de los sujetos calificados en dicha categoría, por lo que cualquier actuación radicada en otra seccional debe remitirse a la dependencia competente sin vulnerar el debido proceso."
       },
       {
         "id": "B",
-        "texto": "Remitir el expediente inmediatamente por competencia a la Dirección Seccional de Grandes Contribuyentes de Bogotá, notificando al contribuyente conforme al principio de competencia territorial y funcional de la DIAN.",
-        "explicacion": "Correcta. Conforme a los Decretos 4048 de 2008 y 1742 de 2020, la Dirección Seccional de Grandes Contribuyentes tiene competencia privativa y preferente para la administración, fiscalización, liquidación, discusión y cobro de los tributos de los sujetos calificados en dicha categoría, por lo que cualquier actuación radicada en otra seccional debe remitirse a la dependencia competente sin vulnerar el debido proceso."
+        "texto": "Asumir la sustanciación y trámite de la devolución en la Dirección Seccional Delegada por haber operado la radicación física dentro de su jurisdicción geográfica.",
+        "explicacion": "Incorrecta. Carece de competencia material y funcional: los Grandes Contribuyentes están asignados por resolución expresa a la Dirección Seccional de Grandes Contribuyentes."
       },
       {
         "id": "C",
@@ -3636,7 +3637,7 @@ const QUESTION_BANK_GESTOR_CI = [
         "explicacion": "Incorrecta. Vulnera el debido proceso administrativo; cuando una petición se radica ante una dependencia sin competencia interna, debe remitirse a la dependencia competente."
       }
     ],
-    "respuestaCorrecta": "B",
+    "respuestaCorrecta": "A",
     "justificacion": "Conforme a los Decretos 4048 de 2008 y 1742 de 2020, la Dirección Seccional de Grandes Contribuyentes tiene competencia privativa y preferente para la administración, fiscalización, liquidación, discusión y cobro de los tributos de los sujetos calificados en dicha categoría, por lo que cualquier actuación radicada en otra seccional debe remitirse a la dependencia competente sin vulnerar el debido proceso.",
     "norma": "Decreto 4048 de 2008, Art. 38 y Decreto 1742 de 2020 (Competencia Grandes Contribuyentes)",
     "citaNormativa": "La Dirección Seccional de Grandes Contribuyentes de Bogotá ejerce competencia sobre los contribuyentes, responsables o agentes de retención que mediante resolución sean calificados como tales.",
@@ -3693,16 +3694,16 @@ const QUESTION_BANK_GESTOR_CI = [
       },
       {
         "id": "B",
-        "texto": "Incorporar las alertas y perfiles de riesgo del MGR (Modelo de Gestión de Riesgo) como insumo para proferir emplazamientos previos por inexactitud o requerimientos ordinarios de información, sustentados en la facultad del Art. 684-4 del Estatuto Tributario.",
-        "explicacion": "Correcta. El Art. 684-4 del Estatuto Tributario y el eje de Analítica del PETI autorizan a la DIAN a implementar modelos de gestión de riesgo fundamentados en cruces informáticos y analítica de datos. La información extraída permite expedir pliegos de cargos, emplazamientos o requerimientos conforme a las etapas procesales regladas, respetando el debido proceso y la contradicción."
+        "texto": "Clausurar inmediatamente las empresas inmobiliarias de manera indefinida sin otorgar término para responder ni practicar pliego de cargos.",
+        "explicacion": "Incorrecta. La imposición de sanciones de plano sin pliego de cargos ni traslado para descargos vulnera el artículo 29 de la Constitución Política (debido proceso)."
       },
       {
         "id": "C",
-        "texto": "Clausurar inmediatamente las empresas inmobiliarias de manera indefinida sin otorgar término para responder ni practicar pliego de cargos.",
-        "explicacion": "Incorrecta. La imposición de sanciones de plano sin pliego de cargos ni traslado para descargos vulnera el artículo 29 de la Constitución Política (debido proceso)."
+        "texto": "Incorporar las alertas y perfiles de riesgo del MGR (Modelo de Gestión de Riesgo) como insumo para proferir emplazamientos previos por inexactitud o requerimientos ordinarios de información, sustentados en la facultad del Art. 684-4 del Estatuto Tributario.",
+        "explicacion": "Correcta. El Art. 684-4 del Estatuto Tributario y el eje de Analítica del PETI autorizan a la DIAN a implementar modelos de gestión de riesgo fundamentados en cruces informáticos y analítica de datos. La información extraída permite expedir pliegos de cargos, emplazamientos o requerimientos conforme a las etapas procesales regladas, respetando el debido proceso y la contradicción."
       }
     ],
-    "respuestaCorrecta": "B",
+    "respuestaCorrecta": "C",
     "justificacion": "El Art. 684-4 del Estatuto Tributario y el eje de Analítica del PETI autorizan a la DIAN a implementar modelos de gestión de riesgo fundamentados en cruces informáticos y analítica de datos. La información extraída permite expedir pliegos de cargos, emplazamientos o requerimientos conforme a las etapas procesales regladas, respetando el debido proceso y la contradicción.",
     "norma": "Estatuto Tributario, Art. 684-4 y PETI DIAN 2022-2025 (Eje de Analítica de Datos)",
     "citaNormativa": "La Dirección de Impuestos y Aduanas Nacionales podrá utilizar la información recolectada de la factura electrónica, declaraciones y terceros, para el diseño de modelos de riesgo tendientes a identificar y fiscalizar a los contribuyentes que presenten inexactitudes o evasión.",
@@ -3721,13 +3722,13 @@ const QUESTION_BANK_GESTOR_CI = [
     "opciones": [
       {
         "id": "A",
-        "texto": "Aprobar la propuesta porque la única razón de ser de la DIAN es la imposición coactiva de multas y sanciones a la ciudadanía.",
-        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: El Plan Estratégico Institucional de la DIAN y el Decreto 4048 de 2008 establecen que la misión institucional combina de manera armónica dos pilares: facilitar el cumplimiento voluntario de las obligaciones tributarias, aduaneras y cambiarias, y al mismo tiempo combatir con rigor la evasión, el contrabando y la corrupción, asegurando la sostenibilidad fiscal de la Nación."
+        "texto": "Alinear los objetivos equilibrando la facilitación del cumplimiento voluntario de las obligaciones con la lucha frontal contra el fraude y el contrabando, en concordancia con la misión de garantizar la sostenibilidad fiscal del Estado y facilitar el comercio legítimo.",
+        "explicacion": "Correcta. El Plan Estratégico Institucional de la DIAN y el Decreto 4048 de 2008 establecen que la misión institucional combina de manera armónica dos pilares: facilitar el cumplimiento voluntario de las obligaciones tributarias, aduaneras y cambiarias, y al mismo tiempo combatir con rigor la evasión, el contrabando y la corrupción, asegurando la sostenibilidad fiscal de la Nación."
       },
       {
         "id": "B",
-        "texto": "Alinear los objetivos equilibrando la facilitación del cumplimiento voluntario de las obligaciones con la lucha frontal contra el fraude y el contrabando, en concordancia con la misión de garantizar la sostenibilidad fiscal del Estado y facilitar el comercio legítimo.",
-        "explicacion": "Correcta. El Plan Estratégico Institucional de la DIAN y el Decreto 4048 de 2008 establecen que la misión institucional combina de manera armónica dos pilares: facilitar el cumplimiento voluntario de las obligaciones tributarias, aduaneras y cambiarias, y al mismo tiempo combatir con rigor la evasión, el contrabando y la corrupción, asegurando la sostenibilidad fiscal de la Nación."
+        "texto": "Aprobar la propuesta porque la única razón de ser de la DIAN es la imposición coactiva de multas y sanciones a la ciudadanía.",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: El Plan Estratégico Institucional de la DIAN y el Decreto 4048 de 2008 establecen que la misión institucional combina de manera armónica dos pilares: facilitar el cumplimiento voluntario de las obligaciones tributarias, aduaneras y cambiarias, y al mismo tiempo combatir con rigor la evasión, el contrabando y la corrupción, asegurando la sostenibilidad fiscal de la Nación."
       },
       {
         "id": "C",
@@ -3735,7 +3736,7 @@ const QUESTION_BANK_GESTOR_CI = [
         "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: El Plan Estratégico Institucional de la DIAN y el Decreto 4048 de 2008 establecen que la misión institucional combina de manera armónica dos pilares: facilitar el cumplimiento voluntario de las obligaciones tributarias, aduaneras y cambiarias, y al mismo tiempo combatir con rigor la evasión, el contrabando y la corrupción, asegurando la sostenibilidad fiscal de la Nación."
       }
     ],
-    "respuestaCorrecta": "B",
+    "respuestaCorrecta": "A",
     "justificacion": "El Plan Estratégico Institucional de la DIAN y el Decreto 4048 de 2008 establecen que la misión institucional combina de manera armónica dos pilares: facilitar el cumplimiento voluntario de las obligaciones tributarias, aduaneras y cambiarias, y al mismo tiempo combatir con rigor la evasión, el contrabando y la corrupción, asegurando la sostenibilidad fiscal de la Nación.",
     "norma": "Decreto 4048 de 2008, Art. 2 y Plan Estratégico Institucional DIAN 2023-2026",
     "citaNormativa": "La Unidad Administrativa Especial Dirección de Impuestos y Aduanas Nacionales tiene como objeto coadyuvar a garantizar la seguridad fiscal del Estado colombiano y la protección del orden público económico nacional, mediante la administración y control al debido cumplimiento de las obligaciones tributarias, aduaneras, cambiarias.",
@@ -3853,13 +3854,13 @@ const QUESTION_BANK_GESTOR_CI = [
     "opciones": [
       {
         "id": "A",
-        "texto": "Adopta la decisión fundándose rigurosamente en las pruebas contables, cruces exógenos y doctrina jurídica vinculante, estructurando un concepto técnico sólido e inobjetable.",
-        "explicacion": "Correcta. La 'Instrumentación de Decisiones' en el nivel profesional consiste en tomar decisiones fundamentadas en información válida, objetiva y rigurosa, asumiendo la responsabilidad técnica de sus efectos legales y fiscales."
+        "texto": "Archiva el expediente para evitar litigios futuros contra la administración tributaria.",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: La 'Instrumentación de Decisiones' en el nivel profesional consiste en tomar decisiones fundamentadas en información válida, objetiva y rigurosa, asumiendo la responsabilidad técnica de sus efectos legales y fiscales."
       },
       {
         "id": "B",
-        "texto": "Archiva el expediente para evitar litigios futuros contra la administración tributaria.",
-        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: La 'Instrumentación de Decisiones' en el nivel profesional consiste en tomar decisiones fundamentadas en información válida, objetiva y rigurosa, asumiendo la responsabilidad técnica de sus efectos legales y fiscales."
+        "texto": "Adopta la decisión fundándose rigurosamente en las pruebas contables, cruces exógenos y doctrina jurídica vinculante, estructurando un concepto técnico sólido e inobjetable.",
+        "explicacion": "Correcta. La 'Instrumentación de Decisiones' en el nivel profesional consiste en tomar decisiones fundamentadas en información válida, objetiva y rigurosa, asumiendo la responsabilidad técnica de sus efectos legales y fiscales."
       },
       {
         "id": "C",
@@ -3867,7 +3868,7 @@ const QUESTION_BANK_GESTOR_CI = [
         "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: La 'Instrumentación de Decisiones' en el nivel profesional consiste en tomar decisiones fundamentadas en información válida, objetiva y rigurosa, asumiendo la responsabilidad técnica de sus efectos legales y fiscales."
       }
     ],
-    "respuestaCorrecta": "A",
+    "respuestaCorrecta": "B",
     "justificacion": "La 'Instrumentación de Decisiones' en el nivel profesional consiste en tomar decisiones fundamentadas en información válida, objetiva y rigurosa, asumiendo la responsabilidad técnica de sus efectos legales y fiscales.",
     "norma": "Decreto 815 de 2018 (Instrumentación de Decisiones)",
     "citaNormativa": "Instrumentación de Decisiones: Elige alternativas de acción viables, oportunas y sustentadas en información objetiva para resolver las situaciones que se presentan en el ejercicio de sus funciones.",
@@ -3891,16 +3892,16 @@ const QUESTION_BANK_GESTOR_CI = [
       },
       {
         "id": "B",
-        "texto": "Escuchar activamente al ciudadano, mantener la serenidad y explicarle con claridad y lenguaje accesible los motivos jurídicos de la medida y los mecanismos legales que tiene para solicitar el desembargo.",
-        "explicacion": "Correcta. La 'Comunicación Efectiva' en el servicio público exige transmitir información de manera clara, oportuna y empática, manteniendo la calma ante situaciones de conflicto y garantizando la adecuada orientación ciudadana."
+        "texto": "Llamar a la fuerza pública de inmediato sin escuchar el motivo de la reclamación.",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: La 'Comunicación Efectiva' en el servicio público exige transmitir información de manera clara, oportuna y empática, manteniendo la calma ante situaciones de conflicto y garantizando la adecuada orientación ciudadana."
       },
       {
         "id": "C",
-        "texto": "Llamar a la fuerza pública de inmediato sin escuchar el motivo de la reclamación.",
-        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: La 'Comunicación Efectiva' en el servicio público exige transmitir información de manera clara, oportuna y empática, manteniendo la calma ante situaciones de conflicto y garantizando la adecuada orientación ciudadana."
+        "texto": "Escuchar activamente al ciudadano, mantener la serenidad y explicarle con claridad y lenguaje accesible los motivos jurídicos de la medida y los mecanismos legales que tiene para solicitar el desembargo.",
+        "explicacion": "Correcta. La 'Comunicación Efectiva' en el servicio público exige transmitir información de manera clara, oportuna y empática, manteniendo la calma ante situaciones de conflicto y garantizando la adecuada orientación ciudadana."
       }
     ],
-    "respuestaCorrecta": "B",
+    "respuestaCorrecta": "C",
     "justificacion": "La 'Comunicación Efectiva' en el servicio público exige transmitir información de manera clara, oportuna y empática, manteniendo la calma ante situaciones de conflicto y garantizando la adecuada orientación ciudadana.",
     "norma": "Decreto 815 de 2018 (Comunicación Efectiva) y Política de Servicio al Ciudadano DIAN",
     "citaNormativa": "Comunicación Efectiva: Expresa las ideas de forma clara, asertiva y respetuosa, adaptando el lenguaje al interlocutor y facilitando la comprensión recíproca.",
@@ -3919,13 +3920,13 @@ const QUESTION_BANK_GESTOR_CI = [
     "opciones": [
       {
         "id": "A",
-        "texto": "Imponer su criterio profesional de manera unilateral sin consultar la opinión técnica de los contadores.",
-        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: El 'Liderazgo de Grupos de Trabajo' implica guiar, coordinar y alinear los esfuerzos del equipo hacia el cumplimiento de las metas institucionales, promoviendo un clima participativo, sinérgico y de respeto técnico."
+        "texto": "Convocar mesas técnicas de trabajo para concertar criterios, distribuir roles según las fortalezas individuales y motivar al equipo hacia el logro del objetivo común con metas claras.",
+        "explicacion": "Correcta. El 'Liderazgo de Grupos de Trabajo' implica guiar, coordinar y alinear los esfuerzos del equipo hacia el cumplimiento de las metas institucionales, promoviendo un clima participativo, sinérgico y de respeto técnico."
       },
       {
         "id": "B",
-        "texto": "Convocar mesas técnicas de trabajo para concertar criterios, distribuir roles según las fortalezas individuales y motivar al equipo hacia el logro del objetivo común con metas claras.",
-        "explicacion": "Correcta. El 'Liderazgo de Grupos de Trabajo' implica guiar, coordinar y alinear los esfuerzos del equipo hacia el cumplimiento de las metas institucionales, promoviendo un clima participativo, sinérgico y de respeto técnico."
+        "texto": "Imponer su criterio profesional de manera unilateral sin consultar la opinión técnica de los contadores.",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: El 'Liderazgo de Grupos de Trabajo' implica guiar, coordinar y alinear los esfuerzos del equipo hacia el cumplimiento de las metas institucionales, promoviendo un clima participativo, sinérgico y de respeto técnico."
       },
       {
         "id": "C",
@@ -3933,7 +3934,7 @@ const QUESTION_BANK_GESTOR_CI = [
         "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: El 'Liderazgo de Grupos de Trabajo' implica guiar, coordinar y alinear los esfuerzos del equipo hacia el cumplimiento de las metas institucionales, promoviendo un clima participativo, sinérgico y de respeto técnico."
       }
     ],
-    "respuestaCorrecta": "B",
+    "respuestaCorrecta": "A",
     "justificacion": "El 'Liderazgo de Grupos de Trabajo' implica guiar, coordinar y alinear los esfuerzos del equipo hacia el cumplimiento de las metas institucionales, promoviendo un clima participativo, sinérgico y de respeto técnico.",
     "norma": "Decreto 815 de 2018 (Liderazgo de Grupos de Trabajo)",
     "citaNormativa": "Liderazgo de Grupos de Trabajo: Orienta y motiva el trabajo colectivo hacia el logro de metas y resultados institucionales, fomentando el desarrollo de sus integrantes.",
@@ -3952,13 +3953,13 @@ const QUESTION_BANK_GESTOR_CI = [
     "opciones": [
       {
         "id": "A",
-        "texto": "Priorizar y reprogramar las acciones críticas de notificación, optimizar el uso de los sistemas de envío electrónico y concentrar los esfuerzos en los casos con mayor impacto fiscal para alcanzar la meta establecida.",
-        "explicacion": "Correcta. La 'Orientación a Resultados' exige encaminar todos los actos hacia la consecución de los fines, metas y objetivos institucionales, con altos estándares de calidad, eficacia y sentido de urgencia."
+        "texto": "Solicitar una rebaja de la meta argumentando que el trimestre fue más corto de lo habitual.",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: La 'Orientación a Resultados' exige encaminar todos los actos hacia la consecución de los fines, metas y objetivos institucionales, con altos estándares de calidad, eficacia y sentido de urgencia."
       },
       {
         "id": "B",
-        "texto": "Solicitar una rebaja de la meta argumentando que el trimestre fue más corto de lo habitual.",
-        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: La 'Orientación a Resultados' exige encaminar todos los actos hacia la consecución de los fines, metas y objetivos institucionales, con altos estándares de calidad, eficacia y sentido de urgencia."
+        "texto": "Priorizar y reprogramar las acciones críticas de notificación, optimizar el uso de los sistemas de envío electrónico y concentrar los esfuerzos en los casos con mayor impacto fiscal para alcanzar la meta establecida.",
+        "explicacion": "Correcta. La 'Orientación a Resultados' exige encaminar todos los actos hacia la consecución de los fines, metas y objetivos institucionales, con altos estándares de calidad, eficacia y sentido de urgencia."
       },
       {
         "id": "C",
@@ -3966,7 +3967,7 @@ const QUESTION_BANK_GESTOR_CI = [
         "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: La 'Orientación a Resultados' exige encaminar todos los actos hacia la consecución de los fines, metas y objetivos institucionales, con altos estándares de calidad, eficacia y sentido de urgencia."
       }
     ],
-    "respuestaCorrecta": "A",
+    "respuestaCorrecta": "B",
     "justificacion": "La 'Orientación a Resultados' exige encaminar todos los actos hacia la consecución de los fines, metas y objetivos institucionales, con altos estándares de calidad, eficacia y sentido de urgencia.",
     "norma": "Decreto 815 de 2018 (Orientación a Resultados)",
     "citaNormativa": "Orientación a Resultados: Realiza las funciones y tareas orientadas al logro de los objetivos institucionales y la satisfacción del usuario.",
@@ -3990,16 +3991,16 @@ const QUESTION_BANK_GESTOR_CI = [
       },
       {
         "id": "B",
-        "texto": "Atenderlo con calidez y paciencia, orientarlo paso a paso en el punto de contacto asistido y facilitarle la autogestión de su solicitud garantizando su derecho de acceso.",
-        "explicacion": "Correcta. La 'Orientación al Usuario' es una competencia esencial del servidor público que busca satisfacer las necesidades de la ciudadanía con enfoque diferencial, accesibilidad, respeto, oportunidad y trato digno."
+        "texto": "Cobrarle una tarifa personal para hacerle el trámite desde su cuenta privada.",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: La 'Orientación al Usuario' es una competencia esencial del servidor público que busca satisfacer las necesidades de la ciudadanía con enfoque diferencial, accesibilidad, respeto, oportunidad y trato digno."
       },
       {
         "id": "C",
-        "texto": "Cobrarle una tarifa personal para hacerle el trámite desde su cuenta privada.",
-        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: La 'Orientación al Usuario' es una competencia esencial del servidor público que busca satisfacer las necesidades de la ciudadanía con enfoque diferencial, accesibilidad, respeto, oportunidad y trato digno."
+        "texto": "Atenderlo con calidez y paciencia, orientarlo paso a paso en el punto de contacto asistido y facilitarle la autogestión de su solicitud garantizando su derecho de acceso.",
+        "explicacion": "Correcta. La 'Orientación al Usuario' es una competencia esencial del servidor público que busca satisfacer las necesidades de la ciudadanía con enfoque diferencial, accesibilidad, respeto, oportunidad y trato digno."
       }
     ],
-    "respuestaCorrecta": "B",
+    "respuestaCorrecta": "C",
     "justificacion": "La 'Orientación al Usuario' es una competencia esencial del servidor público que busca satisfacer las necesidades de la ciudadanía con enfoque diferencial, accesibilidad, respeto, oportunidad y trato digno.",
     "norma": "Decreto 815 de 2018 y Política Institucional de Cercanía al Ciudadano DIAN",
     "citaNormativa": "Orientación al Usuario: Dirige sus actuaciones hacia la atención prioritaria de las necesidades de los usuarios, con vocación de servicio.",
@@ -4089,16 +4090,16 @@ const QUESTION_BANK_GESTOR_CI = [
       },
       {
         "id": "B",
-        "texto": "Generar un espacio de diálogo técnico respetuoso, revisar la doctrina unificada de la DIAN y orientar la discusión hacia un consenso fundamentado en la ley.",
-        "explicacion": "Correcta. El 'Trabajo en Equipo' promueve la cooperación, la confianza y la búsqueda conjunta de soluciones constructivas frente a discrepancias técnicas, anteponiendo los objetivos institucionales sobre posturas individuales."
+        "texto": "Desentenderse del conflicto y esperar a que la jefatura sancione a ambos funcionarios.",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: El 'Trabajo en Equipo' promueve la cooperación, la confianza y la búsqueda conjunta de soluciones constructivas frente a discrepancias técnicas, anteponiendo los objetivos institucionales sobre posturas individuales."
       },
       {
         "id": "C",
-        "texto": "Desentenderse del conflicto y esperar a que la jefatura sancione a ambos funcionarios.",
-        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: El 'Trabajo en Equipo' promueve la cooperación, la confianza y la búsqueda conjunta de soluciones constructivas frente a discrepancias técnicas, anteponiendo los objetivos institucionales sobre posturas individuales."
+        "texto": "Generar un espacio de diálogo técnico respetuoso, revisar la doctrina unificada de la DIAN y orientar la discusión hacia un consenso fundamentado en la ley.",
+        "explicacion": "Correcta. El 'Trabajo en Equipo' promueve la cooperación, la confianza y la búsqueda conjunta de soluciones constructivas frente a discrepancias técnicas, anteponiendo los objetivos institucionales sobre posturas individuales."
       }
     ],
-    "respuestaCorrecta": "B",
+    "respuestaCorrecta": "C",
     "justificacion": "El 'Trabajo en Equipo' promueve la cooperación, la confianza y la búsqueda conjunta de soluciones constructivas frente a discrepancias técnicas, anteponiendo los objetivos institucionales sobre posturas individuales.",
     "norma": "Decreto 815 de 2018 (Trabajo en Equipo)",
     "citaNormativa": "Trabajo en Equipo: Coopera con los demás para alcanzar los objetivos comunes, propiciando un ambiente armónico y constructivo.",
@@ -4117,13 +4118,13 @@ const QUESTION_BANK_GESTOR_CI = [
     "opciones": [
       {
         "id": "A",
-        "texto": "Aprobar la devolución de inmediato para evitar roces laborales y asegurar su permanencia.",
-        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: La integridad ética y la toma de decisiones objetiva obligan al servidor público a anteponer el interés general y la legalidad sobre presiones indebidas, garantizando la igualdad y la protección del patrimonio público."
+        "texto": "Rechazar cualquier trato preferencial injustificado, exigir la verificación probatoria estricta de los soportes y sustentar el informe por escrito de forma técnica y transparente.",
+        "explicacion": "Correcta. La integridad ética y la toma de decisiones objetiva obligan al servidor público a anteponer el interés general y la legalidad sobre presiones indebidas, garantizando la igualdad y la protección del patrimonio público."
       },
       {
         "id": "B",
-        "texto": "Rechazar cualquier trato preferencial injustificado, exigir la verificación probatoria estricta de los soportes y sustentar el informe por escrito de forma técnica y transparente.",
-        "explicacion": "Correcta. La integridad ética y la toma de decisiones objetiva obligan al servidor público a anteponer el interés general y la legalidad sobre presiones indebidas, garantizando la igualdad y la protección del patrimonio público."
+        "texto": "Aprobar la devolución de inmediato para evitar roces laborales y asegurar su permanencia.",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: La integridad ética y la toma de decisiones objetiva obligan al servidor público a anteponer el interés general y la legalidad sobre presiones indebidas, garantizando la igualdad y la protección del patrimonio público."
       },
       {
         "id": "C",
@@ -4131,7 +4132,7 @@ const QUESTION_BANK_GESTOR_CI = [
         "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: La integridad ética y la toma de decisiones objetiva obligan al servidor público a anteponer el interés general y la legalidad sobre presiones indebidas, garantizando la igualdad y la protección del patrimonio público."
       }
     ],
-    "respuestaCorrecta": "B",
+    "respuestaCorrecta": "A",
     "justificacion": "La integridad ética y la toma de decisiones objetiva obligan al servidor público a anteponer el interés general y la legalidad sobre presiones indebidas, garantizando la igualdad y la protección del patrimonio público.",
     "norma": "Código de Integridad del Servicio Público y Ley 1952 de 2019",
     "citaNormativa": "Deber de imparcialidad: El servidor debe actuar sin favoritismos, garantizando que sus decisiones se sustenten exclusivamente en el ordenamiento legal.",
@@ -4150,13 +4151,13 @@ const QUESTION_BANK_GESTOR_CI = [
     "opciones": [
       {
         "id": "A",
-        "texto": "Elaborar un cronograma de trabajo priorizando los expedientes por orden estricto de vencimiento de términos, identificando las pruebas pendientes y asignando tiempos específicos a cada proyecto.",
-        "explicacion": "Correcta. La 'Planeación' permite anticipar requerimientos, definir prioridades críticas en función de plazos perentorios y optimizar los tiempos de ejecución para evitar el acaecimiento de silencios administrativos perjudiciales para la administración."
+        "texto": "Comenzar por el expediente más fácil y dejar los complejos para el último día hábil.",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: La 'Planeación' permite anticipar requerimientos, definir prioridades críticas en función de plazos perentorios y optimizar los tiempos de ejecución para evitar el acaecimiento de silencios administrativos perjudiciales para la administración."
       },
       {
         "id": "B",
-        "texto": "Comenzar por el expediente más fácil y dejar los complejos para el último día hábil.",
-        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: La 'Planeación' permite anticipar requerimientos, definir prioridades críticas en función de plazos perentorios y optimizar los tiempos de ejecución para evitar el acaecimiento de silencios administrativos perjudiciales para la administración."
+        "texto": "Elaborar un cronograma de trabajo priorizando los expedientes por orden estricto de vencimiento de términos, identificando las pruebas pendientes y asignando tiempos específicos a cada proyecto.",
+        "explicacion": "Correcta. La 'Planeación' permite anticipar requerimientos, definir prioridades críticas en función de plazos perentorios y optimizar los tiempos de ejecución para evitar el acaecimiento de silencios administrativos perjudiciales para la administración."
       },
       {
         "id": "C",
@@ -4164,7 +4165,7 @@ const QUESTION_BANK_GESTOR_CI = [
         "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: La 'Planeación' permite anticipar requerimientos, definir prioridades críticas en función de plazos perentorios y optimizar los tiempos de ejecución para evitar el acaecimiento de silencios administrativos perjudiciales para la administración."
       }
     ],
-    "respuestaCorrecta": "A",
+    "respuestaCorrecta": "B",
     "justificacion": "La 'Planeación' permite anticipar requerimientos, definir prioridades críticas en función de plazos perentorios y optimizar los tiempos de ejecución para evitar el acaecimiento de silencios administrativos perjudiciales para la administración.",
     "norma": "Decreto 815 de 2018 (Planeación) y Estatuto Aduanero (Silencio Administrativo)",
     "citaNormativa": "Planeación: Diseña y estructura las actividades de manera anticipada, ordenando los recursos disponibles para alcanzar los resultados previstos.",
@@ -4188,16 +4189,16 @@ const QUESTION_BANK_GESTOR_CI = [
       },
       {
         "id": "B",
-        "texto": "Conectar los controles aduaneros operativos con la formalización del comercio, la seguridad de las cadenas de suministro y el impacto en la competitividad y recaudo nacional sostenible.",
-        "explicacion": "Correcta. El 'Pensamiento Estratégico' permite al profesional comprender la interrelación entre las funciones específicas de su cargo y los grandes objetivos del Estado, anticipando escenarios de impacto macroeconómico y social."
+        "texto": "Suprimir los controles aduaneros para favorecer el consumo sin restricciones.",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: El 'Pensamiento Estratégico' permite al profesional comprender la interrelación entre las funciones específicas de su cargo y los grandes objetivos del Estado, anticipando escenarios de impacto macroeconómico y social."
       },
       {
         "id": "C",
-        "texto": "Suprimir los controles aduaneros para favorecer el consumo sin restricciones.",
-        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: El 'Pensamiento Estratégico' permite al profesional comprender la interrelación entre las funciones específicas de su cargo y los grandes objetivos del Estado, anticipando escenarios de impacto macroeconómico y social."
+        "texto": "Conectar los controles aduaneros operativos con la formalización del comercio, la seguridad de las cadenas de suministro y el impacto en la competitividad y recaudo nacional sostenible.",
+        "explicacion": "Correcta. El 'Pensamiento Estratégico' permite al profesional comprender la interrelación entre las funciones específicas de su cargo y los grandes objetivos del Estado, anticipando escenarios de impacto macroeconómico y social."
       }
     ],
-    "respuestaCorrecta": "B",
+    "respuestaCorrecta": "C",
     "justificacion": "El 'Pensamiento Estratégico' permite al profesional comprender la interrelación entre las funciones específicas de su cargo y los grandes objetivos del Estado, anticipando escenarios de impacto macroeconómico y social.",
     "norma": "Decreto 815 de 2018 (Pensamiento Estratégico) y Plan Estratégico DIAN",
     "citaNormativa": "Pensamiento Estratégico: Comprende y analiza los factores del entorno para alinear las acciones del área con las metas y la misión institucional.",
@@ -4216,13 +4217,13 @@ const QUESTION_BANK_GESTOR_CI = [
     "opciones": [
       {
         "id": "A",
-        "texto": "Abstenerse de resolver expedientes de esa temática hasta que la DIAN le financie un posgrado especializado.",
-        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: El 'Aprendizaje Continuo' impulsa al servidor público a adquirir y actualizar constantemente sus competencias técnicas y normativas, aplicando el conocimiento adquirido en beneficio de la excelencia institucional."
+        "texto": "Asumir la iniciativa de autoaprendizaje, estudiar de forma autónoma la jurisprudencia, doctrina y fuentes oficiales, y compartir los conocimientos adquiridos con su equipo.",
+        "explicacion": "Correcta. El 'Aprendizaje Continuo' impulsa al servidor público a adquirir y actualizar constantemente sus competencias técnicas y normativas, aplicando el conocimiento adquirido en beneficio de la excelencia institucional."
       },
       {
         "id": "B",
-        "texto": "Asumir la iniciativa de autoaprendizaje, estudiar de forma autónoma la jurisprudencia, doctrina y fuentes oficiales, y compartir los conocimientos adquiridos con su equipo.",
-        "explicacion": "Correcta. El 'Aprendizaje Continuo' impulsa al servidor público a adquirir y actualizar constantemente sus competencias técnicas y normativas, aplicando el conocimiento adquirido en beneficio de la excelencia institucional."
+        "texto": "Abstenerse de resolver expedientes de esa temática hasta que la DIAN le financie un posgrado especializado.",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: El 'Aprendizaje Continuo' impulsa al servidor público a adquirir y actualizar constantemente sus competencias técnicas y normativas, aplicando el conocimiento adquirido en beneficio de la excelencia institucional."
       },
       {
         "id": "C",
@@ -4230,7 +4231,7 @@ const QUESTION_BANK_GESTOR_CI = [
         "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: El 'Aprendizaje Continuo' impulsa al servidor público a adquirir y actualizar constantemente sus competencias técnicas y normativas, aplicando el conocimiento adquirido en beneficio de la excelencia institucional."
       }
     ],
-    "respuestaCorrecta": "B",
+    "respuestaCorrecta": "A",
     "justificacion": "El 'Aprendizaje Continuo' impulsa al servidor público a adquirir y actualizar constantemente sus competencias técnicas y normativas, aplicando el conocimiento adquirido en beneficio de la excelencia institucional.",
     "norma": "Decreto 815 de 2018 (Aprendizaje Continuo)",
     "citaNormativa": "Aprendizaje Continuo: Identifica y adquiere conocimientos relevantes para su desarrollo profesional y el mejoramiento de su gestión laboral.",
@@ -4287,16 +4288,16 @@ const QUESTION_BANK_GESTOR_CI = [
       },
       {
         "id": "B",
-        "texto": "Informar de inmediato a su jefe sobre el error cometido, asumiendo con transparencia la equivocación y gestionando la corrección del acto antes de su notificación legal.",
-        "explicacion": "Correcta. El valor de la HONESTIDAD en el Código de Integridad del Servicio Público establece: 'Siempre digo la verdad, incluso cuando cometo errores, porque es humano cometerlos pero no es correcto esconderlos'. Actuar con transparencia protege el patrimonio público y la validez de los actos administrativos."
+        "texto": "Alterar el archivo digital en secreto y culpar a un compañero de la falla en el sistema.",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: El valor de la HONESTIDAD en el Código de Integridad del Servicio Público establece: 'Siempre digo la verdad, incluso cuando cometo errores, porque es humano cometerlos pero no es correcto esconderlos'. Actuar con transparencia protege el patrimonio público y la validez de los actos administrativos."
       },
       {
         "id": "C",
-        "texto": "Alterar el archivo digital en secreto y culpar a un compañero de la falla en el sistema.",
-        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: El valor de la HONESTIDAD en el Código de Integridad del Servicio Público establece: 'Siempre digo la verdad, incluso cuando cometo errores, porque es humano cometerlos pero no es correcto esconderlos'. Actuar con transparencia protege el patrimonio público y la validez de los actos administrativos."
+        "texto": "Informar de inmediato a su jefe sobre el error cometido, asumiendo con transparencia la equivocación y gestionando la corrección del acto antes de su notificación legal.",
+        "explicacion": "Correcta. El valor de la HONESTIDAD en el Código de Integridad del Servicio Público establece: 'Siempre digo la verdad, incluso cuando cometo errores, porque es humano cometerlos pero no es correcto esconderlos'. Actuar con transparencia protege el patrimonio público y la validez de los actos administrativos."
       }
     ],
-    "respuestaCorrecta": "B",
+    "respuestaCorrecta": "C",
     "justificacion": "El valor de la HONESTIDAD en el Código de Integridad del Servicio Público establece: 'Siempre digo la verdad, incluso cuando cometo errores, porque es humano cometerlos pero no es correcto esconderlos'. Actuar con transparencia protege el patrimonio público y la validez de los actos administrativos.",
     "norma": "Código de Integridad del Servicio Público (Función Pública / DIAN) - Valor Honestidad",
     "citaNormativa": "Honestidad: Actúo siempre con fundamento en la verdad, cumpliendo mis deberes con transparencia y rectitud, y siempre favoreciendo el interés general.",
@@ -4315,13 +4316,13 @@ const QUESTION_BANK_GESTOR_CI = [
     "opciones": [
       {
         "id": "A",
-        "texto": "Aceptar los boletos argumentando que se trata de una cortesía privada sin compromiso formal.",
-        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: El Código de Integridad prohíbe tajantemente recibir favores, regalos o incentivos: 'No acepto incentivos, favores ni ningún otro tipo de beneficio que me ofrezcan personas interesadas en un proceso de toma de decisiones'. Dicha conducta configura además posibles delitos contra la administración pública (cohecho)."
+        "texto": "Rechazar categóricamente el beneficio, advertirle sobre la ilegalidad de su conducta y reportar de inmediato el hecho ante la Oficina de Control Disciplinario Interno y la Fiscalía.",
+        "explicacion": "Correcta. El Código de Integridad prohíbe tajantemente recibir favores, regalos o incentivos: 'No acepto incentivos, favores ni ningún otro tipo de beneficio que me ofrezcan personas interesadas en un proceso de toma de decisiones'. Dicha conducta configura además posibles delitos contra la administración pública (cohecho)."
       },
       {
         "id": "B",
-        "texto": "Rechazar categóricamente el beneficio, advertirle sobre la ilegalidad de su conducta y reportar de inmediato el hecho ante la Oficina de Control Disciplinario Interno y la Fiscalía.",
-        "explicacion": "Correcta. El Código de Integridad prohíbe tajantemente recibir favores, regalos o incentivos: 'No acepto incentivos, favores ni ningún otro tipo de beneficio que me ofrezcan personas interesadas en un proceso de toma de decisiones'. Dicha conducta configura además posibles delitos contra la administración pública (cohecho)."
+        "texto": "Aceptar los boletos argumentando que se trata de una cortesía privada sin compromiso formal.",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: El Código de Integridad prohíbe tajantemente recibir favores, regalos o incentivos: 'No acepto incentivos, favores ni ningún otro tipo de beneficio que me ofrezcan personas interesadas en un proceso de toma de decisiones'. Dicha conducta configura además posibles delitos contra la administración pública (cohecho)."
       },
       {
         "id": "C",
@@ -4329,7 +4330,7 @@ const QUESTION_BANK_GESTOR_CI = [
         "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: El Código de Integridad prohíbe tajantemente recibir favores, regalos o incentivos: 'No acepto incentivos, favores ni ningún otro tipo de beneficio que me ofrezcan personas interesadas en un proceso de toma de decisiones'. Dicha conducta configura además posibles delitos contra la administración pública (cohecho)."
       }
     ],
-    "respuestaCorrecta": "B",
+    "respuestaCorrecta": "A",
     "justificacion": "El Código de Integridad prohíbe tajantemente recibir favores, regalos o incentivos: 'No acepto incentivos, favores ni ningún otro tipo de beneficio que me ofrezcan personas interesadas en un proceso de toma de decisiones'. Dicha conducta configura además posibles delitos contra la administración pública (cohecho).",
     "norma": "Código de Integridad - Valor Honestidad y Ley 1952 de 2019, Art. 38",
     "citaNormativa": "Lo que no hago en Honestidad: No acepto incentivos, favores, ni ningún otro tipo de beneficio que me ofrezcan personas o grupos que estén interesados en un proceso de toma de decisiones.",
@@ -4386,16 +4387,16 @@ const QUESTION_BANK_GESTOR_CI = [
       },
       {
         "id": "B",
-        "texto": "Asumir con empatía y sentido de servicio la situación, coordinar con la jefatura la recepción manual o radicación de contingencia y atender a los ciudadanos presentes para evitarles sanciones injustas.",
-        "explicacion": "Correcta. El valor del COMPROMISO exige: 'Soy consciente de la importancia de mi rol como servidor público y estoy en disposición permanente para comprender y resolver las necesidades de las personas con las que me relaciono en mis labores'."
+        "texto": "Apagar las luces de la sala de espera para presionar la salida de los usuarios.",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: El valor del COMPROMISO exige: 'Soy consciente de la importancia de mi rol como servidor público y estoy en disposición permanente para comprender y resolver las necesidades de las personas con las que me relaciono en mis labores'."
       },
       {
         "id": "C",
-        "texto": "Apagar las luces de la sala de espera para presionar la salida de los usuarios.",
-        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: El valor del COMPROMISO exige: 'Soy consciente de la importancia de mi rol como servidor público y estoy en disposición permanente para comprender y resolver las necesidades de las personas con las que me relaciono en mis labores'."
+        "texto": "Asumir con empatía y sentido de servicio la situación, coordinar con la jefatura la recepción manual o radicación de contingencia y atender a los ciudadanos presentes para evitarles sanciones injustas.",
+        "explicacion": "Correcta. El valor del COMPROMISO exige: 'Soy consciente de la importancia de mi rol como servidor público y estoy en disposición permanente para comprender y resolver las necesidades de las personas con las que me relaciono en mis labores'."
       }
     ],
-    "respuestaCorrecta": "B",
+    "respuestaCorrecta": "C",
     "justificacion": "El valor del COMPROMISO exige: 'Soy consciente de la importancia de mi rol como servidor público y estoy en disposición permanente para comprender y resolver las necesidades de las personas con las que me relaciono en mis labores'.",
     "norma": "Código de Integridad - Valor Compromiso y Estatuto Tributario (Régimen de Contingencia)",
     "citaNormativa": "Compromiso: Soy consciente de la importancia de mi rol como servidor público y estoy en disposición permanente para comprender y resolver las necesidades de las personas.",
@@ -4414,13 +4415,13 @@ const QUESTION_BANK_GESTOR_CI = [
     "opciones": [
       {
         "id": "A",
-        "texto": "Guardar silencio para no ser sancionado disciplinariamente por el descuido.",
-        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: El valor de la DILIGENCIA impone: 'Uso responsablemente los recursos informáticos y protejo la información a mi cargo'. Ante un incidente de seguridad, actuar con celeridad y reporte transparente es un imperativo ético indispensable para mitigar riesgos sobre la reserva legal."
+        "texto": "Reportar de inmediato la inconsistencia al oficial de seguridad de la información y a su jefe inmediato, solicitando el cambio urgente de credenciales y auditoría de accesos.",
+        "explicacion": "Correcta. El valor de la DILIGENCIA impone: 'Uso responsablemente los recursos informáticos y protejo la información a mi cargo'. Ante un incidente de seguridad, actuar con celeridad y reporte transparente es un imperativo ético indispensable para mitigar riesgos sobre la reserva legal."
       },
       {
         "id": "B",
-        "texto": "Reportar de inmediato la inconsistencia al oficial de seguridad de la información y a su jefe inmediato, solicitando el cambio urgente de credenciales y auditoría de accesos.",
-        "explicacion": "Correcta. El valor de la DILIGENCIA impone: 'Uso responsablemente los recursos informáticos y protejo la información a mi cargo'. Ante un incidente de seguridad, actuar con celeridad y reporte transparente es un imperativo ético indispensable para mitigar riesgos sobre la reserva legal."
+        "texto": "Guardar silencio para no ser sancionado disciplinariamente por el descuido.",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: El valor de la DILIGENCIA impone: 'Uso responsablemente los recursos informáticos y protejo la información a mi cargo'. Ante un incidente de seguridad, actuar con celeridad y reporte transparente es un imperativo ético indispensable para mitigar riesgos sobre la reserva legal."
       },
       {
         "id": "C",
@@ -4428,7 +4429,7 @@ const QUESTION_BANK_GESTOR_CI = [
         "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: El valor de la DILIGENCIA impone: 'Uso responsablemente los recursos informáticos y protejo la información a mi cargo'. Ante un incidente de seguridad, actuar con celeridad y reporte transparente es un imperativo ético indispensable para mitigar riesgos sobre la reserva legal."
       }
     ],
-    "respuestaCorrecta": "B",
+    "respuestaCorrecta": "A",
     "justificacion": "El valor de la DILIGENCIA impone: 'Uso responsablemente los recursos informáticos y protejo la información a mi cargo'. Ante un incidente de seguridad, actuar con celeridad y reporte transparente es un imperativo ético indispensable para mitigar riesgos sobre la reserva legal.",
     "norma": "Código de Integridad - Valor Diligencia y Política de Seguridad de la Información DIAN",
     "citaNormativa": "Diligencia: Cumplo con los deberes, funciones y responsabilidades asignadas a mi cargo de la mejor manera posible, con atención, prontitud, destreza y eficiencia.",
@@ -4457,7 +4458,7 @@ const QUESTION_BANK_GESTOR_CI = [
       },
       {
         "id": "C",
-        "texto": "Archivar el expediente sin auto ni justificación.",
+        "texto": "Suspender provisionalmente el trámite del expediente hasta que el contribuyente allegue explicaciones voluntarias, sin expedir auto de trámite que interrumpa términos.",
         "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: El valor de la JUSTICIA dispone: 'Actúo con imparcialidad garantizando los derechos de las personas, con equidad, igualdad y sin discriminación'. El conflicto de interés derivado del parentesco hasta el cuarto grado de consanguinidad obliga al funcionario a manifestar su impedimento legal."
       }
     ],
@@ -4485,16 +4486,16 @@ const QUESTION_BANK_GESTOR_CI = [
       },
       {
         "id": "B",
-        "texto": "Es una infracción grave al deber de honestidad y diligencia, pues los recursos públicos no deben destinarse a fines particulares o familiares, acarreando responsabilidad disciplinaria y fiscal.",
-        "explicacion": "Correcta. El Código de Integridad es taxativo: 'No uso recursos públicos para fines personales relacionados con mi familia, mis estudios y mis pasatiempos (esto incluye el tiempo laboral, elementos y bienes asignados)'. Dicho acto constituye falta disciplinaria gravísima."
+        "texto": "Debe autorizarse formalmente por la Comisión de Personal para fomentar el emprendimiento familiar.",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: El Código de Integridad es taxativo: 'No uso recursos públicos para fines personales relacionados con mi familia, mis estudios y mis pasatiempos (esto incluye el tiempo laboral, elementos y bienes asignados)'. Dicho acto constituye falta disciplinaria gravísima."
       },
       {
         "id": "C",
-        "texto": "Debe autorizarse formalmente por la Comisión de Personal para fomentar el emprendimiento familiar.",
-        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: El Código de Integridad es taxativo: 'No uso recursos públicos para fines personales relacionados con mi familia, mis estudios y mis pasatiempos (esto incluye el tiempo laboral, elementos y bienes asignados)'. Dicho acto constituye falta disciplinaria gravísima."
+        "texto": "Es una infracción grave al deber de honestidad y diligencia, pues los recursos públicos no deben destinarse a fines particulares o familiares, acarreando responsabilidad disciplinaria y fiscal.",
+        "explicacion": "Correcta. El Código de Integridad es taxativo: 'No uso recursos públicos para fines personales relacionados con mi familia, mis estudios y mis pasatiempos (esto incluye el tiempo laboral, elementos y bienes asignados)'. Dicho acto constituye falta disciplinaria gravísima."
       }
     ],
-    "respuestaCorrecta": "B",
+    "respuestaCorrecta": "C",
     "justificacion": "El Código de Integridad es taxativo: 'No uso recursos públicos para fines personales relacionados con mi familia, mis estudios y mis pasatiempos (esto incluye el tiempo laboral, elementos y bienes asignados)'. Dicho acto constituye falta disciplinaria gravísima.",
     "norma": "Código de Integridad - Valor Honestidad y Ley 1952 de 2019, Art. 38",
     "citaNormativa": "Lo que no hago en Honestidad: No uso recursos públicos para fines personales relacionados con mi familia, mis estudios y mis pasatiempos.",
@@ -4513,21 +4514,21 @@ const QUESTION_BANK_GESTOR_CI = [
     "opciones": [
       {
         "id": "A",
+        "texto": "El nivel posconvencional: defender los principios constitucionales de igualdad, legalidad y moralidad pública, haciendo prevalecer el interés general y el mandato imperativo de la ley sobre directrices arbitrarias.",
+        "explicacion": "Correcta. Las pruebas de integridad de la CNSC evalúan el razonamiento moral según la escala de Kohlberg. El nivel posconvencional (el más alto y deseable en servidores públicos) guía el comportamiento mediante principios éticos universales, el deber constitucional y la primacía del bien común por encima de presiones coyunturales o intereses particulares."
+      },
+      {
+        "id": "B",
         "texto": "El nivel preconvencional: obedecer ciegamente la directiva únicamente para evitar castigos o sanciones de sus superiores.",
         "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: Las pruebas de integridad de la CNSC evalúan el razonamiento moral según la escala de Kohlberg. El nivel posconvencional (el más alto y deseable en servidores públicos) guía el comportamiento mediante principios éticos universales, el deber constitucional y la primacía del bien común por encima de presiones coyunturales o intereses particulares."
       },
       {
-        "id": "B",
+        "id": "C",
         "texto": "El nivel convencional: seguir la costumbre mayoritaria del grupo sin cuestionar la legalidad de la orden.",
         "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: Las pruebas de integridad de la CNSC evalúan el razonamiento moral según la escala de Kohlberg. El nivel posconvencional (el más alto y deseable en servidores públicos) guía el comportamiento mediante principios éticos universales, el deber constitucional y la primacía del bien común por encima de presiones coyunturales o intereses particulares."
-      },
-      {
-        "id": "C",
-        "texto": "El nivel posconvencional: defender los principios constitucionales de igualdad, legalidad y moralidad pública, haciendo prevalecer el interés general y el mandato imperativo de la ley sobre directrices arbitrarias.",
-        "explicacion": "Correcta. Las pruebas de integridad de la CNSC evalúan el razonamiento moral según la escala de Kohlberg. El nivel posconvencional (el más alto y deseable en servidores públicos) guía el comportamiento mediante principios éticos universales, el deber constitucional y la primacía del bien común por encima de presiones coyunturales o intereses particulares."
       }
     ],
-    "respuestaCorrecta": "C",
+    "respuestaCorrecta": "A",
     "justificacion": "Las pruebas de integridad de la CNSC evalúan el razonamiento moral según la escala de Kohlberg. El nivel posconvencional (el más alto y deseable en servidores públicos) guía el comportamiento mediante principios éticos universales, el deber constitucional y la primacía del bien común por encima de presiones coyunturales o intereses particulares.",
     "norma": "Constitución Política de 1991, Art. 209 (Principios de la Función Administrativa) y Código de Integridad",
     "citaNormativa": "La función administrativa está al servicio de los intereses generales y se desarrolla con fundamento en los principios de igualdad, moralidad, eficacia, economía, celeridad, imparcialidad y publicidad.",
@@ -4579,21 +4580,21 @@ const QUESTION_BANK_GESTOR_CI = [
     "opciones": [
       {
         "id": "A",
-        "texto": "Hacerse el de la vista gorda porque no es su función fiscalizar a sus colegas y no desea ganarse enemigos.",
+        "texto": "Omitir el reporte inmediato bajo el argumento de que el control de permanencia corresponde exclusivamente al área de talento humano y no a los pares profesionales.",
         "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: El Código de Integridad del Servicio Público ordena de manera perentoria: 'Denuncio las faltas, delitos o violación de derechos de los que tengo conocimiento en el ejercicio de mi cargo, siempre'. La omisión de denuncia constituye además falta disciplinaria y penal (prevaricato por omisión)."
       },
       {
         "id": "B",
-        "texto": "Denunciar de manera inmediata, reservada y documentada los hechos ante la Oficina de Control Disciplinario Interno y la Dirección de Fiscalización, aportando las evidencias encontradas.",
-        "explicacion": "Correcta. El Código de Integridad del Servicio Público ordena de manera perentoria: 'Denuncio las faltas, delitos o violación de derechos de los que tengo conocimiento en el ejercicio de mi cargo, siempre'. La omisión de denuncia constituye además falta disciplinaria y penal (prevaricato por omisión)."
+        "texto": "Pedirle al compañero una parte de las ganancias para no delatarlo.",
+        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: El Código de Integridad del Servicio Público ordena de manera perentoria: 'Denuncio las faltas, delitos o violación de derechos de los que tengo conocimiento en el ejercicio de mi cargo, siempre'. La omisión de denuncia constituye además falta disciplinaria y penal (prevaricato por omisión)."
       },
       {
         "id": "C",
-        "texto": "Pedirle al compañero una parte de las ganancias para no delatarlo.",
-        "explicacion": "Incorrecta. Esta opción no satisface los lineamientos técnicos ni el marco normativo del caso: El Código de Integridad del Servicio Público ordena de manera perentoria: 'Denuncio las faltas, delitos o violación de derechos de los que tengo conocimiento en el ejercicio de mi cargo, siempre'. La omisión de denuncia constituye además falta disciplinaria y penal (prevaricato por omisión)."
+        "texto": "Denunciar de manera inmediata, reservada y documentada los hechos ante la Oficina de Control Disciplinario Interno y la Dirección de Fiscalización, aportando las evidencias encontradas.",
+        "explicacion": "Correcta. El Código de Integridad del Servicio Público ordena de manera perentoria: 'Denuncio las faltas, delitos o violación de derechos de los que tengo conocimiento en el ejercicio de mi cargo, siempre'. La omisión de denuncia constituye además falta disciplinaria y penal (prevaricato por omisión)."
       }
     ],
-    "respuestaCorrecta": "B",
+    "respuestaCorrecta": "C",
     "justificacion": "El Código de Integridad del Servicio Público ordena de manera perentoria: 'Denuncio las faltas, delitos o violación de derechos de los que tengo conocimiento en el ejercicio de mi cargo, siempre'. La omisión de denuncia constituye además falta disciplinaria y penal (prevaricato por omisión).",
     "norma": "Código de Integridad - Valor Honestidad y Ley 1952 de 2019, Art. 38 Num. 24",
     "citaNormativa": "Lo que hago en Honestidad: Denuncio las faltas, delitos o violación de derechos de los que tengo conocimiento en el ejercicio de mi cargo siempre.",
