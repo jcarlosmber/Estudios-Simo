@@ -24,8 +24,8 @@ const PROFILES_DATA = {
       "Implementar políticas y estrategias para la planeación, formulación, implementación, mantenimiento y evaluación de convenios de cooperación internacional e interinstitucional."
     ],
     filterOptions: [
-      { id: "interleaving", label: "🌪️ Modo Intercalado (Interleaving - Mezcla Mixta)" },
-      { id: "todos", label: "⚡ Todos los Ejes de la DIAN (Banco Completo)" },
+      { id: "interleaving", label: "🌪️ Modo Intercalado (Mezcla Mixta)" },
+      { id: "todos", label: "⚡ Todos los Ejes de la DIAN" },
       { id: "tributario", label: "📊 Procedimiento Tributario y Fiscalización" },
       { id: "aduanero", label: "🚢 Régimen Aduanero y Comercio Exterior" },
       { id: "comportamentales", label: "🤝 Competencias Comportamentales Gestor III" },
@@ -72,32 +72,32 @@ const PROFILES_DATA = {
       "Realizar la gestión documental relacionada con trámites, solicitudes técnicas, denuncias y reportes de operaciones sospechosas, propios del proceso de fiscalización y liquidación que permitan establecer la trazabilidad de lo actuado, de acuerdo con la normativa vigente y los procedimientos establecidos."
     ],
     filterOptions: [
-      { id: "interleaving", label: "🌪️ Modo Intercalado (Interleaving - Mezcla Mixta)" },
-      { id: "todos", label: "⚡ Todos los Casos Analista IV (Banco Completo - 109 Casos)" },
+      { id: "interleaving", label: "🌪️ Modo Intercalado (Mezcla Mixta)" },
+      { id: "todos", label: "⚡ Todos los Casos Analista IV" },
       // Ejes Funcionales
-      { id: "comprension_lectora", label: "📖 Lectura Crítica y Casos Complejos (6)" },
-      { id: "fiscalizacion_aduanera_procedimiento", label: "🔍 Fiscalización, Pruebas y Destrucción Aduanera (16)" },
-      { id: "obligaciones_tributarias", label: "📋 Obligaciones Formales y Sustanciales (7)" },
-      { id: "gestion_documental", label: "📁 Gestión Documental y Trazabilidad (7)" },
-      { id: "lavado_activos_ros", label: "🚨 Lavado de Activos, SARLAFT y ROS (6)" },
-      { id: "liquidacion_impuestos", label: "📑 Liquidación de Impuestos Nacionales (6)" },
-      { id: "normativa_cambiaria", label: "💱 Normativa Cambiaria e Infracciones (5)" },
-      { id: "razonamiento_matematico", label: "🧮 Razonamiento Matemático y Sanciones (5)" },
-      { id: "estructura_dian", label: "🏛️ Estructura Organizacional DIAN (3)" },
-      { id: "misionalidad", label: "🎯 Misionalidad de la DIAN (3)" },
+      { id: "comprension_lectora", label: "📖 Lectura Crítica y Casos Complejos" },
+      { id: "fiscalizacion_aduanera_procedimiento", label: "🔍 Fiscalización, Pruebas y Destrucción Aduanera" },
+      { id: "obligaciones_tributarias", label: "📋 Obligaciones Formales y Sustanciales" },
+      { id: "gestion_documental", label: "📁 Gestión Documental y Trazabilidad" },
+      { id: "lavado_activos_ros", label: "🚨 Lavado de Activos, SARLAFT y ROS" },
+      { id: "liquidacion_impuestos", label: "📑 Liquidación de Impuestos Nacionales" },
+      { id: "normativa_cambiaria", label: "💱 Normativa Cambiaria e Infracciones" },
+      { id: "razonamiento_matematico", label: "🧮 Razonamiento Matemático y Sanciones" },
+      { id: "estructura_dian", label: "🏛️ Estructura Organizacional DIAN" },
+      { id: "misionalidad", label: "🎯 Misionalidad de la DIAN" },
       // Competencias Comportamentales (Nivel Técnico)
-      { id: "adaptabilidad", label: "🔄 Adaptabilidad (Niveles 1 y 2 - 6 Casos)" },
-      { id: "comportamiento_etico", label: "🛡️ Comportamiento Ético (Niveles 1 y 4 - 6 Casos)" },
-      { id: "comunicacion_efectiva", label: "🗣️ Comunicación Efectiva (Niveles 1 y 2 - 6 Casos)" },
-      { id: "trabajo_equipo", label: "🤝 Trabajo en Equipo (Niveles 1 y 2 - 6 Casos)" },
-      { id: "orientacion_logro", label: "🎯 Orientación al Logro (Nivel 1 - 3 Casos)" },
-      { id: "orientacion_usuario", label: "👥 Orientación al Usuario y Ciudadano (Nivel 1 - 3 Casos)" },
+      { id: "adaptabilidad", label: "🔄 Adaptabilidad" },
+      { id: "comportamiento_etico", label: "🛡️ Comportamiento Ético" },
+      { id: "comunicacion_efectiva", label: "🗣️ Comunicación Efectiva" },
+      { id: "trabajo_equipo", label: "🤝 Trabajo en Equipo" },
+      { id: "orientacion_logro", label: "🎯 Orientación al Logro" },
+      { id: "orientacion_usuario", label: "👥 Orientación al Usuario y Ciudadano" },
       // Valores de Integridad
-      { id: "compromiso", label: "⭐ Compromiso (3)" },
-      { id: "diligencia", label: "⚡ Diligencia (3)" },
-      { id: "honestidad", label: "🕊️ Honestidad (3)" },
-      { id: "justicia", label: "⚖️ Justicia (3)" },
-      { id: "respeto", label: "🤝 Respeto (3)" }
+      { id: "compromiso", label: "⭐ Compromiso" },
+      { id: "diligencia", label: "⚡ Diligencia" },
+      { id: "honestidad", label: "🕊️ Honestidad" },
+      { id: "justicia", label: "⚖️ Justicia" },
+      { id: "respeto", label: "🤝 Respeto" }
     ]
   }
 };

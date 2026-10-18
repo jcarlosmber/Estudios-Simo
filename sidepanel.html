@@ -82,32 +82,31 @@
 
       <!-- VISTA 1: PRÁCTICA PRINCIPAL -->
       <div id="subviewPractice" style="display: flex; flex-direction: column; gap: 14px; width: 100%;">
-        <!-- Filtro por Ejes Temáticos con Estilo Píldora/Card -->
+        <!-- Filtro por Ejes Temáticos con Estilo Píldora/Card Mobile Friendly -->
         <div id="practiceFilterBar" class="duo-filter-card">
-        <div class="duo-filter-label">
-          <span>🎯</span>
-          <span>Eje / Modo:</span>
+          <div class="duo-filter-header">
+            <div class="duo-filter-label">
+              <span style="font-size: 16px;">🎯</span>
+              <span>Eje Temático de Estudio</span>
+            </div>
+            <span id="filterEjeProgressText" style="font-size: 11.5px; font-weight: 800; color: #38bdf8; background: rgba(56, 189, 248, 0.14); border: 1px solid rgba(56, 189, 248, 0.35); padding: 3px 10px; border-radius: 20px; white-space: nowrap;">
+              0% estudiado
+            </span>
+          </div>
+
+          <!-- Selector táctil amplio para pantallas móviles -->
+          <div style="position: relative; width: 100%;">
+            <select id="selectEjeFilter" class="duo-filter-select">
+              <option value="interleaving">🌪️ Modo Intercalado (Mezcla Mixta)</option>
+              <option value="todos">⚡ Todos los Ejes de la DIAN</option>
+            </select>
+          </div>
+
+          <!-- Barra de progreso visual del eje seleccionado -->
+          <div id="filterEjeProgressWrap" style="width: 100%; height: 7px; background: rgba(255, 255, 255, 0.08); border-radius: 999px; overflow: hidden; position: relative;">
+            <div id="filterEjeProgressBar" style="height: 100%; width: 0%; background: linear-gradient(90deg, #38bdf8, #10b981); border-radius: 999px; transition: width 0.35s ease; box-shadow: 0 0 10px rgba(56, 189, 248, 0.45);"></div>
+          </div>
         </div>
-        <select id="selectEjeFilter" class="duo-filter-select">
-          <option value="interleaving">🌪️ Modo Intercalado (Mezcla Mixta)</option>
-          <option value="todos">⚡ Todos los Ejes de la DIAN (100 Casos)</option>
-          <option value="tributario">📊 Procedimiento Tributario y Fiscalización (24)</option>
-          <option value="aduanero">🚢 Régimen Aduanero y Comercio Exterior (15)</option>
-          <option value="comportamentales">🤝 Competencias Comportamentales Gestor III (10)</option>
-          <option value="integridad">⭐ Valores de Integridad y CGD (9)</option>
-          <option value="cpaca">📜 Derecho Administrativo y CPACA (7)</option>
-          <option value="cobranzas">⚖️ Cobro Coactivo y Títulos Ejecutivos (6)</option>
-          <option value="contratacion">📄 Contratación Estatal y Convenios (6)</option>
-          <option value="servicio">👥 Derecho de Petición y Atención al Ciudadano (5)</option>
-          <option value="cambiario">💱 Régimen Cambiario y Lavado de Activos (4)</option>
-          <option value="control_interno">🛡️ Control Interno y 3 Líneas de Defensa (3)</option>
-          <option value="misionalidad">🏛️ Misionalidad y Estructura DIAN (3)</option>
-          <option value="mipg">📐 Modelo MIPG y Desempeño FURAG (3)</option>
-          <option value="indicadores">📈 Indicadores de Gestión (2)</option>
-          <option value="razonamiento">🧠 Razonamiento Analítico (2)</option>
-          <option value="rendicion_cuentas">📢 Rendición de Cuentas (1)</option>
-        </select>
-      </div>
 
       <!-- Carátula de Inicio de Modo Práctica -->
       <div id="practiceCoverCard" style="display: none; background-color: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 32px 20px; text-align: center; flex-direction: column; align-items: center; gap: 16px; box-shadow: var(--shadow-card);">
@@ -357,12 +356,250 @@
       </div>
     </section>
 
+    <!-- 2. PESTAÑA: SIMULACRO REAL AREANDINA (DIAN 2676) -->
+    <section id="tab-simulacro" class="tab-content" style="display: none; flex-direction: column; gap: 14px; width: 100%;">
+      <!-- Widget de Cuenta Regresiva al 8 de Noviembre de 2026 -->
+      <div style="background: linear-gradient(135deg, rgba(30, 41, 59, 0.95), rgba(15, 23, 42, 0.98)); border: 1px solid rgba(245, 158, 11, 0.35); border-radius: var(--radius-md); padding: 14px 16px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4); display: flex; flex-direction: column; gap: 10px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255, 255, 255, 0.08); padding-bottom: 8px;">
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <span style="font-size: 20px;">⏱️</span>
+            <div>
+              <div style="font-size: 13px; font-weight: 800; color: #f8fafc; letter-spacing: 0.3px;">FECHA OFICIAL PRUEBAS ESCRITAS</div>
+              <div style="font-size: 11px; color: var(--accent-gold); font-weight: 700;">Domingo 8 de Noviembre de 2026 • 8:00 a.m.</div>
+            </div>
+          </div>
+          <span style="font-size: 10px; background: rgba(245, 158, 11, 0.15); color: #f59e0b; border: 1px solid rgba(245, 158, 11, 0.4); padding: 3px 8px; border-radius: 12px; font-weight: 800;">
+            AREANDINA / CNSC
+          </span>
+        </div>
+
+        <!-- Cajas de Cuenta Regresiva -->
+        <div id="simulacroCountdownGrid" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; text-align: center;">
+          <div style="background: rgba(11, 17, 32, 0.85); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 8px; padding: 6px 4px;">
+            <div id="countdownDays" style="font-size: 18px; font-weight: 900; color: #38bdf8;">--</div>
+            <div style="font-size: 9px; color: #94a3b8; font-weight: 700; text-transform: uppercase;">Días</div>
+          </div>
+          <div style="background: rgba(11, 17, 32, 0.85); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 8px; padding: 6px 4px;">
+            <div id="countdownHours" style="font-size: 18px; font-weight: 900; color: #f8fafc;">--</div>
+            <div style="font-size: 9px; color: #94a3b8; font-weight: 700; text-transform: uppercase;">Horas</div>
+          </div>
+          <div style="background: rgba(11, 17, 32, 0.85); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 8px; padding: 6px 4px;">
+            <div id="countdownMins" style="font-size: 18px; font-weight: 900; color: #f8fafc;">--</div>
+            <div style="font-size: 9px; color: #94a3b8; font-weight: 700; text-transform: uppercase;">Min</div>
+          </div>
+          <div style="background: rgba(11, 17, 32, 0.85); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 8px; padding: 6px 4px;">
+            <div id="countdownSecs" style="font-size: 18px; font-weight: 900; color: #f59e0b;">--</div>
+            <div style="font-size: 9px; color: #94a3b8; font-weight: 700; text-transform: uppercase;">Seg</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- VISTA 1: CONFIGURADOR DEL SIMULACRO -->
+      <div id="simulacroSetupView" style="display: flex; flex-direction: column; gap: 14px; width: 100%;">
+        <div style="background-color: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 18px; display: flex; flex-direction: column; gap: 14px;">
+          <div>
+            <h3 style="font-size: 16px; font-weight: 800; color: #f8fafc; margin: 0 0 4px 0;">Simulador de Examen Real</h3>
+            <p style="font-size: 12px; color: #94a3b8; line-height: 1.45; margin: 0;">
+              Entrena bajo las condiciones exactas de la Guía Oficial Areandina: tiempo límite, casos de juicio situacional (PJS con 3 opciones A, B, C) y calificación con umbral eliminatorio de 70.00 puntos.
+            </p>
+          </div>
+
+          <!-- Selector de Longitud de Prueba -->
+          <div style="display: flex; flex-direction: column; gap: 6px;">
+            <label style="font-size: 11px; font-weight: 800; color: var(--accent-blue); text-transform: uppercase;">
+              1. Cantidad de Casos:
+            </label>
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px;">
+              <button type="button" class="simulacro-opt-btn active" data-count="15" id="btnSimCount15" style="background: rgba(56, 189, 248, 0.15); border: 1px solid #38bdf8; color: #f8fafc; border-radius: 8px; padding: 10px 4px; display: flex; flex-direction: column; align-items: center; gap: 2px; cursor: pointer;">
+                <span style="font-size: 14px; font-weight: 900;">15 Casos</span>
+                <span style="font-size: 10px; color: #38bdf8;">Sprint (~30m)</span>
+              </button>
+              <button type="button" class="simulacro-opt-btn" data-count="30" id="btnSimCount30" style="background: var(--bg-card); border: 1px solid var(--border-color); color: #cbd5e1; border-radius: 8px; padding: 10px 4px; display: flex; flex-direction: column; align-items: center; gap: 2px; cursor: pointer;">
+                <span style="font-size: 14px; font-weight: 900;">30 Casos</span>
+                <span style="font-size: 10px; color: #94a3b8;">Estándar (~1h)</span>
+              </button>
+              <button type="button" class="simulacro-opt-btn" data-count="60" id="btnSimCount60" style="background: var(--bg-card); border: 1px solid var(--border-color); color: #cbd5e1; border-radius: 8px; padding: 10px 4px; display: flex; flex-direction: column; align-items: center; gap: 2px; cursor: pointer;">
+                <span style="font-size: 14px; font-weight: 900;">60 Casos</span>
+                <span style="font-size: 10px; color: #94a3b8;">Maratón (~2h)</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Selector de Modo de Interfaz -->
+          <div style="display: flex; flex-direction: column; gap: 6px;">
+            <label style="font-size: 11px; font-weight: 800; color: var(--accent-blue); text-transform: uppercase;">
+              2. Modo de Respuesta:
+            </label>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+              <button type="button" class="simulacro-mode-btn active" data-mode="optical" id="btnSimModeOptical" style="background: rgba(245, 158, 11, 0.12); border: 1px solid #f59e0b; color: #f8fafc; border-radius: 8px; padding: 10px; display: flex; align-items: center; gap: 8px; cursor: pointer;">
+                <span style="font-size: 20px;">✏️</span>
+                <div style="text-align: left;">
+                  <div style="font-size: 12px; font-weight: 800;">Hoja Óptica Virtual</div>
+                  <div style="font-size: 10px; color: #f59e0b;">Burbujas A, B, C (Lápiz N° 2)</div>
+                </div>
+              </button>
+              <button type="button" class="simulacro-mode-btn" data-mode="classic" id="btnSimModeClassic" style="background: var(--bg-card); border: 1px solid var(--border-color); color: #cbd5e1; border-radius: 8px; padding: 10px; display: flex; align-items: center; gap: 8px; cursor: pointer;">
+                <span style="font-size: 20px;">📱</span>
+                <div style="text-align: left;">
+                  <div style="font-size: 12px; font-weight: 800;">Digital Táctil</div>
+                  <div style="font-size: 10px; color: #94a3b8;">Tarjetas completas</div>
+                </div>
+              </button>
+            </div>
+          </div>
+
+          <!-- Banner Informativo Oficial -->
+          <div style="background: rgba(16, 185, 129, 0.08); border-left: 3px solid #10b981; padding: 10px 12px; border-radius: 6px;">
+            <div style="font-size: 11px; font-weight: 800; color: #34d399; margin-bottom: 2px;">
+              ⚖️ REGLA ELIMINATORIA OFICIAL (PÁG 9 Y 25)
+            </div>
+            <div style="font-size: 11px; color: #cbd5e1; line-height: 1.4;">
+              El umbral mínimo aprobatorio en Competencias Funcionales es <strong>70.00 / 100</strong>. Quien no lo alcance es excluido del concurso y no se califica Comportamentales ni Integridad.
+            </div>
+          </div>
+
+          <button id="btnStartSimulacro" type="button" class="btn-primary" style="padding: 14px; font-size: 15px; font-weight: 800; background: linear-gradient(135deg, #f59e0b, #d97706); color: #0b1120; border: none; border-radius: 10px; cursor: pointer; box-shadow: 0 4px 15px rgba(245, 158, 11, 0.35);">
+            🚀 Iniciar Simulacro de Examen
+          </button>
+        </div>
+      </div>
+
+      <!-- VISTA 2: EJECUCIÓN ACTIVA DEL SIMULACRO -->
+      <div id="simulacroActiveView" style="display: none; flex-direction: column; gap: 12px; width: 100%;">
+        <!-- Barra de Estado del Simulacro -->
+        <div style="background: rgba(15, 23, 42, 0.95); border: 1px solid var(--border-color); border-radius: 10px; padding: 10px 14px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 58px; z-index: 20; backdrop-filter: blur(8px);">
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <span style="font-size: 12px; font-weight: 800; color: var(--accent-blue);" id="simQuestionCounter">Pregunta 1 de 15</span>
+            <button id="btnToggleSimGrid" type="button" style="background: rgba(56, 189, 248, 0.15); border: 1px solid rgba(56, 189, 248, 0.3); color: #38bdf8; font-size: 11px; font-weight: 700; padding: 3px 8px; border-radius: 6px; cursor: pointer;">
+              🗺️ Mapa
+            </button>
+          </div>
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <div style="display: flex; align-items: center; gap: 4px; font-size: 13px; font-weight: 800; color: #f59e0b; background: rgba(245, 158, 11, 0.15); padding: 4px 10px; border-radius: 16px; border: 1px solid rgba(245, 158, 11, 0.3);">
+              <span>⏳</span>
+              <span id="simTimerClock">37:30</span>
+            </div>
+            <button id="btnFinishSimulacroEarly" type="button" style="background: rgba(239, 68, 68, 0.15); border: 1px solid rgba(239, 68, 68, 0.4); color: #f87171; font-size: 11px; font-weight: 800; padding: 5px 10px; border-radius: 6px; cursor: pointer;">
+              Entregar ➔
+            </button>
+          </div>
+        </div>
+
+        <!-- Mapa Colapsable de Preguntas (Cuadrícula Areandina) -->
+        <div id="simBubbleMap" style="display: none; background: rgba(15, 23, 42, 0.95); border: 1px solid var(--border-color); border-radius: 10px; padding: 12px; grid-template-columns: repeat(5, 1fr); gap: 6px; max-height: 180px; overflow-y: auto;">
+          <!-- Generado dinámicamente -->
+        </div>
+
+        <!-- Tarjeta del Caso Actual -->
+        <div style="background-color: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 18px; display: flex; flex-direction: column; gap: 12px;">
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <span id="simEjeBadge" style="font-size: 11px; font-weight: 800; color: #38bdf8; background: rgba(56, 189, 248, 0.12); padding: 3px 10px; border-radius: 12px; border: 1px solid rgba(56, 189, 248, 0.25);">
+              Eje Temático
+            </span>
+            <button id="btnBookmarkSimQuestion" type="button" style="background: none; border: none; font-size: 18px; cursor: pointer;" title="Marcar para revisar luego">
+              🔖
+            </button>
+          </div>
+
+          <!-- Caso Oficial -->
+          <div style="background: rgba(11, 17, 32, 0.6); border-left: 3px solid var(--accent-blue); padding: 12px; border-radius: 6px;">
+            <div style="font-size: 10px; font-weight: 800; color: #94a3b8; text-transform: uppercase; margin-bottom: 4px;">
+              Situación Hipotética / Caso (PJS)
+            </div>
+            <div id="simCaseText" style="font-size: 13px; line-height: 1.6; color: #f1f5f9;">
+              Cargando caso...
+            </div>
+          </div>
+
+          <!-- Enunciado / Tarea -->
+          <div>
+            <div style="font-size: 10px; font-weight: 800; color: #f59e0b; text-transform: uppercase; margin-bottom: 4px;">
+              Enunciado / Tarea
+            </div>
+            <div id="simEnunciadoText" style="font-size: 13px; font-weight: 700; line-height: 1.5; color: #ffffff;">
+              Cargando enunciado...
+            </div>
+          </div>
+
+          <!-- Contenedor de Opciones (Clásico o Burbuja Óptica) -->
+          <div id="simOptionsContainer" style="display: flex; flex-direction: column; gap: 10px; margin-top: 6px;">
+            <!-- Opciones generadas dinámicamente -->
+          </div>
+
+          <!-- Botones de Navegación del Simulacro -->
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--border-color);">
+            <button id="btnPrevSimQuestion" type="button" class="btn-secondary" style="padding: 8px 16px; font-size: 12px; font-weight: 700;">
+              ⬅️ Anterior
+            </button>
+            <button id="btnNextSimQuestion" type="button" class="btn-primary" style="padding: 8px 20px; font-size: 12px; font-weight: 700;">
+              Siguiente ➔
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- VISTA 3: RESULTADOS Y DIAGNÓSTICO OFICIAL -->
+      <div id="simulacroResultView" style="display: none; flex-direction: column; gap: 14px; width: 100%;">
+        <div style="background-color: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 22px 18px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 14px; box-shadow: var(--shadow-card);">
+          <div id="simResultIcon" style="width: 72px; height: 72px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 36px; border: 3px solid #10b981; background: rgba(16, 185, 129, 0.15);">
+            🎉
+          </div>
+
+          <div>
+            <div id="simResultVerdict" style="font-size: 18px; font-weight: 900; color: #10b981;">
+              ¡SUPERASTE EL UMBRAL ELIMINATORIO!
+            </div>
+            <p id="simResultVerdictSub" style="font-size: 12px; color: #94a3b8; margin-top: 4px; line-height: 1.4;">
+              Puntaje superior a 70.00 pts en Competencias Funcionales. Según la Guía Areandina, continúas en concurso para calificación de Comportamentales e Integridad.
+            </p>
+          </div>
+
+          <div style="background: rgba(11, 17, 32, 0.8); border: 1px solid var(--border-color); border-radius: 12px; padding: 14px 20px; width: 100%; display: flex; justify-content: space-around; align-items: center;">
+            <div>
+              <div style="font-size: 10px; color: #94a3b8; font-weight: 700; text-transform: uppercase;">Puntaje Oficial</div>
+              <div id="simResultScoreVal" style="font-size: 28px; font-weight: 900; color: #38bdf8;">82.50</div>
+              <div style="font-size: 10px; color: #64748b;">(Escala 0 a 100)</div>
+            </div>
+            <div style="height: 40px; width: 1px; background: rgba(255, 255, 255, 0.1);"></div>
+            <div>
+              <div style="font-size: 10px; color: #94a3b8; font-weight: 700; text-transform: uppercase;">Aciertos</div>
+              <div id="simResultHitsVal" style="font-size: 28px; font-weight: 900; color: #10b981;">12 / 15</div>
+              <div id="simResultAccuracyVal" style="font-size: 10px; color: #10b981;">80% de acierto</div>
+            </div>
+          </div>
+
+          <!-- Tiempo y Velocidad -->
+          <div style="display: flex; gap: 8px; width: 100%;">
+            <div style="flex: 1; background: rgba(11, 17, 32, 0.5); padding: 10px; border-radius: 8px; border: 1px solid var(--border-color);">
+              <div style="font-size: 10px; color: #94a3b8;">Tiempo Total</div>
+              <div id="simResultTimeVal" style="font-size: 14px; font-weight: 800; color: #f8fafc; margin-top: 2px;">24m 12s</div>
+            </div>
+            <div style="flex: 1; background: rgba(11, 17, 32, 0.5); padding: 10px; border-radius: 8px; border: 1px solid var(--border-color);">
+              <div style="font-size: 10px; color: #94a3b8;">Promedio / Caso</div>
+              <div id="simResultPaceVal" style="font-size: 14px; font-weight: 800; color: #f59e0b; margin-top: 2px;">1.6 min</div>
+            </div>
+          </div>
+
+          <!-- Botones de Acción -->
+          <div style="display: flex; gap: 10px; width: 100%;">
+            <button id="btnReviewSimAnswers" type="button" class="btn-secondary" style="flex: 1; padding: 12px; font-size: 13px; font-weight: 700;">
+              🔍 Revisar Respuestas
+            </button>
+            <button id="btnRestartSimulacro" type="button" class="btn-primary" style="flex: 1; padding: 12px; font-size: 13px; font-weight: 800;">
+              🔄 Nuevo Simulacro
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- PESTAÑA: RECURSOS Y BIBLIOTECA (CENTRO DE APRENDIZAJE DUOLINGO) -->
     <section id="tab-recursos" class="tab-content" style="display: none; flex-direction: column; gap: 16px;">
       <div class="duo-section-header">
         <div class="duo-section-title">📚 Biblioteca de Recursos</div>
         <div class="duo-section-sub">Herramientas estratégicas y material de alta recordación para el concurso</div>
       </div>
+
 
       <div class="duo-hub-grid">
         <div class="duo-hub-card gold" id="hubCardTips">
@@ -406,6 +643,15 @@
           <div class="hub-card-content">
             <div class="hub-card-title">Mi Cargo y Funciones OPEC</div>
             <div class="hub-card-desc">Propósito del empleo, funciones esenciales y ficha DIAN 2676</div>
+          </div>
+          <span class="hub-card-arrow">➔</span>
+        </div>
+
+        <div class="duo-hub-card red" id="hubCardDiaD" style="border-left: 4px solid #ef4444;">
+          <div class="hub-card-icon">🛡️</div>
+          <div class="hub-card-content">
+            <div class="hub-card-title" style="color: #fca5a5;">Protocolo Día D (8 de Noviembre)</div>
+            <div class="hub-card-desc">Checklist de ingreso, documentos válidos, lápiz N° 2 y causales de expulsión oficial</div>
           </div>
           <span class="hub-card-arrow">➔</span>
         </div>
@@ -624,8 +870,18 @@
             </span>
           </div>
 
-          <p style="font-size: 11px; color: var(--text-secondary); line-height: 1.35;">
-            Simula tus puntajes esperados con los pesos reales del concurso (Funcionales 65%, Comportamentales 15%, Integridad 10%, Antecedentes 10%):
+          <div style="display: flex; flex-direction: column; gap: 4px; margin-top: 4px;">
+            <label style="font-size: 10px; font-weight: 800; color: #94a3b8; text-transform: uppercase;">Modalidad de Convocatoria (Págs. 9-11 Guía):</label>
+            <select id="selectCalcModality" class="duo-filter-select" style="font-size: 11px; padding: 6px 10px; width: 100%;">
+              <option value="ingreso_con_exp">Ingreso con Experiencia (65% Func / 15% Comp / 10% Integ / 10% Antec)</option>
+              <option value="ingreso_sin_exp">Ingreso sin Experiencia (70% Func / 20% Comp / 10% Integ / 0% Antec)</option>
+              <option value="ascenso_con_exp">Ascenso con Experiencia (60% Func / 15% Comp / 10% Integ / 15% Antec)</option>
+              <option value="ascenso_sin_exp">Ascenso sin Experiencia (65% Func / 20% Comp / 10% Integ / 5% Antec)</option>
+            </select>
+          </div>
+
+          <p id="calcModalityNote" style="font-size: 11px; color: var(--text-secondary); line-height: 1.35; margin-top: 2px;">
+            Simula tus puntajes esperados con los pesos reales del concurso según la Guía Oficial Areandina:
           </p>
 
           <!-- Slider Funcionales (65% Eliminatorio) -->
@@ -761,23 +1017,59 @@
         <button id="btnCloseSettingsModalX" class="duo-modal-close" title="Cerrar">✕</button>
       </div>
 
-      <div class="duo-settings-list">
-        <!-- Perfil / Cargo -->
+      <div class="duo-settings-list" style="display: flex; flex-direction: column; gap: 12px;">
+        <!-- 1. Perfil / Cargo -->
         <div class="duo-setting-row" id="settingRowProfile">
           <div class="setting-row-left">
-            <span class="setting-row-icon">👔</span>
+            <span class="setting-row-icon" style="background: rgba(56, 189, 248, 0.15); border-color: rgba(56, 189, 248, 0.35);">👔</span>
             <div>
               <div class="setting-row-title">Perfil Oficial DIAN & OPEC</div>
-              <div class="setting-row-sub">Configura tu empleo, funciones y propósito</div>
+              <div class="setting-row-sub">Configura tu empleo, funciones y propósito misional</div>
             </div>
           </div>
-          <button id="btnSettingsOpenJob" class="duo-btn-chip">Configurar</button>
+          <button id="btnSettingsOpenJob" class="duo-btn-chip duo-chip-blue">Cambiar</button>
         </div>
 
-        <!-- Sonido -->
+        <!-- 2. Microaprendizaje en 2do Plano (SOLICITADO EN 2DA POSICIÓN) -->
+        <div class="duo-setting-row" id="settingRowBgTips">
+          <div class="setting-row-left">
+            <span class="setting-row-icon" style="background: rgba(245, 158, 11, 0.15); border-color: rgba(245, 158, 11, 0.35);">🔔</span>
+            <div>
+              <div class="setting-row-title">Microaprendizaje & Notificaciones</div>
+              <div class="setting-row-sub">Preguntas flash y recordatorios en segundo plano</div>
+            </div>
+          </div>
+          <button id="btnSettingsOpenBgTips" class="duo-btn-chip duo-chip-amber">Configurar</button>
+        </div>
+
+        <!-- 3. Cuenta de Aspirante & Sincronización Nube -->
+        <div class="duo-setting-row" id="settingRowAccount" style="flex-direction: column; align-items: stretch; gap: 12px;">
+          <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+            <div class="setting-row-left">
+              <span class="setting-row-icon" style="background: rgba(16, 185, 129, 0.15); border-color: rgba(16, 185, 129, 0.35);">👤</span>
+              <div>
+                <div class="setting-row-title">Cuenta de Aspirante</div>
+                <div id="settingsAccountSub" class="setting-row-sub">Aspirante: jcarlos • 🟢 Sincronización activa</div>
+              </div>
+            </div>
+            <button id="btnOpenAccountModal" class="duo-btn-chip duo-chip-blue" type="button">Mi Cuenta</button>
+          </div>
+          <!-- Edición rápida directa del usuario sin salir de Ajustes -->
+          <div style="display: flex; gap: 8px; width: 100%; box-sizing: border-box; align-items: center; background: rgba(15, 23, 42, 0.85); padding: 10px 12px; border-radius: 10px; border: 1.5px solid rgba(56, 189, 248, 0.3);">
+            <span style="font-size: 13px; color: #94a3b8; font-weight: 800;">Usuario:</span>
+            <input type="text" id="inputSettingsQuickUserId" value="" placeholder="Tu nombre de usuario" style="flex: 1; min-width: 0; background: #0b1120; border: 1px solid rgba(255, 255, 255, 0.15); color: #fff; padding: 10px 12px; border-radius: 8px; font-size: 14px; font-weight: 600; min-height: 42px; box-sizing: border-box;">
+            <button id="btnSaveQuickUser" class="btn-primary" style="padding: 10px 16px; font-size: 13px; font-weight: 800; white-space: nowrap; background: linear-gradient(135deg, #0284c7, #2563eb); border-radius: 8px; min-height: 42px;" type="button">💾 Guardar</button>
+          </div>
+          <!-- Botón para reconfigurar usuario y cargo -->
+          <button id="btnReopenOnboarding" type="button" style="width: 100%; padding: 10px 14px; font-size: 12.5px; font-weight: 800; background: rgba(168, 85, 247, 0.15); border: 1px solid rgba(168, 85, 247, 0.4); color: #c084fc; border-radius: 8px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; transition: all 0.2s;" title="Cambiar usuario o alternar el cargo a estudiar">
+            <span>🎯</span> Cambiar Usuario y Cargo a Estudiar
+          </button>
+        </div>
+
+        <!-- 4. Sonido -->
         <div class="duo-setting-row">
           <div class="setting-row-left">
-            <span class="setting-row-icon">🔊</span>
+            <span class="setting-row-icon" style="background: rgba(56, 189, 248, 0.15); border-color: rgba(56, 189, 248, 0.35);">🔊</span>
             <div>
               <div class="setting-row-title">Efectos de Sonido</div>
               <div class="setting-row-sub">Sonidos de acierto, error y cronómetro</div>
@@ -786,54 +1078,22 @@
           <button id="btnSoundToggle" class="duo-sound-toggle-btn" title="Alternar Sonido">🔊</button>
         </div>
 
-        <!-- Cuenta de Aspirante & Sincronización Nube -->
-        <div class="duo-setting-row" id="settingRowAccount" style="flex-direction: column; align-items: stretch; gap: 10px;">
-          <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
-            <div class="setting-row-left">
-              <span class="setting-row-icon">👤</span>
-              <div>
-                <div class="setting-row-title">Cuenta de Aspirante</div>
-                <div id="settingsAccountSub" class="setting-row-sub">Aspirante: jcarlos • 🟢 Nube activa</div>
-              </div>
-            </div>
-            <button id="btnOpenAccountModal" class="duo-btn-chip duo-chip-blue" type="button">Mi Cuenta</button>
-          </div>
-          <!-- Edición rápida directa del usuario sin salir de Ajustes -->
-          <div style="display: flex; gap: 8px; width: 100%; box-sizing: border-box; align-items: center; background: rgba(15, 23, 42, 0.65); padding: 8px 10px; border-radius: 8px; border: 1px solid rgba(56, 189, 248, 0.25);">
-            <span style="font-size: 12px; color: #94a3b8; font-weight: 700;">Usuario:</span>
-            <input type="text" id="inputSettingsQuickUserId" value="jcarlos" placeholder="Tu nombre de usuario" style="flex: 1; min-width: 0; background: #0f172a; border: 1px solid rgba(56, 189, 248, 0.4); color: #fff; padding: 6px 10px; border-radius: 6px; font-size: 13px; font-weight: 600;">
-            <button id="btnSaveQuickUser" class="btn-primary" style="padding: 6px 14px; font-size: 12px; font-weight: 700; white-space: nowrap; background: linear-gradient(135deg, #0284c7, #2563eb); border-radius: 6px;" type="button">💾 Guardar</button>
-          </div>
-        </div>
-
-        <!-- Instalar App / Extensión -->
+        <!-- 5. Instalar App / Extensión -->
         <div class="duo-setting-row">
           <div class="setting-row-left">
-            <span class="setting-row-icon">🧩</span>
+            <span class="setting-row-icon" style="background: rgba(168, 85, 247, 0.15); border-color: rgba(168, 85, 247, 0.35);">🧩</span>
             <div>
               <div class="setting-row-title">Instalar en PC o Celular</div>
-              <div class="setting-row-sub">Extensión Chrome o PWA móvil</div>
+              <div class="setting-row-sub">Extensión Chrome o PWA para teléfono móvil</div>
             </div>
           </div>
           <button id="btnOpenInstallModal" class="duo-btn-chip duo-chip-purple">Instalar</button>
         </div>
-
-        <!-- Microaprendizaje en 2do Plano -->
-        <div class="duo-setting-row" id="settingRowBgTips">
-          <div class="setting-row-left">
-            <span class="setting-row-icon">🔔</span>
-            <div>
-              <div class="setting-row-title">Microaprendizaje en 2º Plano</div>
-              <div class="setting-row-sub">Tips automáticos y recordatorios de estudio</div>
-            </div>
-          </div>
-          <button id="btnSettingsOpenBgTips" class="duo-btn-chip">Opciones</button>
-        </div>
       </div>
 
-      <div style="display: flex; justify-content: flex-end; margin-top: 6px;">
-        <button type="button" id="btnCloseSettingsModal" class="btn-primary" style="padding: 10px 24px; font-size: 14px; min-height: 44px;">
-          Listo
+      <div style="display: flex; justify-content: flex-end; margin-top: 10px;">
+        <button type="button" id="btnCloseSettingsModal" class="btn-primary" style="padding: 12px 30px; font-size: 15px; font-weight: 800; min-height: 48px; border-radius: 12px; width: 100%;">
+          Listo ✓
         </button>
       </div>
     </div>
@@ -911,48 +1171,74 @@
     <div class="modal-card" style="max-width: 520px; width: 95%; max-height: 90vh; overflow-y: auto; -webkit-overflow-scrolling: touch; padding: 20px 18px; border-radius: 14px; box-sizing: border-box; background: linear-gradient(165deg, #131d33 0%, #0d1527 100%); border: 1px solid rgba(56, 189, 248, 0.35); box-shadow: 0 20px 50px rgba(0,0,0,0.85); display: flex; flex-direction: column; gap: 14px;">
       
       <!-- Encabezado táctil accesible -->
-      <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 12px;">
-        <div style="display: flex; align-items: center; gap: 8px;">
-          <span style="font-size: 22px;">🎯</span>
+      <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.12); padding-bottom: 14px;">
+        <div style="display: flex; align-items: center; gap: 12px;">
+          <span style="font-size: 28px;">🎯</span>
           <div>
-            <h3 style="font-size: 16px; font-weight: 800; color: #f8fafc; margin: 0;">Configuración de tu Cargo en SIMO</h3>
-            <span style="font-size: 11px; color: #94a3b8;">Ficha de empleo y funciones para casos situacionales</span>
+            <h3 style="font-size: 18px; font-weight: 800; color: #f8fafc; margin: 0;">Configuración de tu Cargo en SIMO</h3>
+            <span style="font-size: 13px; color: #cbd5e1;">Ficha de empleo y funciones para casos situacionales</span>
           </div>
         </div>
-        <button id="btnCloseJobModalX" type="button" style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); color: #cbd5e1; font-size: 18px; cursor: pointer; width: 36px; height: 36px; border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;" title="Cerrar">✕</button>
+        <button id="btnCloseJobModalX" type="button" style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.15); color: #cbd5e1; font-size: 20px; cursor: pointer; width: 40px; height: 40px; border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;" title="Cerrar">✕</button>
       </div>
 
-      <!-- Selector Rápido de 1 Toque para Celular -->
-      <div style="background: rgba(56, 189, 248, 0.08); border: 1px solid rgba(56, 189, 248, 0.25); border-radius: 10px; padding: 10px 12px; display: flex; flex-direction: column; gap: 8px;">
-        <div style="font-size: 11px; font-weight: 800; color: #38bdf8; text-transform: uppercase; letter-spacing: 0.5px;">
-          ⚡ Carga Rápida Oficial DIAN 2676:
+      <!-- Selector Rápido de Perfil con Tarjetas Táctiles Grandes Especial para Móvil -->
+      <div style="display: flex; flex-direction: column; gap: 10px;">
+        <div style="font-size: 13px; font-weight: 800; color: #38bdf8; text-transform: uppercase; letter-spacing: 0.5px; display: flex; align-items: center; gap: 6px;">
+          <span>⚡</span> Selecciona tu Cargo Oficial DIAN:
         </div>
-        <div style="display: flex; gap: 6px; flex-wrap: wrap;">
-          <button type="button" id="btnQuickProfileGestor" style="background: rgba(56, 189, 248, 0.2); border: 1px solid #38bdf8; color: #38bdf8; font-size: 12px; font-weight: 700; padding: 6px 10px; border-radius: 6px; cursor: pointer; flex: 1 1 auto; text-align: center;">
-            👔 Gestor III (242703)
-          </button>
-          <button type="button" id="btnQuickProfileAnalista" style="background: rgba(148, 163, 184, 0.15); border: 1px solid rgba(148, 163, 184, 0.3); color: #cbd5e1; font-size: 12px; font-weight: 700; padding: 6px 10px; border-radius: 6px; cursor: pointer; flex: 1 1 auto; text-align: center;">
-            📋 Analista IV (236760)
-          </button>
+        
+        <div style="display: flex; flex-direction: column; gap: 10px; width: 100%;">
+          <!-- Tarjeta Gestor III -->
+          <div id="btnQuickProfileGestor" class="profile-selection-card active" style="cursor: pointer;">
+            <div class="profile-selection-icon">👔</div>
+            <div class="profile-selection-info">
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <span class="profile-selection-title">GESTOR III (OPEC 242703)</span>
+                <span id="badgeActiveGestor" class="profile-selection-badge" style="background: rgba(56, 189, 248, 0.2); color: #38bdf8; border: 1px solid #38bdf8;">✓ ACTIVO</span>
+              </div>
+              <span class="profile-selection-sub">Nivel Profesional • Grado 03 • Ficha FT-TAH-1824</span>
+              <div style="display: flex; gap: 6px; margin-top: 4px; font-size: 12px; font-weight: 700;">
+                <span style="color: #34d399; background: rgba(16, 185, 129, 0.15); padding: 2px 8px; border-radius: 6px;">122 Casos</span>
+                <span style="color: #f59e0b; background: rgba(245, 158, 11, 0.15); padding: 2px 8px; border-radius: 6px;">$8.450.000</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tarjeta Analista IV -->
+          <div id="btnQuickProfileAnalista" class="profile-selection-card" style="cursor: pointer;">
+            <div class="profile-selection-icon">📋</div>
+            <div class="profile-selection-info">
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <span class="profile-selection-title">ANALISTA IV (OPEC 236760)</span>
+                <span id="badgeActiveAnalista" class="profile-selection-badge" style="display: none; background: rgba(56, 189, 248, 0.2); color: #38bdf8; border: 1px solid #38bdf8;">✓ ACTIVO</span>
+              </div>
+              <span class="profile-selection-sub">Nivel Técnico • Grado 04 • Ficha AT-FL-2010</span>
+              <div style="display: flex; gap: 6px; margin-top: 4px; font-size: 12px; font-weight: 700;">
+                <span style="color: #34d399; background: rgba(16, 185, 129, 0.15); padding: 2px 8px; border-radius: 6px;">112 Casos</span>
+                <span style="color: #c084fc; background: rgba(168, 85, 247, 0.15); padding: 2px 8px; border-radius: 6px;">19 Vacantes</span>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
-      <form id="jobForm" style="display: flex; flex-direction: column; gap: 12px;">
+      <form id="jobForm" style="display: flex; flex-direction: column; gap: 14px; margin-top: 4px;">
         <div>
-          <label style="font-size: 11px; font-weight: 800; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.5px;">
+          <label style="font-size: 13px; font-weight: 800; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.5px; display: block; margin-bottom: 6px;">
             Denominación del Cargo
           </label>
-          <input type="text" id="inputJobTitle" required style="width: 100%; margin-top: 4px; padding: 10px 12px; background-color: #0b1120; border: 1px solid rgba(255,255,255,0.15); border-radius: 8px; color: #f8fafc; font-size: 14px; outline: none; box-sizing: border-box;">
+          <input type="text" id="inputJobTitle" required style="width: 100%; padding: 12px 14px; background-color: #0b1120; border: 1.5px solid rgba(255,255,255,0.18); border-radius: 10px; color: #f8fafc; font-size: 14.5px; min-height: 46px; outline: none; box-sizing: border-box;">
         </div>
 
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
           <div>
-            <label style="font-size: 11px; font-weight: 800; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.5px;">Código OPEC</label>
-            <input type="text" id="inputJobOpec" style="width: 100%; margin-top: 4px; padding: 10px 12px; background-color: #0b1120; border: 1px solid rgba(255,255,255,0.15); border-radius: 8px; color: #f8fafc; font-size: 14px; outline: none; box-sizing: border-box;">
+            <label style="font-size: 13px; font-weight: 800; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.5px; display: block; margin-bottom: 6px;">Código OPEC</label>
+            <input type="text" id="inputJobOpec" style="width: 100%; padding: 12px 14px; background-color: #0b1120; border: 1.5px solid rgba(255,255,255,0.18); border-radius: 10px; color: #f8fafc; font-size: 14.5px; min-height: 46px; outline: none; box-sizing: border-box;">
           </div>
           <div>
-            <label style="font-size: 11px; font-weight: 800; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.5px;">Nivel</label>
-            <select id="selectJobLevel" style="width: 100%; margin-top: 4px; padding: 10px 12px; background-color: #0b1120; border: 1px solid rgba(255,255,255,0.15); border-radius: 8px; color: #f8fafc; font-size: 14px; outline: none; box-sizing: border-box; cursor: pointer;">
+            <label style="font-size: 13px; font-weight: 800; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.5px; display: block; margin-bottom: 6px;">Nivel</label>
+            <select id="selectJobLevel" style="width: 100%; padding: 12px 14px; background-color: #0b1120; border: 1.5px solid rgba(255,255,255,0.18); border-radius: 10px; color: #f8fafc; font-size: 14.5px; min-height: 46px; outline: none; box-sizing: border-box; cursor: pointer;">
               <option value="Profesional">Profesional</option>
               <option value="Técnico">Técnico</option>
               <option value="Asistencial">Asistencial</option>
@@ -961,23 +1247,23 @@
         </div>
 
         <div>
-          <label style="font-size: 11px; font-weight: 800; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.5px;">Entidad / Convocatoria</label>
-          <input type="text" id="inputJobEntity" style="width: 100%; margin-top: 4px; padding: 10px 12px; background-color: #0b1120; border: 1px solid rgba(255,255,255,0.15); border-radius: 8px; color: #f8fafc; font-size: 14px; outline: none; box-sizing: border-box;">
+          <label style="font-size: 13px; font-weight: 800; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.5px; display: block; margin-bottom: 6px;">Entidad / Convocatoria</label>
+          <input type="text" id="inputJobEntity" style="width: 100%; padding: 12px 14px; background-color: #0b1120; border: 1.5px solid rgba(255,255,255,0.18); border-radius: 10px; color: #f8fafc; font-size: 14.5px; min-height: 46px; outline: none; box-sizing: border-box;">
         </div>
 
         <div>
-          <label style="font-size: 11px; font-weight: 800; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.5px;">Propósito Principal</label>
-          <textarea id="inputJobPurpose" rows="3" style="width: 100%; margin-top: 4px; padding: 10px 12px; background-color: #0b1120; border: 1px solid rgba(255,255,255,0.15); border-radius: 8px; color: #f8fafc; font-size: 13px; line-height: 1.5; outline: none; resize: vertical; box-sizing: border-box;"></textarea>
+          <label style="font-size: 13px; font-weight: 800; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.5px; display: block; margin-bottom: 6px;">Propósito Principal</label>
+          <textarea id="inputJobPurpose" rows="3" style="width: 100%; padding: 12px 14px; background-color: #0b1120; border: 1.5px solid rgba(255,255,255,0.18); border-radius: 10px; color: #f8fafc; font-size: 13.5px; line-height: 1.5; outline: none; resize: vertical; box-sizing: border-box;"></textarea>
         </div>
 
         <div>
-          <label style="font-size: 11px; font-weight: 800; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.5px;">Funciones Esenciales (una por línea)</label>
-          <textarea id="inputJobFunctions" rows="4" style="width: 100%; margin-top: 4px; padding: 10px 12px; background-color: #0b1120; border: 1px solid rgba(255,255,255,0.15); border-radius: 8px; color: #f8fafc; font-size: 13px; line-height: 1.5; outline: none; resize: vertical; box-sizing: border-box;"></textarea>
+          <label style="font-size: 13px; font-weight: 800; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.5px; display: block; margin-bottom: 6px;">Funciones Esenciales (una por línea)</label>
+          <textarea id="inputJobFunctions" rows="4" style="width: 100%; padding: 12px 14px; background-color: #0b1120; border: 1.5px solid rgba(255,255,255,0.18); border-radius: 10px; color: #f8fafc; font-size: 13.5px; line-height: 1.5; outline: none; resize: vertical; box-sizing: border-box;"></textarea>
         </div>
 
-        <div style="display: flex; gap: 10px; margin-top: 6px;">
-          <button type="button" id="btnCancelJobModal" class="btn-secondary" style="flex: 1; min-height: 44px; font-size: 14px; font-weight: 700; border-radius: 8px;">Cancelar</button>
-          <button type="submit" class="btn-primary" style="flex: 1; min-height: 44px; font-size: 14px; font-weight: 700; border-radius: 8px; background: linear-gradient(135deg, #0284c7, #2563eb);">Guardar y Enfocar</button>
+        <div style="display: flex; gap: 12px; margin-top: 8px;">
+          <button type="button" id="btnCancelJobModal" class="btn-secondary" style="flex: 1; min-height: 48px; font-size: 15px; font-weight: 700; border-radius: 10px;">Cancelar</button>
+          <button type="submit" class="btn-primary" style="flex: 2; min-height: 48px; font-size: 15px; font-weight: 800; border-radius: 10px; background: linear-gradient(135deg, #0284c7, #2563eb);">Guardar y Enfocar 🚀</button>
         </div>
       </form>
     </div>
@@ -1021,6 +1307,9 @@
           <button class="tip-filter-btn" data-cat="Régimen Aduanero" style="background: rgba(2, 132, 199, 0.15); border: 1px solid #0284c7; color: #38bdf8; padding: 5px 12px; border-radius: 12px; font-size: 12px; font-weight: 700; cursor: pointer; white-space: nowrap;">🚢 Aduanas (Dec. 1165)</button>
           <button class="tip-filter-btn" data-cat="Procedimiento Tributario" style="background: rgba(225, 29, 72, 0.15); border: 1px solid #e11d48; color: #f43f5e; padding: 5px 12px; border-radius: 12px; font-size: 12px; font-weight: 700; cursor: pointer; white-space: nowrap;">🏪 Facturación & Clausura</button>
           <button class="tip-filter-btn" data-cat="Constitución y Legalidad" style="background: rgba(255,255,255,0.05); border: 1px solid var(--border-color); color: #cbd5e1; padding: 5px 12px; border-radius: 12px; font-size: 12px; font-weight: 600; cursor: pointer; white-space: nowrap;">⚖️ Legalidad</button>
+          <button class="tip-filter-btn" data-cat="Estructura Orgánica DIAN" style="background: rgba(59, 130, 246, 0.15); border: 1px solid #3b82f6; color: #60a5fa; padding: 5px 12px; border-radius: 12px; font-size: 12px; font-weight: 700; cursor: pointer; white-space: nowrap;">🏛️ Estructura & Carrera</button>
+          <button class="tip-filter-btn" data-cat="Régimen Especial Aduanero" style="background: rgba(6, 182, 212, 0.15); border: 1px solid #06b6d4; color: #22d3ee; padding: 5px 12px; border-radius: 12px; font-size: 12px; font-weight: 700; cursor: pointer; white-space: nowrap;">🚢 Zonas Francas</button>
+          <button class="tip-filter-btn" data-cat="Procedimientos Institucionales" style="background: rgba(16, 185, 129, 0.15); border: 1px solid #10b981; color: #34d399; padding: 5px 12px; border-radius: 12px; font-size: 12px; font-weight: 700; cursor: pointer; white-space: nowrap;">📬 PQRSF & Denuncias</button>
           <button class="tip-filter-btn" data-cat="Técnica de Examen" style="background: rgba(255,255,255,0.05); border: 1px solid var(--border-color); color: #cbd5e1; padding: 5px 12px; border-radius: 12px; font-size: 12px; font-weight: 600; cursor: pointer; white-space: nowrap;">🎯 Técnica</button>
           <button class="tip-filter-btn" data-cat="Ética e Integridad" style="background: rgba(255,255,255,0.05); border: 1px solid var(--border-color); color: #cbd5e1; padding: 5px 12px; border-radius: 12px; font-size: 12px; font-weight: 600; cursor: pointer; white-space: nowrap;">🛡️ Integridad</button>
         </div>
@@ -1051,88 +1340,85 @@
   <div id="microlearningModal" class="modal-overlay">
     <div class="modal-card" style="max-width: 600px; width: 96%; max-height: 90vh;">
       <div class="modal-header">
-        <div style="display: flex; align-items: center; gap: 10px;">
-          <span style="font-size: 24px;">🔔</span>
+        <div style="display: flex; align-items: center; gap: 12px;">
+          <span style="font-size: 28px;">🔔</span>
           <div>
-            <h3 style="font-size: 17px; font-weight: 800; color: #38bdf8; margin: 0; line-height: 1.2;">
+            <h3 style="font-size: 18px; font-weight: 800; color: #38bdf8; margin: 0; line-height: 1.2;">
               Microaprendizaje & Repaso Inteligente
             </h3>
-            <p style="font-size: 12px; color: var(--text-secondary); margin: 2px 0 0 0;">
-              Recordatorios y preguntas espaciadas con el panel abierto o cerrado
+            <p style="font-size: 13px; color: #cbd5e1; margin: 3px 0 0 0;">
+              Recordatorios y preguntas espaciadas en segundo plano
             </p>
           </div>
         </div>
-        <button id="btnCloseMicrolearningModalX" class="modal-close-btn" title="Cerrar">✕</button>
+        <button id="btnCloseMicrolearningModalX" class="modal-close-btn" title="Cerrar" style="width: 38px; height: 38px; font-size: 20px;">✕</button>
       </div>
 
-      <div class="modal-body">
+      <div class="modal-body" style="display: flex; flex-direction: column; gap: 14px;">
         <!-- Switch Maestro -->
-        <div style="background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.3); border-radius: 12px; padding: 14px 16px; display: flex; justify-content: space-between; align-items: center; gap: 12px;">
+        <div style="background: rgba(56, 189, 248, 0.12); border: 1.5px solid rgba(56, 189, 248, 0.35); border-radius: 14px; padding: 16px; display: flex; justify-content: space-between; align-items: center; gap: 14px;">
           <div>
-            <div style="font-size: 15px; font-weight: 800; color: #f8fafc; display: flex; align-items: center; gap: 6px;">
-              <span>⚡</span> Repaso en Segundo Plano Activo
+            <div style="font-size: 16px; font-weight: 800; color: #f8fafc; display: flex; align-items: center; gap: 8px;">
+              <span style="font-size: 20px;">⚡</span> Repaso en Segundo Plano Activo
             </div>
-            <div style="font-size: 12px; color: #cbd5e1; margin-top: 3px; line-height: 1.4;">
+            <div style="font-size: 13px; color: #cbd5e1; margin-top: 4px; line-height: 1.45;">
               Envía píldoras flash y preguntas situacionales a intervalos periódicos.
             </div>
           </div>
-          <label style="display: flex; align-items: center; gap: 6px; font-size: 13px; color: #f8fafc; font-weight: 700; cursor: pointer;">
-            <input type="checkbox" id="chkBackgroundTips" checked style="accent-color: #38bdf8; width: 20px; height: 20px; cursor: pointer;">
+          <label style="display: flex; align-items: center; gap: 8px; font-size: 14px; color: #f8fafc; font-weight: 800; cursor: pointer; background: rgba(56, 189, 248, 0.15); padding: 8px 14px; border-radius: 20px; border: 1px solid rgba(56, 189, 248, 0.3); flex-shrink: 0;">
+            <input type="checkbox" id="chkBackgroundTips" checked style="accent-color: #38bdf8; width: 22px; height: 22px; cursor: pointer;">
             <span>Activo</span>
           </label>
         </div>
 
-        <!-- Opciones de Configuración -->
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
-          <!-- Tipo de Contenido -->
-          <div style="background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(255,255,255,0.08); border-radius: 10px; padding: 12px;">
-            <label style="font-size: 11px; font-weight: 800; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.5px; display: block; margin-bottom: 6px;">
-              Tipo de Píldora:
-            </label>
-            <select id="selectBgMode" style="width: 100%; box-sizing: border-box; background: #0b1120; border: 1px solid rgba(255,255,255,0.2); color: #fff; padding: 8px 10px; border-radius: 6px; font-size: 13px; outline: none; cursor: pointer;">
-              <option value="alternate" selected>🔄 Alternar: Pregunta, Tip Flash y Lectura Crítica</option>
-              <option value="questions_only">🎯 Solo Preguntas Situacionales</option>
-              <option value="tips_only">💡 Solo Tips y Fórmulas</option>
-              <option value="lectura_only">📖 Solo Tips de Lectura Crítica</option>
-            </select>
-          </div>
+        <!-- Tipo de Contenido -->
+        <div style="background: rgba(15, 23, 42, 0.7); border: 1px solid rgba(255,255,255,0.12); border-radius: 12px; padding: 14px;">
+          <label style="font-size: 13px; font-weight: 800; color: #38bdf8; text-transform: uppercase; letter-spacing: 0.5px; display: flex; align-items: center; gap: 6px; margin-bottom: 8px;">
+            <span>🎯</span> Tipo de Píldora:
+          </label>
+          <select id="selectBgMode" style="width: 100%; box-sizing: border-box; background: #0b1120; border: 1.5px solid rgba(255,255,255,0.18); color: #fff; padding: 12px 14px; border-radius: 10px; font-size: 14px; font-weight: 600; min-height: 48px; outline: none; cursor: pointer;">
+            <option value="alternate" selected>🔄 Alternar: Pregunta, Tip Flash y Lectura Crítica</option>
+            <option value="questions_only">🎯 Solo Preguntas Situacionales</option>
+            <option value="tips_only">💡 Solo Tips y Fórmulas</option>
+            <option value="lectura_only">📖 Solo Tips de Lectura Crítica</option>
+          </select>
+        </div>
 
-          <!-- Frecuencia -->
-          <div style="background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(255,255,255,0.08); border-radius: 10px; padding: 12px;">
-            <label style="font-size: 11px; font-weight: 800; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.5px; display: block; margin-bottom: 6px;">
-              Frecuencia de Envío:
-            </label>
-            <select id="selectBgInterval" style="width: 100%; box-sizing: border-box; background: #0b1120; border: 1px solid rgba(255,255,255,0.2); color: #fff; padding: 8px 10px; border-radius: 6px; font-size: 13px; outline: none; cursor: pointer;">
-              <option value="15">Cada 15 minutos</option>
-              <option value="25" selected>Cada 25 min (Pomodoro)</option>
-              <option value="45">Cada 45 minutos</option>
-              <option value="60">Cada 1 hora</option>
-            </select>
-          </div>
+        <!-- Frecuencia de Envío -->
+        <div style="background: rgba(15, 23, 42, 0.7); border: 1px solid rgba(255,255,255,0.12); border-radius: 12px; padding: 14px;">
+          <label style="font-size: 13px; font-weight: 800; color: #38bdf8; text-transform: uppercase; letter-spacing: 0.5px; display: flex; align-items: center; gap: 6px; margin-bottom: 8px;">
+            <span>⏱️</span> Frecuencia de Envío:
+          </label>
+          <select id="selectBgInterval" style="width: 100%; box-sizing: border-box; background: #0b1120; border: 1.5px solid rgba(255,255,255,0.18); color: #fff; padding: 12px 14px; border-radius: 10px; font-size: 14px; font-weight: 600; min-height: 48px; outline: none; cursor: pointer;">
+            <option value="15">Cada 15 minutos</option>
+            <option value="25" selected>Cada 25 min (Pomodoro)</option>
+            <option value="45">Cada 45 minutos</option>
+            <option value="60">Cada 1 hora</option>
+          </select>
         </div>
 
         <!-- Formato de Entrega -->
-        <div style="background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(255,255,255,0.08); border-radius: 10px; padding: 12px;">
-          <label style="font-size: 11px; font-weight: 800; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.5px; display: block; margin-bottom: 6px;">
-            Formato de Visualización:
+        <div style="background: rgba(15, 23, 42, 0.7); border: 1px solid rgba(255,255,255,0.12); border-radius: 12px; padding: 14px;">
+          <label style="font-size: 13px; font-weight: 800; color: #38bdf8; text-transform: uppercase; letter-spacing: 0.5px; display: flex; align-items: center; gap: 6px; margin-bottom: 8px;">
+            <span>📲</span> Formato de Notificación:
           </label>
-          <select id="selectBgFormat" style="width: 100%; box-sizing: border-box; background: #0b1120; border: 1px solid rgba(255,255,255,0.2); color: #fff; padding: 8px 10px; border-radius: 6px; font-size: 13px; outline: none; cursor: pointer;">
-            <option value="notification" selected>🔔 Notificación Nativa del Celular (Recomendado en Móvil)</option>
-            <option value="popup">🪟 Modal Flotante en Pantalla (Recomendado en PC / Chrome)</option>
+          <select id="selectBgFormat" style="width: 100%; box-sizing: border-box; background: #0b1120; border: 1.5px solid rgba(255,255,255,0.18); color: #fff; padding: 12px 14px; border-radius: 10px; font-size: 14px; font-weight: 600; min-height: 48px; outline: none; cursor: pointer;">
+            <option value="notification" selected>🔔 Notificación Nativa del Sistema (Celular / PC)</option>
+            <option value="popup">🪟 Ventana Flotante en Pantalla</option>
           </select>
         </div>
 
         <!-- Tiempo de Respuesta por Pregunta Situacional -->
-        <div style="background: rgba(56, 189, 248, 0.07); border: 1px solid rgba(56, 189, 248, 0.25); border-radius: 10px; padding: 12px; display: flex; flex-direction: column; gap: 8px;">
-          <div style="display: flex; justify-content: space-between; align-items: center;">
-            <label style="font-size: 11px; font-weight: 800; color: #38bdf8; text-transform: uppercase; letter-spacing: 0.5px; display: flex; align-items: center; gap: 6px; margin: 0;">
-              <span>⏱️</span> Tiempo de Respuesta por Pregunta:
+        <div style="background: rgba(56, 189, 248, 0.08); border: 1.5px solid rgba(56, 189, 248, 0.3); border-radius: 12px; padding: 14px; display: flex; flex-direction: column; gap: 10px;">
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 6px;">
+            <label style="font-size: 13px; font-weight: 800; color: #38bdf8; text-transform: uppercase; letter-spacing: 0.5px; display: flex; align-items: center; gap: 6px; margin: 0;">
+              <span>⏳</span> Tiempo de Respuesta por Pregunta:
             </label>
-            <span id="labelTimerIntensity" style="font-size: 11px; font-weight: 700; color: #38bdf8; background: rgba(56, 189, 248, 0.18); padding: 2px 8px; border-radius: 4px;">
+            <span id="labelTimerIntensity" style="font-size: 12px; font-weight: 800; color: #38bdf8; background: rgba(56, 189, 248, 0.2); padding: 3px 10px; border-radius: 6px; border: 1px solid rgba(56, 189, 248, 0.35);">
               2 min (Oficial)
             </span>
           </div>
-          <select id="selectQuestionTimer" style="width: 100%; box-sizing: border-box; background: #0b1120; border: 1px solid rgba(255,255,255,0.2); color: #fff; padding: 8px 10px; border-radius: 6px; font-size: 13px; outline: none; cursor: pointer;">
+          <select id="selectQuestionTimer" style="width: 100%; box-sizing: border-box; background: #0b1120; border: 1.5px solid rgba(255,255,255,0.18); color: #fff; padding: 12px 14px; border-radius: 10px; font-size: 14px; font-weight: 600; min-height: 48px; outline: none; cursor: pointer;">
             <option value="45">⚡ 45 segundos (Entrenamiento Rápido / Speed)</option>
             <option value="60">🔥 60 segundos / 1 min (Alta Intensidad)</option>
             <option value="90">🎯 90 segundos / 1.5 min (Táctico PJS)</option>
@@ -1140,26 +1426,26 @@
             <option value="180">📖 180 segundos / 3 min (Análisis Detallado)</option>
             <option value="0">🧘 Sin límite de tiempo (Tiempo Libre)</option>
           </select>
-          <div style="font-size: 11px; color: #cbd5e1; line-height: 1.4;">
-            Segundos que tendrás para leer el caso situacional, analizar los distractores y confirmar tu opción antes de que termine el cronómetro.
+          <div style="font-size: 12px; color: #cbd5e1; line-height: 1.45;">
+            Segundos para leer el caso situacional, cazar los distractores y responder antes de que termine el cronómetro.
           </div>
         </div>
 
         <!-- Modo Sueño / Horario de Descanso -->
-        <div style="background: rgba(99, 102, 241, 0.08); border: 1px solid rgba(99, 102, 241, 0.25); border-radius: 10px; padding: 12px 14px; display: flex; flex-direction: column; gap: 8px;">
+        <div style="background: rgba(99, 102, 241, 0.1); border: 1.5px solid rgba(99, 102, 241, 0.3); border-radius: 12px; padding: 14px; display: flex; flex-direction: column; gap: 10px;">
           <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
-            <div style="display: flex; align-items: center; gap: 6px;">
-              <span style="font-size: 16px;">🌙</span>
-              <span style="font-size: 13px; font-weight: 800; color: #a5b4fc;">Modo Sueño y Descanso (Silencio Nocturno)</span>
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <span style="font-size: 20px;">🌙</span>
+              <span style="font-size: 14px; font-weight: 800; color: #c7d2fe;">Silencio Nocturno (Modo Sueño)</span>
             </div>
-            <label style="display: flex; align-items: center; gap: 6px; font-size: 12px; color: #cbd5e1; cursor: pointer;">
-              <input type="checkbox" id="chkQuietHours" checked style="accent-color: #a5b4fc; width: 16px; height: 16px;">
+            <label style="display: flex; align-items: center; gap: 6px; font-size: 13px; color: #e0e7ff; font-weight: 700; cursor: pointer;">
+              <input type="checkbox" id="chkQuietHours" checked style="accent-color: #a5b4fc; width: 18px; height: 18px;">
               Activo
             </label>
           </div>
-          <div style="display: flex; align-items: center; gap: 8px; font-size: 13px; color: #cbd5e1; flex-wrap: wrap;">
+          <div style="display: flex; align-items: center; gap: 10px; font-size: 13.5px; color: #cbd5e1; flex-wrap: wrap;">
             <span>No notificar entre</span>
-            <select id="selectQuietStart" style="background: #0f172a; border: 1px solid rgba(255,255,255,0.2); color: #fff; padding: 4px 8px; border-radius: 6px; font-size: 12px; cursor: pointer;">
+            <select id="selectQuietStart" style="background: #0f172a; border: 1px solid rgba(255,255,255,0.25); color: #fff; padding: 8px 12px; border-radius: 8px; font-size: 13.5px; font-weight: 600; min-height: 40px; cursor: pointer;">
               <option value="19">7:00 PM</option>
               <option value="20" selected>8:00 PM</option>
               <option value="21">9:00 PM</option>
@@ -1167,7 +1453,7 @@
               <option value="23">11:00 PM</option>
             </select>
             <span>y las</span>
-            <select id="selectQuietEnd" style="background: #0f172a; border: 1px solid rgba(255,255,255,0.2); color: #fff; padding: 4px 8px; border-radius: 6px; font-size: 12px; cursor: pointer;">
+            <select id="selectQuietEnd" style="background: #0f172a; border: 1px solid rgba(255,255,255,0.25); color: #fff; padding: 8px 12px; border-radius: 8px; font-size: 13.5px; font-weight: 600; min-height: 40px; cursor: pointer;">
               <option value="6">6:00 AM</option>
               <option value="7">7:00 AM</option>
               <option value="8" selected>8:00 AM</option>
@@ -1177,40 +1463,40 @@
         </div>
 
         <!-- Recordatorios Flash en Práctica Libre -->
-        <label style="display: flex; align-items: center; gap: 10px; background: rgba(245, 158, 11, 0.08); border: 1px solid rgba(245, 158, 11, 0.25); border-radius: 10px; padding: 12px 14px; cursor: pointer;">
-          <input type="checkbox" id="chkAutoTipsFromModal" checked style="accent-color: #f59e0b; width: 18px; height: 18px; flex-shrink: 0;">
-          <span style="font-size: 13px; color: #e2e8f0; line-height: 1.4;">
-            <strong>Tips Flash en Práctica:</strong> Mostrar pildoritas de refuerzo automáticas mientras resuelves preguntas en la app.
+        <label style="display: flex; align-items: center; gap: 12px; background: rgba(245, 158, 11, 0.1); border: 1.5px solid rgba(245, 158, 11, 0.3); border-radius: 12px; padding: 14px; cursor: pointer;">
+          <input type="checkbox" id="chkAutoTipsFromModal" checked style="accent-color: #f59e0b; width: 22px; height: 22px; flex-shrink: 0;">
+          <span style="font-size: 13.5px; color: #fef3c7; line-height: 1.45;">
+            <strong>Tips Flash en Práctica:</strong> Píldoras de refuerzo automáticas mientras resuelves casos situacionales.
           </span>
         </label>
 
-        <!-- Zona de Pruebas Rápidas -->
-        <div style="border-top: 1px solid rgba(255,255,255,0.08); padding-top: 10px;">
-          <div style="font-size: 11px; font-weight: 800; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px;">
+        <!-- Zona de Pruebas Rápidas (Grid 2x2 Cómodo para Dedos) -->
+        <div style="border-top: 1px solid rgba(255,255,255,0.12); padding-top: 12px;">
+          <div style="font-size: 12.5px; font-weight: 800; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 10px;">
             🧪 Probar Envío Inmediato:
           </div>
-          <div style="display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 6px;">
-            <button id="btnTestBgAlternate" type="button" style="background: rgba(56, 189, 248, 0.15); border: 1px solid #38bdf8; color: #38bdf8; padding: 8px 4px; border-radius: 8px; font-size: 11px; font-weight: 700; cursor: pointer; text-align: center;" title="Probar rotación continua">
-              ⚡ Rotación
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+            <button id="btnTestBgAlternate" type="button" style="background: rgba(56, 189, 248, 0.15); border: 1.5px solid #38bdf8; color: #38bdf8; padding: 12px 10px; border-radius: 10px; font-size: 13.5px; font-weight: 800; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px; min-height: 46px;" title="Probar rotación continua">
+              <span>⚡</span> Rotación
             </button>
-            <button id="btnTestBgQuestion" type="button" style="background: rgba(34, 197, 94, 0.15); border: 1px solid #22c55e; color: #4ade80; padding: 8px 4px; border-radius: 8px; font-size: 11px; font-weight: 700; cursor: pointer; text-align: center;" title="Probar pregunta situacional">
-              🎯 Pregunta
+            <button id="btnTestBgQuestion" type="button" style="background: rgba(34, 197, 94, 0.15); border: 1.5px solid #22c55e; color: #4ade80; padding: 12px 10px; border-radius: 10px; font-size: 13.5px; font-weight: 800; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px; min-height: 46px;" title="Probar pregunta situacional">
+              <span>🎯</span> Pregunta
             </button>
-            <button id="btnTestBackgroundTip" type="button" style="background: rgba(245, 158, 11, 0.15); border: 1px solid #f59e0b; color: #f59e0b; padding: 8px 4px; border-radius: 8px; font-size: 11px; font-weight: 700; cursor: pointer; text-align: center;" title="Probar tip flash">
-              💡 Tip Flash
+            <button id="btnTestBackgroundTip" type="button" style="background: rgba(245, 158, 11, 0.15); border: 1.5px solid #f59e0b; color: #fbbf24; padding: 12px 10px; border-radius: 10px; font-size: 13.5px; font-weight: 800; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px; min-height: 46px;" title="Probar tip flash">
+              <span>💡</span> Tip Flash
             </button>
-            <button id="btnTestBgLectura" type="button" style="background: rgba(168, 85, 247, 0.15); border: 1px solid #a855f7; color: #c084fc; padding: 8px 4px; border-radius: 8px; font-size: 11px; font-weight: 700; cursor: pointer; text-align: center;" title="Probar tip de lectura crítica">
-              📖 Lectura
+            <button id="btnTestBgLectura" type="button" style="background: rgba(168, 85, 247, 0.15); border: 1.5px solid #a855f7; color: #c084fc; padding: 12px 10px; border-radius: 10px; font-size: 13.5px; font-weight: 800; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px; min-height: 46px;" title="Probar tip de lectura crítica">
+              <span>📖</span> Lectura
             </button>
           </div>
         </div>
       </div>
 
-      <div class="modal-footer">
-        <button id="btnCancelMicrolearningModal" class="btn-secondary" style="font-size: 13px; padding: 9px 16px; border-radius: 8px;">
+      <div class="modal-footer" style="display: flex; gap: 10px; padding: 14px 18px; border-top: 1px solid rgba(255,255,255,0.1);">
+        <button id="btnCancelMicrolearningModal" class="btn-secondary" style="font-size: 14px; font-weight: 700; padding: 12px 20px; border-radius: 10px; min-height: 48px; flex: 1;">
           Cerrar
         </button>
-        <button id="btnSaveMicrolearningModal" class="btn-primary" style="font-size: 14px; font-weight: 700; padding: 10px 22px; border-radius: 8px; background: linear-gradient(135deg, #0284c7, #2563eb);">
+        <button id="btnSaveMicrolearningModal" class="btn-primary" style="font-size: 14.5px; font-weight: 800; padding: 12px 22px; border-radius: 10px; background: linear-gradient(135deg, #0284c7, #2563eb); min-height: 48px; flex: 2;">
           Guardar y Activar 🚀
         </button>
       </div>
@@ -1297,7 +1583,7 @@
         </div>
         <div style="flex: 1;">
           <div style="display: flex; align-items: center; gap: 6px;">
-            <span style="font-size: 15px; font-weight: 800; color: #f8fafc;" id="accountCardUserDisplay">jcarlos</span>
+            <span style="font-size: 15px; font-weight: 800; color: #f8fafc;" id="accountCardUserDisplay">Aspirante</span>
             <span id="accountBadgeStatus" style="font-size: 11px; font-weight: 800; color: #34d399; background: rgba(52, 211, 153, 0.18); padding: 2px 8px; border-radius: 12px; border: 1px solid rgba(52, 211, 153, 0.35);">🟢 Conectado</span>
           </div>
           <div style="font-size: 12px; color: #94a3b8; margin-top: 3px;" id="accountCardSyncText">
@@ -1311,7 +1597,7 @@
         <label for="inputAccountUserId" style="font-size: 13px; color: #e2e8f0; font-weight: 700; display: flex; align-items: center; gap: 6px;">
           <span>🏷️</span> Identificador o Nombre de Aspirante:
         </label>
-        <input type="text" id="inputAccountUserId" value="jcarlos" placeholder="Ej: jcarlos, carlos_dian" style="width: 100%; box-sizing: border-box; background: #0f172a; border: 1px solid rgba(56, 189, 248, 0.4); color: #fff; padding: 10px 14px; border-radius: 8px; font-size: 14px; font-weight: 600;">
+        <input type="text" id="inputAccountUserId" value="" placeholder="Ej: jcarlos, carlos_dian" style="width: 100%; box-sizing: border-box; background: #0f172a; border: 1px solid rgba(56, 189, 248, 0.4); color: #fff; padding: 10px 14px; border-radius: 8px; font-size: 14px; font-weight: 600;">
         <span style="font-size: 12px; color: #94a3b8; line-height: 1.45;">
           Usa el mismo usuario en tu celular y en tu PC. Tus simulacros, racha y las preguntas se sincronizan solos en segundo plano.
         </span>
@@ -1424,6 +1710,211 @@
           Cerrar
         </button>
       </div>
+    </div>
+  </div>
+
+  <!-- MODAL: PROTOCOLO OFICIAL DÍA D (8 DE NOVIEMBRE DE 2026) -->
+  <div id="diaDModal" class="modal-overlay" style="overflow-y: auto; -webkit-overflow-scrolling: touch;">
+    <div class="modal-card scrollable" style="max-width: 600px; width: 95%; max-height: 90vh; overflow-y: auto; padding: 20px; gap: 16px; box-sizing: border-box;">
+      <div style="display: flex; justify-content: space-between; align-items: flex-start; border-bottom: 1px solid var(--border-color); padding-bottom: 12px;">
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <div style="width: 44px; height: 44px; border-radius: 50%; background: rgba(239, 68, 68, 0.15); border: 2px solid #ef4444; display: flex; align-items: center; justify-content: center; font-size: 22px;">
+            🛡️
+          </div>
+          <div>
+            <div style="font-size: 16px; font-weight: 800; color: #f8fafc;">Protocolo Oficial Día D</div>
+            <div style="font-size: 12px; color: #fca5a5; font-weight: 700;">Domingo 8 de Noviembre de 2026 • FUAA / CNSC</div>
+          </div>
+        </div>
+        <button type="button" id="btnCloseDiaDModalX" style="background: none; border: none; font-size: 20px; color: #94a3b8; cursor: pointer; padding: 4px 8px;">✕</button>
+      </div>
+
+      <!-- Alerta Horaria Crucial -->
+      <div style="background: rgba(245, 158, 11, 0.12); border-left: 4px solid #f59e0b; border-radius: 8px; padding: 12px 14px;">
+        <div style="font-size: 12px; font-weight: 800; color: #f59e0b; margin-bottom: 4px;">
+          ⏰ HORARIOS ESTRICTOS DE PRESENTACIÓN
+        </div>
+        <div style="font-size: 12px; color: #e2e8f0; line-height: 1.5;">
+          • <strong>07:15 a.m.:</strong> Apertura de puertas (Llegar con 1 hora de anticipación).<br>
+          • <strong>08:00 a.m.:</strong> Inicio oficial de las pruebas escritas (Duración: 5 horas continuas hasta la 1:00 p.m.).<br>
+          • <strong>08:30 a.m.:</strong> <span style="color: #f87171; font-weight: 800;">CIERRE TOTAL DE PUERTAS</span>. Quien llegue después no podrá ingresar bajo ninguna circunstancia.
+        </div>
+      </div>
+
+      <!-- Checklist de Elementos Obligatorios -->
+      <div>
+        <div style="font-size: 12px; font-weight: 800; color: var(--accent-blue); text-transform: uppercase; margin-bottom: 8px;">
+          1. Checklist de Materiales Obligatorios:
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 8px;">
+          <label style="display: flex; align-items: flex-start; gap: 10px; background: rgba(11, 17, 32, 0.7); padding: 10px 12px; border-radius: 8px; border: 1px solid var(--border-color); cursor: pointer;">
+            <input type="checkbox" id="chkDiaDoc" style="accent-color: #38bdf8; width: 18px; height: 18px; margin-top: 2px;">
+            <div style="font-size: 12px; color: #e2e8f0; line-height: 1.4;">
+              <strong>Documento de Identificación Válido:</strong> Cédula amarilla con hologramas, Cédula digital (física o en app con cotejo dactiloscópico), Pasaporte vigente o Contraseña de cédula (vigencia < 6 meses).
+            </div>
+          </label>
+
+          <label style="display: flex; align-items: center; gap: 10px; background: rgba(11, 17, 32, 0.7); padding: 10px 12px; border-radius: 8px; border: 1px solid var(--border-color); cursor: pointer;">
+            <input type="checkbox" id="chkDiaLapiz" style="accent-color: #38bdf8; width: 18px; height: 18px;">
+            <div style="font-size: 12px; color: #e2e8f0;">
+              <strong>Lápiz de mina negra N° 2:</strong> Indispensable para la lectura óptica de la hoja de respuestas Areandina.
+            </div>
+          </label>
+
+          <label style="display: flex; align-items: center; gap: 10px; background: rgba(11, 17, 32, 0.7); padding: 10px 12px; border-radius: 8px; border: 1px solid var(--border-color); cursor: pointer;">
+            <input type="checkbox" id="chkDiaBorrador" style="accent-color: #38bdf8; width: 18px; height: 18px;">
+            <div style="font-size: 12px; color: #e2e8f0;">
+              <strong>Borrador de lápiz (de nata):</strong> Para corregir limpiamente sin romper la hoja óptica.
+            </div>
+          </label>
+
+          <label style="display: flex; align-items: center; gap: 10px; background: rgba(11, 17, 32, 0.7); padding: 10px 12px; border-radius: 8px; border: 1px solid var(--border-color); cursor: pointer;">
+            <input type="checkbox" id="chkDiaSacapuntas" style="accent-color: #38bdf8; width: 18px; height: 18px;">
+            <div style="font-size: 12px; color: #e2e8f0;">
+              <strong>Sacapuntas:</strong> De bolsillo.
+            </div>
+          </label>
+        </div>
+      </div>
+
+      <!-- Prohibiciones Estrictas y Causales de Expulsión -->
+      <div style="background: rgba(239, 68, 68, 0.08); border: 1px solid rgba(239, 68, 68, 0.3); border-radius: 8px; padding: 12px 14px;">
+        <div style="font-size: 12px; font-weight: 800; color: #f87171; text-transform: uppercase; margin-bottom: 6px;">
+          🚫 PROHIBICIONES ESTRICTAS (Pág. 26-31 Guía Oficial)
+        </div>
+        <ul style="font-size: 11px; color: #cbd5e1; line-height: 1.55; margin: 0; padding-left: 18px;">
+          <li><strong>Dispositivos Electrónicos:</strong> Celulares, relojes inteligentes, audífonos, calculadoras, cámaras o tabletas (prohibidos en áreas comunes, pasillos, baños y salones).</li>
+          <li><strong>Maletines y Materiales:</strong> Morrales, libros, revistas, hojas sueltas o apuntes no serán permitidos en el puesto.</li>
+          <li><strong>Alimentos y Bebidas:</strong> Queda prohibido el consumo de alimentos o bebidas durante la prueba.</li>
+          <li><strong>Mascotas o Acompañantes:</strong> No se permite ingreso de acompañantes al recinto.</li>
+          <li><strong>Sustracción o Fotos:</strong> Tomar fotos o copiar preguntas es delito penal y causal de exclusión inmediata con reporte a la Fiscalía.</li>
+        </ul>
+      </div>
+
+      <!-- Instrucciones de Llenado Óptico -->
+      <div style="background: rgba(11, 17, 32, 0.85); border: 1px solid var(--border-color); border-radius: 8px; padding: 12px 14px;">
+        <div style="font-size: 12px; font-weight: 800; color: #34d399; margin-bottom: 4px;">
+          📋 CÓMO MARCAR LA HOJA ÓPTICA AREANDINA
+        </div>
+        <div style="font-size: 11px; color: #cbd5e1; line-height: 1.5;">
+          • Rellene <strong>completamente el círculo</strong> que corresponda a su escogencia.<br>
+          • Círculos con X, visto bueno, rayas o relleno tenue <strong>NO SON RECONOCIDOS</strong> por la máquina lectora.<br>
+          • No marque más de una respuesta (la multimarca anula el ítem).<br>
+          • Firme la hoja de respuestas sin salirse del recuadro y registre su huella dactilar.
+        </div>
+      </div>
+
+      <div style="display: flex; justify-content: flex-end; margin-top: 4px;">
+        <button type="button" id="btnCloseDiaDModal" class="btn-primary" style="padding: 10px 24px; font-size: 13px; font-weight: 800;">
+          Entendido y Guardar Checklist ✓
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: BIENVENIDA Y CONFIGURACIÓN INICIAL (PRIMERA VEZ) -->
+  <div id="welcomeOnboardingModal" class="modal-overlay" style="z-index: 10070;" data-prevent-close="true">
+    <div class="modal-card" style="max-width: 520px; width: 94%; max-height: 90vh; overflow-y: auto; -webkit-overflow-scrolling: touch; padding: 26px 22px; border-radius: 16px; box-sizing: border-box; background: linear-gradient(165deg, #0f172a 0%, #1e293b 100%); border: 2px solid rgba(56, 189, 248, 0.45); box-shadow: 0 25px 60px rgba(0,0,0,0.9), 0 0 40px rgba(56, 189, 248, 0.25); display: flex; flex-direction: column; gap: 16px; position: relative;">
+      
+      <!-- Botón de cierre X opcional (solo visible si se reabre desde ajustes) -->
+      <button id="btnCloseOnboardingModalX" type="button" style="display: none; position: absolute; top: 16px; right: 16px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); color: #cbd5e1; font-size: 18px; width: 34px; height: 34px; border-radius: 8px; cursor: pointer; align-items: center; justify-content: center; z-index: 5;" title="Cerrar">✕</button>
+
+      <!-- Encabezado con Icono y Bienvenida -->
+      <div style="text-align: center; display: flex; flex-direction: column; align-items: center; gap: 8px;">
+        <div style="width: 62px; height: 62px; border-radius: 50%; background: radial-gradient(circle, rgba(56, 189, 248, 0.3) 0%, rgba(2, 132, 199, 0.1) 70%, transparent 100%); border: 1.5px solid rgba(56, 189, 248, 0.5); display: flex; align-items: center; justify-content: center; font-size: 32px; box-shadow: 0 0 25px rgba(56, 189, 248, 0.35);">
+          🏛️
+        </div>
+        <div>
+          <h2 style="font-size: 21px; font-weight: 900; color: #f8fafc; margin: 0; line-height: 1.25;">
+            ¡Bienvenido a SIMO Prep!
+          </h2>
+          <div style="font-size: 13px; color: #38bdf8; font-weight: 700; margin-top: 3px;">
+            Concurso DIAN 2676 • Entrenamiento Situacional
+          </div>
+        </div>
+        <p style="font-size: 13px; color: #94a3b8; line-height: 1.45; margin: 0; max-width: 440px;">
+          Configura tus datos iniciales para personalizar tus casos situacionales, tu racha y la sincronización automática.
+        </p>
+      </div>
+
+      <!-- Paso 1: Usuario o Identificador -->
+      <div style="background: rgba(11, 17, 32, 0.7); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; padding: 14px 16px; display: flex; flex-direction: column; gap: 8px;">
+        <label for="onboardingInputUserId" style="font-size: 13px; font-weight: 800; color: #e2e8f0; display: flex; align-items: center; justify-content: space-between;">
+          <span style="display: flex; align-items: center; gap: 6px;">
+            <span>👤</span> 1. Tu Nombre o Usuario de Aspirante:
+          </span>
+          <span style="font-size: 11px; font-weight: 700; color: #38bdf8; background: rgba(56, 189, 248, 0.12); padding: 2px 8px; border-radius: 10px;">
+            Requerido
+          </span>
+        </label>
+        <input type="text" id="onboardingInputUserId" placeholder="Ej: carlos_dian, maria_simo, jcarlos" style="width: 100%; box-sizing: border-box; background: #0b1120; border: 1.5px solid rgba(56, 189, 248, 0.4); color: #fff; padding: 12px 14px; border-radius: 10px; font-size: 14.5px; font-weight: 700; outline: none; transition: border-color 0.2s;" autocomplete="off" autocapitalize="none">
+        <div id="onboardingUserError" style="display: none; font-size: 12px; color: #f87171; font-weight: 700; margin-top: -2px;">
+          ⚠️ Por favor ingresa tu nombre o identificador de aspirante.
+        </div>
+        <span style="font-size: 11.5px; color: #94a3b8; line-height: 1.4;">
+          💡 Este usuario sincronizará automáticamente tus respuestas, tarjetas SRS y racha entre tu celular y tu PC.
+        </span>
+      </div>
+
+      <!-- Paso 2: Selección de Cargo -->
+      <div style="display: flex; flex-direction: column; gap: 10px;">
+        <label style="font-size: 13px; font-weight: 800; color: #e2e8f0; display: flex; align-items: center; justify-content: space-between;">
+          <span style="display: flex; align-items: center; gap: 6px;">
+            <span>🎯</span> 2. ¿A qué Cargo vas a aspirar y estudiar?
+          </span>
+          <span style="font-size: 11px; font-weight: 700; color: #f59e0b; background: rgba(245, 158, 11, 0.12); padding: 2px 8px; border-radius: 10px;">
+            Elige uno
+          </span>
+        </label>
+
+        <!-- Tarjetas interactivas de Selección de Cargo -->
+        <div style="display: flex; flex-direction: column; gap: 10px;">
+          <!-- Tarjeta Gestor III -->
+          <div id="onboardingCardGestor" class="profile-selection-card active" data-profile="gestor_iii" style="cursor: pointer; position: relative; border-radius: 12px; border: 1.5px solid #38bdf8; background: rgba(2, 132, 199, 0.14); padding: 12px 14px; display: flex; align-items: center; gap: 12px; transition: all 0.2s ease;">
+            <div class="profile-selection-icon" style="font-size: 28px; width: 44px; height: 44px; border-radius: 10px; background: rgba(56, 189, 248, 0.2); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+              👔
+            </div>
+            <div style="flex: 1; min-width: 0;">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 3px;">
+                <span style="font-size: 14.5px; font-weight: 800; color: #f8fafc;">GESTOR III (OPEC 242703)</span>
+                <span id="onboardingCheckGestor" style="font-size: 11.5px; font-weight: 800; color: #38bdf8; background: rgba(56, 189, 248, 0.2); padding: 2px 8px; border-radius: 12px; border: 1px solid #38bdf8;">✓ SELECCIONADO</span>
+              </div>
+              <div style="font-size: 12px; color: #cbd5e1;">Nivel Profesional • Grado 03 • Sueldo ~$8.45M</div>
+              <div style="font-size: 11px; color: #94a3b8; margin-top: 4px; line-height: 1.35;">
+                Procedimiento Tributario, Aduanas, MIPG, Gestión Estratégica y CPACA.
+              </div>
+            </div>
+          </div>
+
+          <!-- Tarjeta Analista IV -->
+          <div id="onboardingCardAnalista" class="profile-selection-card" data-profile="analista_iv" style="cursor: pointer; position: relative; border-radius: 12px; border: 1.5px solid rgba(255, 255, 255, 0.12); background: rgba(11, 17, 32, 0.6); padding: 12px 14px; display: flex; align-items: center; gap: 12px; transition: all 0.2s ease;">
+            <div class="profile-selection-icon" style="font-size: 28px; width: 44px; height: 44px; border-radius: 10px; background: rgba(168, 85, 247, 0.15); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+              🔍
+            </div>
+            <div style="flex: 1; min-width: 0;">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 3px;">
+                <span style="font-size: 14.5px; font-weight: 800; color: #f8fafc;">ANALISTA IV (OPEC 236760)</span>
+                <span id="onboardingCheckAnalista" style="display: none; font-size: 11.5px; font-weight: 800; color: #38bdf8; background: rgba(56, 189, 248, 0.2); padding: 2px 8px; border-radius: 12px; border: 1px solid #38bdf8;">✓ SELECCIONADO</span>
+              </div>
+              <div style="font-size: 12px; color: #cbd5e1;">Nivel Técnico • Grado 04 • Sueldo ~$6.39M (19 Vacantes)</div>
+              <div style="font-size: 11px; color: #94a3b8; margin-top: 4px; line-height: 1.35;">
+                Fiscalización, Pruebas y Destrucción Aduanera, ROS, Lavado de Activos y Archivo.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Botón de Envío -->
+      <div style="display: flex; flex-direction: column; gap: 8px; margin-top: 6px;">
+        <button id="btnSubmitOnboarding" type="button" class="btn-primary" style="padding: 14px 18px; font-size: 15px; font-weight: 800; background: linear-gradient(135deg, #0284c7 0%, #2563eb 100%); border-radius: 10px; border: none; cursor: pointer; color: #fff; box-shadow: 0 4px 18px rgba(2, 132, 199, 0.45); display: flex; align-items: center; justify-content: center; gap: 8px; min-height: 50px;">
+          <span>🚀</span> ¡Comenzar a Estudiar!
+        </button>
+        <span style="text-align: center; font-size: 11.5px; color: #64748b;">
+          Podrás alternar de cargo o cambiar tu usuario cuando lo desees desde Ajustes.
+        </span>
+      </div>
+
     </div>
   </div>
 

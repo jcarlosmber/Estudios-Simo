@@ -100,9 +100,10 @@
      * *Rendición de Cuentas (Ley 1757/2015)*
      * *Competencias Comportamentales (Niveles 1, 3 y 4)*
      * *Valores de Integridad (Honestidad, Diligencia, Respeto, etc.)*
-3. **🧠 Flashcards SRS con Método Feynman**:
-   - Las preguntas falladas o marcadas como difíciles se convierten en tarjetas interactivas.
-   - Incluye el botón **👁️ Revelar Clave Oficial** y el campo **📝 Mis Apuntes Feynman** para redactar con tus propias palabras la justificación normativa y consolidar el aprendizaje.
+3. **🎴 Flashcards Interactivas 3D con Sistema Leitner y Quiz Relámpago**:
+   - Tarjetas con **efecto de volteo 3D** (Anverso: Caso situacional y opciones para reflexión activa; Reverso: Criterio oficial y fundamento normativo).
+   - **Sistema Leitner por Niveles**: Clasificación instantánea con 1 clic en 🔴 Caja 1 (Diario), 🟡 Caja 2 (Cada 3 días) o 🟢 Caja 3 (Dominada / Cada 7 días).
+   - **⚡ Modo Quiz Relámpago de Errores**: Reto cronometrado express de 45 segundos por caso para poner a prueba tu retención activa, con ascenso automático de nivel y reporte de resultados.
 4. **⏱️ Simulacro Cronometrado con Umbral DIAN**:
    - 90 segundos por caso situacional. Al finalizar, calcula tu desempeño y te alerta si superaste el umbral aprobatorio eliminatorio de **70.00 puntos** en las funcionales.
 5. **📊 Dashboard de Métricas y Calculadora Convocatoria DIAN**:

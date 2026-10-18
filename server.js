@@ -63,7 +63,7 @@ app.get('/health', (req, res) => {
 
 // 3. Subir Progreso (PUSH)
 app.post('/sync/push', (req, res) => {
-  const { userId, stats, srsCards, activeJob, streak } = req.body;
+  const { userId, stats, srsCards, activeJob, activeProfileId, streak } = req.body;
   if (!userId) {
     return res.status(400).json({ error: 'userId es obligatorio' });
   }
@@ -74,6 +74,7 @@ app.post('/sync/push', (req, res) => {
     stats: stats || {},
     srsCards: srsCards || [],
     activeJob: activeJob || null,
+    activeProfileId: activeProfileId || (activeJob && activeJob.id) || 'gestor_iii',
     streak: streak || { current: 0, best: 0 }
   };
   saveDB(db);
@@ -88,7 +89,7 @@ app.post('/sync/push', (req, res) => {
 
 // 4. Descargar Progreso (PULL)
 app.get('/sync/pull', (req, res) => {
-  const userId = req.query.userId || 'aspirante_dian_01';
+  const userId = req.query.userId || 'jcarlos';
   const db = loadDB();
 
   if (!db[userId]) {
@@ -104,8 +105,14 @@ app.get('/questions', (req, res) => {
   try {
     const questionsPath = path.join(__dirname, 'questions.js');
     if (fs.existsSync(questionsPath)) {
-      const { QUESTION_BANK } = require('./questions.js');
-      return res.json(QUESTION_BANK);
+      const qModule = require('./questions.js');
+      const profile = req.query.profile;
+      if (profile && typeof qModule.getQuestionsForProfile === 'function') {
+        return res.json(qModule.getQuestionsForProfile(profile));
+      }
+      if (qModule.QUESTION_BANK) {
+        return res.json(qModule.QUESTION_BANK);
+      }
     }
     res.json([]);
   } catch (err) {

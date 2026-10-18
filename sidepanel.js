@@ -13,6 +13,7 @@ const AppState = {
   selectedOption: null,
   currentEjeFilter: "todos",
   practiceCorrectIds: [],
+  practiceStudiedIds: [],
   activeJob: (typeof PROFILES_DATA !== "undefined" && PROFILES_DATA.gestor_iii) ? { ...PROFILES_DATA.gestor_iii } : {
     title: "GESTOR III (Código 303 - Grado 03)",
     shortTitle: "GESTOR III",
@@ -1052,8 +1053,10 @@ document.addEventListener("DOMContentLoaded", async () => {
   setupProfileSwitcher();
   setupSrsLogic();
   setupSimulacroLogic();
+  setupDiaDModal();
   setupDashboardCalculator();
   setupAccountModal();
+  setupOnboardingModal();
   setupMobileNotificationPrompt();
   setupInstallModal();
   await setupSoundToggleUI();
@@ -1064,8 +1067,12 @@ document.addEventListener("DOMContentLoaded", async () => {
   updateStreakUI();
   showPracticeCover();
 
+  // Verificar si es la primera vez que se conecta para preguntar usuario y cargo a estudiar
+  await checkFirstTimeOnboarding();
+
   // Sincronización Automática Silenciosa con https://simo.liverohoa.com (Progreso y Preguntas)
-  if (typeof CloudSync !== "undefined") {
+  const isOnboarded = await StorageManager.get("simo_onboarding_completed", false);
+  if (isOnboarded && typeof CloudSync !== "undefined") {
     CloudSync.init().then(async () => {
       await CloudSync.syncAll();
     }).catch(() => {});
@@ -1415,6 +1422,7 @@ function setupGlobalModals() {
   document.querySelectorAll(".modal-overlay").forEach((overlay) => {
     overlay.addEventListener("click", (e) => {
       if (e.target === overlay) {
+        if (overlay.getAttribute("data-prevent-close") === "true") return;
         closeModal(overlay);
       }
     });
@@ -1425,6 +1433,7 @@ function setupGlobalModals() {
     if (e.key === "Escape") {
       const activeModal = document.querySelector(".modal-overlay.active");
       if (activeModal) {
+        if (activeModal.getAttribute("data-prevent-close") === "true") return;
         closeModal(activeModal);
       }
     }
@@ -2362,6 +2371,14 @@ async function loadUserData() {
   const savedPracticeCorrect = await StorageManager.get("practiceCorrectIds_" + savedProfileId, []);
   AppState.practiceCorrectIds = Array.isArray(savedPracticeCorrect) ? savedPracticeCorrect : [];
 
+  const savedPracticeStudied = await StorageManager.get("practiceStudiedIds_" + savedProfileId, []);
+  const studiedSet = new Set(Array.isArray(savedPracticeStudied) ? savedPracticeStudied : []);
+  AppState.practiceCorrectIds.forEach((id) => studiedSet.add(id));
+  if (Array.isArray(AppState.srsCards)) {
+    AppState.srsCards.forEach((c) => { if (c && c.id) studiedSet.add(c.id); });
+  }
+  AppState.practiceStudiedIds = Array.from(studiedSet);
+
   const savedQuestionTimer = await StorageManager.get("questionTimerSeconds", 120);
   PracticeTimer.setTotalSeconds(savedQuestionTimer);
 }
@@ -2637,6 +2654,7 @@ function switchTab(tabName) {
   if (tabName === "srs") renderSrsTab();
   if (tabName === "stats") renderStatsTab();
   if (tabName === "speedDrill") startSpeedDrill();
+  if (tabName === "simulacro") renderSimulacroTab();
 
   window.scrollTo({ top: 0, behavior: "smooth" });
 }
@@ -2680,10 +2698,19 @@ function applyProfile(profileId, save = true, showNotification = false) {
   const switcher = document.getElementById("profileSwitcher");
   if (switcher) switcher.value = profileId;
 
-  StorageManager.get("practiceCorrectIds_" + profileId, []).then((saved) => {
+  StorageManager.get("practiceCorrectIds_" + profileId, []).then(async (saved) => {
     AppState.practiceCorrectIds = Array.isArray(saved) ? saved : [];
+    const savedStudied = await StorageManager.get("practiceStudiedIds_" + profileId, []);
+    const studiedSet = new Set(Array.isArray(savedStudied) ? savedStudied : []);
+    AppState.practiceCorrectIds.forEach((id) => studiedSet.add(id));
+    if (Array.isArray(AppState.srsCards)) {
+      AppState.srsCards.forEach((c) => { if (c && c.id) studiedSet.add(c.id); });
+    }
+    AppState.practiceStudiedIds = Array.from(studiedSet);
+
     updateJobProfileUI();
     updateEjeFilterOptions(profileId);
+    updateSelectedEjeProgressBar();
     loadNextPracticeQuestion();
   });
 
@@ -2700,22 +2727,152 @@ function applyProfile(profileId, save = true, showNotification = false) {
   }
 }
 
+function getCleanFilterLabel(label) {
+  if (!label) return "";
+  return label
+    .replace(/\s*\([^)]*casos?[^)]*\)/gi, "")
+    .replace(/\s*\(\d+\)/g, "")
+    .trim();
+}
+
+function getQuestionsForFilter(pool, filterId, profileId) {
+  if (!pool || !Array.isArray(pool)) return [];
+  if (!filterId || filterId === "todos" || filterId === "interleaving") {
+    return pool;
+  }
+  return pool.filter((q) => {
+    if (filterId === "misionalidad" && profileId === "gestor_iii") {
+      return q.ejeId === "misionalidad" || q.ejeId === "estructura_dian";
+    }
+    if (filterId === "mipg") {
+      return q.ejeId === "mipg" || q.ejeId === "desempeno";
+    }
+    if (filterId === "adaptabilidad") return q.ejeId && q.ejeId.startsWith("adaptabilidad");
+    if (filterId === "comportamiento_etico") return q.ejeId && q.ejeId.startsWith("comportamiento_etico");
+    if (filterId === "comunicacion_efectiva") return q.ejeId && q.ejeId.startsWith("comunicacion_efectiva");
+    if (filterId === "trabajo_equipo") return q.ejeId && q.ejeId.startsWith("trabajo_equipo");
+    if (filterId === "orientacion_logro") return q.ejeId && q.ejeId.startsWith("orientacion_logro");
+    if (filterId === "orientacion_usuario") return q.ejeId && q.ejeId.startsWith("orientacion_usuario");
+    if (filterId === "comprension_lectora") return q.ejeId === "comprension_lectora" || q.ejeId === "razonamiento";
+    return q.ejeId === filterId;
+  });
+}
+
+function updateSelectedEjeProgressBar() {
+  const bar = document.getElementById("filterEjeProgressBar");
+  const text = document.getElementById("filterEjeProgressText");
+  const filterSelect = document.getElementById("selectEjeFilter");
+  if (!bar || !text || !filterSelect) return;
+
+  const currentFilter = filterSelect.value || AppState.currentEjeFilter || "todos";
+  const currentProfileId = AppState.activeProfileId || "gestor_iii";
+  let pool = null;
+  if (typeof getQuestionsForProfile === "function") {
+    pool = getQuestionsForProfile(currentProfileId);
+  }
+  if (!pool || pool.length === 0) {
+    if (typeof window !== "undefined" && window.QUESTION_BANK && window.QUESTION_BANK.length > 0) {
+      pool = window.QUESTION_BANK;
+    } else if (typeof QUESTION_BANK !== "undefined" && Array.isArray(QUESTION_BANK) && QUESTION_BANK.length > 0) {
+      pool = QUESTION_BANK;
+    } else {
+      pool = [];
+    }
+  }
+
+  const matchingQuestions = getQuestionsForFilter(pool, currentFilter, currentProfileId);
+  const total = matchingQuestions.length;
+
+  const studiedSet = new Set(AppState.practiceStudiedIds || []);
+  if (Array.isArray(AppState.practiceCorrectIds)) {
+    AppState.practiceCorrectIds.forEach((id) => studiedSet.add(id));
+  }
+  const studiedCount = matchingQuestions.filter((q) => studiedSet.has(q.id)).length;
+  const pct = total > 0 ? Math.round((studiedCount / total) * 100) : 0;
+
+  bar.style.width = `${pct}%`;
+  text.textContent = `${pct}% estudiado (${studiedCount}/${total})`;
+
+  if (pct === 100) {
+    bar.style.background = "linear-gradient(90deg, #10b981, #059669)";
+    text.style.color = "#34d399";
+    text.style.borderColor = "rgba(16, 185, 129, 0.45)";
+    text.style.background = "rgba(16, 185, 129, 0.18)";
+  } else if (pct > 0) {
+    bar.style.background = "linear-gradient(90deg, #38bdf8, #10b981)";
+    text.style.color = "#38bdf8";
+    text.style.borderColor = "rgba(56, 189, 248, 0.35)";
+    text.style.background = "rgba(56, 189, 248, 0.14)";
+  } else {
+    bar.style.background = "rgba(255, 255, 255, 0.1)";
+    text.style.color = "#94a3b8";
+    text.style.borderColor = "rgba(255, 255, 255, 0.12)";
+    text.style.background = "rgba(255, 255, 255, 0.06)";
+  }
+}
+
 function updateEjeFilterOptions(profileId) {
   const filterSelect = document.getElementById("selectEjeFilter");
   if (!filterSelect || typeof PROFILES_DATA === "undefined") return;
-  const profile = PROFILES_DATA[profileId] || PROFILES_DATA.gestor_iii;
+  const currentProfileId = profileId || AppState.activeProfileId || "gestor_iii";
+  const profile = PROFILES_DATA[currentProfileId] || PROFILES_DATA.gestor_iii;
   if (!profile || !profile.filterOptions) return;
 
+  const previousSelectedValue = filterSelect.value || AppState.currentEjeFilter || "todos";
+
+  let pool = null;
+  if (typeof getQuestionsForProfile === "function") {
+    pool = getQuestionsForProfile(currentProfileId);
+  }
+  if (!pool || pool.length === 0) {
+    if (typeof window !== "undefined" && window.QUESTION_BANK && window.QUESTION_BANK.length > 0) {
+      pool = window.QUESTION_BANK;
+    } else if (typeof QUESTION_BANK !== "undefined" && Array.isArray(QUESTION_BANK) && QUESTION_BANK.length > 0) {
+      pool = QUESTION_BANK;
+    } else {
+      pool = [];
+    }
+  }
+
+  const studiedSet = new Set(AppState.practiceStudiedIds || []);
+  if (Array.isArray(AppState.practiceCorrectIds)) {
+    AppState.practiceCorrectIds.forEach((id) => studiedSet.add(id));
+  }
+
   filterSelect.innerHTML = "";
+  let valueStillExists = false;
+
   profile.filterOptions.forEach((opt) => {
     const optionEl = document.createElement("option");
     optionEl.value = opt.id;
-    optionEl.textContent = opt.label;
+
+    const matchingQuestions = getQuestionsForFilter(pool, opt.id, currentProfileId);
+    const totalCount = matchingQuestions.length;
+    const studiedCount = matchingQuestions.filter((q) => studiedSet.has(q.id)).length;
+    const percentage = totalCount > 0 ? Math.round((studiedCount / totalCount) * 100) : 0;
+
+    const cleanLabel = getCleanFilterLabel(opt.label);
+
+    let optionText = cleanLabel;
+    if (totalCount > 0) {
+      optionText = `${cleanLabel} (${percentage}% · ${studiedCount}/${totalCount})`;
+    } else {
+      optionText = `${cleanLabel} (0%)`;
+    }
+
+    optionEl.textContent = optionText;
     filterSelect.appendChild(optionEl);
+
+    if (opt.id === previousSelectedValue) {
+      valueStillExists = true;
+    }
   });
 
-  AppState.currentEjeFilter = "todos";
-  filterSelect.value = "todos";
+  const finalValue = valueStillExists ? previousSelectedValue : "todos";
+  AppState.currentEjeFilter = finalValue;
+  filterSelect.value = finalValue;
+
+  updateSelectedEjeProgressBar();
 }
 
 function setupProfileSwitcher() {
@@ -2800,6 +2957,7 @@ function setupPracticeLogic() {
 
   filterSelect.addEventListener("change", (e) => {
     AppState.currentEjeFilter = e.target.value;
+    updateSelectedEjeProgressBar();
     if (AppState.practiceSession.active) {
       loadNextPracticeQuestion();
     }
@@ -3086,18 +3244,7 @@ function loadNextPracticeQuestion() {
       if (otherEjes.length > 0) pool = otherEjes;
     }
   } else if (filter && filter !== "todos") {
-    const filtered = pool.filter((q) => {
-      if (filter === "misionalidad" && AppState.activeProfileId === "gestor_iii") return q.ejeId === "misionalidad" || q.ejeId === "estructura_dian";
-      if (filter === "mipg") return q.ejeId === "mipg" || q.ejeId === "desempeno";
-      if (filter === "adaptabilidad") return q.ejeId && q.ejeId.startsWith("adaptabilidad");
-      if (filter === "comportamiento_etico") return q.ejeId && q.ejeId.startsWith("comportamiento_etico");
-      if (filter === "comunicacion_efectiva") return q.ejeId && q.ejeId.startsWith("comunicacion_efectiva");
-      if (filter === "trabajo_equipo") return q.ejeId && q.ejeId.startsWith("trabajo_equipo");
-      if (filter === "orientacion_logro") return q.ejeId && q.ejeId.startsWith("orientacion_logro");
-      if (filter === "orientacion_usuario") return q.ejeId && q.ejeId.startsWith("orientacion_usuario");
-      if (filter === "comprension_lectora") return q.ejeId === "comprension_lectora" || q.ejeId === "razonamiento";
-      return q.ejeId === filter;
-    });
+    const filtered = getQuestionsForFilter(pool, filter, AppState.activeProfileId);
     if (filtered.length > 0) pool = filtered;
   }
 
@@ -3135,6 +3282,7 @@ function loadNextPracticeQuestion() {
   const q = candidates[randomIndex];
   renderPracticeQuestion(q);
   updatePracticeProgressPill(pool.length, availableCandidates.length);
+  updateSelectedEjeProgressBar();
 }
 
 function updatePracticeProgressPill(totalPoolCount, remainingCount) {
@@ -3293,6 +3441,12 @@ function evaluateAnswer(selectedId) {
   if (isCorrect) AppState.stats.correctCount += 1;
 
   AppState.practiceSession.questionsAnswered = (AppState.practiceSession.questionsAnswered || 0) + 1;
+  if (!AppState.practiceStudiedIds) AppState.practiceStudiedIds = [];
+  if (!AppState.practiceStudiedIds.includes(q.id)) {
+    AppState.practiceStudiedIds.push(q.id);
+    StorageManager.set("practiceStudiedIds_" + AppState.activeProfileId, AppState.practiceStudiedIds);
+  }
+
   if (isCorrect) {
     AppState.practiceSession.correctCount = (AppState.practiceSession.correctCount || 0) + 1;
     if (!AppState.practiceCorrectIds) AppState.practiceCorrectIds = [];
@@ -3301,6 +3455,9 @@ function evaluateAnswer(selectedId) {
       StorageManager.set("practiceCorrectIds_" + AppState.activeProfileId, AppState.practiceCorrectIds);
     }
   }
+
+  updateEjeFilterOptions(AppState.activeProfileId);
+  updateSelectedEjeProgressBar();
 
   if (q.tipo.includes("Funcional")) {
     AppState.stats.functionalTotal += 1;
@@ -4354,6 +4511,216 @@ function setupAccountModal() {
   }
 }
 
+// =========================================================================
+// ASISTENTE DE BIENVENIDA Y REGISTRO INICIAL (USUARIO Y CARGO DIAN)
+// =========================================================================
+let onboardingSelectedProfile = "gestor_iii";
+
+function setupOnboardingModal() {
+  const modal = document.getElementById("welcomeOnboardingModal");
+  if (!modal) return;
+
+  const inputUser = document.getElementById("onboardingInputUserId");
+  const errorEl = document.getElementById("onboardingUserError");
+  const cardGestor = document.getElementById("onboardingCardGestor");
+  const cardAnalista = document.getElementById("onboardingCardAnalista");
+  const checkGestor = document.getElementById("onboardingCheckGestor");
+  const checkAnalista = document.getElementById("onboardingCheckAnalista");
+  const btnSubmit = document.getElementById("btnSubmitOnboarding");
+  const btnCloseX = document.getElementById("btnCloseOnboardingModalX");
+  const btnReopen = document.getElementById("btnReopenOnboarding");
+
+  window.selectOnboardingProfile = function(profileId) {
+    onboardingSelectedProfile = (profileId === "analista_iv") ? "analista_iv" : "gestor_iii";
+
+    if (onboardingSelectedProfile === "gestor_iii") {
+      if (cardGestor) {
+        cardGestor.classList.add("active");
+        cardGestor.style.borderColor = "#38bdf8";
+        cardGestor.style.backgroundColor = "rgba(2, 132, 199, 0.18)";
+      }
+      if (checkGestor) checkGestor.style.display = "inline-block";
+
+      if (cardAnalista) {
+        cardAnalista.classList.remove("active");
+        cardAnalista.style.borderColor = "rgba(255, 255, 255, 0.12)";
+        cardAnalista.style.backgroundColor = "rgba(11, 17, 32, 0.6)";
+      }
+      if (checkAnalista) checkAnalista.style.display = "none";
+    } else {
+      if (cardAnalista) {
+        cardAnalista.classList.add("active");
+        cardAnalista.style.borderColor = "#38bdf8";
+        cardAnalista.style.backgroundColor = "rgba(168, 85, 247, 0.18)";
+      }
+      if (checkAnalista) checkAnalista.style.display = "inline-block";
+
+      if (cardGestor) {
+        cardGestor.classList.remove("active");
+        cardGestor.style.borderColor = "rgba(255, 255, 255, 0.12)";
+        cardGestor.style.backgroundColor = "rgba(11, 17, 32, 0.6)";
+      }
+      if (checkGestor) checkGestor.style.display = "none";
+    }
+  };
+
+  if (cardGestor) {
+    cardGestor.addEventListener("click", () => {
+      window.selectOnboardingProfile("gestor_iii");
+    });
+  }
+
+  if (cardAnalista) {
+    cardAnalista.addEventListener("click", () => {
+      window.selectOnboardingProfile("analista_iv");
+    });
+  }
+
+  if (inputUser) {
+    inputUser.addEventListener("input", () => {
+      if (errorEl && errorEl.style.display !== "none") {
+        errorEl.style.display = "none";
+      }
+      inputUser.style.borderColor = "rgba(56, 189, 248, 0.4)";
+    });
+
+    inputUser.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") {
+        if (btnSubmit) btnSubmit.click();
+      }
+    });
+  }
+
+  if (btnCloseX) {
+    btnCloseX.addEventListener("click", () => {
+      closeModal(modal);
+    });
+  }
+
+  window.openOnboardingModal = function({ isReopen = false } = {}) {
+    if (!modal) return;
+
+    if (isReopen) {
+      modal.removeAttribute("data-prevent-close");
+      if (btnCloseX) btnCloseX.style.display = "flex";
+    } else {
+      modal.setAttribute("data-prevent-close", "true");
+      if (btnCloseX) btnCloseX.style.display = "none";
+    }
+
+    const currentUid = (typeof CloudSync !== "undefined" && CloudSync.config && CloudSync.config.userId && CloudSync.config.userId !== "jcarlos")
+      ? CloudSync.config.userId
+      : (localStorage.getItem("simo_aspirante_user") || "");
+
+    if (inputUser) inputUser.value = currentUid;
+    if (errorEl) errorEl.style.display = "none";
+
+    const currentProf = AppState.activeProfileId || "gestor_iii";
+    window.selectOnboardingProfile(currentProf);
+
+    openModal(modal);
+    setTimeout(() => {
+      if (inputUser) inputUser.focus();
+    }, 150);
+  };
+
+  if (btnReopen) {
+    btnReopen.addEventListener("click", () => {
+      const modalSettings = document.getElementById("appSettingsModal");
+      if (modalSettings) closeModal(modalSettings);
+      window.openOnboardingModal({ isReopen: true });
+    });
+  }
+
+  if (btnSubmit) {
+    btnSubmit.addEventListener("click", async () => {
+      const rawUser = inputUser ? inputUser.value.trim().toLowerCase() : "";
+      if (!rawUser) {
+        if (errorEl) {
+          errorEl.style.display = "block";
+          errorEl.textContent = "⚠️ Por favor escribe tu nombre o identificador de aspirante.";
+        }
+        if (inputUser) {
+          inputUser.style.borderColor = "#f87171";
+          inputUser.focus();
+        }
+        return;
+      }
+
+      btnSubmit.disabled = true;
+      btnSubmit.innerHTML = `<span>⏳</span> Guardando tu perfil...`;
+
+      try {
+        // 1. Guardar bandera de onboarding completado
+        await StorageManager.set("simo_onboarding_completed", true);
+        try { localStorage.setItem("simo_onboarding_completed", "true"); } catch (e) {}
+
+        // 2. Guardar usuario
+        await StorageManager.set("simo_aspirante_user", rawUser);
+        try { localStorage.setItem("simo_aspirante_user", rawUser); } catch (e) {}
+
+        // 3. Sincronizar en CloudSync y UI
+        if (typeof CloudSync !== "undefined") {
+          CloudSync.config.userId = rawUser;
+          await CloudSync.saveConfig(CloudSync.config);
+        }
+
+        const inputAcc = document.getElementById("inputAccountUserId");
+        if (inputAcc) inputAcc.value = rawUser;
+        const inputQuick = document.getElementById("inputSettingsQuickUserId");
+        if (inputQuick) inputQuick.value = rawUser;
+        const cardUser = document.getElementById("accountCardUserDisplay");
+        if (cardUser) cardUser.textContent = rawUser;
+        const sub = document.getElementById("settingsAccountSub");
+        if (sub) sub.textContent = `Aspirante: ${rawUser} • 🟢 Conectado`;
+
+        // 4. Aplicar el cargo seleccionado
+        applyProfile(onboardingSelectedProfile, true, false);
+
+        // 5. Cerrar modal de bienvenida
+        modal.removeAttribute("data-prevent-close");
+        closeModal(modal);
+
+        // 6. Mensaje de bienvenida personalizado con Modal
+        const profileData = (typeof PROFILES_DATA !== "undefined" && PROFILES_DATA[onboardingSelectedProfile])
+          ? PROFILES_DATA[onboardingSelectedProfile]
+          : { title: onboardingSelectedProfile };
+
+        showCustomModal({
+          title: `¡Bienvenido a Bordo, ${rawUser.toUpperCase()}! 🚀`,
+          message: `Has quedado registrado exitosamente para preparar el cargo ${profileData.shortTitle || profileData.title} (OPEC ${profileData.opec || "2676"}). Se ha cargado tu banco de preguntas y tu ruta temática. ¡A por esa plaza en la DIAN!`,
+          icon: "🎯"
+        });
+
+        // 7. Sincronización en la nube silenciosa
+        if (typeof CloudSync !== "undefined") {
+          CloudSync.syncAll().catch(() => {});
+        }
+      } catch (err) {
+        console.error("[Onboarding] Error al guardar:", err);
+      } finally {
+        btnSubmit.disabled = false;
+        btnSubmit.innerHTML = `<span>🚀</span> ¡Comenzar a Estudiar!`;
+      }
+    });
+  }
+}
+
+async function checkFirstTimeOnboarding() {
+  const isCompleted = await StorageManager.get("simo_onboarding_completed", false);
+  const localCompleted = (function() {
+    try { return localStorage.getItem("simo_onboarding_completed") === "true"; } catch (e) { return false; }
+  })();
+
+  if (!isCompleted && !localCompleted) {
+    if (typeof window.openOnboardingModal === "function") {
+      setTimeout(() => {
+        window.openOnboardingModal({ isReopen: false });
+      }, 400);
+    }
+  }
+}
+
 function setupMobileNotificationPrompt() {
   const modal = document.getElementById("mobileNotificationModal");
   const btnEnable = document.getElementById("btnEnableMobileNotifications");
@@ -4485,12 +4852,17 @@ function setupDashboardCalculator() {
   const sliderComp = document.getElementById("sliderComp");
   const sliderInteg = document.getElementById("sliderInteg");
   const sliderAntec = document.getElementById("sliderAntec");
+  const selectMod = document.getElementById("selectCalcModality");
 
   if (!sliderFunc) return;
 
   [sliderFunc, sliderComp, sliderInteg, sliderAntec].forEach((slider) => {
     if (slider) slider.addEventListener("input", updateDashboardCalculator);
   });
+
+  if (selectMod) {
+    selectMod.addEventListener("change", updateDashboardCalculator);
+  }
 
   updateDashboardCalculator();
 }
@@ -4500,30 +4872,44 @@ function updateDashboardCalculator() {
   const sliderComp = document.getElementById("sliderComp");
   const sliderInteg = document.getElementById("sliderInteg");
   const sliderAntec = document.getElementById("sliderAntec");
+  const selectMod = document.getElementById("selectCalcModality");
 
   if (!sliderFunc) return;
+
+  // Modalidades Oficiales de la Convocatoria DIAN 2676 (Págs. 9-11 Guía de Orientación)
+  const MODALITY_RULES = {
+    ingreso_con_exp: { func: 0.65, comp: 0.15, integ: 0.10, antec: 0.10, antecActive: true },
+    ingreso_sin_exp: { func: 0.70, comp: 0.20, integ: 0.10, antec: 0.00, antecActive: false },
+    ascenso_con_exp: { func: 0.60, comp: 0.15, integ: 0.10, antec: 0.15, antecActive: true },
+    ascenso_sin_exp: { func: 0.65, comp: 0.20, integ: 0.10, antec: 0.05, antecActive: true }
+  };
+
+  const selectedKey = selectMod ? selectMod.value : "ingreso_con_exp";
+  const rules = MODALITY_RULES[selectedKey] || MODALITY_RULES.ingreso_con_exp;
+
+  // Actualizar slider de Antecedentes si la modalidad no requiere experiencia
+  const antecRow = sliderAntec ? sliderAntec.closest(".calc-row") : null;
+  if (antecRow) {
+    antecRow.style.opacity = rules.antecActive ? "1" : "0.35";
+    antecRow.style.pointerEvents = rules.antecActive ? "auto" : "none";
+  }
 
   const valFunc = parseFloat(sliderFunc.value) || 0;
   const valComp = parseFloat(sliderComp ? sliderComp.value : 80) || 0;
   const valInteg = parseFloat(sliderInteg ? sliderInteg.value : 85) || 0;
-  const valAntec = parseFloat(sliderAntec ? sliderAntec.value : 70) || 0;
+  const valAntec = rules.antecActive ? (parseFloat(sliderAntec ? sliderAntec.value : 70) || 0) : 0;
 
   const funcEl = document.getElementById("calcFuncVal");
   const compEl = document.getElementById("calcCompVal");
   const integEl = document.getElementById("calcIntegVal");
   const antecEl = document.getElementById("calcAntecVal");
 
-  if (funcEl) funcEl.textContent = `${valFunc} pts`;
-  if (compEl) compEl.textContent = `${valComp} pts`;
-  if (integEl) integEl.textContent = `${valInteg} pts`;
-  if (antecEl) antecEl.textContent = `${valAntec} pts`;
+  if (funcEl) funcEl.textContent = `${valFunc} pts (${Math.round(rules.func * 100)}%)`;
+  if (compEl) compEl.textContent = `${valComp} pts (${Math.round(rules.comp * 100)}%)`;
+  if (integEl) integEl.textContent = `${valInteg} pts (${Math.round(rules.integ * 100)}%)`;
+  if (antecEl) antecEl.textContent = rules.antecActive ? `${valAntec} pts (${Math.round(rules.antec * 100)}%)` : "No aplica (0%)";
 
-  // Ponderación oficial DIAN 2676:
-  // Funcionales: 65% (Mínimo eliminatorio 70.00 pts)
-  // Comportamentales: 15% (Clasificatorio)
-  // Integridad: 10% (Clasificatorio)
-  // Antecedentes: 10% (Clasificatorio)
-  const totalPonderado = (valFunc * 0.65) + (valComp * 0.15) + (valInteg * 0.10) + (valAntec * 0.10);
+  const totalPonderado = (valFunc * rules.func) + (valComp * rules.comp) + (valInteg * rules.integ) + (valAntec * rules.antec);
   const totalScoreEl = document.getElementById("calcTotalScore");
   if (totalScoreEl) {
     totalScoreEl.textContent = totalPonderado.toFixed(2);
@@ -4551,10 +4937,10 @@ function updateDashboardCalculator() {
 
   if (statusEl) {
     if (apruebaFuncional) {
-      statusEl.textContent = `Supera el umbral eliminatorio con ${totalPonderado.toFixed(2)} pts totales.`;
+      statusEl.textContent = `Supera el umbral eliminatorio con ${totalPonderado.toFixed(2)} pts ponderados totales.`;
       statusEl.style.color = "#34d399";
     } else {
-      statusEl.textContent = `Atención: La prueba funcional exige mínimo 70.00 pts (tienes ${valFunc}).`;
+      statusEl.textContent = `Atención: La prueba funcional exige mínimo 70.00 pts (tienes ${valFunc}). Al no aprobar, no se califican Comportamentales ni Integridad.`;
       statusEl.style.color = "#f87171";
     }
   }
@@ -4588,24 +4974,22 @@ function populateJobModalForm(forcedProfileId = null) {
     inputFunctions.value = Array.isArray(job.functions) ? job.functions.join("\n") : (job.functions || "");
   }
 
-  // Resaltado visual del botón rápido activo
+  // Resaltado visual de la tarjeta de perfil activa
   const btnQuickGestor = document.getElementById("btnQuickProfileGestor");
   const btnQuickAnalista = document.getElementById("btnQuickProfileAnalista");
+  const badgeGestor = document.getElementById("badgeActiveGestor");
+  const badgeAnalista = document.getElementById("badgeActiveAnalista");
   if (btnQuickGestor && btnQuickAnalista) {
     if (profileId === "gestor_iii") {
-      btnQuickGestor.style.background = "rgba(56, 189, 248, 0.25)";
-      btnQuickGestor.style.borderColor = "#38bdf8";
-      btnQuickGestor.style.color = "#38bdf8";
-      btnQuickAnalista.style.background = "rgba(148, 163, 184, 0.15)";
-      btnQuickAnalista.style.borderColor = "rgba(148, 163, 184, 0.3)";
-      btnQuickAnalista.style.color = "#cbd5e1";
+      btnQuickGestor.classList.add("active");
+      btnQuickAnalista.classList.remove("active");
+      if (badgeGestor) badgeGestor.style.display = "inline-block";
+      if (badgeAnalista) badgeAnalista.style.display = "none";
     } else {
-      btnQuickAnalista.style.background = "rgba(56, 189, 248, 0.25)";
-      btnQuickAnalista.style.borderColor = "#38bdf8";
-      btnQuickAnalista.style.color = "#38bdf8";
-      btnQuickGestor.style.background = "rgba(148, 163, 184, 0.15)";
-      btnQuickGestor.style.borderColor = "rgba(148, 163, 184, 0.3)";
-      btnQuickGestor.style.color = "#cbd5e1";
+      btnQuickAnalista.classList.add("active");
+      btnQuickGestor.classList.remove("active");
+      if (badgeAnalista) badgeAnalista.style.display = "inline-block";
+      if (badgeGestor) badgeGestor.style.display = "none";
     }
   }
 }
@@ -4714,152 +5098,638 @@ function renderJobFocusTab() {
   };
 }
 
-// Simulacro
+// =========================================================================
+// 4. MOTOR DE SIMULACRO REAL AREANDINA (DIAN 2676 - GUÍA OFICIAL)
+// =========================================================================
+const SimulacroState = {
+  active: false,
+  count: 15,
+  mode: "optical", // "optical" | "classic"
+  questions: [],
+  currentIndex: 0,
+  answers: {}, // { [index]: "A" | "B" | "C" }
+  bookmarks: {}, // { [index]: true }
+  timeLeft: 15 * 150, // 2.5 minutos por caso en segundos
+  totalTime: 15 * 150,
+  timerInterval: null,
+  startTime: null,
+  elapsedSeconds: 0,
+  isReviewing: false,
+  countdownInterval: null
+};
+
+// Cuenta regresiva oficial al Domingo 8 de Noviembre de 2026, 8:00 a.m. (Colombia GMT-5)
+function initExamCountdown() {
+  const update = () => {
+    const examDate = new Date("2026-11-08T08:00:00-05:00");
+    const now = new Date();
+    const diff = examDate.getTime() - now.getTime();
+
+    const dEl = document.getElementById("countdownDays");
+    const hEl = document.getElementById("countdownHours");
+    const mEl = document.getElementById("countdownMins");
+    const sEl = document.getElementById("countdownSecs");
+
+    if (!dEl || !hEl || !mEl || !sEl) return;
+
+    if (diff <= 0) {
+      dEl.textContent = "0";
+      hEl.textContent = "00";
+      mEl.textContent = "00";
+      sEl.textContent = "00";
+      return;
+    }
+
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+    const secs = Math.floor((diff % (1000 * 60)) / 1000);
+
+    dEl.textContent = days.toString();
+    hEl.textContent = hours.toString().padStart(2, "0");
+    mEl.textContent = mins.toString().padStart(2, "0");
+    sEl.textContent = secs.toString().padStart(2, "0");
+  };
+
+  update();
+  if (SimulacroState.countdownInterval) clearInterval(SimulacroState.countdownInterval);
+  SimulacroState.countdownInterval = setInterval(update, 1000);
+}
+
+function renderSimulacroTab() {
+  initExamCountdown();
+  if (!SimulacroState.active && !SimulacroState.isReviewing) {
+    const setupView = document.getElementById("simulacroSetupView");
+    const activeView = document.getElementById("simulacroActiveView");
+    const resultView = document.getElementById("simulacroResultView");
+    if (setupView) setupView.style.display = "flex";
+    if (activeView) activeView.style.display = "none";
+    if (resultView) resultView.style.display = "none";
+  }
+}
+
 function setupSimulacroLogic() {
+  initExamCountdown();
+
+  // Selector de cantidad de preguntas
+  [15, 30, 60].forEach((count) => {
+    const btn = document.getElementById(`btnSimCount${count}`);
+    if (btn) {
+      btn.addEventListener("click", () => {
+        SimulacroState.count = count;
+        [15, 30, 60].forEach((c) => {
+          const b = document.getElementById(`btnSimCount${c}`);
+          if (b) {
+            const isActive = c === count;
+            b.classList.toggle("active", isActive);
+            b.style.background = isActive ? "rgba(56, 189, 248, 0.15)" : "var(--bg-card)";
+            b.style.borderColor = isActive ? "#38bdf8" : "var(--border-color)";
+            b.style.color = isActive ? "#f8fafc" : "#cbd5e1";
+          }
+        });
+      });
+    }
+  });
+
+  // Selector de modo de respuesta (Hoja Óptica vs Digital Táctil)
+  const btnOptical = document.getElementById("btnSimModeOptical");
+  const btnClassic = document.getElementById("btnSimModeClassic");
+
+  const updateModeButtons = (mode) => {
+    SimulacroState.mode = mode;
+    if (btnOptical) {
+      const isOpt = mode === "optical";
+      btnOptical.classList.toggle("active", isOpt);
+      btnOptical.style.background = isOpt ? "rgba(245, 158, 11, 0.12)" : "var(--bg-card)";
+      btnOptical.style.borderColor = isOpt ? "#f59e0b" : "var(--border-color)";
+    }
+    if (btnClassic) {
+      const isClas = mode === "classic";
+      btnClassic.classList.toggle("active", isClas);
+      btnClassic.style.background = isClas ? "rgba(56, 189, 248, 0.15)" : "var(--bg-card)";
+      btnClassic.style.borderColor = isClas ? "#38bdf8" : "var(--border-color)";
+    }
+  };
+
+  if (btnOptical) btnOptical.addEventListener("click", () => updateModeButtons("optical"));
+  if (btnClassic) btnClassic.addEventListener("click", () => updateModeButtons("classic"));
+
+  // Botón Iniciar Simulacro
   const btnStart = document.getElementById("btnStartSimulacro");
-  btnStart.addEventListener("click", startSimulacro);
+  if (btnStart) btnStart.addEventListener("click", startSimulacro);
+
+  // Botón toggle mapa de preguntas
+  const btnToggleMap = document.getElementById("btnToggleSimGrid");
+  const bubbleMap = document.getElementById("simBubbleMap");
+  if (btnToggleMap && bubbleMap) {
+    btnToggleMap.addEventListener("click", () => {
+      const isHidden = bubbleMap.style.display === "none";
+      bubbleMap.style.display = isHidden ? "grid" : "none";
+      btnToggleMap.textContent = isHidden ? "✕ Ocultar" : "🗺️ Mapa";
+    });
+  }
+
+  // Botón entregar simulacro anticipadamente
+  const btnFinish = document.getElementById("btnFinishSimulacroEarly");
+  if (btnFinish) {
+    btnFinish.addEventListener("click", () => {
+      const answeredCount = Object.keys(SimulacroState.answers).length;
+      const total = SimulacroState.questions.length;
+      showCustomModal({
+        title: "¿Entregar examen ahora?",
+        message: `Has respondido ${answeredCount} de ${total} casos. ¿Deseas calificar tu prueba y ver el diagnóstico oficial?`,
+        icon: "📋",
+        showCancel: true,
+        okText: "Sí, Calificar",
+        cancelText: "Continuar Examen",
+        onOk: () => finishSimulacro(true)
+      });
+    });
+  }
+
+  // Navegación Anterior / Siguiente
+  const btnPrev = document.getElementById("btnPrevSimQuestion");
+  const btnNext = document.getElementById("btnNextSimQuestion");
+
+  if (btnPrev) {
+    btnPrev.addEventListener("click", () => {
+      if (SimulacroState.currentIndex > 0) {
+        SimulacroState.currentIndex--;
+        renderSimulacroQuestion();
+      }
+    });
+  }
+
+  if (btnNext) {
+    btnNext.addEventListener("click", () => {
+      if (SimulacroState.currentIndex < SimulacroState.questions.length - 1) {
+        SimulacroState.currentIndex++;
+        renderSimulacroQuestion();
+      } else {
+        const answeredCount = Object.keys(SimulacroState.answers).length;
+        const total = SimulacroState.questions.length;
+        showCustomModal({
+          title: "¡Llegaste a la última pregunta!",
+          message: `Has completado el cuadernillo (${answeredCount}/${total} respondidas). ¿Deseas entregar el examen para ver tus resultados?`,
+          icon: "🏁",
+          showCancel: true,
+          okText: "Entregar Examen",
+          cancelText: "Revisar Respuestas",
+          onOk: () => finishSimulacro(false)
+        });
+      }
+    });
+  }
+
+  // Botón Bookmark
+  const btnBookmark = document.getElementById("btnBookmarkSimQuestion");
+  if (btnBookmark) {
+    btnBookmark.addEventListener("click", () => {
+      const idx = SimulacroState.currentIndex;
+      SimulacroState.bookmarks[idx] = !SimulacroState.bookmarks[idx];
+      renderSimulacroQuestion();
+      renderSimBubbleMap();
+    });
+  }
+
+  // Botones de resultados: Revisar y Reiniciar
+  const btnReview = document.getElementById("btnReviewSimAnswers");
+  if (btnReview) btnReview.addEventListener("click", reviewSimAnswers);
+
+  const btnRestart = document.getElementById("btnRestartSimulacro");
+  if (btnRestart) {
+    btnRestart.addEventListener("click", () => {
+      SimulacroState.active = false;
+      SimulacroState.isReviewing = false;
+      document.getElementById("simulacroResultView").style.display = "none";
+      document.getElementById("simulacroActiveView").style.display = "none";
+      document.getElementById("simulacroSetupView").style.display = "flex";
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+  }
 }
 
 function startSimulacro() {
-  const pool = QUESTION_BANK;
-  const shuffled = [...pool].sort(() => 0.5 - Math.random());
-  AppState.simulacro.questions = shuffled.slice(0, 5);
-  AppState.simulacro.currentIndex = 0;
-  AppState.simulacro.score = 0;
-  AppState.simulacro.functionalScore = 0;
-  AppState.simulacro.functionalCount = 0;
-  AppState.simulacro.isActive = true;
+  const pool = (typeof getQuestionsForProfile === "function" && AppState.activeProfileId)
+    ? getQuestionsForProfile(AppState.activeProfileId)
+    : (QUESTION_BANK || []);
 
-  document.getElementById("simulacroSetup").style.display = "none";
-  document.getElementById("simulacroActiveArea").style.display = "flex";
-
-  renderSimulacroStep();
-}
-
-function renderSimulacroStep() {
-  const s = AppState.simulacro;
-  if (s.currentIndex >= s.questions.length) {
-    finishSimulacro();
+  if (!pool || pool.length === 0) {
+    showCustomModal({
+      title: "Banco no disponible",
+      message: "No se encontraron casos de estudio para cargar el simulacro.",
+      icon: "⚠️"
+    });
     return;
   }
 
-  const q = s.questions[s.currentIndex];
-  document.getElementById("simulacroProgressText").textContent = `Pregunta ${s.currentIndex + 1} de ${s.questions.length}`;
+  const shuffled = [...pool].sort(() => 0.5 - Math.random());
+  SimulacroState.questions = shuffled.slice(0, SimulacroState.count);
+  SimulacroState.currentIndex = 0;
+  SimulacroState.answers = {};
+  SimulacroState.bookmarks = {};
+  SimulacroState.active = true;
+  SimulacroState.isReviewing = false;
+  SimulacroState.startTime = Date.now();
+  SimulacroState.totalTime = SimulacroState.count * 150; // 2.5 min por caso
+  SimulacroState.timeLeft = SimulacroState.totalTime;
 
-  s.timeLeft = 120;
-  updateSimulacroClockUI();
-  clearInterval(s.timer);
-  s.timer = setInterval(() => {
-    s.timeLeft -= 1;
-    updateSimulacroClockUI();
-    if (s.timeLeft <= 0) {
-      clearInterval(s.timer);
-      handleSimulacroTimeout();
+  // Interfaz
+  document.getElementById("simulacroSetupView").style.display = "none";
+  document.getElementById("simulacroResultView").style.display = "none";
+  document.getElementById("simulacroActiveView").style.display = "flex";
+
+  // Temporizador regresivo oficial
+  if (SimulacroState.timerInterval) clearInterval(SimulacroState.timerInterval);
+  updateSimClockDisplay();
+
+  SimulacroState.timerInterval = setInterval(() => {
+    SimulacroState.timeLeft--;
+    updateSimClockDisplay();
+
+    if (SimulacroState.timeLeft <= 0) {
+      clearInterval(SimulacroState.timerInterval);
+      showCustomModal({
+        title: "⏰ ¡Tiempo Oficial Agotado!",
+        message: "Se ha cumplido el tiempo límite reglamentario de la prueba escrita. Tu examen será calificado automáticamente.",
+        icon: "⏱️",
+        onOk: () => finishSimulacro(true)
+      });
     }
   }, 1000);
 
-  const container = document.getElementById("simulacroCardContainer");
-  container.innerHTML = `
-    <div class="question-card" style="margin-top: 0;">
-      <div style="font-size: 10px; color: var(--accent-gold); font-weight: 800; text-transform: uppercase;">
-        ${q.tipo}
-      </div>
-      <div class="case-box">
-        <div class="case-heading">Caso Situacional DIAN</div>
-        <div class="case-text">${q.caso}</div>
-      </div>
-      <div class="question-enunciado">${q.enunciado}</div>
-      <div id="simOptions" class="options-list"></div>
-      <button id="btnSimNext" class="btn-primary" disabled style="margin-top: 6px;">
-        Responder y Avanzar ➔
-      </button>
-    </div>
-  `;
+  renderSimulacroQuestion();
+  renderSimBubbleMap();
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
 
-  let selectedId = null;
-  const simOptionsContainer = document.getElementById("simOptions");
-  const btnNext = document.getElementById("btnSimNext");
+function updateSimClockDisplay() {
+  const clockEl = document.getElementById("simTimerClock");
+  if (!clockEl) return;
+  const m = Math.floor(Math.max(0, SimulacroState.timeLeft) / 60);
+  const s = Math.max(0, SimulacroState.timeLeft) % 60;
+  clockEl.textContent = `${m.toString().padStart(2, "0")}:${s.toString().padStart(2, "0")}`;
 
-  q.opciones.forEach((opt) => {
-    const item = document.createElement("div");
-    item.className = "option-item";
-    item.innerHTML = `
-      <div class="option-key">${opt.id}</div>
-      <div class="option-text">${opt.texto}</div>
+  if (SimulacroState.timeLeft <= 300) {
+    clockEl.parentElement.style.background = "rgba(239, 68, 68, 0.2)";
+    clockEl.parentElement.style.borderColor = "#ef4444";
+    clockEl.style.color = "#f87171";
+  } else {
+    clockEl.parentElement.style.background = "rgba(245, 158, 11, 0.15)";
+    clockEl.parentElement.style.borderColor = "rgba(245, 158, 11, 0.3)";
+    clockEl.style.color = "#f59e0b";
+  }
+}
+
+function renderSimulacroQuestion() {
+  const idx = SimulacroState.currentIndex;
+  const total = SimulacroState.questions.length;
+  const q = SimulacroState.questions[idx];
+  if (!q) return;
+
+  const counterEl = document.getElementById("simQuestionCounter");
+  if (counterEl) counterEl.textContent = `Pregunta ${idx + 1} de ${total}`;
+
+  const bookmarkBtn = document.getElementById("btnBookmarkSimQuestion");
+  if (bookmarkBtn) {
+    const isBookmarked = !!SimulacroState.bookmarks[idx];
+    bookmarkBtn.textContent = isBookmarked ? "⭐" : "🔖";
+    bookmarkBtn.title = isBookmarked ? "Marcada para revisión (toca para desmarcar)" : "Marcar para revisar luego";
+  }
+
+  const ejeBadge = document.getElementById("simEjeBadge");
+  if (ejeBadge) ejeBadge.textContent = q.ejeNombre || q.ejeId || "Caso PJS";
+
+  const caseText = document.getElementById("simCaseText");
+  if (caseText) caseText.textContent = q.caso;
+
+  const enunciadoText = document.getElementById("simEnunciadoText");
+  if (enunciadoText) enunciadoText.textContent = q.enunciado;
+
+  const container = document.getElementById("simOptionsContainer");
+  if (!container) return;
+  container.innerHTML = "";
+
+  const selectedAnswer = SimulacroState.answers[idx];
+
+  if (SimulacroState.mode === "optical") {
+    // MODO HOJA ÓPTICA AREANDINA (Lápiz N° 2)
+    const card = document.createElement("div");
+    card.style.cssText = "background: #ffffff; color: #0b1120; border-radius: 10px; padding: 14px 16px; box-shadow: 0 4px 15px rgba(0,0,0,0.4); border: 2px solid #e2e8f0; display: flex; flex-direction: column; gap: 12px;";
+
+    card.innerHTML = `
+      <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #0f172a; padding-bottom: 8px;">
+        <div style="font-size: 11px; font-weight: 900; color: #0f172a; letter-spacing: 0.5px;">
+          HOJA DE RESPUESTAS OFICIAL AREANDINA • LÁPIZ N° 2
+        </div>
+        <span style="font-size: 11px; font-weight: 800; background: #0f172a; color: #ffffff; padding: 2px 8px; border-radius: 4px;">
+          ÍTEM ${idx + 1}
+        </span>
+      </div>
+
+      <div style="display: flex; justify-content: center; gap: 24px; padding: 10px 0; background: #f8fafc; border-radius: 8px; border: 1px dashed #cbd5e1;">
+        ${['A', 'B', 'C'].map((letter) => {
+          const isMarked = selectedAnswer === letter;
+          return `
+            <button type="button" class="sim-optical-bubble" data-letter="${letter}" style="width: 44px; height: 44px; border-radius: 50%; border: 2px solid ${isMarked ? '#090d16' : '#64748b'}; background: ${isMarked ? '#090d16' : '#ffffff'}; color: ${isMarked ? '#ffffff' : '#0f172a'}; font-size: 16px; font-weight: 900; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: ${isMarked ? 'inset 0 3px 6px rgba(0,0,0,0.8), 0 2px 8px rgba(0,0,0,0.3)' : '0 2px 4px rgba(0,0,0,0.06)'};">
+              ${letter}
+            </button>
+          `;
+        }).join('')}
+      </div>
+      <div style="font-size: 10px; color: #64748b; text-align: center; font-style: italic;">
+        Toca el círculo para rellenarlo completamente con lápiz grafito N° 2.
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 8px; margin-top: 4px;">
+        ${q.opciones.map((opt) => `
+          <div class="sim-optical-desc" data-letter="${opt.id}" style="font-size: 12px; line-height: 1.5; color: #1e293b; background: ${selectedAnswer === opt.id ? '#f1f5f9' : '#ffffff'}; border-left: 4px solid ${selectedAnswer === opt.id ? '#0f172a' : '#cbd5e1'}; padding: 8px 10px; border-radius: 4px; cursor: pointer;">
+            <strong style="color: #0f172a;">${opt.id}.</strong> ${opt.texto}
+          </div>
+        `).join('')}
+      </div>
     `;
 
-    item.addEventListener("click", () => {
-      simOptionsContainer.querySelectorAll(".option-item").forEach((el) => el.classList.remove("selected"));
-      item.classList.add("selected");
-      selectedId = opt.id;
-      btnNext.disabled = false;
+    // Listeners para las burbujas y textos
+    card.querySelectorAll(".sim-optical-bubble, .sim-optical-desc").forEach((elem) => {
+      elem.addEventListener("click", () => {
+        const letter = elem.getAttribute("data-letter");
+        selectSimAnswer(letter);
+      });
     });
 
-    simOptionsContainer.appendChild(item);
-  });
+    container.appendChild(card);
+  } else {
+    // MODO DIGITAL TÁCTIL
+    q.opciones.forEach((opt) => {
+      const isSelected = selectedAnswer === opt.id;
+      const card = document.createElement("div");
+      card.style.cssText = `background: ${isSelected ? 'rgba(56, 189, 248, 0.15)' : 'var(--bg-card)'}; border: 1px solid ${isSelected ? '#38bdf8' : 'var(--border-color)'}; border-radius: 8px; padding: 12px 14px; cursor: pointer; display: flex; gap: 10px; align-items: flex-start; transition: all 0.2s ease;`;
 
-  btnNext.addEventListener("click", () => {
-    clearInterval(s.timer);
-    const isCorrect = selectedId === q.respuestaCorrecta;
-    if (isCorrect) s.score += 1;
-    else addToSrsQueue(q, "hard");
+      card.innerHTML = `
+        <span style="width: 26px; height: 26px; border-radius: 50%; background: ${isSelected ? '#38bdf8' : 'rgba(255,255,255,0.08)'}; color: ${isSelected ? '#0b1120' : '#fff'}; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 13px; flex-shrink: 0;">
+          ${opt.id}
+        </span>
+        <span style="font-size: 13px; line-height: 1.5; color: ${isSelected ? '#ffffff' : '#cbd5e1'};">
+          ${opt.texto}
+        </span>
+      `;
 
-    if (q.tipo.includes("Funcional")) {
-      s.functionalCount += 1;
-      if (isCorrect) s.functionalScore += 1;
+      card.addEventListener("click", () => selectSimAnswer(opt.id));
+      container.appendChild(card);
+    });
+  }
+
+  // Deshabilitar botón Anterior si estamos en la 0
+  const btnPrev = document.getElementById("btnPrevSimQuestion");
+  if (btnPrev) btnPrev.disabled = idx === 0;
+
+  // Cambiar texto de botón Siguiente en la última
+  const btnNext = document.getElementById("btnNextSimQuestion");
+  if (btnNext) btnNext.textContent = (idx === total - 1) ? "Entregar Examen 🏁" : "Siguiente ➔";
+}
+
+function selectSimAnswer(letter) {
+  const idx = SimulacroState.currentIndex;
+  SimulacroState.answers[idx] = letter;
+  renderSimulacroQuestion();
+  renderSimBubbleMap();
+
+  if (typeof playSoundEffect === "function") {
+    playSoundEffect("click");
+  }
+}
+
+function renderSimBubbleMap() {
+  const mapEl = document.getElementById("simBubbleMap");
+  if (!mapEl) return;
+  mapEl.innerHTML = "";
+
+  const total = SimulacroState.questions.length;
+  for (let i = 0; i < total; i++) {
+    const isCurrent = i === SimulacroState.currentIndex;
+    const isAnswered = !!SimulacroState.answers[i];
+    const isBookmarked = !!SimulacroState.bookmarks[i];
+
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.style.cssText = `padding: 6px 2px; border-radius: 6px; font-size: 11px; font-weight: 800; cursor: pointer; transition: all 0.2s ease; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px;
+      background: ${isCurrent ? "rgba(56, 189, 248, 0.25)" : (isAnswered ? "rgba(16, 185, 129, 0.2)" : "rgba(255, 255, 255, 0.05)")};
+      border: 1px solid ${isCurrent ? "#38bdf8" : (isBookmarked ? "#f59e0b" : (isAnswered ? "#10b981" : "rgba(255,255,255,0.1)"))};
+      color: ${isCurrent ? "#38bdf8" : (isAnswered ? "#34d399" : "#94a3b8")};`;
+
+    btn.innerHTML = `
+      <span>${i + 1}</span>
+      <span style="font-size: 9px;">${isBookmarked ? "⭐" : (isAnswered ? SimulacroState.answers[i] : "·")}</span>
+    `;
+
+    btn.addEventListener("click", () => {
+      SimulacroState.currentIndex = i;
+      renderSimulacroQuestion();
+      renderSimBubbleMap();
+    });
+
+    mapEl.appendChild(btn);
+  }
+}
+
+function finishSimulacro(isConfirmed = false) {
+  if (SimulacroState.timerInterval) {
+    clearInterval(SimulacroState.timerInterval);
+    SimulacroState.timerInterval = null;
+  }
+
+  const total = SimulacroState.questions.length;
+  let hits = 0;
+
+  SimulacroState.questions.forEach((q, idx) => {
+    if (SimulacroState.answers[idx] === q.respuestaCorrecta) {
+      hits++;
     }
-
-    s.currentIndex += 1;
-    renderSimulacroStep();
   });
-}
 
-function handleSimulacroTimeout() {
-  const s = AppState.simulacro;
-  showCustomModal({
-    title: "¡Tiempo Agotado!",
-    message: "Se agotaron los 2 minutos (120 segundos) reglamentarios para esta pregunta.",
-    icon: "⏱️",
-    onOk: () => {
-      s.currentIndex += 1;
-      renderSimulacroStep();
+  const rawScore = (hits / total) * 100;
+  // Truncado oficial con 2 decimales según la Guía Areandina Pág. 22
+  const scoreVal = (Math.floor(rawScore * 100) / 100).toFixed(2);
+  const isApproved = parseFloat(scoreVal) >= 70.00;
+
+  const elapsed = SimulacroState.totalTime - SimulacroState.timeLeft;
+  const elapsedMins = Math.floor(elapsed / 60);
+  const elapsedSecs = elapsed % 60;
+  const pace = (elapsed / total / 60).toFixed(1);
+
+  // Actualizar UI de Resultados
+  document.getElementById("simulacroActiveView").style.display = "none";
+  document.getElementById("simulacroSetupView").style.display = "none";
+  document.getElementById("simulacroResultView").style.display = "flex";
+
+  const iconEl = document.getElementById("simResultIcon");
+  const verdictEl = document.getElementById("simResultVerdict");
+  const verdictSubEl = document.getElementById("simResultVerdictSub");
+  const scoreValEl = document.getElementById("simResultScoreVal");
+  const hitsValEl = document.getElementById("simResultHitsVal");
+  const accValEl = document.getElementById("simResultAccuracyVal");
+  const timeValEl = document.getElementById("simResultTimeVal");
+  const paceValEl = document.getElementById("simResultPaceVal");
+
+  if (iconEl) iconEl.textContent = isApproved ? "🎉" : "⚠️";
+  if (iconEl) iconEl.style.borderColor = isApproved ? "#10b981" : "#ef4444";
+  if (iconEl) iconEl.style.background = isApproved ? "rgba(16, 185, 129, 0.15)" : "rgba(239, 68, 68, 0.15)";
+
+  if (verdictEl) {
+    verdictEl.textContent = isApproved ? "¡SUPERASTE EL UMBRAL ELIMINATORIO!" : "NO ALCANZASTE EL UMBRAL ELIMINATORIO";
+    verdictEl.style.color = isApproved ? "#10b981" : "#ef4444";
+  }
+
+  if (verdictSubEl) {
+    verdictSubEl.textContent = isApproved
+      ? `Puntaje oficial: ${scoreVal} pts (supera el mínimo de 70.00). Según la Guía Oficial Areandina, continúas en concurso y se calificarán tus pruebas Comportamentales e Integridad.`
+      : `Puntaje oficial: ${scoreVal} pts (mínimo aprobatorio: 70.00). Según el numeral 4.7 y 6.3 de la Guía Oficial Areandina, la prueba Funcional es eliminatoria y no se calificarán Comportamentales ni Integridad.`;
+  }
+
+  if (scoreValEl) scoreValEl.textContent = scoreVal;
+  if (hitsValEl) hitsValEl.textContent = `${hits} / ${total}`;
+  if (accValEl) accValEl.textContent = `${Math.round(rawScore)}% de acierto`;
+  if (timeValEl) timeValEl.textContent = `${elapsedMins}m ${elapsedSecs}s`;
+  if (paceValEl) paceValEl.textContent = `${pace} min/caso`;
+
+  if (typeof playSoundEffect === "function") {
+    playSoundEffect(isApproved ? "correct" : "error");
+  }
+
+  // Guardar en estadísticas de usuario
+  if (AppState && AppState.stats) {
+    AppState.stats.totalAnswered += total;
+    AppState.stats.correctCount += hits;
+    AppState.stats.functionalTotal = (AppState.stats.functionalTotal || 0) + total;
+    AppState.stats.functionalCorrect = (AppState.stats.functionalCorrect || 0) + hits;
+    if (typeof saveUserData === "function") saveUserData();
+    if (typeof updateStatsUI === "function") updateStatsUI();
+  }
+
+  if (SimulacroState && Array.isArray(SimulacroState.questions)) {
+    if (!AppState.practiceStudiedIds) AppState.practiceStudiedIds = [];
+    let addedCount = 0;
+    SimulacroState.questions.forEach((q, idx) => {
+      if (SimulacroState.answers[idx] && q && q.id && !AppState.practiceStudiedIds.includes(q.id)) {
+        AppState.practiceStudiedIds.push(q.id);
+        addedCount++;
+      }
+    });
+    if (addedCount > 0) {
+      StorageManager.set("practiceStudiedIds_" + AppState.activeProfileId, AppState.practiceStudiedIds);
+      updateEjeFilterOptions(AppState.activeProfileId);
+      updateSelectedEjeProgressBar();
     }
-  });
-}
-
-function updateSimulacroClockUI() {
-  const clock = document.getElementById("simulacroClock");
-  const mins = Math.floor(AppState.simulacro.timeLeft / 60);
-  const secs = AppState.simulacro.timeLeft % 60;
-  clock.textContent = `⏳ ${mins.toString().padStart(2, "0")}:${secs.toString().padStart(2, "0")}`;
-}
-
-function finishSimulacro() {
-  clearInterval(AppState.simulacro.timer);
-  const s = AppState.simulacro;
-  const total = s.questions.length;
-  const scorePercent = Math.round((s.score / total) * 100);
-
-  const funcPercent = s.functionalCount > 0 ? Math.round((s.functionalScore / s.functionalCount) * 100) : scorePercent;
-  const passed = funcPercent >= 70;
-
-  document.getElementById("simulacroSetup").style.display = "flex";
-  document.getElementById("simulacroActiveArea").style.display = "none";
-
-  showCustomModal({
-    title: passed ? "¡Simulacro Aprobado!" : "Simulacro No Aprobado",
-    message: `Puntaje global: ${scorePercent}/100.\nDesempeño en Funcionales: ${funcPercent}/100.\n${
-      passed 
-        ? "¡Excelente! Superaste el puntaje mínimo aprobatorio de la DIAN (70.00 en Competencias Funcionales)." 
-        : "Atención: La prueba funcional de la DIAN es ELIMINATORIA y exige mínimo 70.00 puntos. Te recomendamos reforzar los ejes en tu Cuaderno de Errores."
-    }`,
-    icon: passed ? "🏆" : "⚠️"
-  });
+  }
 
   if (typeof CloudSync !== "undefined" && CloudSync.config.autoSync) {
     CloudSync.pushProgress().catch(() => {});
   }
+
+  window.scrollTo({ top: 0, behavior: "smooth" });
 }
+
+function reviewSimAnswers() {
+  SimulacroState.isReviewing = true;
+  document.getElementById("simulacroResultView").style.display = "none";
+  document.getElementById("simulacroActiveView").style.display = "flex";
+
+  // Mostrar preguntas con retroalimentación completa
+  const container = document.getElementById("simOptionsContainer");
+  if (!container) return;
+
+  const idx = SimulacroState.currentIndex;
+  const q = SimulacroState.questions[idx];
+  const userAns = SimulacroState.answers[idx];
+  const isCorrect = userAns === q.respuestaCorrecta;
+
+  container.innerHTML = `
+    <div style="background: ${isCorrect ? 'rgba(16, 185, 129, 0.12)' : 'rgba(239, 68, 68, 0.12)'}; border: 1px solid ${isCorrect ? '#10b981' : '#ef4444'}; border-radius: 8px; padding: 12px; margin-bottom: 6px;">
+      <div style="font-weight: 800; font-size: 13px; color: ${isCorrect ? '#34d399' : '#f87171'};">
+        ${isCorrect ? '✓ Respuesta Correcta' : `✕ Marcaste Opción ${userAns || 'Sin Responder'} (Correcta era: ${q.respuestaCorrecta})`}
+      </div>
+      <div style="font-size: 12px; color: #cbd5e1; margin-top: 6px; line-height: 1.5;">
+        ${q.opciones.find(o => o.id === q.respuestaCorrecta)?.explicacion || ''}
+      </div>
+      ${q.citaNormativa ? `
+        <div style="margin-top: 8px; padding-top: 6px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 11px; color: #38bdf8; font-style: italic;">
+          ⚖️ Cita Normativa Areandina: ${q.citaNormativa}
+        </div>
+      ` : ''}
+    </div>
+  `;
+
+  // Renderizar las opciones estándar comentadas
+  q.opciones.forEach((opt) => {
+    const isThisCorrect = opt.id === q.respuestaCorrecta;
+    const isUserChoice = opt.id === userAns;
+
+    const optCard = document.createElement("div");
+    optCard.style.cssText = `background: var(--bg-card); border: 1px solid ${isThisCorrect ? '#10b981' : (isUserChoice ? '#ef4444' : 'var(--border-color)')}; border-radius: 8px; padding: 10px 12px; display: flex; flex-direction: column; gap: 4px;`;
+
+    optCard.innerHTML = `
+      <div style="display: flex; gap: 8px; align-items: center;">
+        <span style="font-weight: 900; color: ${isThisCorrect ? '#34d399' : (isUserChoice ? '#f87171' : '#94a3b8')};">
+          ${opt.id}. ${opt.texto}
+        </span>
+        ${isThisCorrect ? '<span style="font-size: 11px; background: rgba(16,185,129,0.2); color: #34d399; padding: 2px 6px; border-radius: 4px; font-weight: 800;">CORRECTA</span>' : ''}
+      </div>
+    `;
+    container.appendChild(optCard);
+  });
+}
+
+// =========================================================================
+// PROTOCOLO OFICIAL DÍA D (CHECKLIST 8 DE NOVIEMBRE)
+// =========================================================================
+function setupDiaDModal() {
+  const hubCard = document.getElementById("hubCardDiaD");
+  const modal = document.getElementById("diaDModal");
+  const closeX = document.getElementById("btnCloseDiaDModalX");
+  const closeBtn = document.getElementById("btnCloseDiaDModal");
+
+  const chkDoc = document.getElementById("chkDiaDoc");
+  const chkLapiz = document.getElementById("chkDiaLapiz");
+  const chkBorrador = document.getElementById("chkDiaBorrador");
+  const chkSacapuntas = document.getElementById("chkDiaSacapuntas");
+
+  try {
+    const saved = JSON.parse(localStorage.getItem("simo_diad_checklist") || "{}");
+    if (chkDoc) chkDoc.checked = !!saved.doc;
+    if (chkLapiz) chkLapiz.checked = !!saved.lapiz;
+    if (chkBorrador) chkBorrador.checked = !!saved.borrador;
+    if (chkSacapuntas) chkSacapuntas.checked = !!saved.sacapuntas;
+  } catch (e) {}
+
+  const saveState = () => {
+    try {
+      localStorage.setItem("simo_diad_checklist", JSON.stringify({
+        doc: chkDoc ? chkDoc.checked : false,
+        lapiz: chkLapiz ? chkLapiz.checked : false,
+        borrador: chkBorrador ? chkBorrador.checked : false,
+        sacapuntas: chkSacapuntas ? chkSacapuntas.checked : false
+      }));
+    } catch (e) {}
+  };
+
+  [chkDoc, chkLapiz, chkBorrador, chkSacapuntas].forEach((chk) => {
+    if (chk) chk.addEventListener("change", saveState);
+  });
+
+  const openModal = () => { if (modal) modal.style.display = "flex"; };
+  const closeModal = () => { if (modal) modal.style.display = "none"; saveState(); };
+
+  if (hubCard) hubCard.addEventListener("click", openModal);
+  if (closeX) closeX.addEventListener("click", closeModal);
+  if (closeBtn) closeBtn.addEventListener("click", closeModal);
+  if (modal) {
+    modal.addEventListener("click", (e) => {
+      if (e.target === modal) closeModal();
+    });
+  }
+}
+
 
 // =========================================================================
 // 5. CACERÍA DE DISTRACTORES (MÉTODO SOCRÁTICO)

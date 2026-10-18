@@ -4,3 +4,10 @@ Thumbs.db
 *.log
 data/
 Estudios-Simo/
+simo-prep-extension.zip
+
+# Material y documentos de referencia para generación de preguntas
+material/
+documentos/
+*.pdf
+scratch/

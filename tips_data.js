@@ -555,6 +555,66 @@ const TIPS_PJS_DATA = [
     "normaReferencia": "Estrategia de Resolución Acelerada para Pruebas Escritas CNSC",
     "contenidoDetallado": "Para resolver cualquier caso situacional en menos de 60 segundos sin caer en los distractores más elaborados de la Universidad evaluadora:<br><br>\n    • <strong>Paso 1 - V (Verbo):</strong> Identifica el verbo rector del enunciado (ej. <em>'formular'</em>, <em>'acompañar'</em>, <em>'clasificar'</em>). Descarta de entrada las opciones cuyos verbos contradigan la naturaleza de la solicitud.<br><br>\n    • <strong>Paso 2 - N (Nivel Jerárquico):</strong><br>\n      - Si eres <strong>Gestor III (Profesional)</strong>: Tus opciones ganadoras contienen verbos como <em>Formular, Diagnosticar, Estructurar, Evaluar, Proponer</em>.<br>\n      - Si eres <strong>Analista IV (Técnico)</strong>: Tus opciones ganadoras contienen verbos como <em>Acompañar, Clasificar, Verificar, Elaborar actas, Custodiar, Reportar</em>.<br><br>\n    • <strong>Paso 3 - C (Competencia Legal):</strong> Confirma que la acción no vulnere el debido proceso (Art. 29 C.P.) ni constituya omisión o extralimitación de funciones (Art. 6 C.P.).<br><br>\n    <strong>Resultado garantizado:</strong> Eliminas 2 de las 3 opciones en los primeros 25 segundos y aseguras el máximo puntaje en competencias funcionales.",
     "formula": "Regla V-N-C: 1. Aislar Verbo (5s) ➔ 2. Filtrar por Nivel (10s) ➔ 3. Verificar Legalidad (10s)"
+  },
+  {
+    "id": 47,
+    "numero": "47",
+    "titulo": "Estructura Orgánica y Distribución de Competencias DIAN",
+    "categoria": "Estructura Orgánica DIAN",
+    "icono": "🏛️",
+    "color": "#3b82f6",
+    "resumenCorto": "La DIAN es UAE del orden nacional adscrita a MinHacienda. Grandes Contribuyentes tiene competencia preferente y la Defensoría ejerce mediación preventiva sin coadministrar.",
+    "normaReferencia": "Decreto 2117 de 1992, Decreto 1071 de 1999, Decreto 4048 de 2008 y Decreto 1742 de 2020",
+    "contenidoDetallado": "En las preguntas sobre organización institucional de la DIAN, ten presente la jerarquía y delimitación de competencias:<br><br>\n    • <strong>Naturaleza Jurídica:</strong> Unidad Administrativa Especial (UAE) del orden nacional, con personería jurídica, autonomía y adscrita al Ministerio de Hacienda, nacida el 1º de junio de 1993 tras fusionar la Dirección de Impuestos Nacionales (DIN) y la Dirección de Aduanas Nacionales (DAN).<br>\n    • <strong>Grandes Contribuyentes:</strong> La Dirección Seccional de Grandes Contribuyentes tiene competencia preferente e improrrogable sobre los sujetos calificados como tales a nivel nacional. Si un gran contribuyente radica un trámite ante una seccional delegada, la única conducta válida es <strong>remitir inmediatamente por competencia funcional</strong>.<br>\n    • <strong>Defensoría del Contribuyente y Usuario Aduanero:</strong> Vela por las garantías y debido proceso ciudadano, formulando recomendaciones preventivas; no sustituye ni revoca decisiones de los directores seccionales.",
+    "formula": "Competencia DIAN: Nivel Central (Políticas) ➔ Grandes Contribuyentes (Preferente) ➔ Seccionales (Territorial)"
+  },
+  {
+    "id": 48,
+    "numero": "48",
+    "titulo": "Sistema Específico de Carrera DIAN (Reglas de Oro de Mérito)",
+    "categoria": "Sistema Específico de Carrera",
+    "icono": "🎖️",
+    "color": "#8b5cf6",
+    "resumenCorto": "Periodo de prueba de 6 meses inmodificable, derecho preferencial de encargo (Art. 24) y Comisión de Personal paritaria con vigilancia del mérito.",
+    "normaReferencia": "Decreto Ley 71 de 2020, Decreto Ley 927 de 2023 y Ley 909 de 2004",
+    "contenidoDetallado": "El régimen de carrera de la DIAN es un <strong>Sistema Específico de origen constitucional</strong> vigilado y administrado por la Comisión Nacional del Servicio Civil (CNSC):<br><br>\n    • <strong>Periodo de Prueba:</strong> Tiene una duración estricta de <strong>seis (6) meses</strong>. Si la evaluación final es insatisfactoria, se declara la insubsistencia inmediata del nombramiento mediante acto motivado susceptible de recursos.<br>\n    • <strong>Derecho Preferencial de Encargo:</strong> Las vacantes temporales o definitivas deben proveerse prioritariamente mediante encargo a servidores con derechos de carrera del empleo inmediatamente inferior que cumplan perfil y tengan evaluación sobresaliente o satisfactoria.<br>\n    • <strong>Comisión de Personal:</strong> Órgano de composición <strong>paritaria</strong> (2 representantes de la administración y 2 de los empleados elegidos por votación) que vela por la equidad y garantías en reclamaciones de encargo y evaluación laboral.",
+    "formula": "Carrera DIAN: 6 Meses Periodo Prueba + Encargo Preferencial (Art. 24) + Comisión de Personal Paritaria"
+  },
+  {
+    "id": 49,
+    "numero": "49",
+    "titulo": "Régimen Especial Aduanero de Zonas Francas (Extraterritorialidad y FMM)",
+    "categoria": "Régimen Especial Aduanero",
+    "icono": "🚢",
+    "color": "#06b6d4",
+    "resumenCorto": "La introducción desde el exterior no es importación (FMM del Operador). Al nacionalizar al TAN, solo tributa el componente de materias primas extranjeras incorporadas.",
+    "normaReferencia": "Decreto 2147 de 2016 y Decreto Ley 0920 de 2023",
+    "contenidoDetallado": "Las Zonas Francas cuentan con un régimen aduanero y tributario privilegiado amparado en el <strong>principio de extraterritorialidad aduanera</strong>:<br><br>\n    • <strong>Ingreso desde el Exterior:</strong> La llegada de mercancías o maquinaria desde otros países a la Zona Franca <strong>no constituye importación ni causa tributos aduaneros</strong>. El ingreso se ampara exclusivamente en el documento de transporte consignado a la zona y el Formulario de Movimiento de Mercancías (FMM) autorizado por el Usuario Operador.<br>\n    • <strong>Salida hacia el Territorio Aduanero Nacional (TAN):</strong> Cuando un bien procesado sale de la Zona Franca hacia el resto de Colombia, <strong>solo se liquidan gravámenes arancelarios sobre el valor en aduana de las materias primas e insumos extranjeros incorporados</strong>, acreditados mediante el Certificado de Integración. El valor agregado nacional queda exento de arancel.",
+    "formula": "Zona Franca: Ingreso Exterior = FMM sin tributos | Salida al TAN = Tributo solo sobre Materia Prima Extranjera"
+  },
+  {
+    "id": 50,
+    "numero": "50",
+    "titulo": "Procedimiento Cercanía al Ciudadano PR-CAC-0043 (Términos PQRSF y Denuncias)",
+    "categoria": "Procedimientos Institucionales",
+    "icono": "📬",
+    "color": "#10b981",
+    "resumenCorto": "Plazos fatales de respuesta: 10 días (información/copias), 15 días (reclamos/interés general) y 30 días (consultas doctrinales). Denuncias fiscales con estricta reserva.",
+    "normaReferencia": "Procedimiento DIAN PR-CAC-0043, Ley 1755 de 2015 y Art. 583 E.T.",
+    "contenidoDetallado": "El Procedimiento de Cercanía al Ciudadano de la DIAN estandariza la atención oportuna y la protección del derecho de petición:<br><br>\n    • <strong>Términos Perentorios de Respuesta (Días Hábiles):</strong><br>\n      1. <strong>10 días hábiles:</strong> Peticiones de información, documentos y expedición de copias (si no se responde en este plazo, se entiende aceptada la solicitud y deben entregarse copias en 3 días).<br>\n      2. <strong>15 días hábiles:</strong> Peticiones de interés general o particular, quejas, reclamos y sugerencias.<br>\n      3. <strong>30 días hábiles:</strong> Consultas jurídicas sobre la interpretación doctrinal de normas tributarias, aduaneras o cambiarias.<br>\n    • <strong>Trámite de Denuncias:</strong> Toda denuncia ciudadana por evasión o contrabando se clasifica bajo <strong>reserva absoluta de identidad del denunciante</strong> y se remite de inmediato a la Dirección de Gestión de Fiscalización para el programa de control de riesgos.",
+    "formula": "Términos PQRSF: 10d (Copias) ➔ 15d (Quejas/Peticiones) ➔ 30d (Consultas) | Denuncias = Reserva Estricta"
+  },
+  {
+    "id": 51,
+    "numero": "51",
+    "titulo": "Régimen Especial Salarial y Prestacional - Prima de Productividad DIAN",
+    "categoria": "Régimen Prestacional DIAN",
+    "icono": "💰",
+    "color": "#f59e0b",
+    "resumenCorto": "La Prima de Productividad no es factor salarial incondicionado: exige cumplimiento de metas institucionales de recaudo y calificación de desempeño satisfactoria.",
+    "normaReferencia": "Decreto Ley 1268 de 1999 (Régimen Salarial DIAN)",
+    "contenidoDetallado": "El Decreto Ley 1268 de 1999 consagra el régimen salarial y prestacional especial para los servidores públicos de la contribución en la DIAN:<br><br>\n    • <strong>Naturaleza Jurídica:</strong> La Prima de Productividad es una prestación especial que <strong>no constituye factor salarial</strong> para liquidar cesantías, primas de servicios o pensiones.<br>\n    • <strong>Condiciones Obligatorias de Pago:</strong> No se trata de un derecho automático. Su reconocimiento y desembolso periódico está condicionado inexorablemente a dos requisitos copulativos:<br>\n      1. Cumplimiento efectivo de las metas globales de gestión, recaudo y fiscalización fijadas para la entidad.<br>\n      2. Obtención de una calificación de servicios satisfactoria o sobresaliente en la evaluación del desempeño individual.<br><br>\n    <strong>Trampa en la prueba:</strong> Opciones que afirmen que la prima se debe pagar a un funcionario con evaluación insatisfactoria o que constituye factor salarial prestacional.",
+    "formula": "Prima de Productividad = No Factor Salarial + Metas Globales DIAN Cumplidas + Calificación Satisfactoria"
   }
 ];
 
