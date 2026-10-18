@@ -1876,23 +1876,31 @@ function setupTipsModal() {
     const vPractice = document.getElementById("subviewPractice");
     const vLectura = document.getElementById("subviewLecturaCritica");
     const vTipFlash = document.getElementById("subviewTipFlash");
+    const vVerbos = document.getElementById("subviewVerbosRectores");
 
     const btnP = document.getElementById("btnActionPractice");
     const btnL = document.getElementById("btnOpenLecturaModal");
     const btnT = document.getElementById("btnRandomTipFlash");
+    const btnV = document.getElementById("btnOpenVerbosModal");
 
     if (vPractice) vPractice.style.display = view === "practice" ? "flex" : "none";
     if (vLectura) vLectura.style.display = view === "lectura" ? "flex" : "none";
     if (vTipFlash) vTipFlash.style.display = view === "tipFlash" ? "flex" : "none";
+    if (vVerbos) vVerbos.style.display = view === "verbos" ? "flex" : "none";
 
     if (btnP) btnP.classList.toggle("active", view === "practice");
     if (btnL) btnL.classList.toggle("active", view === "lectura");
     if (btnT) btnT.classList.toggle("active", view === "tipFlash");
+    if (btnV) btnV.classList.toggle("active", view === "verbos");
 
     if (view === "tipFlash") {
       showRandomTipFlash({ forced: true });
     } else if (view === "lectura") {
       window.showLecturaTip("current");
+    } else if (view === "verbos") {
+      if (typeof window.syncVerbosViewProfile === "function") {
+        window.syncVerbosViewProfile();
+      }
     }
 
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -1976,6 +1984,28 @@ function setupTipsModal() {
       const filterComp = Array.from(filterBtns).find(b => b.getAttribute("data-cat") === "Comprensión Lectora");
       if (filterComp) filterComp.click();
     });
+  }
+
+  // Manejadores de Verbos Rectores en el Cuerpo
+  const btnOpenVerbos = document.getElementById("btnOpenVerbosModal");
+  const btnCloseVerbos = document.getElementById("btnCloseVerbosModal");
+  const btnBackVerbos = document.getElementById("btnBackToPracticeFromVerbos");
+
+  if (btnOpenVerbos) {
+    btnOpenVerbos.addEventListener("click", () => {
+      if (AppState.currentTab !== "practice") {
+        switchTab("practice");
+      }
+      setPracticeSubView("verbos");
+    });
+  }
+
+  if (btnCloseVerbos) {
+    btnCloseVerbos.addEventListener("click", () => setPracticeSubView("practice"));
+  }
+
+  if (btnBackVerbos) {
+    btnBackVerbos.addEventListener("click", () => setPracticeSubView("practice"));
   }
 }
 
@@ -6180,10 +6210,11 @@ function renderMnemotecniasTab() {
 // =========================================================================
 function setupVerbosRectoresModule() {
   const btnOpen = document.getElementById("btnOpenVerbosModal");
-  const modal = document.getElementById("modalVerbosRectores");
+  const subview = document.getElementById("subviewVerbosRectores");
   const btnClose = document.getElementById("btnCloseVerbosModal");
+  const btnBack = document.getElementById("btnBackToPracticeFromVerbos");
 
-  if (!modal) return;
+  if (!subview) return;
 
   if (btnOpen) {
     btnOpen.addEventListener("click", () => {
@@ -6192,7 +6223,12 @@ function setupVerbosRectoresModule() {
   }
   if (btnClose) {
     btnClose.addEventListener("click", () => {
-      closeModal(modal);
+      setPracticeSubView("practice");
+    });
+  }
+  if (btnBack) {
+    btnBack.addEventListener("click", () => {
+      setPracticeSubView("practice");
     });
   }
 
@@ -6460,8 +6496,8 @@ function setupVerbosRectoresModule() {
     });
   }
 
-  // Abrir modal y sincronizar con perfil activo
-  function openVerbosModal() {
+  // Sincronizar vista de verbos con perfil activo
+  function syncVerbosViewProfile() {
     const profile = AppState.activeProfileId || "gestor_iii";
     const isGestor = profile === "gestor_iii" || profile === "gestor_iii_ci" || (profile && profile.includes("gestor"));
     const badge = document.getElementById("verbosBadgePerfil");
@@ -6478,11 +6514,17 @@ function setupVerbosRectoresModule() {
 
     switchVerbosTab("buscador");
     renderVerbosList();
+  }
 
-    if (modal) {
-      modal.style.display = "flex";
-      openModal(modal);
+  window.syncVerbosViewProfile = syncVerbosViewProfile;
+
+  // Abrir vista en cuerpo de práctica y sincronizar con perfil activo
+  function openVerbosModal() {
+    if (AppState.currentTab !== "practice") {
+      switchTab("practice");
     }
+    setPracticeSubView("verbos");
+    syncVerbosViewProfile();
   }
 
   window.openVerbosModal = openVerbosModal;
