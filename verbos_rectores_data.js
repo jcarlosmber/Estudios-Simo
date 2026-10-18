@@ -148,8 +148,10 @@
     }
   };
 
-  // Banco de Desafíos Speed Drill "Caza-Distractores"
-  const SPEED_DRILLS_VERBOS = [
+  // Banco de Desafíos Speed Drill "Caza-Distractores" (100 Casos Oficiales DAFP / CNSC)
+  const SPEED_DRILLS_VERBOS = (typeof CAZA_DISTRACTORES_100 !== "undefined" && Array.isArray(CAZA_DISTRACTORES_100) && CAZA_DISTRACTORES_100.length > 0)
+    ? CAZA_DISTRACTORES_100
+    : [
     {
       id: "vd_01",
       perfilTarget: "gestor_iii",

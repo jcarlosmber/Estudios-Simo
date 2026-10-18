@@ -526,53 +526,132 @@
       </div>
     </section>
 
-    <!-- PESTAÑA: SPEED DRILL (MICROAPRENDIZAJE V/F CON TEMPORIZADOR) -->
+    <!-- PESTAÑA: SPEED DRILL (MICROAPRENDIZAJE V/F & CAZA-DISTRACTORES CON TEMPORIZADOR) -->
     <section id="tab-speedDrill" class="tab-content" style="display: none; flex-direction: column; gap: 14px;">
-      <div style="background-color: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 18px; display: flex; flex-direction: column; gap: 14px;">
-        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
-          <div style="display: flex; align-items: center; gap: 6px;">
-            <span style="font-size: 18px;">⚡</span>
-            <span style="font-size: 15px; font-weight: 800; color: #f8fafc;">Speed Drill Relámpago</span>
-          </div>
-          <div style="display: flex; align-items: center; gap: 8px;">
-            <span id="speedDrillRemainingBadge" style="background: rgba(56, 189, 248, 0.15); border: 1px solid rgba(56, 189, 248, 0.35); padding: 3px 10px; border-radius: 12px; font-size: 11px; font-weight: 700; color: #38bdf8;">
-              35 restantes
-            </span>
-            <div style="background: rgba(245, 158, 11, 0.15); border: 1px solid rgba(245, 158, 11, 0.4); padding: 4px 12px; border-radius: 20px; font-size: 13px; font-weight: 800; color: var(--accent-gold);">
-              🔥 Racha: <span id="speedDrillStreak">0</span>
+      
+      <!-- Selector de Modo en Speed Drill: Caza-Distractores (100) vs V/F Legal (35) -->
+      <div style="display: flex; gap: 6px; background: rgba(15, 23, 42, 0.85); padding: 5px; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.08); width: 100%; box-sizing: border-box;">
+        <button id="btnSpeedModeCaza" type="button" class="speed-mode-toggle-btn active" style="flex: 1; padding: 9px 8px; font-size: 12px; font-weight: 800; border-radius: 8px; border: 1.5px solid #a855f7; background: rgba(168, 85, 247, 0.25); color: #f3e8ff; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 5px; transition: all 0.2s;">
+          <span>⚡</span> Caza-Distractores (100)
+        </button>
+        <button id="btnSpeedModeVF" type="button" class="speed-mode-toggle-btn" style="flex: 1; padding: 9px 8px; font-size: 12px; font-weight: 700; border-radius: 8px; border: 1.5px solid transparent; background: transparent; color: #94a3b8; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 5px; transition: all 0.2s;">
+          <span>📜</span> Afirmaciones V/F (35)
+        </button>
+      </div>
+
+      <!-- MODO 1: CAZA-DISTRACTORES SPEED (100 CASOS DAFP / CNSC / DIAN) -->
+      <div id="speedCazaContainer" style="display: flex; flex-direction: column; gap: 14px; width: 100%;">
+        <div style="background-color: var(--bg-surface); border: 2px solid #a855f7; border-radius: var(--radius-md); padding: 16px 14px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); display: flex; flex-direction: column; gap: 14px;">
+          
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
+            <div style="display: flex; align-items: center; gap: 6px;">
+              <span style="font-size: 20px;">⚡</span>
+              <span style="font-size: 15px; font-weight: 800; color: #f8fafc;">Caza-Distractores Speed</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <span id="speedCazaRemainingBadge" style="background: rgba(168, 85, 247, 0.18); border: 1px solid rgba(168, 85, 247, 0.4); padding: 3px 10px; border-radius: 12px; font-size: 11px; font-weight: 700; color: #c084fc;">
+                1 / 100 casos
+              </span>
+              <div style="background: rgba(16, 185, 129, 0.15); border: 1px solid rgba(16, 185, 129, 0.4); padding: 4px 10px; border-radius: 20px; font-size: 12.5px; font-weight: 800; color: #34d399;">
+                🎯 <span id="speedCazaScore">0 / 100</span>
+              </div>
             </div>
           </div>
-        </div>
 
-        <div style="display: flex; justify-content: space-between; align-items: center; background: rgba(11,17,32,0.85); padding: 8px 12px; border-radius: 6px; border: 1px solid var(--border-color);">
-          <span id="speedDrillTopicBadge" style="font-size: 13px; color: var(--accent-blue); font-weight: 700;">Tema Legal</span>
-          <span id="speedDrillTimer" style="font-size: 14px; font-weight: 800; color: #fca5a5; font-family: monospace;">⏳ 15s</span>
-        </div>
-
-        <div class="case-box" style="border-left-color: var(--accent-blue);">
-          <div style="font-size: 12px; font-weight: 800; color: var(--accent-blue); text-transform: uppercase; margin-bottom: 6px;">Afirmación a Evaluar</div>
-          <div id="speedDrillStatement" style="font-size: 15px; color: #ffffff; line-height: 1.6; font-weight: 600;">
-            Cargando afirmación...
+          <div style="display: flex; justify-content: space-between; align-items: center; background: rgba(11,17,32,0.85); padding: 8px 12px; border-radius: 6px; border: 1px solid rgba(168, 85, 247, 0.25);">
+            <span id="speedCazaCargoBadge" style="font-size: 12px; color: #38bdf8; font-weight: 800;">Gestor III</span>
+            <span id="speedCazaTimer" style="font-size: 14px; font-weight: 800; color: #fca5a5; font-family: monospace;">⏳ 20s</span>
           </div>
-        </div>
 
-        <!-- Botones Verdadero / Falso -->
-        <div style="display: flex; gap: 10px;">
-          <button id="btnSpeedTrue" class="btn-primary" style="background: linear-gradient(135deg, #059669, #10b981); font-size: 15px; padding: 14px; flex: 1;">
-            🟢 VERDADERO
-          </button>
-          <button id="btnSpeedFalse" class="btn-primary" style="background: linear-gradient(135deg, #dc2626, #ef4444); font-size: 15px; padding: 14px; flex: 1;">
-            🔴 FALSO
-          </button>
-        </div>
+          <!-- Situación Contextual -->
+          <div class="case-box" style="border-left-color: #a855f7;">
+            <div style="font-size: 12px; font-weight: 800; color: #c084fc; text-transform: uppercase; margin-bottom: 6px;">Situación Laboral Evaluada</div>
+            <div id="speedCazaContexto" style="font-size: 13.5px; color: #cbd5e1; line-height: 1.55; font-style: italic;">
+              Cargando situación...
+            </div>
+          </div>
 
-        <!-- Feedback inmediato -->
-        <div id="speedDrillFeedback" style="display: none; flex-direction: column; gap: 8px; padding: 14px; border-radius: 8px;">
-          <div id="speedDrillVerdict" style="font-size: 15px; font-weight: 800;"></div>
-          <div id="speedDrillExplanation" style="font-size: 13px; line-height: 1.55; color: #e2e8f0;"></div>
-          <button id="btnNextSpeedDrill" class="btn-secondary" style="margin-top: 6px; font-size: 14px; font-weight: 700;">
-            Siguiente Afirmación ➔
-          </button>
+          <!-- Opción de Respuesta Planteada -->
+          <div>
+            <div style="font-size: 11.5px; font-weight: 700; color: #94a3b8; margin-bottom: 4px;">Acción Planteada:</div>
+            <div id="speedCazaOpcion" style="font-size: 13.5px; font-weight: 700; color: #f8fafc; line-height: 1.5; background: rgba(255,255,255,0.04); padding: 12px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.08);">
+              Cargando acción...
+            </div>
+          </div>
+
+          <!-- Botones de Discriminación Rápida -->
+          <div id="speedCazaButtons" style="display: flex; flex-direction: column; gap: 8px;">
+            <button type="button" class="btn-speed-caza" data-answer="ACCION_CORRECTA" style="padding: 11px 12px; font-size: 12.5px; font-weight: 800; border-radius: 8px; border: 1px solid rgba(52, 211, 153, 0.45); background: rgba(52, 211, 153, 0.12); color: #34d399; cursor: pointer; text-align: left; display: flex; align-items: center; gap: 8px;">
+              <span>✅</span> 1. Es una ACCIÓN CORRECTA y propia de mi cargo
+            </button>
+            <button type="button" class="btn-speed-caza" data-answer="DISTRACTOR_EXTRALIMITACION" style="padding: 11px 12px; font-size: 12.5px; font-weight: 800; border-radius: 8px; border: 1px solid rgba(244, 63, 94, 0.45); background: rgba(244, 63, 94, 0.12); color: #fb7185; cursor: pointer; text-align: left; display: flex; align-items: center; gap: 8px;">
+              <span>⚠️</span> 2. Es un DISTRACTOR POR EXTRALIMITACIÓN (excede jerarquía)
+            </button>
+            <button type="button" class="btn-speed-caza" data-answer="DISTRACTOR_PASIVIDAD" style="padding: 11px 12px; font-size: 12.5px; font-weight: 800; border-radius: 8px; border: 1px solid rgba(245, 158, 11, 0.45); background: rgba(245, 158, 11, 0.12); color: #fbbf24; cursor: pointer; text-align: left; display: flex; align-items: center; gap: 8px;">
+              <span>🛑</span> 3. Es un DISTRACTOR POR PASIVIDAD U OMISIÓN (desempeño bajo)
+            </button>
+          </div>
+
+          <!-- Feedback Inmediato -->
+          <div id="speedCazaFeedback" style="display: none; flex-direction: column; gap: 8px; padding: 12px; border-radius: 8px;">
+            <div id="speedCazaFeedbackVerdict" style="font-size: 14px; font-weight: 800;"></div>
+            <div id="speedCazaFeedbackExplicacion" style="font-size: 12.5px; line-height: 1.5; color: #e2e8f0;"></div>
+            <button id="btnNextSpeedCaza" type="button" class="btn-primary" style="margin-top: 6px; padding: 10px 16px; font-size: 13px; font-weight: 800; background: linear-gradient(135deg, #a855f7, #7c3aed); border: none; color: #fff; border-radius: 6px; cursor: pointer; align-self: flex-end;">
+              Siguiente Caso ➔
+            </button>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- MODO 2: AFIRMACIONES LEGALES V/F (35) -->
+      <div id="speedVFContainer" style="display: none; flex-direction: column; gap: 14px; width: 100%;">
+        <div style="background-color: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 18px; display: flex; flex-direction: column; gap: 14px;">
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
+            <div style="display: flex; align-items: center; gap: 6px;">
+              <span style="font-size: 18px;">📜</span>
+              <span style="font-size: 15px; font-weight: 800; color: #f8fafc;">Speed Drill Legal V/F</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <span id="speedDrillRemainingBadge" style="background: rgba(56, 189, 248, 0.15); border: 1px solid rgba(56, 189, 248, 0.35); padding: 3px 10px; border-radius: 12px; font-size: 11px; font-weight: 700; color: #38bdf8;">
+                35 restantes
+              </span>
+              <div style="background: rgba(245, 158, 11, 0.15); border: 1px solid rgba(245, 158, 11, 0.4); padding: 4px 12px; border-radius: 20px; font-size: 13px; font-weight: 800; color: var(--accent-gold);">
+                🔥 Racha: <span id="speedDrillStreak">0</span>
+              </div>
+            </div>
+          </div>
+
+          <div style="display: flex; justify-content: space-between; align-items: center; background: rgba(11,17,32,0.85); padding: 8px 12px; border-radius: 6px; border: 1px solid var(--border-color);">
+            <span id="speedDrillTopicBadge" style="font-size: 13px; color: var(--accent-blue); font-weight: 700;">Tema Legal</span>
+            <span id="speedDrillTimer" style="font-size: 14px; font-weight: 800; color: #fca5a5; font-family: monospace;">⏳ 15s</span>
+          </div>
+
+          <div class="case-box" style="border-left-color: var(--accent-blue);">
+            <div style="font-size: 12px; font-weight: 800; color: var(--accent-blue); text-transform: uppercase; margin-bottom: 6px;">Afirmación a Evaluar</div>
+            <div id="speedDrillStatement" style="font-size: 15px; color: #ffffff; line-height: 1.6; font-weight: 600;">
+              Cargando afirmación...
+            </div>
+          </div>
+
+          <!-- Botones Verdadero / Falso -->
+          <div style="display: flex; gap: 10px;">
+            <button id="btnSpeedTrue" class="btn-primary" style="background: linear-gradient(135deg, #059669, #10b981); font-size: 15px; padding: 14px; flex: 1;">
+              🟢 VERDADERO
+            </button>
+            <button id="btnSpeedFalse" class="btn-primary" style="background: linear-gradient(135deg, #dc2626, #ef4444); font-size: 15px; padding: 14px; flex: 1;">
+              🔴 FALSO
+            </button>
+          </div>
+
+          <!-- Feedback inmediato -->
+          <div id="speedDrillFeedback" style="display: none; flex-direction: column; gap: 8px; padding: 14px; border-radius: 8px;">
+            <div id="speedDrillVerdict" style="font-size: 15px; font-weight: 800;"></div>
+            <div id="speedDrillExplanation" style="font-size: 13px; line-height: 1.55; color: #e2e8f0;"></div>
+            <button id="btnNextSpeedDrill" class="btn-secondary" style="margin-top: 6px; font-size: 14px; font-weight: 700;">
+              Siguiente Afirmación ➔
+            </button>
+          </div>
         </div>
       </div>
     </section>
@@ -2280,6 +2359,7 @@
   <!-- Scripts -->
   <script src="sound_effects.js"></script>
   <script src="image_catalog.js"></script>
+  <script src="caza_distractores_100.js"></script>
   <script src="verbos_rectores_data.js"></script>
   <script src="profiles.js"></script>
   <script src="questions_gestor_iii.js"></script>

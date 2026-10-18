@@ -80,6 +80,19 @@ const AppState = {
   }
 };
 
+// Función utilitaria universal de barajado aleatorio (Fisher-Yates Shuffle)
+function simoShuffle(array) {
+  if (!Array.isArray(array)) return [];
+  const copy = [...array];
+  for (let i = copy.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    const temp = copy[i];
+    copy[i] = copy[j];
+    copy[j] = temp;
+  }
+  return copy;
+}
+
 function isMobileDevice() {
   const isMobileUA = /Android|iPhone|iPad|iPod|webOS|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
   const isSmallTouch = window.innerWidth <= 768 && ('ontouchstart' in window || navigator.maxTouchPoints > 0);
@@ -3344,51 +3357,55 @@ function loadNextPracticeQuestion() {
     return;
   }
 
+  let candidates = pool;
   if (filter === "interleaving") {
     // Interleaving: prioriza alternar de eje temático respecto al caso anterior
     if (AppState.currentQuestion && AppState.currentQuestion.ejeId) {
       const otherEjes = pool.filter((q) => q.ejeId !== AppState.currentQuestion.ejeId);
-      if (otherEjes.length > 0) pool = otherEjes;
+      if (otherEjes.length > 0) candidates = otherEjes;
     }
   } else if (filter && filter !== "todos") {
     const filtered = getQuestionsForFilter(pool, filter, AppState.activeProfileId);
-    if (filtered.length > 0) pool = filtered;
+    if (filtered.length > 0) candidates = filtered;
   }
 
-  // Sistema Anti-Repetición Inteligente: Solo repite preguntas acertadas tras terminar las otras
-  if (!AppState.practiceCorrectIds) {
-    AppState.practiceCorrectIds = [];
+  // Historial de sesión para evitar repetir preguntas recientes mientras se recorre el banco
+  if (!AppState.practiceSeenIds) {
+    AppState.practiceSeenIds = [];
   }
-  const correctSet = new Set(AppState.practiceCorrectIds);
-  let availableCandidates = pool.filter((q) => !correctSet.has(q.id));
 
-  // Si ya se acertaron todas las preguntas del grupo seleccionado, reiniciar ciclo para este grupo
-  if (availableCandidates.length === 0) {
-    const poolIdSet = new Set(pool.map((q) => q.id));
-    AppState.practiceCorrectIds = AppState.practiceCorrectIds.filter((id) => !poolIdSet.has(id));
-    StorageManager.set("practiceCorrectIds_" + AppState.activeProfileId, AppState.practiceCorrectIds);
-    availableCandidates = [...pool];
+  let unvisited = candidates.filter((q) => !AppState.practiceSeenIds.includes(q.id));
+
+  // Si ya se recorrieron todas las preguntas de este grupo, reiniciar ciclo aleatorio
+  if (unvisited.length === 0) {
+    AppState.practiceSeenIds = [];
+    unvisited = [...candidates];
 
     const filterName = (filter && filter !== "todos" && filter !== "interleaving") ? `del eje seleccionado` : `de este cargo`;
-    SimoFX.celebrate("🏆", "¡Ciclo de Casos Completado!", `${pool.length} casos situacionales dominados`, ["🎉", "⭐", "🏅", "✨"]);
+    SimoFX.celebrate("🏆", "¡Ciclo de Casos Completado!", `${candidates.length} casos situacionales entrenados`, ["🎉", "⭐", "🏅", "✨"]);
     showCustomModal({
       title: "🎉 ¡Ciclo de Casos Completado!",
-      message: `¡Extraordinario avance! Has acertado todos los ${pool.length} casos situacionales ${filterName}. Se ha reiniciado el ciclo para que continúes repasando y consolidando tu preparación para el examen.`,
+      message: `¡Extraordinario entrenamiento! Has recorrido todos los ${candidates.length} casos situacionales ${filterName}. El ciclo se ha reiniciado de forma 100% aleatoria para que continúes repasando.`,
       icon: "🏆"
     });
   }
 
   // Evitar repetir la misma pregunta que se acaba de responder si hay más de 1 opción disponible
-  let candidates = availableCandidates;
-  if (candidates.length > 1 && AppState.currentQuestion) {
-    const diff = candidates.filter((q) => q.id !== AppState.currentQuestion.id);
-    if (diff.length > 0) candidates = diff;
+  if (unvisited.length > 1 && AppState.currentQuestion) {
+    const diff = unvisited.filter((q) => q.id !== AppState.currentQuestion.id);
+    if (diff.length > 0) unvisited = diff;
   }
 
-  const randomIndex = Math.floor(Math.random() * candidates.length);
-  const q = candidates[randomIndex];
+  // SELECCIÓN PURAMENTE ALEATORIA CON ALGORITMO FISHER-YATES
+  const shuffled = simoShuffle(unvisited);
+  const q = shuffled[Math.floor(Math.random() * shuffled.length)];
+
+  if (q && q.id) {
+    AppState.practiceSeenIds.push(q.id);
+  }
+
   renderPracticeQuestion(q);
-  updatePracticeProgressPill(pool.length, availableCandidates.length);
+  updatePracticeProgressPill(candidates.length, unvisited.length);
   updateSelectedEjeProgressBar();
 }
 
@@ -5954,9 +5971,21 @@ function setupDistractorHunt() {
 }
 
 // =========================================================================
-// 6. SPEED DRILL (MICROAPRENDIZAJE RELÁMPAGO V/F CON TEMPORIZADOR)
+// 6. SPEED DRILL (CAZA-DISTRACTORES 100 CASOS + MICROAPRENDIZAJE V/F 35 CASOS)
 // =========================================================================
 const SpeedDrillState = {
+  mode: "caza", // 'caza' | 'vf'
+  
+  // Estado Caza-Distractores (100 Casos Verbos Rectores)
+  cazaPool: [],
+  cazaIndex: 0,
+  cazaScore: 0,
+  cazaCurrentCase: null,
+  cazaTimer: null,
+  cazaTimeLeft: 20,
+  cazaIsAnswered: false,
+
+  // Estado V/F Legal (35 Casos)
   currentDrill: null,
   completedIds: [],
   streak: 0,
@@ -5969,28 +5998,328 @@ async function setupSpeedDrill() {
   const stored = await StorageManager.get("speedDrillsCompleted", []);
   SpeedDrillState.completedIds = Array.isArray(stored) ? stored : [];
 
+  // Alternador de modos (Caza 100 vs VF 35)
+  const btnModeCaza = document.getElementById("btnSpeedModeCaza");
+  const btnModeVF = document.getElementById("btnSpeedModeVF");
+
+  if (btnModeCaza && btnModeVF) {
+    btnModeCaza.addEventListener("click", () => switchSpeedMode("caza"));
+    btnModeVF.addEventListener("click", () => switchSpeedMode("vf"));
+  }
+
+  // Listeners Modo Caza-Distractores
+  const cazaBtns = document.querySelectorAll(".btn-speed-caza");
+  cazaBtns.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const ans = btn.getAttribute("data-answer");
+      if (ans) handleSpeedCazaAnswer(ans, btn);
+    });
+  });
+
+  const btnNextCaza = document.getElementById("btnNextSpeedCaza");
+  if (btnNextCaza) {
+    btnNextCaza.addEventListener("click", () => nextSpeedCazaStep());
+  }
+
+  // Listeners Modo VF Tradicional
   const btnTrue = document.getElementById("btnSpeedTrue");
   const btnFalse = document.getElementById("btnSpeedFalse");
-  const btnNext = document.getElementById("btnNextSpeedDrill");
+  const btnNextVF = document.getElementById("btnNextSpeedDrill");
 
-  if (!btnTrue || !btnFalse) return;
+  if (btnTrue && btnFalse) {
+    btnTrue.addEventListener("click", () => handleSpeedDrillAnswer(true));
+    btnFalse.addEventListener("click", () => handleSpeedDrillAnswer(false));
+  }
+  if (btnNextVF) {
+    btnNextVF.addEventListener("click", () => nextSpeedDrillStep());
+  }
+}
 
-  btnTrue.addEventListener("click", () => handleSpeedDrillAnswer(true));
-  btnFalse.addEventListener("click", () => handleSpeedDrillAnswer(false));
-  if (btnNext) btnNext.addEventListener("click", () => nextSpeedDrillStep());
+function switchSpeedMode(newMode) {
+  SpeedDrillState.mode = newMode;
+  const btnModeCaza = document.getElementById("btnSpeedModeCaza");
+  const btnModeVF = document.getElementById("btnSpeedModeVF");
+  const containerCaza = document.getElementById("speedCazaContainer");
+  const containerVF = document.getElementById("speedVFContainer");
+
+  // Detener temporizadores previos
+  clearInterval(SpeedDrillState.cazaTimer);
+  clearInterval(SpeedDrillState.timer);
+
+  if (newMode === "caza") {
+    if (btnModeCaza) {
+      btnModeCaza.style.border = "1.5px solid #a855f7";
+      btnModeCaza.style.background = "rgba(168, 85, 247, 0.25)";
+      btnModeCaza.style.color = "#f3e8ff";
+      btnModeCaza.style.fontWeight = "800";
+    }
+    if (btnModeVF) {
+      btnModeVF.style.border = "1.5px solid transparent";
+      btnModeVF.style.background = "transparent";
+      btnModeVF.style.color = "#94a3b8";
+      btnModeVF.style.fontWeight = "700";
+    }
+    if (containerCaza) containerCaza.style.display = "flex";
+    if (containerVF) containerVF.style.display = "none";
+    initSpeedCaza();
+  } else {
+    if (btnModeVF) {
+      btnModeVF.style.border = "1.5px solid #38bdf8";
+      btnModeVF.style.background = "rgba(56, 189, 248, 0.22)";
+      btnModeVF.style.color = "#e0f2fe";
+      btnModeVF.style.fontWeight = "800";
+    }
+    if (btnModeCaza) {
+      btnModeCaza.style.border = "1.5px solid transparent";
+      btnModeCaza.style.background = "transparent";
+      btnModeCaza.style.color = "#94a3b8";
+      btnModeCaza.style.fontWeight = "700";
+    }
+    if (containerCaza) containerCaza.style.display = "none";
+    if (containerVF) containerVF.style.display = "flex";
+    renderSpeedDrillCard();
+  }
 }
 
 async function startSpeedDrill() {
-  if (!SpeedDrillState.completedIds || SpeedDrillState.completedIds.length === 0) {
-    const stored = await StorageManager.get("speedDrillsCompleted", []);
-    SpeedDrillState.completedIds = Array.isArray(stored) ? stored : [];
+  if (SpeedDrillState.mode === "caza") {
+    initSpeedCaza();
+  } else {
+    if (!SpeedDrillState.completedIds || SpeedDrillState.completedIds.length === 0) {
+      const stored = await StorageManager.get("speedDrillsCompleted", []);
+      SpeedDrillState.completedIds = Array.isArray(stored) ? stored : [];
+    }
+    SpeedDrillState.streak = 0;
+    const streakEl = document.getElementById("speedDrillStreak");
+    if (streakEl) streakEl.textContent = "0";
+    renderSpeedDrillCard();
   }
-  SpeedDrillState.streak = 0;
-  const streakEl = document.getElementById("speedDrillStreak");
-  if (streakEl) streakEl.textContent = "0";
-  renderSpeedDrillCard();
 }
 
+// -------------------------------------------------------------------------
+// LÓGICA MODO CAZA-DISTRACTORES (100 CASOS)
+// -------------------------------------------------------------------------
+function initSpeedCaza() {
+  let source = [];
+  if (typeof CAZA_DISTRACTORES_100 !== "undefined" && Array.isArray(CAZA_DISTRACTORES_100) && CAZA_DISTRACTORES_100.length > 0) {
+    source = CAZA_DISTRACTORES_100;
+  } else if (typeof VERBOS_RECTORES_DATA !== "undefined" && Array.isArray(VERBOS_RECTORES_DATA.SPEED_DRILLS_VERBOS)) {
+    source = VERBOS_RECTORES_DATA.SPEED_DRILLS_VERBOS;
+  }
+
+  if (source.length === 0) return;
+
+  // Barajar completamente los 100 casos de forma aleatoria (Fisher-Yates)
+  SpeedDrillState.cazaPool = simoShuffle([...source]);
+  SpeedDrillState.cazaIndex = 0;
+  SpeedDrillState.cazaScore = 0;
+  
+  renderSpeedCazaCard();
+}
+
+function renderSpeedCazaCard() {
+  clearInterval(SpeedDrillState.cazaTimer);
+  const pool = SpeedDrillState.cazaPool;
+  if (!pool || pool.length === 0) return;
+
+  const total = pool.length;
+  if (SpeedDrillState.cazaIndex >= total) {
+    // Ciclo de 100 completado: volver a barajar aleatoriamente para el nuevo ciclo
+    SimoFX.celebrate("👑", "¡100 Casos Dominados!", `Lograste ${SpeedDrillState.cazaScore} de ${total} aciertos`, ["👑", "💎", "⭐", "🔥"]);
+    showCustomModal({
+      title: "👑 ¡Gran Maestro de Verbos Rectores!",
+      message: `Has completado el banco de ${total} desafíos de Caza-Distractores con un puntaje de ${SpeedDrillState.cazaScore}/${total}. ¡Se ha vuelto a barajar aleatoriamente para un nuevo ciclo de entrenamiento!`,
+      icon: "🏆"
+    });
+    SpeedDrillState.cazaPool = simoShuffle(SpeedDrillState.cazaPool);
+    SpeedDrillState.cazaIndex = 0;
+    SpeedDrillState.cazaScore = 0;
+  }
+
+  const currentCase = pool[SpeedDrillState.cazaIndex];
+  SpeedDrillState.cazaCurrentCase = currentCase;
+  SpeedDrillState.cazaIsAnswered = false;
+  SpeedDrillState.cazaTimeLeft = 20;
+
+  // Actualizar UI
+  const badgeRem = document.getElementById("speedCazaRemainingBadge");
+  const scoreEl = document.getElementById("speedCazaScore");
+  const cargoBadge = document.getElementById("speedCazaCargoBadge");
+  const timerEl = document.getElementById("speedCazaTimer");
+  const contextoEl = document.getElementById("speedCazaContexto");
+  const opcionEl = document.getElementById("speedCazaOpcion");
+  const feedbackBox = document.getElementById("speedCazaFeedback");
+  const buttons = document.querySelectorAll(".btn-speed-caza");
+
+  if (badgeRem) badgeRem.textContent = `${SpeedDrillState.cazaIndex + 1} / ${total} casos`;
+  if (scoreEl) scoreEl.textContent = `${SpeedDrillState.cazaScore} / ${total}`;
+  if (cargoBadge) {
+    cargoBadge.textContent = `${currentCase.nivelCargo || "Profesional/Técnico"}`;
+    cargoBadge.style.color = (currentCase.perfilTarget && currentCase.perfilTarget.includes("analista")) ? "#c084fc" : "#38bdf8";
+  }
+  if (timerEl) {
+    timerEl.textContent = `⏳ 20s`;
+    timerEl.style.color = "#fca5a5";
+  }
+  if (contextoEl) contextoEl.textContent = currentCase.contexto;
+  if (opcionEl) opcionEl.textContent = `«${currentCase.opcionTexto}»`;
+
+  if (feedbackBox) feedbackBox.style.display = "none";
+  buttons.forEach((btn) => {
+    btn.disabled = false;
+    btn.style.opacity = "1";
+    btn.style.pointerEvents = "auto";
+  });
+
+  // Temporizador de 20 segundos
+  SpeedDrillState.cazaTimer = setInterval(() => {
+    SpeedDrillState.cazaTimeLeft -= 1;
+    if (timerEl) timerEl.textContent = `⏳ ${SpeedDrillState.cazaTimeLeft}s`;
+
+    if (SpeedDrillState.cazaTimeLeft <= 5 && SpeedDrillState.cazaTimeLeft > 0) {
+      if (typeof SoundFX !== "undefined" && SoundFX.playTick) SoundFX.playTick();
+      if (timerEl) {
+        timerEl.style.color = "#ef4444";
+        SimoFX.heartbeat(timerEl);
+      }
+    }
+
+    if (SpeedDrillState.cazaTimeLeft <= 0) {
+      clearInterval(SpeedDrillState.cazaTimer);
+      handleSpeedCazaTimeout();
+    }
+  }, 1000);
+}
+
+function handleSpeedCazaAnswer(chosenType, clickedBtn = null) {
+  if (SpeedDrillState.cazaIsAnswered) return;
+  SpeedDrillState.cazaIsAnswered = true;
+  clearInterval(SpeedDrillState.cazaTimer);
+
+  const currentCase = SpeedDrillState.cazaCurrentCase;
+  if (!currentCase) return;
+
+  const isCorrect = (chosenType === currentCase.respuestaCorrecta);
+  const total = SpeedDrillState.cazaPool.length;
+
+  const feedbackBox = document.getElementById("speedCazaFeedback");
+  const verdictEl = document.getElementById("speedCazaFeedbackVerdict");
+  const explEl = document.getElementById("speedCazaFeedbackExplicacion");
+  const scoreEl = document.getElementById("speedCazaScore");
+  const buttons = document.querySelectorAll(".btn-speed-caza");
+
+  buttons.forEach((btn) => {
+    btn.disabled = true;
+    btn.style.opacity = "0.6";
+    btn.style.pointerEvents = "none";
+  });
+
+  if (isCorrect) {
+    SpeedDrillState.cazaScore += 1;
+    if (scoreEl) scoreEl.textContent = `${SpeedDrillState.cazaScore} / ${total}`;
+    if (typeof SoundFX !== "undefined") {
+      if (SoundFX.playCorrect) SoundFX.playCorrect();
+    }
+    if (feedbackBox) {
+      feedbackBox.style.display = "flex";
+      feedbackBox.style.background = "rgba(16, 185, 129, 0.15)";
+      feedbackBox.style.border = "1.5px solid #10b981";
+    }
+    if (verdictEl) {
+      verdictEl.textContent = `🎯 ¡ACERTASTE! Discriminación perfecta (+1 Acierto)`;
+      verdictEl.style.color = "#34d399";
+    }
+    if (clickedBtn) {
+      SimoFX.burst(clickedBtn, ["⚡", "✨", "🎯"], 14, 120);
+      SimoFX.floatText(clickedBtn, "⚡ +1 Acierto", "#34d399");
+    }
+  } else {
+    if (typeof SoundFX !== "undefined") {
+      if (SoundFX.playIncorrect) SoundFX.playIncorrect();
+      else if (SoundFX.playWrong) SoundFX.playWrong();
+    }
+    if (feedbackBox) {
+      feedbackBox.style.display = "flex";
+      feedbackBox.style.background = "rgba(239, 68, 68, 0.15)";
+      feedbackBox.style.border = "1.5px solid #ef4444";
+    }
+    if (verdictEl) {
+      const correctLabel = 
+        currentCase.respuestaCorrecta === "ACCION_CORRECTA" ? "ACCIÓN CORRECTA" :
+        currentCase.respuestaCorrecta === "DISTRACTOR_EXTRALIMITACION" ? "DISTRACTOR POR EXTRALIMITACIÓN" :
+        "DISTRACTOR POR PASIVIDAD U OMISIÓN";
+      verdictEl.textContent = `❌ TRAMPA CAÍDA: La opción era ${correctLabel}`;
+      verdictEl.style.color = "#f87171";
+    }
+    if (clickedBtn) {
+      SimoFX.shake(clickedBtn);
+      SimoFX.floatText(clickedBtn, "⚠️ Distractor", "#f87171");
+    }
+  }
+
+  if (explEl) {
+    explEl.innerHTML = `
+      <div style="margin-bottom: 4px;"><strong>Verbo Evaluado:</strong> <span style="color: #38bdf8;">${currentCase.verboEvaluado}</span></div>
+      <div>${currentCase.explicacion}</div>
+    `;
+  }
+}
+
+function handleSpeedCazaTimeout() {
+  if (SpeedDrillState.cazaIsAnswered) return;
+  SpeedDrillState.cazaIsAnswered = true;
+
+  const currentCase = SpeedDrillState.cazaCurrentCase;
+  if (!currentCase) return;
+
+  if (typeof SoundFX !== "undefined" && SoundFX.playTimeout) SoundFX.playTimeout();
+  const timerEl = document.getElementById("speedCazaTimer");
+  if (timerEl) {
+    SimoFX.shake(timerEl);
+    SimoFX.floatText(timerEl, "⌛ ¡Tiempo!", "#fbbf24");
+  }
+
+  const feedbackBox = document.getElementById("speedCazaFeedback");
+  const verdictEl = document.getElementById("speedCazaFeedbackVerdict");
+  const explEl = document.getElementById("speedCazaFeedbackExplicacion");
+  const buttons = document.querySelectorAll(".btn-speed-caza");
+
+  buttons.forEach((btn) => {
+    btn.disabled = true;
+    btn.style.opacity = "0.6";
+    btn.style.pointerEvents = "none";
+  });
+
+  const correctLabel = 
+    currentCase.respuestaCorrecta === "ACCION_CORRECTA" ? "ACCIÓN CORRECTA" :
+    currentCase.respuestaCorrecta === "DISTRACTOR_EXTRALIMITACION" ? "DISTRACTOR POR EXTRALIMITACIÓN" :
+    "DISTRACTOR POR PASIVIDAD U OMISIÓN";
+
+  if (feedbackBox) {
+    feedbackBox.style.display = "flex";
+    feedbackBox.style.background = "rgba(245, 158, 11, 0.15)";
+    feedbackBox.style.border = "1.5px solid rgba(245, 158, 11, 0.4)";
+  }
+  if (verdictEl) {
+    verdictEl.textContent = `⏱️ ¡TIEMPO AGOTADO! La opción era: ${correctLabel}`;
+    verdictEl.style.color = "var(--accent-gold)";
+  }
+  if (explEl) {
+    explEl.innerHTML = `
+      <div style="margin-bottom: 4px;"><strong>Verbo Evaluado:</strong> <span style="color: #38bdf8;">${currentCase.verboEvaluado}</span></div>
+      <div>${currentCase.explicacion}</div>
+    `;
+  }
+}
+
+function nextSpeedCazaStep() {
+  SpeedDrillState.cazaIndex += 1;
+  renderSpeedCazaCard();
+}
+
+// -------------------------------------------------------------------------
+// LÓGICA MODO V/F LEGAL (35 AFIRMACIONES)
+// -------------------------------------------------------------------------
 function renderSpeedDrillCard() {
   if (typeof SPEED_DRILLS === "undefined" || SPEED_DRILLS.length === 0) return;
 
@@ -6358,9 +6687,8 @@ function setupVerbosRectoresModule() {
   function initCazaDistractores() {
     if (typeof VERBOS_RECTORES_DATA === "undefined") return;
     const all = VERBOS_RECTORES_DATA.SPEED_DRILLS_VERBOS || [];
-    const profile = AppState.activeProfileId || "gestor_iii";
-    const profileCases = all.filter((c) => c.perfilTarget === profile);
-    cazaState.pool = profileCases.length > 0 ? [...profileCases, ...all.filter((c) => c.perfilTarget !== profile)] : [...all];
+    // Barajar completamente los casos de forma aleatoria (Fisher-Yates)
+    cazaState.pool = simoShuffle([...all]);
     cazaState.currentIndex = 0;
     cazaState.score = 0;
     cazaState.answered = false;
