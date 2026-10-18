@@ -9821,6 +9821,106 @@ const QUESTION_BANK_GESTOR = [
     "dificultad": "ALTA",
     "competencia": "Reserva Legal y Acceso a Pruebas CNSC",
     "nivel": "Profesional"
+  },
+  // --- CASOS ESPECIALES DE VERBOS RECTORES Y DELIMITACIÓN FUNCIONAL CNSC/DIAN ---
+  {
+    "id": "dian_vr_gestor_01",
+    "nivel": "Profesional",
+    "ejeId": "verbos_rectores_cnsc",
+    "ejeNombre": "Verbos Rectores y Delimitación Funcional CNSC/DIAN",
+    "tipo": "Funcional (Eliminatorio - 65%)",
+    "tema": "Regla de Oro Profesional: Análisis y Proyección vs. Pasividad",
+    "caso": "Durante una auditoría a un contribuyente del régimen ordinario, el Gestor III constata que existen diferencias millonarias entre los ingresos brutos reportados en exógena y los declarados en el formulario 110 de renta. El contribuyente no atendió una invitación persuasiva previa.",
+    "enunciado": "De acuerdo con el catálogo de verbos rectores de la CNSC/DAFP y las funciones del cargo Profesional, ¿cuál es la conducta procesalmente adecuada que debe asumir el Gestor III?",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "Archivar provisionalmente el expediente a la espera de que el contribuyente subsane voluntariamente o prescriba la acción de cobro.",
+        "explicacion": "Incorrecta. Distractor por pasividad y omisión de funciones. En el nivel Profesional, abstenerse de investigar y proyectar actos formales constituye negligencia procesal y bajo desempeño evaluativo."
+      },
+      {
+        "id": "B",
+        "texto": "Analizar el acervo probatorio contable, valorar las discrepancias de información exógena y proyectar el Requerimiento Especial debidamente motivado con la cuantificación de la sanción por inexactitud.",
+        "explicacion": "Correcta. Los verbos 'Analizar' y 'Proyectar' constituyen los verbos rectores esenciales del nivel Profesional (Decreto 1083 de 2015 y Manual FT-TAH-1824 de la DIAN). Implican estudio de fondo y elaboración técnica del acto administrativo."
+      },
+      {
+        "id": "C",
+        "texto": "Proferir y firmar de plano la resolución sancionatoria de clausura del establecimiento de comercio sin agotar el procedimiento previo.",
+        "explicacion": "Incorrecta. Distractor por extralimitación y vulneración del debido proceso. La clausura directa sin pliego de cargos ni oportunidad de defensa vicia de nulidad absoluta la actuación."
+      }
+    ],
+    "respuestaCorrecta": "B",
+    "justificacion": "El nivel Profesional se caracteriza por el análisis riguroso de información y la proyección motivada de actos administrativos. Las opciones pasivas de archivo constituyen distractores típicos en las pruebas de la CNSC.",
+    "norma": "Decreto 1083 de 2015, Manual de Funciones DIAN FT-TAH-1824 y Estatuto Tributario Art. 703",
+    "citaNormativa": "Funciones del nivel profesional: Analizar información, formular alternativas y proyectar los actos administrativos derivados de los procesos de fiscalización y control.",
+    "dificultad": "ALTA",
+    "competencia": "Juicio Situacional y Delimitación Funcional Profesional"
+  },
+  {
+    "id": "dian_vr_gestor_02",
+    "nivel": "Profesional",
+    "ejeId": "verbos_rectores_cnsc",
+    "ejeNombre": "Verbos Rectores y Delimitación Funcional CNSC/DIAN",
+    "tipo": "Funcional (Eliminatorio - 65%)",
+    "tema": "Extralimitación Directiva vs. Sustanciación Técnica Profesional",
+    "caso": "En una división de fiscalización aduanera se analiza el impacto de una presunta red de subfacturación de textiles en zona primaria. Un Gestor III considera que se debe suspender cautelarmente la actividad de todos los depósitos habilitados de la región.",
+    "enunciado": "¿Por qué ordenar la suspensión generalizada de licencias no corresponde al verbo rector de un Gestor III según el régimen de competencias?",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "Porque el verbo rector 'Ordenar' o revocar autorizaciones institucionales generales está reservado exclusivamente al Nivel Directivo (Director o Subdirector de la DIAN), correspondiéndole al Profesional 'investigar, evaluar y proyectar' la decisión motivada individual.",
+        "explicacion": "Correcta. La matriz oficial DAFP/CNSC reserva los verbos de mando institucional ('Ordenar', 'Aprobar', 'Fijar') al nivel directivo. El profesional sustancia mediante investigación y formulación técnica del proyecto de acto."
+      },
+      {
+        "id": "B",
+        "texto": "Porque los depósitos aduaneros gozan de inmunidad administrativa absoluta ante cualquier medida cautelar de la DIAN.",
+        "explicacion": "Incorrecta. La DIAN sí ostenta facultades de control y suspensión sobre auxiliares aduaneros, pero mediante acto de la autoridad directiva competente."
+      },
+      {
+        "id": "C",
+        "texto": "Porque el Gestor III debe limitarse únicamente a archivar carpetas sin emitir conceptos sobre aduanas.",
+        "explicacion": "Incorrecta. El profesional sí tiene el deber de investigar y conceptuar; lo que no puede es usurpar la competencia resolutiva de la alta dirección."
+      }
+    ],
+    "respuestaCorrecta": "A",
+    "justificacion": "El catálogo de 97 verbos rectores establece que 'Ordenar' y 'Aprobar' corresponden al Nivel Directivo, mientras que 'Investigar', 'Evaluar' y 'Proyectar' delimitan el Nivel Profesional.",
+    "norma": "Decreto 1083 de 2015, Art. 2.2.2.4.4 y Decreto Ley 0920 de 2023",
+    "citaNormativa": "La competencia funcional de expedir mandatos generales y medidas sancionatorias directivas radica en el nominador o director de la entidad, basada en la sustanciación técnica de los profesionales.",
+    "dificultad": "ALTA",
+    "competencia": "Competencia Orgánica y Jerárquica"
+  },
+  {
+    "id": "dian_vr_gestor_03",
+    "nivel": "Profesional",
+    "ejeId": "verbos_rectores_cnsc",
+    "ejeNombre": "Verbos Rectores y Delimitación Funcional CNSC/DIAN",
+    "tipo": "Funcional (Eliminatorio - 65%)",
+    "tema": "Formulación de Soluciones vs. Traslado Mecánico de Casos",
+    "caso": "Un Gestor III recibe un expediente tributario de gran complejidad técnica sobre tributación internacional y precios de transferencia que presenta vacíos probatorios iniciales.",
+    "enunciado": "Ante esta situación, la respuesta que mejor evidencia el nivel de competencia exigido por la CNSC para el cargo Profesional es:",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "Devolver de inmediato el expediente a ventanilla de radicación indicando que carece de pruebas y que no es su responsabilidad completarlas.",
+        "explicacion": "Incorrecta. Constituye una conducta pasiva y de evasión de responsabilidades impropia del nivel profesional."
+      },
+      {
+        "id": "B",
+        "texto": "Estudiar a fondo la estructura de la operación multinacional, decretar la práctica de inspección tributaria con exhibición de libros y proyectar el auto de requerimiento de información cambiaria.",
+        "explicacion": "Correcta. 'Estudiar', 'Practicar pruebas' y 'Proyectar' son los verbos rectores de mayor autonomía técnica profesional que resuelven integralmente la contingencia probatoria."
+      },
+      {
+        "id": "C",
+        "texto": "Recomendar verbalmente al contribuyente pagar una cifra aproximada para cerrar el caso sin dejar constancia escrita.",
+        "explicacion": "Incorrecta. Vulnera el principio de legalidad e indisponibilidad de la obligación fiscal (Art. 6 C.P.)."
+      }
+    ],
+    "respuestaCorrecta": "B",
+    "justificacion": "Frente a contingencias técnicas, el profesional público despliega facultades de indagación ('Estudiar', 'Practicar pruebas') y proyecta los actos formales que impulsan la actuación administrativa.",
+    "norma": "Estatuto Tributario, Arts. 684 y 779; Decreto 1083 de 2015",
+    "citaNormativa": "El nivel profesional adelanta la práctica de pruebas, formula diagnósticos técnicos y proyecta las decisiones correspondientes.",
+    "dificultad": "ALTA",
+    "competencia": "Resolución de Problemas Complejos y Verbo Rector Profesional"
   }
 ];
 

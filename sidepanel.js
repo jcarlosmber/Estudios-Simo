@@ -2606,6 +2606,11 @@ function setupNavigation() {
       if (jobModal) openModal(jobModal);
     });
   }
+
+  // Inicializar Decodificador de Verbos Rectores y Caza-Distractores
+  if (typeof setupVerbosRectoresModule === "function") {
+    setupVerbosRectoresModule();
+  }
 }
 
 function switchTab(tabName) {
@@ -2741,19 +2746,71 @@ function getQuestionsForFilter(pool, filterId, profileId) {
     return pool;
   }
   return pool.filter((q) => {
-    if (filterId === "misionalidad" && profileId === "gestor_iii") {
-      return q.ejeId === "misionalidad" || q.ejeId === "estructura_dian";
+    if (filterId === "misionalidad") {
+      return q.ejeId === "misionalidad" || (profileId === "gestor_iii" && q.ejeId === "estructura_dian");
     }
-    if (filterId === "mipg") {
-      return q.ejeId === "mipg" || q.ejeId === "desempeno";
+    if (filterId === "estructura_dian") {
+      return q.ejeId === "estructura_dian";
     }
-    if (filterId === "adaptabilidad") return q.ejeId && q.ejeId.startsWith("adaptabilidad");
-    if (filterId === "comportamiento_etico") return q.ejeId && q.ejeId.startsWith("comportamiento_etico");
-    if (filterId === "comunicacion_efectiva") return q.ejeId && q.ejeId.startsWith("comunicacion_efectiva");
-    if (filterId === "trabajo_equipo") return q.ejeId && q.ejeId.startsWith("trabajo_equipo");
-    if (filterId === "orientacion_logro") return q.ejeId && q.ejeId.startsWith("orientacion_logro");
-    if (filterId === "orientacion_usuario") return q.ejeId && q.ejeId.startsWith("orientacion_usuario");
+    if (filterId === "control_interno_meci" || filterId === "control_interno") {
+      return q.ejeId === "control_interno_meci" || q.ejeId === "control_interno" || q.ejeId === "mipg_control_interno";
+    }
+    if (filterId === "mipg_auditoria" || filterId === "mipg") {
+      return q.ejeId === "mipg_auditoria" || q.ejeId === "mipg" || q.ejeId === "desempeno" || q.ejeId === "mipg_control_interno";
+    }
+    if (filterId === "normas_internacionales_auditoria") {
+      return q.ejeId === "normas_internacionales_auditoria";
+    }
+    if (filterId === "gestion_riesgo") {
+      return q.ejeId === "gestion_riesgo";
+    }
+    if (filterId === "auditoria_sistemas_tecnologia") {
+      return q.ejeId === "auditoria_sistemas_tecnologia";
+    }
+    if (filterId === "fiscalidad_internacional") {
+      return q.ejeId === "fiscalidad_internacional";
+    }
+    if (filterId === "principios_contabilidad_publica") {
+      return q.ejeId === "principios_contabilidad_publica";
+    }
+    if (filterId === "contratacion_estatal" || filterId === "contratacion") {
+      return q.ejeId === "contratacion_estatal" || q.ejeId === "contratacion";
+    }
+    if (filterId === "razonamiento_analitico" || filterId === "razonamiento") {
+      return q.ejeId === "razonamiento_analitico" || q.ejeId === "razonamiento" || q.ejeId === "razonamiento_cuantitativo_logico";
+    }
+    // Comportamentales Nivel Profesional
+    if (filterId === "adaptabilidad" || filterId === "adaptabilidad_n1") {
+      return q.ejeId && q.ejeId.startsWith("adaptabilidad");
+    }
+    if (filterId === "comportamiento_etico" || filterId === "comportamiento_etico_n1_4") {
+      return q.ejeId && q.ejeId.startsWith("comportamiento_etico");
+    }
+    if (filterId === "comunicacion_efectiva" || filterId === "comunicacion_efectiva_n1_3") {
+      return q.ejeId && q.ejeId.startsWith("comunicacion_efectiva");
+    }
+    if (filterId === "orientacion_logro" || filterId === "orientacion_logro_n1_4") {
+      return q.ejeId && q.ejeId.startsWith("orientacion_logro");
+    }
+    if (filterId === "orientacion_usuario" || filterId === "orientacion_usuario_n1") {
+      return q.ejeId && q.ejeId.startsWith("orientacion_usuario");
+    }
+    if (filterId === "solucion_problemas" || filterId === "solucion_problemas_n4") {
+      return q.ejeId && q.ejeId.startsWith("solucion_problemas");
+    }
+    if (filterId === "trabajo_equipo" || filterId === "trabajo_equipo_n1") {
+      return q.ejeId && q.ejeId.startsWith("trabajo_equipo");
+    }
+    // Valores de Integridad
+    if (filterId === "compromiso") return q.ejeId === "compromiso";
+    if (filterId === "diligencia") return q.ejeId === "diligencia";
+    if (filterId === "honestidad") return q.ejeId === "honestidad";
+    if (filterId === "justicia") return q.ejeId === "justicia";
+    if (filterId === "respeto") return q.ejeId === "respeto";
+    if (filterId === "integridad") return q.ejeId === "integridad" || q.ejeId === "comportamental_integridad";
+
     if (filterId === "comprension_lectora") return q.ejeId === "comprension_lectora" || q.ejeId === "razonamiento";
+
     return q.ejeId === filterId;
   });
 }
@@ -4514,7 +4571,7 @@ function setupAccountModal() {
 // =========================================================================
 // ASISTENTE DE BIENVENIDA Y REGISTRO INICIAL (USUARIO Y CARGO DIAN)
 // =========================================================================
-let onboardingSelectedProfile = "gestor_iii";
+let onboardingSelectedProfile = "gestor_iii_ci";
 
 function setupOnboardingModal() {
   const modal = document.getElementById("welcomeOnboardingModal");
@@ -4522,8 +4579,10 @@ function setupOnboardingModal() {
 
   const inputUser = document.getElementById("onboardingInputUserId");
   const errorEl = document.getElementById("onboardingUserError");
+  const cardGestorCI = document.getElementById("onboardingCardGestorCI");
   const cardGestor = document.getElementById("onboardingCardGestor");
   const cardAnalista = document.getElementById("onboardingCardAnalista");
+  const checkGestorCI = document.getElementById("onboardingCheckGestorCI");
   const checkGestor = document.getElementById("onboardingCheckGestor");
   const checkAnalista = document.getElementById("onboardingCheckAnalista");
   const btnSubmit = document.getElementById("btnSubmitOnboarding");
@@ -4531,22 +4590,40 @@ function setupOnboardingModal() {
   const btnReopen = document.getElementById("btnReopenOnboarding");
 
   window.selectOnboardingProfile = function(profileId) {
-    onboardingSelectedProfile = (profileId === "analista_iv") ? "analista_iv" : "gestor_iii";
+    if (profileId === "analista_iv" || profileId === "gestor_iii" || profileId === "gestor_iii_ci") {
+      onboardingSelectedProfile = profileId;
+    } else if (profileId && profileId.includes("236872")) {
+      onboardingSelectedProfile = "gestor_iii_ci";
+    } else {
+      onboardingSelectedProfile = "gestor_iii_ci";
+    }
 
-    if (onboardingSelectedProfile === "gestor_iii") {
+    // Reset all cards
+    [cardGestorCI, cardGestor, cardAnalista].forEach(c => {
+      if (c) {
+        c.classList.remove("active");
+        c.style.borderColor = "rgba(255, 255, 255, 0.12)";
+        c.style.backgroundColor = "rgba(11, 17, 32, 0.6)";
+      }
+    });
+    if (checkGestorCI) checkGestorCI.style.display = "none";
+    if (checkGestor) checkGestor.style.display = "none";
+    if (checkAnalista) checkAnalista.style.display = "none";
+
+    if (onboardingSelectedProfile === "gestor_iii_ci") {
+      if (cardGestorCI) {
+        cardGestorCI.classList.add("active");
+        cardGestorCI.style.borderColor = "#38bdf8";
+        cardGestorCI.style.backgroundColor = "rgba(2, 132, 199, 0.18)";
+      }
+      if (checkGestorCI) checkGestorCI.style.display = "inline-block";
+    } else if (onboardingSelectedProfile === "gestor_iii") {
       if (cardGestor) {
         cardGestor.classList.add("active");
         cardGestor.style.borderColor = "#38bdf8";
         cardGestor.style.backgroundColor = "rgba(2, 132, 199, 0.18)";
       }
       if (checkGestor) checkGestor.style.display = "inline-block";
-
-      if (cardAnalista) {
-        cardAnalista.classList.remove("active");
-        cardAnalista.style.borderColor = "rgba(255, 255, 255, 0.12)";
-        cardAnalista.style.backgroundColor = "rgba(11, 17, 32, 0.6)";
-      }
-      if (checkAnalista) checkAnalista.style.display = "none";
     } else {
       if (cardAnalista) {
         cardAnalista.classList.add("active");
@@ -4554,15 +4631,14 @@ function setupOnboardingModal() {
         cardAnalista.style.backgroundColor = "rgba(168, 85, 247, 0.18)";
       }
       if (checkAnalista) checkAnalista.style.display = "inline-block";
-
-      if (cardGestor) {
-        cardGestor.classList.remove("active");
-        cardGestor.style.borderColor = "rgba(255, 255, 255, 0.12)";
-        cardGestor.style.backgroundColor = "rgba(11, 17, 32, 0.6)";
-      }
-      if (checkGestor) checkGestor.style.display = "none";
     }
   };
+
+  if (cardGestorCI) {
+    cardGestorCI.addEventListener("click", () => {
+      window.selectOnboardingProfile("gestor_iii_ci");
+    });
+  }
 
   if (cardGestor) {
     cardGestor.addEventListener("click", () => {
@@ -4975,22 +5051,29 @@ function populateJobModalForm(forcedProfileId = null) {
   }
 
   // Resaltado visual de la tarjeta de perfil activa
+  const btnQuickGestorCI = document.getElementById("btnQuickProfileGestorCI");
   const btnQuickGestor = document.getElementById("btnQuickProfileGestor");
   const btnQuickAnalista = document.getElementById("btnQuickProfileAnalista");
+  const badgeGestorCI = document.getElementById("badgeActiveGestorCI");
   const badgeGestor = document.getElementById("badgeActiveGestor");
   const badgeAnalista = document.getElementById("badgeActiveAnalista");
-  if (btnQuickGestor && btnQuickAnalista) {
-    if (profileId === "gestor_iii") {
-      btnQuickGestor.classList.add("active");
-      btnQuickAnalista.classList.remove("active");
-      if (badgeGestor) badgeGestor.style.display = "inline-block";
-      if (badgeAnalista) badgeAnalista.style.display = "none";
-    } else {
-      btnQuickAnalista.classList.add("active");
-      btnQuickGestor.classList.remove("active");
-      if (badgeAnalista) badgeAnalista.style.display = "inline-block";
-      if (badgeGestor) badgeGestor.style.display = "none";
-    }
+
+  [btnQuickGestorCI, btnQuickGestor, btnQuickAnalista].forEach(b => {
+    if (b) b.classList.remove("active");
+  });
+  if (badgeGestorCI) badgeGestorCI.style.display = "none";
+  if (badgeGestor) badgeGestor.style.display = "none";
+  if (badgeAnalista) badgeAnalista.style.display = "none";
+
+  if (profileId === "gestor_iii_ci" || profileId === "gestor_iii_236872" || profileId === "236872") {
+    if (btnQuickGestorCI) btnQuickGestorCI.classList.add("active");
+    if (badgeGestorCI) badgeGestorCI.style.display = "inline-block";
+  } else if (profileId === "gestor_iii") {
+    if (btnQuickGestor) btnQuickGestor.classList.add("active");
+    if (badgeGestor) badgeGestor.style.display = "inline-block";
+  } else {
+    if (btnQuickAnalista) btnQuickAnalista.classList.add("active");
+    if (badgeAnalista) badgeAnalista.style.display = "inline-block";
   }
 }
 
@@ -5013,9 +5096,16 @@ function setupJobConfig() {
   if (btnCloseX) btnCloseX.addEventListener("click", closeJobModal);
   if (btnCancel) btnCancel.addEventListener("click", closeJobModal);
 
-  // Selector Rápido de Perfiles Oficiales DIAN (Gestor III y Analista IV)
+  // Selector Rápido de Perfiles Oficiales DIAN
+  const btnQuickGestorCI = document.getElementById("btnQuickProfileGestorCI");
   const btnQuickGestor = document.getElementById("btnQuickProfileGestor");
   const btnQuickAnalista = document.getElementById("btnQuickProfileAnalista");
+
+  if (btnQuickGestorCI) {
+    btnQuickGestorCI.addEventListener("click", () => {
+      populateJobModalForm("gestor_iii_ci");
+    });
+  }
 
   if (btnQuickGestor) {
     btnQuickGestor.addEventListener("click", () => {
@@ -5036,10 +5126,12 @@ function setupJobConfig() {
 
     let targetProfileId = AppState._pendingProfileId;
     if (!targetProfileId) {
-      if (opec.includes("236760") || title.toUpperCase().includes("ANALISTA")) {
+      if (opec.includes("236872") || title.toUpperCase().includes("CONTROL INTERNO") || title.toUpperCase().includes("AUDITORIA")) {
+        targetProfileId = "gestor_iii_ci";
+      } else if (opec.includes("236760") || title.toUpperCase().includes("ANALISTA")) {
         targetProfileId = "analista_iv";
       } else {
-        targetProfileId = "gestor_iii";
+        targetProfileId = "gestor_iii_ci";
       }
     }
 
@@ -6016,3 +6108,379 @@ function renderMnemotecniasTab() {
     container.appendChild(card);
   });
 }
+
+// =========================================================================
+// MÓDULO: DECODIFICADOR DE VERBOS RECTORES & CAZA-DISTRACTORES (DAFP / CNSC)
+// =========================================================================
+function setupVerbosRectoresModule() {
+  const btnOpen = document.getElementById("btnOpenVerbosModal");
+  const modal = document.getElementById("modalVerbosRectores");
+  const btnClose = document.getElementById("btnCloseVerbosModal");
+
+  if (!modal) return;
+
+  if (btnOpen) {
+    btnOpen.addEventListener("click", () => {
+      openVerbosModal();
+    });
+  }
+  if (btnClose) {
+    btnClose.addEventListener("click", () => {
+      closeModal(modal);
+    });
+  }
+
+  // Setup tabs internas
+  const tabBtns = {
+    buscador: document.getElementById("tabBtnVerbosBuscador"),
+    caza: document.getElementById("tabBtnVerbosCaza"),
+    infografia: document.getElementById("tabBtnVerbosInfografia"),
+    reglas: document.getElementById("tabBtnVerbosReglas")
+  };
+
+  const sections = {
+    buscador: document.getElementById("sectionVerbosBuscador"),
+    caza: document.getElementById("sectionVerbosCaza"),
+    infografia: document.getElementById("sectionVerbosInfografia"),
+    reglas: document.getElementById("sectionVerbosReglas")
+  };
+
+  function switchVerbosTab(tabKey) {
+    Object.keys(tabBtns).forEach((k) => {
+      if (tabBtns[k]) {
+        const isActive = (k === tabKey);
+        tabBtns[k].classList.toggle("active", isActive);
+        if (isActive) {
+          tabBtns[k].style.background = "rgba(168, 85, 247, 0.25)";
+          tabBtns[k].style.borderColor = "#a855f7";
+          tabBtns[k].style.color = "#f3e8ff";
+          tabBtns[k].style.fontWeight = "800";
+        } else {
+          tabBtns[k].style.background = "transparent";
+          tabBtns[k].style.borderColor = "rgba(255,255,255,0.1)";
+          tabBtns[k].style.color = "#94a3b8";
+          tabBtns[k].style.fontWeight = "700";
+        }
+      }
+      if (sections[k]) {
+        sections[k].style.display = (k === tabKey) ? "flex" : "none";
+      }
+    });
+
+    if (tabKey === "caza") {
+      initCazaDistractores();
+    }
+  }
+
+  if (tabBtns.buscador) tabBtns.buscador.addEventListener("click", () => switchVerbosTab("buscador"));
+  if (tabBtns.caza) tabBtns.caza.addEventListener("click", () => switchVerbosTab("caza"));
+  if (tabBtns.infografia) tabBtns.infografia.addEventListener("click", () => switchVerbosTab("infografia"));
+  if (tabBtns.reglas) tabBtns.reglas.addEventListener("click", () => switchVerbosTab("reglas"));
+
+  // Buscador y filtros de píldoras
+  const inputSearch = document.getElementById("inputBuscarVerbo");
+  const filterTodos = document.getElementById("filterVerboTodos");
+  const filterPropios = document.getElementById("filterVerboPropios");
+  const filterDistractores = document.getElementById("filterVerboDistractores");
+
+  let currentPillFilter = "todos"; // "todos", "propios", "distractores"
+
+  function updatePillStyles() {
+    [filterTodos, filterPropios, filterDistractores].forEach((b) => {
+      if (b) {
+        b.style.borderColor = "rgba(255,255,255,0.1)";
+        b.style.background = "transparent";
+        b.style.color = "#94a3b8";
+      }
+    });
+    if (currentPillFilter === "todos" && filterTodos) {
+      filterTodos.style.borderColor = "#a855f7";
+      filterTodos.style.background = "rgba(168, 85, 247, 0.25)";
+      filterTodos.style.color = "#f3e8ff";
+    }
+    if (currentPillFilter === "propios" && filterPropios) {
+      filterPropios.style.borderColor = "#10b981";
+      filterPropios.style.background = "rgba(16, 185, 129, 0.2)";
+      filterPropios.style.color = "#34d399";
+    }
+    if (currentPillFilter === "distractores" && filterDistractores) {
+      filterDistractores.style.borderColor = "#f43f5e";
+      filterDistractores.style.background = "rgba(244, 63, 94, 0.2)";
+      filterDistractores.style.color = "#fb7185";
+    }
+    renderVerbosList();
+  }
+
+  if (filterTodos) filterTodos.addEventListener("click", () => { currentPillFilter = "todos"; updatePillStyles(); });
+  if (filterPropios) filterPropios.addEventListener("click", () => { currentPillFilter = "propios"; updatePillStyles(); });
+  if (filterDistractores) filterDistractores.addEventListener("click", () => { currentPillFilter = "distractores"; updatePillStyles(); });
+
+  if (inputSearch) {
+    inputSearch.addEventListener("input", () => {
+      renderVerbosList();
+    });
+  }
+
+  // Infografía selectors
+  const infoButtons = document.querySelectorAll(".info-nivel-btn");
+  const imgInfo = document.getElementById("imgVerbosInfografia");
+  const titleInfo = document.getElementById("infoNivelTitle");
+  const linkInfo = document.getElementById("linkOpenFullImg");
+
+  infoButtons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      infoButtons.forEach((b) => {
+        b.style.borderColor = "rgba(255,255,255,0.1)";
+        b.style.background = "transparent";
+        b.style.color = "#94a3b8";
+      });
+      btn.style.borderColor = "#38bdf8";
+      btn.style.background = "rgba(56, 189, 248, 0.2)";
+      btn.style.color = "#38bdf8";
+
+      const imgSrc = btn.getAttribute("data-img");
+      if (imgInfo) imgInfo.src = imgSrc;
+      if (linkInfo) linkInfo.href = imgSrc;
+      if (titleInfo) titleInfo.textContent = `Lámina Oficial: ${btn.textContent.trim()} (DAFP)`;
+    });
+  });
+
+  // Estado del Speed Drill Caza-Distractores
+  let cazaState = {
+    currentIndex: 0,
+    score: 0,
+    answered: false,
+    pool: []
+  };
+
+  function initCazaDistractores() {
+    if (typeof VERBOS_RECTORES_DATA === "undefined") return;
+    const all = VERBOS_RECTORES_DATA.SPEED_DRILLS_VERBOS || [];
+    const profile = AppState.activeProfileId || "gestor_iii";
+    const profileCases = all.filter((c) => c.perfilTarget === profile);
+    cazaState.pool = profileCases.length > 0 ? [...profileCases, ...all.filter((c) => c.perfilTarget !== profile)] : [...all];
+    cazaState.currentIndex = 0;
+    cazaState.score = 0;
+    cazaState.answered = false;
+    updateCazaUI();
+  }
+
+  function updateCazaUI() {
+    const total = cazaState.pool.length;
+    if (total === 0) return;
+
+    const cardBox = document.getElementById("cazaCardBox");
+    if (!cardBox) return;
+
+    if (cazaState.currentIndex >= total) {
+      renderCazaFinished();
+      return;
+    }
+
+    const currentCase = cazaState.pool[cazaState.currentIndex];
+    cazaState.answered = false;
+
+    const badgeNivel = document.getElementById("cazaBadgeNivel");
+    const progressStep = document.getElementById("cazaProgressStep");
+    const contextoEl = document.getElementById("cazaContextoText");
+    const opcionEl = document.getElementById("cazaOpcionText");
+    const scoreEl = document.getElementById("cazaScoreText");
+    const feedbackBox = document.getElementById("cazaFeedbackBox");
+    const buttons = document.querySelectorAll(".btn-caza-action");
+
+    if (badgeNivel) badgeNivel.textContent = currentCase.nivelCargo;
+    if (progressStep) progressStep.textContent = `Caso ${cazaState.currentIndex + 1} de ${total}`;
+    if (scoreEl) scoreEl.textContent = `${cazaState.score} / ${total}`;
+    if (contextoEl) contextoEl.textContent = currentCase.contexto;
+    if (opcionEl) opcionEl.textContent = `«${currentCase.opcionTexto}»`;
+
+    if (feedbackBox) feedbackBox.style.display = "none";
+    buttons.forEach((btn) => {
+      btn.disabled = false;
+      btn.style.opacity = "1";
+      btn.style.pointerEvents = "auto";
+    });
+  }
+
+  function handleCazaAnswer(chosenType) {
+    if (cazaState.answered) return;
+    cazaState.answered = true;
+
+    const currentCase = cazaState.pool[cazaState.currentIndex];
+    const isCorrect = (chosenType === currentCase.respuestaCorrecta);
+
+    const feedbackBox = document.getElementById("cazaFeedbackBox");
+    const titleEl = document.getElementById("cazaFeedbackTitle");
+    const descEl = document.getElementById("cazaFeedbackDesc");
+    const scoreEl = document.getElementById("cazaScoreText");
+    const buttons = document.querySelectorAll(".btn-caza-action");
+
+    buttons.forEach((btn) => {
+      btn.disabled = true;
+      btn.style.opacity = "0.65";
+      btn.style.pointerEvents = "none";
+    });
+
+    if (isCorrect) {
+      cazaState.score += 1;
+      if (typeof SoundFX !== "undefined" && SoundFX.playCorrect) SoundFX.playCorrect();
+      if (feedbackBox) {
+        feedbackBox.style.display = "flex";
+        feedbackBox.style.background = "rgba(16, 185, 129, 0.15)";
+        feedbackBox.style.border = "1.5px solid #10b981";
+      }
+      if (titleEl) {
+        titleEl.textContent = "🎯 ¡EXCELENTE! Discriminaste con precisión (+1 Acierto)";
+        titleEl.style.color = "#34d399";
+      }
+    } else {
+      if (typeof SoundFX !== "undefined" && SoundFX.playWrong) SoundFX.playWrong();
+      if (feedbackBox) {
+        feedbackBox.style.display = "flex";
+        feedbackBox.style.background = "rgba(239, 68, 68, 0.15)";
+        feedbackBox.style.border = "1.5px solid #ef4444";
+      }
+      if (titleEl) {
+        titleEl.textContent = "❌ ¡TRAMPA IDENTIFICADA! Ojo al nivel jerárquico";
+        titleEl.style.color = "#f87171";
+      }
+    }
+
+    if (descEl) descEl.innerHTML = currentCase.explicacion;
+    if (scoreEl) scoreEl.textContent = `${cazaState.score} / ${cazaState.pool.length}`;
+  }
+
+  function renderCazaFinished() {
+    const cardBox = document.getElementById("cazaCardBox");
+    if (!cardBox) return;
+    const total = cazaState.pool.length;
+    const perc = Math.round((cazaState.score / total) * 100);
+
+    cardBox.innerHTML = `
+      <div style="text-align: center; padding: 24px 10px; display: flex; flex-direction: column; align-items: center; gap: 12px;">
+        <div style="font-size: 42px;">${perc >= 75 ? "🏆" : "🎯"}</div>
+        <div style="font-size: 18px; font-weight: 800; color: #f8fafc;">¡Desafío Caza-Distractores Completado!</div>
+        <div style="font-size: 14px; color: #cbd5e1;">Puntaje: <strong style="color: #38bdf8;">${cazaState.score} de ${total}</strong> (${perc}%)</div>
+        <p style="font-size: 12.5px; color: #94a3b8; max-width: 420px; line-height: 1.5;">
+          ${perc >= 75 ? "¡Tienes un radar afilado para identificar las trampas de nivel jerárquico de la CNSC!" : "Continúa repasando los 97 verbos para no caer en extralimitaciones ni pasividad el día de la prueba."}
+        </p>
+        <button id="btnRestartCaza" style="margin-top: 8px; padding: 10px 20px; font-size: 13.5px; font-weight: 800; background: linear-gradient(135deg, #a855f7, #7c3aed); border: none; color: #fff; border-radius: 8px; cursor: pointer;">
+          🔄 Repetir Desafío
+        </button>
+      </div>
+    `;
+
+    const btnRestart = document.getElementById("btnRestartCaza");
+    if (btnRestart) {
+      btnRestart.addEventListener("click", () => {
+        initCazaDistractores();
+      });
+    }
+  }
+
+  // Listener para botones de acción del Caza-Distractores
+  document.querySelectorAll(".btn-caza-action").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const type = btn.getAttribute("data-answer");
+      handleCazaAnswer(type);
+    });
+  });
+
+  const btnNextCaza = document.getElementById("btnCazaNextCase");
+  if (btnNextCaza) {
+    btnNextCaza.addEventListener("click", () => {
+      cazaState.currentIndex += 1;
+      updateCazaUI();
+    });
+  }
+
+  // Abrir modal y sincronizar con perfil activo
+  function openVerbosModal() {
+    const profile = AppState.activeProfileId || "gestor_iii";
+    const badge = document.getElementById("verbosBadgePerfil");
+    if (badge) {
+      badge.textContent = (profile === "gestor_iii") ? "GESTOR III (Profesional)" : "ANALISTA IV (Técnico)";
+      badge.style.color = (profile === "gestor_iii") ? "#38bdf8" : "#c084fc";
+      badge.style.borderColor = (profile === "gestor_iii") ? "#38bdf8" : "#c084fc";
+    }
+
+    const btnPro = document.getElementById("btnInfoNivelPro");
+    const btnTec = document.getElementById("btnInfoNivelTec");
+    if (profile === "gestor_iii" && btnPro) btnPro.click();
+    if (profile === "analista_iv" && btnTec) btnTec.click();
+
+    switchVerbosTab("buscador");
+    renderVerbosList();
+    openModal(modal);
+  }
+
+  function renderVerbosList() {
+    const container = document.getElementById("listaVerbosContainer");
+    const counterEl = document.getElementById("verbosCounterText");
+    if (!container || typeof VERBOS_RECTORES_DATA === "undefined") return;
+
+    const query = (inputSearch ? inputSearch.value : "").trim().toLowerCase();
+    const profile = AppState.activeProfileId || "gestor_iii";
+    const all = VERBOS_RECTORES_DATA.VERBOS_CATALOGO || [];
+
+    let filtered = all.filter((v) => {
+      const matchText = v.verbo.toLowerCase().includes(query) || v.descripcion.toLowerCase().includes(query);
+      if (!matchText) return false;
+
+      const evalResult = VERBOS_RECTORES_DATA.evaluarVerboParaCargo(v.verbo, profile);
+      if (!evalResult) return true;
+
+      if (currentPillFilter === "propios") return evalResult.esPropio;
+      if (currentPillFilter === "distractores") return evalResult.esDistractor;
+      return true;
+    });
+
+    if (counterEl) {
+      counterEl.textContent = `Mostrando ${filtered.length} de ${all.length} verbos`;
+    }
+
+    if (filtered.length === 0) {
+      container.innerHTML = `
+        <div style="text-align: center; padding: 24px; color: #94a3b8; font-size: 13px;">
+          No se encontraron verbos para "${query}" con el filtro seleccionado.
+        </div>
+      `;
+      return;
+    }
+
+    container.innerHTML = filtered.map((v) => {
+      const evalResult = VERBOS_RECTORES_DATA.evaluarVerboParaCargo(v.verbo, profile);
+      const esPropio = evalResult ? evalResult.esPropio : false;
+      const statusColor = esPropio ? "#10b981" : "#f43f5e";
+      const statusBg = esPropio ? "rgba(16, 185, 129, 0.12)" : "rgba(244, 63, 94, 0.12)";
+      const statusBorder = esPropio ? "rgba(16, 185, 129, 0.3)" : "rgba(244, 63, 94, 0.3)";
+      const statusLabel = esPropio ? "✅ Propio de tu Cargo" : `⚠️ ${evalResult ? evalResult.tipoDistractor : 'Distractor'}`;
+
+      const levelsBadges = Object.keys(v.niveles)
+        .filter((k) => v.niveles[k])
+        .map((k) => `<span style="font-size: 10px; font-weight: 800; background: rgba(255,255,255,0.08); padding: 1px 5px; border-radius: 4px; color: #cbd5e1;">${k}</span>`)
+        .join(" ");
+
+      return `
+        <div class="verbo-card-item" style="background: rgba(15, 23, 42, 0.7); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 10px; padding: 10px 14px; display: flex; flex-direction: column; gap: 6px; transition: border-color 0.2s;">
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 6px;">
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <span style="font-size: 14.5px; font-weight: 800; color: #f8fafc;">${v.num}. ${v.verbo}</span>
+              <div style="display: flex; gap: 4px;">${levelsBadges}</div>
+            </div>
+            <span style="font-size: 10.5px; font-weight: 800; color: ${statusColor}; background: ${statusBg}; border: 1px solid ${statusBorder}; padding: 2px 8px; border-radius: 10px;">
+              ${statusLabel}
+            </span>
+          </div>
+          <div style="font-size: 12px; color: #cbd5e1; line-height: 1.45;">
+            ${v.descripcion}
+          </div>
+          <div style="font-size: 11px; color: ${esPropio ? '#34d399' : '#fb7185'}; background: rgba(0,0,0,0.25); padding: 5px 8px; border-radius: 6px; border-left: 2px solid ${statusColor};">
+            💡 <strong>En tu examen:</strong> ${evalResult ? evalResult.diagnostico : ''}
+          </div>
+        </div>
+      `;
+    }).join("");
+  }
+}
+

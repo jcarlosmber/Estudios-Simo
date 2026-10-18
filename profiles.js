@@ -44,6 +44,98 @@ const PROFILES_DATA = {
       { id: "rendicion_cuentas", label: "📢 Rendición de Cuentas" }
     ]
   },
+  gestor_iii_ci: {
+    id: "gestor_iii_ci",
+    title: "GESTOR III - Control Interno (Código 303 - Grado 03)",
+    shortTitle: "GESTOR III (CI)",
+    opec: "236872",
+    inscription: "1280381278",
+    level: "Profesional",
+    levelCode: "303",
+    grade: "03",
+    entity: "DIAN (Proceso de Selección 2676 - Ingreso)",
+    salary: "$9.346.562 (Vigencia 2025)",
+    vacancies: 4,
+    closingDate: "2026-02-07",
+    codeFicha: "PC-CI-3006",
+    idEntidad: "545",
+    manualUrl: "https://simo.cnsc.gov.co/documents/get-document?docId=3be3b71b-8309-494c-87ec-7e71a12585941011711685&contentType=application/pdf",
+    purpose: "PC-CI-3006 GESTIONAR ACCIONES QUE FORTALEZCAN EL SISTEMA DE CONTROL INTERNO, MEDIANTE LA EJECUCION DE AUDITORIAS, EVALUACIONES Y SEGUIMIENTO A PLANES DE MEJORAMIENTO, DE ACUERDO CON LA NORMATIVA, ESTANDARES INTERNACIONALES, LOS PROCEDIMIENTOS VIGENTES Y LOS LINEAMIENTOS ESTABLECIDOS.",
+    functions: [
+      "EJECUTAR LAS METODOLOGIAS Y HERRAMIENTAS DE EVALUACION DEL SISTEMA DE CONTROL INTERNO, PRESENTANDO LOS INFORMES QUE CORRESPONDA DE CONFORMIDAD CON LA NORMATIVIDAD VIGENTE, LOS PROCEDIMIENTOS ESTABLECIDOS Y LINEAMIENTOS INSTITUCIONALES.",
+      "DEFINIR Y MONITOREAR LAS ACCIONES DE MEJORA DEL SISTEMA DE CONTROL INTERNO DE LA ENTIDAD, DE CONFORMIDAD CON LA NORMATIVIDAD VIGENTE Y LINEAMIENTOS INSTITUCIONALES.",
+      "REALIZAR LAS AUDITORIAS, EVALUACIONES E INFORMES DE LEY DEL PLAN ANUAL DE AUDITORIA DE ACUERDO CON LA NORMATIVIDAD VIGENTE LINEAMIENTOS Y PROCEDIMIENTOS INSTITUCIONALES.",
+      "IMPLEMENTAR ESTRATEGIAS, METODOLOGIAS, HERRAMIENTAS Y TECNICAS PARA LA EVALUACION Y MEJORAMIENTO DE LA GESTION DE LOS RIESGOS Y CONTROLES DE ACUERDO CON LAS NORMAS INTERNACIONALES DE AUDITORIA INTERNA Y NORMATIVIDAD VIGENTE.",
+      "GESTIONAR EL SEGUIMIENTO A LOS PLANES DE MEJORAMIENTO INTERNOS Y LOS SUSCRITOS CON LOS ENTES EXTERNOS DE CONTROL VALIDANDO SU VERACIDAD Y NIVEL DE AVANCE DE ACUERDO CON LA NORMATIVIDAD VIGENTE, DIAGNOSTICOS, PLANES, PROCESOS Y PROCEDIMIENTOS INSTITUCIONALES.",
+      "IMPLEMENTAR Y HACER SEGUIMIENTO A LOS PROGRAMAS, HERRAMIENTAS, CONTENIDOS EDUCATIVOS Y DE COMUNICACION QUE FOMENTEN LA CULTURA DE CONTROL Y MEJORAMIENTO CONTINUO DE ACUERDO CON POLITICAS , PLANES, OBJETIVOS Y LOS LINEAMIENTOS INSTITUCIONALES.",
+      "GUIAR A LAS DEPENDENCIAS EN LAS RESPUESTAS ENTRE LA ENTIDAD, ENTES DE CONTROL Y PARTES INTERESADAS INTERNAS Y EXTERNAS A LOS REQUERIMIENTOS EFECTUADOS, VERIFICANDO QUE SE CUMPLAN LOS CRITERIOS DE OPORTUNIDAD Y PERTINENCIA, DE ACUERDO CON LA NORMATIVA VIGENTE, LOS LINEAMIENTOS Y PROCEDIMIENTOS INSTITUCIONALES.",
+      "RECOMENDAR ACCIONES QUE PROPENDAN POR EL MEJORAMIENTO Y OPTIMIZACION DEL MODELO DE GESTION DE LA ENTIDAD, EN EL MARCO DE LA NORMATIVA VIGENTE, LAS POLITICAS GUBERNAMENTALES, LOS PROCEDIMIENTOS VIGENTES Y LINEAMIENTOS INSTITUCIONALES.",
+      "LAS SEÑALADAS COMO COMUNES A TODOS LOS EMPLEOS DE LA PLANTA DE PERSONAL DE LA ENTIDAD, INCLUIDAS EN LA RESOLUCION QUE ADOPTA O MODIFICA EL MANUAL Y LAS DEMAS ASIGNADAS POR AUTORIDAD COMPETENTE, DE ACUERDO CON EL NIVEL, GRADO DE RESPONSABILIDAD Y EL AREA DE DESEMPEÑO DEL EMPLEO."
+    ],
+    requirements: {
+      estudio: "Título de PROFESIONAL en NBC: ADMINISTRACION ,O, NBC: CONTADURIA PUBLICA ,O, NBC: DERECHO Y AFINES ,O, NBC: ECONOMIA ,O, NBC: INGENIERIA ADMINISTRATIVA Y AFINES ,O, NBC: INGENIERIA DE SISTEMAS, TELEMATICA Y AFINES ,O, NBC: INGENIERIA INDUSTRIAL Y AFINES.",
+      experiencia: "Doce (12) meses de EXPERIENCIA PROFESIONAL, Y Doce (12) meses de EXPERIENCIA PROFESIONAL RELACIONADA.",
+      otros: "Tarjeta Profesional en los casos señalados por la Ley."
+    },
+    indicators: [
+      "CONCEPTOS DE CONTRATACION ESTATAL",
+      "ESTRUCTURA ORGANIZACIONAL DE LA DIAN",
+      "FISCALIDAD INTERNACIONAL TACI",
+      "GESTION DEL RIESGO",
+      "METODOLOGIAS DE AUDITORIAS DE SISTEMAS DE TECNOLOGIA",
+      "MISIONALIDAD DE LA DIAN",
+      "MODELO ESTANDAR DE CONTROL INTERNO MECI",
+      "MODELO INTEGRADO DE PLANEACION Y GESTION MIPG EN AUDITORIA",
+      "NORMAS INTERNACIONALES DE AUDITORIA",
+      "PRINCIPIOS DE CONTABILIDAD PUBLICA",
+      "RAZONAMIENTO ANALITICO",
+      "ADAPTABILIDAD NIVEL 1",
+      "COMPORTAMIENTO ETICO NIVEL 1",
+      "COMPORTAMIENTO ETICO NIVEL 4",
+      "COMUNICACION EFECTIVA NIVEL 1",
+      "COMUNICACION EFECTIVA NIVEL 3",
+      "ORIENTACION AL LOGRO NIVEL 1",
+      "ORIENTACION AL LOGRO NIVEL 4",
+      "ORIENTACION AL USUARIO Y AL CIUDADANO NIVEL 1",
+      "SOLUCION DE PROBLEMAS NIVEL 4",
+      "TRABAJO EN EQUIPO NIVEL 1",
+      "COMPROMISO",
+      "DILIGENCIA",
+      "HONESTIDAD",
+      "JUSTICIA",
+      "RESPETO"
+    ],
+    filterOptions: [
+      { id: "interleaving", label: "🌪️ Modo Intercalado (Mezcla Mixta)" },
+      { id: "todos", label: "⚡ Todos los Indicadores Gestor III (CI)" },
+      // Ejes Funcionales
+      { id: "control_interno_meci", label: "🛡️ Modelo Estándar de Control Interno MECI" },
+      { id: "mipg_auditoria", label: "📐 MIPG en Auditoría Institucional" },
+      { id: "normas_internacionales_auditoria", label: "📜 Normas Internacionales de Auditoría (NIA / IIA)" },
+      { id: "gestion_riesgo", label: "⚠️ Gestión del Riesgo y Mapas de Corrupción" },
+      { id: "auditoria_sistemas_tecnologia", label: "💻 Auditorías de Sistemas de Tecnología (COBIT/ISO)" },
+      { id: "fiscalidad_internacional", label: "🌐 Fiscalidad Internacional TACI" },
+      { id: "principios_contabilidad_publica", label: "📑 Principios de Contabilidad Pública (CGN)" },
+      { id: "contratacion_estatal", label: "📄 Conceptos de Contratación Estatal" },
+      { id: "estructura_dian", label: "🏛️ Estructura Organizacional de la DIAN" },
+      { id: "misionalidad", label: "🎯 Misionalidad de la DIAN" },
+      { id: "razonamiento_analitico", label: "🧠 Razonamiento Analítico" },
+      // Competencias Comportamentales (Nivel Profesional)
+      { id: "adaptabilidad_n1", label: "🔄 Adaptabilidad (Nivel 1)" },
+      { id: "comportamiento_etico_n1_4", label: "🛡️ Comportamiento Ético (Niveles 1 y 4)" },
+      { id: "comunicacion_efectiva_n1_3", label: "🗣️ Comunicación Efectiva (Niveles 1 y 3)" },
+      { id: "orientacion_logro_n1_4", label: "🎯 Orientación al Logro (Niveles 1 y 4)" },
+      { id: "orientacion_usuario_n1", label: "👥 Orientación al Usuario y Ciudadano (Nivel 1)" },
+      { id: "solucion_problemas_n4", label: "💡 Solución de Problemas (Nivel 4)" },
+      { id: "trabajo_equipo_n1", label: "🤝 Trabajo en Equipo (Nivel 1)" },
+      // Valores de Integridad
+      { id: "compromiso", label: "⭐ Compromiso" },
+      { id: "diligencia", label: "⚡ Diligencia" },
+      { id: "honestidad", label: "🕊️ Honestidad" },
+      { id: "justicia", label: "⚖️ Justicia" },
+      { id: "respeto", label: "🤝 Respeto" }
+    ]
+  },
 
   analista_iv: {
     id: "analista_iv",
@@ -101,6 +193,10 @@ const PROFILES_DATA = {
     ]
   }
 };
+
+// Alias para acceso directo por número OPEC
+PROFILES_DATA["gestor_iii_236872"] = PROFILES_DATA.gestor_iii_ci;
+PROFILES_DATA["236872"] = PROFILES_DATA.gestor_iii_ci;
 
 if (typeof window !== "undefined") {
   window.PROFILES_DATA = PROFILES_DATA;

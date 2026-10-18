@@ -174,6 +174,7 @@ const CloudSync = {
           if (typeof window !== "undefined") {
             window.QUESTION_BANK = questions;
             if (profile === "gestor_iii") window.QUESTION_BANK_GESTOR = questions;
+            if (profile === "gestor_iii_ci") window.QUESTION_BANK_GESTOR_CI = questions;
             if (profile === "analista_iv") window.QUESTION_BANK_ANALISTA = questions;
             if (window.QUESTION_BANKS) window.QUESTION_BANKS[profile] = questions;
           }

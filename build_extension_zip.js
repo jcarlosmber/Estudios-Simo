@@ -14,12 +14,14 @@ function buildExtensionZip() {
     'profiles.js',
     'questions.js',
     'questions_gestor_iii.js',
+    'questions_gestor_iii_ci.js',
     'questions_analista_iv.js',
     'tips_data.js',
     'speed_drills.js',
     'image_catalog.js',
     'sound_effects.js',
     'cloud_sync.js',
+    'verbos_rectores_data.js',
     'popup.html',
     'popup.js',
     'tip_popup.html',
@@ -36,6 +38,11 @@ function buildExtensionZip() {
   const iconsDir = path.join(__dirname, 'icons');
   if (fs.existsSync(iconsDir)) {
     zip.addLocalFolder(iconsDir, 'icons');
+  }
+
+  const assetsDir = path.join(__dirname, 'assets');
+  if (fs.existsSync(assetsDir)) {
+    zip.addLocalFolder(assetsDir, 'assets');
   }
 
   const guideContent = `========================================================================

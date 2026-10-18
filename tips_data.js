@@ -615,6 +615,54 @@ const TIPS_PJS_DATA = [
     "normaReferencia": "Decreto Ley 1268 de 1999 (Régimen Salarial DIAN)",
     "contenidoDetallado": "El Decreto Ley 1268 de 1999 consagra el régimen salarial y prestacional especial para los servidores públicos de la contribución en la DIAN:<br><br>\n    • <strong>Naturaleza Jurídica:</strong> La Prima de Productividad es una prestación especial que <strong>no constituye factor salarial</strong> para liquidar cesantías, primas de servicios o pensiones.<br>\n    • <strong>Condiciones Obligatorias de Pago:</strong> No se trata de un derecho automático. Su reconocimiento y desembolso periódico está condicionado inexorablemente a dos requisitos copulativos:<br>\n      1. Cumplimiento efectivo de las metas globales de gestión, recaudo y fiscalización fijadas para la entidad.<br>\n      2. Obtención de una calificación de servicios satisfactoria o sobresaliente en la evaluación del desempeño individual.<br><br>\n    <strong>Trampa en la prueba:</strong> Opciones que afirmen que la prima se debe pagar a un funcionario con evaluación insatisfactoria o que constituye factor salarial prestacional.",
     "formula": "Prima de Productividad = No Factor Salarial + Metas Globales DIAN Cumplidas + Calificación Satisfactoria"
+  },
+  {
+    "id": 52,
+    "numero": "52",
+    "titulo": "La Fórmula Gramatical de Toda Función Pública (Verbo + Objeto + Condición)",
+    "categoria": "Verbos Rectores y PJS",
+    "icono": "🧭",
+    "color": "#a855f7",
+    "resumenCorto": "Toda función y opción correcta se compone de: Verbo Rector (en infinitivo) + Objeto (materia sobre la que recae) + Condición de Calidad/Resultado (marco normativo).",
+    "normaReferencia": "Constitución Política Art. 122, Decreto 1083 de 2015 y Guía Técnica DAFP/DASCD",
+    "contenidoDetallado": "En las pruebas de juicio situacional de la CNSC y DIAN, las respuestas correctas no son frases improvisadas: respetan la estructura gramatical oficial de la función pública:<br><br>\n    • <strong>1. Verbo Rector:</strong> Delimita el grado de autonomía y el nivel jerárquico (p. ej. <em>Analizar, Verificar, Proyectar, Radicar</em>).<br>\n    • <strong>2. Objeto:</strong> El asunto, proceso o documento sobre el que recae la acción (p. ej. <em>...los estados financieros y declaraciones tributarias...</em>).<br>\n    • <strong>3. Condición de Calidad / Norma:</strong> El criterio técnico o legal que garantiza su validez (p. ej. <em>...conforme a los términos del Estatuto Tributario y el procedimiento de fiscalización</em>).<br><br>\n    <strong>Regla de oro:</strong> Si una opción carece de la condición normativa o propone una acción sin marco legal expreso, es un distractor.",
+    "formula": "Función Pública = Verbo Rector (Infinitivo) + Objeto + Condición de Calidad / Legalidad"
+  },
+  {
+    "id": 53,
+    "numero": "53",
+    "titulo": "Caza-Distractores Nivel Técnico (Analista IV): Trampa por Extralimitación",
+    "categoria": "Verbos Rectores y PJS",
+    "icono": "⚠️",
+    "color": "#f43f5e",
+    "resumenCorto": "Para Analista IV (Técnico), descarta opciones con 'Diseñar', 'Formular políticas', 'Aprobar de plano' o 'Ordenar gasto'. Su nivel es de ejecución, verificación y soporte.",
+    "normaReferencia": "Decreto Ley 71 de 2020 y Decreto 1083 de 2015 (Nivel Técnico)",
+    "contenidoDetallado": "En la evaluación para <strong>Analista IV (OPEC 236760 - Nivel Técnico)</strong>, el evaluador evalúa si el aspirante conoce los límites de su competencia o si tiende a extralimitarse:<br><br>\n    • <strong>Verbos autorizados y propios:</strong> <em>Apoyar, Comprobar, Verificar, Ejecutar, Operar, Rendir informes técnicos, Consolidar, Parametrizar, Registrar y Notificar</em>.<br>\n    • <strong>Distractor Clásico (Extralimitación de Funciones):</strong> Opciones donde el aspirante pretenda 'diseñar un nuevo modelo de fiscalización', 'aprobar la exención tributaria', 'formular la política de control' o 'dictar resoluciones sancionatorias'. Esas facultades están reservadas para los Niveles Profesional y Directivo.<br><br>\n    <strong>Regla de oro:</strong> Si eres Técnico, tu rol es comprobar la inconsistencia, asegurar la evidencia y <strong>rendir informe técnico a tu superior jerárquico</strong>.",
+    "formula": "Técnico (Analista IV) = Apoyar + Verificar + Rendir Informes | Descartar 'Diseñar' o 'Aprobar'"
+  },
+  {
+    "id": 54,
+    "numero": "54",
+    "titulo": "Caza-Distractores Nivel Profesional (Gestor III): Trampa por Pasividad y Omisión",
+    "categoria": "Verbos Rectores y PJS",
+    "icono": "🛡️",
+    "color": "#3b82f6",
+    "resumenCorto": "Para Gestor III (Profesional), descarta opciones que se limiten a 'archivar el expediente', 'esperar instrucciones pasivamente' o 'radicar mecánicamente'. El profesional analiza, decide y proyecta.",
+    "normaReferencia": "Decreto Ley 71 de 2020 y Manual de Funciones FT-TAH-1824 DIAN (Gestor III)",
+    "contenidoDetallado": "Para el cargo de <strong>Gestor III (OPEC 242703 - Nivel Profesional)</strong>, los evaluadores de la CNSC castigan severamente las respuestas pasivas:<br><br>\n    • <strong>Verbos autorizados y propios:</strong> <em>Analizar, Evaluar, Proyectar actos administrativos, Investigar, Conceptuar, Coordinar, Proponer soluciones de fondo y Fiscalizar</em>.<br>\n    • <strong>Distractor Clásico (Pasividad / Omisión):</strong> Opciones que responden 'archivar la carpeta hasta nuevo aviso', 'esperar a que el contribuyente subsane voluntariamente' o 'trasladar el caso al despacho del jefe sin concepto técnico previo'. En el marco psicométrico de la CNSC, esto califica en el nivel de desempeño más bajo.<br><br>\n    <strong>Regla de oro:</strong> Como Gestor III, se espera autonomía técnica y capacidad resolutiva: analiza las pruebas y <strong>proyecta el acto administrativo o decisión legal correspondiente</strong>.",
+    "formula": "Profesional (Gestor III) = Analizar + Evaluar + Proyectar Actos | Descartar Pasividad u Omisión"
+  },
+  {
+    "id": 55,
+    "numero": "55",
+    "titulo": "Catálogo de 97 Verbos Rectores: Diferenciación Directivo vs Asesor vs Profesional",
+    "categoria": "Verbos Rectores y PJS",
+    "icono": "📊",
+    "color": "#10b981",
+    "resumenCorto": "El Directivo 'Aprueba, Ordena y Asigna'; el Asesor 'Recomienda y Asesora' (sin poder resolutivo); el Profesional 'Sustancia, Analiza y Proyecta'.",
+    "normaReferencia": "Matriz Oficial de Verbos Rectores DAFP / DASCD / CNSC (97 Verbos)",
+    "contenidoDetallado": "La delimitación entre los niveles superiores en la administración tributaria y aduanera es tajante:<br><br>\n    • <strong>Nivel Directivo (Director / Subdirector):</strong> Tiene la facultad legal resolutiva y de mando. Verbos exclusivos: <em>Aprobar, Ordenar (mandamientos de pago, decomisos), Asignar recursos, Fijar calendarios y Liderar</em>.<br>\n    • <strong>Nivel Asesor:</strong> Da consejo técnico estratégico de alto nivel pero <strong>no tiene mando ni firma resolutiva</strong>. Verbos propios: <em>Asesorar, Recomendar, Aportar elementos de juicio y Absolver consultas</em>. Si una opción pone al asesor a ordenar cobros o revocar de plano, es un distractor.<br>\n    • <strong>Nivel Profesional:</strong> Realiza el estudio de fondo y sustanciación. Verbos propios: <em>Estudiar, Practicar pruebas, Evaluar y Proyectar</em> para la firma del directivo competente.",
+    "formula": "Directivo = Aprueba y Ordena | Asesor = Recomienda | Profesional = Analiza y Proyecta"
   }
 ];
 

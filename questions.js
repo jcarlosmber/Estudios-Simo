@@ -31,13 +31,29 @@
     }
   }
 
+  var gestorCI = null;
+  if (typeof global !== "undefined" && global.QUESTION_BANK_GESTOR_CI) {
+    gestorCI = global.QUESTION_BANK_GESTOR_CI;
+  } else if (typeof QUESTION_BANK_GESTOR_CI !== "undefined") {
+    gestorCI = QUESTION_BANK_GESTOR_CI;
+  } else {
+    try {
+      gestorCI = require('./questions_gestor_iii_ci.js').QUESTION_BANK_GESTOR_CI;
+    } catch (e) {
+      gestorCI = [];
+    }
+  }
+
   var questionBanks = {
     gestor_iii: gestor || [],
+    gestor_iii_ci: gestorCI || [],
+    gestor_iii_236872: gestorCI || [],
+    "236872": gestorCI || [],
     analista_iv: analista || []
   };
 
   function getQuestionsForProfile(profileId) {
-    return questionBanks[profileId] || questionBanks.gestor_iii;
+    return questionBanks[profileId] || questionBanks.gestor_iii_ci || questionBanks.gestor_iii;
   }
 
   function setActiveQuestionBank(profileId) {
@@ -54,6 +70,7 @@
   if (typeof global !== "undefined") {
     global.QUESTION_BANKS = questionBanks;
     global.QUESTION_BANK_GESTOR = questionBanks.gestor_iii;
+    global.QUESTION_BANK_GESTOR_CI = questionBanks.gestor_iii_ci;
     global.QUESTION_BANK_ANALISTA = questionBanks.analista_iv;
     global.getQuestionsForProfile = getQuestionsForProfile;
     global.setActiveQuestionBank = setActiveQuestionBank;
@@ -65,6 +82,7 @@
       QUESTION_BANKS: questionBanks,
       QUESTION_BANK: currentBank,
       QUESTION_BANK_GESTOR: questionBanks.gestor_iii,
+      QUESTION_BANK_GESTOR_CI: questionBanks.gestor_iii_ci,
       QUESTION_BANK_ANALISTA: questionBanks.analista_iv,
       getQuestionsForProfile: getQuestionsForProfile,
       setActiveQuestionBank: setActiveQuestionBank

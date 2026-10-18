@@ -29,6 +29,7 @@
       </div>
       <!-- Selector oculto pero accesible para compatibilidad total con scripts -->
       <select id="profileSwitcher" class="duo-profile-switcher-hidden" title="Cambiar Perfil">
+        <option value="gestor_iii_ci">🛡️ GESTOR III - Control Interno (236872)</option>
         <option value="gestor_iii">👔 GESTOR III (242703)</option>
         <option value="analista_iv">🔍 ANALISTA IV (236760)</option>
       </select>
@@ -69,6 +70,10 @@
         <button id="btnActionPractice" class="duo-powerup-btn duo-powerup-gold" title="Iniciar o continuar práctica de casos">
           <span>🎯</span>
           <span>Práctica</span>
+        </button>
+        <button id="btnOpenVerbosModal" class="duo-powerup-btn" style="background: linear-gradient(135deg, rgba(168, 85, 247, 0.22), rgba(124, 58, 237, 0.28)); border: 1.5px solid #a855f7; color: #f3e8ff; box-shadow: 0 2px 10px rgba(168, 85, 247, 0.2);" title="Decodificador de Verbos Rectores y Caza-Distractores">
+          <span>🧭</span>
+          <span>Verbos Rectores</span>
         </button>
         <button id="btnOpenLecturaModal" class="duo-powerup-btn duo-powerup-blue" title="Técnicas de Comprensión Lectora para el Examen">
           <span>📖</span>
@@ -1189,13 +1194,30 @@
         </div>
         
         <div style="display: flex; flex-direction: column; gap: 10px; width: 100%;">
-          <!-- Tarjeta Gestor III -->
-          <div id="btnQuickProfileGestor" class="profile-selection-card active" style="cursor: pointer;">
+          <!-- Tarjeta Gestor III Control Interno (OPEC 236872) -->
+          <div id="btnQuickProfileGestorCI" class="profile-selection-card active" style="cursor: pointer;">
+            <div class="profile-selection-icon">🛡️</div>
+            <div class="profile-selection-info">
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <span class="profile-selection-title">GESTOR III (OPEC 236872)</span>
+                <span id="badgeActiveGestorCI" class="profile-selection-badge" style="background: rgba(56, 189, 248, 0.2); color: #38bdf8; border: 1px solid #38bdf8;">✓ ACTIVO</span>
+              </div>
+              <span class="profile-selection-sub">Nivel Profesional • Grado 03 • Ficha PC-CI-3006 (Control Interno)</span>
+              <div style="display: flex; gap: 6px; margin-top: 4px; font-size: 12px; font-weight: 700;">
+                <span style="color: #34d399; background: rgba(16, 185, 129, 0.15); padding: 2px 8px; border-radius: 6px;">150 Casos</span>
+                <span style="color: #f59e0b; background: rgba(245, 158, 11, 0.15); padding: 2px 8px; border-radius: 6px;">$9.346.562</span>
+                <span style="color: #38bdf8; background: rgba(56, 189, 248, 0.15); padding: 2px 8px; border-radius: 6px;">4 Vacantes</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tarjeta Gestor III Gestión/Planeación (OPEC 242703) -->
+          <div id="btnQuickProfileGestor" class="profile-selection-card" style="cursor: pointer;">
             <div class="profile-selection-icon">👔</div>
             <div class="profile-selection-info">
               <div style="display: flex; justify-content: space-between; align-items: center;">
                 <span class="profile-selection-title">GESTOR III (OPEC 242703)</span>
-                <span id="badgeActiveGestor" class="profile-selection-badge" style="background: rgba(56, 189, 248, 0.2); color: #38bdf8; border: 1px solid #38bdf8;">✓ ACTIVO</span>
+                <span id="badgeActiveGestor" class="profile-selection-badge" style="display: none; background: rgba(56, 189, 248, 0.2); color: #38bdf8; border: 1px solid #38bdf8;">✓ ACTIVO</span>
               </div>
               <span class="profile-selection-sub">Nivel Profesional • Grado 03 • Ficha FT-TAH-1824</span>
               <div style="display: flex; gap: 6px; margin-top: 4px; font-size: 12px; font-weight: 700;">
@@ -1869,15 +1891,32 @@
 
         <!-- Tarjetas interactivas de Selección de Cargo -->
         <div style="display: flex; flex-direction: column; gap: 10px;">
-          <!-- Tarjeta Gestor III -->
-          <div id="onboardingCardGestor" class="profile-selection-card active" data-profile="gestor_iii" style="cursor: pointer; position: relative; border-radius: 12px; border: 1.5px solid #38bdf8; background: rgba(2, 132, 199, 0.14); padding: 12px 14px; display: flex; align-items: center; gap: 12px; transition: all 0.2s ease;">
+          <!-- Tarjeta Gestor III Control Interno (OPEC 236872) -->
+          <div id="onboardingCardGestorCI" class="profile-selection-card active" data-profile="gestor_iii_ci" style="cursor: pointer; position: relative; border-radius: 12px; border: 1.5px solid #38bdf8; background: rgba(2, 132, 199, 0.14); padding: 12px 14px; display: flex; align-items: center; gap: 12px; transition: all 0.2s ease;">
+            <div class="profile-selection-icon" style="font-size: 28px; width: 44px; height: 44px; border-radius: 10px; background: rgba(56, 189, 248, 0.2); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+              🛡️
+            </div>
+            <div style="flex: 1; min-width: 0;">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 3px;">
+                <span style="font-size: 14.5px; font-weight: 800; color: #f8fafc;">GESTOR III (OPEC 236872)</span>
+                <span id="onboardingCheckGestorCI" style="font-size: 11.5px; font-weight: 800; color: #38bdf8; background: rgba(56, 189, 248, 0.2); padding: 2px 8px; border-radius: 12px; border: 1px solid #38bdf8;">✓ SELECCIONADO</span>
+              </div>
+              <div style="font-size: 12px; color: #cbd5e1;">Nivel Profesional • Grado 03 • Sueldo $9.34M (4 Vacantes)</div>
+              <div style="font-size: 11px; color: #94a3b8; margin-top: 4px; line-height: 1.35;">
+                Control Interno, Auditoría TI, NIA, Riesgos, TACI y MIPG.
+              </div>
+            </div>
+          </div>
+
+          <!-- Tarjeta Gestor III Planeación (OPEC 242703) -->
+          <div id="onboardingCardGestor" class="profile-selection-card" data-profile="gestor_iii" style="cursor: pointer; position: relative; border-radius: 12px; border: 1.5px solid rgba(255, 255, 255, 0.12); background: rgba(11, 17, 32, 0.6); padding: 12px 14px; display: flex; align-items: center; gap: 12px; transition: all 0.2s ease;">
             <div class="profile-selection-icon" style="font-size: 28px; width: 44px; height: 44px; border-radius: 10px; background: rgba(56, 189, 248, 0.2); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
               👔
             </div>
             <div style="flex: 1; min-width: 0;">
               <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 3px;">
                 <span style="font-size: 14.5px; font-weight: 800; color: #f8fafc;">GESTOR III (OPEC 242703)</span>
-                <span id="onboardingCheckGestor" style="font-size: 11.5px; font-weight: 800; color: #38bdf8; background: rgba(56, 189, 248, 0.2); padding: 2px 8px; border-radius: 12px; border: 1px solid #38bdf8;">✓ SELECCIONADO</span>
+                <span id="onboardingCheckGestor" style="display: none; font-size: 11.5px; font-weight: 800; color: #38bdf8; background: rgba(56, 189, 248, 0.2); padding: 2px 8px; border-radius: 12px; border: 1px solid #38bdf8;">✓ SELECCIONADO</span>
               </div>
               <div style="font-size: 12px; color: #cbd5e1;">Nivel Profesional • Grado 03 • Sueldo ~$8.45M</div>
               <div style="font-size: 11px; color: #94a3b8; margin-top: 4px; line-height: 1.35;">
@@ -1915,14 +1954,278 @@
         </span>
       </div>
 
+      <!-- Sección: Cómo Instalar en PC y Celular -->
+      <div style="background: rgba(11, 17, 32, 0.85); border: 1px solid rgba(168, 85, 247, 0.35); border-radius: 12px; padding: 14px 16px; display: flex; flex-direction: column; gap: 10px; margin-top: 4px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255, 255, 255, 0.08); padding-bottom: 8px;">
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <span style="font-size: 18px;">📲</span>
+            <span style="font-size: 13.5px; font-weight: 800; color: #c084fc;">¿Cómo Instalar SIMO Prep?</span>
+          </div>
+          <span style="font-size: 11px; font-weight: 700; color: #34d399; background: rgba(52, 211, 153, 0.15); padding: 2px 8px; border-radius: 10px;">
+            PC & Móvil
+          </span>
+        </div>
+
+        <!-- Opciones rápidas de instalación -->
+        <div style="display: flex; flex-direction: column; gap: 10px;">
+          <!-- 1. En PC -->
+          <div style="background: rgba(15, 23, 42, 0.7); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 10px; padding: 12px 14px; display: flex; flex-direction: column; gap: 6px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 6px;">
+              <span style="font-size: 13px; font-weight: 800; color: #f8fafc; display: flex; align-items: center; gap: 6px;">
+                <span>💻</span> 1. En tu PC (Google Chrome):
+              </span>
+              <a href="/download/extension" download="simo-prep-extension.zip" style="text-decoration: none;">
+                <button type="button" style="background: linear-gradient(135deg, #a855f7, #7c3aed); border: none; color: #fff; font-size: 11.5px; font-weight: 700; padding: 6px 12px; border-radius: 6px; cursor: pointer; display: flex; align-items: center; gap: 5px; box-shadow: 0 2px 8px rgba(168, 85, 247, 0.3);">
+                  📥 Descargar .ZIP
+                </button>
+              </a>
+            </div>
+            <div style="font-size: 11.5px; color: #cbd5e1; line-height: 1.55;">
+              • Descarga y descomprime el archivo <strong>.ZIP</strong> en tu computadora.<br>
+              • Abre Chrome e ingresa a: <code style="color: #38bdf8; background: rgba(0,0,0,0.4); padding: 1px 5px; border-radius: 4px;">chrome://extensions</code><br>
+              • Activa el <strong>"Modo de desarrollador"</strong> (arriba a la derecha).<br>
+              • Toca <strong>"Cargar descomprimida"</strong> y elige la carpeta de la extensión.
+            </div>
+          </div>
+
+          <!-- 2. En Celular -->
+          <div style="background: rgba(15, 23, 42, 0.7); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 10px; padding: 12px 14px; display: flex; flex-direction: column; gap: 6px;">
+            <span style="font-size: 13px; font-weight: 800; color: #f8fafc; display: flex; align-items: center; gap: 6px;">
+              <span>📱</span> 2. En tu Celular (Android / iPhone):
+            </span>
+            <div style="font-size: 11.5px; color: #cbd5e1; line-height: 1.55;">
+              • Abre en Google Chrome o Safari: <code style="color: #38bdf8; background: rgba(0,0,0,0.4); padding: 1px 5px; border-radius: 4px;">https://simo.liverohoa.com</code><br>
+              • Toca el menú de tres puntos (<strong>⋮</strong>) o botón <strong>Compartir</strong>.<br>
+              • Presiona <strong>"Instalar aplicación"</strong> o <strong>"Agregar a pantalla principal"</strong> para usarla como App nativa.
+            </div>
+          </div>
+        </div>
+      </div>
+
+  <!-- MODAL: DECODIFICADOR DE VERBOS RECTORES Y CAZA-DISTRACTORES -->
+  <div id="modalVerbosRectores" class="modal" style="display: none; align-items: center; justify-content: center; z-index: 99999; background: rgba(5, 10, 20, 0.85); backdrop-filter: blur(8px);">
+    <div class="modal-dialog" style="max-width: 620px; width: 92%; max-height: 90vh; display: flex; flex-direction: column; background: #0b1120; border: 1.5px solid rgba(168, 85, 247, 0.4); border-radius: 16px; overflow: hidden; box-shadow: 0 12px 40px rgba(0, 0, 0, 0.7);">
+      
+      <!-- Modal Header -->
+      <div style="background: linear-gradient(135deg, rgba(88, 28, 135, 0.5) 0%, rgba(15, 23, 42, 0.9) 100%); padding: 14px 18px; border-bottom: 1px solid rgba(168, 85, 247, 0.3); display: flex; justify-content: space-between; align-items: center;">
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <div style="width: 36px; height: 36px; border-radius: 10px; background: rgba(168, 85, 247, 0.25); border: 1px solid #a855f7; display: flex; align-items: center; justify-content: center; font-size: 20px;">
+            🧭
+          </div>
+          <div>
+            <div style="font-size: 15px; font-weight: 800; color: #f8fafc; display: flex; align-items: center; gap: 8px;">
+              Decodificador de Verbos Rectores
+              <span id="verbosBadgePerfil" style="font-size: 11px; font-weight: 800; color: #38bdf8; background: rgba(56, 189, 248, 0.15); border: 1px solid rgba(56, 189, 248, 0.3); padding: 2px 8px; border-radius: 12px;">
+                GESTOR III
+              </span>
+            </div>
+            <div style="font-size: 11.5px; color: #cbd5e1; margin-top: 1px;">
+              Catálogo Oficial DAFP / DASCD (97 Verbos) & Caza-Distractores CNSC
+            </div>
+          </div>
+        </div>
+        <button id="btnCloseVerbosModal" type="button" class="close-modal-btn" style="background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.15); color: #f8fafc; font-size: 16px; width: 32px; height: 32px; border-radius: 8px; cursor: pointer; display: flex; align-items: center; justify-content: center;">
+          ✕
+        </button>
+      </div>
+
+      <!-- Pestañas internas de navegación -->
+      <div style="display: flex; background: rgba(15, 23, 42, 0.85); border-bottom: 1px solid rgba(255, 255, 255, 0.08); padding: 6px 12px; gap: 6px; overflow-x: auto;">
+        <button id="tabBtnVerbosBuscador" class="verbos-tab-btn active" style="padding: 7px 12px; font-size: 12px; font-weight: 800; border-radius: 8px; border: 1px solid #a855f7; background: rgba(168, 85, 247, 0.25); color: #f3e8ff; cursor: pointer; white-space: nowrap; display: flex; align-items: center; gap: 5px;">
+          <span>🔍</span> 97 Verbos
+        </button>
+        <button id="tabBtnVerbosCaza" class="verbos-tab-btn" style="padding: 7px 12px; font-size: 12px; font-weight: 700; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1); background: transparent; color: #94a3b8; cursor: pointer; white-space: nowrap; display: flex; align-items: center; gap: 5px;">
+          <span>⚡</span> Caza-Distractores
+        </button>
+        <button id="tabBtnVerbosInfografia" class="verbos-tab-btn" style="padding: 7px 12px; font-size: 12px; font-weight: 700; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1); background: transparent; color: #94a3b8; cursor: pointer; white-space: nowrap; display: flex; align-items: center; gap: 5px;">
+          <span>🖼️</span> Infografía Cargo
+        </button>
+        <button id="tabBtnVerbosReglas" class="verbos-tab-btn" style="padding: 7px 12px; font-size: 12px; font-weight: 700; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1); background: transparent; color: #94a3b8; cursor: pointer; white-space: nowrap; display: flex; align-items: center; gap: 5px;">
+          <span>⚖️</span> Reglas de Oro
+        </button>
+      </div>
+
+      <!-- Modal Body (Scrollable) -->
+      <div class="modal-body" style="padding: 16px; overflow-y: auto; flex: 1; display: flex; flex-direction: column; gap: 14px;">
+
+        <!-- SECCIÓN 1: BUSCADOR DE 97 VERBOS -->
+        <div id="sectionVerbosBuscador" style="display: flex; flex-direction: column; gap: 12px;">
+          <!-- Barra de búsqueda e input -->
+          <div style="position: relative;">
+            <input type="text" id="inputBuscarVerbo" placeholder="Escribe un verbo (ej: Analizar, Aprobar, Verificar, Diseñar)..." style="width: 100%; box-sizing: border-box; background: rgba(15, 23, 42, 0.9); border: 1.5px solid rgba(168, 85, 247, 0.4); border-radius: 10px; padding: 10px 14px 10px 38px; color: #f8fafc; font-size: 13.5px; font-weight: 600; outline: none;">
+            <span style="position: absolute; left: 12px; top: 50%; transform: translateY(-50%); font-size: 15px; color: #a855f7;">🔍</span>
+          </div>
+
+          <!-- Filtros de píldoras rápidas -->
+          <div style="display: flex; gap: 6px; flex-wrap: wrap;">
+            <button id="filterVerboTodos" class="verbos-pill-filter active" style="font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 20px; border: 1px solid #a855f7; background: rgba(168, 85, 247, 0.2); color: #f3e8ff; cursor: pointer;">
+              Todos (97)
+            </button>
+            <button id="filterVerboPropios" class="verbos-pill-filter" style="font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 20px; border: 1px solid rgba(52, 211, 153, 0.3); background: rgba(52, 211, 153, 0.1); color: #34d399; cursor: pointer;">
+              ✅ Propios de mi Cargo
+            </button>
+            <button id="filterVerboDistractores" class="verbos-pill-filter" style="font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 20px; border: 1px solid rgba(244, 63, 94, 0.3); background: rgba(244, 63, 94, 0.1); color: #fb7185; cursor: pointer;">
+              ⚠️ Distractores de mi Cargo
+            </button>
+          </div>
+
+          <!-- Contador y Estado -->
+          <div style="display: flex; justify-content: space-between; align-items: center; font-size: 11.5px; color: #94a3b8; border-bottom: 1px solid rgba(255,255,255,0.06); padding-bottom: 6px;">
+            <span id="verbosCounterText">Mostrando 97 verbos</span>
+            <span style="color: #c084fc; font-weight: 600;">Toca cualquier verbo para evaluar</span>
+          </div>
+
+          <!-- Lista de Verbos Renderizados -->
+          <div id="listaVerbosContainer" style="display: flex; flex-direction: column; gap: 8px; max-height: 48vh; overflow-y: auto; padding-right: 4px;">
+            <!-- Renderizado dinámico desde JS -->
+          </div>
+        </div>
+
+        <!-- SECCIÓN 2: SPEED DRILL CAZA-DISTRACTORES -->
+        <div id="sectionVerbosCaza" style="display: none; flex-direction: column; gap: 14px;">
+          <div style="background: rgba(168, 85, 247, 0.1); border: 1px solid rgba(168, 85, 247, 0.3); border-radius: 12px; padding: 12px 14px; display: flex; justify-content: space-between; align-items: center;">
+            <div>
+              <div style="font-size: 14px; font-weight: 800; color: #f8fafc;">⚡ Desafío Caza-Distractores</div>
+              <div style="font-size: 11.5px; color: #cbd5e1; margin-top: 2px;">
+                Identifica si la acción es función legítima o trampa de examen.
+              </div>
+            </div>
+            <div style="text-align: right;">
+              <div id="cazaScoreText" style="font-size: 15px; font-weight: 800; color: #34d399;">0 / 0</div>
+              <div style="font-size: 10.5px; color: #94a3b8;">Aciertos</div>
+            </div>
+          </div>
+
+          <!-- Tarjeta del Caso Rápido -->
+          <div id="cazaCardBox" style="background: rgba(15, 23, 42, 0.85); border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 12px; padding: 16px; display: flex; flex-direction: column; gap: 12px;">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <span id="cazaBadgeNivel" style="font-size: 11px; font-weight: 800; color: #38bdf8; background: rgba(56, 189, 248, 0.15); padding: 3px 8px; border-radius: 6px;">
+                Nivel Profesional (Gestor III)
+              </span>
+              <span id="cazaProgressStep" style="font-size: 11.5px; color: #94a3b8; font-weight: 700;">Caso 1 de 8</span>
+            </div>
+
+            <div id="cazaContextoText" style="font-size: 13px; color: #cbd5e1; line-height: 1.5; font-style: italic; background: rgba(0,0,0,0.25); padding: 10px 12px; border-radius: 8px; border-left: 3px solid #38bdf8;">
+              Cargando situación...
+            </div>
+
+            <div style="font-size: 12px; font-weight: 700; color: #94a3b8;">Opción de respuesta planteada:</div>
+            <div id="cazaOpcionText" style="font-size: 13.5px; font-weight: 700; color: #f8fafc; line-height: 1.5; background: rgba(255,255,255,0.04); padding: 12px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.08);">
+              Cargando acción...
+            </div>
+
+            <!-- Botones de Juicio Rápido -->
+            <div id="cazaButtonsContainer" style="display: flex; flex-direction: column; gap: 8px; margin-top: 4px;">
+              <button type="button" class="btn-caza-action" data-answer="ACCION_CORRECTA" style="padding: 10px 14px; font-size: 12.5px; font-weight: 800; border-radius: 8px; border: 1px solid rgba(52, 211, 153, 0.4); background: rgba(52, 211, 153, 0.12); color: #34d399; cursor: pointer; text-align: left; display: flex; align-items: center; gap: 8px;">
+                <span>✅</span> 1. Es una ACCIÓN CORRECTA y propia de mi cargo
+              </button>
+              <button type="button" class="btn-caza-action" data-answer="DISTRACTOR_EXTRALIMITACION" style="padding: 10px 14px; font-size: 12.5px; font-weight: 800; border-radius: 8px; border: 1px solid rgba(244, 63, 94, 0.4); background: rgba(244, 63, 94, 0.12); color: #fb7185; cursor: pointer; text-align: left; display: flex; align-items: center; gap: 8px;">
+                <span>⚠️</span> 2. Es un DISTRACTOR POR EXTRALIMITACIÓN (excede mi jerarquía)
+              </button>
+              <button type="button" class="btn-caza-action" data-answer="DISTRACTOR_PASIVIDAD" style="padding: 10px 14px; font-size: 12.5px; font-weight: 800; border-radius: 8px; border: 1px solid rgba(245, 158, 11, 0.4); background: rgba(245, 158, 11, 0.12); color: #fbbf24; cursor: pointer; text-align: left; display: flex; align-items: center; gap: 8px;">
+                <span>🛑</span> 3. Es un DISTRACTOR POR PASIVIDAD U OMISIÓN (desempeño bajo)
+              </button>
+            </div>
+
+            <!-- Retroalimentación del Caza-Distractor -->
+            <div id="cazaFeedbackBox" style="display: none; flex-direction: column; gap: 8px; padding: 12px; border-radius: 8px; margin-top: 4px;">
+              <div id="cazaFeedbackTitle" style="font-size: 13.5px; font-weight: 800;"></div>
+              <div id="cazaFeedbackDesc" style="font-size: 12px; line-height: 1.5; color: #e2e8f0;"></div>
+              <button id="btnCazaNextCase" type="button" style="margin-top: 6px; padding: 9px 16px; font-size: 12.5px; font-weight: 800; background: linear-gradient(135deg, #a855f7, #7c3aed); border: none; color: #fff; border-radius: 6px; cursor: pointer; align-self: flex-end;">
+                Siguiente Caso ➔
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- SECCIÓN 3: INFOGRAFÍA OFICIAL POR NIVEL -->
+        <div id="sectionVerbosInfografia" style="display: none; flex-direction: column; gap: 12px;">
+          <!-- Selector de nivel para ver la lámina -->
+          <div style="display: flex; gap: 6px; overflow-x: auto; padding-bottom: 4px;">
+            <button id="btnInfoNivelPro" class="info-nivel-btn active" data-img="assets/verbos/Funciones profesional.png" style="font-size: 11px; font-weight: 800; padding: 6px 12px; border-radius: 8px; border: 1px solid #38bdf8; background: rgba(56, 189, 248, 0.2); color: #38bdf8; cursor: pointer; white-space: nowrap;">
+              Profesional (Gestor III)
+            </button>
+            <button id="btnInfoNivelTec" class="info-nivel-btn" data-img="assets/verbos/Funciones tenico.png" style="font-size: 11px; font-weight: 700; padding: 6px 12px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1); background: transparent; color: #94a3b8; cursor: pointer; white-space: nowrap;">
+              Técnico (Analista IV)
+            </button>
+            <button id="btnInfoNivelAsi" class="info-nivel-btn" data-img="assets/verbos/Funciones asistencial.png" style="font-size: 11px; font-weight: 700; padding: 6px 12px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1); background: transparent; color: #94a3b8; cursor: pointer; white-space: nowrap;">
+              Asistencial
+            </button>
+            <button id="btnInfoNivelAse" class="info-nivel-btn" data-img="assets/verbos/Funciones asesores.png" style="font-size: 11px; font-weight: 700; padding: 6px 12px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1); background: transparent; color: #94a3b8; cursor: pointer; white-space: nowrap;">
+              Asesor
+            </button>
+          </div>
+
+          <!-- Contenedor de Imagen -->
+          <div style="background: rgba(15, 23, 42, 0.9); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; overflow: hidden; display: flex; flex-direction: column; align-items: center;">
+            <div style="width: 100%; display: flex; justify-content: space-between; align-items: center; padding: 8px 12px; background: rgba(0,0,0,0.3); border-bottom: 1px solid rgba(255,255,255,0.06);">
+              <span id="infoNivelTitle" style="font-size: 12px; font-weight: 800; color: #f8fafc;">
+                Lámina Oficial: Funciones Nivel Profesional (DAFP)
+              </span>
+              <a id="linkOpenFullImg" href="assets/verbos/Funciones profesional.png" target="_blank" style="font-size: 11px; color: #38bdf8; text-decoration: none; font-weight: 700;">
+                Abrir en pestaña ↗
+              </a>
+            </div>
+            <div style="width: 100%; max-height: 52vh; overflow: auto; padding: 8px; display: flex; justify-content: center; background: #070d19;">
+              <img id="imgVerbosInfografia" src="assets/verbos/Funciones profesional.png" alt="Lámina de funciones oficiales" style="max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 16px rgba(0,0,0,0.5);">
+            </div>
+          </div>
+        </div>
+
+        <!-- SECCIÓN 4: REGLAS DE ORO DE LOS DISTRACTORES -->
+        <div id="sectionVerbosReglas" style="display: none; flex-direction: column; gap: 12px;">
+          <!-- Fórmula Gramatical -->
+          <div style="background: linear-gradient(135deg, rgba(88, 28, 135, 0.25), rgba(15, 23, 42, 0.8)); border: 1px solid rgba(168, 85, 247, 0.35); border-radius: 12px; padding: 14px;">
+            <div style="font-size: 13.5px; font-weight: 800; color: #c084fc; margin-bottom: 6px;">
+              📐 La Estructura Obligatoria de Toda Función Pública
+            </div>
+            <div style="font-size: 12.5px; color: #cbd5e1; line-height: 1.55;">
+              En el examen de la CNSC y DIAN, toda función y opción correcta se compone estrictamente de tres elementos:
+            </div>
+            <div style="margin-top: 8px; background: rgba(0,0,0,0.4); padding: 10px; border-radius: 8px; font-family: monospace; font-size: 12px; color: #38bdf8; text-align: center; border: 1px solid rgba(56, 189, 248, 0.3);">
+              Función = [Verbo Rector (Infinitivo)] + [Objeto] + [Condición de Calidad / Norma]
+            </div>
+          </div>
+
+          <!-- Dos Columnas de Reglas Clave -->
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+            <!-- Nivel Profesional -->
+            <div style="background: rgba(15, 23, 42, 0.7); border: 1px solid rgba(56, 189, 248, 0.25); border-radius: 10px; padding: 12px; display: flex; flex-direction: column; gap: 6px;">
+              <span style="font-size: 12.5px; font-weight: 800; color: #38bdf8;">Gestor III (Profesional)</span>
+              <div style="font-size: 11.5px; color: #cbd5e1; line-height: 1.5;">
+                • <strong>Verbos clave:</strong> <em>Analizar, Formular, Proyectar, Fiscalizar, Investigar, Evaluar</em>.<br>
+                • <strong>Trampa a evitar:</strong> Distractores de pasividad (archivar sin revisar, esperar instrucciones pasivas). El profesional decide y proyecta.
+              </div>
+            </div>
+
+            <!-- Nivel Técnico -->
+            <div style="background: rgba(15, 23, 42, 0.7); border: 1px solid rgba(168, 85, 247, 0.25); border-radius: 10px; padding: 12px; display: flex; flex-direction: column; gap: 6px;">
+              <span style="font-size: 12.5px; font-weight: 800; color: #c084fc;">Analista IV (Técnico)</span>
+              <div style="font-size: 11.5px; color: #cbd5e1; line-height: 1.5;">
+                • <strong>Verbos clave:</strong> <em>Apoyar, Verificar, Comprobar, Operar, Consolidar, Rendir informes</em>.<br>
+                • <strong>Trampa a evitar:</strong> Distractores por extralimitación (diseñar modelos, formular políticas, aprobar amnistías). El técnico comprueba y reporta.
+              </div>
+            </div>
+          </div>
+
+          <!-- Regla Asesor vs Directivo -->
+          <div style="background: rgba(15, 23, 42, 0.7); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 10px; padding: 12px; font-size: 11.5px; color: #cbd5e1; line-height: 1.55;">
+            • <strong>Nivel Directivo:</strong> Es el único con potestad de <em>Aprobar, Ordenar y Asignar</em>.<br>
+            • <strong>Nivel Asesor:</strong> <em>Recomienda y Conceptúa</em>, pero nunca emite mandamientos ni firma resoluciones resolutivas.
+          </div>
+        </div>
+
+      </div>
     </div>
   </div>
 
   <!-- Scripts -->
   <script src="sound_effects.js"></script>
   <script src="image_catalog.js"></script>
+  <script src="verbos_rectores_data.js"></script>
   <script src="profiles.js"></script>
   <script src="questions_gestor_iii.js"></script>
+  <script src="questions_gestor_iii_ci.js"></script>
   <script src="questions_analista_iv.js"></script>
   <script src="speed_drills.js"></script>
   <script src="tips_data.js"></script>
@@ -1932,7 +2235,7 @@
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('./sw.js?v=2')
+        navigator.serviceWorker.register('./sw.js?v=3')
           .then(reg => {
             console.log('[SIMO Prep] Service Worker registrado exitosamente:', reg.scope);
             reg.update(); // Forzar actualización inmediata

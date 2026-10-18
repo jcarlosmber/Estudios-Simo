@@ -9521,6 +9521,106 @@ const QUESTION_BANK_ANALISTA = [
     "dificultad": "ALTA",
     "competencia": "Reserva Legal y Acceso a Pruebas CNSC",
     "nivel": "Técnico"
+  },
+  // --- CASOS ESPECIALES DE VERBOS RECTORES Y DELIMITACIÓN FUNCIONAL CNSC/DIAN ---
+  {
+    "id": "dian_vr_analista_01",
+    "nivel": "Técnico",
+    "ejeId": "verbos_rectores_cnsc",
+    "ejeNombre": "Verbos Rectores y Delimitación Funcional CNSC/DIAN",
+    "tipo": "Funcional (Eliminatorio - 65%)",
+    "tema": "Regla de Oro Nivel Técnico: Verificación y Reporte vs. Extralimitación",
+    "caso": "En el ejercicio de sus funciones como Analista IV en el área de aduanas, al revisar una declaración de importación con inspección física, usted detecta inconsistencias cuantitativas entre las unidades físicas inventariadas en el contenedor y las declaradas en la factura comercial.",
+    "enunciado": "Conforme a los verbos rectores oficiales del Nivel Técnico (Decreto 1083 de 2015 y manual DIAN), ¿cuál es la actuación correcta que debe adelantar el Analista IV?",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "Comprobar y verificar físicamente los conteos, registrar con exactitud la inconsistencia en el sistema informático aduanero y rendir informe técnico pormenorizado al funcionario competente.",
+        "explicacion": "Correcta. Los verbos 'Comprobar', 'Verificar', 'Registrar' y 'Rendir informe técnico' son los verbos rectores nucleares del Nivel Técnico. Aseguran la trazabilidad probatoria dentro de su nivel jerárquico."
+      },
+      {
+        "id": "B",
+        "texto": "Diseñar unilateralmente un nuevo protocolo de aforo aduanero y ordenar el decomiso definitivo de la mercancía mediante resolución propia.",
+        "explicacion": "Incorrecta. Distractor clásico por extralimitación funcional. 'Diseñar protocolos' y 'Ordenar decomisos' son verbos reservados a niveles Profesional y Directivo."
+      },
+      {
+        "id": "C",
+        "texto": "Hacer caso omiso de la diferencia para no demorar la entrega de las mercancías al transportador.",
+        "explicacion": "Incorrecta. Incurre en grave omisión de funciones y complicidad con posibles infracciones al régimen aduanero."
+      }
+    ],
+    "respuestaCorrecta": "A",
+    "justificacion": "El nivel técnico se fundamenta en la comprobación fáctica, operación de sistemas y rendición de informes técnicos objetivos al superior decisorio.",
+    "norma": "Decreto 1083 de 2015 (Nivel Técnico), Manual FT-TAH-1824 y Decreto Ley 0920 de 2023",
+    "citaNormativa": "Nivel Técnico: Comprende los empleos cuyas funciones consisten en la aplicación de procedimientos y técnicas, comprobación de datos y rendición de informes técnicos.",
+    "dificultad": "ALTA",
+    "competencia": "Juicio Situacional y Delimitación Funcional Técnica"
+  },
+  {
+    "id": "dian_vr_analista_02",
+    "nivel": "Técnico",
+    "ejeId": "verbos_rectores_cnsc",
+    "ejeNombre": "Verbos Rectores y Delimitación Funcional CNSC/DIAN",
+    "tipo": "Funcional (Eliminatorio - 65%)",
+    "tema": "Operación de Sistemas y Parametrización vs. Modificación de Políticas",
+    "caso": "Se reportan fallas en la conciliación de pagos electrónicos de impuesto de timbre en la base de datos seccional de la DIAN. Un Analista IV tiene acceso de administrador operativo al sistema.",
+    "enunciado": "¿Cuál es el alcance de la intervención técnica del Analista IV según su nivel de competencia?",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "Operar las herramientas de diagnóstico, verificar las inconsistencias en los registros de transacción bancaria y consolidar el reporte de incidencias para la subdirección de tecnología.",
+        "explicacion": "Correcta. 'Operar', 'Verificar' y 'Consolidar' corresponden estrictamente al verbo rector del Nivel Técnico."
+      },
+      {
+        "id": "B",
+        "texto": "Reformular la política institucional de seguridad de la información y contratar de plano una nueva empresa proveedora de software.",
+        "explicacion": "Incorrecta. Distractor por extralimitación grosera de funciones. La formulación de políticas y contratación estatal está reservada a la alta dirección."
+      },
+      {
+        "id": "C",
+        "texto": "Apagar los servidores de la seccional sin notificar a los usuarios y retirarse a su domicilio.",
+        "explicacion": "Incorrecta. Omisión grave del deber de diligencia y parálisis injustificada de un servicio público esencial."
+      }
+    ],
+    "respuestaCorrecta": "A",
+    "justificacion": "El Analista IV ejecuta tareas de soporte, monitoreo operativo y verificación técnica sin adoptar decisiones de política ni contratos estatales.",
+    "norma": "Decreto 1083 de 2015 y Manual de Funciones DIAN OPEC 236760",
+    "citaNormativa": "Son funciones del nivel técnico operar los aplicativos informáticos y verificar la integridad de los datos reportados.",
+    "dificultad": "MEDIA",
+    "competencia": "Soporte y Operación Técnica de Sistemas"
+  },
+  {
+    "id": "dian_vr_analista_03",
+    "nivel": "Técnico",
+    "ejeId": "verbos_rectores_cnsc",
+    "ejeNombre": "Verbos Rectores y Delimitación Funcional CNSC/DIAN",
+    "tipo": "Funcional (Eliminatorio - 65%)",
+    "tema": "Gestión Documental y Notificaciones en Nivel Técnico",
+    "caso": "Para dar impulso a un expediente de cobro coactivo, se requiere comunicar al deudor el mandamiento de pago proferido por el funcionario ejecutor.",
+    "enunciado": "¿Qué función se ajusta exactamente al verbo rector del Analista IV en el proceso de cobro?",
+    "opciones": [
+      {
+        "id": "A",
+        "texto": "Elaborar la citación formal, notificar el acto administrativo conforme a los términos del Estatuto Tributario y archivar en el expediente digital la constancia de entrega del correo certificado.",
+        "explicacion": "Correcta. Los verbos 'Elaborar', 'Notificar' y asegurar la trazabilidad documental corresponden al marco de competencias técnicas de apoyo procesal en la DIAN."
+      },
+      {
+        "id": "B",
+        "texto": "Decidir discrecionalmente condonar los intereses moratorios del contribuyente si este promete pagar el capital.",
+        "explicacion": "Incorrecta. La condonación no puede ser otorgada por ningún funcionario administrativo al ser un beneficio de estricta reserva de ley tributaria."
+      },
+      {
+        "id": "C",
+        "texto": "Firmar como titular del despacho la liquidación de costas judiciales y la terminación del proceso.",
+        "explicacion": "Incorrecta. La terminación procesal y mandamientos corresponden al funcionario ejecutor (Nivel Directivo/Profesional facultado)."
+      }
+    ],
+    "respuestaCorrecta": "A",
+    "justificacion": "El apoyo en la notificación formal de actos y custodia de constancias procesales constituye una de las tareas técnicas más evaluadas en los concursos de la DIAN y CNSC.",
+    "norma": "Estatuto Tributario Arts. 565, 826; Decreto 1083 de 2015",
+    "citaNormativa": "El nivel técnico adelanta actividades de apoyo en la notificación de actos y salvaguarda de expedientes administrativos.",
+    "dificultad": "MEDIA",
+    "competencia": "Apoyo Procesal y Trazabilidad de Notificaciones"
   }
 ];
 
