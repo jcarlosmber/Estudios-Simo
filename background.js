@@ -607,9 +607,22 @@ async function injectInPageTipModal(tabId, tipData) {
           ` : ''}
 
           <div>
-            <div class="title">${tip.numero}. ${tip.titulo}</div>
+            <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap;">
+              <div class="title">${tip.numero}. ${tip.titulo}</div>
+              ${tip.ejeNombre ? `<span style="background: rgba(56, 189, 248, 0.16); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.35); font-size: 11px; font-weight: 800; padding: 2px 7px; border-radius: 4px;">🎯 ${tip.ejeNombre}</span>` : ''}
+            </div>
             <div class="norma">📌 ${tip.normaReferencia}</div>
           </div>
+          ${tip.plazoCritico ? `
+            <div style="background: rgba(56, 189, 248, 0.12); border-left: 3px solid #38bdf8; padding: 8px 12px; border-radius: 6px; font-size: 13px; color: #f0f9ff;">
+              <strong style="color: #38bdf8;">⏱️ Término / Plazo Crítico:</strong> ${tip.plazoCritico}
+            </div>
+          ` : ''}
+          ${tip.trampaHabitual ? `
+            <div style="background: rgba(244, 63, 94, 0.12); border-left: 3px solid #f43f5e; padding: 8px 12px; border-radius: 6px; font-size: 13px; color: #ffe4e6;">
+              <strong style="color: #f43f5e;">⚠️ Trampa CNSC en Casos:</strong> ${tip.trampaHabitual}
+            </div>
+          ` : ''}
           <div class="body-text">
             ${tip.contenidoDetallado}
           </div>

@@ -1,6 +1,7 @@
 /**
- * BANCO MAESTRO DE CLAVES Y TIPS DE JUICIO SITUACIONAL (CNSC / DIAN)
- * Especializado para GESTOR III y ANALISTA IV - DIAN 2676
+ * BANCO MAESTRO DE CLAVES, TIPS DE JUICIO SITUACIONAL Y MICRO-NORMAS DE EJES TEMÁTICOS (CNSC / DIAN)
+ * Convocatoria DIAN 2676 - Gestor III y Analista IV
+ * Total Tips: 75 (Técnicas PJS + Micro-Normas estructuradas por Eje)
  */
 
 const TIPS_PJS_DATA = [
@@ -14,7 +15,11 @@ const TIPS_PJS_DATA = [
     "resumenCorto": "El servidor público solo hace lo expresamente facultado por ley. Descarta atajos informales o justificaciones basadas en urgencia.",
     "normaReferencia": "Constitución Política Arts. 6, 121 y 122",
     "contenidoDetallado": "En el derecho público rige el principio restrictivo: mientras los particulares pueden hacer todo lo que no esté prohibido, los servidores públicos <strong>únicamente pueden hacer lo que la Constitución y la ley les faculta de forma taxativa</strong>.<br><br>\n    <strong>Trampa habitual en la prueba:</strong> Opciones que proponen \"acuerdos verbales\", \"saltarse la verificación formal para ganar tiempo\" o \"priorizar la urgencia operativa sobre el procedimiento reglado\".<br><br>\n    <strong>Regla de oro:</strong> La urgencia institucional jamás subsana la omisión de un trámite legal obligatorio. Si el Estatuto Tributario o el CPACA exigen acto motivado o constancia previa, cualquier atajo es nulo y constituye falta disciplinaria.",
-    "formula": "Acción Pública = Norma Expresa Escrita (Sin facultad legal = Acto Nulo)"
+    "formula": "Acción Pública = Norma Expresa Escrita (Sin facultad legal = Acto Nulo)",
+    "ejeId": "cpaca",
+    "ejeNombre": "Derecho Administrativo y CPACA",
+    "plazoCritico": "Permanente",
+    "trampaHabitual": "Saltarse formalidades por supuesta 'urgencia' operativa."
   },
   {
     "id": 2,
@@ -26,7 +31,11 @@ const TIPS_PJS_DATA = [
     "resumenCorto": "Diferencia la Clave Integral del Distractor Plausible (suena rápida pero omite formalidades) y del Distractor Punitivo.",
     "normaReferencia": "Metodología Oficial de Evaluación CNSC - PJS",
     "contenidoDetallado": "Las preguntas de juicio situacional de la CNSC se estructuran con 3 opciones estandarizadas:<br><br>\n    1. <strong>La Clave (Respuesta Correcta):</strong> Es integral, respeta el debido proceso, deja trazabilidad probatoria escrita, formula soluciones estructurales y se ajusta a la competencia del cargo.<br>\n    2. <strong>El Distractor Plausible (La Trampa Principal):</strong> Parece una respuesta muy ejecutiva, moderna o amable, pero omite un paso formal obligatorio (ej. no deja constancia, no notifica legalmente o delega lo indelegable).<br>\n    3. <strong>El Distractor Extremo:</strong> Es pasivo (\"no hacer nada y esperar\"), arbitrario o excesivamente punitivo sin agotar etapas previas.<br><br>\n    <strong>Regla de oro:</strong> Pregúntate siempre: <em>\"¿Esta opción deja expediente con trazabilidad legal de principio a fin?\"</em> Si la respuesta es no, descártala.",
-    "formula": "Clave = Debido Proceso + Trazabilidad Escrita + Competencia del Cargo"
+    "formula": "Clave = Debido Proceso + Trazabilidad Escrita + Competencia del Cargo",
+    "ejeId": "comportamentales",
+    "ejeNombre": "Técnica de Juicio Situacional",
+    "plazoCritico": "90 a 120 segundos por reactivo",
+    "trampaHabitual": "Distractor plausible que suena ágil pero omite trazabilidad o competencia."
   },
   {
     "id": 3,
@@ -38,7 +47,11 @@ const TIPS_PJS_DATA = [
     "resumenCorto": "Lee primero la última frase interrogativa en negrilla. Sabrás de inmediato si te piden un término legal, una ruta procesal o una competencia.",
     "normaReferencia": "Estrategia Psicométrica para Pruebas Escritas Masivas",
     "contenidoDetallado": "Los casos situacionales de la DIAN suelen tener 3 o 4 párrafos cargados de antecedentes contables, liquidaciones o descargos voluminosos.<br><br>\n    • <strong>Paso 1:</strong> Lee de inmediato el <strong>enunciado final interrogativo en negrilla</strong> antes de leer todo el texto largo.<br>\n    • <strong>Paso 2:</strong> Identifica el rol que te asignan (¿Gestor de Fiscalización, Liquidador, Notificador o Auditor Interno?).<br>\n    • <strong>Paso 3:</strong> Lee el cuerpo del caso filtrando únicamente las fechas clave, estados de cuenta y hechos probados relevantes para la pregunta.<br><br>\n    <strong>Efecto:</strong> Ahorras hasta un 40% del tiempo de lectura por pregunta y evitas la fatiga cognitiva en sesiones de más de 100 preguntas.",
-    "formula": "Lectura Inversa = Pregunta en Negrilla (Paso 1) ➔ Rol (Paso 2) ➔ Escaneo Fechas/Cifras (Paso 3)"
+    "formula": "Lectura Inversa = Pregunta en Negrilla (Paso 1) ➔ Rol (Paso 2) ➔ Escaneo Fechas/Cifras (Paso 3)",
+    "ejeId": "comprension_lectora",
+    "ejeNombre": "Lectura Crítica y Casos Complejos",
+    "plazoCritico": "Lectura inversa en 3 pasos",
+    "trampaHabitual": "Perder tiempo leyendo 4 párrafos de antecedentes antes de saber qué preguntan."
   },
   {
     "id": 4,
@@ -50,7 +63,11 @@ const TIPS_PJS_DATA = [
     "resumenCorto": "Se evalúa análisis de causas, modelado de riesgos y propuesta técnica fundada, no el traslado ciego del expediente ni la pasividad.",
     "normaReferencia": "Decreto 815 de 2018 y Manual Específico de Funciones DIAN",
     "contenidoDetallado": "En el nivel profesional Gestor III de la DIAN, el evaluador califica tu <strong>autonomía técnica, juicio analítico y capacidad propositiva</strong>.<br><br>\n    <strong>Opciones incorrectas frecuentes:</strong><br>\n    • \"Dar traslado inmediato del caso a la Oficina Jurídica sin análisis previo.\"<br>\n    • \"Consultar con el jefe inmediato qué decidir ante la duda procesal.\"<br>\n    • \"Limitarse a archivar o radicar el documento sin verificar el fondo.\"<br><br>\n    <strong>Respuesta ganadora:</strong> El profesional elabora el informe técnico motivado, contrasta las bases de datos aduaneras/tributarias, calcula el impacto financiero del riesgo y proyecta la actuación legal sustentada lista para revisión.",
-    "formula": "Gestor III = Diagnóstico Causal + Modelación + Propuesta Técnica Fundada"
+    "formula": "Gestor III = Diagnóstico Causal + Modelación + Propuesta Técnica Fundada",
+    "ejeId": "comportamentales",
+    "ejeNombre": "Competencias Comportamentales Gestor III",
+    "plazoCritico": "Actuación profesional fundada",
+    "trampaHabitual": "Trasladar ciegamente el expediente al superior sin análisis ni propuesta técnica."
   },
   {
     "id": 5,
@@ -62,7 +79,11 @@ const TIPS_PJS_DATA = [
     "resumenCorto": "Cualquier dádiva se rechaza de plano y se denuncia. Ante conflicto de interés o familiaridad, declárate impedido inmediatamente.",
     "normaReferencia": "Ley 1952/2019 (Código Disciplinario) y Ley 1437/2011 Art. 11",
     "contenidoDetallado": "La prueba de Integridad DIAN tiene un peso evaluativo obligatorio y exige rigor moral absoluto:<br><br>\n    1. <strong>Ofertas indebidas:</strong> Si un contribuyente, usuario o apoderado ofrece regalos, atenciones, becas, hospedajes o beneficios: se <strong>rechaza de inmediato</strong>, se levanta acta formal en el expediente y se radica denuncia ante la División de Control Disciplinario y Fiscalía.<br>\n    2. <strong>Conflictos de Interés:</strong> Si el contribuyente auditado es familiar (hasta 4º de consanguinidad, 2º de afinidad), socio, amigo íntimo o contraparte en litigios: la única conducta correcta es <strong>declararse impedido por escrito ante el superior jerárquico</strong> de manera inmediata, absteniéndose de cualquier gestión.",
-    "formula": "Dádiva = Rechazo Inmediato + Denuncia Formal | Conflicto = Impedimento Escrito Inmediato"
+    "formula": "Dádiva = Rechazo Inmediato + Denuncia Formal | Conflicto = Impedimento Escrito Inmediato",
+    "ejeId": "integridad",
+    "ejeNombre": "Valores de Integridad y CGD",
+    "plazoCritico": "Inmediato por escrito",
+    "trampaHabitual": "Aceptar atenciones 'de cortesía' o tramitar casos de familiares para no retrasar."
   },
   {
     "id": 6,
@@ -74,7 +95,11 @@ const TIPS_PJS_DATA = [
     "resumenCorto": "El autocontrol del riesgo corresponde al servidor operativo (1ª Línea). Control Interno (3ª Línea) evalúa ex-post y nunca coadministra.",
     "normaReferencia": "Decreto 1499 de 2017 y Manual Operativo MIPG",
     "contenidoDetallado": "El Modelo Estándar de Control Interno (MECI) articulado al MIPG define con precisión las Tres Líneas de Defensa:<br><br>\n    • <strong>1ª Línea (Línea Estratégica y Operativa):</strong> Servidores y coordinadores que ejecutan los trámites a diario. Son los <strong>dueños absolutos de los riesgos y controles</strong>.<br>\n    • <strong>2ª Línea (Supervisión y Monitoreo):</strong> Áreas de planeación, riesgos y calidad que definen metodologías.<br>\n    • <strong>3ª Línea (Control Interno / Auditoría):</strong> Evaluación independiente ex-post.<br><br>\n    <strong>Trampa común:</strong> Respuestas que afirmen que \"Control Interno debe revisar o autorizar previamente el requerimiento tributario\". Control Interno jamás es coadministrador ni juez previo de actuaciones operativas.",
-    "formula": "MECI = 1ª Línea (Dueña del Riesgo) ➔ 2ª Línea (Supervisión) ➔ 3ª Línea (Control Interno Ex-Post)"
+    "formula": "MECI = 1ª Línea (Dueña del Riesgo) ➔ 2ª Línea (Supervisión) ➔ 3ª Línea (Control Interno Ex-Post)",
+    "ejeId": "control_interno",
+    "ejeNombre": "Control Interno y 3 Líneas de Defensa",
+    "plazoCritico": "Auditoría posterior ex-post",
+    "trampaHabitual": "Respuestas donde Control Interno revisa o autoriza actos de liquidación o cobro antes de su expedición."
   },
   {
     "id": 7,
@@ -86,7 +111,11 @@ const TIPS_PJS_DATA = [
     "resumenCorto": "La notificación electrónica legal es obligatoria. Avisos informales por teléfono o chat no surten efectos y acarrean nulidad.",
     "normaReferencia": "Constitución Política Art. 29 y Estatuto Tributario Arts. 563 a 568",
     "contenidoDetallado": "Todo acto que liquide tributos, imponga sanciones aduaneras o decida recursos debe ser notificado en debida forma legal:<br><br>\n    • La <strong>notificación electrónica</strong> en el buzón registrado ante el RUT es el medio preferente en la DIAN. El término para responder o recurrir corre a partir del día hábil siguiente a la entrega del correo o confirmación.<br>\n    • Notificaciones verbales, llamadas telefónicas o mensajes informales de chat carecen de validez procesal.<br><br>\n    <strong>Regla de oro:</strong> Una indebida notificación vulnera el derecho a la defensa y causa la nulidad insanable de la liquidación oficial. Descarta opciones que omitan la formalidad legal de notificación.",
-    "formula": "Notificación Válida = Correo Registrado en RUT + 5 Días de Gracia para Términos"
+    "formula": "Notificación Válida = Correo Registrado en RUT + 5 Días de Gracia para Términos",
+    "ejeId": "tributario",
+    "ejeNombre": "Procedimiento Tributario y Fiscalización",
+    "plazoCritico": "5 días hábiles tras entrega en buzón",
+    "trampaHabitual": "Avisos informales por WhatsApp o llamadas sin notificación electrónica formal."
   },
   {
     "id": 8,
@@ -98,7 +127,11 @@ const TIPS_PJS_DATA = [
     "resumenCorto": "Toda decisión de la DIAN debe fundarse en pruebas idóneas y normas exactas. La sospecha sin prueba jamás justifica una sanción.",
     "normaReferencia": "CPACA (Ley 1437 de 2011) Arts. 44 y 137",
     "contenidoDetallado": "La facultad fiscalizadora y sancionatoria del Estado no es discrecionalidad abierta ni capricho del auditor:<br><br>\n    • Todo requerimiento, pliego de cargos o liquidación oficial de revisión debe contener una <strong>motivación clara, suficiente y sustentada</strong>: hechos probados (pruebas documentales, cruces de información exógena, inspección tributaria) y normas infringidas.<br>\n    • Sancionar o desconocer deducciones por simple presunción no amparada en la ley configura <em>desviación de poder</em> y acarrea responsabilidad disciplinaria y patrimonial para el funcionario.<br><br>\n    <strong>Clave CNSC:</strong> La respuesta acertada siempre sustenta el acervo probatorio antes de proferir el acto sancionatorio.",
-    "formula": "Acto Administrativo Válido = Hechos Probados + Norma Específica + Motivación Coherente"
+    "formula": "Acto Administrativo Válido = Hechos Probados + Norma Específica + Motivación Coherente",
+    "ejeId": "cpaca",
+    "ejeNombre": "Derecho Administrativo y CPACA",
+    "plazoCritico": "Contenido de todo acto formal",
+    "trampaHabitual": "Liquidar o sancionar con base en meras sospechas sin acervo probatorio idóneo."
   },
   {
     "id": 9,
@@ -110,7 +143,11 @@ const TIPS_PJS_DATA = [
     "resumenCorto": "Las declaraciones y expedientes DIAN son reservados. Ni periodistas, ni veedores, ni terceros pueden acceder sin mandato judicial.",
     "normaReferencia": "Estatuto Tributario Art. 583 y Ley Estatutaria 1581 de 2012",
     "contenidoDetallado": "La información suministrada por los contribuyentes en sus declaraciones de renta, IVA, aduanas y retenciones está amparada por <strong>reserva legal estricta</strong> (Art. 583 E.T.):<br><br>\n    • Si un medio de comunicación, veedor ciudadano, congresista o familiar pide estados financieros o copias de declaraciones de un tercero, la respuesta correcta es <strong>negar la solicitud motivando la reserva legal expresa</strong>.<br>\n    • La reserva solo cede ante órdenes de autoridades judiciales en procesos penales, procesos de alimentos o requerimientos de autoridades tributarias homólogas bajo convenios internacionales.<br><br>\n    <strong>Violación:</strong> Revelar información reservada constituye falta gravísima y delito de violación de reserva procesal.",
-    "formula": "Reserva Tributaria (Art. 583 E.T.) = Secreto Fiscal Estricto (Solo cede ante Orden Judicial)"
+    "formula": "Reserva Tributaria (Art. 583 E.T.) = Secreto Fiscal Estricto (Solo cede ante Orden Judicial)",
+    "ejeId": "tributario",
+    "ejeNombre": "Procedimiento Tributario y Fiscalización",
+    "plazoCritico": "Reserva legal estricta",
+    "trampaHabitual": "Suministrar declaraciones o expedientes a veedores o prensa sin orden judicial."
   },
   {
     "id": 10,
@@ -122,7 +159,11 @@ const TIPS_PJS_DATA = [
     "resumenCorto": "Frente a ciudadanos exaltados: escucha activa, lenguaje técnico sereno, ceñirse a protocolos y no tomar la agresión como algo personal.",
     "normaReferencia": "Decreto 815 de 2018 (Competencias Comportamentales Comunes)",
     "contenidoDetallado": "En pruebas situacionales se evalúa cómo reaccionas ante usuarios molestos por embargos, demoras o liquidaciones de aforo:<br><br>\n    • <strong>Conductas de alta efectividad:</strong> Mantener la serenidad emocional, usar lenguaje claro y desprovisto de tecnicismos hostiles, explicar el fundamento legal del trámite y orientar sobre los recursos procedentes en la ventanilla o canal oficial.<br>\n    • <strong>Conductas descartables:</strong> Confrontar al usuario con el mismo tono agresivo, amenazarlo con usar la fuerza pública sin agotar el diálogo o prometer levantar medidas cautelares sin sustento legal solo para calmarlo.",
-    "formula": "Atención al Ciudadano = Escucha Activa + Firmeza Normativa - Discusión Personal"
+    "formula": "Atención al Ciudadano = Escucha Activa + Firmeza Normativa - Discusión Personal",
+    "ejeId": "servicio",
+    "ejeNombre": "Derecho de Petición y Atención al Ciudadano",
+    "plazoCritico": "Protocolo de atención al ciudadano",
+    "trampaHabitual": "Confrontar agresivamente o prometer levantar embargos sin facultad legal."
   },
   {
     "id": 11,
@@ -134,7 +175,11 @@ const TIPS_PJS_DATA = [
     "resumenCorto": "Constitución > Ley/Estatuto > Decretos > Resoluciones DIAN. Ante contradicción abierta con la ley, prima el ordenamiento superior.",
     "normaReferencia": "Constitución Política Art. 4 (Norma de Normas)",
     "contenidoDetallado": "Al analizar normas concurrentes en situaciones aduaneras o tributarias, aplica el orden de jerarquía formal:<br><br>\n    1. Constitución Política y Bloque de Constitucionalidad (Convenios OIT, Derechos Humanos).<br>\n    2. Estatuto Tributario, Código de Procedimiento Administrativo (CPACA) y Leyes del Congreso.<br>\n    3. Decretos Reglamentarios Únicos (Decreto 1625 de 2016 en Materia Tributaria).<br>\n    4. Resoluciones, Circulares y Conceptos Jurídicos Generales de la DIAN.<br><br>\n    <strong>Criterio evaluativo:</strong> Los conceptos doctrinarios de la DIAN obligan a sus empleados, pero jamás pueden derogar ni desbordar el texto expreso de la ley tributaria creada por el legislador.",
-    "formula": "Pirámide Kelsen: Constitución (Art. 4) > Ley > Decreto Reglamentario > Resolución DIAN"
+    "formula": "Pirámide Kelsen: Constitución (Art. 4) > Ley > Decreto Reglamentario > Resolución DIAN",
+    "ejeId": "cpaca",
+    "ejeNombre": "Derecho Administrativo y CPACA",
+    "plazoCritico": "Jerarquía piramidal Kelsen",
+    "trampaHabitual": "Conceptos doctrinarios de la DIAN prevaleciendo sobre el texto expreso de la ley."
   },
   {
     "id": 12,
@@ -146,7 +191,11 @@ const TIPS_PJS_DATA = [
     "resumenCorto": "La DIAN pierde competencia para modificar declaraciones si vence el término perentorio de firmeza (generalmente 3 años).",
     "normaReferencia": "Estatuto Tributario Arts. 705 y 714",
     "contenidoDetallado": "El Estado no tiene facultades sancionatorias infinitas en el tiempo. La seguridad jurídica protege al administrado mediante la figura de la <strong>firmeza tributaria</strong>:<br><br>\n    • La declaración tributaria queda en firme transcurridos 3 años desde el vencimiento del plazo para declarar (o desde la fecha de presentación si fue extemporánea), siempre que no se haya notificado Requerimiento Especial.<br>\n    • Si un funcionario profiere un requerimiento especial un día después de vencido el término legal de firmeza, el acto adolece de <em>falta de competencia temporal</em> y es insanablemente nulo.<br><br>\n    <strong>Enfoque Gestor III:</strong> El profesional debe auditar prioritariamente los expedientes con riesgo inminente de vencimiento para salvaguardar el recaudo público de la Nación.",
-    "formula": "Regla General de Firmeza = 3 Años desde Vencimiento o Presentación Oportuna (Art. 714 E.T.)"
+    "formula": "Regla General de Firmeza = 3 Años desde Vencimiento o Presentación Oportuna (Art. 714 E.T.)",
+    "ejeId": "tributario",
+    "ejeNombre": "Procedimiento Tributario y Fiscalización",
+    "plazoCritico": "3 años generales desde vencimiento o presentación",
+    "trampaHabitual": "Requerimiento Especial notificado un día después de vencidos los 3 años de firmeza."
   },
   {
     "id": 13,
@@ -158,7 +207,11 @@ const TIPS_PJS_DATA = [
     "resumenCorto": "Descompón el caso en 3 capas: 1) Verbo rector final, 2) Premisa fáctica probada, 3) Clave de congruencia.",
     "normaReferencia": "Estrategia Psicométrica para Textos Jurídicos Complejos",
     "contenidoDetallado": "Los casos de la CNSC están redactados con estructuras narrativas densas para medir tu resistencia a la fatiga y tu capacidad de abstracción analítica:<br><br>\n    • <strong>E (Enunciado final):</strong> Lee siempre primero la última frase interrogativa. Contiene el verbo de acción exigido (ej. <em>\"¿Qué actuación inmediata debe adelantar el Gestor?\"</em> o <em>\"¿Cuál es el vicio procesal presentado?\"</em>).<br>\n    • <strong>P (Premisa fáctica central):</strong> Busca en el texto largo únicamente dos cosas: los <em>hechos probados</em> y las <em>fechas/cifras</em>. Ignora adjetivos y quejas subjetivas de los involucrados.<br>\n    • <strong>C (Clave congruente):</strong> La opción correcta debe conectar directamente con el verbo del enunciado, sin desviarse a temas colaterales aunque sean ciertos.",
-    "formula": "Método E-P-C = Enunciado (¿Qué piden?) + Premisa (Hechos Clave) + Clave (Opción Legal)"
+    "formula": "Método E-P-C = Enunciado (¿Qué piden?) + Premisa (Hechos Clave) + Clave (Opción Legal)",
+    "ejeId": "comprension_lectora",
+    "ejeNombre": "Lectura Crítica y Casos Complejos",
+    "plazoCritico": "Método E-P-C",
+    "trampaHabitual": "Elegir opciones que contestan a cosas accesorias pero no al verbo rector del enunciado."
   },
   {
     "id": 14,
@@ -170,7 +223,11 @@ const TIPS_PJS_DATA = [
     "resumenCorto": "Alerta roja ante: 'siempre', 'jamás', 'exclusivamente', 'sin excepción'. En derecho administrativo casi todo trámite tiene excepción reglamentaria.",
     "normaReferencia": "Semántica Jurídica y Teoría de la Argumentación",
     "contenidoDetallado": "En las opciones de respuesta, los redactores del examen suelen fabricar distractores agregando adverbios o cuantificadores absolutos que convierten una premisa válida en una falsedad jurídica:<br><br>\n    • <strong>Cuantificadores de ALERTA ROJA (90% probabilidad de ser distractor):</strong> <em>\"siempre\", \"nunca\", \"en ningún caso\", \"de manera inapelable\", \"de plano sin audiencia\", \"únicamente\", \"automáticamente\"</em>.<br>\n    • <strong>Cuantificadores de ALTA CONGRUENCIA (habitual en la Clave):</strong> <em>\"previa verificación\", \"dejando constancia motivada\", \"dentro del término legal establecido\", \"garantizando el derecho de contradicción\", \"conforme a la competencia legal\"</em>.<br><br>\n    <strong>Regla de oro:</strong> Si una opción afirma que la administración puede actuar <em>\"de inmediato sin mediar trámite previo\"</em>, casi con certeza vulnera el Art. 29 de la Constitución.",
-    "formula": "Alerta Semántica: 'Siempre / Nunca / Jamás' ➔ Descarte por Exclusión Absoluta (95% Distractor)"
+    "formula": "Alerta Semántica: 'Siempre / Nunca / Jamás' ➔ Descarte por Exclusión Absoluta (95% Distractor)",
+    "ejeId": "comprension_lectora",
+    "ejeNombre": "Lectura Crítica y Casos Complejos",
+    "plazoCritico": "Alerta en 5 segundos",
+    "trampaHabitual": "Opciones con 'siempre', 'jamás', 'de plano' o 'sin excepción' (90% distractores)."
   },
   {
     "id": 15,
@@ -182,7 +239,11 @@ const TIPS_PJS_DATA = [
     "resumenCorto": "Filtra el texto distinguiendo entre lo que está DOCUMENTADO (pruebas, actos, fechas) y las meras opiniones o quejas de pasillo.",
     "normaReferencia": "Régimen Probatorio CPACA Art. 168 y Estatuto Tributario Art. 742",
     "contenidoDetallado": "Un caso situacional estándar de la DIAN contiene entre un 40% y un 60% de <strong>ruido narrativo</strong> (ej. <em>\"el contribuyente visiblemente molesto manifestó que la DIAN lo persigue\"</em> o <em>\"el auditor anterior tenía sospechas sobre la veracidad del inventario\"</em>):<br><br>\n    • Las sospechas, molestias o comentarios de terceros <strong>carecen de valor probatorio</strong> para la toma de decisiones del Gestor III.<br>\n    • Subraya mentalmente solo los <strong>Hechos Jurídicos Firmes</strong>: fechas de radicación en el sistema oficial, liquidaciones notificadas, certificados de existencia y representación, y pruebas documentales allegadas al expediente.<br><br>\n    <strong>Acierto:</strong> Decide con base en el expediente formal, jamás con base en rumores o suposiciones del relato.",
-    "formula": "Filtro Forense: Hechos Probados (Pruebas Reales) vs. Ruido Emocional (Quejas sin Soporte)"
+    "formula": "Filtro Forense: Hechos Probados (Pruebas Reales) vs. Ruido Emocional (Quejas sin Soporte)",
+    "ejeId": "comprension_lectora",
+    "ejeNombre": "Lectura Crítica y Casos Complejos",
+    "plazoCritico": "Filtro probatorio forense",
+    "trampaHabitual": "Decidir con base en rumores o emociones relatadas en el texto y no en pruebas documentales."
   },
   {
     "id": 16,
@@ -194,7 +255,11 @@ const TIPS_PJS_DATA = [
     "resumenCorto": "Organiza mentalmente la cronología: Fecha declaración ➔ Fecha requerimiento ➔ Vencimiento. Te delata caducidades o silencios en segundos.",
     "normaReferencia": "Cómputo de Términos Legales - Ley 4 de 1913 y Código General del Proceso",
     "contenidoDetallado": "Las preguntas funcionales complejas en fiscalización y cobro coactivo ocultan la respuesta correcta en la cronología de las fechas:<br><br>\n    • <strong>Construye la Línea de Tiempo Mental:</strong><br>\n      1️⃣ <em>Hito Inicial:</em> Fecha en que se radicó la declaración o se cometió la presunta infracción aduanera.<br>\n      2️⃣ <em>Hito Intermedio:</em> Fecha en que la DIAN notificó el primer acto formal (Emplazamiento, Auto de Inspección o Requerimiento Especial).<br>\n      3️⃣ <em>Hito Final:</em> Fecha límite para que el administrado responda o para que la administración liquide.<br><br>\n    <strong>Alerta de lectura:</strong> Verifica si los plazos están dados en <em>días hábiles</em> (términos de meses/días en el CPACA y Estatuto Tributario) o <em>días calendario</em>. Si la administración actuó fuera de término, la opción correcta siempre apunta a la firmeza o pérdida de competencia.",
-    "formula": "Línea de Tiempo = Fecha Notificación ➔ Días de Gracia ➔ Vencimiento Términos Legales"
+    "formula": "Línea de Tiempo = Fecha Notificación ➔ Días de Gracia ➔ Vencimiento Términos Legales",
+    "ejeId": "comprension_lectora",
+    "ejeNombre": "Lectura Crítica y Casos Complejos",
+    "plazoCritico": "Línea de tiempo procesal",
+    "trampaHabitual": "No descontar días inhábiles en plazos fijados en días."
   },
   {
     "id": 17,
@@ -206,7 +271,11 @@ const TIPS_PJS_DATA = [
     "resumenCorto": "¿Quién eres en el caso? Muchos distractores plantean medidas legales correctas pero que le corresponden a OTRA dependencia o autoridad.",
     "normaReferencia": "Manual de Funciones DIAN y Principio de Competencia Administrativa",
     "contenidoDetallado": "Uno de los distractores más difíciles de detectar es la <strong>opción jurídicamente válida pero incompetente por el rol</strong>:<br><br>\n    • Si el caso te define como <em>Gestor III en Fiscalización Tributaria</em>, tu labor es investigar, cruzar bases de datos y proyectar el Requerimiento Especial. No te compete proferir la Liquidación Oficial de Revisión (función del área de Liquidación), ni dictar mandamiento de pago (Cobranzas), ni interponer denuncia penal a título personal sin el trámite institucional.<br>\n    • Si te presentan una opción perfecta pero reservada al <em>Director Seccional</em> o al <em>Juez Administrativo</em>, esa opción es un <strong>distractor de incompetencia</strong>.<br><br>\n    <strong>Técnica:</strong> Pregúntate siempre: <em>\"¿Mi cargo de Gestor III tiene la facultad reglamentaria directa para ejecutar esta acción?\"</em>",
-    "formula": "Congruencia: Nivel del Cargo (Profesional/Técnico) = Verbo Rector del Manual de Funciones"
+    "formula": "Congruencia: Nivel del Cargo (Profesional/Técnico) = Verbo Rector del Manual de Funciones",
+    "ejeId": "comportamentales",
+    "ejeNombre": "Competencias Comportamentales Gestor III",
+    "plazoCritico": "Límite funcional del empleo",
+    "trampaHabitual": "Opción jurídicamente perfecta pero cuya expedición es privativa del Director Seccional."
   },
   {
     "id": 18,
@@ -218,7 +287,11 @@ const TIPS_PJS_DATA = [
     "resumenCorto": "No marques una opción solo porque 'es una gran verdad legal'. Verifica que responda con exactitud al problema que el caso planteó.",
     "normaReferencia": "Hermenéutica de Preguntas de Opción Múltiple con Única Respuesta",
     "contenidoDetallado": "Es el error más común de los profesionales con sólidos conocimientos jurídicos en las pruebas de la CNSC:<br><br>\n    • El aspirante lee la Opción B, reconoce que reproduce casi textualmente un artículo de la Constitución o del Estatuto Tributario, y la marca sin dudar.<br>\n    • <strong>El engaño:</strong> Aunque la frase es 100% cierta en el ordenamiento jurídico, <strong>no resuelve la situación planteada en el caso</strong>.<br><br>\n    <strong>Ejemplo real:</strong> Si el caso pregunta <em>\"¿Qué actuación inmediata debe realizar para suspender el término de prescripción?\"</em>, una opción que explique maravillosamente qué es la prescripción o cuándo opera no responde a la pregunta de acción procesal.<br><br>\n    <strong>Test de congruencia:</strong> Junta la pregunta del enunciado con la opción elegida usando la palabra <em>'porque'</em> o <em>'mediante'</em>. Si no encajan de forma lógica y directa, es un distractor de desvío temático.",
-    "formula": "Filtro de Relevancia: ¿Responde a la PREGUNTA formulada o solo dice una verdad genérica?"
+    "formula": "Filtro de Relevancia: ¿Responde a la PREGUNTA formulada o solo dice una verdad genérica?",
+    "ejeId": "comprension_lectora",
+    "ejeNombre": "Lectura Crítica y Casos Complejos",
+    "plazoCritico": "Test de congruencia",
+    "trampaHabitual": "Elegir una opción solo porque cita un artículo de memoria aunque no resuelva el caso."
   },
   {
     "id": 19,
@@ -230,7 +303,11 @@ const TIPS_PJS_DATA = [
     "resumenCorto": "La aprehensión material solo procede por falta de amparo documental o mercancía distinta. Errores menores permiten legalización.",
     "normaReferencia": "Decreto 1165 de 2019 y Decreto 659 de 2024",
     "contenidoDetallado": "En materia aduanera, la pérdida definitiva de la propiedad de las mercancías a favor de la Nación (decomiso) es la medida más gravosa:<br><br>\n    • Procede la <strong>aprehensión y decomiso</strong> cuando la mercancía ingresó por lugar no habilitado, no fue declarada o no coincide en naturaleza, marca y seriales con los documentos de transporte.<br>\n    • Si se trata de un simple <strong>error formal de transcripción</strong> o descripción incompleta que no impida la individualización de la carga, la ley faculta la <em>declaración de legalización voluntaria</em> con pago del rescate, sin decomiso material.<br><br>\n    <strong>Clave de examen:</strong> Desecha opciones que pretendan decomisar mercancías por errores subsanables o que omitan levantar el acta de aprehensión obligatoria en el momento de la inspección.",
-    "formula": "Mercancía sin Declaración = Decomiso Directo | Infracción Formal = Multa o Rescate"
+    "formula": "Mercancía sin Declaración = Decomiso Directo | Infracción Formal = Multa o Rescate",
+    "ejeId": "aduanero",
+    "ejeNombre": "Régimen Aduanero y Comercio Exterior",
+    "plazoCritico": "15 días hábiles para objeciones a aprehensión",
+    "trampaHabitual": "Decomisar de plano por errores meramente formales subsanables con declaración de legalización."
   },
   {
     "id": 20,
@@ -242,7 +319,11 @@ const TIPS_PJS_DATA = [
     "resumenCorto": "El cierre por 3 días exige acta de visita de no expedición y pliego de cargos previo con 10 días para responder. Jamás cierre de hecho.",
     "normaReferencia": "Estatuto Tributario Arts. 657 y 684-2",
     "contenidoDetallado": "La no expedición de la factura electrónica o su expedición sin los requisitos de ley acarrea la sanción de clausura del establecimiento por 3 días:<br><br>\n    • <strong>Debido proceso obligatorio:</strong> La DIAN no puede cerrar un local mercantil de forma inmediata o sorpresiva durante la visita de control. Los funcionarios deben levantar el <em>acta de visita de control formal</em> suscrita con el comerciante.<br>\n    • Posteriormente se formula el <strong>Pliego de Cargos</strong>, concediendo al contribuyente el término legal de <strong>10 días hábiles</strong> para que ejerza su derecho a la defensa y aporte pruebas.<br><br>\n    <strong>Trampa CNSC:</strong> Opciones que afirmen que los auditores proceden a <em>\"colocar de inmediato los sellos de clausura durante la diligencia de inspección\"</em>. Eso constituye vía de hecho e irregularidad procesal sancionable.",
-    "formula": "No Expedir Factura Electrónica = Sellamiento y Clausura por 3 Días (Art. 657 E.T.)"
+    "formula": "No Expedir Factura Electrónica = Sellamiento y Clausura por 3 Días (Art. 657 E.T.)",
+    "ejeId": "tributario",
+    "ejeNombre": "Procedimiento Tributario y Fiscalización",
+    "plazoCritico": "10 días para pliego de cargos | 3 días clausura",
+    "trampaHabitual": "Auditores colocando sellos de clausura durante la visita de control sin pliego previo."
   },
   {
     "id": 21,
@@ -254,7 +335,11 @@ const TIPS_PJS_DATA = [
     "resumenCorto": "En la No Sujeción el hecho generador nunca nació para la ley; en la Exención nació pero la norma libera del pago.",
     "normaReferencia": "Principios Generales del Derecho Tributario Colombiano",
     "contenidoDetallado": "Diferenciar con precisión estos dos conceptos evita confusiones graves al calificar liquidaciones oficiales:<br><br>\n    • <strong>No Sujeción:</strong> La operación o actividad económica no encaja en la definición legal del hecho generador (ej. las indemnizaciones por daño emergente en el impuesto de renta). No hay obligación tributaria sustancial ni deber de presentar declaración por ese concepto.<br>\n    • <strong>Exención:</strong> La actividad sí configura plenamente el hecho generador, pero el legislador por política pública decide exonerar del gravamen (ej. rentas exentas hoteleras o de economía naranja). Exige cumplir todos los requisitos de control formal y declarar.<br><br>\n    <strong>Acierto:</strong> Si una opción afirma que un ingreso no gravado debe tratarse como renta exenta para glosarlo por no pedir certificado, es un distractor técnico.",
-    "formula": "No Sujeción (Fuera del Hecho Generador) ≠ Exención (Hecho Generador Gravado a Tarifa 0%)"
+    "formula": "No Sujeción (Fuera del Hecho Generador) ≠ Exención (Hecho Generador Gravado a Tarifa 0%)",
+    "ejeId": "tributario",
+    "ejeNombre": "Procedimiento Tributario y Fiscalización",
+    "plazoCritico": "Concepto sustantivo",
+    "trampaHabitual": "Confundir un ingreso que no configura hecho generador con una renta exenta gravada al 0%."
   },
   {
     "id": 22,
@@ -266,7 +351,11 @@ const TIPS_PJS_DATA = [
     "resumenCorto": "Si el contribuyente radica descargos o recursos antes de la notificación formal, se entiende notificado desde la radicación.",
     "normaReferencia": "CPACA (Ley 1437 de 2011) Art. 72",
     "contenidoDetallado": "¿Qué ocurre si la DIAN cometió un error en el envío del correo electrónico de notificación, pero el contribuyente presenta su recurso demostrando conocer el acto?<br><br>\n    • Opera la <strong>Notificación por Conducta Concluyente</strong>: La parte interesada se da por enterada del contenido del acto administrativo en la fecha en que presente el escrito, interponga los recursos procedentes o manifieste expresamente su conocimiento.<br>\n    • Esto <em>sanea cualquier vicio previo en la notificación formal</em> y reactiva el cómputo de términos a favor de la administración para resolver.<br><br>\n    <strong>Regla de oro:</strong> Si el administrado ya contestó de fondo el requerimiento, la administración no necesita reiniciar el trámite de notificación electrónica.",
-    "formula": "Conducta Concluyente = Trámite Efectivo del Administrado que Subsanó la Notificación Defectuosa"
+    "formula": "Conducta Concluyente = Trámite Efectivo del Administrado que Subsanó la Notificación Defectuosa",
+    "ejeId": "cpaca",
+    "ejeNombre": "Derecho Administrativo y CPACA",
+    "plazoCritico": "Fecha de radicación del recurso",
+    "trampaHabitual": "Anular el proceso por notificación defectuosa cuando el ciudadano ya radicó su recurso de fondo."
   },
   {
     "id": 23,
@@ -278,7 +367,11 @@ const TIPS_PJS_DATA = [
     "resumenCorto": "No todo error formal causa nulidad. Si no afectó la defensa ni el sentido del fallo, la DIAN debe sanear de oficio y fallar de fondo.",
     "normaReferencia": "CPACA Art. 84, Art. 137 y Constitución Art. 228",
     "contenidoDetallado": "En la administración pública prima el derecho sustancial sobre las formas procesales vacías (Art. 228 C.P.):<br><br>\n    • Errores mecanográficos en el número de expediente, omisión de folios de archivo o yerros menores en citas no determinantes <strong>no configuran nulidad insanable</strong>.<br>\n    • La actuación debe ser convalidada o subsanada mediante auto de trámite motivado, garantizando que el administrado conozca el expediente.<br><br>\n    <strong>Clave CNSC:</strong> La respuesta acertada busca siempre sanear el proceso y resolver el fondo de la obligación tributaria, en lugar de anular todo el expediente y archivar sin recaudo.",
-    "formula": "Eficacia Procesal = Subsanar Irregularidades Menores sin Anular Todo el Procedimiento"
+    "formula": "Eficacia Procesal = Subsanar Irregularidades Menores sin Anular Todo el Procedimiento",
+    "ejeId": "cpaca",
+    "ejeNombre": "Derecho Administrativo y CPACA",
+    "plazoCritico": "Saneamiento en auto de trámite",
+    "trampaHabitual": "Archivar y declarar nulidad de todo el expediente por un yerro mecanográfico subsanable."
   },
   {
     "id": 24,
@@ -290,7 +383,11 @@ const TIPS_PJS_DATA = [
     "resumenCorto": "La exógena es solo prueba indiciaria. La DIAN no puede liquidar oficialmente sin requerir al contribuyente para cotejar su contabilidad.",
     "normaReferencia": "Estatuto Tributario Arts. 631 y 742 a 746",
     "contenidoDetallado": "Un error clásico de fiscalización es asumir que lo reportado en medios magnéticos por un tercero es verdad irrefutable:<br><br>\n    • La información exógena constituye un <strong>indicio grave orientador</strong>, pero no constituye por sí sola plena prueba para expedir una Liquidación Oficial de Revisión.<br>\n    • Si un tercero reportó compras que el contribuyente desconoce, la DIAN tiene el deber de expedir <em>Emplazamiento para Corregir o Auto de Inspección Tributaria</em>, solicitando libros de contabilidad, facturas y soportes de pago.<br><br>\n    <strong>Acierto:</strong> El Gestor III no liquida a ciegas con la exógena; formula el requerimiento probatorio para cotejar la realidad contable de ambas partes.",
-    "formula": "Información Exógena = Prueba Indiciaria (Requiere Verificación y Cruce Directo con Contribuyente)"
+    "formula": "Información Exógena = Prueba Indiciaria (Requiere Verificación y Cruce Directo con Contribuyente)",
+    "ejeId": "tributario",
+    "ejeNombre": "Procedimiento Tributario y Fiscalización",
+    "plazoCritico": "Inspección o emplazamiento previo",
+    "trampaHabitual": "Expedir Liquidación Oficial de Revisión apoyándose únicamente en reportes magnéticos de terceros."
   },
   {
     "id": 25,
@@ -302,7 +399,11 @@ const TIPS_PJS_DATA = [
     "resumenCorto": "Si el impuesto neto se incrementó en 35% o 25%, la firmeza opera en 6 o 12 meses. La DIAN pierde competencia si no emplaza a tiempo.",
     "normaReferencia": "Estatuto Tributario Art. 689-3",
     "contenidoDetallado": "El Beneficio de Auditoría es una prerrogativa legal que premia a los contribuyentes que incrementan voluntariamente su tributación:<br><br>\n    • Si el impuesto neto de renta aumentó mínimo un <strong>35%</strong> respecto al año anterior: firmeza definitiva en <strong>6 meses</strong> contados desde la presentación oportuna.<br>\n    • Si el aumento fue de mínimo un <strong>25%</strong>: firmeza en <strong>12 meses</strong>.<br><br>\n    <strong>Enfoque Gestor III:</strong> El profesional debe verificar con máxima urgencia si una declaración cuenta con este beneficio, ya que si transcurren los 6 o 12 meses sin notificación de Emplazamiento para Corregir, la declaración adquiere firmeza inmutable.",
-    "formula": "Beneficio de Auditoría = Incremento del Impuesto Neto de Renta (+35% = 6 Meses / +25% = 12 Meses)"
+    "formula": "Beneficio de Auditoría = Incremento del Impuesto Neto de Renta (+35% = 6 Meses / +25% = 12 Meses)",
+    "ejeId": "tributario",
+    "ejeNombre": "Procedimiento Tributario y Fiscalización",
+    "plazoCritico": "6 meses (+35% impuesto) o 12 meses (+25%)",
+    "trampaHabitual": "Desconocer el beneficio de auditoría y notificar requerimiento a los 18 meses."
   },
   {
     "id": 26,
@@ -314,7 +415,11 @@ const TIPS_PJS_DATA = [
     "resumenCorto": "Ante metas exigentes de fiscalización: prioriza cartera de alto impacto y optimiza procesos. Jamás presiones coactivas ilegales.",
     "normaReferencia": "Decreto 815 de 2018 y Manual de Funciones Gestor III",
     "contenidoDetallado": "En pruebas comportamentales para cargos misionales de la DIAN se somete al aspirante a escenarios de alta tensión institucional:<br><br>\n    • <strong>Escenario:</strong> La seccional está rezagada en la meta de recaudo del trimestre y la dirección exige resultados urgentes.<br>\n    • <strong>Respuesta de excelencia profesional:</strong> Realizar segmentación analítica de la cartera (Principio de Pareto: 80/20), priorizar los omisos y morosos de mayor cuantía con riesgo inminente de prescripción, y coordinar cruces masivos con facturación electrónica.<br>\n    • <strong>Respuestas descartables:</strong> Imponer sanciones desproporcionadas a pequeños comerciantes informales solo para abultar las cifras estadísticas, o exigir horas extras no autorizadas al equipo de trabajo.",
-    "formula": "Metas de Recaudo = Gestión Técnica Eficaz sin Extralimitación Coactiva ni Violación de Derechos"
+    "formula": "Metas de Recaudo = Gestión Técnica Eficaz sin Extralimitación Coactiva ni Violación de Derechos",
+    "ejeId": "comportamentales",
+    "ejeNombre": "Competencias Comportamentales Gestor III",
+    "plazoCritico": "Gestión por metas y Pareto",
+    "trampaHabitual": "Presión coactiva indebida o fiscalización a pequeños comercios para inflar estadísticas."
   },
   {
     "id": 27,
@@ -326,7 +431,11 @@ const TIPS_PJS_DATA = [
     "resumenCorto": "Que un hecho ocurra tras otro no prueba causalidad. Descarta opciones que sancionen sin probar el nexo causal directo.",
     "normaReferencia": "Régimen Probatorio CPACA Art. 168 y Estatuto Tributario Art. 742",
     "contenidoDetallado": "En los textos de la CNSC suele relatarse que una empresa cambió de contador y al mes siguiente bajó su recaudo de IVA:<br><br>\n    • <strong>El error de lectura:</strong> Asumir automáticamente que el nuevo contador comete evasión. La simultaneidad temporal no constituye prueba jurídica.<br>\n    • <strong>Criterio oficial:</strong> La administración tributaria solo puede proferir pliego de cargos si demuestra el <em>nexo causal objetivo</em> (maniobra fraudulenta, omisión de ingresos o facturas falsas) mediante pruebas directas.<br><br>\n    <strong>Clave de descarte:</strong> Si una opción sugiere sancionar o liquidar de aforo basándose únicamente en la coincidencia cronológica, descártala por falta de motivación probatoria.",
-    "formula": "Correlación Temporal ≠ Causalidad: La Sanción Exige Nexo Causal Probado"
+    "formula": "Correlación Temporal ≠ Causalidad: La Sanción Exige Nexo Causal Probado",
+    "ejeId": "comprension_lectora",
+    "ejeNombre": "Lectura Crítica y Casos Complejos",
+    "plazoCritico": "Causalidad probada",
+    "trampaHabitual": "Sancionar por coincidencia temporal de hechos sin probar nexo causal fraudulento."
   },
   {
     "id": 28,
@@ -338,7 +447,11 @@ const TIPS_PJS_DATA = [
     "resumenCorto": "Si el caso versa sobre IVA bimestral, descarta opciones que propongan auditar Renta o Precios de Transferencia sin previo auto ampliatorio.",
     "normaReferencia": "Estatuto Tributario Arts. 684 y 779 (Límites del Auto de Inspección)",
     "contenidoDetallado": "Un distractor recurrente para medir la precisión del Gestor III es la extralimitación temática:<br><br>\n    • <strong>Escenario típico:</strong> Se abre inspección para verificar retenciones en la fuente de enero a marzo. En la visita, el auditor nota posibles subfacturaciones de importaciones de hace dos años.<br>\n    • <strong>La trampa:</strong> La opción incorrecta propone incautar libros y glosar renta de inmediato en la misma acta.<br>\n    • <strong>La regla de oro:</strong> Los actos de inspección tienen un <em>objeto delimitado</em>. Si surgen nuevos hallazgos, se proyecta un informe motivado para solicitar la apertura de un nuevo programa o ampliación formal del auto comisorio.<br><br>\n    <strong>Acierto:</strong> Mantén la respuesta estrictamente ceñida al objeto delimitado en el enunciado.",
-    "formula": "Límite del Auto Comisorio: El Auditor NO Puede Investigar Años o Impuestos no Autorizados"
+    "formula": "Límite del Auto Comisorio: El Auditor NO Puede Investigar Años o Impuestos no Autorizados",
+    "ejeId": "tributario",
+    "ejeNombre": "Procedimiento Tributario y Fiscalización",
+    "plazoCritico": "Límites del Auto Comisorio",
+    "trampaHabitual": "Auditar renta o precios de transferencia en una inspección ordenada exclusivamente para IVA."
   },
   {
     "id": 29,
@@ -350,7 +463,11 @@ const TIPS_PJS_DATA = [
     "resumenCorto": "El núcleo de la dificultad del caso está casi siempre inmediatamente después de: 'sin embargo', 'no obstante', 'a pesar de' o 'empero'.",
     "normaReferencia": "Lingüística Forense y Estructura Semántica de Casos Psicométricos",
     "contenidoDetallado": "La estructura de redacción de la Universidad Nacional y comisiones evaluadoras de la CNSC utiliza conectores de contraste para introducir el nudo fáctico:<br><br>\n    • La primera parte del caso describe un trámite habitual conforme a la ley (ej. <em>'El contribuyente presentó oportunamente su declaración...'</em>).<br>\n    • <strong>El quiebre:</strong> Aparece la palabra <em>'sin embargo'</em> o <em>'no obstante'</em> seguida del dato determinante (ej. <em>'...no obstante, el pago electrónico fue rechazado por el banco dos días después de vencer el plazo'</em>).<br><br>\n    <strong>Estrategia de lectura:</strong> Cuando tus ojos detecten un conector adversativo, detén la lectura rápida y analiza la frase siguiente: ahí radica la controversia legal que debes resolver.",
-    "formula": "Pivote Textual: Lo que sigue a 'Sin embargo' o 'No obstante' Define la Verdad del Caso"
+    "formula": "Pivote Textual: Lo que sigue a 'Sin embargo' o 'No obstante' Define la Verdad del Caso",
+    "ejeId": "comprension_lectora",
+    "ejeNombre": "Lectura Crítica y Casos Complejos",
+    "plazoCritico": "Conector adversativo",
+    "trampaHabitual": "Ignorar la frase después de 'sin embargo' donde reside el vicio o controversia del caso."
   },
   {
     "id": 30,
@@ -362,7 +479,11 @@ const TIPS_PJS_DATA = [
     "resumenCorto": "En actuaciones de la DIAN los términos en días son HÁBILES; en meses o años son CALENDARIO. Cuidado con contar sábados en términos de días.",
     "normaReferencia": "Ley 4 de 1913 Art. 62 y Estatuto Tributario Art. 683",
     "contenidoDetallado": "Un error común de comprensión lectora surge al contabilizar plazos procesales en los casos:<br><br>\n    • <strong>Plazos fijados en días</strong> (ej. 10 días para responder requerimiento ordinario, 1 mes para recurso de reconsideración, 3 meses para requerimiento especial): en días, se cuentan únicamente días <em>hábiles</em>, excluyendo sábados, domingos y festivos.<br>\n    • <strong>Plazos fijados en meses o años</strong> (ej. 2 meses, 3 años de firmeza): se cuentan de fecha a fecha, de calendario a calendario (ej. del 15 de marzo al 15 de abril). Si vence en día inhábil, se prorroga al primer día hábil siguiente.<br><br>\n    <strong>Descarte inmediato:</strong> Descarta opciones que afirmen que un término venció en sábado o domingo sin considerar la prórroga legal al lunes hábil.",
-    "formula": "Plazos en Días = Días HÁBILES | Plazos en Meses/Años = Días CALENDARIO (CPACA Art. 30)"
+    "formula": "Plazos en Días = Días HÁBILES | Plazos en Meses/Años = Días CALENDARIO (CPACA Art. 30)",
+    "ejeId": "cpaca",
+    "ejeNombre": "Derecho Administrativo y CPACA",
+    "plazoCritico": "Días hábiles vs. Calendario",
+    "trampaHabitual": "Contar sábados en términos fijados en días o vencer plazos en domingos sin prórroga al lunes."
   },
   {
     "id": 31,
@@ -374,7 +495,11 @@ const TIPS_PJS_DATA = [
     "resumenCorto": "Entre dos opciones que parecen legales, la correcta usa el verbo de mayor vinculatoriedad (ej. 'Proferir acto motivado' vs. 'Hacer una advertencia verbal').",
     "normaReferencia": "Eficacia y Formalidad de Actos Administrativos - CPACA Art. 3",
     "contenidoDetallado": "Las pruebas de juicio situacional miden tu nivel de resolución y formalismo institucional:<br><br>\n    • <strong>Verbos débiles o informales (distractores habituales):</strong> <em>'Sugerir telefónicamente', 'acordar verbalmente una prórroga', 'redactar un memorando interno sin efectos jurídicos', 'esperar a que el usuario se comunique'</em>.<br>\n    • <strong>Verbos con fuerza vinculante oficial (claves habituales):</strong> <em>'Proferir auto motivado', 'notificar en debida forma procesal', 'ordenar inspección técnica contable', 'remitir con informe fundado a la dependencia competente'</em>.<br><br>\n    <strong>Regla:</strong> La administración pública se expresa mediante actos jurídicos formales por escrito, jamás mediante acuerdos informales de pasillo.",
-    "formula": "Idoneidad: Elegir la Opción que Resuelve el Problema con Acto Motivado y Trazabilidad Escrita"
+    "formula": "Idoneidad: Elegir la Opción que Resuelve el Problema con Acto Motivado y Trazabilidad Escrita",
+    "ejeId": "cpaca",
+    "ejeNombre": "Derecho Administrativo y CPACA",
+    "plazoCritico": "Acto formal motivado",
+    "trampaHabitual": "Elegir opciones con acuerdos verbales o llamadas telefónicas en lugar de actos motivados."
   },
   {
     "id": 32,
@@ -386,7 +511,11 @@ const TIPS_PJS_DATA = [
     "resumenCorto": "Desconfía de opciones que prometen 'recuperar el 100% de la cartera de inmediato' ignorando los plazos, el debido proceso y la capacidad institucional.",
     "normaReferencia": "Principio de Eficacia con Reserva de lo Posible - CP Art. 209",
     "contenidoDetallado": "Los psicómetras diseñan distractores 'seductoramente heroicos' que apelan al deseo de soluciones milagrosas:<br><br>\n    • <strong>Ejemplo de distractor idílico:</strong> <em>'Ordenar el embargo inmediato de todas las cuentas bancarias de todos los morosos en 24 horas y recuperar la totalidad del déficit sin necesidad de título ejecutivo'</em>.<br>\n    • <strong>Por qué falla:</strong> El embargo en cobro coactivo requiere mandamiento de pago previo notificado (E.T. Art. 826) y título ejecutivo ejecutoriado. Desconocer el procedimiento acarrea nulidad y demandas de reparación directa contra la DIAN.<br><br>\n    <strong>Acierto:</strong> Elige siempre la opción viable, reglamentada y proporcional, no la fantasía de fuerza desmedida.",
-    "formula": "Viabilidad Administrativa: Descarta Opciones que Proponen Soluciones Imposibles o Extralegales"
+    "formula": "Viabilidad Administrativa: Descarta Opciones que Proponen Soluciones Imposibles o Extralegales",
+    "ejeId": "cobranzas",
+    "ejeNombre": "Cobro Coactivo y Títulos Ejecutivos",
+    "plazoCritico": "Debido proceso coactivo",
+    "trampaHabitual": "Embargo inmediato sin mandamiento de pago previo ni título ejecutivo en firme."
   },
   {
     "id": 33,
@@ -398,7 +527,11 @@ const TIPS_PJS_DATA = [
     "resumenCorto": "Distingue en la lectura: Sociedad Anónima vs. Representante Legal vs. Revisor Fiscal vs. Socios. No atribuyas sanciones sin título de imputación.",
     "normaReferencia": "Estatuto Tributario Arts. 793, 794 y 658-1",
     "contenidoDetallado": "En casos de auditoría a personas jurídicas, una trampa frecuente consiste en dirigir el acto sancionatorio al sujeto equivocado:<br><br>\n    • La obligación sustancial y la sanción por inexactitud recaen en primer término sobre la <strong>Persona Jurídica contribuyente</strong>.<br>\n    • El Representante Legal y el Revisor Fiscal solo responden solidaria o subsidiariamente si se les formula <em>pliego de cargos independiente</em> con demostración de culpa grave o dolo (E.T. Art. 658-1).<br><br>\n    <strong>Cuidado de lectura:</strong> Si el caso describe una evasión de una sociedad y una opción propone proferir liquidación oficial a nombre propio del contador, descártala: al contador se le formula pliego de cargos por separado para sanción disciplinaria/multa.",
-    "formula": "Sujeto Pasivo = Titular de la Obligación Tributaria (No sucursal sin personería ni empleado)"
+    "formula": "Sujeto Pasivo = Titular de la Obligación Tributaria (No sucursal sin personería ni empleado)",
+    "ejeId": "tributario",
+    "ejeNombre": "Procedimiento Tributario y Fiscalización",
+    "plazoCritico": "Imputación formal individual",
+    "trampaHabitual": "Vincular patrimonialmente al contador o revisor fiscal sin pliego de cargos independiente."
   },
   {
     "id": 34,
@@ -410,7 +543,11 @@ const TIPS_PJS_DATA = [
     "resumenCorto": "El fin no justifica los medios en el Estado de Derecho. Si una opción 'agiliza el recaudo' pero omite el traslado de pruebas, es ilegal.",
     "normaReferencia": "Constitución Política Art. 29 (Garantía del Debido Proceso)",
     "contenidoDetallado": "Muchos distractores presentan una motivación aparentemente noble para inducir al error:<br><br>\n    • <strong>El engaño narrativo:</strong> <em>'Para evitar que los fondos de salud pública se queden sin recursos en la emergencia, el auditor decidió omitir el término de respuesta del contribuyente y liquidar de aforo'</em>.<br>\n    • <strong>Criterio intransigente:</strong> En Colombia no existe urgencia o meta de recaudo que autorice violar el debido proceso administrativo (Art. 29 CP). Cualquier acto proferido sin dar oportunidad de contradicción es insanablemente nulo de pleno derecho.<br><br>\n    <strong>Acierto:</strong> Jamás selecciones una opción que vulnere el derecho de defensa, por muy loable o urgente que parezca la justificación del relato.",
-    "formula": "Principio de Legalidad > Supuesta 'Buena Fe' que Viola Procedimientos Obligatorios"
+    "formula": "Principio de Legalidad > Supuesta 'Buena Fe' que Viola Procedimientos Obligatorios",
+    "ejeId": "cpaca",
+    "ejeNombre": "Derecho Administrativo y CPACA",
+    "plazoCritico": "Garantía del Art. 29 C.P.",
+    "trampaHabitual": "Justificar la violación del derecho de defensa alegando 'urgencia o interés social'."
   },
   {
     "id": 35,
@@ -422,7 +559,11 @@ const TIPS_PJS_DATA = [
     "resumenCorto": "Cuidado con la opción que repite las mismas palabras del enunciado pero no propone ninguna solución técnica concreta.",
     "normaReferencia": "Psicometría de Reactivos de Juicio Situacional",
     "contenidoDetallado": "Los evaluadores construyen distractores que actúan como 'espejos' psicológicos:<br><br>\n    • Si el enunciado pregunta: <em>'¿Cómo debe proceder el Gestor III ante la recurrente inconsistencia de costos en el inventario?'</em><br>\n    • <strong>La opción espejo:</strong> <em>'Debe proceder a verificar que los costos del inventario no presenten inconsistencias recurrentes para que el informe quede sin novedades'</em>.<br>\n    • <strong>El defecto:</strong> Es una tautología vacía. No especifica la herramienta técnica (cruzar con facturación electrónica, requerir kardex contable, verificar proveedor ficticio).<br><br>\n    <strong>Técnica:</strong> Exige a la opción elegida que contenga un <em>cómo</em> procedimental específico.",
-    "formula": "Respuesta Espejo = Opción que Repite las Mismas Palabras del Caso pero sin Solución Legal"
+    "formula": "Respuesta Espejo = Opción que Repite las Mismas Palabras del Caso pero sin Solución Legal",
+    "ejeId": "comprension_lectora",
+    "ejeNombre": "Lectura Crítica y Casos Complejos",
+    "plazoCritico": "Filtro de tautología",
+    "trampaHabitual": "Opción espejo que repite el problema pero no describe ninguna acción técnica."
   },
   {
     "id": 36,
@@ -434,7 +575,11 @@ const TIPS_PJS_DATA = [
     "resumenCorto": "Las excepciones legales se ocultan en frases condicionales. Si el supuesto del caso no cumple la condición estricta, la regla general prevalece.",
     "normaReferencia": "Código Civil Colombiano Arts. 27 a 32 (Reglas de Hermenéutica Legal)",
     "contenidoDetallado": "En los enunciados normativos de la DIAN, las frases subordinadas determinan la aplicabilidad de la norma:<br><br>\n    • <strong>Fórmulas condicionales:</strong> <em>'siempre y cuando', 'a condición de que', 'salvo que medie', 'en tanto no se haya notificado'</em>.<br>\n    • <strong>Caso práctico:</strong> La ley dice que opera la firmeza en 6 meses <em>'siempre que se haya presentado oportunamente y con el incremento del 35%'</em>. Si el caso menciona que la declaración se presentó <strong>un día tarde de forma extemporánea</strong>, la condición se rompió y la firmeza pasa automáticamente al régimen general de 3 años.<br><br>\n    <strong>Regla de oro:</strong> Si una frase condicional no se cumple al 100% en los hechos del relato, la prerrogativa especial desaparece.",
-    "formula": "Condicionales: 'Salvo que / A menos que' = Identifica la Excepción Legal Estricta"
+    "formula": "Condicionales: 'Salvo que / A menos que' = Identifica la Excepción Legal Estricta",
+    "ejeId": "comprension_lectora",
+    "ejeNombre": "Lectura Crítica y Casos Complejos",
+    "plazoCritico": "Condición estricta",
+    "trampaHabitual": "Aplicar la excepción legal cuando el contribuyente incumplió la condición en las fechas."
   },
   {
     "id": 37,
@@ -446,7 +591,11 @@ const TIPS_PJS_DATA = [
     "resumenCorto": "La CNSC evalúa criterio normativo de la base y porcentaje, no cálculos complejos. Busca la lógica de graduación de sanciones del Art. 640 E.T.",
     "normaReferencia": "Estatuto Tributario Art. 640 (Principio de Lesividad y Graduación)",
     "contenidoDetallado": "Cuando un caso incluya montos monetarios o porcentajes de sanción:<br><br>\n    • No te detengas a hacer divisiones decimales complejas.<br>\n    • Verifica el <strong>criterio de reducción de sanción</strong> (Art. 640 E.T.):<br>\n      - Reducción al <strong>50%</strong> de la sanción si no ha cometido la misma infracción en el año anterior.<br>\n      - Reducción al <strong>75%</strong> si no la ha cometido en los dos años anteriores.<br>\n      - Sanción mínima legal fija (no puede ser inferior a la UVT mínima legal fijada por resolución).<br><br>\n    <strong>Acierto:</strong> Si el contribuyente subsana voluntariamente antes de requerimiento especial, la sanción de corrección es del 10% (Art. 644); si responde al requerimiento especial, es del 20%. Esa es la diferencia conceptual que evalúa el examen.",
-    "formula": "Sanción Extemporaneidad = 5% por Mes o Fracción de Mes de Retardo (Límite 100% del Impuesto)"
+    "formula": "Sanción Extemporaneidad = 5% por Mes o Fracción de Mes de Retardo (Límite 100% del Impuesto)",
+    "ejeId": "tributario",
+    "ejeNombre": "Procedimiento Tributario y Fiscalización",
+    "plazoCritico": "Graduación Art. 640 E.T.",
+    "trampaHabitual": "Aplicar sanción plena desconociendo la reducción al 50% o 75% por ausencia de reincidencia."
   },
   {
     "id": 38,
@@ -458,7 +607,11 @@ const TIPS_PJS_DATA = [
     "resumenCorto": "Los actos de mero trámite (Requerimiento Especial, Emplazamiento) NO admiten recursos. Marcar reposición o apelación contra ellos es error garrafal.",
     "normaReferencia": "CPACA Art. 75 y Estatuto Tributario Art. 720",
     "contenidoDetallado": "Uno de los distractores procesales más clásicos en los exámenes de concurso público:<br><br>\n    • <strong>Actos preparatorios o de trámite:</strong> Auto de Inspección Tributaria, Emplazamiento para Corregir, Requerimiento Especial, Pliego de Cargos. <em>Contra ellos NO procede recurso alguno</em>; el administrado solo tiene derecho a dar respuesta procesal con descargos o corrección.<br>\n    • <strong>Actos administrativos definitivos:</strong> Liquidación Oficial de Revisión, Resolución Sanción, Resolución que decide excepciones en cobro coactivo. <em>Contra ellos procede el Recurso de Reconsideración</em> (o reposición/apelación según el caso).<br><br>\n    <strong>Descarte directo:</strong> Si una opción plantea <em>'Interponer recurso de reconsideración contra el Requerimiento Especial'</em>, es falsa por naturaleza procesal.",
-    "formula": "Acto de Trámite (No admite Recursos) vs. Acto Definitivo (Pone fin a la actuación, admite Recursos)"
+    "formula": "Acto de Trámite (No admite Recursos) vs. Acto Definitivo (Pone fin a la actuación, admite Recursos)",
+    "ejeId": "cpaca",
+    "ejeNombre": "Derecho Administrativo y CPACA",
+    "plazoCritico": "Diferenciación de actos",
+    "trampaHabitual": "Interponer recurso de reconsideración o reposición contra un Requerimiento Especial."
   },
   {
     "id": 39,
@@ -470,7 +623,11 @@ const TIPS_PJS_DATA = [
     "resumenCorto": "En casos extensos de 15 líneas: haz un barrido visual de 8 segundos localizando exclusivamente: Fechas, N° de Actos, Cifras en UVT/Pesos y Nombres de dependencias.",
     "normaReferencia": "Lectura Veloz Aplicada al Análisis Documental Forense",
     "contenidoDetallado": "Cuando el texto sea intimidante por su extensión, no intentes memorizar la narrativa en la primera lectura:<br><br>\n    • <strong>Fase de Escaneo (8 a 10 segundos):</strong> Fija tu mirada en busca de anclas cuantitativas y temporales: fechas (ej. <em>'14 de mayo de 2023'</em>), números de radicado, valores y denominación exacta de las dependencias involucradas.<br>\n    • <strong>Fase de Interrogación:</strong> Lee la pregunta final.<br>\n    • <strong>Fase de Conexión:</strong> Vuelve solo a las dos líneas donde se ubica el dato que la pregunta exige resolver.<br><br>\n    <strong>Beneficio:</strong> Reduces el tiempo de respuesta de 90 a 35 segundos, reservando energía mental para las preguntas más densas del examen.",
-    "formula": "Barrido 8 Segundos = Fechas + Radicados + UVT/Pesos + Nombres de Dependencias"
+    "formula": "Barrido 8 Segundos = Fechas + Radicados + UVT/Pesos + Nombres de Dependencias",
+    "ejeId": "comprension_lectora",
+    "ejeNombre": "Lectura Crítica y Casos Complejos",
+    "plazoCritico": "Escaneo en 8 segundos",
+    "trampaHabitual": "Agotar la memoria de trabajo intentando retener todos los párrafos introductorios."
   },
   {
     "id": 40,
@@ -482,7 +639,11 @@ const TIPS_PJS_DATA = [
     "resumenCorto": "Ciertas competencias de la DIAN son privativas del Director General o Seccional y no pueden delegarse en el Gestor III sin acto administrativo formal.",
     "normaReferencia": "Ley 489 de 1998 Arts. 9 a 12 y Decreto 1742 de 2020",
     "contenidoDetallado": "El régimen de función pública establece límites severos a la delegación administrativa:<br><br>\n    • No se pueden delegar atribuciones conferidas por la Constitución, ni la expedición de reglamentos de carácter general, ni funciones que hayan sido delegadas previamente (prohibición de subdelegación en cascada sin autorización legal).<br>\n    • Si en un caso el Director Seccional le ordena verbalmente al Gestor III que <em>'firme por él la resolución que resuelve el recurso de reconsideración'</em>, dicha actuación adolece de nulidad por falta de competencia funcional por incompetencia personal.<br><br>\n    <strong>Regla:</strong> El Gestor III proyecta la decisión técnica; el titular legal de la competencia delegada es quien suscribe oficialmente el acto administrativo.",
-    "formula": "Delegación (Ley 489 Art. 9) = Requiere Acto Escrito Expreso (Prohibida Delegación Verbal)"
+    "formula": "Delegación (Ley 489 Art. 9) = Requiere Acto Escrito Expreso (Prohibida Delegación Verbal)",
+    "ejeId": "misionalidad",
+    "ejeNombre": "Misionalidad y Estructura DIAN",
+    "plazoCritico": "Delegación formal escrita",
+    "trampaHabitual": "Delegación verbal de facultades privativas del Director Seccional en un profesional."
   },
   {
     "id": 41,
@@ -494,7 +655,11 @@ const TIPS_PJS_DATA = [
     "resumenCorto": "El silencio positivo es EXCEPCIONAL y requiere norma expresa (ej. recurso de reconsideración no resuelto en 1 año). Por regla general, el silencio es negativo.",
     "normaReferencia": "Estatuto Tributario Art. 734 y CPACA Arts. 83 y 84",
     "contenidoDetallado": "Muchos distractores juegan con la figura del silencio administrativo para confundir al aspirante:<br><br>\n    • <strong>Regla general en el CPACA (Art. 83):</strong> Si transcurren 3 meses sin respuesta a una petición o actuación, opera el <em>Silencio Administrativo Negativo</em> (se entiende denegada la solicitud para permitir acudir a la justicia contenciosa).<br>\n    • <strong>Excepción especial tributaria (Silencio Positivo - Art. 734 E.T.):</strong> Si la DIAN no resuelve el Recurso de Reconsideración dentro del término de <strong>un (1) año</strong> contado a partir de su debida interposición, opera el <em>Silencio Administrativo Positivo</em> y se entiende fallado a favor del contribuyente.<br><br>\n    <strong>Atención al leer:</strong> Verifica si el caso trata de un recurso gubernativo tributario (1 año para positivo) o de un derecho de petición general (silencio negativo). Marcar la figura inversa es causal inmediata de fallo en la pregunta.",
-    "formula": "Silencio Administrativo: Regla General = NEGATIVO (3 meses) | Excepción Tributaria = POSITIVO (1 año)"
+    "formula": "Silencio Administrativo: Regla General = NEGATIVO (3 meses) | Excepción Tributaria = POSITIVO (1 año)",
+    "ejeId": "cpaca",
+    "ejeNombre": "Derecho Administrativo y CPACA",
+    "plazoCritico": "3 meses (general negativo) | 1 año (positivo tributario)",
+    "trampaHabitual": "Creer que cualquier petición no contestada configura silencio administrativo positivo."
   },
   {
     "id": 42,
@@ -506,7 +671,11 @@ const TIPS_PJS_DATA = [
     "resumenCorto": "El Verbo Rector en el enunciado interrogativo final determina la naturaleza exacta de la acción requerida: formular, verificar, proyectar, acompañar o reportar.",
     "normaReferencia": "Metodología Oficial de Juicio Situacional CNSC y Decreto Ley 071 de 2020",
     "contenidoDetallado": "En las pruebas escritas de la CNSC y la DIAN, el <strong>Verbo Rector</strong> es el núcleo lingüístico y comportamental de cada pregunta:<br><br>\n    • <strong>Ubicación Clave:</strong> Se localiza invariablemente en la <strong>oración interrogativa final</strong> en negrilla (ej. <em>'¿Cuál es la acción que debe FORMULAR el Gestor...?'</em> o <em>'¿Qué labor técnica debe ACOMPAÑAR el Analista...?'</em>).<br>\n    • <strong>El Filtro del Triángulo Psicométrico:</strong><br>\n      1. <strong>Acción Requerida:</strong> ¿Te piden diseñar, verificar, proyectar o custodiar?<br>\n      2. <strong>Nivel Jerárquico:</strong> ¿El cargo evaluado es Profesional (análisis, formulación y sustanciación) o Técnico (apoyo operativo, verificación material y fe documental)?<br>\n      3. <strong>Límite Legal:</strong> ¿La opción respeta el principio de legalidad (Art. 121 C.P.) o extralimita las facultades del empleo?<br><br>\n    <strong>Regla de oro:</strong> Una opción puede describir una acción muy positiva o necesaria, pero si su verbo rector no satisface la exigencia funcional de la pregunta, es un distractor prefabricado para hacerte perder puntos.",
-    "formula": "Triángulo Psicométrico: V (Verbo de Pregunta) ➔ N (Nivel del Cargo) ➔ C (Límite Legal Taxativo)"
+    "formula": "Triángulo Psicométrico: V (Verbo de Pregunta) ➔ N (Nivel del Cargo) ➔ C (Límite Legal Taxativo)",
+    "ejeId": "comportamentales",
+    "ejeNombre": "Técnica de Juicio Situacional",
+    "plazoCritico": "Verbo Rector interrogativo",
+    "trampaHabitual": "Elegir una acción que describe otra etapa procesal diferente a la ordenada por el verbo."
   },
   {
     "id": 43,
@@ -518,7 +687,11 @@ const TIPS_PJS_DATA = [
     "resumenCorto": "El Gestor III (FT-TAH-1824) actúa con verbos de alta autonomía analítica y estratégica. Descarta verbos asistenciales mecánicos y de usurpación directiva.",
     "normaReferencia": "Decreto 815 de 2018 y Manual Específico de Funciones DIAN (Ficha FT-TAH-1824)",
     "contenidoDetallado": "Para el empleo de <strong>GESTOR III (OPEC 242703 - Nivel Profesional, Grado 03)</strong>, el evaluador califica tu capacidad de juicio analítico, modelamiento y formulación técnica:<br><br>\n    • <strong>Verbos Rectores del Manual:</strong> <em>Formular</em> (estrategias y planes), <em>Diseñar</em> (metodologías e indicadores), <em>Evaluar</em> (gestión y riesgos), <em>Diagnosticar</em> (variables macroeconómicas y tributarias), <em>Proyectar</em> (respuestas a recursos y actos administrativos), <em>Coordinar</em> e <em>Implementar</em> (sistemas MIPG).<br><br>\n    • <strong>Trampa 1: El Distractor Asistencial (Infra-valoración):</strong><br>\n      Opciones que ofrecen verbos mecánicos como <em>'foliar fotocopias'</em>, <em>'trasladar el oficio sin análisis'</em> o <em>'archivar pasivamente en espera'</em>. En el nivel profesional, estas conductas se sancionan con 0 puntos por carencia de juicio técnico.<br><br>\n    • <strong>Trampa 2: El Distractor de Usurpación Directiva (Extralimitación):</strong><br>\n      Opciones donde el Gestor <em>'expide por su cuenta la sanción definitiva'</em>, <em>'declara de plano la revocatoria'</em> o <em>'sanciona sin competencia'</em>. Recuerda: el Gestor III <strong>proyecta y sustancia</strong> la decisión técnica; la firma formal y la potestad sancionatoria corresponden al Director Seccional o General mediante delegación formal expresa.",
-    "formula": "Gestor III = Formular + Diseñar + Evaluar + Proyectar (Evitar distractores de archivo o sanción directa)"
+    "formula": "Gestor III = Formular + Diseñar + Evaluar + Proyectar (Evitar distractores de archivo o sanción directa)",
+    "ejeId": "comportamentales",
+    "ejeNombre": "Competencias Comportamentales Gestor III",
+    "plazoCritico": "Autonomía analítica Gestor III",
+    "trampaHabitual": "Optar por radicar pasivamente o proferir de plano sanciones de competencia directiva."
   },
   {
     "id": 44,
@@ -530,7 +703,11 @@ const TIPS_PJS_DATA = [
     "resumenCorto": "El Analista IV (AT-FL-2010) ejecuta soporte técnico en terreno y despacho: Acompañar, Clasificar, Intervenir, Elaborar actas, Custodiar y Reportar.",
     "normaReferencia": "Ficha Oficial AT-FL-2010 y Decreto Ley 071 de 2020",
     "contenidoDetallado": "Para el empleo de <strong>ANALISTA IV (OPEC 236760 - Nivel Técnico, Grado 04)</strong>, las 9 funciones esenciales de la Ficha AT-FL-2010 delimitan con precisión milimétrica su campo de acción:<br><br>\n    • <strong>Los 6 Verbos Rectores de Oro del Analista IV:</strong><br>\n      1. <strong>Acompañar:</strong> Las diligencias de práctica de pruebas decretadas formalmente dentro de investigaciones tributarias, aduaneras o cambiarias.<br>\n      2. <strong>Apoyar:</strong> La ejecución de acciones de fiscalización y verificación en campo y despacho.<br>\n      3. <strong>Clasificar:</strong> La información técnica preliminar, insumos y denuncias recibidas para facilitar la toma de decisiones.<br>\n      4. <strong>Intervenir:</strong> En las diligencias materiales de destrucción de mercancías averiadas, defectuosas o inservibles.<br>\n      5. <strong>Elaborar:</strong> Actos y documentos de carácter técnico, administrativo y operativo (actas de inspección, cuadros de cotejo, inventarios).<br>\n      6. <strong>Reportar:</strong> Operaciones sospechosas (ROS) y conductas indicativas de lavado de activos ante las instancias competentes.<br><br>\n    • <strong>Trampa Fatal: El Distractor de Usurpación Jurídica:</strong><br>\n      Cuidado con opciones que pretendan que el Analista IV <em>'declare de plano el decomiso definitivo'</em>, <em>'califique jurídicamente la culpabilidad'</em> o <em>'resuelva el recurso de reposición'</em>. Cualquier respuesta con verbos resolutivos de fondo es nula de pleno derecho e incorrecta en el examen.",
-    "formula": "Analista IV = Acompañar Pruebas + Clasificar Insumos + Intervenir Destrucción + Levantar Acta + ROS"
+    "formula": "Analista IV = Acompañar Pruebas + Clasificar Insumos + Intervenir Destrucción + Levantar Acta + ROS",
+    "ejeId": "comportamentales",
+    "ejeNombre": "Competencias Comportamentales Analista IV",
+    "plazoCritico": "Soporte y verificación técnica",
+    "trampaHabitual": "Opciones donde el Analista IV define de fondo o declara de plano el decomiso aduanero."
   },
   {
     "id": 45,
@@ -542,7 +719,11 @@ const TIPS_PJS_DATA = [
     "resumenCorto": "Diferencia procesal entre quien sustancia (analiza, recolecta y proyecta) y quien decide (adopta y firma con potestad delegada). Clave para evitar la nulidad.",
     "normaReferencia": "CPACA (Ley 1437 de 2011 Arts. 9 y 43) y Estatuto Tributario",
     "contenidoDetallado": "En la arquitectura jurídica de la DIAN existe una estricta división entre sustanciación y decisión:<br><br>\n    • <strong>Servidores que Sustancian (Gestores y Analistas):</strong><br>\n      - Verbos: <em>Examinar, cotejar, verificar, recopilar pruebas, clasificar antecedentes, elaborar proyectos de pliegos, resoluciones o informes técnicos.</em><br>\n      - Sus actuaciones constituyen <strong>actos preparatorios o de trámite</strong> que ilustran el juicio de la entidad pero no generan decisión definitiva frente al tercero por sí solos.<br><br>\n    • <strong>Autoridades que Deciden (Directores, Administradores, Jefes de División):</strong><br>\n      - Verbos: <em>Adoptar, resolver recursos, ordenar decomisos definitivos, fallar de fondo, sancionar.</em><br>\n      - Requieren investidura legal o acto expreso de delegación (Ley 489 de 1998 Art. 9).<br><br>\n    <strong>Impacto en el examen:</strong> Cuando el enunciado pregunte por el trámite de un acto definitivo, la conducta correcta del profesional es <strong>proyectar con motivación suficiente</strong> para someterlo a la firma de la jefatura competente, jamás arrogarse la decisión unilateral.",
-    "formula": "Separación de Roles: Sustanciador (Gestor/Analista) PROYECTA ➔ Autoridad Delegada (Director) ADOPTA Y FIRMA"
+    "formula": "Separación de Roles: Sustanciador (Gestor/Analista) PROYECTA ➔ Autoridad Delegada (Director) ADOPTA Y FIRMA",
+    "ejeId": "misionalidad",
+    "ejeNombre": "Misionalidad y Estructura DIAN",
+    "plazoCritico": "Estructura Decreto 1742/2020",
+    "trampaHabitual": "Atribuir funciones de inspección física en puerto a la División de Cobranzas."
   },
   {
     "id": 46,
@@ -554,7 +735,11 @@ const TIPS_PJS_DATA = [
     "resumenCorto": "Aplica en 10 segundos el filtro V-N-C: 1) ¿Qué Verbo manda la pregunta? 2) ¿A qué Nivel pertenece el cargo? 3) ¿Qué Competencia legal autoriza la norma?",
     "normaReferencia": "Estrategia de Resolución Acelerada para Pruebas Escritas CNSC",
     "contenidoDetallado": "Para resolver cualquier caso situacional en menos de 60 segundos sin caer en los distractores más elaborados de la Universidad evaluadora:<br><br>\n    • <strong>Paso 1 - V (Verbo):</strong> Identifica el verbo rector del enunciado (ej. <em>'formular'</em>, <em>'acompañar'</em>, <em>'clasificar'</em>). Descarta de entrada las opciones cuyos verbos contradigan la naturaleza de la solicitud.<br><br>\n    • <strong>Paso 2 - N (Nivel Jerárquico):</strong><br>\n      - Si eres <strong>Gestor III (Profesional)</strong>: Tus opciones ganadoras contienen verbos como <em>Formular, Diagnosticar, Estructurar, Evaluar, Proponer</em>.<br>\n      - Si eres <strong>Analista IV (Técnico)</strong>: Tus opciones ganadoras contienen verbos como <em>Acompañar, Clasificar, Verificar, Elaborar actas, Custodiar, Reportar</em>.<br><br>\n    • <strong>Paso 3 - C (Competencia Legal):</strong> Confirma que la acción no vulnere el debido proceso (Art. 29 C.P.) ni constituya omisión o extralimitación de funciones (Art. 6 C.P.).<br><br>\n    <strong>Resultado garantizado:</strong> Eliminas 2 de las 3 opciones en los primeros 25 segundos y aseguras el máximo puntaje en competencias funcionales.",
-    "formula": "Regla V-N-C: 1. Aislar Verbo (5s) ➔ 2. Filtrar por Nivel (10s) ➔ 3. Verificar Legalidad (10s)"
+    "formula": "Regla V-N-C: 1. Aislar Verbo (5s) ➔ 2. Filtrar por Nivel (10s) ➔ 3. Verificar Legalidad (10s)",
+    "ejeId": "tributario",
+    "ejeNombre": "Procedimiento Tributario y Fiscalización",
+    "plazoCritico": "Procedimiento y liquidación oficial",
+    "trampaHabitual": "Notificar la liquidación de revisión sin haber agotado previamente el Requerimiento Especial."
   },
   {
     "id": 47,
@@ -566,7 +751,11 @@ const TIPS_PJS_DATA = [
     "resumenCorto": "La DIAN es UAE del orden nacional adscrita a MinHacienda. Grandes Contribuyentes tiene competencia preferente y la Defensoría ejerce mediación preventiva sin coadministrar.",
     "normaReferencia": "Decreto 2117 de 1992, Decreto 1071 de 1999, Decreto 4048 de 2008 y Decreto 1742 de 2020",
     "contenidoDetallado": "En las preguntas sobre organización institucional de la DIAN, ten presente la jerarquía y delimitación de competencias:<br><br>\n    • <strong>Naturaleza Jurídica:</strong> Unidad Administrativa Especial (UAE) del orden nacional, con personería jurídica, autonomía y adscrita al Ministerio de Hacienda, nacida el 1º de junio de 1993 tras fusionar la Dirección de Impuestos Nacionales (DIN) y la Dirección de Aduanas Nacionales (DAN).<br>\n    • <strong>Grandes Contribuyentes:</strong> La Dirección Seccional de Grandes Contribuyentes tiene competencia preferente e improrrogable sobre los sujetos calificados como tales a nivel nacional. Si un gran contribuyente radica un trámite ante una seccional delegada, la única conducta válida es <strong>remitir inmediatamente por competencia funcional</strong>.<br>\n    • <strong>Defensoría del Contribuyente y Usuario Aduanero:</strong> Vela por las garantías y debido proceso ciudadano, formulando recomendaciones preventivas; no sustituye ni revoca decisiones de los directores seccionales.",
-    "formula": "Competencia DIAN: Nivel Central (Políticas) ➔ Grandes Contribuyentes (Preferente) ➔ Seccionales (Territorial)"
+    "formula": "Competencia DIAN: Nivel Central (Políticas) ➔ Grandes Contribuyentes (Preferente) ➔ Seccionales (Territorial)",
+    "ejeId": "aduanero",
+    "ejeNombre": "Régimen Aduanero y Comercio Exterior",
+    "plazoCritico": "Régimen probatorio aduanero",
+    "trampaHabitual": "Desestimar facturas o manifiestos de carga aportados en tiempo hábil sin motivación."
   },
   {
     "id": 48,
@@ -578,7 +767,11 @@ const TIPS_PJS_DATA = [
     "resumenCorto": "Periodo de prueba de 6 meses inmodificable, derecho preferencial de encargo (Art. 24) y Comisión de Personal paritaria con vigilancia del mérito.",
     "normaReferencia": "Decreto Ley 71 de 2020, Decreto Ley 927 de 2023 y Ley 909 de 2004",
     "contenidoDetallado": "El régimen de carrera de la DIAN es un <strong>Sistema Específico de origen constitucional</strong> vigilado y administrado por la Comisión Nacional del Servicio Civil (CNSC):<br><br>\n    • <strong>Periodo de Prueba:</strong> Tiene una duración estricta de <strong>seis (6) meses</strong>. Si la evaluación final es insatisfactoria, se declara la insubsistencia inmediata del nombramiento mediante acto motivado susceptible de recursos.<br>\n    • <strong>Derecho Preferencial de Encargo:</strong> Las vacantes temporales o definitivas deben proveerse prioritariamente mediante encargo a servidores con derechos de carrera del empleo inmediatamente inferior que cumplan perfil y tengan evaluación sobresaliente o satisfactoria.<br>\n    • <strong>Comisión de Personal:</strong> Órgano de composición <strong>paritaria</strong> (2 representantes de la administración y 2 de los empleados elegidos por votación) que vela por la equidad y garantías en reclamaciones de encargo y evaluación laboral.",
-    "formula": "Carrera DIAN: 6 Meses Periodo Prueba + Encargo Preferencial (Art. 24) + Comisión de Personal Paritaria"
+    "formula": "Carrera DIAN: 6 Meses Periodo Prueba + Encargo Preferencial (Art. 24) + Comisión de Personal Paritaria",
+    "ejeId": "cambiario",
+    "ejeNombre": "Régimen Cambiario y Lavado de Activos",
+    "plazoCritico": "Vigilancia de operaciones cambiarias",
+    "trampaHabitual": "Suponer que la DIAN investiga delitos penales directamente sin remitir a la Fiscalía."
   },
   {
     "id": 49,
@@ -590,7 +783,11 @@ const TIPS_PJS_DATA = [
     "resumenCorto": "La introducción desde el exterior no es importación (FMM del Operador). Al nacionalizar al TAN, solo tributa el componente de materias primas extranjeras incorporadas.",
     "normaReferencia": "Decreto 2147 de 2016 y Decreto Ley 0920 de 2023",
     "contenidoDetallado": "Las Zonas Francas cuentan con un régimen aduanero y tributario privilegiado amparado en el <strong>principio de extraterritorialidad aduanera</strong>:<br><br>\n    • <strong>Ingreso desde el Exterior:</strong> La llegada de mercancías o maquinaria desde otros países a la Zona Franca <strong>no constituye importación ni causa tributos aduaneros</strong>. El ingreso se ampara exclusivamente en el documento de transporte consignado a la zona y el Formulario de Movimiento de Mercancías (FMM) autorizado por el Usuario Operador.<br>\n    • <strong>Salida hacia el Territorio Aduanero Nacional (TAN):</strong> Cuando un bien procesado sale de la Zona Franca hacia el resto de Colombia, <strong>solo se liquidan gravámenes arancelarios sobre el valor en aduana de las materias primas e insumos extranjeros incorporados</strong>, acreditados mediante el Certificado de Integración. El valor agregado nacional queda exento de arancel.",
-    "formula": "Zona Franca: Ingreso Exterior = FMM sin tributos | Salida al TAN = Tributo solo sobre Materia Prima Extranjera"
+    "formula": "Zona Franca: Ingreso Exterior = FMM sin tributos | Salida al TAN = Tributo solo sobre Materia Prima Extranjera",
+    "ejeId": "control_interno",
+    "ejeNombre": "Control Interno y 3 Líneas de Defensa",
+    "plazoCritico": "Evaluación objetiva e independiente",
+    "trampaHabitual": "Designar al auditor interno como secretario o evaluador calificador de licitaciones públicas."
   },
   {
     "id": 50,
@@ -602,7 +799,11 @@ const TIPS_PJS_DATA = [
     "resumenCorto": "Plazos fatales de respuesta: 10 días (información/copias), 15 días (reclamos/interés general) y 30 días (consultas doctrinales). Denuncias fiscales con estricta reserva.",
     "normaReferencia": "Procedimiento DIAN PR-CAC-0043, Ley 1755 de 2015 y Art. 583 E.T.",
     "contenidoDetallado": "El Procedimiento de Cercanía al Ciudadano de la DIAN estandariza la atención oportuna y la protección del derecho de petición:<br><br>\n    • <strong>Términos Perentorios de Respuesta (Días Hábiles):</strong><br>\n      1. <strong>10 días hábiles:</strong> Peticiones de información, documentos y expedición de copias (si no se responde en este plazo, se entiende aceptada la solicitud y deben entregarse copias en 3 días).<br>\n      2. <strong>15 días hábiles:</strong> Peticiones de interés general o particular, quejas, reclamos y sugerencias.<br>\n      3. <strong>30 días hábiles:</strong> Consultas jurídicas sobre la interpretación doctrinal de normas tributarias, aduaneras o cambiarias.<br>\n    • <strong>Trámite de Denuncias:</strong> Toda denuncia ciudadana por evasión o contrabando se clasifica bajo <strong>reserva absoluta de identidad del denunciante</strong> y se remite de inmediato a la Dirección de Gestión de Fiscalización para el programa de control de riesgos.",
-    "formula": "Términos PQRSF: 10d (Copias) ➔ 15d (Quejas/Peticiones) ➔ 30d (Consultas) | Denuncias = Reserva Estricta"
+    "formula": "Términos PQRSF: 10d (Copias) ➔ 15d (Quejas/Peticiones) ➔ 30d (Consultas) | Denuncias = Reserva Estricta",
+    "ejeId": "contratacion",
+    "ejeNombre": "Contratación Estatal y Convenios",
+    "plazoCritico": "Estatuto de Contratación Ley 80",
+    "trampaHabitual": "Adelantar contratos de cuantía superior por contratación directa sin causal legal."
   },
   {
     "id": 51,
@@ -614,7 +815,11 @@ const TIPS_PJS_DATA = [
     "resumenCorto": "La Prima de Productividad no es factor salarial incondicionado: exige cumplimiento de metas institucionales de recaudo y calificación de desempeño satisfactoria.",
     "normaReferencia": "Decreto Ley 1268 de 1999 (Régimen Salarial DIAN)",
     "contenidoDetallado": "El Decreto Ley 1268 de 1999 consagra el régimen salarial y prestacional especial para los servidores públicos de la contribución en la DIAN:<br><br>\n    • <strong>Naturaleza Jurídica:</strong> La Prima de Productividad es una prestación especial que <strong>no constituye factor salarial</strong> para liquidar cesantías, primas de servicios o pensiones.<br>\n    • <strong>Condiciones Obligatorias de Pago:</strong> No se trata de un derecho automático. Su reconocimiento y desembolso periódico está condicionado inexorablemente a dos requisitos copulativos:<br>\n      1. Cumplimiento efectivo de las metas globales de gestión, recaudo y fiscalización fijadas para la entidad.<br>\n      2. Obtención de una calificación de servicios satisfactoria o sobresaliente en la evaluación del desempeño individual.<br><br>\n    <strong>Trampa en la prueba:</strong> Opciones que afirmen que la prima se debe pagar a un funcionario con evaluación insatisfactoria o que constituye factor salarial prestacional.",
-    "formula": "Prima de Productividad = No Factor Salarial + Metas Globales DIAN Cumplidas + Calificación Satisfactoria"
+    "formula": "Prima de Productividad = No Factor Salarial + Metas Globales DIAN Cumplidas + Calificación Satisfactoria",
+    "ejeId": "servicio",
+    "ejeNombre": "Derecho de Petición y Atención al Ciudadano",
+    "plazoCritico": "Términos Ley 1755 de 2015",
+    "trampaHabitual": "Rechazar de plano una petición por estar en formato físico o no citar la ley exacta."
   },
   {
     "id": 52,
@@ -626,7 +831,11 @@ const TIPS_PJS_DATA = [
     "resumenCorto": "Toda función y opción correcta se compone de: Verbo Rector (en infinitivo) + Objeto (materia sobre la que recae) + Condición de Calidad/Resultado (marco normativo).",
     "normaReferencia": "Constitución Política Art. 122, Decreto 1083 de 2015 y Guía Técnica DAFP/DASCD",
     "contenidoDetallado": "En las pruebas de juicio situacional de la CNSC y DIAN, las respuestas correctas no son frases improvisadas: respetan la estructura gramatical oficial de la función pública:<br><br>\n    • <strong>1. Verbo Rector:</strong> Delimita el grado de autonomía y el nivel jerárquico (p. ej. <em>Analizar, Verificar, Proyectar, Radicar</em>).<br>\n    • <strong>2. Objeto:</strong> El asunto, proceso o documento sobre el que recae la acción (p. ej. <em>...los estados financieros y declaraciones tributarias...</em>).<br>\n    • <strong>3. Condición de Calidad / Norma:</strong> El criterio técnico o legal que garantiza su validez (p. ej. <em>...conforme a los términos del Estatuto Tributario y el procedimiento de fiscalización</em>).<br><br>\n    <strong>Regla de oro:</strong> Si una opción carece de la condición normativa o propone una acción sin marco legal expreso, es un distractor.",
-    "formula": "Función Pública = Verbo Rector (Infinitivo) + Objeto + Condición de Calidad / Legalidad"
+    "formula": "Función Pública = Verbo Rector (Infinitivo) + Objeto + Condición de Calidad / Legalidad",
+    "ejeId": "comportamentales",
+    "ejeNombre": "Verbos Rectores y PJS",
+    "plazoCritico": "Verbo + Objeto + Condición",
+    "trampaHabitual": "Opción con verbo adecuado pero que omite la condición de calidad o el marco normativo."
   },
   {
     "id": 53,
@@ -638,7 +847,11 @@ const TIPS_PJS_DATA = [
     "resumenCorto": "Para Analista IV (Técnico), descarta opciones con 'Diseñar', 'Formular políticas', 'Aprobar de plano' o 'Ordenar gasto'. Su nivel es de ejecución, verificación y soporte.",
     "normaReferencia": "Decreto Ley 71 de 2020 y Decreto 1083 de 2015 (Nivel Técnico)",
     "contenidoDetallado": "En la evaluación para <strong>Analista IV (OPEC 236760 - Nivel Técnico)</strong>, el evaluador evalúa si el aspirante conoce los límites de su competencia o si tiende a extralimitarse:<br><br>\n    • <strong>Verbos autorizados y propios:</strong> <em>Apoyar, Comprobar, Verificar, Ejecutar, Operar, Rendir informes técnicos, Consolidar, Parametrizar, Registrar y Notificar</em>.<br>\n    • <strong>Distractor Clásico (Extralimitación de Funciones):</strong> Opciones donde el aspirante pretenda 'diseñar un nuevo modelo de fiscalización', 'aprobar la exención tributaria', 'formular la política de control' o 'dictar resoluciones sancionatorias'. Esas facultades están reservadas para los Niveles Profesional y Directivo.<br><br>\n    <strong>Regla de oro:</strong> Si eres Técnico, tu rol es comprobar la inconsistencia, asegurar la evidencia y <strong>rendir informe técnico a tu superior jerárquico</strong>.",
-    "formula": "Técnico (Analista IV) = Apoyar + Verificar + Rendir Informes | Descartar 'Diseñar' o 'Aprobar'"
+    "formula": "Técnico (Analista IV) = Apoyar + Verificar + Rendir Informes | Descartar 'Diseñar' o 'Aprobar'",
+    "ejeId": "comportamentales",
+    "ejeNombre": "Verbos Rectores y PJS",
+    "plazoCritico": "Competencia Nivel Técnico",
+    "trampaHabitual": "Opciones que ponen al Analista IV a diseñar políticas o dictar resoluciones de cobro."
   },
   {
     "id": 54,
@@ -650,7 +863,11 @@ const TIPS_PJS_DATA = [
     "resumenCorto": "Para Gestor III (Profesional), descarta opciones que se limiten a 'archivar el expediente', 'esperar instrucciones pasivamente' o 'radicar mecánicamente'. El profesional analiza, decide y proyecta.",
     "normaReferencia": "Decreto Ley 71 de 2020 y Manual de Funciones FT-TAH-1824 DIAN (Gestor III)",
     "contenidoDetallado": "Para el cargo de <strong>Gestor III (OPEC 242703 - Nivel Profesional)</strong>, los evaluadores de la CNSC castigan severamente las respuestas pasivas:<br><br>\n    • <strong>Verbos autorizados y propios:</strong> <em>Analizar, Evaluar, Proyectar actos administrativos, Investigar, Conceptuar, Coordinar, Proponer soluciones de fondo y Fiscalizar</em>.<br>\n    • <strong>Distractor Clásico (Pasividad / Omisión):</strong> Opciones que responden 'archivar la carpeta hasta nuevo aviso', 'esperar a que el contribuyente subsane voluntariamente' o 'trasladar el caso al despacho del jefe sin concepto técnico previo'. En el marco psicométrico de la CNSC, esto califica en el nivel de desempeño más bajo.<br><br>\n    <strong>Regla de oro:</strong> Como Gestor III, se espera autonomía técnica y capacidad resolutiva: analiza las pruebas y <strong>proyecta el acto administrativo o decisión legal correspondiente</strong>.",
-    "formula": "Profesional (Gestor III) = Analizar + Evaluar + Proyectar Actos | Descartar Pasividad u Omisión"
+    "formula": "Profesional (Gestor III) = Analizar + Evaluar + Proyectar Actos | Descartar Pasividad u Omisión",
+    "ejeId": "comportamentales",
+    "ejeNombre": "Verbos Rectores y PJS",
+    "plazoCritico": "Competencia Nivel Profesional",
+    "trampaHabitual": "Opciones pasivas donde el Gestor III se limita a esperar que otros decidan."
   },
   {
     "id": 55,
@@ -662,7 +879,331 @@ const TIPS_PJS_DATA = [
     "resumenCorto": "El Directivo 'Aprueba, Ordena y Asigna'; el Asesor 'Recomienda y Asesora' (sin poder resolutivo); el Profesional 'Sustancia, Analiza y Proyecta'.",
     "normaReferencia": "Matriz Oficial de Verbos Rectores DAFP / DASCD / CNSC (97 Verbos)",
     "contenidoDetallado": "La delimitación entre los niveles superiores en la administración tributaria y aduanera es tajante:<br><br>\n    • <strong>Nivel Directivo (Director / Subdirector):</strong> Tiene la facultad legal resolutiva y de mando. Verbos exclusivos: <em>Aprobar, Ordenar (mandamientos de pago, decomisos), Asignar recursos, Fijar calendarios y Liderar</em>.<br>\n    • <strong>Nivel Asesor:</strong> Da consejo técnico estratégico de alto nivel pero <strong>no tiene mando ni firma resolutiva</strong>. Verbos propios: <em>Asesorar, Recomendar, Aportar elementos de juicio y Absolver consultas</em>. Si una opción pone al asesor a ordenar cobros o revocar de plano, es un distractor.<br>\n    • <strong>Nivel Profesional:</strong> Realiza el estudio de fondo y sustanciación. Verbos propios: <em>Estudiar, Practicar pruebas, Evaluar y Proyectar</em> para la firma del directivo competente.",
-    "formula": "Directivo = Aprueba y Ordena | Asesor = Recomienda | Profesional = Analiza y Proyecta"
+    "formula": "Directivo = Aprueba y Ordena | Asesor = Recomienda | Profesional = Analiza y Proyecta",
+    "ejeId": "comportamentales",
+    "ejeNombre": "Verbos Rectores y PJS",
+    "plazoCritico": "Delimitación de niveles DAFP",
+    "trampaHabitual": "Asesor ordenando o Directivo redactando sin delegación formal."
+  },
+  {
+    "id": 56,
+    "numero": "56",
+    "ejeId": "tributario",
+    "ejeNombre": "Procedimiento Tributario y Fiscalización",
+    "titulo": "Requerimiento Especial: Término de Respuesta y Plazo de Liquidación",
+    "categoria": "Procedimiento Tributario",
+    "icono": "📊",
+    "color": "#f59e0b",
+    "normaReferencia": "Estatuto Tributario Arts. 703, 707 y 710",
+    "plazoCritico": "3 meses para responder el contribuyente | 6 meses para proferir Liquidación Oficial de Revisión",
+    "trampaHabitual": "Marcar que contra el Requerimiento Especial procede 'Recurso de Reposición' (es acto de trámite no recurrible) o ampliar el plazo de respuesta a 6 meses.",
+    "resumenCorto": "El Requerimiento Especial propone formalmente la modificación de la declaración. El contribuyente tiene 3 meses para dar respuesta con descargos o corrección provocada.",
+    "contenidoDetallado": "El Requerimiento Especial es el acto de trámite formal mediante el cual la DIAN propone las modificaciones a la declaración tributaria:<br><br>\n    • <strong>Término para responder (Art. 707 E.T.):</strong> El contribuyente dispone de <strong>3 meses</strong> contados a partir de la notificación para formular descargos, objetar glosas y pedir pruebas.<br>\n    • <strong>Plazo para Liquidación de Revisión (Art. 710 E.T.):</strong> La DIAN tiene <strong>6 meses</strong> para proferir y notificar la Liquidación Oficial de Revisión, contados a partir del vencimiento del término para contestar.<br>\n    • <strong>Si se suspendió la actuación:</strong> Con la práctica de inspección tributaria o aduanera (Art. 706 E.T.), el término para requerir se suspende por hasta 3 meses.",
+    "formula": "Requerimiento Especial = Acto de Trámite (3 Meses Descargos) ➔ Si no desvirtúa: Liquidación Oficial (6 Meses)"
+  },
+  {
+    "id": 57,
+    "numero": "57",
+    "ejeId": "tributario",
+    "ejeNombre": "Procedimiento Tributario y Fiscalización",
+    "titulo": "Notificación Electrónica: La Regla de Oro de los 5 Días Hábiles",
+    "categoria": "Procedimiento Tributario",
+    "icono": "📧",
+    "color": "#38bdf8",
+    "normaReferencia": "Estatuto Tributario Art. 566-1",
+    "plazoCritico": "Se entiende surtida transcurridos 5 días hábiles a partir de la entrega del correo en la bandeja",
+    "trampaHabitual": "Comenzar a contar los términos procesales el mismo día en que se despacha el correo electrónico de notificación.",
+    "resumenCorto": "La notificación electrónica se entiende legalmente surtida transcurridos 5 días hábiles siguientes a la entrega en el buzón. Los plazos para responder corren al día siguiente.",
+    "contenidoDetallado": "En la DIAN la notificación electrónica es el mecanismo principal de comunicación de actos oficiales:<br><br>\n    • <strong>La Regla de los 5 Días:</strong> El acto se entrega en el correo informado en el RUT. La notificación <strong>se entiende formalmente surtida transcurridos cinco (5) días hábiles</strong> siguientes a la fecha de entrega certificada del mensaje.<br>\n    • <strong>Cómputo de términos:</strong> Los términos para contestar requerimientos o interponer recursos empiezan a correr <em>al día hábil siguiente a aquel en que se surtió la notificación</em> (es decir, tras el agotamiento de los 5 días de gracia).<br>\n    • <strong>Falla técnica:</strong> Si el sistema de la DIAN presenta indisponibilidad técnica, los términos se suspenden hasta el restablecimiento formal.",
+    "formula": "Notificación Electrónica = Entrega en Buzón + 5 Días Hábiles de Espera ➔ Empieza el Cómputo de Términos"
+  },
+  {
+    "id": 58,
+    "numero": "58",
+    "ejeId": "tributario",
+    "ejeNombre": "Procedimiento Tributario y Fiscalización",
+    "titulo": "Presunción de Veracidad de las Declaraciones y Carga de la Prueba",
+    "categoria": "Procedimiento Tributario",
+    "icono": "⚖️",
+    "color": "#10b981",
+    "normaReferencia": "Estatuto Tributario Art. 746",
+    "plazoCritico": "La carga de la prueba para desvirtuar la declaración privada recae enteramente en la DIAN",
+    "trampaHabitual": "Opciones donde la DIAN desconoce deducciones sin aportar informe contable ni prueba idónea, exigiendo que el contribuyente 'vuelva a probar' lo ya declarado.",
+    "resumenCorto": "Se presumen ciertos los datos consignados en las declaraciones tributarias mientras la DIAN no demuestre formalmente su inexactitud mediante pruebas directas.",
+    "contenidoDetallado": "El artículo 746 del Estatuto Tributario consagra el pilar fundamental del derecho tributario probatorio:<br><br>\n    • <strong>Presunción legal de veracidad:</strong> Se consideran ciertos los hechos consignados en las declaraciones privadas, en las respuestas a requerimientos y en las solicitudes de devolución.<br>\n    • <strong>Deber probatorio de la Administración:</strong> Si la DIAN pretende glosar costos, deducciones o pasivos, debe aportar <em>pruebas directas, conducentes y pertinentes</em> (inspección contable, cruce de facturación, verificación con terceros).<br>\n    • <strong>La trampa en el examen:</strong> Opciones que afirmen que la DIAN puede liquidar de aforo o desconocer un costo 'por simple duda' sin desplegar la investigación previa.",
+    "formula": "Declaración Tributaria = Se Presume Veraz (La DIAN tiene la carga obligatoria de desvirtuarla)"
+  },
+  {
+    "id": 59,
+    "numero": "59",
+    "ejeId": "cpaca",
+    "ejeNombre": "Derecho Administrativo y CPACA",
+    "titulo": "Caducidad de Medios de Control: Nulidad y Restablecimiento vs. Simple Nulidad",
+    "categoria": "Derecho Administrativo",
+    "icono": "📜",
+    "color": "#a855f7",
+    "normaReferencia": "CPACA (Ley 1437 de 2011) Art. 164",
+    "plazoCritico": "4 meses para Nulidad y Restablecimiento | En cualquier tiempo para Simple Nulidad | 2 años para Reparación Directa",
+    "trampaHabitual": "Afirmar que una demanda contra una liquidación oficial tributaria particular puede interponerse al año o confundirla con la nulidad simple que no caduca.",
+    "resumenCorto": "El medio de control de Nulidad y Restablecimiento del Derecho caduca a los 4 meses siguientes a la notificación o publicación del acto demandado.",
+    "contenidoDetallado": "El artículo 164 del CPACA estipula los plazos fatales para demandar ante la Jurisdicción Contencioso Administrativa:<br><br>\n    • <strong>Nulidad y Restablecimiento del Derecho (Art. 138):</strong> Procede contra actos de contenido particular (ej. Liquidación Oficial de Revisión o Resolución Sanción). El término de caducidad es de <strong>cuatro (4) meses</strong> contados a partir del día siguiente a la notificación del acto que agotó la vía administrativa.<br>\n    • <strong>Simple Nulidad (Art. 137):</strong> Procede en defensa de la legalidad contra actos generales (resoluciones reglamentarias de la DIAN). <em>Puede ejercitarse en cualquier tiempo</em> (no caduca jamás).<br>\n    • <strong>Reparación Directa (Art. 140):</strong> Caduca en <strong>dos (2) años</strong> desde el acaecimiento del hecho dañoso.",
+    "formula": "Nulidad y Restablecimiento = 4 Meses | Simple Nulidad = Cualquier Tiempo | Reparación = 2 Años"
+  },
+  {
+    "id": 60,
+    "numero": "60",
+    "ejeId": "cpaca",
+    "ejeNombre": "Derecho Administrativo y CPACA",
+    "titulo": "Revocatoria Directa: Límites ante Actos de Contenido Particular",
+    "categoria": "Derecho Administrativo",
+    "icono": "🚫",
+    "color": "#f43f5e",
+    "normaReferencia": "CPACA Arts. 93 y 97",
+    "plazoCritico": "Requiere consentimiento previo, expreso y escrito del titular (salvo manifiesta ilicitud o fraude)",
+    "trampaHabitual": "La administración revocando de oficio y de forma unilateral un acto que reconoció un saldo a favor al contribuyente sin su autorización previa.",
+    "resumenCorto": "Los actos de carácter particular y concreto que crean derechos no pueden ser revocados sin el consentimiento previo, expreso y escrito del administrado.",
+    "contenidoDetallado": "La revocatoria directa es la facultad de la administración para retirar sus propios actos:<br><br>\n    • <strong>Causales generales (Art. 93 CPACA):</strong> Oposición manifiesta a la Constitución o la ley, inconformidad con el interés público o agravio injustificado a una persona.<br>\n    • <strong>Límite infranqueable (Art. 97 CPACA):</strong> Si el acto reconoció un derecho de carácter particular y concreto (ej. concedió una exención o devolución), la DIAN <strong>no puede revocarlo unilateralmente</strong> sin el consentimiento escrito del particular.<br>\n    • <strong>Ruta en caso de negativa:</strong> Si el titular no consiente la revocatoria y la DIAN considera que el acto es ilegal, la entidad debe demandar su propio acto ante la jurisdicción contenciosa mediante la <em>Acción de Lesividad</em>.",
+    "formula": "Acto Particular con Derechos = Consentimiento Escrito Obligatorio (Si no consiente ➔ Acción de Lesividad)"
+  },
+  {
+    "id": 61,
+    "numero": "61",
+    "ejeId": "cobranzas",
+    "ejeNombre": "Cobro Coactivo y Títulos Ejecutivos",
+    "titulo": "Mandamiento de Pago: Término Perentorio para Proponer Excepciones",
+    "categoria": "Cobro Coactivo",
+    "icono": "⚖️",
+    "color": "#eab308",
+    "normaReferencia": "Estatuto Tributario Arts. 826, 830 y 831",
+    "plazoCritico": "15 días hábiles siguientes a la notificación para pagar o proponer excepciones taxativas",
+    "trampaHabitual": "Plantear que contra el Mandamiento de Pago procede 'Recurso de Reposición' o 'Apelación'. Solo proceden las excepciones taxativas de ley.",
+    "resumenCorto": "El Mandamiento de Pago es el acto que inicia el cobro coercitivo. El deudor tiene 15 días hábiles para pagar o proponer exclusivamente las excepciones del Art. 831 E.T.",
+    "contenidoDetallado": "En el procedimiento de cobro coactivo de la DIAN:<br><br>\n    • <strong>Naturaleza del Mandamiento de Pago:</strong> Es una orden formal de pago de deudas fiscales líquidas y exigibles. Se notifica personalmente o por correo electrónico registrado.<br>\n    • <strong>Término de defensa (Art. 830 E.T.):</strong> El ejecutado dispone de <strong>quince (15) días hábiles</strong> siguientes a la notificación para cancelar la deuda o proponer excepciones.<br>\n    • <strong>Excepciones taxativas (Art. 831 E.T.):</strong> Pago efectivo, existencia de acuerdo de pago, falta de título ejecutivo, incompetencia del funcionario, prescripción de la acción de cobro o falta de ejecutoria del título.<br>\n    • <strong>No proceden recursos ordinarios:</strong> Contra el mandamiento no cabe reposición ni apelación.",
+    "formula": "Mandamiento de Pago ➔ 15 Días Hábiles (Solo Excepciones Taxativas del Art. 831, No Recursos)"
+  },
+  {
+    "id": 62,
+    "numero": "62",
+    "ejeId": "cobranzas",
+    "ejeNombre": "Cobro Coactivo y Títulos Ejecutivos",
+    "titulo": "Prescripción de la Acción de Cobro Tributario: 5 Años Fatales",
+    "categoria": "Cobro Coactivo",
+    "icono": "⏳",
+    "color": "#f59e0b",
+    "normaReferencia": "Estatuto Tributario Arts. 817 y 818",
+    "plazoCritico": "5 años contados desde la ejecutoria del acto administrativo o fecha de presentación de la declaración",
+    "trampaHabitual": "Confundir la firmeza de la fiscalización (3 años) con la prescripción de la acción de cobro coactivo (5 años) o asumir que no prescribe.",
+    "resumenCorto": "La acción de cobro prescribe en 5 años contados a partir de la ejecutoria del acto o de la presentación de la declaración privada. Se interrumpe con el mandamiento de pago.",
+    "contenidoDetallado": "La prescripción de cobro extingue la facultad coercitiva del Estado sobre deudas tributarias:<br><br>\n    • <strong>Término general (Art. 817 E.T.):</strong> La acción de cobro prescribe en el término de <strong>cinco (5) años</strong> contados a partir de la fecha en que quedó en firme la liquidación oficial o desde la presentación de la declaración privada.<br>\n    • <strong>Interrupción de la prescripción:</strong> El término de 5 años se interrumpe formalmente con la <em>notificación en debida forma del Mandamiento de Pago</em> o con la concesión formal de un Acuerdo de Pago.<br>\n    • <strong>Efecto de la interrupción:</strong> Interrumpida la prescripción, el término de 5 años comienza a contarse de nuevo desde el día siguiente a la notificación del mandamiento.",
+    "formula": "Prescripción Cobro = 5 Años desde Ejecutoria | Se Interrumpe con Notificación del Mandamiento de Pago"
+  },
+  {
+    "id": 63,
+    "numero": "63",
+    "ejeId": "cobranzas",
+    "ejeNombre": "Cobro Coactivo y Títulos Ejecutivos",
+    "titulo": "Títulos Ejecutivos en la DIAN: Requisitos de Exigibilidad y Firmeza",
+    "categoria": "Cobro Coactivo",
+    "icono": "📑",
+    "color": "#38bdf8",
+    "normaReferencia": "Estatuto Tributario Art. 828 y CPACA Art. 99",
+    "plazoCritico": "El título debe contener una obligación clara, expresa y actualmente exigible (en firme)",
+    "trampaHabitual": "Librar mandamiento de pago apoyándose en una Liquidación Oficial que aún tiene pendiente por resolver un Recurso de Reconsideración.",
+    "resumenCorto": "Prestan mérito ejecutivo las liquidaciones privadas, las oficiales ejecutoriadas, las garantías y sentencias. Si hay recursos pendientes, no es exigible.",
+    "contenidoDetallado": "Para que el funcionario ejecutor de la DIAN pueda dictar mandamiento de pago se requiere título ejecutivo válido (Art. 828 E.T.):<br><br>\n    • <strong>Títulos ejecutivos válidos:</strong> 1) Declaraciones tributarias privadas presentadas por los contribuyentes; 2) Liquidaciones oficiales y resoluciones sancionatorias <em>debidamente ejecutoriadas</em>; 3) Garantías y pólizas afianzadoras; 4) Sentencias judiciales condenatorias en firme.<br>\n    • <strong>Falta de exigibilidad:</strong> Si el contribuyente interpuso en tiempo el Recurso de Reconsideración, el acto oficial no se encuentra ejecutoriado ni en firme. Iniciar cobro coactivo en ese estado acarrea nulidad procesal.",
+    "formula": "Título Ejecutivo = Claro + Expreso + Exigible en Firme (Recurso Pendiente = Nulidad del Cobro)"
+  },
+  {
+    "id": 64,
+    "numero": "64",
+    "ejeId": "control_interno",
+    "ejeNombre": "Control Interno y 3 Líneas de Defensa",
+    "titulo": "Prohibición Absoluta de Coadministración de la Oficina de Control Interno",
+    "categoria": "Control Interno",
+    "icono": "🛡️",
+    "color": "#10b981",
+    "normaReferencia": "Ley 87 de 1993 Arts. 6 y 12, Decreto 648 de 2017 y Normas NIA",
+    "plazoCritico": "Evaluación independiente ex-post | Prohibición taxativa de autorizar previamente actos de gestión",
+    "trampaHabitual": "Opciones donde Control Interno 'revisa y autoriza las liquidaciones oficiales', 'firma mandamientos de pago' o 'vota adjudicaciones de licitaciones'.",
+    "resumenCorto": "Control Interno es una instancia asesora y evaluadora ex-post. La ley prohíbe de manera tajante que coadministre, apruebe o ejecute operaciones misionales.",
+    "contenidoDetallado": "El rol de la Oficina de Control Interno (3ª Línea de Defensa) está rigurosamente delimitado por la ley:<br><br>\n    • <strong>Misión institucional:</strong> Evaluar de manera independiente la eficacia y efectividad del Sistema de Control Interno de la entidad, fomentar la cultura del autocontrol y formular recomendaciones de mejora.<br>\n    • <strong>Prohibición legal expresa (Ley 87 Art. 12):</strong> En ningún caso el Jefe de Control Interno ni los auditores podrán realizar tareas de carácter operativo, administrativo o de gestión directa.<br>\n    • <strong>Consecuencia de coadministrar:</strong> Pierde la independencia objetiva y configura causal de mala conducta disciplinaria.",
+    "formula": "Control Interno = Asesoría y Evaluación Ex-Post (Jamás coadministra ni autoriza actos previos)"
+  },
+  {
+    "id": 65,
+    "numero": "65",
+    "ejeId": "control_interno",
+    "ejeNombre": "Control Interno y 3 Líneas de Defensa",
+    "titulo": "Las Tres Líneas de Defensa en el Modelo MECI articulado a MIPG",
+    "categoria": "Control Interno",
+    "icono": "🏢",
+    "color": "#38bdf8",
+    "normaReferencia": "Decreto 1499 de 2017 y Marco Internacional de Práctica Profesional (IIA)",
+    "plazoCritico": "1ª Línea (Operativa) | 2ª Línea (Supervisión y Riesgos) | 3ª Línea (Auditoría Independiente)",
+    "trampaHabitual": "Atribuir la responsabilidad cotidiana de identificar y mitigar los riesgos del proceso a los auditores de Control Interno en lugar de a los líderes operativos.",
+    "resumenCorto": "La 1ª Línea ejecuta y es dueña del riesgo; la 2ª Línea monitorea y define metodologías; la 3ª Línea evalúa objetivamente y rinde informes a la Dirección.",
+    "contenidoDetallado": "El Modelo de las Tres Líneas de Defensa organiza el control en toda entidad pública:<br><br>\n    • <strong>1ª Línea de Defensa (Líderes de Proceso y Servidores):</strong> Ejecutan los procedimientos misionales a diario. Son los <em>dueños absolutos de los riesgos y controles</em> cotidianos.<br>\n    • <strong>2ª Línea de Defensa (Planeación, Riesgos, Calidad y Cumplimiento):</strong> Establece las políticas, matrices de riesgos, marcos normativos y monitorea la gestión operativa.<br>\n    • <strong>3ª Línea de Defensa (Oficina de Control Interno / Auditoría Interna):</strong> Brinda aseguramiento independiente y objetivo al Director General sobre el cumplimiento institucional.",
+    "formula": "1ª Línea (Dueña del Riesgo) ➔ 2ª Línea (Monitoreo y Calidad) ➔ 3ª Línea (Auditoría Independiente Ex-Post)"
+  },
+  {
+    "id": 66,
+    "numero": "66",
+    "ejeId": "contratacion",
+    "ejeNombre": "Contratación Estatal y Convenios",
+    "titulo": "Principio de Planeación en la Contratación Pública (Ley 80 / 1150)",
+    "categoria": "Contratación Estatal",
+    "icono": "📄",
+    "color": "#f59e0b",
+    "normaReferencia": "Ley 80 de 1993 Art. 25, Ley 1150 de 2007 y Decreto 1082 de 2015",
+    "plazoCritico": "Estudios previos, análisis del sector y presupuesto oficial consolidados antes de abrir el proceso",
+    "trampaHabitual": "Publicar pliegos de condiciones o abrir convocatorias con estudios previos incompletos, pretendiendo 'ajustar el objeto sobre la marcha'.",
+    "resumenCorto": "La contratación pública no permite la improvisación. Todo proceso exige estudios previos completos, análisis del sector, matriz de riesgos y CDP vigente.",
+    "contenidoDetallado": "El Principio de Planeación es rector e inderogable en la contratación del Estado:<br><br>\n    • <strong>Requisitos previos indispensables:</strong> Antes de expedir el acto de apertura deben estar concluidos: 1) Estudio de necesidad y conveniencia; 2) Estudio de mercado y análisis del sector; 3) Certificado de Disponibilidad Presupuestal (CDP); 4) Matriz de tipificación y asignación de riesgos previsibles.<br>\n    • <strong>Vicios graves:</strong> Contratar sin estudios previos causa la nulidad absoluta del contrato estatal y compromete la responsabilidad fiscal y disciplinaria del ordenador del gasto.",
+    "formula": "Contratación = Planeación Previa Obligatoria (CDP + Estudios Previos + Matriz Riesgos ➔ Apertura)"
+  },
+  {
+    "id": 67,
+    "numero": "67",
+    "ejeId": "contratacion",
+    "ejeNombre": "Contratación Estatal y Convenios",
+    "titulo": "Modalidades de Selección en Contratación Estatal: Criterios Taxativos",
+    "categoria": "Contratación Estatal",
+    "icono": "🏛️",
+    "color": "#a855f7",
+    "normaReferencia": "Ley 1150 de 2007 Art. 2",
+    "plazoCritico": "Licitación Pública (Regla general) | Selección Abreviada | Concurso de Méritos | Contratación Directa | Mínima Cuantía",
+    "trampaHabitual": "Acudir a la Contratación Directa para adquirir bienes y servicios de características técnicas uniformes o contratar consultorías omitiendo el Concurso de Méritos.",
+    "resumenCorto": "La Licitación es la regla general. Para consultoría técnica aplica el Concurso de Méritos; para bienes estandarizados aplica Selección Abreviada (Subasta).",
+    "contenidoDetallado": "La Ley 1150 de 2007 define las 5 modalidades de escogencia del contratista:<br><br>\n    • <strong>Licitación Pública:</strong> Regla general para adquisiciones de mayor cuantía.<br>\n    • <strong>Selección Abreviada:</strong> Para bienes y servicios de características técnicas uniformes (Subasta inversa o Acuerdos Marco de Precios) y menor cuantía.<br>\n    • <strong>Concurso de Méritos:</strong> Modalidad exclusiva para contratos de consultoría técnica y proyectos de arquitectura/diseño.<br>\n    • <strong>Contratación Directa:</strong> Causal taxativa y excepcional (urgencia manifiesta, empréstitos, contratos interadministrativos, proveedor exclusivo o prestación de servicios profesionales de apoyo a la gestión).<br>\n    • <strong>Mínima Cuantía:</strong> Para valores inferiores al 10% de la menor cuantía.",
+    "formula": "Consultoría = Concurso de Méritos | Bienes Homologados = Subasta Inversa | Excepcional = Contratación Directa"
+  },
+  {
+    "id": 68,
+    "numero": "68",
+    "ejeId": "contratacion",
+    "ejeNombre": "Contratación Estatal y Convenios",
+    "titulo": "Plazos para la Liquidación de Contratos Estatales (Bilateral vs. Unilateral)",
+    "categoria": "Contratación Estatal",
+    "icono": "⏳",
+    "color": "#60a5fa",
+    "normaReferencia": "Ley 1150 de 2007 Art. 11 y CPACA Art. 164",
+    "plazoCritico": "4 meses para liquidación bilateral de mutuo acuerdo | 2 meses adicionales para liquidación unilateral por acto motivado",
+    "trampaHabitual": "Liquidar unilateralmente sin convocar previamente al contratista o intentar liquidar cuando han transcurrido más de dos años desde el vencimiento del plazo.",
+    "resumenCorto": "Los contratos de tracto sucesivo se liquidan en 4 meses por mutuo acuerdo; si no hay acuerdo, la entidad tiene 2 meses para liquidar unilateralmente.",
+    "contenidoDetallado": "La etapa poscontractual de liquidación finiquita las cuentas y garantías del contrato:<br><br>\n    • <strong>Término para liquidación bilateral (Art. 11 Ley 1150):</strong> Si el contrato no estipuló término, las partes disponen de <strong>cuatro (4) meses</strong> siguientes al vencimiento del plazo de ejecución para suscribir el acta de liquidación de mutuo acuerdo.<br>\n    • <strong>Liquidación unilateral subsidiaria:</strong> Si el contratista no acude o no hay acuerdo sobre el balance final, la entidad estatal dispone de <strong>dos (2) meses</strong> siguientes para expedir la resolución de liquidación unilateral motivada.<br>\n    • <strong>Límite de competencia:</strong> Vencidos los 2 meses, la entidad aún puede liquidar dentro de los dos (2) años siguientes, siempre que no se haya notificado la demanda contenciosa.",
+    "formula": "Liquidación Contrato = 4 Meses (Bilateral) ➔ 2 Meses (Unilateral por Acto Motivado) ➔ Límite 2 Años"
+  },
+  {
+    "id": 69,
+    "numero": "69",
+    "ejeId": "aduanero",
+    "ejeNombre": "Régimen Aduanero y Comercio Exterior",
+    "titulo": "Aprehensión vs. Decomiso: Medida Cautelar vs. Extinción Definitiva del Dominio",
+    "categoria": "Régimen Aduanero",
+    "icono": "🚢",
+    "color": "#0284c7",
+    "normaReferencia": "Decreto 1165 de 2019 y Decreto 659 de 2024",
+    "plazoCritico": "15 días hábiles siguientes a la entrega del Acta de Aprehensión para formular objeciones",
+    "trampaHabitual": "Asumir que el acta de aprehensión transfiere el dominio a la Nación o no dar traslado probatorio para la respuesta de objeciones.",
+    "resumenCorto": "La Aprehensión es una medida cautelar provisional de retención física; el Decomiso es el acto administrativo definitivo que pasa la mercancía a la Nación.",
+    "contenidoDetallado": "En el control aduanero de la DIAN existen dos etapas bien diferenciadas:<br><br>\n    • <strong>1. La Aprehensión Material:</strong> Medida cautelar de retención física de mercancías cuando no están amparadas por documentos de transporte o factura legal. Se levanta el <em>Acta de Aprehensión</em> formal.<br>\n    • <strong>2. Término de Defensa del Usuario:</strong> El interesado dispone de <strong>quince (15) días hábiles</strong> siguientes a la entrega del acta para presentar el <em>Documento de Objeción a la Aprehensión</em>, allegando las pruebas aduaneras.<br>\n    • <strong>3. El Decomiso Definitivo:</strong> Solo tras valorar las objeciones y si no se acreditó la legal introducción, la DIAN profiere la <em>Resolución de Decomiso</em> mediante la cual las mercancías pasan definitivamente a ser propiedad de la Nación.",
+    "formula": "Aprehensión = Medida Cautelar Física ➔ 15 Días Objeción ➔ Decomiso = Acto Resolutivo Definitivo"
+  },
+  {
+    "id": 70,
+    "numero": "70",
+    "ejeId": "cambiario",
+    "ejeNombre": "Régimen Cambiario y Lavado de Activos",
+    "titulo": "Competencia Cambiaria de la DIAN y Reporte Confidencial de Operaciones (ROS)",
+    "categoria": "Régimen Cambiario",
+    "icono": "💱",
+    "color": "#10b981",
+    "normaReferencia": "Decreto Ley 2245 de 2011, Ley 526 de 1999 y Estatuto Orgánico del Sistema Financiero",
+    "plazoCritico": "Reporte inmediato de ROS ante la UIAF | Estricta reserva legal sin alertar al investigado",
+    "trampaHabitual": "Notificar al usuario que ha sido reportado en un ROS ante la UIAF o pedirle explicaciones previas sobre la operación sospechosa.",
+    "resumenCorto": "La DIAN controla divisas en comercio exterior. Si detecta operaciones sospechosas, radica ROS directo ante la UIAF en estricta reserva legal.",
+    "contenidoDetallado": "En materia cambiaria y control al lavado de activos:<br><br>\n    • <strong>Órbita de competencia de la DIAN:</strong> Control y vigilancia del cumplimiento del régimen cambiario en operaciones de importación y exportación de bienes y servicios, zonas francas y endeudamiento externo conexo.<br>\n    • <strong>El Reporte de Operaciones Sospechosas (ROS):</strong> Cuando en el ejercicio de fiscalización se identifiquen transacciones inusuales o desproporcionadas sin justificación económica, el funcionario debe canalizar el <strong>ROS ante la UIAF</strong>.<br>\n    • <strong>Reserva absoluta del ROS:</strong> La ley prohíbe tajantemente revelar o alertar al investigado sobre la emisión del reporte. Violar la reserva constituye delito penal.",
+    "formula": "ROS ante UIAF = Reserva Absoluta (Prohibido alertar al administrado bajo sanción penal)"
+  },
+  {
+    "id": 71,
+    "numero": "71",
+    "ejeId": "servicio",
+    "ejeNombre": "Derecho de Petición y Atención al Ciudadano",
+    "titulo": "Plazos Perentorios en Derecho de Petición (Ley 1755 de 2015)",
+    "categoria": "Atención al Ciudadano",
+    "icono": "👥",
+    "color": "#38bdf8",
+    "normaReferencia": "Ley Estatutaria 1755 de 2015 Art. 14",
+    "plazoCritico": "15 días: Peticiones de interés general/particular | 10 días: Solicitud de información y copias | 30 días: Consultas doctrinales",
+    "trampaHabitual": "Responder una solicitud de copias simples a los 15 días hábiles cuando la ley exige perentoriamente 10 días, o guardar silencio sin informar prórroga.",
+    "resumenCorto": "Regla 10 - 15 - 30: Copias en 10 días; quejas y peticiones generales en 15 días; consultas jurídicas en 30 días. Si no es posible, informar antes del vencimiento.",
+    "contenidoDetallado": "La Ley Estatutaria 1755 de 2015 fija términos estrictos e improrrogables para responder peticiones ciudadanas:<br><br>\n    • <strong>10 Días Hábiles:</strong> Peticiones de información y entrega de copias de documentos públicos (si no se responde en este plazo, se entenderá que la solicitud ha sido aceptada y no se podrá negar la entrega).<br>\n    • <strong>15 Días Hábiles:</strong> Peticiones de interés general o particular, quejas, reclamos y sugerencias (término estándar).<br>\n    • <strong>30 Días Hábiles:</strong> Consultas sobre materias a cargo de la entidad (conceptos jurídicos no vinculantes).<br>\n    • <strong>Deber de informar prórroga:</strong> Si no es posible responder en el término legal, se debe enviar oficio motivado al peticionario <em>antes de que venza el plazo</em>, fijando nuevo plazo que no supere el doble del inicial.",
+    "formula": "Petición: Copias = 10 Días | Reclamos y Peticiones = 15 Días | Consultas = 30 Días"
+  },
+  {
+    "id": 72,
+    "numero": "72",
+    "ejeId": "servicio",
+    "ejeNombre": "Derecho de Petición y Atención al Ciudadano",
+    "titulo": "Petición Incompleta y Desistimiento Tácito: Regla del Mes Legal",
+    "categoria": "Atención al Ciudadano",
+    "icono": "📑",
+    "color": "#a855f7",
+    "normaReferencia": "Ley 1755 de 2015 Art. 17",
+    "plazoCritico": "10 días para requerir al peticionario | 1 mes para que el ciudadano subsane documentos",
+    "trampaHabitual": "Archivar la solicitud inmediatamente al ver que faltó un anexo sin requerir formalmente o dar menos de un mes para subsanar.",
+    "resumenCorto": "Si una petición carece de requisitos esenciales, la entidad requiere en 10 días al ciudadano. Si tras 1 mes no aporta lo pedido, opera desistimiento tácito.",
+    "contenidoDetallado": "Garantía procesal frente a trámites con anexos faltantes:<br><br>\n    • <strong>Requerimiento formal:</strong> Si la DIAN constata que la petición no está completa para decidir de fondo, debe requerir por escrito al solicitante dentro de los <strong>diez (10) días</strong> siguientes a la radicación para que subsane.<br>\n    • <strong>Plazo de subsanación:</strong> El solicitante cuenta con el término de <strong>un (1) mes</strong> para allegar los documentos requeridos (el término de la petición se suspende).<br>\n    • <strong>Desistimiento tácito:</strong> Vencido el mes sin que el ciudadano haya completado lo pedido, se declara el <em>desistimiento tácito motivado</em> y se ordena el archivo del expediente sin perjuicio de que pueda presentar una nueva petición.",
+    "formula": "Petición Incompleta ➔ Requerir en 10 Días ➔ Esperar 1 Mes ➔ Si no aporta: Desistimiento Tácito"
+  },
+  {
+    "id": 73,
+    "numero": "73",
+    "ejeId": "mipg",
+    "ejeNombre": "Modelo MIPG y Desempeño FURAG",
+    "titulo": "Las Siete Dimensiones de MIPG: El Talento Humano como Corazón del Modelo",
+    "categoria": "Gestión Pública y MIPG",
+    "icono": "📐",
+    "color": "#f59e0b",
+    "normaReferencia": "Decreto 1499 de 2017 y Manual Operativo del MIPG (Función Pública)",
+    "plazoCritico": "Articulación de 19 políticas de gestión y evaluación anual institucional mediante FURAG",
+    "trampaHabitual": "Marcar que la dimensión central del MIPG es el Direccionamiento Estratégico o la Gestión con Valores, cuando la metodología oficial ubica al Talento Humano.",
+    "resumenCorto": "El MIPG se estructura en 7 dimensiones operativas. El Talento Humano es el corazón y motor que dinamiza las demás 6 dimensiones institucionales.",
+    "contenidoDetallado": "El Modelo Integrado de Planeación y Gestión (MIPG) articula la gestión institucional:<br><br>\n    • <strong>1. Talento Humano (Corazón del Modelo):</strong> El servidor público es el activo principal del Estado.<br>\n    • <strong>2. Direccionamiento Estratégico y Planeación:</strong> Define el rumbo, misión y metas institucionales.<br>\n    • <strong>3. Gestión con Valores para Resultados:</strong> Ejecuta ventanillas, trámites tributarios y políticas misionales.<br>\n    • <strong>4. Evaluación de Resultados:</strong> Seguimiento con indicadores y balances de desempeño.<br>\n    • <strong>5. Información y Comunicación:</strong> Transparencia, rendición de cuentas y datos abiertos.<br>\n    • <strong>6. Gestión del Conocimiento y la Innovación:</strong> Memoria institucional y aprendizaje.<br>\n    • <strong>7. Control Interno:</strong> Transversal a todas las dimensiones (articulado al MECI).",
+    "formula": "MIPG = Talento Humano (Corazón) ➔ Direccionamiento ➔ Gestión ➔ Evaluación ➔ Info ➔ Conocimiento ➔ Control"
+  },
+  {
+    "id": 74,
+    "numero": "74",
+    "ejeId": "integridad",
+    "ejeNombre": "Valores de Integridad y CGD",
+    "titulo": "Conflicto de Intereses e Impedimentos: Deber Inmediato de Manifestación",
+    "categoria": "Ética e Integridad",
+    "icono": "⭐",
+    "color": "#f87171",
+    "normaReferencia": "Ley 1952 de 2019 (CGD) Art. 44 y Ley 1437 de 2011 Art. 11",
+    "plazoCritico": "Manifestación inmediata por escrito ante el superior jerárquico dentro de los 3 días hábiles",
+    "trampaHabitual": "Continuar tramitando el expediente tributario de un socio o familiar cercano para 'no atrasar el programa de fiscalización', esperando al final para avisar.",
+    "resumenCorto": "Ante cualquier interés personal, familiar o societario directo, el servidor debe manifestar el impedimento por escrito de inmediato y suspender la actuación.",
+    "contenidoDetallado": "En la función pública el interés general prima sobre cualquier vínculo particular:<br><br>\n    • <strong>Causales de impedimento (Art. 11 CPACA):</strong> Tener interés particular en la decisión, parentesco hasta 4º de consanguinidad o 2º de afinidad, ser socio en sociedades de personas, o haber emitido concepto previo vinculante sobre el asunto litigioso.<br>\n    • <strong>Deber de conducta ética:</strong> El funcionario que identifique una causal debe <strong>declararse impedido por escrito ante su superior jerárquico</strong> dentro de los tres (3) días hábiles siguientes al conocimiento del hecho.<br>\n    • <strong>Suspensión obligatoria:</strong> La manifestación suspende la actuación del funcionario en el caso hasta que el superior resuelva si acepta el impedimento y designa funcionario ad-hoc.",
+    "formula": "Conflicto de Interés = Manifestación Escrita Inmediata + Suspensión (Omitir = Falta Disciplinaria Gravísima)"
+  },
+  {
+    "id": 75,
+    "numero": "75",
+    "ejeId": "tributario",
+    "ejeNombre": "Procedimiento Tributario y Fiscalización",
+    "titulo": "Sanción por No Facturar o Facturar sin Requisitos: Clausura del Negocio",
+    "categoria": "Procedimiento Tributario",
+    "icono": "🏪",
+    "color": "#e11d48",
+    "normaReferencia": "Estatuto Tributario Arts. 657 y 658",
+    "plazoCritico": "1ª Infracción: Cierre por 3 días | Reincidencia: Cierre por 10 días y multa proporcional",
+    "trampaHabitual": "Colocar sellos de clausura durante la visita material de control sin agotar el pliego de cargos previo con término de descargos.",
+    "resumenCorto": "La clausura del establecimiento exige acta de visita, pliego de cargos con 10 días para responder y resolución sanción motivada. Jamás vía de hecho.",
+    "contenidoDetallado": "La sanción de clausura de establecimiento de comercio (Art. 657 E.T.):<br><br>\n    • <strong>Causales:</strong> 1) No expedir factura o expedirla sin requisitos legales; 2) No llevar libros de contabilidad exigidos; 3) Reincidencia en expedir facturas sin NIT o nombre del adquirente.<br>\n    • <strong>Graduación:</strong> Cierre por <strong>tres (3) días calendario</strong> la primera vez. Si hay reincidencia dentro de los dos años siguientes, el cierre es por <strong>diez (10) días</strong>.<br>\n    • <strong>Procedimiento reglado:</strong> La DIAN no puede sellar en flagrancia. Levanta el <em>Acta de Visita</em>, formula <em>Pliego de Cargos</em> (10 días para descargos) y profiere <em>Resolución Sancionatoria</em> susceptible de Recurso de Reconsideración.",
+    "formula": "Clausura Comercial = Acta Visita ➔ Pliego Cargos (10 Días) ➔ Resolución Sanción (3 Días de Cierre)"
   }
 ];
 

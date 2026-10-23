@@ -1585,7 +1585,17 @@ function setupTipsModal() {
       singleTipResumen.style.borderLeftColor = tip.color || "#f59e0b";
     }
     if (singleTipContenido) {
-      singleTipContenido.innerHTML = tip.contenidoDetallado || tip.resumenCorto || "";
+      const plazoHtml = tip.plazoCritico ? `
+        <div style="background: rgba(56, 189, 248, 0.12); border: 1px solid rgba(56, 189, 248, 0.35); border-left: 3px solid #38bdf8; border-radius: 6px; padding: 8px 12px; margin: 8px 0; font-size: 13px;">
+          <strong style="color: #38bdf8;">⏱️ Término / Plazo Crítico:</strong> <span style="color: #f0f9ff;">${tip.plazoCritico}</span>
+        </div>
+      ` : "";
+      const trampaHtml = tip.trampaHabitual ? `
+        <div style="background: rgba(244, 63, 94, 0.12); border: 1px solid rgba(244, 63, 94, 0.35); border-left: 3px solid #f43f5e; border-radius: 6px; padding: 8px 12px; margin: 8px 0; font-size: 13px;">
+          <strong style="color: #f43f5e;">⚠️ Trampa CNSC en Casos:</strong> <span style="color: #ffe4e6;">${tip.trampaHabitual}</span>
+        </div>
+      ` : "";
+      singleTipContenido.innerHTML = `${plazoHtml}${trampaHtml}${tip.contenidoDetallado || tip.resumenCorto || ""}`;
     }
 
     // Infografía si aplica
@@ -1794,9 +1804,20 @@ function setupTipsModal() {
             ${tip.categoria}
           </span>
         </div>
-        <div style="font-size: 12px; color: #94a3b8; font-weight: 600;">
-          📌 Fundamento: ${tip.normaReferencia}
+        <div style="font-size: 12px; color: #94a3b8; font-weight: 600; display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap;">
+          <span>📌 Fundamento: ${tip.normaReferencia}</span>
+          ${tip.ejeNombre ? `<span style="color: #38bdf8; font-size: 11px; background: rgba(56, 189, 248, 0.12); border: 1px solid rgba(56, 189, 248, 0.3); padding: 2px 7px; border-radius: 4px; font-weight: 700;">🎯 ${tip.ejeNombre}</span>` : ""}
         </div>
+        ${tip.plazoCritico ? `
+          <div style="font-size: 12.5px; color: #f0f9ff; background: rgba(56, 189, 248, 0.12); border-left: 3px solid #38bdf8; padding: 7px 10px; border-radius: 6px; margin-top: 3px;">
+            <strong style="color: #38bdf8;">⏱️ Término / Plazo Crítico:</strong> ${tip.plazoCritico}
+          </div>
+        ` : ""}
+        ${tip.trampaHabitual ? `
+          <div style="font-size: 12.5px; color: #ffe4e6; background: rgba(244, 63, 94, 0.12); border-left: 3px solid #f43f5e; padding: 7px 10px; border-radius: 6px; margin-top: 3px;">
+            <strong style="color: #f43f5e;">⚠️ Trampa CNSC en Casos:</strong> ${tip.trampaHabitual}
+          </div>
+        ` : ""}
         <div style="font-size: 14px; color: #e2e8f0; line-height: 1.6; margin-top: 2px;">
           ${tip.contenidoDetallado}
         </div>
@@ -2089,6 +2110,13 @@ function setupTipsModal() {
   const btnNextTipInModal = document.getElementById("btnNextTipFlashInModal");
   if (btnNextTipInModal) {
     btnNextTipInModal.addEventListener("click", () => {
+      showRandomTipFlash({ forced: true });
+    });
+  }
+
+  const selectTipFlashEje = document.getElementById("selectTipFlashEjeFilter");
+  if (selectTipFlashEje) {
+    selectTipFlashEje.addEventListener("change", () => {
       showRandomTipFlash({ forced: true });
     });
   }
@@ -2461,8 +2489,24 @@ function showRandomTipFlash({ forced = false, customTip = null } = {}) {
     }));
 
     const fullPool = [...TIPS_PJS_DATA, ...mnemTips];
-    const candidates = fullPool.filter(t => t.id !== AppState.autoTips.lastTipShownId);
-    const pool = candidates.length > 0 ? candidates : fullPool;
+
+    // Detectar si hay filtro de eje activo para los Tip Flash
+    const tipEjeSelect = document.getElementById("selectTipFlashEjeFilter");
+    let targetEje = tipEjeSelect ? tipEjeSelect.value : "auto";
+    if (targetEje === "auto") {
+      targetEje = AppState.currentEjeFilter || "todos";
+    }
+
+    let poolTarget = fullPool;
+    if (targetEje && targetEje !== "todos" && targetEje !== "interleaving") {
+      const matchTips = fullPool.filter(t => t.ejeId === targetEje || (t.categoria && t.categoria.toLowerCase().includes(targetEje.toLowerCase())));
+      if (matchTips.length > 0) {
+        poolTarget = matchTips;
+      }
+    }
+
+    const candidates = poolTarget.filter(t => t.id !== AppState.autoTips.lastTipShownId);
+    const pool = candidates.length > 0 ? candidates : poolTarget;
     tip = pool[Math.floor(Math.random() * pool.length)];
   }
 
@@ -2470,6 +2514,7 @@ function showRandomTipFlash({ forced = false, customTip = null } = {}) {
 
   const iconEl = document.getElementById("popupTipIcon");
   const badgeEl = document.getElementById("popupTipBadge");
+  const ejeBadgeEl = document.getElementById("popupTipEjeBadge");
   const titleEl = document.getElementById("popupTipTitle");
   const normaEl = document.getElementById("popupTipNorma");
   const bodyEl = document.getElementById("popupTipBody");
@@ -2481,6 +2526,19 @@ function showRandomTipFlash({ forced = false, customTip = null } = {}) {
       : `Tip Clave #${tip.numero} • ${tip.categoria}`;
     badgeEl.style.color = tip.color || "#f59e0b";
   }
+
+  if (ejeBadgeEl) {
+    if (tip.ejeNombre) {
+      ejeBadgeEl.textContent = `🎯 ${tip.ejeNombre}`;
+      ejeBadgeEl.style.display = "inline-flex";
+    } else if (tip.isMnem) {
+      ejeBadgeEl.textContent = `📐 Mnemotecnia Visual`;
+      ejeBadgeEl.style.display = "inline-flex";
+    } else {
+      ejeBadgeEl.style.display = "none";
+    }
+  }
+
   if (titleEl) {
     titleEl.textContent = tip.isMnem ? tip.titulo : `${tip.numero}. ${tip.titulo}`;
     titleEl.style.color = tip.color || "#f8fafc";
@@ -2516,11 +2574,31 @@ function showRandomTipFlash({ forced = false, customTip = null } = {}) {
   }
 
   if (bodyEl) {
+    const plazoHtml = tip.plazoCritico ? `
+      <div style="background: rgba(56, 189, 248, 0.12); border: 1px solid rgba(56, 189, 248, 0.35); border-left: 4px solid #38bdf8; border-radius: 8px; padding: 10px 14px; margin: 10px 0; display: flex; align-items: center; gap: 10px;">
+        <span style="font-size: 20px; line-height: 1;">⏱️</span>
+        <div style="flex: 1;">
+          <div style="font-size: 11px; font-weight: 800; color: #38bdf8; text-transform: uppercase; letter-spacing: 0.5px;">Término / Plazo Crítico Legal:</div>
+          <div style="font-size: 14px; font-weight: 800; color: #f0f9ff; margin-top: 2px; line-height: 1.4;">${tip.plazoCritico}</div>
+        </div>
+      </div>
+    ` : "";
+
+    const trampaHtml = tip.trampaHabitual ? `
+      <div style="background: rgba(244, 63, 94, 0.12); border: 1px solid rgba(244, 63, 94, 0.35); border-left: 4px solid #f43f5e; border-radius: 8px; padding: 10px 14px; margin: 10px 0; display: flex; align-items: flex-start; gap: 10px;">
+        <span style="font-size: 20px; line-height: 1;">⚠️</span>
+        <div style="flex: 1;">
+          <div style="font-size: 11px; font-weight: 800; color: #f43f5e; text-transform: uppercase; letter-spacing: 0.5px;">Trampa Habitual CNSC en Casos:</div>
+          <div style="font-size: 13.5px; color: #ffe4e6; line-height: 1.5; margin-top: 2px;">${tip.trampaHabitual}</div>
+        </div>
+      </div>
+    ` : "";
+
     const formulaHtml = tip.formula ? `
-      <div style="background: rgba(168, 85, 247, 0.18); border: 1px solid rgba(168, 85, 247, 0.45); border-left: 4px solid #c084fc; border-radius: 8px; padding: 10px 14px; margin: 12px 0 10px 0; display: flex; align-items: flex-start; gap: 10px;">
+      <div style="background: rgba(168, 85, 247, 0.18); border: 1px solid rgba(168, 85, 247, 0.45); border-left: 4px solid #c084fc; border-radius: 8px; padding: 10px 14px; margin: 10px 0; display: flex; align-items: flex-start; gap: 10px;">
         <span style="font-size: 20px; line-height: 1;">📐</span>
         <div style="flex: 1;">
-          <div style="font-size: 11px; font-weight: 800; color: #c084fc; text-transform: uppercase; letter-spacing: 0.5px;">Fórmula Mnemotécnica / Regla Rápida:</div>
+          <div style="font-size: 11px; font-weight: 800; color: #c084fc; text-transform: uppercase; letter-spacing: 0.5px;">Fórmula de Decisión Inmediata:</div>
           <div style="font-size: 14px; font-weight: 800; color: #fdf4ff; font-family: 'Consolas', monospace; margin-top: 3px; line-height: 1.4;">${tip.formula}</div>
         </div>
       </div>
@@ -2530,8 +2608,10 @@ function showRandomTipFlash({ forced = false, customTip = null } = {}) {
       <div style="font-size: 16px; font-weight: 700; color: #f8fafc; margin-bottom: 8px; line-height: 1.5;">
         ${tip.resumenCorto}
       </div>
+      ${plazoHtml}
+      ${trampaHtml}
       ${formulaHtml}
-      <div style="font-size: 15px; color: #f1f5f9; line-height: 1.65; margin-top: 6px;">
+      <div style="font-size: 15px; color: #f1f5f9; line-height: 1.65; margin-top: 8px;">
         ${tip.contenidoDetallado}
       </div>
     `;
