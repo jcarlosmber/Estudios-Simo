@@ -11,6 +11,8 @@ function buildExtensionZip() {
     'sidepanel.html',
     'sidepanel.css',
     'sidepanel.js',
+    'plan_estudio_data.js',
+    'casos_maestros_ficha3006.js',
     'profiles.js',
     'questions.js',
     'questions_gestor_iii.js',

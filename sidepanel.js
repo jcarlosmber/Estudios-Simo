@@ -1067,6 +1067,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   setupSrsLogic();
   setupSimulacroLogic();
   setupDiaDModal();
+  setupPlanEstudioModal();
   setupDashboardCalculator();
   setupAccountModal();
   setupOnboardingModal();
@@ -3105,6 +3106,11 @@ function getCleanFilterLabel(label) {
 }
 
 function getQuestionsForFilter(pool, filterId, profileId) {
+  if (filterId === "ficha_3006_maestro") {
+    if (typeof window !== "undefined" && window.CASOS_MAESTROS_FICHA_3006 && Array.isArray(window.CASOS_MAESTROS_FICHA_3006)) {
+      return window.CASOS_MAESTROS_FICHA_3006;
+    }
+  }
   if (!pool || !Array.isArray(pool)) return [];
   if (!filterId || filterId === "todos" || filterId === "interleaving") {
     return pool;
@@ -6303,6 +6309,407 @@ function reviewSimAnswers() {
     `;
     container.appendChild(optCard);
   });
+}
+
+// =========================================================================
+// PLAN MAESTRO DE ESTUDIO GESTOR III (FICHA TP-DE-3006 / COMPENDIO 20 MÓDULOS)
+// =========================================================================
+function setupPlanEstudioModal() {
+  const hubCard = document.getElementById("hubCardPlanEstudio");
+  const modal = document.getElementById("planEstudioModal");
+  const closeX = document.getElementById("btnClosePlanEstudioModalX");
+  const closeBtn = document.getElementById("btnClosePlanEstudioModal");
+  const btnIrAPracticar = document.getElementById("btnPlanIrAPracticar");
+  const btnStartCasosDirecto = document.getElementById("btnStartCasosMaestrosDirecto");
+
+  const progressText = document.getElementById("planModalProgressText");
+  const progressBar = document.getElementById("planModalProgressBar");
+  const badgeProgress = document.getElementById("planBadgeProgress");
+
+  const subtabCrono = document.getElementById("btnPlanSubTabCrono");
+  const subtabModulos = document.getElementById("btnPlanSubTabModulos");
+  const subtabCasos = document.getElementById("btnPlanSubTabCasos");
+  const subtabFiltros = document.getElementById("btnPlanSubTabFiltros");
+
+  const viewCrono = document.getElementById("planViewCrono");
+  const viewModulos = document.getElementById("planViewModulos");
+  const viewCasos = document.getElementById("planViewCasos");
+  const viewFiltros = document.getElementById("planViewFiltros");
+
+  const weeksContainer = document.getElementById("planWeeksContainer");
+  const moduleSelect = document.getElementById("planModuleSelect");
+  const moduleSearch = document.getElementById("planModuleSearch");
+  const moduleContent = document.getElementById("planModuleContentContainer");
+  const casosListContainer = document.getElementById("planCasosListContainer");
+
+  const STORAGE_KEY = "simo_plan_3006_completed_weeks";
+  let completedWeeks = {};
+  try {
+    completedWeeks = JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}");
+  } catch (e) {
+    completedWeeks = {};
+  }
+
+  function updateProgress() {
+    const total = (typeof window.CRONOGRAMA_60_DIAS_DATA !== "undefined" && window.CRONOGRAMA_60_DIAS_DATA.length) || 12;
+    const completedCount = Object.values(completedWeeks).filter(Boolean).length;
+    const pct = Math.round((completedCount / total) * 100);
+
+    if (progressText) progressText.textContent = `${completedCount} / ${total} Semanas (${pct}%)`;
+    if (progressBar) progressBar.style.width = `${pct}%`;
+    if (badgeProgress) badgeProgress.textContent = `${completedCount}/${total}`;
+  }
+
+  function saveProgress() {
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(completedWeeks));
+    } catch (e) {}
+    updateProgress();
+  }
+
+  function switchPlanSubtab(activeTab) {
+    const tabs = [
+      { btn: subtabCrono, view: viewCrono, key: "crono" },
+      { btn: subtabModulos, view: viewModulos, key: "modulos" },
+      { btn: subtabCasos, view: viewCasos, key: "casos" },
+      { btn: subtabFiltros, view: viewFiltros, key: "filtros" }
+    ];
+
+    tabs.forEach(t => {
+      if (!t.btn || !t.view) return;
+      if (t.key === activeTab) {
+        t.btn.classList.add("active");
+        t.btn.style.border = "1px solid #10b981";
+        t.btn.style.background = "rgba(16, 185, 129, 0.25)";
+        t.btn.style.color = "#a7f3d0";
+        t.btn.style.fontWeight = "800";
+        t.view.style.display = "flex";
+      } else {
+        t.btn.classList.remove("active");
+        t.btn.style.border = "1px solid rgba(255, 255, 255, 0.12)";
+        t.btn.style.background = "transparent";
+        t.btn.style.color = "#94a3b8";
+        t.btn.style.fontWeight = "700";
+        t.view.style.display = "none";
+      }
+    });
+  }
+
+  if (subtabCrono) subtabCrono.addEventListener("click", () => switchPlanSubtab("crono"));
+  if (subtabModulos) subtabModulos.addEventListener("click", () => switchPlanSubtab("modulos"));
+  if (subtabCasos) subtabCasos.addEventListener("click", () => switchPlanSubtab("casos"));
+  if (subtabFiltros) subtabFiltros.addEventListener("click", () => switchPlanSubtab("filtros"));
+
+  function renderWeeks() {
+    if (!weeksContainer) return;
+    const crono = window.CRONOGRAMA_60_DIAS_DATA || [];
+    weeksContainer.innerHTML = "";
+
+    crono.forEach(w => {
+      const isCompleted = !!completedWeeks[w.semana];
+      const card = document.createElement("div");
+      card.style.background = isCompleted ? "rgba(16, 185, 129, 0.08)" : "rgba(15, 23, 42, 0.75)";
+      card.style.border = isCompleted ? "1.5px solid rgba(16, 185, 129, 0.45)" : "1px solid rgba(255, 255, 255, 0.08)";
+      card.style.borderRadius = "12px";
+      card.style.padding = "12px 14px";
+      card.style.display = "flex";
+      card.style.flexDirection = "column";
+      card.style.gap = "8px";
+      card.style.transition = "all 0.2s ease";
+
+      const topRow = document.createElement("div");
+      topRow.style.display = "flex";
+      topRow.style.justifyContent = "space-between";
+      topRow.style.alignItems = "center";
+
+      const leftTag = document.createElement("label");
+      leftTag.style.display = "flex";
+      leftTag.style.alignItems = "center";
+      leftTag.style.gap = "8px";
+      leftTag.style.cursor = "pointer";
+
+      const chk = document.createElement("input");
+      chk.type = "checkbox";
+      chk.checked = isCompleted;
+      chk.style.accentColor = "#10b981";
+      chk.style.width = "18px";
+      chk.style.height = "18px";
+      chk.style.cursor = "pointer";
+      chk.addEventListener("change", () => {
+        completedWeeks[w.semana] = chk.checked;
+        saveProgress();
+        renderWeeks();
+      });
+
+      const titleSpan = document.createElement("span");
+      titleSpan.style.fontSize = "13px";
+      titleSpan.style.fontWeight = "800";
+      titleSpan.style.color = isCompleted ? "#6ee7b7" : "#f8fafc";
+      titleSpan.textContent = `Semana ${w.semana}: ${w.titulo}`;
+
+      leftTag.appendChild(chk);
+      leftTag.appendChild(titleSpan);
+
+      const diasTag = document.createElement("span");
+      diasTag.style.fontSize = "10.5px";
+      diasTag.style.fontWeight = "700";
+      diasTag.style.color = "#94a3b8";
+      diasTag.style.background = "rgba(255,255,255,0.05)";
+      diasTag.style.padding = "2px 8px";
+      diasTag.style.borderRadius = "6px";
+      diasTag.textContent = w.diasRecomendados;
+
+      topRow.appendChild(leftTag);
+      topRow.appendChild(diasTag);
+      card.appendChild(topRow);
+
+      const infoDiv = document.createElement("div");
+      infoDiv.style.fontSize = "11.5px";
+      infoDiv.style.color = "#cbd5e1";
+      infoDiv.style.lineHeight = "1.45";
+      infoDiv.innerHTML = `
+        <div style="margin-bottom: 3px;"><strong>🎯 Meta:</strong> ${w.meta}</div>
+        <div style="color: #94a3b8; font-size: 11px;"><strong>📋 Entregable:</strong> ${w.entregables}</div>
+      `;
+      card.appendChild(infoDiv);
+
+      const actionsRow = document.createElement("div");
+      actionsRow.style.display = "flex";
+      actionsRow.style.justifyContent = "space-between";
+      actionsRow.style.alignItems = "center";
+      actionsRow.style.marginTop = "4px";
+
+      const modBtns = document.createElement("div");
+      modBtns.style.display = "flex";
+      modBtns.style.gap = "6px";
+      modBtns.style.flexWrap = "wrap";
+
+      (w.modulos || []).forEach(mNum => {
+        const mBtn = document.createElement("button");
+        mBtn.type = "button";
+        mBtn.textContent = `📖 Módulo ${mNum}`;
+        mBtn.style.padding = "3px 8px";
+        mBtn.style.fontSize = "11px";
+        mBtn.style.fontWeight = "700";
+        mBtn.style.borderRadius = "6px";
+        mBtn.style.border = "1px solid rgba(56, 189, 248, 0.4)";
+        mBtn.style.background = "rgba(56, 189, 248, 0.1)";
+        mBtn.style.color = "#7dd3fc";
+        mBtn.style.cursor = "pointer";
+        mBtn.addEventListener("click", () => {
+          switchPlanSubtab("modulos");
+          if (moduleSelect) {
+            moduleSelect.value = String(mNum);
+            renderSelectedModule(mNum);
+          }
+        });
+        modBtns.appendChild(mBtn);
+      });
+
+      const btnPrac = document.createElement("button");
+      btnPrac.type = "button";
+      btnPrac.textContent = "🎯 Practicar Casos";
+      btnPrac.style.padding = "4px 10px";
+      btnPrac.style.fontSize = "11px";
+      btnPrac.style.fontWeight = "800";
+      btnPrac.style.borderRadius = "6px";
+      btnPrac.style.border = "1px solid rgba(16, 185, 129, 0.5)";
+      btnPrac.style.background = "rgba(16, 185, 129, 0.2)";
+      btnPrac.style.color = "#a7f3d0";
+      btnPrac.style.cursor = "pointer";
+      btnPrac.addEventListener("click", () => {
+        launchMaestroPractice();
+      });
+
+      actionsRow.appendChild(modBtns);
+      actionsRow.appendChild(btnPrac);
+      card.appendChild(actionsRow);
+
+      weeksContainer.appendChild(card);
+    });
+  }
+
+  function populateModuleSelect() {
+    if (!moduleSelect) return;
+    const mods = window.MODULOS_TRATADO_3006_DATA || [];
+    moduleSelect.innerHTML = "";
+    mods.forEach(m => {
+      const opt = document.createElement("option");
+      opt.value = String(m.id);
+      opt.textContent = `${m.numero}: ${m.titulo}`;
+      moduleSelect.appendChild(opt);
+    });
+
+    moduleSelect.addEventListener("change", (e) => {
+      renderSelectedModule(Number(e.target.value));
+    });
+  }
+
+  function renderSelectedModule(modId) {
+    if (!moduleContent) return;
+    const mods = window.MODULOS_TRATADO_3006_DATA || [];
+    const mod = mods.find(m => m.id === modId) || mods[0];
+    if (!mod) return;
+
+    moduleContent.innerHTML = `
+      <div style="background: rgba(15, 23, 42, 0.85); border: 1.5px solid rgba(56, 189, 248, 0.35); border-radius: 12px; padding: 14px 16px; display: flex; flex-direction: column; gap: 8px;">
+        <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 10px;">
+          <div>
+            <span style="font-size: 11px; font-weight: 800; color: #38bdf8; text-transform: uppercase;">${mod.numero}</span>
+            <h3 style="font-size: 14px; font-weight: 800; color: #f8fafc; margin: 2px 0 0 0;">${mod.titulo}</h3>
+          </div>
+          <span style="font-size: 10px; font-weight: 800; background: rgba(56, 189, 248, 0.15); color: #bae6fd; border: 1px solid rgba(56, 189, 248, 0.3); padding: 2px 8px; border-radius: 8px; white-space: nowrap;">
+            Eje: ${mod.ejeId}
+          </span>
+        </div>
+
+        <div style="font-size: 11px; color: #94a3b8; background: rgba(0,0,0,0.3); padding: 6px 10px; border-radius: 6px; border-left: 3px solid #38bdf8;">
+          <strong>Normograma Rector:</strong> ${mod.normograma}
+        </div>
+
+        <p style="font-size: 12px; color: #cbd5e1; line-height: 1.5; margin: 0;">
+          ${mod.resumen}
+        </p>
+      </div>
+
+      ${(mod.secciones || []).map(sec => `
+        <div style="background: rgba(15, 23, 42, 0.7); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 10px; padding: 12px 14px; display: flex; flex-direction: column; gap: 6px;">
+          <h4 style="font-size: 12.5px; font-weight: 800; color: #6ee7b7; margin: 0;">📌 ${sec.subtitulo}</h4>
+          <div style="font-size: 12px; color: #e2e8f0; line-height: 1.5; white-space: pre-line;">${sec.contenido}</div>
+        </div>
+      `).join("")}
+
+      <div style="background: rgba(245, 158, 11, 0.1); border-left: 4px solid #f59e0b; border-radius: 8px; padding: 10px 12px;">
+        <div style="font-size: 11.5px; font-weight: 800; color: #fbbf24; margin-bottom: 2px;">
+          ⚠️ Trampa Clásica de Examen (CNSC / DIAN)
+        </div>
+        <div style="font-size: 11.5px; color: #cbd5e1; line-height: 1.45;">
+          ${mod.trampaExamen}
+        </div>
+      </div>
+    `;
+  }
+
+  function renderCasosList() {
+    if (!casosListContainer) return;
+    const casos = window.CASOS_MAESTROS_FICHA_3006 || [];
+    casosListContainer.innerHTML = "";
+
+    casos.forEach((c, idx) => {
+      const item = document.createElement("div");
+      item.style.background = "rgba(15, 23, 42, 0.7)";
+      item.style.border = "1px solid rgba(255, 255, 255, 0.08)";
+      item.style.borderRadius = "8px";
+      item.style.padding = "10px 12px";
+      item.style.display = "flex";
+      item.style.justifyContent = "space-between";
+      item.style.alignItems = "center";
+      item.style.gap = "8px";
+
+      item.innerHTML = `
+        <div style="display: flex; flex-direction: column; gap: 2px;">
+          <div style="font-size: 12px; font-weight: 800; color: #f8fafc;">
+            Caso ${idx + 1}: ${c.ejeNombre}
+          </div>
+          <div style="font-size: 10.5px; color: #94a3b8;">
+            ${c.moduloNombre} • Norma: ${c.norma}
+          </div>
+        </div>
+        <span style="font-size: 10px; font-weight: 800; color: #38bdf8; background: rgba(56, 189, 248, 0.12); padding: 2px 6px; border-radius: 4px; white-space: nowrap;">
+          PJS Gestor III
+        </span>
+      `;
+      casosListContainer.appendChild(item);
+    });
+  }
+
+  function launchMaestroPractice() {
+    if (modal) {
+      if (typeof window.closeModal === "function") window.closeModal(modal);
+      else modal.classList.remove("active");
+    }
+
+    if (typeof switchTab === "function") {
+      switchTab("practice");
+    }
+
+    const selectEje = document.getElementById("selectEjeFilter");
+    if (selectEje) {
+      selectEje.value = "ficha_3006_maestro";
+      selectEje.dispatchEvent(new Event("change"));
+    }
+
+    if (typeof startPracticeSession === "function") {
+      startPracticeSession();
+    }
+  }
+
+  if (moduleSearch) {
+    moduleSearch.addEventListener("input", (e) => {
+      const q = e.target.value.toLowerCase().trim();
+      if (!q) {
+        if (moduleSelect) renderSelectedModule(Number(moduleSelect.value) || 1);
+        return;
+      }
+      const mods = window.MODULOS_TRATADO_3006_DATA || [];
+      const match = mods.find(m => 
+        m.titulo.toLowerCase().includes(q) || 
+        m.normograma.toLowerCase().includes(q) || 
+        m.resumen.toLowerCase().includes(q) ||
+        (m.secciones || []).some(s => s.subtitulo.toLowerCase().includes(q) || s.contenido.toLowerCase().includes(q))
+      );
+      if (match) {
+        if (moduleSelect) moduleSelect.value = String(match.id);
+        renderSelectedModule(match.id);
+      }
+    });
+  }
+
+  if (hubCard) {
+    hubCard.addEventListener("click", () => {
+      renderWeeks();
+      populateModuleSelect();
+      renderSelectedModule(1);
+      renderCasosList();
+      updateProgress();
+      switchPlanSubtab("crono");
+      if (modal) {
+        if (typeof window.openModal === "function") window.openModal(modal);
+        else {
+          modal.classList.add("active");
+          modal.style.display = "flex";
+        }
+      }
+    });
+  }
+
+  if (closeX) {
+    closeX.addEventListener("click", () => {
+      if (modal) {
+        if (typeof window.closeModal === "function") window.closeModal(modal);
+        else modal.classList.remove("active");
+      }
+    });
+  }
+
+  if (closeBtn) {
+    closeBtn.addEventListener("click", () => {
+      if (modal) {
+        if (typeof window.closeModal === "function") window.closeModal(modal);
+        else modal.classList.remove("active");
+      }
+    });
+  }
+
+  if (btnIrAPracticar) {
+    btnIrAPracticar.addEventListener("click", () => launchMaestroPractice());
+  }
+
+  if (btnStartCasosDirecto) {
+    btnStartCasosDirecto.addEventListener("click", () => launchMaestroPractice());
+  }
+
+  updateProgress();
 }
 
 // =========================================================================

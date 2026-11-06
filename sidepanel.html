@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#1e293b">
+  <meta name="theme-color" content="#f8fafc">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <link rel="manifest" href="manifest.webmanifest?v=2">
@@ -792,6 +792,18 @@
 
 
       <div class="duo-hub-grid">
+        <div class="duo-hub-card emerald" id="hubCardPlanEstudio" style="border-left: 4px solid #10b981; cursor: pointer; background: linear-gradient(135deg, rgba(16, 185, 129, 0.12), rgba(6, 78, 59, 0.25)); border-top: 1px solid rgba(16, 185, 129, 0.35);">
+          <div class="hub-card-icon">🗓️</div>
+          <div class="hub-card-content">
+            <div class="hub-card-title" style="color: #6ee7b7; display: flex; align-items: center; justify-content: space-between;">
+              <span>Plan Maestro 60 Días (Ficha 3006)</span>
+              <span id="planBadgeProgress" style="font-size: 10px; font-weight: 800; background: rgba(16, 185, 129, 0.25); color: #a7f3d0; border: 1px solid rgba(16, 185, 129, 0.5); padding: 1px 6px; border-radius: 6px;">0/12</span>
+            </div>
+            <div class="hub-card-desc">Cronograma de 12 semanas, compendio de 20 módulos y banco dedicado de 40 casos PJS</div>
+          </div>
+          <span class="hub-card-arrow" style="color: #10b981;">➔</span>
+        </div>
+
         <div class="duo-hub-card gold" id="hubCardTips">
           <div class="hub-card-icon">💡</div>
           <div class="hub-card-content">
@@ -2153,6 +2165,170 @@
     </div>
   </div>
 
+  <!-- MODAL: PLAN MAESTRO DE ESTUDIO GESTOR III (FICHA TP-DE-3006) -->
+  <div id="planEstudioModal" class="modal-overlay" style="overflow-y: auto; -webkit-overflow-scrolling: touch;">
+    <div class="modal-card scrollable" style="max-width: 680px; width: 95%; max-height: 92vh; overflow-y: auto; padding: 20px; gap: 14px; box-sizing: border-box; background: #0f172a; border: 1px solid rgba(16, 185, 129, 0.4); border-radius: 16px; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);">
+      <!-- Header -->
+      <div style="display: flex; justify-content: space-between; align-items: flex-start; border-bottom: 1px solid rgba(255, 255, 255, 0.1); padding-bottom: 12px;">
+        <div style="display: flex; align-items: center; gap: 12px;">
+          <div style="width: 44px; height: 44px; border-radius: 12px; background: rgba(16, 185, 129, 0.15); border: 1.5px solid #10b981; display: flex; align-items: center; justify-content: center; font-size: 24px; flex-shrink: 0;">
+            🗓️
+          </div>
+          <div>
+            <div style="font-size: 16px; font-weight: 800; color: #f8fafc; letter-spacing: -0.3px;">Plan Maestro de Estudio • Gestor III</div>
+            <div style="font-size: 11.5px; color: #6ee7b7; font-weight: 700;">Ficha TP-DE-3006 (FT-TAH-1824) • OPEC 242703 • Convocatoria DIAN 2676</div>
+          </div>
+        </div>
+        <button type="button" id="btnClosePlanEstudioModalX" style="background: rgba(255, 255, 255, 0.06); border: 1px solid rgba(255, 255, 255, 0.12); font-size: 18px; color: #94a3b8; cursor: pointer; width: 34px; height: 34px; border-radius: 8px; display: flex; align-items: center; justify-content: center;" title="Cerrar">✕</button>
+      </div>
+
+      <!-- Barra de Progreso Global del Cronograma -->
+      <div style="background: rgba(15, 23, 42, 0.85); border: 1px solid rgba(16, 185, 129, 0.25); border-radius: 12px; padding: 12px 14px; display: flex; flex-direction: column; gap: 6px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; font-size: 12px;">
+          <span style="font-weight: 800; color: #e2e8f0; display: flex; align-items: center; gap: 6px;">
+            <span>📈</span> Avance del Cronograma (60 Días):
+          </span>
+          <span id="planModalProgressText" style="font-weight: 800; color: #34d399;">0 / 12 Semanas (0%)</span>
+        </div>
+        <div style="width: 100%; height: 8px; background: rgba(255, 255, 255, 0.08); border-radius: 999px; overflow: hidden;">
+          <div id="planModalProgressBar" style="width: 0%; height: 100%; background: linear-gradient(90deg, #10b981, #06b6d4); border-radius: 999px; transition: width 0.3s ease;"></div>
+        </div>
+      </div>
+
+      <!-- Barra de Sub-Pestañas Internas del Modal -->
+      <div style="display: flex; gap: 6px; border-bottom: 1px solid rgba(255, 255, 255, 0.1); padding-bottom: 8px; overflow-x: auto;">
+        <button type="button" id="btnPlanSubTabCrono" class="plan-subtab-btn active" style="padding: 7px 12px; font-size: 12px; font-weight: 800; border-radius: 8px; border: 1px solid #10b981; background: rgba(16, 185, 129, 0.2); color: #a7f3d0; cursor: pointer; white-space: nowrap; display: flex; align-items: center; gap: 5px;">
+          📅 1. Cronograma 12 Semanas
+        </button>
+        <button type="button" id="btnPlanSubTabModulos" class="plan-subtab-btn" style="padding: 7px 12px; font-size: 12px; font-weight: 700; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.12); background: transparent; color: #94a3b8; cursor: pointer; white-space: nowrap; display: flex; align-items: center; gap: 5px;">
+          📚 2. Tratado de los 20 Módulos
+        </button>
+        <button type="button" id="btnPlanSubTabCasos" class="plan-subtab-btn" style="padding: 7px 12px; font-size: 12px; font-weight: 700; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.12); background: transparent; color: #94a3b8; cursor: pointer; white-space: nowrap; display: flex; align-items: center; gap: 5px;">
+          🎯 3. Banco 40 Casos PJS
+        </button>
+        <button type="button" id="btnPlanSubTabFiltros" class="plan-subtab-btn" style="padding: 7px 12px; font-size: 12px; font-weight: 700; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.12); background: transparent; color: #94a3b8; cursor: pointer; white-space: nowrap; display: flex; align-items: center; gap: 5px;">
+          🧠 4. Filtros & Estrategia 5h
+        </button>
+      </div>
+
+      <!-- VISTA 1: CRONOGRAMA 12 SEMANAS -->
+      <div id="planViewCrono" style="display: flex; flex-direction: column; gap: 10px;">
+        <div style="font-size: 11.5px; color: #94a3b8; line-height: 1.45; background: rgba(15, 23, 42, 0.5); padding: 8px 10px; border-radius: 8px; border-left: 3px solid #10b981;">
+          💡 <strong>Plan intensivo de 60 días:</strong> 2 horas diarias de estudio conceptual y resolución práctica. Marca la casilla al culminar cada semana para guardar tu progreso en este dispositivo.
+        </div>
+        <div id="planWeeksContainer" style="display: flex; flex-direction: column; gap: 10px; max-height: 52vh; overflow-y: auto; padding-right: 4px;">
+          <!-- Se inyecta dinámicamente desde JavaScript -->
+        </div>
+      </div>
+
+      <!-- VISTA 2: TRATADO DE LOS 20 MÓDULOS -->
+      <div id="planViewModulos" style="display: none; flex-direction: column; gap: 12px;">
+        <div style="display: flex; gap: 8px; align-items: center;">
+          <select id="planModuleSelect" style="flex: 2; background: #0b1120; border: 1px solid rgba(56, 189, 248, 0.4); color: #f8fafc; padding: 8px 10px; border-radius: 8px; font-size: 12.5px; font-weight: 700; outline: none;">
+            <!-- Opciones inyectadas dinámicamente -->
+          </select>
+          <input type="text" id="planModuleSearch" placeholder="🔍 Buscar tema, ley, fórmula..." style="flex: 1.5; background: #0b1120; border: 1px solid rgba(255, 255, 255, 0.15); color: #f8fafc; padding: 8px 10px; border-radius: 8px; font-size: 12px; outline: none;">
+        </div>
+
+        <div id="planModuleContentContainer" style="max-height: 50vh; overflow-y: auto; padding-right: 4px; display: flex; flex-direction: column; gap: 10px;">
+          <!-- Contenido del módulo seleccionado inyectado dinámicamente -->
+        </div>
+      </div>
+
+      <!-- VISTA 3: BANCO DE 40 CASOS PJS (SEPARADO) -->
+      <div id="planViewCasos" style="display: none; flex-direction: column; gap: 12px;">
+        <div style="background: linear-gradient(135deg, rgba(30, 58, 138, 0.3), rgba(15, 23, 42, 0.8)); border: 1.5px solid rgba(59, 130, 246, 0.4); border-radius: 12px; padding: 14px 16px; display: flex; flex-direction: column; gap: 10px;">
+          <div style="display: flex; align-items: center; justify-content: space-between;">
+            <div style="font-size: 14px; font-weight: 800; color: #93c5fd; display: flex; align-items: center; gap: 6px;">
+              <span>⭐</span> Gran Simulador Maestro Ficha 3006
+            </div>
+            <span style="font-size: 11px; font-weight: 800; background: rgba(59, 130, 246, 0.2); color: #bfdbfe; border: 1px solid rgba(59, 130, 246, 0.5); padding: 2px 8px; border-radius: 10px;">
+              40 Casos PJS Comentados
+            </span>
+          </div>
+          <p style="font-size: 12px; color: #cbd5e1; line-height: 1.5; margin: 0;">
+            Este banco de casos reproduce con absoluta fidelidad las situaciones laborales cotidianas del <strong>Gestor III (OPEC 242703)</strong> en fiscalización, determinación de tributos, control aduanero, auditoría interna, contratación estatal, régimen disciplinario y juicio moral. <em>Se encuentra alojado en un módulo dedicado para que entrenes de forma focalizada sin mezclas</em>.
+          </p>
+          <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+            <button type="button" id="btnStartCasosMaestrosDirecto" class="btn-primary" style="flex: 1; min-height: 44px; font-size: 13.5px; font-weight: 800; border-radius: 10px; background: linear-gradient(135deg, #2563eb, #1d4ed8); display: flex; align-items: center; justify-content: center; gap: 8px; cursor: pointer;">
+              <span>🚀</span> Entrenar los 40 Casos en el Simulador
+            </button>
+          </div>
+        </div>
+
+        <div style="font-size: 12px; font-weight: 800; color: #e2e8f0; text-transform: uppercase; letter-spacing: 0.5px;">
+          📋 Desglose de Casos por Módulo y Eje:
+        </div>
+        <div id="planCasosListContainer" style="max-height: 40vh; overflow-y: auto; display: flex; flex-direction: column; gap: 8px; padding-right: 4px;">
+          <!-- Listado de casos inyectado dinámicamente -->
+        </div>
+      </div>
+
+      <!-- VISTA 4: LOS 4 FILTROS PSICOMÉTRICOS Y ESTRATEGIA 5H -->
+      <div id="planViewFiltros" style="display: none; flex-direction: column; gap: 12px;">
+        <div style="background: rgba(168, 85, 247, 0.12); border-left: 4px solid #a855f7; border-radius: 8px; padding: 12px 14px;">
+          <div style="font-size: 13px; font-weight: 800; color: #d8b4fe; margin-bottom: 4px;">
+            🎯 Método de los Cuatro Filtros de Descarte (Modelo TRI)
+          </div>
+          <div style="font-size: 11.5px; color: #e2e8f0; line-height: 1.5;">
+            Cada pregunta de juicio situacional presenta una sola clave oficial y dos distractores estructurados. Aplica estos 4 filtros en orden para descartar los errores en menos de 60 segundos:
+          </div>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 8px;">
+          <div style="background: rgba(15, 23, 42, 0.7); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 10px; padding: 10px 12px;">
+            <div style="font-size: 12px; font-weight: 800; color: #f87171;">1. Filtro de Legalidad Estricta y Reserva de Ley:</div>
+            <div style="font-size: 11.5px; color: #cbd5e1; margin-top: 2px; line-height: 1.4;">
+              Descarta cualquier opción que proponga omitir términos, saltarse el debido proceso, violar la reserva tributaria (Art. 583 E.T.) o conceder exenciones sin ley bajo pretexto de "urgencia" operativa.
+            </div>
+          </div>
+
+          <div style="background: rgba(15, 23, 42, 0.7); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 10px; padding: 10px 12px;">
+            <div style="font-size: 12px; font-weight: 800; color: #fbbf24;">2. Filtro del Nivel Jerárquico del Cargo (Gestor III = Profesional):</div>
+            <div style="font-size: 11.5px; color: #cbd5e1; margin-top: 2px; line-height: 1.4;">
+              Descarta opciones donde el servidor asuma funciones directivas reservadas (ordenar el gasto público, revocar actos discrecionalmente) o caiga en subordinación ciega o pasividad asistencial ("esperar órdenes").
+            </div>
+          </div>
+
+          <div style="background: rgba(15, 23, 42, 0.7); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 10px; padding: 10px 12px;">
+            <div style="font-size: 12px; font-weight: 800; color: #38bdf8;">3. Filtro del Procedimiento Reglado vs. Informalidad:</div>
+            <div style="font-size: 11.5px; color: #cbd5e1; margin-top: 2px; line-height: 1.4;">
+              Descarta opciones que propongan "arreglar las cosas de palabra", "acuerdos verbales", "prestar usuarios o firmas" o "prescindir de actas". Toda actuación pública debe ser documentada, trazable y motivada.
+            </div>
+          </div>
+
+          <div style="background: rgba(15, 23, 42, 0.7); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 10px; padding: 10px 12px;">
+            <div style="font-size: 12px; font-weight: 800; color: #34d399;">4. Filtro de Conducta Proactiva, Asertiva e Íntegra:</div>
+            <div style="font-size: 11.5px; color: #cbd5e1; margin-top: 2px; line-height: 1.4;">
+              En preguntas comportamentales, la opción correcta siempre muestra liderazgo técnico, propuesta de soluciones con datos, mediación constructiva y cero tolerancia con la corrupción (denuncia inmediata).
+            </div>
+          </div>
+        </div>
+
+        <div style="background: rgba(15, 23, 42, 0.85); border: 1px solid rgba(245, 158, 11, 0.35); border-radius: 10px; padding: 12px 14px; margin-top: 4px;">
+          <div style="font-size: 12.5px; font-weight: 800; color: #f59e0b; margin-bottom: 6px;">
+            ⏱️ Cronograma de Gestión del Tiempo en el Examen Oficial (5 Horas)
+          </div>
+          <div style="font-size: 11.5px; color: #e2e8f0; line-height: 1.5;">
+            • <strong>Horas 1 y 2 (Fase 1 Rápida):</strong> Lee primero la pregunta en negrilla. Responde las seguras de lectura directa. Marca con círculo las dudosas sin tardar más de 90 segundos.<br>
+            • <strong>Horas 3 y 4 (Fase 2 Analítica):</strong> Vuelve a los casos complejos. Aplica los 4 filtros de descarte entre las finalistas. Resuelve fórmulas de Excel, MGA e indicadores.<br>
+            • <strong>Hora 5 (Fase 3 Hoja Óptica):</strong> Rellena la hoja de respuestas con lápiz de grafito No. 2 de 10 en 10. No dejes preguntas sin responder (los errores no descuentan puntos).
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer del Modal -->
+      <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(255, 255, 255, 0.1); padding-top: 12px; margin-top: 4px;">
+        <button type="button" id="btnClosePlanEstudioModal" class="btn-secondary" style="font-size: 13px; font-weight: 700; padding: 9px 18px; border-radius: 8px;">
+          Cerrar
+        </button>
+        <button type="button" id="btnPlanIrAPracticar" class="btn-primary" style="font-size: 13px; font-weight: 800; padding: 9px 20px; border-radius: 8px; background: linear-gradient(135deg, #10b981, #059669); display: flex; align-items: center; gap: 6px;">
+          <span>🎯</span> Practicar Casos Ficha 3006
+        </button>
+      </div>
+    </div>
+  </div>
+
   <!-- MODAL: PROTOCOLO OFICIAL DÍA D (8 DE NOVIEMBRE DE 2026) -->
   <div id="diaDModal" class="modal-overlay" style="overflow-y: auto; -webkit-overflow-scrolling: touch;">
     <div class="modal-card scrollable" style="max-width: 600px; width: 95%; max-height: 90vh; overflow-y: auto; padding: 20px; gap: 16px; box-sizing: border-box;">
@@ -2425,6 +2601,8 @@
   <script src="image_catalog.js"></script>
   <script src="caza_distractores_100.js"></script>
   <script src="verbos_rectores_data.js"></script>
+  <script src="plan_estudio_data.js"></script>
+  <script src="casos_maestros_ficha3006.js"></script>
   <script src="profiles.js"></script>
   <script src="questions_gestor_iii.js"></script>
   <script src="questions_gestor_iii_ci.js"></script>

@@ -24,6 +24,7 @@ const PROFILES_DATA = {
       "Implementar políticas y estrategias para la planeación, formulación, implementación, mantenimiento y evaluación de convenios de cooperación internacional e interinstitucional."
     ],
     filterOptions: [
+      { id: "ficha_3006_maestro", label: "⭐ Simulador Maestro Ficha 3006 (40 Casos PJS)" },
       { id: "interleaving", label: "🌪️ Modo Intercalado (Mezcla Mixta)" },
       { id: "todos", label: "⚡ Todos los Ejes de la DIAN" },
       { id: "tributario", label: "📊 Procedimiento Tributario y Fiscalización" },
@@ -106,6 +107,7 @@ const PROFILES_DATA = {
       "RESPETO"
     ],
     filterOptions: [
+      { id: "ficha_3006_maestro", label: "⭐ Simulador Maestro Ficha 3006 (40 Casos PJS)" },
       { id: "interleaving", label: "🌪️ Modo Intercalado (Mezcla Mixta)" },
       { id: "todos", label: "⚡ Todos los Indicadores Gestor III (CI)" },
       // Ejes Funcionales
@@ -164,6 +166,7 @@ const PROFILES_DATA = {
       "Realizar la gestión documental relacionada con trámites, solicitudes técnicas, denuncias y reportes de operaciones sospechosas, propios del proceso de fiscalización y liquidación que permitan establecer la trazabilidad de lo actuado, de acuerdo con la normativa vigente y los procedimientos establecidos."
     ],
     filterOptions: [
+      { id: "ficha_3006_maestro", label: "⭐ Simulador Maestro Ficha 3006 (40 Casos PJS)" },
       { id: "interleaving", label: "🌪️ Modo Intercalado (Mezcla Mixta)" },
       { id: "todos", label: "⚡ Todos los Casos Analista IV" },
       // Ejes Funcionales

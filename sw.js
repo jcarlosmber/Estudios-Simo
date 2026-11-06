@@ -1,10 +1,12 @@
 // sw.js - Service Worker para SIMO Prep (Soporte PWA e Instalación en Chrome/Móvil)
-const CACHE_NAME = 'simo-prep-v4';
+const CACHE_NAME = 'simo-prep-v5';
 const ASSETS_TO_CACHE = [
   './',
   './sidepanel.html',
   './sidepanel.css',
   './sidepanel.js',
+  './plan_estudio_data.js',
+  './casos_maestros_ficha3006.js',
   './profiles.js',
   './questions_gestor_iii.js',
   './questions_gestor_iii_ci.js',
