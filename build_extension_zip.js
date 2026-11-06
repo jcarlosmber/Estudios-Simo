@@ -24,6 +24,7 @@ function buildExtensionZip() {
     'sound_effects.js',
     'cloud_sync.js',
     'verbos_rectores_data.js',
+    'mermaid.min.js',
     'popup.html',
     'popup.js',
     'tip_popup.html',
@@ -36,6 +37,11 @@ function buildExtensionZip() {
       zip.addLocalFile(fullPath);
     }
   });
+
+  const pdfMaterialPath = path.join(__dirname, 'material', '01_Guias_y_Convocatoria', 'Plan_Estudio_Gestor_III_DIAN_Ficha_3006.pdf');
+  if (fs.existsSync(pdfMaterialPath)) {
+    zip.addLocalFile(pdfMaterialPath, 'material/01_Guias_y_Convocatoria');
+  }
 
   const iconsDir = path.join(__dirname, 'icons');
   if (fs.existsSync(iconsDir)) {

@@ -138,6 +138,20 @@ app.get(['/download/extension', '/simo-prep-extension.zip'], (req, res) => {
   }
 });
 
+// 7. Ruta directa para visualizar / descargar el PDF oficial del Plan de Estudio (121 páginas)
+app.get(['/plan-estudio.pdf', '/material/Plan_Estudio_Gestor_III_DIAN_Ficha_3006.pdf'], (req, res) => {
+  const pdfPath = path.join(__dirname, 'material', '01_Guias_y_Convocatoria', 'Plan_Estudio_Gestor_III_DIAN_Ficha_3006.pdf');
+  if (fs.existsSync(pdfPath)) {
+    res.setHeader('Content-Type', 'application/pdf');
+    if (req.query.download === 'true') {
+      return res.download(pdfPath, 'Plan_Estudio_Gestor_III_DIAN_Ficha_3006.pdf');
+    }
+    res.setHeader('Content-Disposition', 'inline; filename="Plan_Estudio_Gestor_III_DIAN_Ficha_3006.pdf"');
+    return res.sendFile(pdfPath);
+  }
+  res.status(404).send('PDF oficial no encontrado en el servidor.');
+});
+
 app.listen(PORT, '0.0.0.0', () => {
   console.log(`=======================================================`);
   console.log(`🚀 SIMO Prep Server activo en el puerto ${PORT}`);

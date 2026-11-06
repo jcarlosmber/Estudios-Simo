@@ -3000,6 +3000,11 @@ function switchTab(tabName) {
       window.syncVerbosViewProfile();
     }
   }
+  if (tabName === "planEstudio") {
+    if (typeof window.onSwitchToPlanEstudio === "function") {
+      window.onSwitchToPlanEstudio();
+    }
+  }
   if (tabName === "srs") renderSrsTab();
   if (tabName === "stats") renderStatsTab();
 
@@ -6102,13 +6107,13 @@ function renderSimulacroQuestion() {
     q.opciones.forEach((opt) => {
       const isSelected = selectedAnswer === opt.id;
       const card = document.createElement("div");
-      card.style.cssText = `background: ${isSelected ? 'rgba(56, 189, 248, 0.15)' : 'var(--bg-card)'}; border: 1px solid ${isSelected ? '#38bdf8' : 'var(--border-color)'}; border-radius: 8px; padding: 12px 14px; cursor: pointer; display: flex; gap: 10px; align-items: flex-start; transition: all 0.2s ease;`;
+      card.style.cssText = `background: ${isSelected ? '#eff6ff' : '#ffffff'}; border: ${isSelected ? '1.5px solid #2563eb' : '1px solid #e2e8f0'}; border-radius: 8px; padding: 12px 14px; cursor: pointer; display: flex; gap: 10px; align-items: flex-start; transition: all 0.2s ease; box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);`;
 
       card.innerHTML = `
-        <span style="width: 26px; height: 26px; border-radius: 50%; background: ${isSelected ? '#38bdf8' : 'rgba(255,255,255,0.08)'}; color: ${isSelected ? '#0b1120' : '#fff'}; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 13px; flex-shrink: 0;">
+        <span style="width: 26px; height: 26px; border-radius: 50%; background: ${isSelected ? '#2563eb' : '#f1f5f9'}; color: ${isSelected ? '#ffffff' : '#475569'}; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 13px; flex-shrink: 0; border: 1px solid ${isSelected ? '#2563eb' : '#e2e8f0'};">
           ${opt.id}
         </span>
-        <span style="font-size: 13px; line-height: 1.5; color: ${isSelected ? '#ffffff' : '#cbd5e1'};">
+        <span style="font-size: 13.5px; line-height: 1.55; color: #1e293b; font-weight: ${isSelected ? '700' : '500'};">
           ${opt.texto}
         </span>
       `;
@@ -6283,15 +6288,15 @@ function reviewSimAnswers() {
   const isCorrect = userAns === q.respuestaCorrecta;
 
   container.innerHTML = `
-    <div style="background: ${isCorrect ? 'rgba(16, 185, 129, 0.12)' : 'rgba(239, 68, 68, 0.12)'}; border: 1px solid ${isCorrect ? '#10b981' : '#ef4444'}; border-radius: 8px; padding: 12px; margin-bottom: 6px;">
-      <div style="font-weight: 800; font-size: 13px; color: ${isCorrect ? '#34d399' : '#f87171'};">
-        ${isCorrect ? '✓ Respuesta Correcta' : `✕ Marcaste Opción ${userAns || 'Sin Responder'} (Correcta era: ${q.respuestaCorrecta})`}
+    <div style="background: ${isCorrect ? '#f0fdf4' : '#fef2f2'}; border: 1px solid ${isCorrect ? '#bbf7d0' : '#fecaca'}; border-left: 4px solid ${isCorrect ? '#16a34a' : '#dc2626'}; border-radius: 8px; padding: 12px 14px; margin-bottom: 8px;">
+      <div style="font-weight: 800; font-size: 13.5px; color: ${isCorrect ? '#15803d' : '#b91c1c'};">
+        ${isCorrect ? '✓ Discriminación Correcta' : `✕ Marcaste Opción ${userAns || 'Sin Responder'} (La Clave Oficial es: ${q.respuestaCorrecta})`}
       </div>
-      <div style="font-size: 12px; color: #cbd5e1; margin-top: 6px; line-height: 1.5;">
+      <div style="font-size: 13px; color: #334155; margin-top: 6px; line-height: 1.55;">
         ${q.opciones.find(o => o.id === q.respuestaCorrecta)?.explicacion || q.justificacion || 'Respuesta correcta fundamentada en la normativa legal vigente.'}
       </div>
       ${q.citaNormativa ? `
-        <div style="margin-top: 8px; padding-top: 6px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 11px; color: #38bdf8; font-style: italic;">
+        <div style="margin-top: 8px; padding-top: 6px; border-top: 1px solid #e2e8f0; font-size: 12px; color: #0284c7; font-style: italic;">
           ⚖️ Cita Normativa Areandina: ${q.citaNormativa}
         </div>
       ` : ''}
@@ -6304,14 +6309,14 @@ function reviewSimAnswers() {
     const isUserChoice = opt.id === userAns;
 
     const optCard = document.createElement("div");
-    optCard.style.cssText = `background: var(--bg-card); border: 1px solid ${isThisCorrect ? '#10b981' : (isUserChoice ? '#ef4444' : 'var(--border-color)')}; border-radius: 8px; padding: 10px 12px; display: flex; flex-direction: column; gap: 4px;`;
+    optCard.style.cssText = `background: #ffffff; border: 1px solid ${isThisCorrect ? '#16a34a' : (isUserChoice ? '#dc2626' : '#e2e8f0')}; border-left: 4px solid ${isThisCorrect ? '#16a34a' : (isUserChoice ? '#dc2626' : '#cbd5e1')}; border-radius: 8px; padding: 10px 14px; display: flex; flex-direction: column; gap: 4px; margin-bottom: 6px;`;
 
     optCard.innerHTML = `
-      <div style="display: flex; gap: 8px; align-items: center;">
-        <span style="font-weight: 900; color: ${isThisCorrect ? '#34d399' : (isUserChoice ? '#f87171' : '#94a3b8')};">
-          ${opt.id}. ${opt.texto}
+      <div style="display: flex; gap: 8px; align-items: center; justify-content: space-between;">
+        <span style="font-weight: 700; font-size: 13px; color: #1e293b;">
+          <strong>${opt.id}.</strong> ${opt.texto}
         </span>
-        ${isThisCorrect ? '<span style="font-size: 11px; background: rgba(16,185,129,0.2); color: #34d399; padding: 2px 6px; border-radius: 4px; font-weight: 800;">CORRECTA</span>' : ''}
+        ${isThisCorrect ? '<span style="font-size: 10.5px; background: #ecfdf5; color: #047857; border: 1px solid #a7f3d0; padding: 2px 7px; border-radius: 4px; font-weight: 800; white-space: nowrap;">CLAVE OFICIAL</span>' : ''}
       </div>
     `;
     container.appendChild(optCard);
@@ -6321,70 +6326,297 @@ function reviewSimAnswers() {
 // =========================================================================
 // PLAN MAESTRO DE ESTUDIO GESTOR III (FICHA TP-DE-3006 / COMPENDIO 20 MÓDULOS)
 // =========================================================================
-function setupPlanEstudioModal() {
-  const hubCard = document.getElementById("hubCardPlanEstudio");
-  const modal = document.getElementById("planEstudioModal");
-  const closeX = document.getElementById("btnClosePlanEstudioModalX");
-  const closeBtn = document.getElementById("btnClosePlanEstudioModal");
-  const btnIrAPracticar = document.getElementById("btnPlanIrAPracticar");
-  const btnStartCasosDirecto = document.getElementById("btnStartCasosMaestrosDirecto");
+// scratch/new_plan_estudio_code.js
+// SISTEMA INTEGRAL: PLAN MAESTRO DE ESTUDIO (FICHA TP-DE-3006 / 121 PÁGINAS)
+// 20 Módulos Completos, 90 Gráficos Mermaid y Cronograma Intensivo de 60 Días
 
-  const progressText = document.getElementById("planModalProgressText");
-  const progressBar = document.getElementById("planModalProgressBar");
+function initMermaidConfig() {
+  if (typeof mermaid !== "undefined") {
+    try {
+      mermaid.initialize({
+        startOnLoad: false,
+        theme: "dark",
+        themeVariables: {
+          darkMode: true,
+          background: "#0b1120",
+          primaryColor: "#0284c7",
+          primaryTextColor: "#f8fafc",
+          primaryBorderColor: "#38bdf8",
+          lineColor: "#38bdf8",
+          secondaryColor: "#1e293b",
+          tertiaryColor: "#0f172a"
+        },
+        flowchart: {
+          curve: "basis",
+          htmlLabels: true
+        },
+        securityLevel: "loose"
+      });
+    } catch (e) {
+      console.warn("[Mermaid] Error en inicialización:", e);
+    }
+  }
+}
+
+async function triggerMermaidRender(containerEl) {
+  if (typeof mermaid === "undefined") return;
+  try {
+    const nodes = containerEl.querySelectorAll("pre.mermaid");
+    if (nodes.length > 0) {
+      await mermaid.run({ nodes });
+    }
+  } catch (err) {
+    console.error("[Mermaid] Renderizado error:", err);
+  }
+}
+
+function escapeHtml(text) {
+  if (!text) return "";
+  return text
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+}
+
+function renderHtmlTable(rows) {
+  if (!rows || rows.length === 0) return "";
+  const header = rows[0];
+  const body = rows.slice(1);
+
+  let html = `<div style="overflow-x: auto; margin: 16px 0; border: 1px solid rgba(255,255,255,0.12); border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.3);">`;
+  html += `<table style="width: 100%; border-collapse: collapse; font-size: 12px; text-align: left; background: rgba(15, 23, 42, 0.9);">`;
+  
+  html += `<thead><tr style="background: rgba(56, 189, 248, 0.15); border-bottom: 2px solid rgba(56, 189, 248, 0.4);">`;
+  header.forEach(h => {
+    html += `<th style="padding: 10px 12px; font-weight: 800; color: #38bdf8; border-right: 1px solid rgba(255,255,255,0.06);">${h}</th>`;
+  });
+  html += `</tr></thead><tbody>`;
+
+  body.forEach((r, idx) => {
+    const bg = idx % 2 === 0 ? "rgba(255,255,255,0.02)" : "rgba(255,255,255,0.05)";
+    html += `<tr style="background: ${bg}; border-bottom: 1px solid rgba(255,255,255,0.06);">`;
+    r.forEach(cell => {
+      html += `<td style="padding: 9px 12px; color: #cbd5e1; border-right: 1px solid rgba(255,255,255,0.06); line-height: 1.45;">${cell}</td>`;
+    });
+    html += `</tr>`;
+  });
+
+  html += `</tbody></table></div>`;
+  return html;
+}
+
+function formatMarkdownToHtml(md) {
+  if (!md) return "";
+
+  // 1. Extraer bloques mermaid temporalmente
+  const mermaidBlocks = [];
+  let processed = md.replace(/```mermaid([\s\S]*?)```/g, (match, code) => {
+    const idx = mermaidBlocks.length;
+    mermaidBlocks.push(code.trim());
+    return `___MERMAID_BLOCK_${idx}___`;
+  });
+
+  // 2. Extraer otros bloques de código
+  const codeBlocks = [];
+  processed = processed.replace(/```([a-zA-Z0-9_-]*)([\s\S]*?)```/g, (match, lang, code) => {
+    const idx = codeBlocks.length;
+    codeBlocks.push({ lang, code: code.trim() });
+    return `___CODE_BLOCK_${idx}___`;
+  });
+
+  // 3. Reemplazar encabezados
+  processed = processed.replace(/^#### (.*$)/gim, '<h5 style="font-size: 13px; font-weight: 800; color: #a7f3d0; margin: 16px 0 6px 0;">$1</h5>');
+  processed = processed.replace(/^### (.*$)/gim, '<h4 style="font-size: 14.5px; font-weight: 800; color: #6ee7b7; margin: 20px 0 8px 0; border-left: 3px solid #10b981; padding-left: 8px;">$1</h4>');
+  processed = processed.replace(/^## (.*$)/gim, '<h3 style="font-size: 16.5px; font-weight: 900; color: #38bdf8; margin: 26px 0 10px 0; border-bottom: 1px solid rgba(56, 189, 248, 0.25); padding-bottom: 6px;">$1</h3>');
+  processed = processed.replace(/^# (.*$)/gim, '<h2 style="font-size: 19px; font-weight: 900; color: #ffffff; margin: 0 0 14px 0; letter-spacing: -0.3px;">$1</h2>');
+
+  // 4. Callouts [!IMPORTANT], [!NOTE], [!TIP], [!WARNING]
+  processed = processed.replace(/^>\s*\[!IMPORTANT\]\s*(.*$)/gim, '<div style="background: rgba(16, 185, 129, 0.12); border-left: 4px solid #10b981; padding: 10px 14px; border-radius: 6px; margin: 12px 0; color: #a7f3d0; font-size: 12.5px;"><strong style="color: #34d399;">⚖️ IMPORTANTE:</strong> $1</div>');
+  processed = processed.replace(/^>\s*\[!NOTE\]\s*(.*$)/gim, '<div style="background: rgba(56, 189, 248, 0.12); border-left: 4px solid #38bdf8; padding: 10px 14px; border-radius: 6px; margin: 12px 0; color: #bae6fd; font-size: 12.5px;"><strong style="color: #38bdf8;">📌 NOTA TÉCNICA:</strong> $1</div>');
+  processed = processed.replace(/^>\s*\[!TIP\]\s*(.*$)/gim, '<div style="background: rgba(245, 158, 11, 0.12); border-left: 4px solid #f59e0b; padding: 10px 14px; border-radius: 6px; margin: 12px 0; color: #fde68a; font-size: 12.5px;"><strong style="color: #fbbf24;">💡 CLAVE PSICOMÉTRICA:</strong> $1</div>');
+  processed = processed.replace(/^>\s*\[!WARNING\]\s*(.*$)/gim, '<div style="background: rgba(239, 68, 68, 0.12); border-left: 4px solid #ef4444; padding: 10px 14px; border-radius: 6px; margin: 12px 0; color: #fca5a5; font-size: 12.5px;"><strong style="color: #f87171;">⚠️ ALERTA EXCLUSIÓN:</strong> $1</div>');
+  processed = processed.replace(/^>\s*(.*$)/gim, '<blockquote style="border-left: 3px solid rgba(255,255,255,0.2); margin: 10px 0; padding: 6px 12px; color: #cbd5e1; font-style: italic; background: rgba(255,255,255,0.02); border-radius: 4px;">$1</blockquote>');
+
+  // 5. Negritas, cursivas y código inline
+  processed = processed.replace(/\*\*(.*?)\*\*/g, '<strong style="color: #ffffff; font-weight: 800;">$1</strong>');
+  processed = processed.replace(/\*(.*?)\*/g, '<em style="color: #cbd5e1;">$1</em>');
+  processed = processed.replace(/`([^`]+)`/g, '<code style="background: rgba(0,0,0,0.45); color: #38bdf8; padding: 2px 6px; border-radius: 4px; font-size: 12px; font-family: monospace;">$1</code>');
+
+  // 6. Tablas Markdown
+  const lines = processed.split('\n');
+  const outLines = [];
+  let inTable = false;
+  let tableRows = [];
+
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i].trim();
+    if (line.startsWith('|') && line.endsWith('|')) {
+      if (/^\|[\s\:\-]+(?:\|[\s\:\-]+)*\|$/.test(line)) {
+        continue;
+      }
+      inTable = true;
+      const cells = line.split('|').slice(1, -1).map(c => c.trim());
+      tableRows.push(cells);
+    } else {
+      if (inTable) {
+        outLines.push(renderHtmlTable(tableRows));
+        tableRows = [];
+        inTable = false;
+      }
+      outLines.push(lines[i]);
+    }
+  }
+  if (inTable && tableRows.length > 0) {
+    outLines.push(renderHtmlTable(tableRows));
+  }
+  processed = outLines.join('\n');
+
+  // 7. Listas de viñetas y números
+  processed = processed.replace(/^\s*[\-\*]\s+(.*$)/gim, '<li style="margin-left: 20px; list-style-type: disc; margin-bottom: 4px; color: #e2e8f0;">$1</li>');
+  processed = processed.replace(/^\s*(\d+)\.\s+(.*$)/gim, '<li style="margin-left: 20px; list-style-type: decimal; margin-bottom: 4px; color: #e2e8f0;">$2</li>');
+
+  // 8. Párrafos
+  processed = processed.split(/\n\s*\n/).map(p => {
+    p = p.trim();
+    if (!p) return "";
+    if (p.startsWith('<h') || p.startsWith('<div') || p.startsWith('<table') || p.startsWith('<blockquote') || p.startsWith('<li') || p.startsWith('___MERMAID') || p.startsWith('___CODE')) {
+      return p;
+    }
+    return `<p style="margin: 8px 0; line-height: 1.65; color: #cbd5e1;">${p.replace(/\n/g, '<br>')}</p>`;
+  }).join('\n');
+
+  // 9. Restaurar Bloques de Código Genéricos
+  processed = processed.replace(/___CODE_BLOCK_(\d+)___/g, (match, idx) => {
+    const item = codeBlocks[Number(idx)];
+    if (!item) return "";
+    return `<div style="background: #090d16; border: 1px solid rgba(255,255,255,0.12); border-radius: 8px; padding: 12px; margin: 12px 0; overflow-x: auto; font-family: monospace; font-size: 12px; color: #7dd3fc; line-height: 1.5;">${escapeHtml(item.code)}</div>`;
+  });
+
+  // 10. Restaurar Bloques Mermaid
+  processed = processed.replace(/___MERMAID_BLOCK_(\d+)___/g, (match, idx) => {
+    const code = mermaidBlocks[Number(idx)];
+    if (!code) return "";
+    const diagramId = `mermaid_diag_${Date.now()}_${idx}_${Math.floor(Math.random() * 1000)}`;
+    return `
+      <div class="mermaid-container" style="margin: 20px 0; background: #0b1120; border: 1.5px solid rgba(56, 189, 248, 0.4); border-radius: 12px; padding: 16px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5); overflow-x: auto;">
+        <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255, 255, 255, 0.08); padding-bottom: 8px; margin-bottom: 12px;">
+          <span style="font-size: 11px; font-weight: 800; color: #38bdf8; text-transform: uppercase; display: flex; align-items: center; gap: 6px;">
+            <span>📊</span> Diagrama de Proceso / Estructura Técnica
+          </span>
+          <span style="font-size: 10px; font-weight: 700; color: #6ee7b7; background: rgba(16, 185, 129, 0.15); padding: 2px 7px; border-radius: 6px;">
+            Mermaid Vectorial
+          </span>
+        </div>
+        <pre class="mermaid" id="${diagramId}" style="text-align: center; margin: 0; background: transparent; font-size: 12px; color: #f8fafc;">${escapeHtml(code)}</pre>
+      </div>
+    `;
+  });
+
+  return processed;
+}
+
+function setupPlanEstudioModal() {
+  initMermaidConfig();
+
+  // Elementos de la Pestaña Principal (tab-planEstudio)
+  const navBottomBtn = document.getElementById("navBtnBottomPlanEstudio");
+  const tabProgressText = document.getElementById("tabPlanProgressText");
+  const tabProgressBar = document.getElementById("tabPlanProgressBar");
   const badgeProgress = document.getElementById("planBadgeProgress");
 
-  const subtabCrono = document.getElementById("btnPlanSubTabCrono");
-  const subtabModulos = document.getElementById("btnPlanSubTabModulos");
-  const subtabCasos = document.getElementById("btnPlanSubTabCasos");
-  const subtabFiltros = document.getElementById("btnPlanSubTabFiltros");
+  const btnSubModulos = document.getElementById("tabBtnPlanSubModulos");
+  const btnSubCrono = document.getElementById("tabBtnPlanSubCrono");
+  const btnSubFiltros = document.getElementById("tabBtnPlanSubFiltros");
+  const btnSubCasos = document.getElementById("tabBtnPlanSubCasos");
 
-  const viewCrono = document.getElementById("planViewCrono");
-  const viewModulos = document.getElementById("planViewModulos");
-  const viewCasos = document.getElementById("planViewCasos");
-  const viewFiltros = document.getElementById("planViewFiltros");
+  const viewModulos = document.getElementById("tabPlanViewModulos");
+  const viewCrono = document.getElementById("tabPlanViewCrono");
+  const viewFiltros = document.getElementById("tabPlanViewFiltros");
+  const viewCasos = document.getElementById("tabPlanViewCasos");
 
-  const weeksContainer = document.getElementById("planWeeksContainer");
-  const moduleSelect = document.getElementById("planModuleSelect");
-  const moduleSearch = document.getElementById("planModuleSearch");
-  const moduleContent = document.getElementById("planModuleContentContainer");
-  const casosListContainer = document.getElementById("planCasosListContainer");
+  const selectModule = document.getElementById("tabPlanSelectModule");
+  const searchInput = document.getElementById("tabPlanSearchInput");
+  const btnPrevMod = document.getElementById("btnPlanPrevModule");
+  const btnNextMod = document.getElementById("btnPlanNextModule");
+  const btnFontDec = document.getElementById("btnPlanFontDec");
+  const btnFontInc = document.getElementById("btnPlanFontInc");
+  const btnMarkRead = document.getElementById("btnPlanMarkModuleRead");
+  const moduleBody = document.getElementById("tabPlanModuleBody");
 
-  const STORAGE_KEY = "simo_plan_3006_completed_weeks";
+  const weeksContainer = document.getElementById("tabPlanWeeksContainer");
+  const filtrosGrid = document.getElementById("tabPlanFiltrosGrid");
+  const casosCardsContainer = document.getElementById("tabPlanCasosCardsContainer");
+  const btnStartCasosFromTab = document.getElementById("btnStartCasosMaestrosFromTab");
+
+  // Elementos de enlace desde Recursos
+  const btnIrDesdeRecursos = document.getElementById("btnIrAPlanDesdeRecursos");
+  const hubCardPlan = document.getElementById("hubCardPlanEstudio");
+
+  // Modal legacy (para compatibilidad si se activa desde algún botón)
+  const legacyModal = document.getElementById("planEstudioModal");
+  const legacyCloseX = document.getElementById("btnClosePlanEstudioModalX");
+  const legacyCloseBtn = document.getElementById("btnClosePlanEstudioModal");
+  const legacyBtnIrAPracticar = document.getElementById("btnPlanIrAPracticar");
+
+  let currentModuleId = 1;
+  let currentFontSize = 13.5;
+
+  const STORAGE_KEY_WEEKS = "simo_plan_3006_completed_weeks";
+  const STORAGE_KEY_MODULES = "simo_plan_3006_completed_modules";
+
   let completedWeeks = {};
+  let completedModules = {};
+
   try {
-    completedWeeks = JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}");
+    completedWeeks = JSON.parse(localStorage.getItem(STORAGE_KEY_WEEKS) || "{}");
+    completedModules = JSON.parse(localStorage.getItem(STORAGE_KEY_MODULES) || "{}");
   } catch (e) {
     completedWeeks = {};
+    completedModules = {};
   }
 
-  function updateProgress() {
-    const total = (typeof window.CRONOGRAMA_60_DIAS_DATA !== "undefined" && window.CRONOGRAMA_60_DIAS_DATA.length) || 12;
+  function updateGlobalProgress() {
+    const totalWeeks = (window.PLAN_ESTUDIO_FICHA_3006 && window.PLAN_ESTUDIO_FICHA_3006.cronograma.length) || 12;
     const completedCount = Object.values(completedWeeks).filter(Boolean).length;
-    const pct = Math.round((completedCount / total) * 100);
+    const pct = Math.round((completedCount / totalWeeks) * 100);
 
-    if (progressText) progressText.textContent = `${completedCount} / ${total} Semanas (${pct}%)`;
-    if (progressBar) progressBar.style.width = `${pct}%`;
-    if (badgeProgress) badgeProgress.textContent = `${completedCount}/${total}`;
+    if (tabProgressText) {
+      tabProgressText.textContent = `${completedCount} / ${totalWeeks} Semanas (${pct}%)`;
+    }
+    if (tabProgressBar) {
+      tabProgressBar.style.width = `${pct}%`;
+    }
+    if (badgeProgress) {
+      badgeProgress.textContent = `${completedCount}/${totalWeeks}`;
+    }
+
+    const legacyText = document.getElementById("planModalProgressText");
+    const legacyBar = document.getElementById("planModalProgressBar");
+    if (legacyText) legacyText.textContent = `${completedCount} / ${totalWeeks} Semanas (${pct}%)`;
+    if (legacyBar) legacyBar.style.width = `${pct}%`;
   }
 
   function saveProgress() {
     try {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(completedWeeks));
+      localStorage.setItem(STORAGE_KEY_WEEKS, JSON.stringify(completedWeeks));
+      localStorage.setItem(STORAGE_KEY_MODULES, JSON.stringify(completedModules));
     } catch (e) {}
-    updateProgress();
+    updateGlobalProgress();
   }
 
-  function switchPlanSubtab(activeTab) {
-    const tabs = [
-      { btn: subtabCrono, view: viewCrono, key: "crono" },
-      { btn: subtabModulos, view: viewModulos, key: "modulos" },
-      { btn: subtabCasos, view: viewCasos, key: "casos" },
-      { btn: subtabFiltros, view: viewFiltros, key: "filtros" }
+  function switchPlanSubtab(subTabKey) {
+    const subtabs = [
+      { btn: btnSubModulos, view: viewModulos, key: "modulos" },
+      { btn: btnSubCrono, view: viewCrono, key: "crono" },
+      { btn: btnSubFiltros, view: viewFiltros, key: "filtros" },
+      { btn: btnSubCasos, view: viewCasos, key: "casos" }
     ];
 
-    tabs.forEach(t => {
+    subtabs.forEach(t => {
       if (!t.btn || !t.view) return;
-      if (t.key === activeTab) {
+      if (t.key === subTabKey) {
         t.btn.classList.add("active");
         t.btn.style.border = "1px solid #10b981";
         t.btn.style.background = "rgba(16, 185, 129, 0.25)";
@@ -6393,36 +6625,179 @@ function setupPlanEstudioModal() {
         t.view.style.display = "flex";
       } else {
         t.btn.classList.remove("active");
-        t.btn.style.border = "1px solid rgba(255, 255, 255, 0.12)";
+        t.btn.style.border = "1px solid rgba(255, 255, 255, 0.1)";
         t.btn.style.background = "transparent";
         t.btn.style.color = "#94a3b8";
         t.btn.style.fontWeight = "700";
         t.view.style.display = "none";
       }
     });
+
+    if (subTabKey === "modulos") {
+      renderModule(currentModuleId);
+    } else if (subTabKey === "crono") {
+      renderWeeksList();
+    } else if (subTabKey === "filtros") {
+      renderFiltrosList();
+    } else if (subTabKey === "casos") {
+      renderCasosList();
+    }
   }
 
-  if (subtabCrono) subtabCrono.addEventListener("click", () => switchPlanSubtab("crono"));
-  if (subtabModulos) subtabModulos.addEventListener("click", () => switchPlanSubtab("modulos"));
-  if (subtabCasos) subtabCasos.addEventListener("click", () => switchPlanSubtab("casos"));
-  if (subtabFiltros) subtabFiltros.addEventListener("click", () => switchPlanSubtab("filtros"));
+  // --- SUBVISTA 1: LECTOR MAESTRO DE LOS 20 MÓDULOS ---
+  function populateModuleSelect() {
+    if (!selectModule) return;
+    const modules = (window.PLAN_ESTUDIO_FICHA_3006 && window.PLAN_ESTUDIO_FICHA_3006.modulos) || [];
+    selectModule.innerHTML = "";
 
-  function renderWeeks() {
+    modules.forEach(m => {
+      const isRead = !!completedModules[m.id];
+      const opt = document.createElement("option");
+      opt.value = String(m.id);
+      const icon = isRead ? "✓ " : "";
+      opt.textContent = `${icon}Módulo ${m.id}: ${m.titulo.replace(/M[ÓO]DULO\s+\d+[:\s\-]*/i, '')} (${m.diagramsCount} diag)`;
+      selectModule.appendChild(opt);
+    });
+
+    selectModule.addEventListener("change", (e) => {
+      currentModuleId = Number(e.target.value) || 1;
+      renderModule(currentModuleId);
+    });
+  }
+
+  async function renderModule(modId) {
+    if (!moduleBody) return;
+    const modules = (window.PLAN_ESTUDIO_FICHA_3006 && window.PLAN_ESTUDIO_FICHA_3006.modulos) || [];
+    const mod = modules.find(m => m.id === modId) || modules[0];
+    if (!mod) return;
+
+    currentModuleId = mod.id;
+    if (selectModule) selectModule.value = String(mod.id);
+
+    const isRead = !!completedModules[mod.id];
+    if (btnMarkRead) {
+      if (isRead) {
+        btnMarkRead.style.background = "#10b981";
+        btnMarkRead.style.color = "#042f2e";
+        btnMarkRead.innerHTML = "<span>✓</span> ¡Estudiado!";
+      } else {
+        btnMarkRead.style.background = "rgba(16, 185, 129, 0.15)";
+        btnMarkRead.style.color = "#6ee7b7";
+        btnMarkRead.innerHTML = "<span>✓</span> Marcar Estudiado";
+      }
+    }
+
+    // Renderizar Markdown Completo a HTML enriquecido
+    const html = formatMarkdownToHtml(mod.content);
+    moduleBody.style.fontSize = `${currentFontSize}px`;
+    moduleBody.innerHTML = html;
+
+    // Disparar renderizado dinámico de diagramas Mermaid vectoriales
+    await triggerMermaidRender(moduleBody);
+
+    // Scroll suave al inicio del lector
+    moduleBody.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+
+  // Buscador de palabras en el módulo actual
+  if (searchInput) {
+    searchInput.addEventListener("input", (e) => {
+      const query = e.target.value.trim().toLowerCase();
+      if (!moduleBody) return;
+
+      const mod = (window.PLAN_ESTUDIO_FICHA_3006 && window.PLAN_ESTUDIO_FICHA_3006.modulos || []).find(m => m.id === currentModuleId);
+      if (!mod) return;
+
+      if (!query) {
+        renderModule(currentModuleId);
+        return;
+      }
+
+      // Volver a renderizar y resaltar coincidencias
+      let html = formatMarkdownToHtml(mod.content);
+      const re = new RegExp(`(${query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
+      html = html.replace(re, '<mark style="background: #f59e0b; color: #000; padding: 1px 3px; border-radius: 3px; font-weight: 800;">$1</mark>');
+      moduleBody.innerHTML = html;
+      triggerMermaidRender(moduleBody);
+    });
+  }
+
+  // Navegación Anterior / Siguiente Módulo
+  if (btnPrevMod) {
+    btnPrevMod.addEventListener("click", () => {
+      if (currentModuleId > 1) {
+        currentModuleId--;
+        renderModule(currentModuleId);
+      }
+    });
+  }
+  if (btnNextMod) {
+    btnNextMod.addEventListener("click", () => {
+      const max = (window.PLAN_ESTUDIO_FICHA_3006 && window.PLAN_ESTUDIO_FICHA_3006.modulos.length) || 20;
+      if (currentModuleId < max) {
+        currentModuleId++;
+        renderModule(currentModuleId);
+      }
+    });
+  }
+
+  // Ajustes de tamaño de fuente
+  if (btnFontDec) {
+    btnFontDec.addEventListener("click", () => {
+      if (currentFontSize > 11) {
+        currentFontSize -= 1;
+        if (moduleBody) moduleBody.style.fontSize = `${currentFontSize}px`;
+      }
+    });
+  }
+  if (btnFontInc) {
+    btnFontInc.addEventListener("click", () => {
+      if (currentFontSize < 20) {
+        currentFontSize += 1;
+        if (moduleBody) moduleBody.style.fontSize = `${currentFontSize}px`;
+      }
+    });
+  }
+
+  // Marcar módulo como estudiado
+  if (btnMarkRead) {
+    btnMarkRead.addEventListener("click", () => {
+      const currentStatus = !!completedModules[currentModuleId];
+      completedModules[currentModuleId] = !currentStatus;
+      saveProgress();
+      populateModuleSelect();
+      renderModule(currentModuleId);
+
+      if (typeof showCustomModal === "function") {
+        showCustomModal({
+          title: completedModules[currentModuleId] ? "🎉 ¡Módulo Estudiado!" : "Módulo Desmarcado",
+          message: completedModules[currentModuleId] 
+            ? `Has completado el estudio exhaustivo del Módulo ${currentModuleId}. ¡Excelente disciplina hacia el ingreso a la DIAN!`
+            : `El Módulo ${currentModuleId} se ha marcado como pendiente de repaso.`,
+          icon: completedModules[currentModuleId] ? "🏆" : "📖",
+          isConfirm: false,
+          okText: "Continuar"
+        });
+      }
+    });
+  }
+
+  // --- SUBVISTA 2: CRONOGRAMA 60 DÍAS (12 SEMANAS) ---
+  function renderWeeksList() {
     if (!weeksContainer) return;
-    const crono = window.CRONOGRAMA_60_DIAS_DATA || [];
+    const crono = (window.PLAN_ESTUDIO_FICHA_3006 && window.PLAN_ESTUDIO_FICHA_3006.cronograma) || [];
     weeksContainer.innerHTML = "";
 
     crono.forEach(w => {
       const isCompleted = !!completedWeeks[w.semana];
       const card = document.createElement("div");
-      card.style.background = isCompleted ? "rgba(16, 185, 129, 0.08)" : "rgba(15, 23, 42, 0.75)";
-      card.style.border = isCompleted ? "1.5px solid rgba(16, 185, 129, 0.45)" : "1px solid rgba(255, 255, 255, 0.08)";
+      card.style.background = isCompleted ? "rgba(16, 185, 129, 0.08)" : "rgba(15, 23, 42, 0.85)";
+      card.style.border = isCompleted ? "1.5px solid rgba(16, 185, 129, 0.5)" : "1px solid rgba(255, 255, 255, 0.1)";
       card.style.borderRadius = "12px";
-      card.style.padding = "12px 14px";
+      card.style.padding = "14px 16px";
       card.style.display = "flex";
       card.style.flexDirection = "column";
-      card.style.gap = "8px";
-      card.style.transition = "all 0.2s ease";
+      card.style.gap = "10px";
 
       const topRow = document.createElement("div");
       topRow.style.display = "flex";
@@ -6445,11 +6820,11 @@ function setupPlanEstudioModal() {
       chk.addEventListener("change", () => {
         completedWeeks[w.semana] = chk.checked;
         saveProgress();
-        renderWeeks();
+        renderWeeksList();
       });
 
       const titleSpan = document.createElement("span");
-      titleSpan.style.fontSize = "13px";
+      titleSpan.style.fontSize = "13.5px";
       titleSpan.style.fontWeight = "800";
       titleSpan.style.color = isCompleted ? "#6ee7b7" : "#f8fafc";
       titleSpan.textContent = `Semana ${w.semana}: ${w.titulo}`;
@@ -6457,78 +6832,94 @@ function setupPlanEstudioModal() {
       leftTag.appendChild(chk);
       leftTag.appendChild(titleSpan);
 
-      const diasTag = document.createElement("span");
-      diasTag.style.fontSize = "10.5px";
-      diasTag.style.fontWeight = "700";
-      diasTag.style.color = "#94a3b8";
-      diasTag.style.background = "rgba(255,255,255,0.05)";
-      diasTag.style.padding = "2px 8px";
-      diasTag.style.borderRadius = "6px";
-      diasTag.textContent = w.diasRecomendados;
+      const modBadge = document.createElement("span");
+      modBadge.style.fontSize = "11px";
+      modBadge.style.fontWeight = "700";
+      modBadge.style.color = "#38bdf8";
+      modBadge.style.background = "rgba(56, 189, 248, 0.12)";
+      modBadge.style.border = "1px solid rgba(56, 189, 248, 0.25)";
+      modBadge.style.padding = "2px 8px";
+      modBadge.style.borderRadius = "6px";
+      modBadge.textContent = `Módulos: ${(w.modulos || []).join(", ")}`;
 
       topRow.appendChild(leftTag);
-      topRow.appendChild(diasTag);
+      topRow.appendChild(modBadge);
       card.appendChild(topRow);
 
-      const infoDiv = document.createElement("div");
-      infoDiv.style.fontSize = "11.5px";
-      infoDiv.style.color = "#cbd5e1";
-      infoDiv.style.lineHeight = "1.45";
-      infoDiv.innerHTML = `
-        <div style="margin-bottom: 3px;"><strong>🎯 Meta:</strong> ${w.meta}</div>
-        <div style="color: #94a3b8; font-size: 11px;"><strong>📋 Entregable:</strong> ${w.entregables}</div>
-      `;
-      card.appendChild(infoDiv);
+      const metaDiv = document.createElement("div");
+      metaDiv.style.fontSize = "12px";
+      metaDiv.style.color = "#cbd5e1";
+      metaDiv.style.lineHeight = "1.5";
+      metaDiv.innerHTML = `<strong>🎯 Meta & Entregable:</strong> ${w.meta}`;
+      card.appendChild(metaDiv);
 
+      // Desglose de Días de la Semana
+      if (w.dias && w.dias.length > 0) {
+        const diasBox = document.createElement("div");
+        diasBox.style.background = "rgba(0,0,0,0.25)";
+        diasBox.style.border = "1px solid rgba(255,255,255,0.06)";
+        diasBox.style.borderRadius = "8px";
+        diasBox.style.padding = "8px 12px";
+        diasBox.style.display = "flex";
+        diasBox.style.flexDirection = "column";
+        diasBox.style.gap = "4px";
+
+        w.dias.forEach(d => {
+          const diaItem = document.createElement("div");
+          diaItem.style.fontSize = "11.5px";
+          diaItem.style.color = "#94a3b8";
+          diaItem.innerHTML = `<span style="color: #38bdf8; font-weight: 700;">• Día ${d.dia}:</span> ${d.tema}`;
+          diasBox.appendChild(diaItem);
+        });
+        card.appendChild(diasBox);
+      }
+
+      // Botonera de acciones
       const actionsRow = document.createElement("div");
       actionsRow.style.display = "flex";
       actionsRow.style.justifyContent = "space-between";
       actionsRow.style.alignItems = "center";
-      actionsRow.style.marginTop = "4px";
+      actionsRow.style.flexWrap = "wrap";
+      actionsRow.style.gap = "8px";
 
-      const modBtns = document.createElement("div");
-      modBtns.style.display = "flex";
-      modBtns.style.gap = "6px";
-      modBtns.style.flexWrap = "wrap";
+      const btnGroup = document.createElement("div");
+      btnGroup.style.display = "flex";
+      btnGroup.style.gap = "6px";
+      btnGroup.style.flexWrap = "wrap";
 
       (w.modulos || []).forEach(mNum => {
-        const mBtn = document.createElement("button");
-        mBtn.type = "button";
-        mBtn.textContent = `📖 Módulo ${mNum}`;
-        mBtn.style.padding = "3px 8px";
-        mBtn.style.fontSize = "11px";
-        mBtn.style.fontWeight = "700";
-        mBtn.style.borderRadius = "6px";
-        mBtn.style.border = "1px solid rgba(56, 189, 248, 0.4)";
-        mBtn.style.background = "rgba(56, 189, 248, 0.1)";
-        mBtn.style.color = "#7dd3fc";
-        mBtn.style.cursor = "pointer";
-        mBtn.addEventListener("click", () => {
+        const b = document.createElement("button");
+        b.type = "button";
+        b.textContent = `📖 Leer Módulo ${mNum}`;
+        b.style.padding = "4px 9px";
+        b.style.fontSize = "11px";
+        b.style.fontWeight = "700";
+        b.style.borderRadius = "6px";
+        b.style.border = "1px solid rgba(56, 189, 248, 0.35)";
+        b.style.background = "rgba(56, 189, 248, 0.1)";
+        b.style.color = "#7dd3fc";
+        b.style.cursor = "pointer";
+        b.addEventListener("click", () => {
           switchPlanSubtab("modulos");
-          if (moduleSelect) {
-            moduleSelect.value = String(mNum);
-            renderSelectedModule(mNum);
-          }
+          renderModule(mNum);
         });
-        modBtns.appendChild(mBtn);
+        btnGroup.appendChild(b);
       });
 
       const btnPrac = document.createElement("button");
       btnPrac.type = "button";
       btnPrac.textContent = "🎯 Practicar Casos";
-      btnPrac.style.padding = "4px 10px";
-      btnPrac.style.fontSize = "11px";
+      btnPrac.style.padding = "5px 12px";
+      btnPrac.style.fontSize = "11.5px";
       btnPrac.style.fontWeight = "800";
       btnPrac.style.borderRadius = "6px";
-      btnPrac.style.border = "1px solid rgba(16, 185, 129, 0.5)";
+      btnPrac.style.border = "1px solid #10b981";
       btnPrac.style.background = "rgba(16, 185, 129, 0.2)";
       btnPrac.style.color = "#a7f3d0";
       btnPrac.style.cursor = "pointer";
-      btnPrac.addEventListener("click", () => {
-        launchMaestroPractice();
-      });
+      btnPrac.addEventListener("click", () => launchMaestroPractice());
 
-      actionsRow.appendChild(modBtns);
+      actionsRow.appendChild(btnGroup);
       actionsRow.appendChild(btnPrac);
       card.appendChild(actionsRow);
 
@@ -6536,104 +6927,78 @@ function setupPlanEstudioModal() {
     });
   }
 
-  function populateModuleSelect() {
-    if (!moduleSelect) return;
-    const mods = window.MODULOS_TRATADO_3006_DATA || [];
-    moduleSelect.innerHTML = "";
-    mods.forEach(m => {
-      const opt = document.createElement("option");
-      opt.value = String(m.id);
-      opt.textContent = `${m.numero}: ${m.titulo}`;
-      moduleSelect.appendChild(opt);
-    });
+  // --- SUBVISTA 3: FILTROS PSICOMÉTRICOS ---
+  function renderFiltrosList() {
+    if (!filtrosGrid) return;
+    const filtros = (window.PLAN_ESTUDIO_FICHA_3006 && window.PLAN_ESTUDIO_FICHA_3006.filtrosPsicometricos) || [];
+    filtrosGrid.innerHTML = "";
 
-    moduleSelect.addEventListener("change", (e) => {
-      renderSelectedModule(Number(e.target.value));
-    });
-  }
+    filtros.forEach(f => {
+      const card = document.createElement("div");
+      card.style.background = "rgba(15, 23, 42, 0.85)";
+      card.style.border = `1.5px solid ${f.color || "#38bdf8"}`;
+      card.style.borderRadius = "12px";
+      card.style.padding = "14px 16px";
+      card.style.display = "flex";
+      card.style.flexDirection = "column";
+      card.style.gap = "8px";
 
-  function renderSelectedModule(modId) {
-    if (!moduleContent) return;
-    const mods = window.MODULOS_TRATADO_3006_DATA || [];
-    const mod = mods.find(m => m.id === modId) || mods[0];
-    if (!mod) return;
-
-    moduleContent.innerHTML = `
-      <div style="background: rgba(15, 23, 42, 0.85); border: 1.5px solid rgba(56, 189, 248, 0.35); border-radius: 12px; padding: 14px 16px; display: flex; flex-direction: column; gap: 8px;">
-        <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 10px;">
+      card.innerHTML = `
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <span style="font-size: 24px;">${f.icono}</span>
           <div>
-            <span style="font-size: 11px; font-weight: 800; color: #38bdf8; text-transform: uppercase;">${mod.numero}</span>
-            <h3 style="font-size: 14px; font-weight: 800; color: #f8fafc; margin: 2px 0 0 0;">${mod.titulo}</h3>
+            <div style="font-size: 13.5px; font-weight: 800; color: #ffffff;">Filtro ${f.numero}: ${f.nombre}</div>
+            <div style="font-size: 11px; color: ${f.color || '#38bdf8'}; font-weight: 700;">Regla Oficial de Descarte Psicométrico</div>
           </div>
-          <span style="font-size: 10px; font-weight: 800; background: rgba(56, 189, 248, 0.15); color: #bae6fd; border: 1px solid rgba(56, 189, 248, 0.3); padding: 2px 8px; border-radius: 8px; white-space: nowrap;">
-            Eje: ${mod.ejeId}
-          </span>
         </div>
-
-        <div style="font-size: 11px; color: #94a3b8; background: rgba(0,0,0,0.3); padding: 6px 10px; border-radius: 6px; border-left: 3px solid #38bdf8;">
-          <strong>Normograma Rector:</strong> ${mod.normograma}
+        <div style="background: rgba(0,0,0,0.3); border-left: 3px solid ${f.color || '#38bdf8'}; padding: 10px 12px; border-radius: 4px; font-size: 12px; color: #cbd5e1; line-height: 1.55;">
+          ${f.reglaDeOro}
         </div>
-
-        <p style="font-size: 12px; color: #cbd5e1; line-height: 1.5; margin: 0;">
-          ${mod.resumen}
-        </p>
-      </div>
-
-      ${(mod.secciones || []).map(sec => `
-        <div style="background: rgba(15, 23, 42, 0.7); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 10px; padding: 12px 14px; display: flex; flex-direction: column; gap: 6px;">
-          <h4 style="font-size: 12.5px; font-weight: 800; color: #6ee7b7; margin: 0;">📌 ${sec.subtitulo}</h4>
-          <div style="font-size: 12px; color: #e2e8f0; line-height: 1.5; white-space: pre-line;">${sec.contenido}</div>
-        </div>
-      `).join("")}
-
-      <div style="background: rgba(245, 158, 11, 0.1); border-left: 4px solid #f59e0b; border-radius: 8px; padding: 10px 12px;">
-        <div style="font-size: 11.5px; font-weight: 800; color: #fbbf24; margin-bottom: 2px;">
-          ⚠️ Trampa Clásica de Examen (CNSC / DIAN)
-        </div>
-        <div style="font-size: 11.5px; color: #cbd5e1; line-height: 1.45;">
-          ${mod.trampaExamen}
-        </div>
-      </div>
-    `;
+      `;
+      filtrosGrid.appendChild(card);
+    });
   }
 
+  // --- SUBVISTA 4: 40 CASOS PJS ---
   function renderCasosList() {
-    if (!casosListContainer) return;
+    if (!casosCardsContainer) return;
     const casos = window.CASOS_MAESTROS_FICHA_3006 || [];
-    casosListContainer.innerHTML = "";
+    casosCardsContainer.innerHTML = "";
 
     casos.forEach((c, idx) => {
       const item = document.createElement("div");
-      item.style.background = "rgba(15, 23, 42, 0.7)";
+      item.style.background = "rgba(15, 23, 42, 0.75)";
       item.style.border = "1px solid rgba(255, 255, 255, 0.08)";
-      item.style.borderRadius = "8px";
-      item.style.padding = "10px 12px";
+      item.style.borderRadius = "10px";
+      item.style.padding = "12px 14px";
       item.style.display = "flex";
-      item.style.justifyContent = "space-between";
-      item.style.alignItems = "center";
-      item.style.gap = "8px";
+      item.style.flexDirection = "column";
+      item.style.gap = "6px";
 
       item.innerHTML = `
-        <div style="display: flex; flex-direction: column; gap: 2px;">
-          <div style="font-size: 12px; font-weight: 800; color: #f8fafc;">
-            Caso ${idx + 1}: ${c.ejeNombre}
-          </div>
-          <div style="font-size: 10.5px; color: #94a3b8;">
-            ${c.moduloNombre} • Norma: ${c.norma}
-          </div>
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <span style="font-size: 11px; font-weight: 800; color: #10b981;">Caso ${idx + 1} de 40 • ${c.ejeNombre || c.ejeId}</span>
+          <span style="font-size: 10px; font-weight: 800; background: rgba(16, 185, 129, 0.15); color: #6ee7b7; padding: 2px 6px; border-radius: 6px;">Ficha 3006</span>
         </div>
-        <span style="font-size: 10px; font-weight: 800; color: #38bdf8; background: rgba(56, 189, 248, 0.12); padding: 2px 6px; border-radius: 4px; white-space: nowrap;">
-          PJS Gestor III
-        </span>
+        <div style="font-size: 11.5px; color: #94a3b8; font-style: italic; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">
+          ${c.caso}
+        </div>
+        <div style="font-size: 12px; font-weight: 700; color: #f8fafc;">
+          ${c.pregunta}
+        </div>
       `;
-      casosListContainer.appendChild(item);
+
+      item.addEventListener("click", () => {
+        launchMaestroPractice();
+      });
+      casosCardsContainer.appendChild(item);
     });
   }
 
   function launchMaestroPractice() {
-    if (modal) {
-      if (typeof window.closeModal === "function") window.closeModal(modal);
-      else modal.classList.remove("active");
+    if (legacyModal) {
+      if (typeof window.closeModal === "function") window.closeModal(legacyModal);
+      else legacyModal.classList.remove("active");
     }
 
     if (typeof switchTab === "function") {
@@ -6651,76 +7016,58 @@ function setupPlanEstudioModal() {
     }
   }
 
-  if (moduleSearch) {
-    moduleSearch.addEventListener("input", (e) => {
-      const q = e.target.value.toLowerCase().trim();
-      if (!q) {
-        if (moduleSelect) renderSelectedModule(Number(moduleSelect.value) || 1);
-        return;
-      }
-      const mods = window.MODULOS_TRATADO_3006_DATA || [];
-      const match = mods.find(m => 
-        m.titulo.toLowerCase().includes(q) || 
-        m.normograma.toLowerCase().includes(q) || 
-        m.resumen.toLowerCase().includes(q) ||
-        (m.secciones || []).some(s => s.subtitulo.toLowerCase().includes(q) || s.contenido.toLowerCase().includes(q))
-      );
-      if (match) {
-        if (moduleSelect) moduleSelect.value = String(match.id);
-        renderSelectedModule(match.id);
-      }
+  // Event Listeners de las subpestañas
+  if (btnSubModulos) btnSubModulos.addEventListener("click", () => switchPlanSubtab("modulos"));
+  if (btnSubCrono) btnSubCrono.addEventListener("click", () => switchPlanSubtab("crono"));
+  if (btnSubFiltros) btnSubFiltros.addEventListener("click", () => switchPlanSubtab("filtros"));
+  if (btnSubCasos) btnSubCasos.addEventListener("click", () => switchPlanSubtab("casos"));
+
+  if (btnStartCasosFromTab) {
+    btnStartCasosFromTab.addEventListener("click", () => launchMaestroPractice());
+  }
+
+  // Conexión del botón en la Barra Inferior (Bottom Nav)
+  if (navBottomBtn) {
+    navBottomBtn.addEventListener("click", () => {
+      if (typeof switchTab === "function") switchTab("planEstudio");
     });
   }
 
-  if (hubCard) {
-    hubCard.addEventListener("click", () => {
-      renderWeeks();
-      populateModuleSelect();
-      renderSelectedModule(1);
-      renderCasosList();
-      updateProgress();
-      switchPlanSubtab("crono");
-      if (modal) {
-        if (typeof window.openModal === "function") window.openModal(modal);
-        else {
-          modal.classList.add("active");
-          modal.style.display = "flex";
-        }
-      }
+  // Conexión desde el hub de recursos
+  if (btnIrDesdeRecursos) {
+    btnIrDesdeRecursos.addEventListener("click", () => {
+      if (typeof switchTab === "function") switchTab("planEstudio");
+    });
+  }
+  if (hubCardPlan) {
+    hubCardPlan.addEventListener("click", () => {
+      if (typeof switchTab === "function") switchTab("planEstudio");
     });
   }
 
-  if (closeX) {
-    closeX.addEventListener("click", () => {
-      if (modal) {
-        if (typeof window.closeModal === "function") window.closeModal(modal);
-        else modal.classList.remove("active");
-      }
-    });
-  }
+  // Legacy Modal Handlers
+  if (legacyCloseX) legacyCloseX.addEventListener("click", () => {
+    if (legacyModal) legacyModal.classList.remove("active");
+  });
+  if (legacyCloseBtn) legacyCloseBtn.addEventListener("click", () => {
+    if (legacyModal) legacyModal.classList.remove("active");
+  });
+  if (legacyBtnIrAPracticar) legacyBtnIrAPracticar.addEventListener("click", () => launchMaestroPractice());
 
-  if (closeBtn) {
-    closeBtn.addEventListener("click", () => {
-      if (modal) {
-        if (typeof window.closeModal === "function") window.closeModal(modal);
-        else modal.classList.remove("active");
-      }
-    });
-  }
+  // Gancho global para refrescar al entrar a la pestaña
+  window.onSwitchToPlanEstudio = function() {
+    updateGlobalProgress();
+    populateModuleSelect();
+    renderModule(currentModuleId);
+  };
 
-  if (btnIrAPracticar) {
-    btnIrAPracticar.addEventListener("click", () => launchMaestroPractice());
-  }
-
-  if (btnStartCasosDirecto) {
-    btnStartCasosDirecto.addEventListener("click", () => launchMaestroPractice());
-  }
-
-  updateProgress();
+  // Inicialización inmediata de datos
+  populateModuleSelect();
+  renderModule(1);
+  updateGlobalProgress();
 }
 
-// =========================================================================
-// PROTOCOLO OFICIAL DÍA D (CHECKLIST 8 DE NOVIEMBRE)
+
 // =========================================================================
 function setupDiaDModal() {
   const hubCard = document.getElementById("hubCardDiaD");
