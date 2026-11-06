@@ -787,7 +787,7 @@ body {
   gap: 14px;
   padding: 16px 18px;
   border-radius: 14px;
-  background: #ffffff;
+  background: #ffffff !important;
   border: 1px solid #e2e8f0;
   box-shadow: 0 1px 3px rgba(15, 23, 42, 0.05);
   cursor: pointer;
@@ -798,7 +798,7 @@ body {
 .duo-hub-card:hover {
   transform: translateY(-2px);
   border-color: #0284c7;
-  box-shadow: 0 4px 6px -1px rgba(15, 23, 42, 0.08);
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.08);
 }
 
 .duo-hub-card:active {
@@ -806,52 +806,48 @@ body {
   box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
 }
 
-.duo-hub-card.gold {
+.duo-hub-card.gold .hub-card-icon {
+  background: #fef3c7;
   border-color: #fde68a;
-  background: #fffbeb;
-}
-.duo-hub-card.gold:hover {
-  border-color: #f59e0b;
+  color: #b45309;
 }
 
-.duo-hub-card.blue {
+.duo-hub-card.blue .hub-card-icon,
+.duo-hub-card.cyan .hub-card-icon {
+  background: #e0f2fe;
   border-color: #bae6fd;
-  background: #f0f9ff;
-}
-.duo-hub-card.blue:hover {
-  border-color: #0284c7;
+  color: #0284c7;
 }
 
-.duo-hub-card.purple {
+.duo-hub-card.purple .hub-card-icon {
+  background: #f3e8ff;
   border-color: #e9d5ff;
-  background: #faf5ff;
-}
-.duo-hub-card.purple:hover {
-  border-color: #7c3aed;
+  color: #7c3aed;
 }
 
-.duo-hub-card.green {
+.duo-hub-card.green .hub-card-icon,
+.duo-hub-card.emerald .hub-card-icon {
+  background: #dcfce7;
   border-color: #bbf7d0;
-  background: #f0fdf4;
-}
-.duo-hub-card.green:hover {
-  border-color: #15803d;
+  color: #15803d;
 }
 
-.duo-hub-card.indigo {
+.duo-hub-card.indigo .hub-card-icon {
+  background: #e0e7ff;
   border-color: #c7d2fe;
-  background: #eef2ff;
-}
-.duo-hub-card.indigo:hover {
-  border-color: #4338ca;
+  color: #4338ca;
 }
 
-.duo-hub-card.amber {
+.duo-hub-card.amber .hub-card-icon {
+  background: #ffedd5;
   border-color: #fed7aa;
-  background: #fff7ed;
+  color: #c2410c;
 }
-.duo-hub-card.amber:hover {
-  border-color: #ea580c;
+
+.duo-hub-card.red .hub-card-icon {
+  background: #ffe4e6;
+  border-color: #fecdd3;
+  color: #e11d48;
 }
 
 .hub-card-icon {
@@ -2058,9 +2054,52 @@ select:focus {
 }
 
 #distractorHuntBox {
-  background: #fffbeb !important;
-  border: 1px dashed #f59e0b !important;
-  color: #92400e !important;
+  background: #ffffff !important;
+  border: 1px solid #e2e8f0 !important;
+  border-radius: 12px !important;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.05) !important;
+  color: #0f172a !important;
+}
+
+/* Feedback Breakdown y Cacería de Distractores con Alto Contraste */
+.breakdown-item.correct {
+  background-color: #f0fdf4 !important;
+  border: 1px solid #bbf7d0 !important;
+  border-left: 4px solid #15803d !important;
+}
+
+.breakdown-item.correct div:first-child,
+.breakdown-item.correct div:first-child * {
+  color: #15803d !important;
+  font-weight: 800 !important;
+}
+
+.breakdown-item.correct div:last-child {
+  color: #166534 !important;
+}
+
+.breakdown-item.incorrect {
+  background-color: #fef2f2 !important;
+  border: 1px solid #fecdd3 !important;
+  border-left: 4px solid #e11d48 !important;
+}
+
+.breakdown-item.incorrect div:first-child,
+.breakdown-item.incorrect div:first-child * {
+  color: #b91c1c !important;
+  font-weight: 800 !important;
+}
+
+.breakdown-item.incorrect div:last-child {
+  color: #334155 !important;
+}
+
+/* Verbos Rectores en Modo Claro */
+.verbo-card-item {
+  background: #ffffff !important;
+  border: 1px solid #e2e8f0 !important;
+  border-radius: 10px !important;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04) !important;
 }
 
 /* Modales de Claves / Tips de Lectura */

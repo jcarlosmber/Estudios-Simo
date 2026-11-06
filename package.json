@@ -10,6 +10,7 @@
     "adm-zip": "^0.6.1",
     "cors": "^2.8.5",
     "express": "^4.19.2",
+    "mermaid": "^11.17.2",
     "pdf-parse": "^2.4.5"
   },
   "engines": {

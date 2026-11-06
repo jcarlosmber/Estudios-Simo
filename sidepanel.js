@@ -3886,25 +3886,31 @@ function evaluateAnswer(selectedId) {
     const optId = el.getAttribute("data-id");
     el.style.pointerEvents = "none";
     if (optId === q.respuestaCorrecta) {
-      el.style.borderColor = "var(--accent-green)";
-      el.style.backgroundColor = "rgba(16, 185, 129, 0.18)";
-      el.style.boxShadow = "0 4px 12px rgba(16, 185, 129, 0.35)";
+      el.style.borderColor = "#15803d";
+      el.style.backgroundColor = "#dcfce7";
+      el.style.boxShadow = "0 2px 0 #15803d";
       const keyEl = el.querySelector(".option-key");
       if (keyEl) {
-        keyEl.style.backgroundColor = "var(--accent-green)";
-        keyEl.style.color = "#0b1120";
+        keyEl.style.backgroundColor = "#15803d";
+        keyEl.style.color = "#ffffff";
+        keyEl.style.borderColor = "#15803d";
         keyEl.textContent = "✓";
       }
+      const textEl = el.querySelector(".option-text");
+      if (textEl) textEl.style.color = "#14532d";
     } else if (optId === selectedId) {
-      el.style.borderColor = "var(--accent-red)";
-      el.style.backgroundColor = "rgba(239, 68, 68, 0.18)";
-      el.style.boxShadow = "0 4px 12px rgba(239, 68, 68, 0.35)";
+      el.style.borderColor = "#e11d48";
+      el.style.backgroundColor = "#ffe4e6";
+      el.style.boxShadow = "0 2px 0 #e11d48";
       const keyEl = el.querySelector(".option-key");
       if (keyEl) {
-        keyEl.style.backgroundColor = "var(--accent-red)";
+        keyEl.style.backgroundColor = "#e11d48";
         keyEl.style.color = "#ffffff";
+        keyEl.style.borderColor = "#e11d48";
         keyEl.textContent = "✕";
       }
+      const textEl = el.querySelector(".option-text");
+      if (textEl) textEl.style.color = "#881337";
     }
   });
 
@@ -3914,36 +3920,36 @@ function evaluateAnswer(selectedId) {
     const incorrectOpts = q.opciones.filter((o) => o.id !== q.respuestaCorrecta);
     const verdictBannerHtml = isCorrect
       ? `
-        <div style="background: rgba(16, 185, 129, 0.18); border: 1.5px solid #10b981; border-radius: 10px; padding: 12px 14px; margin-bottom: 12px; display: flex; align-items: center; gap: 10px;">
+        <div style="background: #f0fdf4; border: 1.5px solid #86efac; border-radius: 10px; padding: 12px 14px; margin-bottom: 12px; display: flex; align-items: center; gap: 10px;">
           <span style="font-size: 26px;">🎯</span>
           <div>
-            <div style="font-size: 15px; font-weight: 800; color: #34d399;">🎯 ¡ACERTASTE! Discriminación perfecta (+1 Acierto)</div>
-            <div style="font-size: 13px; color: #a7f3d0; margin-top: 2px;">Identificaste la clave oficial: <strong>Opción ${q.respuestaCorrecta}</strong></div>
+            <div style="font-size: 15px; font-weight: 800; color: #15803d;">🎯 ¡ACERTASTE! Discriminación perfecta (+1 Acierto)</div>
+            <div style="font-size: 13px; color: #166534; margin-top: 2px;">Identificaste la clave oficial: <strong>Opción ${q.respuestaCorrecta}</strong></div>
           </div>
         </div>
       `
       : `
-        <div style="background: rgba(239, 68, 68, 0.18); border: 1.5px solid #ef4444; border-radius: 10px; padding: 12px 14px; margin-bottom: 12px; display: flex; align-items: center; gap: 10px;">
+        <div style="background: #fef2f2; border: 1.5px solid #fecdd3; border-radius: 10px; padding: 12px 14px; margin-bottom: 12px; display: flex; align-items: center; gap: 10px;">
           <span style="font-size: 26px;">❌</span>
           <div>
-            <div style="font-size: 15px; font-weight: 800; color: #f87171;">❌ TRAMPA CAÍDA: La opción era la ${q.respuestaCorrecta}</div>
-            <div style="font-size: 13px; color: #fca5a5; margin-top: 2px;">Seleccionaste la Opción ${selectedId} (distractor). Revisa el análisis a continuación.</div>
+            <div style="font-size: 15px; font-weight: 800; color: #b91c1c;">❌ TRAMPA CAÍDA: La opción era la ${q.respuestaCorrecta}</div>
+            <div style="font-size: 13px; color: #991b1b; margin-top: 2px;">Seleccionaste la Opción ${selectedId} (distractor). Revisa el análisis a continuación.</div>
           </div>
         </div>
       `;
 
     huntBox.innerHTML = `
       ${verdictBannerHtml}
-      <div style="font-weight: 800; color: #f59e0b; margin-bottom: 10px; font-size: 14px; display: flex; align-items: center; gap: 6px;">
+      <div style="font-weight: 800; color: #b45309; margin-bottom: 10px; font-size: 14px; display: flex; align-items: center; gap: 6px;">
         <span>🎯</span>
         <span>Cacería de Distractores: ¿Por qué fallan las otras opciones?</span>
       </div>
       ${incorrectOpts.map((o) => {
         const explText = o.explicacion || (q.justificacion ? `Distractor descartado: ${q.justificacion}` : "Opción incorrecta según la normativa y los criterios técnicos evaluados.");
         return `
-        <div style="margin-bottom: 8px; padding: 10px 12px; background: rgba(239, 68, 68, 0.12); border-left: 3px solid var(--accent-red); border-radius: 8px;">
-          <strong style="color: #fca5a5; font-size: 13px;">❌ Opción ${o.id}:</strong>
-          <div style="color: #e2e8f0; font-size: 13px; margin-top: 3px; line-height: 1.5;">${explText}</div>
+        <div style="margin-bottom: 8px; padding: 11px 13px; background: #fef2f2; border: 1px solid #fecdd3; border-left: 4px solid #e11d48; border-radius: 8px;">
+          <strong style="color: #b91c1c; font-size: 13.5px; font-weight: 800;">❌ Opción ${o.id}:</strong>
+          <div style="color: #334155; font-size: 13px; margin-top: 3px; line-height: 1.55;">${explText}</div>
         </div>
       `;}).join("")}
     `;
@@ -4044,17 +4050,17 @@ function openFeedbackModal(isCorrect, q) {
   if (isCorrect) {
     icon.className = "verdict-icon correct";
     icon.textContent = "🎯";
-    icon.style.background = "rgba(16, 185, 129, 0.2)";
-    icon.style.borderColor = "#10b981";
-    icon.style.color = "#34d399";
+    icon.style.background = "#dcfce7";
+    icon.style.borderColor = "#86efac";
+    icon.style.color = "#15803d";
 
     title.className = "verdict-title correct";
     title.textContent = "🎯 ¡ACERTASTE! Discriminación perfecta (+1 Acierto)";
-    title.style.color = "#34d399";
+    title.style.color = "#15803d";
 
     if (sub) {
       sub.textContent = `Opción ${q.respuestaCorrecta} es la Clave Oficial CNSC/DIAN • ${q.tema || "Juicio Situacional"}`;
-      sub.style.color = "#86efac";
+      sub.style.color = "#334155";
     }
 
     if (streakBadge && AppState.sessionStreak > 0) {
@@ -4069,17 +4075,17 @@ function openFeedbackModal(isCorrect, q) {
   } else {
     icon.className = "verdict-icon incorrect";
     icon.textContent = "❌";
-    icon.style.background = "rgba(239, 68, 68, 0.2)";
-    icon.style.borderColor = "#ef4444";
-    icon.style.color = "#f87171";
+    icon.style.background = "#fee2e2";
+    icon.style.borderColor = "#fecdd3";
+    icon.style.color = "#b91c1c";
 
     title.className = "verdict-title incorrect";
     title.textContent = `❌ TRAMPA CAÍDA: La opción era la ${q.respuestaCorrecta}`;
-    title.style.color = "#f87171";
+    title.style.color = "#b91c1c";
 
     if (sub) {
       sub.textContent = `Caíste en un distractor de juicio situacional • La clave oficial es la Opción ${q.respuestaCorrecta}`;
-      sub.style.color = "#fca5a5";
+      sub.style.color = "#475569";
     }
 
     if (streakBadge) streakBadge.style.display = "none";
@@ -4087,9 +4093,9 @@ function openFeedbackModal(isCorrect, q) {
 
   if (q.citaNormativa) {
     normText.innerHTML = `
-      <div style="font-weight: 700; color: #f8fafc; margin-bottom: 6px;">${q.norma || "Criterio de juicio situacional oficial para la DIAN."}</div>
-      <div style="background: rgba(11, 17, 32, 0.7); border-left: 3px solid #38bdf8; padding: 10px 14px; border-radius: 6px; font-style: italic; font-size: 14px; line-height: 1.6; color: #cbd5e1; margin-top: 6px;">
-        <strong style="color: #38bdf8; font-style: normal; display: block; margin-bottom: 2px;">📖 Cita Clave para asimilar:</strong>
+      <div style="font-weight: 800; color: #0f172a; margin-bottom: 6px; font-size: 14.5px;">${q.norma || "Criterio de juicio situacional oficial para la DIAN."}</div>
+      <div style="background: #ffffff; border: 1px solid #cbd5e1; border-left: 4px solid #0284c7; padding: 12px 14px; border-radius: 8px; font-style: italic; font-size: 13.5px; line-height: 1.6; color: #334155; margin-top: 6px;">
+        <strong style="color: #0284c7; font-style: normal; display: block; margin-bottom: 3px; font-size: 12.5px; text-transform: uppercase; letter-spacing: 0.3px;">📖 Cita Clave para asimilar:</strong>
         ${q.citaNormativa}
       </div>
     `;
@@ -4103,20 +4109,21 @@ function openFeedbackModal(isCorrect, q) {
     const item = document.createElement("div");
     item.className = `breakdown-item ${isThisCorrect ? "correct" : "incorrect"}`;
     item.style.cssText = `
-      padding: 14px 16px;
-      border-radius: 6px;
-      font-size: 15px;
+      padding: 13px 15px;
+      border-radius: 8px;
+      font-size: 14px;
       line-height: 1.6;
-      background-color: rgba(11, 17, 32, 0.7);
-      border-left: 4px solid ${isThisCorrect ? "var(--accent-green)" : "#f87171"};
-      margin-bottom: 2px;
+      background-color: ${isThisCorrect ? "#f0fdf4" : "#fef2f2"};
+      border: 1px solid ${isThisCorrect ? "#bbf7d0" : "#fecdd3"};
+      border-left: 4px solid ${isThisCorrect ? "#15803d" : "#e11d48"};
+      margin-bottom: 8px;
     `;
     item.innerHTML = `
-      <div style="font-size: 15px; font-weight: 800; color: ${isThisCorrect ? "var(--accent-green)" : "#f87171"}; margin-bottom: 4px; display: flex; align-items: center; gap: 6px;">
+      <div style="font-size: 14px; font-weight: 800; color: ${isThisCorrect ? "#15803d" : "#b91c1c"}; margin-bottom: 4px; display: flex; align-items: center; gap: 6px;">
         <span>${isThisCorrect ? "✓" : "✕"}</span>
         <span>Opción ${opt.id} ${isThisCorrect ? "— CLAVE OFICIAL CNSC/DIAN" : "— DISTRACTOR"}</span>
       </div> 
-      <div style="font-size: 15px; color: #e2e8f0; line-height: 1.6;">
+      <div style="font-size: 13.5px; color: ${isThisCorrect ? "#166534" : "#334155"}; line-height: 1.55;">
         ${opt.explicacion || (isThisCorrect ? (q.justificacion || "Opción correcta conforme a la normativa aplicable.") : (q.justificacion ? `Distractor descartado: ${q.justificacion}` : "Opción incorrecta según los criterios de la prueba."))}
       </div>
     `;
@@ -7827,31 +7834,31 @@ function setupVerbosRectoresModule() {
     container.innerHTML = filtered.map((v) => {
       const evalResult = VERBOS_RECTORES_DATA.evaluarVerboParaCargo(v.verbo, profile);
       const esPropio = evalResult ? evalResult.esPropio : false;
-      const statusColor = esPropio ? "#10b981" : "#f43f5e";
-      const statusBg = esPropio ? "rgba(16, 185, 129, 0.12)" : "rgba(244, 63, 94, 0.12)";
-      const statusBorder = esPropio ? "rgba(16, 185, 129, 0.3)" : "rgba(244, 63, 94, 0.3)";
+      const statusColor = esPropio ? "#15803d" : "#b91c1c";
+      const statusBg = esPropio ? "#dcfce7" : "#fee2e2";
+      const statusBorder = esPropio ? "#bbf7d0" : "#fecdd3";
       const statusLabel = esPropio ? "✅ Propio de tu Cargo" : `⚠️ ${evalResult ? evalResult.tipoDistractor : 'Distractor'}`;
 
       const levelsBadges = Object.keys(v.niveles)
         .filter((k) => v.niveles[k])
-        .map((k) => `<span style="font-size: 10px; font-weight: 800; background: rgba(255,255,255,0.08); padding: 1px 5px; border-radius: 4px; color: #cbd5e1;">${k}</span>`)
+        .map((k) => `<span style="font-size: 10px; font-weight: 800; background: #f1f5f9; padding: 2px 6px; border-radius: 4px; color: #475569; border: 1px solid #e2e8f0;">${k}</span>`)
         .join(" ");
 
       return `
-        <div class="verbo-card-item" style="background: rgba(15, 23, 42, 0.7); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 10px; padding: 10px 14px; display: flex; flex-direction: column; gap: 6px; transition: border-color 0.2s;">
+        <div class="verbo-card-item" style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 10px; padding: 12px 14px; display: flex; flex-direction: column; gap: 8px; box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04); margin-bottom: 8px;">
           <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 6px;">
             <div style="display: flex; align-items: center; gap: 8px;">
-              <span style="font-size: 14.5px; font-weight: 800; color: #f8fafc;">${v.num}. ${v.verbo}</span>
+              <span style="font-size: 15px; font-weight: 800; color: #0f172a;">${v.num}. ${v.verbo}</span>
               <div style="display: flex; gap: 4px;">${levelsBadges}</div>
             </div>
-            <span style="font-size: 10.5px; font-weight: 800; color: ${statusColor}; background: ${statusBg}; border: 1px solid ${statusBorder}; padding: 2px 8px; border-radius: 10px;">
+            <span style="font-size: 11px; font-weight: 800; color: ${statusColor}; background: ${statusBg}; border: 1px solid ${statusBorder}; padding: 3px 9px; border-radius: 12px;">
               ${statusLabel}
             </span>
           </div>
-          <div style="font-size: 12px; color: #cbd5e1; line-height: 1.45;">
+          <div style="font-size: 13px; color: #334155; line-height: 1.5;">
             ${v.descripcion}
           </div>
-          <div style="font-size: 11px; color: ${esPropio ? '#34d399' : '#fb7185'}; background: rgba(0,0,0,0.25); padding: 5px 8px; border-radius: 6px; border-left: 2px solid ${statusColor};">
+          <div style="font-size: 12px; color: ${esPropio ? '#166534' : '#991b1b'}; background: ${esPropio ? '#f0fdf4' : '#fef2f2'}; padding: 8px 10px; border-radius: 6px; border: 1px solid ${statusBorder}; border-left: 3px solid ${statusColor}; line-height: 1.45;">
             💡 <strong>En tu examen:</strong> ${evalResult ? evalResult.diagnostico : ''}
           </div>
         </div>
