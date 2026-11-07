@@ -853,13 +853,6 @@ body {
   border-color: rgba(16, 185, 129, 0.45) !important;
   color: #6ee7b7 !important;
 }
-  box-shadow: var(--shadow-sm);
-}
-
-.btn-back-to-recursos:hover {
-  background: #f5f5f4;
-  border-color: #a8a29e;
-}
 
 /* =========================================================================
    MODAL DE AJUSTES ESTILO APP (PLAN 3006 DARK EXECUTIVE)
