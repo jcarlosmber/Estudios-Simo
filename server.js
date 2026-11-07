@@ -140,6 +140,31 @@ app.get(['/download/extension', '/simo-prep-extension.zip'], (req, res) => {
 });
 
 // 7. Ruta directa para visualizar / descargar el PDF oficial del Plan de Estudio (121 páginas)
+function resolvePdfPath() {
+  const candidates = [
+    path.join(__dirname, 'material', '01_Guias_y_Convocatoria', 'Plan_Estudio_Gestor_III_DIAN_Ficha_3006.pdf'),
+    path.join(DATA_DIR, 'Plan_Estudio_Gestor_III_DIAN_Ficha_3006.pdf'),
+    path.join(__dirname, 'material', 'Plan_Estudio_Gestor_III_DIAN_Ficha_3006.pdf'),
+    path.join(__dirname, 'Plan_Estudio_Gestor_III_DIAN_Ficha_3006.pdf')
+  ];
+  for (const p of candidates) {
+    if (fs.existsSync(p)) return p;
+  }
+  return null;
+}
+
+// Asegurar copia en DATA_DIR si existe en el código para persistencia en Coolify (/app/data)
+try {
+  const srcPdf = path.join(__dirname, 'material', '01_Guias_y_Convocatoria', 'Plan_Estudio_Gestor_III_DIAN_Ficha_3006.pdf');
+  const destPdf = path.join(DATA_DIR, 'Plan_Estudio_Gestor_III_DIAN_Ficha_3006.pdf');
+  if (fs.existsSync(srcPdf) && !fs.existsSync(destPdf)) {
+    fs.copyFileSync(srcPdf, destPdf);
+    console.log('[COOLIFY STORAGE] PDF oficial respaldado en volumen persistente:', destPdf);
+  }
+} catch (e) {
+  console.warn('[COOLIFY STORAGE] Advertencia al sincronizar PDF con DATA_DIR:', e.message);
+}
+
 app.get([
   '/plan-estudio.pdf',
   '/material/01_Guias_y_Convocatoria/Plan_Estudio_Gestor_III_DIAN_Ficha_3006.pdf',
@@ -148,8 +173,8 @@ app.get([
   '/pdf/plan-estudio',
   '/plan-estudio'
 ], (req, res) => {
-  const pdfPath = path.join(__dirname, 'material', '01_Guias_y_Convocatoria', 'Plan_Estudio_Gestor_III_DIAN_Ficha_3006.pdf');
-  if (fs.existsSync(pdfPath)) {
+  const pdfPath = resolvePdfPath();
+  if (pdfPath) {
     res.setHeader('Content-Type', 'application/pdf');
     if (req.query.download === 'true') {
       return res.download(pdfPath, 'Plan_Estudio_Gestor_III_DIAN_Ficha_3006.pdf');

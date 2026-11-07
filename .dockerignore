@@ -2,7 +2,9 @@ node_modules
 .git
 .system_generated
 *.log
-material
+material/*
+!material/01_Guias_y_Convocatoria/
+material/01_Guias_y_Convocatoria/*
+!material/01_Guias_y_Convocatoria/Plan_Estudio_Gestor_III_DIAN_Ficha_3006.pdf
 documentos
-*.pdf
-simo-prep-extension.zip
+scratch
