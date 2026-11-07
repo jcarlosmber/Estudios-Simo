@@ -1708,16 +1708,16 @@ function setupTipsModal() {
     }
     if (singleTipContenido) {
       const plazoHtml = tip.plazoCritico ? `
-        <div style="background: rgba(56, 189, 248, 0.12); border: 1px solid rgba(56, 189, 248, 0.35); border-left: 3px solid #38bdf8; border-radius: 6px; padding: 8px 12px; margin: 8px 0; font-size: 13px;">
-          <strong style="color: #38bdf8;">⏱️ Término / Plazo Crítico:</strong> <span style="color: #f0f9ff;">${tip.plazoCritico}</span>
+        <div class="tip-plazo-card" style="background: rgba(56, 189, 248, 0.12); border: 1px solid rgba(56, 189, 248, 0.35); border-left: 3px solid #38bdf8; border-radius: 6px; padding: 8px 12px; margin: 8px 0; font-size: 13px;">
+          <strong style="color: #38bdf8;">⏱️ Término / Plazo Crítico:</strong> <span class="tip-plazo-val">${tip.plazoCritico}</span>
         </div>
       ` : "";
       const trampaHtml = tip.trampaHabitual ? `
-        <div style="background: rgba(244, 63, 94, 0.12); border: 1px solid rgba(244, 63, 94, 0.35); border-left: 3px solid #f43f5e; border-radius: 6px; padding: 8px 12px; margin: 8px 0; font-size: 13px;">
-          <strong style="color: #f43f5e;">⚠️ Trampa CNSC en Casos:</strong> <span style="color: #ffe4e6;">${tip.trampaHabitual}</span>
+        <div class="tip-trampa-card" style="background: rgba(244, 63, 94, 0.12); border: 1px solid rgba(244, 63, 94, 0.35); border-left: 3px solid #f43f5e; border-radius: 6px; padding: 8px 12px; margin: 8px 0; font-size: 13px;">
+          <strong style="color: #f43f5e;">⚠️ Trampa CNSC en Casos:</strong> <span class="tip-trampa-val">${tip.trampaHabitual}</span>
         </div>
       ` : "";
-      singleTipContenido.innerHTML = `${plazoHtml}${trampaHtml}${tip.contenidoDetallado || tip.resumenCorto || ""}`;
+      singleTipContenido.innerHTML = `${plazoHtml}${trampaHtml}<div class="tip-detallado-text" style="margin-top: 4px;">${tip.contenidoDetallado || tip.resumenCorto || ""}</div>`;
     }
 
     // Infografía si aplica
@@ -2054,11 +2054,11 @@ function setupTipsModal() {
 
     if (bodyEl) {
       bodyEl.innerHTML = `
-        <div style="font-size: 15px; color: #f8fafc; font-weight: 700; margin-bottom: 8px; line-height: 1.55;">
+        <div class="tip-resumen-text" style="font-size: 15px; font-weight: 700; margin-bottom: 8px; line-height: 1.55;">
           ${tip.resumen}
         </div>
-        <div style="font-size: 13px; color: #94a3b8; line-height: 1.5; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 8px; margin-top: 8px;">
-          📌 <strong style="color: #38bdf8;">Regla de Oro en SIMO:</strong> ${tip.regla}
+        <div class="tip-regla-box" style="font-size: 13px; line-height: 1.5; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 8px; margin-top: 8px;">
+          📌 <strong class="tip-regla-label" style="color: #38bdf8;">Regla de Oro en SIMO:</strong> <span class="tip-regla-val">${tip.regla}</span>
         </div>
       `;
     }
@@ -2066,22 +2066,22 @@ function setupTipsModal() {
     if (extraContentEl && tip.ejercicio) {
       const ej = tip.ejercicio;
       const optionsHtml = ej.opciones.map((opt, oIdx) => `
-        <button type="button" class="btn-lectura-exercise-opt" data-opt-idx="${oIdx}" style="text-align: left; background: rgba(15, 23, 42, 0.7); border: 1px solid rgba(56, 189, 248, 0.3); padding: 10px 12px; border-radius: 8px; color: #e2e8f0; font-size: 13px; font-weight: 600; cursor: pointer; transition: all 0.2s; line-height: 1.45;">
+        <button type="button" class="btn-lectura-exercise-opt" data-opt-idx="${oIdx}" style="text-align: left; padding: 10px 12px; border-radius: 8px; font-size: 13px; font-weight: 600; cursor: pointer; transition: all 0.2s; line-height: 1.45;">
           ${opt}
         </button>
       `).join("");
 
       const formulaHtml = tip.formula ? `
-        <div style="background: rgba(168, 85, 247, 0.12); border: 1px solid rgba(168, 85, 247, 0.35); border-left: 4px solid #c084fc; border-radius: 8px; padding: 10px 14px; margin-bottom: 12px;">
+        <div class="tip-formula-box" style="border-radius: 8px; padding: 10px 14px; margin-bottom: 12px;">
           <div style="font-size: 11px; font-weight: 800; color: #c084fc; text-transform: uppercase; letter-spacing: 0.5px;">📐 Fórmula Mnemotécnica:</div>
-          <div style="font-size: 13px; font-weight: 700; color: #fdf4ff; margin-top: 2px;">${tip.formula}</div>
+          <div class="tip-formula-val" style="font-size: 13px; font-weight: 700; margin-top: 2px;">${tip.formula}</div>
         </div>
       ` : "";
 
       const puntosHtml = (tip.puntosClave && tip.puntosClave.length > 0) ? `
-        <div style="background: rgba(11, 17, 32, 0.6); border-radius: 8px; padding: 10px 14px; margin-bottom: 12px; border: 1px solid rgba(255,255,255,0.08);">
+        <div class="tip-puntos-box" style="border-radius: 8px; padding: 10px 14px; margin-bottom: 12px; border: 1px solid rgba(255,255,255,0.08);">
           <div style="font-size: 11px; font-weight: 800; color: #38bdf8; text-transform: uppercase; margin-bottom: 6px;">⚡ Claves de Aplicación Rápida:</div>
-          ${tip.puntosClave.map(p => `<div style="font-size: 12px; color: #cbd5e1; line-height: 1.5; margin-bottom: 4px;">• ${p}</div>`).join("")}
+          ${tip.puntosClave.map(p => `<div class="tip-punto-item" style="font-size: 12px; line-height: 1.5; margin-bottom: 4px;">• ${p}</div>`).join("")}
         </div>
       ` : "";
 
@@ -2697,43 +2697,43 @@ function showRandomTipFlash({ forced = false, customTip = null } = {}) {
 
   if (bodyEl) {
     const plazoHtml = tip.plazoCritico ? `
-      <div style="background: rgba(56, 189, 248, 0.12); border: 1px solid rgba(56, 189, 248, 0.35); border-left: 4px solid #38bdf8; border-radius: 8px; padding: 10px 14px; margin: 10px 0; display: flex; align-items: center; gap: 10px;">
+      <div class="tip-plazo-card" style="background: rgba(56, 189, 248, 0.12); border: 1px solid rgba(56, 189, 248, 0.35); border-left: 4px solid #38bdf8; border-radius: 8px; padding: 10px 14px; margin: 10px 0; display: flex; align-items: center; gap: 10px;">
         <span style="font-size: 20px; line-height: 1;">⏱️</span>
         <div style="flex: 1;">
           <div style="font-size: 11px; font-weight: 800; color: #38bdf8; text-transform: uppercase; letter-spacing: 0.5px;">Término / Plazo Crítico Legal:</div>
-          <div style="font-size: 14px; font-weight: 800; color: #f0f9ff; margin-top: 2px; line-height: 1.4;">${tip.plazoCritico}</div>
+          <div class="tip-plazo-val" style="font-size: 14px; font-weight: 800; margin-top: 2px; line-height: 1.4;">${tip.plazoCritico}</div>
         </div>
       </div>
     ` : "";
 
     const trampaHtml = tip.trampaHabitual ? `
-      <div style="background: rgba(244, 63, 94, 0.12); border: 1px solid rgba(244, 63, 94, 0.35); border-left: 4px solid #f43f5e; border-radius: 8px; padding: 10px 14px; margin: 10px 0; display: flex; align-items: flex-start; gap: 10px;">
+      <div class="tip-trampa-card" style="background: rgba(244, 63, 94, 0.12); border: 1px solid rgba(244, 63, 94, 0.35); border-left: 4px solid #f43f5e; border-radius: 8px; padding: 10px 14px; margin: 10px 0; display: flex; align-items: flex-start; gap: 10px;">
         <span style="font-size: 20px; line-height: 1;">⚠️</span>
         <div style="flex: 1;">
           <div style="font-size: 11px; font-weight: 800; color: #f43f5e; text-transform: uppercase; letter-spacing: 0.5px;">Trampa Habitual CNSC en Casos:</div>
-          <div style="font-size: 13.5px; color: #ffe4e6; line-height: 1.5; margin-top: 2px;">${tip.trampaHabitual}</div>
+          <div class="tip-trampa-val" style="font-size: 13.5px; line-height: 1.5; margin-top: 2px;">${tip.trampaHabitual}</div>
         </div>
       </div>
     ` : "";
 
     const formulaHtml = tip.formula ? `
-      <div style="background: rgba(168, 85, 247, 0.18); border: 1px solid rgba(168, 85, 247, 0.45); border-left: 4px solid #c084fc; border-radius: 8px; padding: 10px 14px; margin: 10px 0; display: flex; align-items: flex-start; gap: 10px;">
+      <div class="tip-formula-card" style="background: rgba(168, 85, 247, 0.18); border: 1px solid rgba(168, 85, 247, 0.45); border-left: 4px solid #c084fc; border-radius: 8px; padding: 10px 14px; margin: 10px 0; display: flex; align-items: flex-start; gap: 10px;">
         <span style="font-size: 20px; line-height: 1;">📐</span>
         <div style="flex: 1;">
           <div style="font-size: 11px; font-weight: 800; color: #c084fc; text-transform: uppercase; letter-spacing: 0.5px;">Fórmula de Decisión Inmediata:</div>
-          <div style="font-size: 14px; font-weight: 800; color: #fdf4ff; font-family: 'Consolas', monospace; margin-top: 3px; line-height: 1.4;">${tip.formula}</div>
+          <div class="tip-formula-val" style="font-size: 14px; font-weight: 800; font-family: 'Consolas', monospace; margin-top: 3px; line-height: 1.4;">${tip.formula}</div>
         </div>
       </div>
     ` : "";
 
     bodyEl.innerHTML = `
-      <div style="font-size: 16px; font-weight: 700; color: #f8fafc; margin-bottom: 8px; line-height: 1.5;">
+      <div class="tip-resumen-text" style="font-size: 16px; font-weight: 700; margin-bottom: 8px; line-height: 1.5;">
         ${tip.resumenCorto}
       </div>
       ${plazoHtml}
       ${trampaHtml}
       ${formulaHtml}
-      <div style="font-size: 15px; color: #f1f5f9; line-height: 1.65; margin-top: 8px;">
+      <div class="tip-detallado-text" style="font-size: 15px; line-height: 1.65; margin-top: 8px;">
         ${tip.contenidoDetallado}
       </div>
     `;
@@ -3665,14 +3665,15 @@ const PracticeTimer = {
   updateUI() {
     const timerEl = document.getElementById("practiceQuestionTimer");
     if (!timerEl) return;
+    const isLight = document.body.classList.contains("theme-light");
 
     if (this.totalSeconds === 0) {
       const mins = Math.floor(this.remaining / 60);
       const secs = this.remaining % 60;
       timerEl.textContent = `⏱️ ${mins.toString().padStart(2, "0")}:${secs.toString().padStart(2, "0")} (Libre)`;
-      timerEl.style.color = "#38bdf8";
-      timerEl.style.borderColor = "rgba(56, 189, 248, 0.4)";
-      timerEl.style.background = "rgba(15, 23, 42, 0.8)";
+      timerEl.style.color = isLight ? "#0369a1" : "#38bdf8";
+      timerEl.style.borderColor = isLight ? "#7dd3fc" : "rgba(56, 189, 248, 0.4)";
+      timerEl.style.background = isLight ? "#e0f2fe" : "rgba(15, 23, 42, 0.8)";
       return;
     }
 
@@ -3682,13 +3683,13 @@ const PracticeTimer = {
 
     const warningThreshold = Math.min(30, Math.max(10, Math.floor(this.totalSeconds * 0.25)));
     if (this.remaining <= warningThreshold) {
-      timerEl.style.color = "#f87171";
+      timerEl.style.color = isLight ? "#dc2626" : "#f87171";
       timerEl.style.borderColor = "#ef4444";
-      timerEl.style.background = "rgba(239, 68, 68, 0.2)";
+      timerEl.style.background = isLight ? "#fef2f2" : "rgba(239, 68, 68, 0.2)";
     } else {
-      timerEl.style.color = "#f8fafc";
-      timerEl.style.borderColor = "rgba(255,255,255,0.15)";
-      timerEl.style.background = "rgba(15, 23, 42, 0.8)";
+      timerEl.style.color = isLight ? "#0f172a" : "#f8fafc";
+      timerEl.style.borderColor = isLight ? "#cbd5e1" : "rgba(255,255,255,0.15)";
+      timerEl.style.background = isLight ? "#ffffff" : "rgba(15, 23, 42, 0.8)";
     }
   }
 };
@@ -4382,15 +4383,15 @@ function renderSrsCardsList() {
 
   if (cards.length === 0) {
     container.innerHTML = `
-      <div style="text-align: center; padding: 36px 16px; color: var(--text-secondary); display: flex; flex-direction: column; align-items: center; gap: 12px; background: rgba(15, 23, 42, 0.4); border: 1px dashed var(--border-color); border-radius: 12px;">
+      <div class="srs-empty-box" style="text-align: center; padding: 36px 16px; display: flex; flex-direction: column; align-items: center; gap: 12px; border: 1.5px dashed var(--border-color); border-radius: 12px;">
         <div style="font-size: 42px;">🎴</div>
-        <div style="font-size: 14px; font-weight: 700; color: #f8fafc;">
+        <div class="srs-empty-title" style="font-size: 15px; font-weight: 800;">
           Tu Baraja de Flashcards está limpia
         </div>
-        <div style="font-size: 12px; max-width: 290px; line-height: 1.5; color: #94a3b8;">
+        <div class="srs-empty-desc" style="font-size: 13px; max-width: 320px; line-height: 1.55;">
           Al resolver simulacros o preguntas de práctica, califica los casos como 🔴 Difícil o 🟡 Regular para que se agreguen automáticamente a tu baraja interactiva 3D.
         </div>
-        <button class="btn-primary" style="margin-top: 6px; font-size: 11px; padding: 8px 16px;" onclick="switchTab('practice')">
+        <button class="btn-primary" style="margin-top: 6px; font-size: 12px; font-weight: 800; padding: 9px 18px;" onclick="switchTab('practice')">
           🚀 Ir a Practicar Preguntas
         </button>
       </div>

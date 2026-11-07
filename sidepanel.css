@@ -3221,6 +3221,437 @@ body.theme-light textarea::placeholder {
   color: #94a3b8 !important;
 }
 
+/* =========================================================================
+   ESTILOS SEMÁNTICOS Y REGLAS DE ALTO CONTRASTE (CORRECCIÓN VISTAS CLARAS)
+   ========================================================================= */
+.srs-header-title {
+  color: #f8fafc;
+}
+.srs-header-sub {
+  color: #cbd5e1;
+}
+.srs-empty-box {
+  background: rgba(15, 23, 42, 0.4);
+}
+.srs-empty-title {
+  color: #f8fafc;
+}
+.srs-empty-desc {
+  color: #94a3b8;
+}
+
+.tip-resumen-text {
+  color: #f8fafc;
+}
+.tip-detallado-text {
+  color: #f1f5f9;
+}
+.tip-plazo-val {
+  color: #f0f9ff;
+}
+.tip-trampa-val {
+  color: #ffe4e6;
+}
+.tip-formula-val {
+  color: #fdf4ff;
+}
+.tip-regla-val {
+  color: #cbd5e1;
+}
+
+/* 1. Cronómetro Reglamentario en Modo Claro (Imagen 1) */
+body.theme-light #practiceTimerBar {
+  background: #f1f5f9 !important;
+  border: 1.5px solid #cbd5e1 !important;
+}
+
+body.theme-light #practiceTimerBar span[style*="color: #38bdf8"],
+body.theme-light #practiceTimerBar span[style*="color: rgb(56, 189, 248)"] {
+  color: #0369a1 !important;
+  font-weight: 800 !important;
+}
+
+body.theme-light #practiceTimerBar div[style*="color: #94a3b8"],
+body.theme-light #practiceTimerBar div[style*="color: rgb(148, 163, 184)"] {
+  color: #475569 !important;
+  font-weight: 700 !important;
+}
+
+body.theme-light #practiceQuestionTimer {
+  background: #ffffff !important;
+  color: #0f172a !important;
+  border: 1.5px solid #cbd5e1 !important;
+  font-weight: 900 !important;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.08) !important;
+}
+
+/* 2. Flashcards Leitner 3D y Baraja Vacía en Modo Claro (Imagen 2) */
+body.theme-light #subviewSRS > div {
+  background-color: #ffffff !important;
+  border: 1.5px solid #cbd5e1 !important;
+  box-shadow: 0 4px 20px rgba(15, 23, 42, 0.06) !important;
+}
+
+body.theme-light .srs-header-title,
+body.theme-light #subviewSRS span[style*="color: #f8fafc"] {
+  color: #0f172a !important;
+  font-weight: 900 !important;
+}
+
+body.theme-light .srs-header-sub,
+body.theme-light #subviewSRS div[style*="color: #cbd5e1"] {
+  color: #475569 !important;
+  font-weight: 600 !important;
+}
+
+body.theme-light #srsPendingBadge {
+  background-color: #e0f2fe !important;
+  color: #0284c7 !important;
+  border-color: #7dd3fc !important;
+}
+
+body.theme-light #btnCloseSRSModal {
+  background: #f1f5f9 !important;
+  border: 1px solid #cbd5e1 !important;
+  color: #475569 !important;
+}
+
+body.theme-light #btnCloseSRSModal:hover {
+  background: #e2e8f0 !important;
+  color: #0f172a !important;
+}
+
+body.theme-light .srs-empty-box,
+body.theme-light #srsListContainer > div[style*="background: rgba(15, 23, 42"] {
+  background: #f8fafc !important;
+  border: 1.5px dashed #cbd5e1 !important;
+}
+
+body.theme-light .srs-empty-title,
+body.theme-light #srsListContainer div[style*="color: #f8fafc"] {
+  color: #0f172a !important;
+  font-weight: 900 !important;
+}
+
+body.theme-light .srs-empty-desc,
+body.theme-light #srsListContainer div[style*="color: #94a3b8"] {
+  color: #334155 !important;
+  font-weight: 500 !important;
+}
+
+body.theme-light #btnBackToPracticeFromSRS {
+  background: #047857 !important;
+  color: #ffffff !important;
+  font-weight: 800 !important;
+  border: none !important;
+  box-shadow: 0 4px 14px rgba(4, 120, 87, 0.3) !important;
+}
+
+/* 3. Lectura Crítica en Modo Claro (Imagen 3) */
+body.theme-light #subviewLecturaModal > div,
+body.theme-light #lecturaTipModal .modal-card {
+  background: #ffffff !important;
+  border: 1.5px solid #cbd5e1 !important;
+  box-shadow: 0 4px 24px rgba(15, 23, 42, 0.08) !important;
+}
+
+body.theme-light #lecturaTipTitle {
+  color: #0f172a !important;
+  font-weight: 900 !important;
+}
+
+body.theme-light #lecturaTipNorma {
+  color: #0284c7 !important;
+  font-weight: 700 !important;
+}
+
+body.theme-light #lecturaTipBody {
+  background: #f8fafc !important;
+  border: 1.5px solid #e2e8f0 !important;
+  border-left: 5px solid #047857 !important;
+  color: #0f172a !important;
+}
+
+body.theme-light #lecturaTipBody div,
+body.theme-light #lecturaTipBody span,
+body.theme-light #lecturaTipBody p {
+  color: #0f172a !important;
+}
+
+body.theme-light #lecturaTipBody .tip-resumen-text,
+body.theme-light #lecturaTipBody div[style*="color: #f8fafc"] {
+  color: #0f172a !important;
+  font-weight: 800 !important;
+}
+
+body.theme-light #lecturaTipBody .tip-regla-box,
+body.theme-light #lecturaTipBody div[style*="color: #94a3b8"] {
+  color: #334155 !important;
+  border-top-color: #e2e8f0 !important;
+}
+
+body.theme-light #lecturaTipBody .tip-regla-label,
+body.theme-light #lecturaTipBody strong[style*="color: #38bdf8"] {
+  color: #047857 !important;
+  font-weight: 800 !important;
+}
+
+body.theme-light #lecturaTipBody .tip-regla-val {
+  color: #1e293b !important;
+}
+
+/* Fórmula Mnemotécnica en Lectura Crítica */
+body.theme-light .tip-formula-box,
+body.theme-light #lecturaTipExtraContent div[style*="background: rgba(168, 85, 247"] {
+  background: #faf5ff !important;
+  border: 1.5px solid #e9d5ff !important;
+  border-left: 4px solid #a855f7 !important;
+}
+
+body.theme-light #lecturaTipExtraContent div[style*="color: #c084fc"] {
+  color: #7e22ce !important;
+  font-weight: 800 !important;
+}
+
+body.theme-light .tip-formula-val,
+body.theme-light #lecturaTipExtraContent div[style*="color: #fdf4ff"] {
+  color: #4a044e !important;
+  font-weight: 800 !important;
+}
+
+/* Claves de Aplicación Rápida en Lectura Crítica */
+body.theme-light .tip-puntos-box,
+body.theme-light #lecturaTipExtraContent div[style*="background: rgba(11, 17, 32"] {
+  background: #f8fafc !important;
+  border: 1.5px solid #e2e8f0 !important;
+}
+
+body.theme-light #lecturaTipExtraContent div[style*="color: #38bdf8"] {
+  color: #0284c7 !important;
+  font-weight: 800 !important;
+}
+
+body.theme-light .tip-punto-item,
+body.theme-light #lecturaTipExtraContent div[style*="color: #cbd5e1"] {
+  color: #334155 !important;
+  font-weight: 500 !important;
+}
+
+/* Ejercicio Interactivo en Lectura Crítica */
+body.theme-light #lecturaTipExtraContent div[style*="linear-gradient"] {
+  background: #ffffff !important;
+  border: 1.5px solid #cbd5e1 !important;
+}
+
+body.theme-light #lecturaTipExtraContent div[style*="background: rgba(0,0,0,0.3)"] {
+  background: #f8fafc !important;
+  border: 1.5px solid #e2e8f0 !important;
+  border-left: 4px solid #0284c7 !important;
+  color: #0f172a !important;
+}
+
+body.theme-light #lecturaTipExtraContent .btn-lectura-exercise-opt {
+  background: #f8fafc !important;
+  border: 1.5px solid #cbd5e1 !important;
+  color: #0f172a !important;
+}
+
+body.theme-light #lecturaTipExtraContent .btn-lectura-exercise-opt:hover {
+  background: #f1f5f9 !important;
+  border-color: #047857 !important;
+}
+
+body.theme-light #btnNextLecturaTip {
+  background: #f0f9ff !important;
+  border: 1.5px solid #bae6fd !important;
+  color: #0284c7 !important;
+}
+
+body.theme-light #btnCloseLecturaModal {
+  background: #047857 !important;
+  color: #ffffff !important;
+}
+
+/* 4. Tip Flash / Claves Maestras (Imagen 4) */
+body.theme-light #subviewTipFlash > div,
+body.theme-light #popupTipFlashModal .modal-card,
+body.theme-light #popupTipModal .modal-card {
+  background: #ffffff !important;
+  border: 1.5px solid #cbd5e1 !important;
+  box-shadow: 0 4px 24px rgba(15, 23, 42, 0.08) !important;
+}
+
+body.theme-light #subviewTipFlash div[style*="background: rgba(15, 23, 42"] {
+  background: #f8fafc !important;
+  border: 1.5px solid #e2e8f0 !important;
+}
+
+body.theme-light #subviewTipFlash label[for="selectTipFlashEjeFilter"] {
+  color: #b45309 !important;
+  font-weight: 800 !important;
+}
+
+body.theme-light #selectTipFlashEjeFilter {
+  background: #ffffff !important;
+  color: #0f172a !important;
+  border: 1.5px solid #cbd5e1 !important;
+}
+
+body.theme-light #popupTipTitle {
+  color: #0f172a !important;
+  font-weight: 900 !important;
+}
+
+body.theme-light #popupTipNorma {
+  color: #0284c7 !important;
+  font-weight: 700 !important;
+}
+
+body.theme-light #popupTipBody {
+  background: #f8fafc !important;
+  border: 1.5px solid #e2e8f0 !important;
+  border-left: 5px solid #047857 !important;
+  color: #0f172a !important;
+}
+
+body.theme-light #popupTipBody div,
+body.theme-light #popupTipBody span,
+body.theme-light #popupTipBody p {
+  color: #0f172a !important;
+}
+
+body.theme-light #popupTipBody .tip-resumen-text,
+body.theme-light #popupTipBody div[style*="color: #f8fafc"] {
+  color: #0f172a !important;
+  font-weight: 800 !important;
+}
+
+body.theme-light #popupTipBody .tip-detallado-text,
+body.theme-light #popupTipBody div[style*="color: #f1f5f9"] {
+  color: #1e293b !important;
+  font-weight: 500 !important;
+  line-height: 1.65 !important;
+}
+
+/* Plazo Crítico Legal */
+body.theme-light .tip-plazo-card,
+body.theme-light #popupTipBody div[style*="background: rgba(56, 189, 248"] {
+  background: #f0f9ff !important;
+  border: 1.5px solid #bae6fd !important;
+  border-left: 4px solid #0284c7 !important;
+}
+
+body.theme-light #popupTipBody div[style*="color: #38bdf8"],
+body.theme-light .tip-plazo-card div[style*="color: #38bdf8"] {
+  color: #0369a1 !important;
+  font-weight: 800 !important;
+}
+
+body.theme-light .tip-plazo-val,
+body.theme-light #popupTipBody div[style*="color: #f0f9ff"] {
+  color: #0c4a6e !important;
+  font-weight: 800 !important;
+}
+
+/* Trampa Habitual CNSC */
+body.theme-light .tip-trampa-card,
+body.theme-light #popupTipBody div[style*="background: rgba(244, 63, 94"] {
+  background: #fff1f2 !important;
+  border: 1.5px solid #fecdd3 !important;
+  border-left: 4px solid #e11d48 !important;
+}
+
+body.theme-light #popupTipBody div[style*="color: #f43f5e"],
+body.theme-light .tip-trampa-card div[style*="color: #f43f5e"] {
+  color: #be123c !important;
+  font-weight: 800 !important;
+}
+
+body.theme-light .tip-trampa-val,
+body.theme-light #popupTipBody div[style*="color: #ffe4e6"] {
+  color: #881337 !important;
+  font-weight: 700 !important;
+}
+
+/* Fórmula de Decisión Inmediata */
+body.theme-light .tip-formula-card,
+body.theme-light #popupTipBody div[style*="background: rgba(168, 85, 247"] {
+  background: #faf5ff !important;
+  border: 1.5px solid #e9d5ff !important;
+  border-left: 4px solid #9333ea !important;
+}
+
+body.theme-light #popupTipBody div[style*="color: #c084fc"],
+body.theme-light .tip-formula-card div[style*="color: #c084fc"] {
+  color: #7e22ce !important;
+  font-weight: 800 !important;
+}
+
+body.theme-light .tip-formula-val,
+body.theme-light #popupTipBody div[style*="color: #fdf4ff"] {
+  color: #581c87 !important;
+  font-weight: 800 !important;
+}
+
+/* Tarjeta Single Tip en modal de tips */
+body.theme-light #singleTipCard {
+  background: #ffffff !important;
+  border: 1.5px solid #cbd5e1 !important;
+  color: #0f172a !important;
+}
+
+body.theme-light #singleTipTitle {
+  color: #0f172a !important;
+}
+
+body.theme-light #singleTipNorma {
+  color: #0284c7 !important;
+}
+
+body.theme-light #singleTipResumen {
+  background: #f8fafc !important;
+  border: 1.5px solid #e2e8f0 !important;
+  border-left: 4px solid #047857 !important;
+  color: #0f172a !important;
+}
+
+body.theme-light #singleTipContenido {
+  color: #1e293b !important;
+}
+
+body.theme-light #singleTipContenido div[style*="background: rgba(56, 189, 248"] {
+  background: #f0f9ff !important;
+  border: 1.5px solid #bae6fd !important;
+  border-left: 3px solid #0284c7 !important;
+}
+
+body.theme-light #singleTipContenido strong[style*="color: #38bdf8"] {
+  color: #0369a1 !important;
+}
+
+body.theme-light #singleTipContenido span[style*="color: #f0f9ff"],
+body.theme-light #singleTipContenido .tip-plazo-val {
+  color: #0c4a6e !important;
+  font-weight: 800 !important;
+}
+
+body.theme-light #singleTipContenido div[style*="background: rgba(244, 63, 94"] {
+  background: #fff1f2 !important;
+  border: 1.5px solid #fecdd3 !important;
+  border-left: 3px solid #e11d48 !important;
+}
+
+body.theme-light #singleTipContenido strong[style*="color: #f43f5e"] {
+  color: #be123c !important;
+}
+
+body.theme-light #singleTipContenido span[style*="color: #ffe4e6"],
+body.theme-light #singleTipContenido .tip-trampa-val {
+  color: #881337 !important;
+  font-weight: 700 !important;
+}
+
+
 
 
 
