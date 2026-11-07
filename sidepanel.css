@@ -4168,3 +4168,80 @@ body.theme-light .speed-mode-toggle-btn.active {
   color: #ffffff !important;
   box-shadow: 0 2px 8px rgba(5, 150, 105, 0.25) !important;
 }
+
+
+/* Refinamientos adicionales de contraste máximo para elementos específicos */
+body.theme-light #singleTipNormaContainer span {
+  background: #f0f9ff !important;
+  border: 1px solid #bae6fd !important;
+  color: #0369a1 !important;
+}
+
+body.theme-light #singleTipNorma {
+  color: #0369a1 !important;
+}
+
+body.theme-light .verbo-search-input::placeholder {
+  color: #64748b !important;
+}
+
+body.theme-light #tab-verbos div[style*="background: rgba(15, 23, 42, 0.85)"] {
+  background: #f1f5f9 !important;
+  border: 1.5px solid #cbd5e1 !important;
+}
+
+body.theme-light #tab-verbos div[style*="border-bottom: 1px solid rgba(255, 255, 255, 0.12)"] {
+  border-bottom: 1px solid #e2e8f0 !important;
+}
+
+body.theme-light .calculator-card div[style*="background-color: rgba(11, 17, 32"] {
+  background-color: #fffbeb !important;
+  border: 1.5px solid #fcd34d !important;
+}
+
+body.theme-light #calcTotalScore {
+  color: #b45309 !important;
+}
+
+body.theme-light #calcStatusText {
+  color: #475569 !important;
+}
+
+body.theme-light .pass-badge.passed {
+  background: #ecfdf5 !important;
+  color: #047857 !important;
+  border: 1.5px solid #10b981 !important;
+}
+
+body.theme-light .pass-badge.failed {
+  background: #fff1f2 !important;
+  color: #b91c1c !important;
+  border: 1.5px solid #ef4444 !important;
+}
+
+body.theme-light #speedCazaContainer span[style*="background: rgba(16, 185, 129"] {
+  background: #ecfdf5 !important;
+  border: 1.5px solid #a7f3d0 !important;
+  color: #047857 !important;
+  font-weight: 800 !important;
+}
+
+body.theme-light .eje-stat-row div[style*="background-color: #0b1120"] {
+  background-color: #e2e8f0 !important;
+}
+
+body.theme-light .eje-stat-row span {
+  color: #334155 !important;
+}
+
+body.theme-light #btnResetStats {
+  background: #f1f5f9 !important;
+  border: 1.5px solid #cbd5e1 !important;
+  color: #475569 !important;
+}
+
+body.theme-light #btnResetStats:hover {
+  background: #fee2e2 !important;
+  border-color: #fca5a5 !important;
+  color: #b91c1c !important;
+}
