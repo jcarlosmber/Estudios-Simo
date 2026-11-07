@@ -526,10 +526,10 @@
 
           <!-- Botones Verdadero / Falso -->
           <div style="display: flex; gap: 10px;">
-            <button id="btnSpeedTrue" class="btn-primary" style="background: #10b981; border: none; color: #022c22; font-size: 14px; font-weight: 800; padding: 13px; border-radius: 8px; flex: 1; cursor: pointer; box-shadow: 0 2px 10px rgba(16, 185, 129, 0.35);">
+            <button id="btnSpeedTrue" type="button" style="background: #10b981; border: none; color: #022c22; font-size: 14.5px; font-weight: 900; padding: 13px; border-radius: 8px; flex: 1; cursor: pointer; box-shadow: 0 4px 14px rgba(16, 185, 129, 0.4); display: flex; align-items: center; justify-content: center; gap: 6px;">
               🟢 VERDADERO
             </button>
-            <button id="btnSpeedFalse" class="btn-primary" style="background: rgba(239, 68, 68, 0.25); border: 1.5px solid #ef4444; color: #fca5a5; font-size: 14px; font-weight: 800; padding: 13px; border-radius: 8px; flex: 1; cursor: pointer;">
+            <button id="btnSpeedFalse" type="button" style="background: #ef4444; border: none; color: #ffffff; font-size: 14.5px; font-weight: 900; padding: 13px; border-radius: 8px; flex: 1; cursor: pointer; box-shadow: 0 4px 14px rgba(239, 68, 68, 0.4); display: flex; align-items: center; justify-content: center; gap: 6px;">
               🔴 FALSO
             </button>
           </div>
@@ -601,17 +601,17 @@
               1. Cantidad de Casos:
             </label>
             <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px;">
-              <button type="button" class="simulacro-opt-btn active" data-count="15" id="btnSimCount15" style="background: #10b981; border: 1.5px solid #10b981; color: #022c22; border-radius: 8px; padding: 10px 4px; display: flex; flex-direction: column; align-items: center; gap: 2px; cursor: pointer; box-shadow: 0 0 12px rgba(16, 185, 129, 0.4);">
-                <span style="font-size: 14px; font-weight: 900; color: #022c22;">15 Casos</span>
-                <span style="font-size: 10.5px; font-weight: 800; color: #022c22;">Sprint (~30m)</span>
+              <button type="button" class="simulacro-opt-btn active" data-count="15" id="btnSimCount15" style="background: rgba(16, 185, 129, 0.25); border: 1.5px solid #10b981; color: #ffffff; border-radius: 8px; padding: 10px 4px; display: flex; flex-direction: column; align-items: center; gap: 2px; cursor: pointer; box-shadow: 0 0 14px rgba(16, 185, 129, 0.4);">
+                <span class="sim-opt-title" style="font-size: 14px; font-weight: 900; color: #ffffff;">15 Casos</span>
+                <span class="sim-opt-sub" style="font-size: 10.5px; font-weight: 800; color: #6ee7b7;">Sprint (~30m)</span>
               </button>
-              <button type="button" class="simulacro-opt-btn" data-count="30" id="btnSimCount30" style="background: rgba(15, 23, 42, 0.8); border: 1px solid rgba(255, 255, 255, 0.15); color: #cbd5e1; border-radius: 8px; padding: 10px 4px; display: flex; flex-direction: column; align-items: center; gap: 2px; cursor: pointer;">
-                <span style="font-size: 14px; font-weight: 900; color: #ffffff;">30 Casos</span>
-                <span style="font-size: 10.5px; font-weight: 700; color: #94a3b8;">Estándar (~1h)</span>
+              <button type="button" class="simulacro-opt-btn" data-count="30" id="btnSimCount30" style="background: rgba(15, 23, 42, 0.85); border: 1.5px solid rgba(255, 255, 255, 0.14); color: #ffffff; border-radius: 8px; padding: 10px 4px; display: flex; flex-direction: column; align-items: center; gap: 2px; cursor: pointer;">
+                <span class="sim-opt-title" style="font-size: 14px; font-weight: 900; color: #ffffff;">30 Casos</span>
+                <span class="sim-opt-sub" style="font-size: 10.5px; font-weight: 700; color: #94a3b8;">Estándar (~1h)</span>
               </button>
-              <button type="button" class="simulacro-opt-btn" data-count="60" id="btnSimCount60" style="background: rgba(15, 23, 42, 0.8); border: 1px solid rgba(255, 255, 255, 0.15); color: #cbd5e1; border-radius: 8px; padding: 10px 4px; display: flex; flex-direction: column; align-items: center; gap: 2px; cursor: pointer;">
-                <span style="font-size: 14px; font-weight: 900; color: #ffffff;">60 Casos</span>
-                <span style="font-size: 10.5px; font-weight: 700; color: #94a3b8;">Maratón (~2h)</span>
+              <button type="button" class="simulacro-opt-btn" data-count="60" id="btnSimCount60" style="background: rgba(15, 23, 42, 0.85); border: 1.5px solid rgba(255, 255, 255, 0.14); color: #ffffff; border-radius: 8px; padding: 10px 4px; display: flex; flex-direction: column; align-items: center; gap: 2px; cursor: pointer;">
+                <span class="sim-opt-title" style="font-size: 14px; font-weight: 900; color: #ffffff;">60 Casos</span>
+                <span class="sim-opt-sub" style="font-size: 10.5px; font-weight: 700; color: #94a3b8;">Maratón (~2h)</span>
               </button>
             </div>
           </div>
@@ -622,18 +622,18 @@
               2. Modo de Respuesta:
             </label>
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
-              <button type="button" class="simulacro-mode-btn active" data-mode="optical" id="btnSimModeOptical" style="background: #10b981; border: 1.5px solid #10b981; color: #022c22; border-radius: 8px; padding: 10px; display: flex; align-items: center; gap: 8px; cursor: pointer; box-shadow: 0 0 12px rgba(16, 185, 129, 0.4);">
+              <button type="button" class="simulacro-mode-btn active" data-mode="optical" id="btnSimModeOptical" style="background: rgba(16, 185, 129, 0.25); border: 1.5px solid #10b981; color: #ffffff; border-radius: 8px; padding: 10px; display: flex; align-items: center; gap: 8px; cursor: pointer; box-shadow: 0 0 14px rgba(16, 185, 129, 0.4);">
                 <span style="font-size: 20px;">✏️</span>
                 <div style="text-align: left;">
-                  <div style="font-size: 12px; font-weight: 900; color: #022c22;">Hoja Óptica Virtual</div>
-                  <div style="font-size: 10.5px; font-weight: 800; color: #022c22;">Burbujas A, B, C (Lápiz N° 2)</div>
+                  <div class="sim-mode-title" style="font-size: 12.5px; font-weight: 900; color: #ffffff;">Hoja Óptica Virtual</div>
+                  <div class="sim-mode-sub" style="font-size: 10.5px; font-weight: 800; color: #6ee7b7;">Burbujas A, B, C (Lápiz N° 2)</div>
                 </div>
               </button>
-              <button type="button" class="simulacro-mode-btn" data-mode="classic" id="btnSimModeClassic" style="background: rgba(15, 23, 42, 0.8); border: 1px solid rgba(255, 255, 255, 0.15); color: #cbd5e1; border-radius: 8px; padding: 10px; display: flex; align-items: center; gap: 8px; cursor: pointer;">
+              <button type="button" class="simulacro-mode-btn" data-mode="classic" id="btnSimModeClassic" style="background: rgba(15, 23, 42, 0.85); border: 1.5px solid rgba(255, 255, 255, 0.14); color: #ffffff; border-radius: 8px; padding: 10px; display: flex; align-items: center; gap: 8px; cursor: pointer;">
                 <span style="font-size: 20px;">📱</span>
                 <div style="text-align: left;">
-                  <div style="font-size: 12px; font-weight: 800; color: #ffffff;">Digital Táctil</div>
-                  <div style="font-size: 10.5px; font-weight: 700; color: #94a3b8;">Tarjetas completas</div>
+                  <div class="sim-mode-title" style="font-size: 12.5px; font-weight: 800; color: #ffffff;">Digital Táctil</div>
+                  <div class="sim-mode-sub" style="font-size: 10.5px; font-weight: 700; color: #94a3b8;">Tarjetas completas</div>
                 </div>
               </button>
             </div>
@@ -1466,6 +1466,25 @@
       </div>
 
       <div class="duo-settings-list" style="display: flex; flex-direction: column; gap: 12px;">
+        <!-- TEMA VISUAL: CLARO / OSCURO (PLAN 3006) -->
+        <div class="duo-setting-row" id="settingRowTheme">
+          <div class="setting-row-left">
+            <span class="setting-row-icon" style="background: rgba(16, 185, 129, 0.15); border-color: rgba(16, 185, 129, 0.35);">🌓</span>
+            <div>
+              <div class="setting-row-title">Tema Visual</div>
+              <div class="setting-row-sub" id="themeSubtitle">Activo: Oscuro Ejecutivo (Plan 3006)</div>
+            </div>
+          </div>
+          <div class="theme-toggle-group" style="display: flex; gap: 4px; background: rgba(0, 0, 0, 0.35); padding: 3px; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.12);">
+            <button id="btnThemeDark" type="button" class="theme-choice-btn active" style="padding: 7px 12px; font-size: 12px; font-weight: 800; border-radius: 6px; border: none; background: #10b981; color: #022c22; cursor: pointer; display: flex; align-items: center; gap: 4px; transition: all 0.2s;">
+              <span>🌙</span> Oscuro
+            </button>
+            <button id="btnThemeLight" type="button" class="theme-choice-btn" style="padding: 7px 12px; font-size: 12px; font-weight: 700; border-radius: 6px; border: 1px solid transparent; background: transparent; color: #cbd5e1; cursor: pointer; display: flex; align-items: center; gap: 4px; transition: all 0.2s;">
+              <span>☀️</span> Claro
+            </button>
+          </div>
+        </div>
+
         <!-- 1. Perfil / Cargo -->
         <div class="duo-setting-row" id="settingRowProfile">
           <div class="setting-row-left">

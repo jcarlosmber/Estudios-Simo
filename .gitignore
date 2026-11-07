@@ -7,7 +7,11 @@ Estudios-Simo/
 simo-prep-extension.zip
 
 # Material y documentos de referencia para generación de preguntas
-material/
+material/*
+!material/01_Guias_y_Convocatoria/
+material/01_Guias_y_Convocatoria/*
+!material/01_Guias_y_Convocatoria/Plan_Estudio_Gestor_III_DIAN_Ficha_3006.pdf
 documentos/
 *.pdf
+!material/01_Guias_y_Convocatoria/Plan_Estudio_Gestor_III_DIAN_Ficha_3006.pdf
 scratch/

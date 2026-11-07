@@ -5814,7 +5814,7 @@ function renderSimulacroTab() {
 function setupSimulacroLogic() {
   initExamCountdown();
 
-  // Selector de cantidad de preguntas
+  // Selector de cantidad de preguntas (Plan 3006 Dark Executive Emerald)
   [15, 30, 60].forEach((count) => {
     const btn = document.getElementById(`btnSimCount${count}`);
     if (btn) {
@@ -5825,16 +5825,20 @@ function setupSimulacroLogic() {
           if (b) {
             const isActive = c === count;
             b.classList.toggle("active", isActive);
-            b.style.background = isActive ? "rgba(56, 189, 248, 0.15)" : "var(--bg-card)";
-            b.style.borderColor = isActive ? "#38bdf8" : "var(--border-color)";
-            b.style.color = isActive ? "#f8fafc" : "#cbd5e1";
+            b.style.background = isActive ? "rgba(16, 185, 129, 0.25)" : "rgba(15, 23, 42, 0.85)";
+            b.style.borderColor = isActive ? "#10b981" : "rgba(255, 255, 255, 0.14)";
+            b.style.boxShadow = isActive ? "0 0 14px rgba(16, 185, 129, 0.4)" : "none";
+            const title = b.querySelector(".sim-opt-title");
+            const sub = b.querySelector(".sim-opt-sub");
+            if (title) title.style.color = "#ffffff";
+            if (sub) sub.style.color = isActive ? "#6ee7b7" : "#94a3b8";
           }
         });
       });
     }
   });
 
-  // Selector de modo de respuesta (Hoja Óptica vs Digital Táctil)
+  // Selector de modo de respuesta (Hoja Óptica vs Digital Táctil - Plan 3006)
   const btnOptical = document.getElementById("btnSimModeOptical");
   const btnClassic = document.getElementById("btnSimModeClassic");
 
@@ -5843,19 +5847,30 @@ function setupSimulacroLogic() {
     if (btnOptical) {
       const isOpt = mode === "optical";
       btnOptical.classList.toggle("active", isOpt);
-      btnOptical.style.background = isOpt ? "rgba(245, 158, 11, 0.12)" : "var(--bg-card)";
-      btnOptical.style.borderColor = isOpt ? "#f59e0b" : "var(--border-color)";
+      btnOptical.style.background = isOpt ? "rgba(16, 185, 129, 0.25)" : "rgba(15, 23, 42, 0.85)";
+      btnOptical.style.borderColor = isOpt ? "#10b981" : "rgba(255, 255, 255, 0.14)";
+      btnOptical.style.boxShadow = isOpt ? "0 0 14px rgba(16, 185, 129, 0.4)" : "none";
+      const title = btnOptical.querySelector(".sim-mode-title");
+      const sub = btnOptical.querySelector(".sim-mode-sub");
+      if (title) title.style.color = "#ffffff";
+      if (sub) sub.style.color = isOpt ? "#6ee7b7" : "#94a3b8";
     }
     if (btnClassic) {
       const isClas = mode === "classic";
       btnClassic.classList.toggle("active", isClas);
-      btnClassic.style.background = isClas ? "rgba(56, 189, 248, 0.15)" : "var(--bg-card)";
-      btnClassic.style.borderColor = isClas ? "#38bdf8" : "var(--border-color)";
+      btnClassic.style.background = isClas ? "rgba(16, 185, 129, 0.25)" : "rgba(15, 23, 42, 0.85)";
+      btnClassic.style.borderColor = isClas ? "#10b981" : "rgba(255, 255, 255, 0.14)";
+      btnClassic.style.boxShadow = isClas ? "0 0 14px rgba(16, 185, 129, 0.4)" : "none";
+      const title = btnClassic.querySelector(".sim-mode-title");
+      const sub = btnClassic.querySelector(".sim-mode-sub");
+      if (title) title.style.color = "#ffffff";
+      if (sub) sub.style.color = isClas ? "#6ee7b7" : "#94a3b8";
     }
   };
 
   if (btnOptical) btnOptical.addEventListener("click", () => updateModeButtons("optical"));
   if (btnClassic) btnClassic.addEventListener("click", () => updateModeButtons("classic"));
+  updateModeButtons(SimulacroState.mode || "optical");
 
   // Botón Iniciar Simulacro
   const btnStart = document.getElementById("btnStartSimulacro");

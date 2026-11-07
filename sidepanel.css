@@ -2281,5 +2281,78 @@ textarea:focus {
   border-color: #10b981 !important;
 }
 
+/* Botones de configuración del simulacro (Plan 3006 Dark Executive Emerald) */
+.simulacro-opt-btn,
+.simulacro-mode-btn {
+  background: rgba(15, 23, 42, 0.85) !important;
+  border: 1.5px solid rgba(255, 255, 255, 0.14) !important;
+  color: #ffffff !important;
+  transition: all 0.2s ease !important;
+}
+
+.simulacro-opt-btn:hover,
+.simulacro-mode-btn:hover {
+  background: rgba(16, 185, 129, 0.15) !important;
+  border-color: rgba(16, 185, 129, 0.5) !important;
+}
+
+.simulacro-opt-btn.active,
+.simulacro-mode-btn.active {
+  background: rgba(16, 185, 129, 0.25) !important;
+  border: 1.5px solid #10b981 !important;
+  color: #ffffff !important;
+  box-shadow: 0 0 14px rgba(16, 185, 129, 0.4) !important;
+}
+
+.simulacro-opt-btn .sim-opt-title,
+.simulacro-mode-btn .sim-mode-title {
+  color: #ffffff !important;
+  font-weight: 800;
+}
+
+.simulacro-opt-btn .sim-opt-sub,
+.simulacro-mode-btn .sim-mode-sub {
+  color: #94a3b8 !important;
+}
+
+.simulacro-opt-btn.active .sim-opt-title,
+.simulacro-mode-btn.active .sim-mode-title {
+  color: #ffffff !important;
+}
+
+.simulacro-opt-btn.active .sim-opt-sub,
+.simulacro-mode-btn.active .sim-mode-sub {
+  color: #6ee7b7 !important;
+}
+
+/* Botones de Speed Drill Legal V/F (Verdadero Verde / Falso Rojo) */
+#btnSpeedTrue {
+  background: #10b981 !important;
+  color: #022c22 !important;
+  font-weight: 900 !important;
+  border: none !important;
+  box-shadow: 0 4px 14px rgba(16, 185, 129, 0.4) !important;
+}
+
+#btnSpeedTrue:hover:not(:disabled) {
+  background: #34d399 !important;
+  box-shadow: 0 6px 18px rgba(16, 185, 129, 0.55) !important;
+}
+
+#btnSpeedFalse {
+  background: #ef4444 !important;
+  color: #ffffff !important;
+  font-weight: 900 !important;
+  border: none !important;
+  box-shadow: 0 4px 14px rgba(239, 68, 68, 0.4) !important;
+}
+
+#btnSpeedFalse:hover:not(:disabled) {
+  background: #dc2626 !important;
+  box-shadow: 0 6px 18px rgba(239, 68, 68, 0.55) !important;
+}
+
+
+
 
 
