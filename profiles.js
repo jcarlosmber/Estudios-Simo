@@ -15,6 +15,15 @@ const PROFILES_DATA = {
     salary: "$8.450.000 aprox (Vigencia 2025)",
     closingDate: "2026-02-07",
     codeFicha: "FT-TAH-1824 / TP-DE-3006",
+    planPdf: {
+      url: "material/01_Guias_y_Convocatoria/Plan_Estudio_Gestor_III_DIAN_Ficha_3006.pdf",
+      filename: "Plan_Estudio_Gestor_III_DIAN_Ficha_3006.pdf",
+      title: "Plan Maestro de Estudio Gestor III (PDF Oficial)",
+      sub: "Ficha TP-DE-3006 (FT-TAH-1824) • 121 Páginas • UAE DIAN 2024",
+      badge: "PDF 2.3 MB",
+      btnText: "Abrir PDF Oficial (121 págs)",
+      desc: "Documento oficial íntegro sin reducciones: 20 módulos doctrinales y técnicos, 90 diagramas y compendio maestro de 40 casos prácticos comentados."
+    },
     purpose: "Desarrollar metodologías, estrategias, técnicas y herramientas de gestión que contribuyan con la toma de decisiones y el direccionamiento hacia el cumplimiento misional, de acuerdo con la normativa vigente, la política institucional y lineamientos técnicos.",
     functions: [
       "Realizar análisis y diagnósticos del comportamiento de las variables y tendencias de los sectores económicos de influencia y competencia de la dependencia, de acuerdo con la normativa y políticas institucionales.",
@@ -59,6 +68,15 @@ const PROFILES_DATA = {
     vacancies: 4,
     closingDate: "2026-02-07",
     codeFicha: "PC-CI-3006",
+    planPdf: {
+      url: "material/01_Guias_y_Convocatoria/Plan_Estudio_Gestor_III_DIAN_Ficha_3006.pdf",
+      filename: "Plan_Estudio_Gestor_III_DIAN_Ficha_3006.pdf",
+      title: "Plan Maestro de Estudio Gestor III - Control Interno (PDF Oficial)",
+      sub: "Ficha TP-DE-3006 • OPEC 236872 • 121 Páginas • UAE DIAN 2024",
+      badge: "PDF 2.3 MB",
+      btnText: "Abrir PDF Oficial (121 págs)",
+      desc: "Documento oficial íntegro sin reducciones: 20 módulos doctrinales y técnicos, 90 diagramas y compendio maestro de 40 casos prácticos comentados."
+    },
     idEntidad: "545",
     manualUrl: "https://simo.cnsc.gov.co/documents/get-document?docId=3be3b71b-8309-494c-87ec-7e71a12585941011711685&contentType=application/pdf",
     purpose: "PC-CI-3006 GESTIONAR ACCIONES QUE FORTALEZCAN EL SISTEMA DE CONTROL INTERNO, MEDIANTE LA EJECUCION DE AUDITORIAS, EVALUACIONES Y SEGUIMIENTO A PLANES DE MEJORAMIENTO, DE ACUERDO CON LA NORMATIVA, ESTANDARES INTERNACIONALES, LOS PROCEDIMIENTOS VIGENTES Y LOS LINEAMIENTOS ESTABLECIDOS.",
@@ -153,6 +171,15 @@ const PROFILES_DATA = {
     vacancies: 19,
     closingDate: "2026-02-07",
     codeFicha: "AT-FL-2010",
+    planPdf: {
+      url: "material/01_Guias_y_Convocatoria/Plan_Estudio_Analista_IV_DIAN_Ficha_AT_FL_2010.pdf",
+      filename: "Plan_Estudio_Analista_IV_DIAN_Ficha_AT_FL_2010.pdf",
+      title: "Plan Maestro de Estudio Analista IV (PDF Oficial)",
+      sub: "Ficha AT-FL-2010 (Código 204 - Grado 04) • OPEC 236760 • UAE DIAN",
+      badge: "PDF 2.0 MB",
+      btnText: "Abrir PDF Oficial Analista IV",
+      desc: "Guía oficial y plan de preparación técnica: fiscalización, recolección probatoria, régimen cambiario, SARLAFT/ROS y procedimientos aduaneros de la DIAN."
+    },
     purpose: "AT-FL-2010. PRESTAR APOYO TÉCNICO EN EL DESARROLLO DE INVESTIGACIONES Y DILIGENCIAS, TENDIENTES A LA DETECCIÓN DE INCUMPLIMIENTO DE LA NORMATIVA TRIBUTARIA, ADUANERA O CAMBIARIA VIGENTE Y DE CONDUCTAS INDICATIVAS DE LAVADO DE ACTIVOS DE ACUERDO CON LOS PROCEDIMIENTOS ESTABLECIDOS.",
     functions: [
       "Acompañar las diligencias de práctica de pruebas decretadas dentro de una investigación, de acuerdo con la normativa vigente y los procedimientos establecidos.",

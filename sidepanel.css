@@ -3260,23 +3260,27 @@ body.theme-light textarea::placeholder {
 }
 
 /* 1. Cronómetro Reglamentario en Modo Claro (Imagen 1) */
+body.theme-light .practice-timer-bar,
 body.theme-light #practiceTimerBar {
   background: #f1f5f9 !important;
   border: 1.5px solid #cbd5e1 !important;
 }
 
-body.theme-light #practiceTimerBar span[style*="color: #38bdf8"],
-body.theme-light #practiceTimerBar span[style*="color: rgb(56, 189, 248)"] {
+body.theme-light .practice-timer-label,
+body.theme-light #practiceTimerBar .practice-timer-label,
+body.theme-light #practiceTimerBar span:not(#practiceQuestionTimer) {
   color: #0369a1 !important;
   font-weight: 800 !important;
 }
 
-body.theme-light #practiceTimerBar div[style*="color: #94a3b8"],
-body.theme-light #practiceTimerBar div[style*="color: rgb(148, 163, 184)"] {
+body.theme-light .practice-timer-hint,
+body.theme-light #practiceTimerBar .practice-timer-hint,
+body.theme-light #practiceTimerBar div {
   color: #475569 !important;
   font-weight: 700 !important;
 }
 
+body.theme-light .practice-timer-display,
 body.theme-light #practiceQuestionTimer {
   background: #ffffff !important;
   color: #0f172a !important;
@@ -3288,18 +3292,18 @@ body.theme-light #practiceQuestionTimer {
 /* 2. Flashcards Leitner 3D y Baraja Vacía en Modo Claro (Imagen 2) */
 body.theme-light #subviewSRS > div {
   background-color: #ffffff !important;
-  border: 1.5px solid #cbd5e1 !important;
+  border: 2px solid #10b981 !important;
   box-shadow: 0 4px 20px rgba(15, 23, 42, 0.06) !important;
 }
 
 body.theme-light .srs-header-title,
-body.theme-light #subviewSRS span[style*="color: #f8fafc"] {
+body.theme-light #subviewSRS .srs-header-title {
   color: #0f172a !important;
   font-weight: 900 !important;
 }
 
 body.theme-light .srs-header-sub,
-body.theme-light #subviewSRS div[style*="color: #cbd5e1"] {
+body.theme-light #subviewSRS .srs-header-sub {
   color: #475569 !important;
   font-weight: 600 !important;
 }
@@ -3307,7 +3311,8 @@ body.theme-light #subviewSRS div[style*="color: #cbd5e1"] {
 body.theme-light #srsPendingBadge {
   background-color: #e0f2fe !important;
   color: #0284c7 !important;
-  border-color: #7dd3fc !important;
+  border: 1px solid #7dd3fc !important;
+  font-weight: 800 !important;
 }
 
 body.theme-light #btnCloseSRSModal {
@@ -3321,20 +3326,53 @@ body.theme-light #btnCloseSRSModal:hover {
   color: #0f172a !important;
 }
 
-body.theme-light .srs-empty-box,
-body.theme-light #srsListContainer > div[style*="background: rgba(15, 23, 42"] {
+body.theme-light #quizRelampagoBanner {
+  background: linear-gradient(135deg, #eef2ff 0%, #fef3c7 100%) !important;
+  border: 1.5px solid #c7d2fe !important;
+}
+
+body.theme-light #quizRelampagoBanner div[style*="font-weight: 800"],
+body.theme-light #quizRelampagoBanner span {
+  color: #0f172a !important;
+}
+
+body.theme-light #quizRelampagoBanner div[style*="font-size: 11px"] {
+  color: #334155 !important;
+}
+
+body.theme-light .leitner-filter-btn {
+  background: #f1f5f9 !important;
+  border: 1px solid #cbd5e1 !important;
+  color: #475569 !important;
+}
+
+body.theme-light .leitner-filter-btn:hover {
+  background: #e2e8f0 !important;
+  color: #0f172a !important;
+}
+
+body.theme-light .leitner-filter-btn.active {
+  background: #0284c7 !important;
+  border-color: #0284c7 !important;
+  color: #ffffff !important;
+}
+
+body.theme-light .leitner-filter-btn.active .count {
+  background: rgba(255, 255, 255, 0.25) !important;
+  color: #ffffff !important;
+}
+
+body.theme-light .srs-empty-box {
   background: #f8fafc !important;
   border: 1.5px dashed #cbd5e1 !important;
 }
 
-body.theme-light .srs-empty-title,
-body.theme-light #srsListContainer div[style*="color: #f8fafc"] {
+body.theme-light .srs-empty-title {
   color: #0f172a !important;
   font-weight: 900 !important;
 }
 
-body.theme-light .srs-empty-desc,
-body.theme-light #srsListContainer div[style*="color: #94a3b8"] {
+body.theme-light .srs-empty-desc {
   color: #334155 !important;
   font-weight: 500 !important;
 }
@@ -3355,6 +3393,13 @@ body.theme-light #lecturaTipModal .modal-card {
   box-shadow: 0 4px 24px rgba(15, 23, 42, 0.08) !important;
 }
 
+body.theme-light #lecturaTipBadge {
+  background: #e0f2fe !important;
+  color: #0284c7 !important;
+  border: 1px solid #7dd3fc !important;
+  font-weight: 800 !important;
+}
+
 body.theme-light #lecturaTipTitle {
   color: #0f172a !important;
   font-weight: 900 !important;
@@ -3365,7 +3410,8 @@ body.theme-light #lecturaTipNorma {
   font-weight: 700 !important;
 }
 
-body.theme-light #lecturaTipBody {
+body.theme-light #lecturaTipBody,
+body.theme-light .lectura-body-card {
   background: #f8fafc !important;
   border: 1.5px solid #e2e8f0 !important;
   border-left: 5px solid #047857 !important;
@@ -3379,62 +3425,64 @@ body.theme-light #lecturaTipBody p {
 }
 
 body.theme-light #lecturaTipBody .tip-resumen-text,
-body.theme-light #lecturaTipBody div[style*="color: #f8fafc"] {
+body.theme-light .tip-resumen-text {
   color: #0f172a !important;
   font-weight: 800 !important;
 }
 
 body.theme-light #lecturaTipBody .tip-regla-box,
-body.theme-light #lecturaTipBody div[style*="color: #94a3b8"] {
+body.theme-light .tip-regla-box {
   color: #334155 !important;
-  border-top-color: #e2e8f0 !important;
+  border-top: 1px solid #e2e8f0 !important;
 }
 
 body.theme-light #lecturaTipBody .tip-regla-label,
-body.theme-light #lecturaTipBody strong[style*="color: #38bdf8"] {
+body.theme-light .tip-regla-label {
   color: #047857 !important;
   font-weight: 800 !important;
 }
 
-body.theme-light #lecturaTipBody .tip-regla-val {
+body.theme-light #lecturaTipBody .tip-regla-val,
+body.theme-light .tip-regla-val {
   color: #1e293b !important;
+  font-weight: 600 !important;
 }
 
 /* Fórmula Mnemotécnica en Lectura Crítica */
-body.theme-light .tip-formula-box,
-body.theme-light #lecturaTipExtraContent div[style*="background: rgba(168, 85, 247"] {
+body.theme-light .tip-formula-box {
   background: #faf5ff !important;
   border: 1.5px solid #e9d5ff !important;
   border-left: 4px solid #a855f7 !important;
 }
 
-body.theme-light #lecturaTipExtraContent div[style*="color: #c084fc"] {
+body.theme-light .tip-formula-box .tip-formula-label,
+body.theme-light .tip-formula-label {
   color: #7e22ce !important;
   font-weight: 800 !important;
 }
 
-body.theme-light .tip-formula-val,
-body.theme-light #lecturaTipExtraContent div[style*="color: #fdf4ff"] {
+body.theme-light .tip-formula-box .tip-formula-val,
+body.theme-light .tip-formula-val {
   color: #4a044e !important;
   font-weight: 800 !important;
 }
 
 /* Claves de Aplicación Rápida en Lectura Crítica */
-body.theme-light .tip-puntos-box,
-body.theme-light #lecturaTipExtraContent div[style*="background: rgba(11, 17, 32"] {
+body.theme-light .tip-puntos-box {
   background: #f8fafc !important;
   border: 1.5px solid #e2e8f0 !important;
+  border-left: 4px solid #0284c7 !important;
 }
 
-body.theme-light #lecturaTipExtraContent div[style*="color: #38bdf8"] {
+body.theme-light .tip-puntos-box .tip-puntos-label,
+body.theme-light .tip-puntos-label {
   color: #0284c7 !important;
   font-weight: 800 !important;
 }
 
-body.theme-light .tip-punto-item,
-body.theme-light #lecturaTipExtraContent div[style*="color: #cbd5e1"] {
-  color: #334155 !important;
-  font-weight: 500 !important;
+body.theme-light .tip-punto-item {
+  color: #1e293b !important;
+  font-weight: 600 !important;
 }
 
 /* Ejercicio Interactivo en Lectura Crítica */
@@ -3481,11 +3529,14 @@ body.theme-light #popupTipModal .modal-card {
   box-shadow: 0 4px 24px rgba(15, 23, 42, 0.08) !important;
 }
 
+body.theme-light .tip-flash-filter-bar,
+body.theme-light #subviewTipFlash .tip-flash-filter-bar,
 body.theme-light #subviewTipFlash div[style*="background: rgba(15, 23, 42"] {
   background: #f8fafc !important;
-  border: 1.5px solid #e2e8f0 !important;
+  border: 1.5px solid #cbd5e1 !important;
 }
 
+body.theme-light .tip-flash-filter-bar label,
 body.theme-light #subviewTipFlash label[for="selectTipFlashEjeFilter"] {
   color: #b45309 !important;
   font-weight: 800 !important;
@@ -3495,6 +3546,21 @@ body.theme-light #selectTipFlashEjeFilter {
   background: #ffffff !important;
   color: #0f172a !important;
   border: 1.5px solid #cbd5e1 !important;
+  font-weight: 700 !important;
+}
+
+body.theme-light #popupTipBadge {
+  background: #fffbeb !important;
+  color: #b45309 !important;
+  border: 1px solid #fcd34d !important;
+  font-weight: 800 !important;
+}
+
+body.theme-light #popupTipEjeBadge {
+  background: #e0f2fe !important;
+  color: #0284c7 !important;
+  border: 1px solid #7dd3fc !important;
+  font-weight: 800 !important;
 }
 
 body.theme-light #popupTipTitle {
@@ -3507,7 +3573,8 @@ body.theme-light #popupTipNorma {
   font-weight: 700 !important;
 }
 
-body.theme-light #popupTipBody {
+body.theme-light #popupTipBody,
+body.theme-light .tip-body-card {
   background: #f8fafc !important;
   border: 1.5px solid #e2e8f0 !important;
   border-left: 5px solid #047857 !important;
@@ -3520,76 +3587,80 @@ body.theme-light #popupTipBody p {
   color: #0f172a !important;
 }
 
-body.theme-light #popupTipBody .tip-resumen-text,
-body.theme-light #popupTipBody div[style*="color: #f8fafc"] {
+body.theme-light #popupTipBody .tip-resumen-text {
   color: #0f172a !important;
   font-weight: 800 !important;
 }
 
-body.theme-light #popupTipBody .tip-detallado-text,
-body.theme-light #popupTipBody div[style*="color: #f1f5f9"] {
-  color: #1e293b !important;
-  font-weight: 500 !important;
-  line-height: 1.65 !important;
-}
-
 /* Plazo Crítico Legal */
-body.theme-light .tip-plazo-card,
-body.theme-light #popupTipBody div[style*="background: rgba(56, 189, 248"] {
+body.theme-light .tip-plazo-card {
   background: #f0f9ff !important;
   border: 1.5px solid #bae6fd !important;
   border-left: 4px solid #0284c7 !important;
 }
 
-body.theme-light #popupTipBody div[style*="color: #38bdf8"],
-body.theme-light .tip-plazo-card div[style*="color: #38bdf8"] {
+body.theme-light .tip-plazo-card .tip-plazo-label,
+body.theme-light .tip-plazo-label {
   color: #0369a1 !important;
   font-weight: 800 !important;
 }
 
-body.theme-light .tip-plazo-val,
-body.theme-light #popupTipBody div[style*="color: #f0f9ff"] {
+body.theme-light .tip-plazo-val {
   color: #0c4a6e !important;
   font-weight: 800 !important;
 }
 
 /* Trampa Habitual CNSC */
-body.theme-light .tip-trampa-card,
-body.theme-light #popupTipBody div[style*="background: rgba(244, 63, 94"] {
+body.theme-light .tip-trampa-card {
   background: #fff1f2 !important;
   border: 1.5px solid #fecdd3 !important;
   border-left: 4px solid #e11d48 !important;
 }
 
-body.theme-light #popupTipBody div[style*="color: #f43f5e"],
-body.theme-light .tip-trampa-card div[style*="color: #f43f5e"] {
+body.theme-light .tip-trampa-card .tip-trampa-label,
+body.theme-light .tip-trampa-label {
   color: #be123c !important;
   font-weight: 800 !important;
 }
 
-body.theme-light .tip-trampa-val,
-body.theme-light #popupTipBody div[style*="color: #ffe4e6"] {
+body.theme-light .tip-trampa-val {
   color: #881337 !important;
   font-weight: 700 !important;
 }
 
 /* Fórmula de Decisión Inmediata */
-body.theme-light .tip-formula-card,
-body.theme-light #popupTipBody div[style*="background: rgba(168, 85, 247"] {
+body.theme-light .tip-formula-card {
   background: #faf5ff !important;
   border: 1.5px solid #e9d5ff !important;
   border-left: 4px solid #9333ea !important;
 }
 
-body.theme-light #popupTipBody div[style*="color: #c084fc"],
-body.theme-light .tip-formula-card div[style*="color: #c084fc"] {
+body.theme-light .tip-formula-card .tip-formula-label,
+body.theme-light .tip-formula-label {
   color: #7e22ce !important;
   font-weight: 800 !important;
 }
 
-body.theme-light .tip-formula-val,
-body.theme-light #popupTipBody div[style*="color: #fdf4ff"] {
+body.theme-light .tip-formula-card .tip-formula-val,
+body.theme-light .tip-formula-val {
   color: #581c87 !important;
+  font-weight: 800 !important;
+  font-family: 'Consolas', monospace !important;
+}
+
+/* Texto Detallado */
+body.theme-light .tip-detallado-text,
+body.theme-light #popupTipBody .tip-detallado-text,
+body.theme-light #singleTipContenido .tip-detallado-text {
+  color: #1e293b !important;
+  font-weight: 500 !important;
+  line-height: 1.65 !important;
+}
+
+body.theme-light .tip-detallado-text strong,
+body.theme-light #popupTipBody .tip-detallado-text strong,
+body.theme-light #singleTipContenido strong {
+  color: #0f172a !important;
   font-weight: 800 !important;
 }
 

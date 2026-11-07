@@ -139,13 +139,13 @@ app.get(['/download/extension', '/simo-prep-extension.zip'], (req, res) => {
   }
 });
 
-// 7. Ruta directa para visualizar / descargar el PDF oficial del Plan de Estudio (121 páginas)
-function resolvePdfPath() {
+// 7. Ruta directa para visualizar / descargar los PDFs oficiales del Plan de Estudio
+function resolvePdfPath(filename = 'Plan_Estudio_Gestor_III_DIAN_Ficha_3006.pdf') {
   const candidates = [
-    path.join(__dirname, 'material', '01_Guias_y_Convocatoria', 'Plan_Estudio_Gestor_III_DIAN_Ficha_3006.pdf'),
-    path.join(DATA_DIR, 'Plan_Estudio_Gestor_III_DIAN_Ficha_3006.pdf'),
-    path.join(__dirname, 'material', 'Plan_Estudio_Gestor_III_DIAN_Ficha_3006.pdf'),
-    path.join(__dirname, 'Plan_Estudio_Gestor_III_DIAN_Ficha_3006.pdf')
+    path.join(__dirname, 'material', '01_Guias_y_Convocatoria', filename),
+    path.join(DATA_DIR, filename),
+    path.join(__dirname, 'material', filename),
+    path.join(__dirname, filename)
   ];
   for (const p of candidates) {
     if (fs.existsSync(p)) return p;
@@ -153,18 +153,46 @@ function resolvePdfPath() {
   return null;
 }
 
-// Asegurar copia en DATA_DIR si existe en el código para persistencia en Coolify (/app/data)
-try {
-  const srcPdf = path.join(__dirname, 'material', '01_Guias_y_Convocatoria', 'Plan_Estudio_Gestor_III_DIAN_Ficha_3006.pdf');
-  const destPdf = path.join(DATA_DIR, 'Plan_Estudio_Gestor_III_DIAN_Ficha_3006.pdf');
-  if (fs.existsSync(srcPdf) && !fs.existsSync(destPdf)) {
-    fs.copyFileSync(srcPdf, destPdf);
-    console.log('[COOLIFY STORAGE] PDF oficial respaldado en volumen persistente:', destPdf);
+// Asegurar copias en DATA_DIR si existen en el código para persistencia en Coolify (/app/data)
+const pdfFilesToSync = [
+  'Plan_Estudio_Gestor_III_DIAN_Ficha_3006.pdf',
+  'Plan_Estudio_Analista_IV_DIAN_Ficha_AT_FL_2010.pdf'
+];
+pdfFilesToSync.forEach((file) => {
+  try {
+    const srcPdf = path.join(__dirname, 'material', '01_Guias_y_Convocatoria', file);
+    const destPdf = path.join(DATA_DIR, file);
+    if (fs.existsSync(srcPdf) && !fs.existsSync(destPdf)) {
+      fs.copyFileSync(srcPdf, destPdf);
+      console.log(`[COOLIFY STORAGE] PDF ${file} respaldado en volumen persistente:`, destPdf);
+    }
+  } catch (e) {
+    console.warn(`[COOLIFY STORAGE] Advertencia al sincronizar PDF ${file} con DATA_DIR:`, e.message);
   }
-} catch (e) {
-  console.warn('[COOLIFY STORAGE] Advertencia al sincronizar PDF con DATA_DIR:', e.message);
-}
+});
 
+// Ruta para el Plan de Estudio de Analista IV (Ficha AT-FL-2010)
+app.get([
+  '/Plan_Estudio_Analista_IV_DIAN_Ficha_AT_FL_2010.pdf',
+  '/material/01_Guias_y_Convocatoria/Plan_Estudio_Analista_IV_DIAN_Ficha_AT_FL_2010.pdf',
+  '/material/Plan_Estudio_Analista_IV_DIAN_Ficha_AT_FL_2010.pdf',
+  '/plan-estudio-analista.pdf',
+  '/pdf/plan-estudio-analista'
+], (req, res) => {
+  const filename = 'Plan_Estudio_Analista_IV_DIAN_Ficha_AT_FL_2010.pdf';
+  const pdfPath = resolvePdfPath(filename);
+  if (pdfPath) {
+    res.setHeader('Content-Type', 'application/pdf');
+    if (req.query.download === 'true') {
+      return res.download(pdfPath, filename);
+    }
+    res.setHeader('Content-Disposition', `inline; filename="${filename}"`);
+    return res.sendFile(pdfPath);
+  }
+  res.status(404).send('PDF oficial de Analista IV no encontrado en el servidor.');
+});
+
+// Ruta para el Plan de Estudio de Gestor III (Ficha 3006) y genérico
 app.get([
   '/plan-estudio.pdf',
   '/material/01_Guias_y_Convocatoria/Plan_Estudio_Gestor_III_DIAN_Ficha_3006.pdf',
@@ -173,13 +201,16 @@ app.get([
   '/pdf/plan-estudio',
   '/plan-estudio'
 ], (req, res) => {
-  const pdfPath = resolvePdfPath();
+  const filename = (req.query.job === 'analista_iv')
+    ? 'Plan_Estudio_Analista_IV_DIAN_Ficha_AT_FL_2010.pdf'
+    : 'Plan_Estudio_Gestor_III_DIAN_Ficha_3006.pdf';
+  const pdfPath = resolvePdfPath(filename);
   if (pdfPath) {
     res.setHeader('Content-Type', 'application/pdf');
     if (req.query.download === 'true') {
-      return res.download(pdfPath, 'Plan_Estudio_Gestor_III_DIAN_Ficha_3006.pdf');
+      return res.download(pdfPath, filename);
     }
-    res.setHeader('Content-Disposition', 'inline; filename="Plan_Estudio_Gestor_III_DIAN_Ficha_3006.pdf"');
+    res.setHeader('Content-Disposition', `inline; filename="${filename}"`);
     return res.sendFile(pdfPath);
   }
   res.status(404).send('PDF oficial no encontrado en el servidor.');

@@ -1709,12 +1709,12 @@ function setupTipsModal() {
     if (singleTipContenido) {
       const plazoHtml = tip.plazoCritico ? `
         <div class="tip-plazo-card" style="background: rgba(56, 189, 248, 0.12); border: 1px solid rgba(56, 189, 248, 0.35); border-left: 3px solid #38bdf8; border-radius: 6px; padding: 8px 12px; margin: 8px 0; font-size: 13px;">
-          <strong style="color: #38bdf8;">⏱️ Término / Plazo Crítico:</strong> <span class="tip-plazo-val">${tip.plazoCritico}</span>
+          <strong class="tip-plazo-label" style="color: #38bdf8;">⏱️ Término / Plazo Crítico:</strong> <span class="tip-plazo-val">${tip.plazoCritico}</span>
         </div>
       ` : "";
       const trampaHtml = tip.trampaHabitual ? `
         <div class="tip-trampa-card" style="background: rgba(244, 63, 94, 0.12); border: 1px solid rgba(244, 63, 94, 0.35); border-left: 3px solid #f43f5e; border-radius: 6px; padding: 8px 12px; margin: 8px 0; font-size: 13px;">
-          <strong style="color: #f43f5e;">⚠️ Trampa CNSC en Casos:</strong> <span class="tip-trampa-val">${tip.trampaHabitual}</span>
+          <strong class="tip-trampa-label" style="color: #f43f5e;">⚠️ Trampa CNSC en Casos:</strong> <span class="tip-trampa-val">${tip.trampaHabitual}</span>
         </div>
       ` : "";
       singleTipContenido.innerHTML = `${plazoHtml}${trampaHtml}<div class="tip-detallado-text" style="margin-top: 4px;">${tip.contenidoDetallado || tip.resumenCorto || ""}</div>`;
@@ -2075,14 +2075,14 @@ function setupTipsModal() {
 
       const formulaHtml = tip.formula ? `
         <div class="tip-formula-box" style="border-radius: 8px; padding: 10px 14px; margin-bottom: 12px;">
-          <div style="font-size: 11px; font-weight: 800; color: #c084fc; text-transform: uppercase; letter-spacing: 0.5px;">📐 Fórmula Mnemotécnica:</div>
+          <div class="tip-formula-label" style="font-size: 11px; font-weight: 800; color: #c084fc; text-transform: uppercase; letter-spacing: 0.5px;">📐 Fórmula Mnemotécnica:</div>
           <div class="tip-formula-val" style="font-size: 13px; font-weight: 700; margin-top: 2px;">${tip.formula}</div>
         </div>
       ` : "";
 
       const puntosHtml = (tip.puntosClave && tip.puntosClave.length > 0) ? `
         <div class="tip-puntos-box" style="border-radius: 8px; padding: 10px 14px; margin-bottom: 12px; border: 1px solid rgba(255,255,255,0.08);">
-          <div style="font-size: 11px; font-weight: 800; color: #38bdf8; text-transform: uppercase; margin-bottom: 6px;">⚡ Claves de Aplicación Rápida:</div>
+          <div class="tip-puntos-label" style="font-size: 11px; font-weight: 800; color: #38bdf8; text-transform: uppercase; margin-bottom: 6px;">⚡ Claves de Aplicación Rápida:</div>
           ${tip.puntosClave.map(p => `<div class="tip-punto-item" style="font-size: 12px; line-height: 1.5; margin-bottom: 4px;">• ${p}</div>`).join("")}
         </div>
       ` : "";
@@ -2702,7 +2702,7 @@ function showRandomTipFlash({ forced = false, customTip = null } = {}) {
       <div class="tip-plazo-card" style="background: rgba(56, 189, 248, 0.12); border: 1px solid rgba(56, 189, 248, 0.35); border-left: 4px solid #38bdf8; border-radius: 8px; padding: 10px 14px; margin: 10px 0; display: flex; align-items: center; gap: 10px;">
         <span style="font-size: 20px; line-height: 1;">⏱️</span>
         <div style="flex: 1;">
-          <div style="font-size: 11px; font-weight: 800; color: #38bdf8; text-transform: uppercase; letter-spacing: 0.5px;">Término / Plazo Crítico Legal:</div>
+          <div class="tip-plazo-label" style="font-size: 11px; font-weight: 800; color: #38bdf8; text-transform: uppercase; letter-spacing: 0.5px;">Término / Plazo Crítico Legal:</div>
           <div class="tip-plazo-val" style="font-size: 14px; font-weight: 800; margin-top: 2px; line-height: 1.4;">${tip.plazoCritico}</div>
         </div>
       </div>
@@ -2712,7 +2712,7 @@ function showRandomTipFlash({ forced = false, customTip = null } = {}) {
       <div class="tip-trampa-card" style="background: rgba(244, 63, 94, 0.12); border: 1px solid rgba(244, 63, 94, 0.35); border-left: 4px solid #f43f5e; border-radius: 8px; padding: 10px 14px; margin: 10px 0; display: flex; align-items: flex-start; gap: 10px;">
         <span style="font-size: 20px; line-height: 1;">⚠️</span>
         <div style="flex: 1;">
-          <div style="font-size: 11px; font-weight: 800; color: #f43f5e; text-transform: uppercase; letter-spacing: 0.5px;">Trampa Habitual CNSC en Casos:</div>
+          <div class="tip-trampa-label" style="font-size: 11px; font-weight: 800; color: #f43f5e; text-transform: uppercase; letter-spacing: 0.5px;">Trampa Habitual CNSC en Casos:</div>
           <div class="tip-trampa-val" style="font-size: 13.5px; line-height: 1.5; margin-top: 2px;">${tip.trampaHabitual}</div>
         </div>
       </div>
@@ -2722,7 +2722,7 @@ function showRandomTipFlash({ forced = false, customTip = null } = {}) {
       <div class="tip-formula-card" style="background: rgba(168, 85, 247, 0.18); border: 1px solid rgba(168, 85, 247, 0.45); border-left: 4px solid #c084fc; border-radius: 8px; padding: 10px 14px; margin: 10px 0; display: flex; align-items: flex-start; gap: 10px;">
         <span style="font-size: 20px; line-height: 1;">📐</span>
         <div style="flex: 1;">
-          <div style="font-size: 11px; font-weight: 800; color: #c084fc; text-transform: uppercase; letter-spacing: 0.5px;">Fórmula de Decisión Inmediata:</div>
+          <div class="tip-formula-label" style="font-size: 11px; font-weight: 800; color: #c084fc; text-transform: uppercase; letter-spacing: 0.5px;">Fórmula de Decisión Inmediata:</div>
           <div class="tip-formula-val" style="font-size: 14px; font-weight: 800; font-family: 'Consolas', monospace; margin-top: 3px; line-height: 1.4;">${tip.formula}</div>
         </div>
       </div>
@@ -3171,6 +3171,53 @@ function updateJobProfileUI() {
   }
   if (switcher && AppState.activeProfileId) {
     switcher.value = AppState.activeProfileId;
+  }
+
+  // Actualizar enlaces y datos del PDF Oficial según el perfil activo
+  const planInfo = job.planPdf || {
+    url: "material/01_Guias_y_Convocatoria/Plan_Estudio_Gestor_III_DIAN_Ficha_3006.pdf",
+    filename: "Plan_Estudio_Gestor_III_DIAN_Ficha_3006.pdf",
+    title: "Plan Maestro de Estudio Gestor III (PDF Oficial)",
+    sub: "Ficha TP-DE-3006 • 121 Páginas • UAE DIAN",
+    badge: "PDF Oficial",
+    btnText: "Abrir PDF Oficial",
+    desc: "Documento oficial íntegro: módulos doctrinales y técnicos, diagramas y compendio maestro de casos prácticos comentados."
+  };
+
+  // 1. Tarjeta en pestaña Recursos
+  const recTitle = document.getElementById("recursosPlanPdfTitle");
+  const recSub = document.getElementById("recursosPlanPdfSub");
+  const recBadge = document.getElementById("recursosPlanPdfBadge");
+  const recDesc = document.getElementById("recursosPlanPdfDesc");
+  const recOpen = document.getElementById("recursosPlanPdfOpenLink");
+  const recDownload = document.getElementById("recursosPlanPdfDownloadLink");
+  const recBtnText = document.getElementById("recursosPlanPdfBtnText");
+
+  if (recTitle) recTitle.textContent = planInfo.title;
+  if (recSub) recSub.textContent = planInfo.sub;
+  if (recBadge) recBadge.textContent = planInfo.badge;
+  if (recDesc) recDesc.textContent = planInfo.desc;
+  if (recOpen) recOpen.href = planInfo.url;
+  if (recDownload) {
+    recDownload.href = `/${planInfo.filename}?download=true`;
+    recDownload.setAttribute("download", planInfo.filename);
+  }
+  if (recBtnText) recBtnText.textContent = planInfo.btnText;
+
+  // 2. Hero Card en Pestaña Plan de Estudio
+  const heroTitle = document.getElementById("planHeroTitle");
+  const heroSub = document.getElementById("planHeroSub");
+  const heroOpen = document.getElementById("planHeroOpenLink");
+  const heroOpenText = document.getElementById("planHeroOpenText");
+  const heroDownload = document.getElementById("planHeroDownloadLink");
+
+  if (heroTitle) heroTitle.textContent = planInfo.title;
+  if (heroSub) heroSub.textContent = `${job.entity || 'UAE DIAN'} • ${job.title || ''} • OPEC ${job.opec || ''}`;
+  if (heroOpen) heroOpen.href = planInfo.url;
+  if (heroOpenText) heroOpenText.textContent = planInfo.btnText;
+  if (heroDownload) {
+    heroDownload.href = `/${planInfo.filename}?download=true`;
+    heroDownload.setAttribute("download", planInfo.filename);
   }
 }
 

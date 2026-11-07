@@ -43,6 +43,11 @@ function buildExtensionZip() {
     zip.addLocalFile(pdfMaterialPath, 'material/01_Guias_y_Convocatoria');
   }
 
+  const pdfAnalistaPath = path.join(__dirname, 'material', '01_Guias_y_Convocatoria', 'Plan_Estudio_Analista_IV_DIAN_Ficha_AT_FL_2010.pdf');
+  if (fs.existsSync(pdfAnalistaPath)) {
+    zip.addLocalFile(pdfAnalistaPath, 'material/01_Guias_y_Convocatoria');
+  }
+
   const iconsDir = path.join(__dirname, 'icons');
   if (fs.existsSync(iconsDir)) {
     zip.addLocalFolder(iconsDir, 'icons');

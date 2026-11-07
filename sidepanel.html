@@ -148,13 +148,13 @@
 
       <div id="practiceCardContainer" class="question-card">
         <!-- Cronómetro Reglamentario Examen DIAN (2 Minutos por Pregunta) -->
-        <div id="practiceTimerBar" style="display: flex; justify-content: space-between; align-items: center; background: rgba(56, 189, 248, 0.08); border: 1px solid rgba(56, 189, 248, 0.25); padding: 7px 12px; border-radius: 8px; margin-bottom: 8px;">
-          <div style="display: flex; align-items: center; gap: 8px;">
-            <span style="font-size: 15px;">⏱️</span>
-            <span style="font-size: 12px; font-weight: 700; color: #38bdf8;">Tiempo Reglamentario:</span>
-            <span id="practiceQuestionTimer" style="font-family: monospace; font-size: 14px; font-weight: 800; color: #f8fafc; background: rgba(15, 23, 42, 0.8); padding: 2px 8px; border-radius: 4px; border: 1px solid rgba(255,255,255,0.15);">02:00</span>
+        <div id="practiceTimerBar" class="practice-timer-bar">
+          <div class="practice-timer-left" style="display: flex; align-items: center; gap: 8px;">
+            <span class="practice-timer-icon" style="font-size: 15px;">⏱️</span>
+            <span class="practice-timer-label">Tiempo Reglamentario:</span>
+            <span id="practiceQuestionTimer" class="practice-timer-display">02:00</span>
           </div>
-          <div style="font-size: 11px; color: #94a3b8; font-weight: 600;">2 min por caso</div>
+          <div class="practice-timer-hint">2 min por caso</div>
         </div>
 
         <div class="tags-row">
@@ -242,7 +242,7 @@
             <div id="lecturaTipNorma" style="font-size: 13px; color: #38bdf8; font-weight: 600; margin-bottom: 8px;">
               💡 Regla de Oro: Ahorra 50% de esfuerzo cognitivo
             </div>
-            <div id="lecturaTipBody" style="font-size: 15px; color: #f1f5f9; line-height: 1.6; background: rgba(11, 17, 32, 0.85); padding: 14px 16px; border-radius: 8px; border-left: 5px solid #38bdf8;">
+            <div id="lecturaTipBody" class="lectura-body-card" style="font-size: 15px; color: #f1f5f9; line-height: 1.6; background: rgba(11, 17, 32, 0.85); padding: 14px 16px; border-radius: 8px; border-left: 5px solid #38bdf8;">
               Nunca comiences a leer el caso desde el primer párrafo. Dirige la mirada directamente a la última frase en negrilla (el enunciado interrogativo) para fijar el verbo rector.
             </div>
           </div>
@@ -284,7 +284,7 @@
           </div>
 
           <!-- Selector interactivo de Eje para Tip Flash -->
-          <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px; background: rgba(15, 23, 42, 0.7); padding: 7px 10px; border-radius: 8px; border: 1px solid rgba(245, 158, 11, 0.35);">
+          <div class="tip-flash-filter-bar" style="display: flex; align-items: center; justify-content: space-between; gap: 8px; background: rgba(15, 23, 42, 0.7); padding: 7px 10px; border-radius: 8px; border: 1px solid rgba(245, 158, 11, 0.35);">
             <label for="selectTipFlashEjeFilter" style="font-size: 11.5px; font-weight: 800; color: #fbbf24; display: flex; align-items: center; gap: 5px;">
               <span>🎯 Eje Temático:</span>
             </label>
@@ -321,7 +321,7 @@
             <div id="popupTipNorma" style="font-size: 13px; color: #38bdf8; font-weight: 600; margin-bottom: 8px;">
               Constitución Política Arts. 6, 121 y 122
             </div>
-            <div id="popupTipBody" style="font-size: 15px; color: #f1f5f9; line-height: 1.6; background: rgba(11, 17, 32, 0.85); padding: 14px 16px; border-radius: 8px; border-left: 5px solid var(--accent-gold);">
+            <div id="popupTipBody" class="tip-body-card" style="font-size: 15px; color: #f1f5f9; line-height: 1.6; background: rgba(11, 17, 32, 0.85); padding: 14px 16px; border-radius: 8px; border-left: 5px solid var(--accent-gold);">
               El servidor público solo hace lo expresamente facultado por ley. Descarta atajos informales o justificaciones basadas en urgencia.
             </div>
           </div>
@@ -803,28 +803,28 @@
         <div class="duo-section-sub">Herramientas estratégicas y material de alta recordación para el concurso</div>
       </div>
 
-      <!-- TARJETA DESTACADA: DOCUMENTO PDF OFICIAL DEL PLAN DE ESTUDIO (121 PÁGINAS) -->
-      <div style="background: linear-gradient(135deg, rgba(15, 23, 42, 0.98), rgba(6, 78, 59, 0.85)); border: 1.5px solid rgba(16, 185, 129, 0.45); border-left: 4px solid #10b981; border-radius: 12px; padding: 16px 18px; display: flex; flex-direction: column; gap: 12px; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);">
+      <!-- TARJETA DESTACADA: DOCUMENTO PDF OFICIAL DEL PLAN DE ESTUDIO -->
+      <div id="recursosPlanPdfCard" style="background: linear-gradient(135deg, rgba(15, 23, 42, 0.98), rgba(6, 78, 59, 0.85)); border: 1.5px solid rgba(16, 185, 129, 0.45); border-left: 4px solid #10b981; border-radius: 12px; padding: 16px 18px; display: flex; flex-direction: column; gap: 12px; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);">
         <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 10px;">
           <div style="display: flex; align-items: center; gap: 12px;">
             <div style="font-size: 26px; background: rgba(16, 185, 129, 0.2); width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; border: 1px solid #10b981; flex-shrink: 0; color: #6ee7b7;">📄</div>
             <div>
-              <div style="font-size: 15px; font-weight: 800; color: #ffffff;">Plan Maestro de Estudio Gestor III (PDF Oficial)</div>
-              <div style="font-size: 11.5px; color: #6ee7b7; font-weight: 700;">Ficha TP-DE-3006 (FT-TAH-1824) • 121 Páginas • UAE DIAN 2024</div>
+              <div id="recursosPlanPdfTitle" style="font-size: 15px; font-weight: 800; color: #ffffff;">Plan Maestro de Estudio Gestor III (PDF Oficial)</div>
+              <div id="recursosPlanPdfSub" style="font-size: 11.5px; color: #6ee7b7; font-weight: 700;">Ficha TP-DE-3006 (FT-TAH-1824) • 121 Páginas • UAE DIAN 2024</div>
             </div>
           </div>
-          <span style="font-size: 10.5px; font-weight: 800; background: rgba(16, 185, 129, 0.25); color: #6ee7b7; border: 1px solid #10b981; padding: 3px 8px; border-radius: 10px; white-space: nowrap;">PDF 2.3 MB</span>
+          <span id="recursosPlanPdfBadge" style="font-size: 10.5px; font-weight: 800; background: rgba(16, 185, 129, 0.25); color: #6ee7b7; border: 1px solid #10b981; padding: 3px 8px; border-radius: 10px; white-space: nowrap;">PDF 2.3 MB</span>
         </div>
-        <div style="font-size: 13px; color: #f1f5f9; line-height: 1.55;">
-          Documento oficial íntegro sin reducciones: 20 módulos doctrinales y técnicos, 90 diagramas y compendio maestro de 40 casos prácticos comentados.
+        <div id="recursosPlanPdfDesc" style="font-size: 13px; color: #f1f5f9; line-height: 1.55;">
+          Documento oficial íntegro sin reducciones: módulos doctrinales y técnicos, diagramas y compendio maestro de casos prácticos comentados.
         </div>
         <div style="display: flex; gap: 8px; flex-wrap: wrap;">
-          <a href="material/01_Guias_y_Convocatoria/Plan_Estudio_Gestor_III_DIAN_Ficha_3006.pdf" target="_blank" style="text-decoration: none; flex: 1; min-width: 130px;">
+          <a id="recursosPlanPdfOpenLink" href="material/01_Guias_y_Convocatoria/Plan_Estudio_Gestor_III_DIAN_Ficha_3006.pdf" target="_blank" style="text-decoration: none; flex: 1; min-width: 130px;">
             <button type="button" style="width: 100%; background: #10b981; color: #022c22; border: none; font-size: 12.5px; font-weight: 800; padding: 10px 14px; border-radius: 8px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px; box-shadow: 0 2px 8px rgba(16, 185, 129, 0.35);">
-              <span>👁️</span> Abrir PDF Oficial
+              <span>👁️</span> <span id="recursosPlanPdfBtnText">Abrir PDF Oficial</span>
             </button>
           </a>
-          <a href="/plan-estudio.pdf?download=true" download="Plan_Estudio_Gestor_III_DIAN_Ficha_3006.pdf" style="text-decoration: none; flex: 1; min-width: 130px;">
+          <a id="recursosPlanPdfDownloadLink" href="/plan-estudio.pdf?download=true" download="Plan_Estudio_Gestor_III_DIAN_Ficha_3006.pdf" style="text-decoration: none; flex: 1; min-width: 130px;">
             <button type="button" style="width: 100%; background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.2); color: #ffffff; font-size: 12.5px; font-weight: 700; padding: 10px 14px; border-radius: 8px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px;">
               <span>📥</span> Descargar PDF
             </button>
@@ -1309,17 +1309,17 @@
           <div style="display: flex; align-items: center; gap: 12px; min-width: 0; flex: 1;">
             <div style="font-size: 28px; width: 44px; height: 44px; border-radius: 12px; background: #ecfdf5; border: 1.5px solid #10b981; display: flex; align-items: center; justify-content: center; flex-shrink: 0; color: #15803d;">🗓️</div>
             <div style="min-width: 0; flex: 1;">
-              <div style="font-size: 16px; font-weight: 900; color: #0f172a; letter-spacing: -0.3px;">Plan Maestro de Estudio • Ficha TP-DE-3006</div>
-              <div style="font-size: 11.5px; color: #047857; font-weight: 700;">UAE DIAN • Gestor III (303-03) • OPEC 242703 • 20 Módulos & 90 Diagramas</div>
+              <div id="planHeroTitle" style="font-size: 16px; font-weight: 900; color: #0f172a; letter-spacing: -0.3px;">Plan Maestro de Estudio • Ficha TP-DE-3006</div>
+              <div id="planHeroSub" style="font-size: 11.5px; color: #047857; font-weight: 700;">UAE DIAN • Gestor III (303-03) • OPEC 242703 • 20 Módulos & 90 Diagramas</div>
             </div>
           </div>
           <div style="display: flex; gap: 8px; flex-wrap: wrap;">
-            <a href="material/01_Guias_y_Convocatoria/Plan_Estudio_Gestor_III_DIAN_Ficha_3006.pdf" target="_blank" style="text-decoration: none;">
+            <a id="planHeroOpenLink" href="material/01_Guias_y_Convocatoria/Plan_Estudio_Gestor_III_DIAN_Ficha_3006.pdf" target="_blank" style="text-decoration: none;">
               <button type="button" style="background: #10b981; color: #ffffff; font-size: 11.5px; font-weight: 800; border: none; padding: 8px 14px; border-radius: 8px; cursor: pointer; display: flex; align-items: center; gap: 6px; box-shadow: 0 2px 6px rgba(16, 185, 129, 0.25);">
-                <span>📄</span> Abrir PDF Oficial (121 págs)
+                <span>📄</span> <span id="planHeroOpenText">Abrir PDF Oficial (121 págs)</span>
               </button>
             </a>
-            <a href="/plan-estudio.pdf?download=true" download="Plan_Estudio_Gestor_III_DIAN_Ficha_3006.pdf" style="text-decoration: none;">
+            <a id="planHeroDownloadLink" href="/plan-estudio.pdf?download=true" download="Plan_Estudio_Gestor_III_DIAN_Ficha_3006.pdf" style="text-decoration: none;">
               <button type="button" style="background: #ffffff; border: 1.5px solid #cbd5e1; color: #0f172a; font-size: 11.5px; font-weight: 700; padding: 8px 14px; border-radius: 8px; cursor: pointer; display: flex; align-items: center; gap: 6px;">
                 <span>📥</span> Descargar PDF
               </button>
