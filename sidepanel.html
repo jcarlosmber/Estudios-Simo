@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#fafaf9">
+  <meta name="theme-color" content="#07131b">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <link rel="manifest" href="manifest.webmanifest?v=2">
@@ -182,7 +182,7 @@
         </div>
 
         <!-- Cacería de Distractores (Solo visible tras confirmar la respuesta) -->
-        <div id="distractorHuntBox" style="display: none; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 14px 16px; font-size: 13px; color: #1e293b; line-height: 1.55; margin-top: 6px; box-shadow: 0 1px 3px rgba(15, 23, 42, 0.05);">
+        <div id="distractorHuntBox" style="display: none; background: rgba(15, 23, 42, 0.95); border: 1.5px solid rgba(16, 185, 129, 0.35); border-radius: 12px; padding: 14px 16px; font-size: 13px; color: #f1f5f9; line-height: 1.55; margin-top: 6px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.45);">
           <!-- Pistas socráticas y desglose de distractores tras confirmar -->
         </div>
 
@@ -191,10 +191,10 @@
             Confirmar Respuesta
           </button>
           <div id="postAnswerActionsRow" style="display: none; width: 100%; gap: 10px;">
-            <button id="btnFinishSessionFromCard" class="btn-secondary" style="flex: 1; font-size: 13px; font-weight: 700; background: #ffffff; border: 1.5px solid #e2e8f0; color: #475569; cursor: pointer; border-radius: 8px; padding: 11px 14px;">
+            <button id="btnFinishSessionFromCard" class="btn-secondary" style="flex: 1; font-size: 13px; font-weight: 700; background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.2); color: #f8fafc; cursor: pointer; border-radius: 8px; padding: 11px 14px;">
               🏁 Terminar Sesión
             </button>
-            <button id="btnNextQuestion" class="btn-primary" style="flex: 2; font-size: 14px; font-weight: 800; background: #0f2942; border: 1px solid #0f2942; color: #ffffff; border-radius: 8px; padding: 11px 16px; cursor: pointer;">
+            <button id="btnNextQuestion" class="btn-primary" style="flex: 2; font-size: 14px; font-weight: 800; background: #10b981; border: none; color: #022c22; border-radius: 8px; padding: 11px 16px; cursor: pointer; box-shadow: 0 2px 10px rgba(16, 185, 129, 0.35);">
               Seguir Practicando ➔
             </button>
           </div>
@@ -420,64 +420,64 @@
     <section id="tab-speedDrill" class="tab-content" style="display: none; flex-direction: column; gap: 14px;">
       
       <!-- Selector de Modo en Speed Drill: Caza-Distractores (100) vs V/F Legal (35) -->
-      <div style="display: flex; gap: 4px; background: #f8fafc; padding: 4px; border-radius: 8px; border: 1px solid #e2e8f0; width: 100%; box-sizing: border-box;">
-        <button id="btnSpeedModeCaza" type="button" class="speed-mode-toggle-btn active" style="flex: 1; padding: 9px 8px; font-size: 12px; font-weight: 800; border-radius: 6px; border: 1px solid #0f2942; background: #0f2942; color: #ffffff; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 5px; transition: all 0.2s;">
+      <div style="display: flex; gap: 6px; background: rgba(15, 23, 42, 0.85); padding: 5px; border-radius: 10px; border: 1px solid rgba(255, 255, 255, 0.12); width: 100%; box-sizing: border-box;">
+        <button id="btnSpeedModeCaza" type="button" class="speed-mode-toggle-btn active" style="flex: 1; padding: 10px 8px; font-size: 12.5px; font-weight: 800; border-radius: 8px; border: none; background: #10b981; color: #022c22; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px; transition: all 0.2s; box-shadow: 0 2px 8px rgba(16, 185, 129, 0.35);">
           <span>⚡</span> Caza-Distractores (100)
         </button>
-        <button id="btnSpeedModeVF" type="button" class="speed-mode-toggle-btn" style="flex: 1; padding: 9px 8px; font-size: 12px; font-weight: 700; border-radius: 6px; border: 1px solid transparent; background: transparent; color: #64748b; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 5px; transition: all 0.2s;">
+        <button id="btnSpeedModeVF" type="button" class="speed-mode-toggle-btn" style="flex: 1; padding: 10px 8px; font-size: 12.5px; font-weight: 700; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.1); background: rgba(255, 255, 255, 0.05); color: #cbd5e1; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px; transition: all 0.2s;">
           <span>📜</span> Afirmaciones V/F (100)
         </button>
       </div>
 
       <!-- MODO 1: CAZA-DISTRACTORES SPEED (100 CASOS DAFP / CNSC / DIAN) -->
       <div id="speedCazaContainer" style="display: flex; flex-direction: column; gap: 14px; width: 100%;">
-        <div style="background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: var(--radius-md); padding: 18px 16px; box-shadow: 0 1px 3px rgba(15, 23, 42, 0.05); display: flex; flex-direction: column; gap: 14px;">
+        <div style="background: linear-gradient(135deg, rgba(15, 23, 42, 0.98), rgba(6, 78, 59, 0.75)); border: 1.5px solid rgba(16, 185, 129, 0.4); border-radius: var(--radius-md); padding: 18px 16px; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4); display: flex; flex-direction: column; gap: 14px;">
           
           <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
             <div style="display: flex; align-items: center; gap: 6px;">
               <span style="font-size: 20px;">⚡</span>
-              <span style="font-size: 16px; font-weight: 800; color: #0f172a;">Caza-Distractores Speed</span>
+              <span style="font-size: 16px; font-weight: 800; color: #ffffff;">Caza-Distractores Speed</span>
             </div>
             <div style="display: flex; align-items: center; gap: 8px;">
-              <span id="speedCazaRemainingBadge" style="background: #eff6ff; border: 1px solid #bfdbfe; padding: 3px 10px; border-radius: 12px; font-size: 11px; font-weight: 700; color: #0284c7;">
+              <span id="speedCazaRemainingBadge" style="background: rgba(56, 189, 248, 0.15); border: 1px solid rgba(56, 189, 248, 0.4); padding: 3px 10px; border-radius: 12px; font-size: 11px; font-weight: 700; color: #38bdf8;">
                 1 / 100 casos
               </span>
-              <div style="background: #ecfdf5; border: 1px solid #a7f3d0; padding: 4px 10px; border-radius: 20px; font-size: 12.5px; font-weight: 800; color: #047857;">
+              <div style="background: rgba(16, 185, 129, 0.2); border: 1px solid #10b981; padding: 4px 10px; border-radius: 20px; font-size: 12.5px; font-weight: 800; color: #6ee7b7;">
                 🎯 <span id="speedCazaScore">0 / 100</span>
               </div>
             </div>
           </div>
 
-          <div style="display: flex; justify-content: space-between; align-items: center; background: #f8fafc; padding: 8px 12px; border-radius: 6px; border: 1px solid #e2e8f0;">
-            <span id="speedCazaCargoBadge" style="font-size: 12px; color: #0284c7; font-weight: 800;">Gestor III</span>
-            <span id="speedCazaTimer" style="font-size: 14px; font-weight: 800; color: #b91c1c; font-family: monospace;">⏳ 60s</span>
+          <div style="display: flex; justify-content: space-between; align-items: center; background: rgba(0, 0, 0, 0.35); padding: 8px 12px; border-radius: 6px; border: 1px solid rgba(255, 255, 255, 0.1);">
+            <span id="speedCazaCargoBadge" style="font-size: 12px; color: #6ee7b7; font-weight: 800;">Gestor III</span>
+            <span id="speedCazaTimer" style="font-size: 14px; font-weight: 800; color: #fca5a5; font-family: monospace;">⏳ 60s</span>
           </div>
 
           <!-- Situación Contextual -->
-          <div class="case-box" style="border-left-color: #0284c7; background: #f8fafc; border: 1px solid #e2e8f0; border-left: 4px solid #0284c7; border-radius: 8px; padding: 12px 14px;">
-            <div style="font-size: 11px; font-weight: 800; color: #0284c7; text-transform: uppercase; margin-bottom: 4px;">Situación Laboral Evaluada</div>
-            <div id="speedCazaContexto" style="font-size: 13.5px; color: #1e293b; line-height: 1.6; font-style: italic;">
+          <div class="case-box" style="border-left-color: #38bdf8; background: rgba(0, 0, 0, 0.4); border: 1px solid rgba(56, 189, 248, 0.35); border-left: 4px solid #38bdf8; border-radius: 8px; padding: 12px 14px;">
+            <div style="font-size: 11px; font-weight: 800; color: #38bdf8; text-transform: uppercase; margin-bottom: 4px;">Situación Laboral Evaluada</div>
+            <div id="speedCazaContexto" style="font-size: 13.5px; color: #f1f5f9; line-height: 1.6; font-style: italic;">
               Cargando situación...
             </div>
           </div>
 
           <!-- Opción de Respuesta Planteada -->
           <div>
-            <div style="font-size: 11.5px; font-weight: 700; color: #64748b; margin-bottom: 4px;">Acción Planteada:</div>
-            <div id="speedCazaOpcion" style="font-size: 13.5px; font-weight: 700; color: #0f172a; line-height: 1.5; background: #ffffff; padding: 12px 14px; border-radius: 8px; border: 1.5px solid #e2e8f0;">
+            <div style="font-size: 11.5px; font-weight: 700; color: #94a3b8; margin-bottom: 4px;">Acción Planteada:</div>
+            <div id="speedCazaOpcion" style="font-size: 14px; font-weight: 700; color: #ffffff; line-height: 1.5; background: rgba(0, 0, 0, 0.4); padding: 12px 14px; border-radius: 8px; border: 1.5px solid rgba(255, 255, 255, 0.16);">
               Cargando acción...
             </div>
           </div>
 
           <!-- Botones de Discriminación Rápida -->
           <div id="speedCazaButtons" style="display: flex; flex-direction: column; gap: 8px;">
-            <button type="button" class="btn-speed-caza" data-answer="ACCION_CORRECTA" style="padding: 12px 14px; font-size: 13px; font-weight: 800; border-radius: 8px; border: 1.5px solid #a7f3d0; background: #ecfdf5; color: #047857; cursor: pointer; text-align: left; display: flex; align-items: center; gap: 8px;">
+            <button type="button" class="btn-speed-caza" data-answer="ACCION_CORRECTA" style="padding: 12px 14px; font-size: 13px; font-weight: 800; border-radius: 8px; border: 1.5px solid #10b981; background: rgba(6, 78, 59, 0.45); color: #ecfdf5; cursor: pointer; text-align: left; display: flex; align-items: center; gap: 8px;">
               <span>✅</span> 1. Es una ACCIÓN CORRECTA y propia de mi cargo
             </button>
-            <button type="button" class="btn-speed-caza" data-answer="DISTRACTOR_EXTRALIMITACION" style="padding: 12px 14px; font-size: 13px; font-weight: 800; border-radius: 8px; border: 1.5px solid #fecaca; background: #fef2f2; color: #b91c1c; cursor: pointer; text-align: left; display: flex; align-items: center; gap: 8px;">
+            <button type="button" class="btn-speed-caza" data-answer="DISTRACTOR_EXTRALIMITACION" style="padding: 12px 14px; font-size: 13px; font-weight: 800; border-radius: 8px; border: 1.5px solid rgba(239, 68, 68, 0.5); background: rgba(127, 29, 29, 0.35); color: #fef2f2; cursor: pointer; text-align: left; display: flex; align-items: center; gap: 8px;">
               <span>⚠️</span> 2. Es un DISTRACTOR POR EXTRALIMITACIÓN (excede jerarquía)
             </button>
-            <button type="button" class="btn-speed-caza" data-answer="DISTRACTOR_PASIVIDAD" style="padding: 12px 14px; font-size: 13px; font-weight: 800; border-radius: 8px; border: 1.5px solid #fde68a; background: #fffbeb; color: #b45309; cursor: pointer; text-align: left; display: flex; align-items: center; gap: 8px;">
+            <button type="button" class="btn-speed-caza" data-answer="DISTRACTOR_PASIVIDAD" style="padding: 12px 14px; font-size: 13px; font-weight: 800; border-radius: 8px; border: 1.5px solid rgba(245, 158, 11, 0.5); background: rgba(120, 53, 15, 0.35); color: #fef3c7; cursor: pointer; text-align: left; display: flex; align-items: center; gap: 8px;">
               <span>🛑</span> 3. Es un DISTRACTOR POR PASIVIDAD U OMISIÓN (desempeño bajo)
             </button>
           </div>
@@ -485,8 +485,8 @@
           <!-- Feedback Inmediato -->
           <div id="speedCazaFeedback" style="display: none; flex-direction: column; gap: 8px; padding: 12px 14px; border-radius: 8px;">
             <div id="speedCazaFeedbackVerdict" style="font-size: 14.5px; font-weight: 800;"></div>
-            <div id="speedCazaFeedbackExplicacion" style="font-size: 13px; line-height: 1.55; color: #334155;"></div>
-            <button id="btnNextSpeedCaza" type="button" class="btn-primary" style="margin-top: 6px; padding: 10px 18px; font-size: 13px; font-weight: 800; background: #0f2942; border: 1px solid #0f2942; color: #ffffff; border-radius: 6px; cursor: pointer; align-self: flex-end;">
+            <div id="speedCazaFeedbackExplicacion" style="font-size: 13px; line-height: 1.55; color: #f1f5f9;"></div>
+            <button id="btnNextSpeedCaza" type="button" class="btn-primary" style="margin-top: 6px; padding: 10px 18px; font-size: 13px; font-weight: 800; background: #10b981; border: none; color: #022c22; border-radius: 8px; cursor: pointer; align-self: flex-end; box-shadow: 0 2px 10px rgba(16, 185, 129, 0.35);">
               Siguiente Caso ➔
             </button>
           </div>
@@ -496,40 +496,40 @@
 
       <!-- MODO 2: AFIRMACIONES LEGALES V/F (100) -->
       <div id="speedVFContainer" style="display: none; flex-direction: column; gap: 14px; width: 100%;">
-        <div style="background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: var(--radius-md); padding: 18px 16px; box-shadow: 0 1px 3px rgba(15, 23, 42, 0.05); display: flex; flex-direction: column; gap: 14px;">
+        <div style="background: linear-gradient(135deg, rgba(15, 23, 42, 0.98), rgba(6, 78, 59, 0.75)); border: 1.5px solid rgba(16, 185, 129, 0.4); border-radius: var(--radius-md); padding: 18px 16px; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4); display: flex; flex-direction: column; gap: 14px;">
           <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
             <div style="display: flex; align-items: center; gap: 6px;">
               <span style="font-size: 18px;">📜</span>
-              <span style="font-size: 16px; font-weight: 800; color: #0f172a;">Speed Drill Legal V/F</span>
+              <span style="font-size: 16px; font-weight: 800; color: #ffffff;">Speed Drill Legal V/F</span>
             </div>
             <div style="display: flex; align-items: center; gap: 8px;">
-              <span id="speedDrillRemainingBadge" style="background: #eff6ff; border: 1px solid #bfdbfe; padding: 3px 10px; border-radius: 12px; font-size: 11px; font-weight: 700; color: #0284c7;">
+              <span id="speedDrillRemainingBadge" style="background: rgba(56, 189, 248, 0.15); border: 1px solid rgba(56, 189, 248, 0.4); padding: 3px 10px; border-radius: 12px; font-size: 11px; font-weight: 700; color: #38bdf8;">
                 100 restantes
               </span>
-              <div style="background: #fef3c7; border: 1px solid #fde68a; padding: 4px 12px; border-radius: 20px; font-size: 13px; font-weight: 800; color: #b45309;">
+              <div style="background: rgba(245, 158, 11, 0.2); border: 1px solid #f59e0b; padding: 4px 12px; border-radius: 20px; font-size: 13px; font-weight: 800; color: #fbbf24;">
                 🔥 Racha: <span id="speedDrillStreak">0</span>
               </div>
             </div>
           </div>
 
-          <div style="display: flex; justify-content: space-between; align-items: center; background: #f8fafc; padding: 8px 12px; border-radius: 6px; border: 1px solid #e2e8f0;">
-            <span id="speedDrillTopicBadge" style="font-size: 13px; color: #0284c7; font-weight: 700;">Tema Legal</span>
-            <span id="speedDrillTimer" style="font-size: 14px; font-weight: 800; color: #b91c1c; font-family: monospace;">⏳ 15s</span>
+          <div style="display: flex; justify-content: space-between; align-items: center; background: rgba(0, 0, 0, 0.35); padding: 8px 12px; border-radius: 6px; border: 1px solid rgba(255, 255, 255, 0.1);">
+            <span id="speedDrillTopicBadge" style="font-size: 13px; color: #6ee7b7; font-weight: 700;">Tema Legal</span>
+            <span id="speedDrillTimer" style="font-size: 14px; font-weight: 800; color: #fca5a5; font-family: monospace;">⏳ 15s</span>
           </div>
 
-          <div class="case-box" style="border-left-color: #0284c7; background: #f8fafc; border: 1px solid #e2e8f0; border-left: 4px solid #0284c7; border-radius: 8px; padding: 12px 14px;">
-            <div style="font-size: 11px; font-weight: 800; color: #0284c7; text-transform: uppercase; margin-bottom: 4px;">Afirmación a Evaluar</div>
-            <div id="speedDrillStatement" style="font-size: 14.5px; color: #0f172a; line-height: 1.6; font-weight: 600;">
+          <div class="case-box" style="border-left-color: #38bdf8; background: rgba(0, 0, 0, 0.4); border: 1px solid rgba(56, 189, 248, 0.35); border-left: 4px solid #38bdf8; border-radius: 8px; padding: 12px 14px;">
+            <div style="font-size: 11px; font-weight: 800; color: #38bdf8; text-transform: uppercase; margin-bottom: 4px;">Afirmación a Evaluar</div>
+            <div id="speedDrillStatement" style="font-size: 14.5px; color: #ffffff; line-height: 1.6; font-weight: 600;">
               Cargando afirmación...
             </div>
           </div>
 
           <!-- Botones Verdadero / Falso -->
           <div style="display: flex; gap: 10px;">
-            <button id="btnSpeedTrue" class="btn-primary" style="background: #047857; border: 1px solid #047857; color: #ffffff; font-size: 14px; font-weight: 800; padding: 13px; border-radius: 8px; flex: 1; cursor: pointer;">
+            <button id="btnSpeedTrue" class="btn-primary" style="background: #10b981; border: none; color: #022c22; font-size: 14px; font-weight: 800; padding: 13px; border-radius: 8px; flex: 1; cursor: pointer; box-shadow: 0 2px 10px rgba(16, 185, 129, 0.35);">
               🟢 VERDADERO
             </button>
-            <button id="btnSpeedFalse" class="btn-primary" style="background: #b91c1c; border: 1px solid #b91c1c; color: #ffffff; font-size: 14px; font-weight: 800; padding: 13px; border-radius: 8px; flex: 1; cursor: pointer;">
+            <button id="btnSpeedFalse" class="btn-primary" style="background: rgba(239, 68, 68, 0.25); border: 1.5px solid #ef4444; color: #fca5a5; font-size: 14px; font-weight: 800; padding: 13px; border-radius: 8px; flex: 1; cursor: pointer;">
               🔴 FALSO
             </button>
           </div>
@@ -537,8 +537,8 @@
           <!-- Feedback inmediato -->
           <div id="speedDrillFeedback" style="display: none; flex-direction: column; gap: 8px; padding: 12px 14px; border-radius: 8px;">
             <div id="speedDrillVerdict" style="font-size: 14.5px; font-weight: 800;"></div>
-            <div id="speedDrillExplanation" style="font-size: 13px; line-height: 1.55; color: #334155;"></div>
-            <button id="btnNextSpeedDrill" class="btn-secondary" style="margin-top: 6px; font-size: 13.5px; font-weight: 700; background: #ffffff; border: 1.5px solid #e2e8f0; color: #475569; padding: 10px 18px; border-radius: 8px; cursor: pointer;">
+            <div id="speedDrillExplanation" style="font-size: 13px; line-height: 1.55; color: #f1f5f9;"></div>
+            <button id="btnNextSpeedDrill" class="btn-secondary" style="margin-top: 6px; font-size: 13.5px; font-weight: 700; background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.2); color: #f8fafc; padding: 10px 18px; border-radius: 8px; cursor: pointer;">
               Siguiente Afirmación ➔
             </button>
           </div>
@@ -550,106 +550,106 @@
     <!-- 2. PESTAÑA: SIMULACRO REAL AREANDINA (DIAN 2676) -->
     <section id="tab-simulacro" class="tab-content" style="display: none; flex-direction: column; gap: 14px; width: 100%;">
       <!-- Widget de Cuenta Regresiva al 8 de Noviembre de 2026 -->
-      <div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: var(--radius-md); padding: 14px 16px; box-shadow: 0 1px 3px rgba(15, 23, 42, 0.05); display: flex; flex-direction: column; gap: 10px;">
-        <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #e2e8f0; padding-bottom: 8px;">
+      <div style="background: linear-gradient(135deg, rgba(15, 23, 42, 0.98), rgba(6, 78, 59, 0.85)); border: 1.5px solid rgba(16, 185, 129, 0.35); border-radius: 14px; padding: 14px 16px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.45); display: flex; flex-direction: column; gap: 10px; color: #ffffff;">
+        <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255, 255, 255, 0.12); padding-bottom: 8px;">
           <div style="display: flex; align-items: center; gap: 8px;">
             <span style="font-size: 20px;">⏱️</span>
             <div>
-              <div style="font-size: 13px; font-weight: 800; color: #0f172a; letter-spacing: 0.3px;">FECHA OFICIAL PRUEBAS ESCRITAS</div>
-              <div style="font-size: 11px; color: #b45309; font-weight: 700;">Domingo 8 de Noviembre de 2026 • 8:00 a.m.</div>
+              <div style="font-size: 13px; font-weight: 800; color: #ffffff; letter-spacing: 0.3px;">FECHA OFICIAL PRUEBAS ESCRITAS</div>
+              <div style="font-size: 11px; color: #6ee7b7; font-weight: 700;">Domingo 8 de Noviembre de 2026 • 8:00 a.m.</div>
             </div>
           </div>
-          <span style="font-size: 10.5px; background: #fef3c7; color: #b45309; border: 1px solid #fde68a; padding: 3px 8px; border-radius: 12px; font-weight: 800;">
+          <span style="font-size: 10.5px; background: rgba(16, 185, 129, 0.2); color: #6ee7b7; border: 1px solid rgba(16, 185, 129, 0.4); padding: 3px 8px; border-radius: 12px; font-weight: 800;">
             AREANDINA / CNSC
           </span>
         </div>
 
         <!-- Cajas de Cuenta Regresiva -->
         <div id="simulacroCountdownGrid" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; text-align: center;">
-          <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 6px 4px;">
-            <div id="countdownDays" style="font-size: 18px; font-weight: 900; color: #0284c7;">--</div>
-            <div style="font-size: 9px; color: #64748b; font-weight: 700; text-transform: uppercase;">Días</div>
+          <div style="background: rgba(0, 0, 0, 0.4); border: 1px solid rgba(16, 185, 129, 0.25); border-radius: 8px; padding: 6px 4px;">
+            <div id="countdownDays" style="font-size: 18px; font-weight: 900; color: #34d399;">--</div>
+            <div style="font-size: 9px; color: #94a3b8; font-weight: 700; text-transform: uppercase;">Días</div>
           </div>
-          <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 6px 4px;">
-            <div id="countdownHours" style="font-size: 18px; font-weight: 900; color: #0f172a;">--</div>
-            <div style="font-size: 9px; color: #64748b; font-weight: 700; text-transform: uppercase;">Horas</div>
+          <div style="background: rgba(0, 0, 0, 0.4); border: 1px solid rgba(16, 185, 129, 0.25); border-radius: 8px; padding: 6px 4px;">
+            <div id="countdownHours" style="font-size: 18px; font-weight: 900; color: #ffffff;">--</div>
+            <div style="font-size: 9px; color: #94a3b8; font-weight: 700; text-transform: uppercase;">Horas</div>
           </div>
-          <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 6px 4px;">
-            <div id="countdownMins" style="font-size: 18px; font-weight: 900; color: #0f172a;">--</div>
-            <div style="font-size: 9px; color: #64748b; font-weight: 700; text-transform: uppercase;">Min</div>
+          <div style="background: rgba(0, 0, 0, 0.4); border: 1px solid rgba(16, 185, 129, 0.25); border-radius: 8px; padding: 6px 4px;">
+            <div id="countdownMins" style="font-size: 18px; font-weight: 900; color: #ffffff;">--</div>
+            <div style="font-size: 9px; color: #94a3b8; font-weight: 700; text-transform: uppercase;">Min</div>
           </div>
-          <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 6px 4px;">
-            <div id="countdownSecs" style="font-size: 18px; font-weight: 900; color: #e11d48;">--</div>
-            <div style="font-size: 9px; color: #64748b; font-weight: 700; text-transform: uppercase;">Seg</div>
+          <div style="background: rgba(0, 0, 0, 0.4); border: 1px solid rgba(16, 185, 129, 0.25); border-radius: 8px; padding: 6px 4px;">
+            <div id="countdownSecs" style="font-size: 18px; font-weight: 900; color: #f87171;">--</div>
+            <div style="font-size: 9px; color: #94a3b8; font-weight: 700; text-transform: uppercase;">Seg</div>
           </div>
         </div>
       </div>
 
       <!-- VISTA 1: CONFIGURADOR DEL SIMULACRO -->
       <div id="simulacroSetupView" style="display: flex; flex-direction: column; gap: 14px; width: 100%;">
-        <div style="background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: var(--radius-md); padding: 18px; display: flex; flex-direction: column; gap: 14px; box-shadow: 0 1px 3px rgba(15, 23, 42, 0.05);">
+        <div style="background: linear-gradient(135deg, rgba(15, 23, 42, 0.98), rgba(6, 78, 59, 0.85)); border: 1.5px solid rgba(16, 185, 129, 0.35); border-radius: 14px; padding: 18px; display: flex; flex-direction: column; gap: 14px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.45); color: #ffffff;">
           <div>
-            <h3 style="font-size: 16px; font-weight: 800; color: #0f172a; margin: 0 0 4px 0;">Simulador de Examen Real</h3>
-            <p style="font-size: 12.5px; color: #64748b; line-height: 1.5; margin: 0;">
+            <h3 style="font-size: 16px; font-weight: 900; color: #ffffff; margin: 0 0 4px 0;">Simulador de Examen Real</h3>
+            <p style="font-size: 12.5px; color: #cbd5e1; line-height: 1.5; margin: 0;">
               Entrena bajo las condiciones exactas de la Guía Oficial Areandina: tiempo límite, casos de juicio situacional (PJS con 3 opciones A, B, C) y calificación con umbral eliminatorio de 70.00 puntos.
             </p>
           </div>
 
           <!-- Selector de Longitud de Prueba -->
           <div style="display: flex; flex-direction: column; gap: 6px;">
-            <label style="font-size: 11px; font-weight: 800; color: #0284c7; text-transform: uppercase;">
+            <label style="font-size: 11px; font-weight: 800; color: #6ee7b7; text-transform: uppercase;">
               1. Cantidad de Casos:
             </label>
             <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px;">
-              <button type="button" class="simulacro-opt-btn active" data-count="15" id="btnSimCount15" style="background: #e0f2fe; border: 1.5px solid #0284c7; color: #0f172a; border-radius: 8px; padding: 10px 4px; display: flex; flex-direction: column; align-items: center; gap: 2px; cursor: pointer;">
-                <span style="font-size: 14px; font-weight: 900; color: #0f172a;">15 Casos</span>
-                <span style="font-size: 10.5px; font-weight: 700; color: #0284c7;">Sprint (~30m)</span>
+              <button type="button" class="simulacro-opt-btn active" data-count="15" id="btnSimCount15" style="background: #10b981; border: 1.5px solid #10b981; color: #022c22; border-radius: 8px; padding: 10px 4px; display: flex; flex-direction: column; align-items: center; gap: 2px; cursor: pointer; box-shadow: 0 0 12px rgba(16, 185, 129, 0.4);">
+                <span style="font-size: 14px; font-weight: 900; color: #022c22;">15 Casos</span>
+                <span style="font-size: 10.5px; font-weight: 800; color: #022c22;">Sprint (~30m)</span>
               </button>
-              <button type="button" class="simulacro-opt-btn" data-count="30" id="btnSimCount30" style="background: #ffffff; border: 1px solid #e2e8f0; color: #0f172a; border-radius: 8px; padding: 10px 4px; display: flex; flex-direction: column; align-items: center; gap: 2px; cursor: pointer;">
-                <span style="font-size: 14px; font-weight: 900; color: #0f172a;">30 Casos</span>
-                <span style="font-size: 10.5px; font-weight: 700; color: #64748b;">Estándar (~1h)</span>
+              <button type="button" class="simulacro-opt-btn" data-count="30" id="btnSimCount30" style="background: rgba(15, 23, 42, 0.8); border: 1px solid rgba(255, 255, 255, 0.15); color: #cbd5e1; border-radius: 8px; padding: 10px 4px; display: flex; flex-direction: column; align-items: center; gap: 2px; cursor: pointer;">
+                <span style="font-size: 14px; font-weight: 900; color: #ffffff;">30 Casos</span>
+                <span style="font-size: 10.5px; font-weight: 700; color: #94a3b8;">Estándar (~1h)</span>
               </button>
-              <button type="button" class="simulacro-opt-btn" data-count="60" id="btnSimCount60" style="background: #ffffff; border: 1px solid #e2e8f0; color: #0f172a; border-radius: 8px; padding: 10px 4px; display: flex; flex-direction: column; align-items: center; gap: 2px; cursor: pointer;">
-                <span style="font-size: 14px; font-weight: 900; color: #0f172a;">60 Casos</span>
-                <span style="font-size: 10.5px; font-weight: 700; color: #64748b;">Maratón (~2h)</span>
+              <button type="button" class="simulacro-opt-btn" data-count="60" id="btnSimCount60" style="background: rgba(15, 23, 42, 0.8); border: 1px solid rgba(255, 255, 255, 0.15); color: #cbd5e1; border-radius: 8px; padding: 10px 4px; display: flex; flex-direction: column; align-items: center; gap: 2px; cursor: pointer;">
+                <span style="font-size: 14px; font-weight: 900; color: #ffffff;">60 Casos</span>
+                <span style="font-size: 10.5px; font-weight: 700; color: #94a3b8;">Maratón (~2h)</span>
               </button>
             </div>
           </div>
 
           <!-- Selector de Modo de Interfaz -->
           <div style="display: flex; flex-direction: column; gap: 6px;">
-            <label style="font-size: 11px; font-weight: 800; color: #0284c7; text-transform: uppercase;">
+            <label style="font-size: 11px; font-weight: 800; color: #6ee7b7; text-transform: uppercase;">
               2. Modo de Respuesta:
             </label>
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
-              <button type="button" class="simulacro-mode-btn active" data-mode="optical" id="btnSimModeOptical" style="background: #fef3c7; border: 1.5px solid #d97706; color: #0f172a; border-radius: 8px; padding: 10px; display: flex; align-items: center; gap: 8px; cursor: pointer;">
+              <button type="button" class="simulacro-mode-btn active" data-mode="optical" id="btnSimModeOptical" style="background: #10b981; border: 1.5px solid #10b981; color: #022c22; border-radius: 8px; padding: 10px; display: flex; align-items: center; gap: 8px; cursor: pointer; box-shadow: 0 0 12px rgba(16, 185, 129, 0.4);">
                 <span style="font-size: 20px;">✏️</span>
                 <div style="text-align: left;">
-                  <div style="font-size: 12px; font-weight: 800; color: #0f172a;">Hoja Óptica Virtual</div>
-                  <div style="font-size: 10.5px; font-weight: 700; color: #b45309;">Burbujas A, B, C (Lápiz N° 2)</div>
+                  <div style="font-size: 12px; font-weight: 900; color: #022c22;">Hoja Óptica Virtual</div>
+                  <div style="font-size: 10.5px; font-weight: 800; color: #022c22;">Burbujas A, B, C (Lápiz N° 2)</div>
                 </div>
               </button>
-              <button type="button" class="simulacro-mode-btn" data-mode="classic" id="btnSimModeClassic" style="background: #ffffff; border: 1px solid #e2e8f0; color: #0f172a; border-radius: 8px; padding: 10px; display: flex; align-items: center; gap: 8px; cursor: pointer;">
+              <button type="button" class="simulacro-mode-btn" data-mode="classic" id="btnSimModeClassic" style="background: rgba(15, 23, 42, 0.8); border: 1px solid rgba(255, 255, 255, 0.15); color: #cbd5e1; border-radius: 8px; padding: 10px; display: flex; align-items: center; gap: 8px; cursor: pointer;">
                 <span style="font-size: 20px;">📱</span>
                 <div style="text-align: left;">
-                  <div style="font-size: 12px; font-weight: 800; color: #0f172a;">Digital Táctil</div>
-                  <div style="font-size: 10.5px; font-weight: 700; color: #64748b;">Tarjetas completas</div>
+                  <div style="font-size: 12px; font-weight: 800; color: #ffffff;">Digital Táctil</div>
+                  <div style="font-size: 10.5px; font-weight: 700; color: #94a3b8;">Tarjetas completas</div>
                 </div>
               </button>
             </div>
           </div>
 
           <!-- Banner Informativo Oficial -->
-          <div style="background: #f0fdf4; border: 1px solid #bbf7d0; border-left: 4px solid #15803d; padding: 10px 12px; border-radius: 8px;">
-            <div style="font-size: 11px; font-weight: 800; color: #15803d; margin-bottom: 2px;">
+          <div style="background: rgba(6, 78, 59, 0.4); border: 1.5px solid #10b981; border-left: 4px solid #10b981; padding: 10px 12px; border-radius: 8px;">
+            <div style="font-size: 11px; font-weight: 800; color: #6ee7b7; margin-bottom: 2px;">
               ⚖️ REGLA ELIMINATORIA OFICIAL (PÁG 9 Y 25)
             </div>
-            <div style="font-size: 11.5px; color: #166534; line-height: 1.45;">
+            <div style="font-size: 11.5px; color: #ecfdf5; line-height: 1.45;">
               El umbral mínimo aprobatorio en Competencias Funcionales es <strong>70.00 / 100</strong>. Quien no lo alcance es excluido del concurso y no se califica Comportamentales ni Integridad.
             </div>
           </div>
 
-          <button id="btnStartSimulacro" type="button" class="btn-primary" style="padding: 13px; font-size: 15px; font-weight: 800; background: #0f2942; color: #ffffff; border: 1px solid #0f2942; border-radius: 8px; cursor: pointer; box-shadow: 0 1px 3px rgba(15, 23, 42, 0.08);">
+          <button id="btnStartSimulacro" type="button" class="btn-primary" style="padding: 13px; font-size: 15px; font-weight: 800; background: #10b981; color: #022c22; border: none; border-radius: 8px; cursor: pointer; box-shadow: 0 2px 10px rgba(16, 185, 129, 0.35);">
             🚀 Iniciar Simulacro de Examen
           </button>
         </div>
@@ -658,33 +658,33 @@
       <!-- VISTA 2: EJECUCIÓN ACTIVA DEL SIMULACRO -->
       <div id="simulacroActiveView" style="display: none; flex-direction: column; gap: 12px; width: 100%;">
         <!-- Barra de Estado del Simulacro -->
-        <div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 10px; padding: 10px 14px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 58px; z-index: 20; box-shadow: 0 1px 3px rgba(15, 23, 42, 0.05);">
+        <div style="background: rgba(7, 19, 27, 0.95); border: 1px solid rgba(16, 185, 129, 0.3); border-radius: 10px; padding: 10px 14px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 58px; z-index: 20; box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);">
           <div style="display: flex; align-items: center; gap: 8px;">
-            <span style="font-size: 12.5px; font-weight: 800; color: #0284c7;" id="simQuestionCounter">Pregunta 1 de 15</span>
-            <button id="btnToggleSimGrid" type="button" style="background: #eff6ff; border: 1px solid #bfdbfe; color: #0284c7; font-size: 11px; font-weight: 700; padding: 4px 9px; border-radius: 6px; cursor: pointer;">
+            <span style="font-size: 12.5px; font-weight: 800; color: #6ee7b7;" id="simQuestionCounter">Pregunta 1 de 15</span>
+            <button id="btnToggleSimGrid" type="button" style="background: rgba(16, 185, 129, 0.2); border: 1px solid rgba(16, 185, 129, 0.4); color: #6ee7b7; font-size: 11px; font-weight: 800; padding: 4px 9px; border-radius: 6px; cursor: pointer;">
               🗺️ Mapa
             </button>
           </div>
           <div style="display: flex; align-items: center; gap: 8px;">
-            <div style="display: flex; align-items: center; gap: 4px; font-size: 13px; font-weight: 800; color: #b45309; background: #fef3c7; padding: 4px 10px; border-radius: 16px; border: 1px solid #fde68a;">
+            <div style="display: flex; align-items: center; gap: 4px; font-size: 13px; font-weight: 800; color: #fbbf24; background: rgba(245, 158, 11, 0.2); padding: 4px 10px; border-radius: 16px; border: 1px solid rgba(245, 158, 11, 0.4);">
               <span>⏳</span>
               <span id="simTimerClock">37:30</span>
             </div>
-            <button id="btnFinishSimulacroEarly" type="button" style="background: #ffffff; border: 1px solid #fecdd3; color: #b91c1c; font-size: 11.5px; font-weight: 800; padding: 5px 12px; border-radius: 6px; cursor: pointer;">
+            <button id="btnFinishSimulacroEarly" type="button" style="background: rgba(239, 68, 68, 0.2); border: 1px solid rgba(239, 68, 68, 0.4); color: #fca5a5; font-size: 11.5px; font-weight: 800; padding: 5px 12px; border-radius: 6px; cursor: pointer;">
               Entregar ➔
             </button>
           </div>
         </div>
 
         <!-- Mapa Colapsable de Preguntas (Cuadrícula Areandina) -->
-        <div id="simBubbleMap" style="display: none; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 10px; padding: 12px; grid-template-columns: repeat(5, 1fr); gap: 6px; max-height: 180px; overflow-y: auto;">
+        <div id="simBubbleMap" style="display: none; background: rgba(10, 16, 26, 0.95); border: 1.5px solid rgba(16, 185, 129, 0.35); border-radius: 10px; padding: 12px; grid-template-columns: repeat(5, 1fr); gap: 6px; max-height: 180px; overflow-y: auto;">
           <!-- Generado dinámicamente -->
         </div>
 
         <!-- Tarjeta del Caso Actual -->
-        <div style="background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: var(--radius-md); padding: 18px; display: flex; flex-direction: column; gap: 12px; box-shadow: 0 1px 3px rgba(15, 23, 42, 0.05);">
+        <div style="background: linear-gradient(135deg, rgba(15, 23, 42, 0.98), rgba(6, 78, 59, 0.85)); border: 1.5px solid rgba(16, 185, 129, 0.35); border-radius: 14px; padding: 18px; display: flex; flex-direction: column; gap: 12px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.45); color: #ffffff;">
           <div style="display: flex; justify-content: space-between; align-items: center;">
-            <span id="simEjeBadge" style="font-size: 11px; font-weight: 800; color: #0284c7; background: #eff6ff; padding: 3px 10px; border-radius: 12px; border: 1px solid #bfdbfe;">
+            <span id="simEjeBadge" style="font-size: 11px; font-weight: 800; color: #6ee7b7; background: rgba(16, 185, 129, 0.2); padding: 3px 10px; border-radius: 12px; border: 1px solid rgba(16, 185, 129, 0.4);">
               Eje Temático
             </span>
             <button id="btnBookmarkSimQuestion" type="button" style="background: none; border: none; font-size: 18px; cursor: pointer;" title="Marcar para revisar luego">
@@ -693,21 +693,21 @@
           </div>
 
           <!-- Caso Oficial -->
-          <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-left: 4px solid #0284c7; padding: 14px; border-radius: 8px;">
-            <div style="font-size: 11px; font-weight: 800; color: #0284c7; text-transform: uppercase; margin-bottom: 4px;">
+          <div style="background: rgba(0, 0, 0, 0.35); border: 1px solid rgba(16, 185, 129, 0.25); border-left: 4px solid #10b981; padding: 14px; border-radius: 8px;">
+            <div style="font-size: 11px; font-weight: 800; color: #34d399; text-transform: uppercase; margin-bottom: 4px;">
               Situación Hipotética / Caso (PJS)
             </div>
-            <div id="simCaseText" style="font-size: 13.5px; line-height: 1.65; color: #1e293b;">
+            <div id="simCaseText" style="font-size: 13.5px; line-height: 1.65; color: #f1f5f9;">
               Cargando caso...
             </div>
           </div>
 
           <!-- Enunciado / Tarea -->
           <div>
-            <div style="font-size: 11px; font-weight: 800; color: #b45309; text-transform: uppercase; margin-bottom: 4px;">
+            <div style="font-size: 11px; font-weight: 800; color: #fbbf24; text-transform: uppercase; margin-bottom: 4px;">
               Enunciado / Tarea
             </div>
-            <div id="simEnunciadoText" style="font-size: 14px; font-weight: 700; line-height: 1.55; color: #0f172a;">
+            <div id="simEnunciadoText" style="font-size: 14.5px; font-weight: 800; line-height: 1.55; color: #ffffff;">
               Cargando enunciado...
             </div>
           </div>
@@ -718,11 +718,11 @@
           </div>
 
           <!-- Botones de Navegación del Simulacro -->
-          <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 10px; padding-top: 10px; border-top: 1px solid #e2e8f0;">
-            <button id="btnPrevSimQuestion" type="button" class="btn-secondary" style="padding: 10px 18px; font-size: 13px; font-weight: 700; background: #ffffff; border: 1.5px solid #e2e8f0; color: #475569; border-radius: 8px; cursor: pointer;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 10px; padding-top: 10px; border-top: 1px solid rgba(255, 255, 255, 0.12);">
+            <button id="btnPrevSimQuestion" type="button" class="btn-secondary" style="padding: 10px 18px; font-size: 13px; font-weight: 700; background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.2); color: #f8fafc; border-radius: 8px; cursor: pointer;">
               ⬅️ Anterior
             </button>
-            <button id="btnNextSimQuestion" type="button" class="btn-primary" style="padding: 10px 22px; font-size: 13px; font-weight: 800; background: #0f2942; border: 1px solid #0f2942; color: #ffffff; border-radius: 8px; cursor: pointer;">
+            <button id="btnNextSimQuestion" type="button" class="btn-primary" style="padding: 10px 22px; font-size: 13px; font-weight: 800; background: #10b981; border: none; color: #022c22; border-radius: 8px; cursor: pointer; box-shadow: 0 2px 10px rgba(16, 185, 129, 0.35);">
               Siguiente ➔
             </button>
           </div>
@@ -792,102 +792,102 @@
       </div>
 
       <!-- TARJETA DESTACADA: DOCUMENTO PDF OFICIAL DEL PLAN DE ESTUDIO (121 PÁGINAS) -->
-      <div style="background: #ffffff; border: 1px solid #e2e8f0; border-left: 4px solid #059669; border-radius: 12px; padding: 16px 18px; display: flex; flex-direction: column; gap: 12px; box-shadow: 0 1px 3px rgba(15, 23, 42, 0.05);">
+      <div style="background: linear-gradient(135deg, rgba(15, 23, 42, 0.98), rgba(6, 78, 59, 0.85)); border: 1.5px solid rgba(16, 185, 129, 0.45); border-left: 4px solid #10b981; border-radius: 12px; padding: 16px 18px; display: flex; flex-direction: column; gap: 12px; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);">
         <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 10px;">
           <div style="display: flex; align-items: center; gap: 12px;">
-            <div style="font-size: 26px; background: #ecfdf5; width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; border: 1px solid #a7f3d0; flex-shrink: 0; color: #059669;">📄</div>
+            <div style="font-size: 26px; background: rgba(16, 185, 129, 0.2); width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; border: 1px solid #10b981; flex-shrink: 0; color: #6ee7b7;">📄</div>
             <div>
-              <div style="font-size: 15px; font-weight: 800; color: #0f172a;">Plan Maestro de Estudio Gestor III (PDF Oficial)</div>
-              <div style="font-size: 11.5px; color: #059669; font-weight: 700;">Ficha TP-DE-3006 (FT-TAH-1824) • 121 Páginas • UAE DIAN 2024</div>
+              <div style="font-size: 15px; font-weight: 800; color: #ffffff;">Plan Maestro de Estudio Gestor III (PDF Oficial)</div>
+              <div style="font-size: 11.5px; color: #6ee7b7; font-weight: 700;">Ficha TP-DE-3006 (FT-TAH-1824) • 121 Páginas • UAE DIAN 2024</div>
             </div>
           </div>
-          <span style="font-size: 10.5px; font-weight: 800; background: #ecfdf5; color: #047857; border: 1px solid #a7f3d0; padding: 3px 8px; border-radius: 10px; white-space: nowrap;">PDF 2.3 MB</span>
+          <span style="font-size: 10.5px; font-weight: 800; background: rgba(16, 185, 129, 0.25); color: #6ee7b7; border: 1px solid #10b981; padding: 3px 8px; border-radius: 10px; white-space: nowrap;">PDF 2.3 MB</span>
         </div>
-        <div style="font-size: 13px; color: #334155; line-height: 1.55;">
+        <div style="font-size: 13px; color: #f1f5f9; line-height: 1.55;">
           Documento oficial íntegro sin reducciones: 20 módulos doctrinales y técnicos, 90 diagramas y compendio maestro de 40 casos prácticos comentados.
         </div>
         <div style="display: flex; gap: 8px; flex-wrap: wrap;">
           <a href="material/01_Guias_y_Convocatoria/Plan_Estudio_Gestor_III_DIAN_Ficha_3006.pdf" target="_blank" style="text-decoration: none; flex: 1; min-width: 130px;">
-            <button type="button" style="width: 100%; background: #0f2942; color: #ffffff; border: 1px solid #0f2942; font-size: 12.5px; font-weight: 800; padding: 10px 14px; border-radius: 8px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px;">
+            <button type="button" style="width: 100%; background: #10b981; color: #022c22; border: none; font-size: 12.5px; font-weight: 800; padding: 10px 14px; border-radius: 8px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px; box-shadow: 0 2px 8px rgba(16, 185, 129, 0.35);">
               <span>👁️</span> Abrir PDF Oficial
             </button>
           </a>
           <a href="/plan-estudio.pdf?download=true" download="Plan_Estudio_Gestor_III_DIAN_Ficha_3006.pdf" style="text-decoration: none; flex: 1; min-width: 130px;">
-            <button type="button" style="width: 100%; background: #ffffff; border: 1.5px solid #e2e8f0; color: #0f172a; font-size: 12.5px; font-weight: 700; padding: 10px 14px; border-radius: 8px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px;">
+            <button type="button" style="width: 100%; background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.2); color: #ffffff; font-size: 12.5px; font-weight: 700; padding: 10px 14px; border-radius: 8px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px;">
               <span>📥</span> Descargar PDF
             </button>
           </a>
-          <button id="btnIrAPlanDesdeRecursos" type="button" style="width: 100%; background: #ecfdf5; border: 1.5px solid #a7f3d0; color: #065f46; font-size: 12.5px; font-weight: 800; padding: 10px 14px; border-radius: 8px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px;">
+          <button id="btnIrAPlanDesdeRecursos" type="button" style="width: 100%; background: rgba(6, 78, 59, 0.55); border: 1.5px solid #10b981; color: #6ee7b7; font-size: 12.5px; font-weight: 800; padding: 10px 14px; border-radius: 8px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px;">
             <span>📖</span> Ver en Lector Interactivo (20 Módulos & Diagramas)
           </button>
         </div>
       </div>
 
       <div class="duo-hub-grid">
-        <div class="duo-hub-card emerald" id="hubCardPlanEstudio" style="cursor: pointer; background: #ffffff;">
-          <div class="hub-card-icon" style="background: #dcfce7; border: 1px solid #bbf7d0; color: #15803d;">🗓️</div>
+        <div class="duo-hub-card emerald" id="hubCardPlanEstudio" style="cursor: pointer;">
+          <div class="hub-card-icon">🗓️</div>
           <div class="hub-card-content">
-            <div class="hub-card-title" style="color: #0f172a; display: flex; align-items: center; justify-content: space-between;">
+            <div class="hub-card-title" style="display: flex; align-items: center; justify-content: space-between;">
               <span>Plan Maestro 60 Días (Ficha 3006)</span>
-              <span id="planBadgeProgress" style="font-size: 10px; font-weight: 800; background: #dcfce7; color: #15803d; border: 1px solid #bbf7d0; padding: 2px 7px; border-radius: 6px;">0/12</span>
+              <span id="planBadgeProgress" style="font-size: 10px; font-weight: 800; background: rgba(16, 185, 129, 0.25); color: #6ee7b7; border: 1px solid rgba(16, 185, 129, 0.4); padding: 2px 7px; border-radius: 6px;">0/12</span>
             </div>
-            <div class="hub-card-desc" style="color: #64748b;">Cronograma de 12 semanas, compendio de 20 módulos y banco dedicado de 40 casos PJS</div>
+            <div class="hub-card-desc">Cronograma de 12 semanas, compendio de 20 módulos y banco dedicado de 40 casos PJS</div>
           </div>
-          <span class="hub-card-arrow" style="color: #0284c7;">➔</span>
+          <span class="hub-card-arrow">➔</span>
         </div>
 
-        <div class="duo-hub-card gold" id="hubCardTips" style="background: #ffffff;">
-          <div class="hub-card-icon" style="background: #fef3c7; border: 1px solid #fde68a; color: #b45309;">💡</div>
+        <div class="duo-hub-card gold" id="hubCardTips">
+          <div class="hub-card-icon">💡</div>
           <div class="hub-card-content">
-            <div class="hub-card-title" style="color: #0f172a;">Claves Maestras PJS</div>
-            <div class="hub-card-desc" style="color: #64748b;">Estrategias psicométricas, régimen tributario y aduanero oficial</div>
+            <div class="hub-card-title">Claves Maestras PJS</div>
+            <div class="hub-card-desc">Estrategias psicométricas, régimen tributario y aduanero oficial</div>
           </div>
-          <span class="hub-card-arrow" style="color: #94a3b8;">➔</span>
+          <span class="hub-card-arrow">➔</span>
         </div>
 
-        <div class="duo-hub-card cyan" id="hubCardMicrolearning" style="background: #ffffff;">
-          <div class="hub-card-icon" style="background: #e0f2fe; border: 1px solid #bae6fd; color: #0284c7;">🔔</div>
+        <div class="duo-hub-card cyan" id="hubCardMicrolearning">
+          <div class="hub-card-icon">🔔</div>
           <div class="hub-card-content">
-            <div class="hub-card-title" style="color: #0f172a;">Microaprendizaje & Notificaciones</div>
-            <div class="hub-card-desc" style="color: #64748b;">Píldoras y preguntas flash de estudio con el panel abierto o cerrado</div>
+            <div class="hub-card-title">Microaprendizaje & Notificaciones</div>
+            <div class="hub-card-desc">Píldoras y preguntas flash de estudio con el panel abierto o cerrado</div>
           </div>
-          <span class="hub-card-arrow" style="color: #94a3b8;">➔</span>
+          <span class="hub-card-arrow">➔</span>
         </div>
 
-        <div class="duo-hub-card blue" id="hubCardLectura" style="background: #ffffff;">
-          <div class="hub-card-icon" style="background: #e0f2fe; border: 1px solid #bae6fd; color: #0284c7;">📖</div>
+        <div class="duo-hub-card blue" id="hubCardLectura">
+          <div class="hub-card-icon">📖</div>
           <div class="hub-card-content">
-            <div class="hub-card-title" style="color: #0f172a;">Radar de Comprensión Lectora</div>
-            <div class="hub-card-desc" style="color: #64748b;">Desarticula casos largos (>100 palabras) en menos de 45 segundos</div>
+            <div class="hub-card-title">Radar de Comprensión Lectora</div>
+            <div class="hub-card-desc">Desarticula casos largos (>100 palabras) en menos de 45 segundos</div>
           </div>
-          <span class="hub-card-arrow" style="color: #94a3b8;">➔</span>
+          <span class="hub-card-arrow">➔</span>
         </div>
 
-        <div class="duo-hub-card purple" id="hubCardVerbos" onclick="if(window.openVerbosModal) window.openVerbosModal();" style="cursor: pointer; background: #ffffff;">
-          <div class="hub-card-icon" style="background: #f3e8ff; border: 1px solid #e9d5ff; color: #7c3aed;">🧭</div>
+        <div class="duo-hub-card purple" id="hubCardVerbos" onclick="if(window.openVerbosModal) window.openVerbosModal();" style="cursor: pointer;">
+          <div class="hub-card-icon">🧭</div>
           <div class="hub-card-content">
-            <div class="hub-card-title" style="color: #0f172a;">Decodificador de Verbos Rectores</div>
-            <div class="hub-card-desc" style="color: #64748b;">Catálogo Oficial DAFP (97 verbos), Infografía y Reglas de Oro</div>
+            <div class="hub-card-title">Decodificador de Verbos Rectores</div>
+            <div class="hub-card-desc">Catálogo Oficial DAFP (97 verbos), Infografía y Reglas de Oro</div>
           </div>
-          <span class="hub-card-arrow" style="color: #94a3b8;">➔</span>
+          <span class="hub-card-arrow">➔</span>
         </div>
 
-        <div class="duo-hub-card amber" id="hubCardJob" style="background: #ffffff;">
-          <div class="hub-card-icon" style="background: #ffedd5; border: 1px solid #fed7aa; color: #c2410c;">📋</div>
+        <div class="duo-hub-card amber" id="hubCardJob">
+          <div class="hub-card-icon">📋</div>
           <div class="hub-card-content">
-            <div class="hub-card-title" style="color: #0f172a;">Mi Cargo y Funciones OPEC</div>
-            <div class="hub-card-desc" style="color: #64748b;">Propósito del empleo, funciones esenciales y ficha DIAN 2676</div>
+            <div class="hub-card-title">Mi Cargo y Funciones OPEC</div>
+            <div class="hub-card-desc">Propósito del empleo, funciones esenciales y ficha DIAN 2676</div>
           </div>
-          <span class="hub-card-arrow" style="color: #94a3b8;">➔</span>
+          <span class="hub-card-arrow">➔</span>
         </div>
 
-        <div class="duo-hub-card red" id="hubCardDiaD" style="background: #ffffff;">
-          <div class="hub-card-icon" style="background: #ffe4e6; border: 1px solid #fecdd3; color: #e11d48;">🛡️</div>
+        <div class="duo-hub-card red" id="hubCardDiaD">
+          <div class="hub-card-icon">🛡️</div>
           <div class="hub-card-content">
-            <div class="hub-card-title" style="color: #0f172a;">Protocolo Día D (8 de Noviembre)</div>
-            <div class="hub-card-desc" style="color: #64748b;">Checklist de ingreso, documentos válidos, lápiz N° 2 y causales de expulsión oficial</div>
+            <div class="hub-card-title">Protocolo Día D (8 de Noviembre)</div>
+            <div class="hub-card-desc">Checklist de ingreso, documentos válidos, lápiz N° 2 y causales de expulsión oficial</div>
           </div>
-          <span class="hub-card-arrow" style="color: #94a3b8;">➔</span>
+          <span class="hub-card-arrow">➔</span>
         </div>
       </div>
     </section>
@@ -937,46 +937,46 @@
 
     <!-- PESTAÑA: DECODIFICADOR DE VERBOS RECTORES (RECURSOS) -->
     <section id="tab-verbos" class="tab-content" style="display: none; flex-direction: column; gap: 14px; width: 100%;">
-      <button type="button" class="btn-back-to-recursos" style="align-self: flex-start; background: #ffffff; border: 1.5px solid #e2e8f0; color: #475569; font-size: 12px; font-weight: 700; padding: 7px 14px; border-radius: 8px; cursor: pointer; display: flex; align-items: center; gap: 6px;">
+      <button type="button" class="btn-back-to-recursos" style="align-self: flex-start; background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.2); color: #f8fafc; font-size: 12px; font-weight: 700; padding: 7px 14px; border-radius: 8px; cursor: pointer; display: flex; align-items: center; gap: 6px;">
         ⬅️ Volver a Biblioteca de Recursos
       </button>
-        <div style="background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: var(--radius-md); padding: 18px 16px; box-shadow: 0 1px 3px rgba(15, 23, 42, 0.05); display: flex; flex-direction: column; gap: 14px; width: 100%; max-width: 100%; min-width: 0; box-sizing: border-box;">
+        <div style="background: linear-gradient(135deg, rgba(15, 23, 42, 0.98), rgba(6, 78, 59, 0.85)); border: 1.5px solid rgba(16, 185, 129, 0.35); border-radius: 14px; padding: 18px 16px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.45); display: flex; flex-direction: column; gap: 14px; width: 100%; max-width: 100%; min-width: 0; box-sizing: border-box; color: #ffffff;">
           
           <!-- Encabezado del Subview en Cuerpo -->
-          <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #e2e8f0; padding-bottom: 12px; gap: 8px;">
+          <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255, 255, 255, 0.12); padding-bottom: 12px; gap: 8px;">
             <div style="display: flex; align-items: center; gap: 10px; min-width: 0; flex: 1;">
               <span style="font-size: 24px; flex-shrink: 0;">🧭</span>
               <div style="min-width: 0; flex: 1;">
                 <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
-                  <span style="font-size: 16px; font-weight: 800; color: #0f172a;">
+                  <span style="font-size: 16px; font-weight: 900; color: #ffffff;">
                     Decodificador de Verbos Rectores
                   </span>
-                  <span id="verbosBadgePerfil" style="font-size: 11px; font-weight: 800; color: #0284c7; background: #eff6ff; border: 1px solid #bfdbfe; padding: 2px 8px; border-radius: 12px;">
+                  <span id="verbosBadgePerfil" style="font-size: 11px; font-weight: 800; color: #6ee7b7; background: rgba(16, 185, 129, 0.2); border: 1px solid rgba(16, 185, 129, 0.4); padding: 2px 8px; border-radius: 12px;">
                     GESTOR III
                   </span>
                 </div>
-                <div style="font-size: 12px; color: #64748b; margin-top: 2px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+                <div style="font-size: 12px; color: #94a3b8; margin-top: 2px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
                   Catálogo Oficial DAFP / DASCD (97 Verbos), Infografía & Reglas de Oro
                 </div>
               </div>
             </div>
-            <button id="btnCloseVerbosModal" type="button" style="background: #ffffff; border: 1px solid #e2e8f0; color: #475569; font-size: 16px; width: 32px; height: 32px; min-width: 32px; border-radius: 8px; cursor: pointer; display: flex; align-items: center; justify-content: center; flex-shrink: 0;" title="Volver a Recursos" class="btn-back-to-recursos">
+            <button id="btnCloseVerbosModal" type="button" style="background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.2); color: #e2e8f0; font-size: 16px; width: 32px; height: 32px; min-width: 32px; border-radius: 8px; cursor: pointer; display: flex; align-items: center; justify-content: center; flex-shrink: 0;" title="Volver a Recursos" class="btn-back-to-recursos">
               ✕
             </button>
           </div>
 
           <!-- Pestañas internas de navegación -->
-          <div style="display: flex; background: #f8fafc; border: 1px solid #e2e8f0; padding: 4px; gap: 4px; overflow-x: auto; border-radius: 8px; width: 100%; max-width: 100%; min-width: 0; box-sizing: border-box; scrollbar-width: none; -webkit-overflow-scrolling: touch;">
-            <button id="tabBtnVerbosBuscador" class="verbos-tab-btn active" style="padding: 7px 12px; font-size: 12px; font-weight: 800; border-radius: 6px; border: 1px solid #0f2942; background: #0f2942; color: #ffffff; cursor: pointer; white-space: nowrap; flex: 0 0 auto; display: flex; align-items: center; gap: 5px;">
+          <div style="display: flex; background: rgba(0, 0, 0, 0.35); border: 1px solid rgba(16, 185, 129, 0.25); padding: 4px; gap: 4px; overflow-x: auto; border-radius: 8px; width: 100%; max-width: 100%; min-width: 0; box-sizing: border-box; scrollbar-width: none; -webkit-overflow-scrolling: touch;">
+            <button id="tabBtnVerbosBuscador" class="verbos-tab-btn active" style="padding: 7px 12px; font-size: 12px; font-weight: 800; border-radius: 6px; border: none; background: #10b981; color: #022c22; cursor: pointer; white-space: nowrap; flex: 0 0 auto; display: flex; align-items: center; gap: 5px;">
               <span>🔍</span> 97 Verbos
             </button>
-            <button id="tabBtnVerbosCaza" class="verbos-tab-btn" style="padding: 7px 12px; font-size: 12px; font-weight: 700; border-radius: 6px; border: 1px solid transparent; background: transparent; color: #64748b; cursor: pointer; white-space: nowrap; flex: 0 0 auto; display: flex; align-items: center; gap: 5px;">
+            <button id="tabBtnVerbosCaza" class="verbos-tab-btn" style="padding: 7px 12px; font-size: 12px; font-weight: 700; border-radius: 6px; border: 1px solid transparent; background: transparent; color: #94a3b8; cursor: pointer; white-space: nowrap; flex: 0 0 auto; display: flex; align-items: center; gap: 5px;">
               <span>⚡</span> Caza-Distractores
             </button>
-            <button id="tabBtnVerbosInfografia" class="verbos-tab-btn" style="padding: 7px 12px; font-size: 12px; font-weight: 700; border-radius: 6px; border: 1px solid transparent; background: transparent; color: #64748b; cursor: pointer; white-space: nowrap; flex: 0 0 auto; display: flex; align-items: center; gap: 5px;">
+            <button id="tabBtnVerbosInfografia" class="verbos-tab-btn" style="padding: 7px 12px; font-size: 12px; font-weight: 700; border-radius: 6px; border: 1px solid transparent; background: transparent; color: #94a3b8; cursor: pointer; white-space: nowrap; flex: 0 0 auto; display: flex; align-items: center; gap: 5px;">
               <span>🖼️</span> Infografía Cargo
             </button>
-            <button id="tabBtnVerbosReglas" class="verbos-tab-btn" style="padding: 7px 12px; font-size: 12px; font-weight: 700; border-radius: 6px; border: 1px solid transparent; background: transparent; color: #64748b; cursor: pointer; white-space: nowrap; flex: 0 0 auto; display: flex; align-items: center; gap: 5px;">
+            <button id="tabBtnVerbosReglas" class="verbos-tab-btn" style="padding: 7px 12px; font-size: 12px; font-weight: 700; border-radius: 6px; border: 1px solid transparent; background: transparent; color: #94a3b8; cursor: pointer; white-space: nowrap; flex: 0 0 auto; display: flex; align-items: center; gap: 5px;">
               <span>⚖️</span> Reglas de Oro
             </button>
           </div>
@@ -987,27 +987,27 @@
             <!-- SECCIÓN 1: BUSCADOR DE 97 VERBOS -->
             <div id="sectionVerbosBuscador" style="display: flex; flex-direction: column; gap: 12px;">
               <div style="position: relative;">
-                <input type="text" id="inputBuscarVerbo" placeholder="Escribe un verbo (ej: Analizar, Aprobar, Verificar, Diseñar)..." style="width: 100%; box-sizing: border-box; background: #ffffff; border: 1.5px solid #e2e8f0; border-radius: 8px; padding: 10px 14px 10px 38px; color: #0f172a; font-size: 13.5px; font-weight: 600; outline: none;">
-                <span style="position: absolute; left: 12px; top: 50%; transform: translateY(-50%); font-size: 15px; color: #94a3b8;">🔍</span>
+                <input type="text" id="inputBuscarVerbo" placeholder="Escribe un verbo (ej: Analizar, Aprobar, Verificar, Diseñar)..." style="width: 100%; box-sizing: border-box; background: rgba(10, 16, 26, 0.95); border: 1.5px solid rgba(16, 185, 129, 0.35); border-radius: 8px; padding: 10px 14px 10px 38px; color: #ffffff; font-size: 13.5px; font-weight: 600; outline: none;">
+                <span style="position: absolute; left: 12px; top: 50%; transform: translateY(-50%); font-size: 15px; color: #34d399;">🔍</span>
               </div>
 
               <!-- Filtros de píldoras rápidas -->
               <div style="display: flex; gap: 6px; flex-wrap: wrap;">
-                <button id="filterVerboTodos" class="verbos-pill-filter active" style="font-size: 11.5px; font-weight: 700; padding: 4px 12px; border-radius: 20px; border: 1px solid #0f2942; background: #0f2942; color: #ffffff; cursor: pointer;">
+                <button id="filterVerboTodos" class="verbos-pill-filter active" style="font-size: 11.5px; font-weight: 800; padding: 4px 12px; border-radius: 20px; border: 1px solid #10b981; background: #10b981; color: #022c22; cursor: pointer;">
                   Todos (97)
                 </button>
-                <button id="filterVerboPropios" class="verbos-pill-filter" style="font-size: 11.5px; font-weight: 700; padding: 4px 12px; border-radius: 20px; border: 1px solid #a7f3d0; background: #ecfdf5; color: #047857; cursor: pointer;">
+                <button id="filterVerboPropios" class="verbos-pill-filter" style="font-size: 11.5px; font-weight: 700; padding: 4px 12px; border-radius: 20px; border: 1px solid rgba(16, 185, 129, 0.4); background: rgba(16, 185, 129, 0.2); color: #6ee7b7; cursor: pointer;">
                   ✅ Propios de mi Cargo
                 </button>
-                <button id="filterVerboDistractores" class="verbos-pill-filter" style="font-size: 11.5px; font-weight: 700; padding: 4px 12px; border-radius: 20px; border: 1px solid #fecaca; background: #fef2f2; color: #b91c1c; cursor: pointer;">
+                <button id="filterVerboDistractores" class="verbos-pill-filter" style="font-size: 11.5px; font-weight: 700; padding: 4px 12px; border-radius: 20px; border: 1px solid rgba(239, 68, 68, 0.4); background: rgba(239, 68, 68, 0.2); color: #fca5a5; cursor: pointer;">
                   ⚠️ Distractores de mi Cargo
                 </button>
               </div>
 
               <!-- Contador y Estado -->
-              <div style="display: flex; justify-content: space-between; align-items: center; font-size: 12px; color: #64748b; border-bottom: 1px solid #e2e8f0; padding-bottom: 6px;">
+              <div style="display: flex; justify-content: space-between; align-items: center; font-size: 12px; color: #94a3b8; border-bottom: 1px solid rgba(255, 255, 255, 0.12); padding-bottom: 6px;">
                 <span id="verbosCounterText">Mostrando 97 verbos</span>
-                <span style="color: #0284c7; font-weight: 600;">Toca cualquier verbo para evaluar</span>
+                <span style="color: #6ee7b7; font-weight: 700;">Toca cualquier verbo para evaluar</span>
               </div>
 
               <!-- Lista de Verbos Renderizados -->
@@ -1019,68 +1019,68 @@
             <!-- SECCIÓN 3: INFOGRAFÍA OFICIAL POR NIVEL -->
             <div id="sectionVerbosInfografia" style="display: none; flex-direction: column; gap: 12px;">
               <div style="display: flex; gap: 6px; overflow-x: auto; padding-bottom: 4px;">
-                <button id="btnInfoNivelPro" class="info-nivel-btn active" data-img="assets/verbos/Funciones profesional.png" style="font-size: 11.5px; font-weight: 800; padding: 6px 12px; border-radius: 8px; border: 1px solid #bfdbfe; background: #eff6ff; color: #0284c7; cursor: pointer; white-space: nowrap;">
+                <button id="btnInfoNivelPro" class="info-nivel-btn active" data-img="assets/verbos/Funciones profesional.png" style="font-size: 11.5px; font-weight: 800; padding: 6px 12px; border-radius: 8px; border: 1.5px solid #10b981; background: rgba(16, 185, 129, 0.25); color: #6ee7b7; cursor: pointer; white-space: nowrap;">
                   Profesional (Gestor III)
                 </button>
-                <button id="btnInfoNivelTec" class="info-nivel-btn" data-img="assets/verbos/Funciones tenico.png" style="font-size: 11.5px; font-weight: 700; padding: 6px 12px; border-radius: 8px; border: 1px solid #e2e8f0; background: #ffffff; color: #64748b; cursor: pointer; white-space: nowrap;">
+                <button id="btnInfoNivelTec" class="info-nivel-btn" data-img="assets/verbos/Funciones tenico.png" style="font-size: 11.5px; font-weight: 700; padding: 6px 12px; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.12); background: rgba(15, 23, 42, 0.85); color: #cbd5e1; cursor: pointer; white-space: nowrap;">
                   Técnico (Analista IV)
                 </button>
-                <button id="btnInfoNivelAsi" class="info-nivel-btn" data-img="assets/verbos/Funciones asistencial.png" style="font-size: 11.5px; font-weight: 700; padding: 6px 12px; border-radius: 8px; border: 1px solid #e2e8f0; background: #ffffff; color: #64748b; cursor: pointer; white-space: nowrap;">
+                <button id="btnInfoNivelAsi" class="info-nivel-btn" data-img="assets/verbos/Funciones asistencial.png" style="font-size: 11.5px; font-weight: 700; padding: 6px 12px; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.12); background: rgba(15, 23, 42, 0.85); color: #cbd5e1; cursor: pointer; white-space: nowrap;">
                   Asistencial
                 </button>
-                <button id="btnInfoNivelAse" class="info-nivel-btn" data-img="assets/verbos/Funciones asesores.png" style="font-size: 11.5px; font-weight: 700; padding: 6px 12px; border-radius: 8px; border: 1px solid #e2e8f0; background: #ffffff; color: #64748b; cursor: pointer; white-space: nowrap;">
+                <button id="btnInfoNivelAse" class="info-nivel-btn" data-img="assets/verbos/Funciones asesores.png" style="font-size: 11.5px; font-weight: 700; padding: 6px 12px; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.12); background: rgba(15, 23, 42, 0.85); color: #cbd5e1; cursor: pointer; white-space: nowrap;">
                   Asesor
                 </button>
               </div>
 
-              <div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px; overflow: hidden; display: flex; flex-direction: column; align-items: center;">
-                <div style="width: 100%; display: flex; justify-content: space-between; align-items: center; padding: 10px 14px; background: #f8fafc; border-bottom: 1px solid #e2e8f0;">
-                  <span id="infoNivelTitle" style="font-size: 12.5px; font-weight: 800; color: #0f172a;">
+              <div style="background: rgba(15, 23, 42, 0.95); border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 12px; overflow: hidden; display: flex; flex-direction: column; align-items: center;">
+                <div style="width: 100%; display: flex; justify-content: space-between; align-items: center; padding: 10px 14px; background: rgba(0, 0, 0, 0.35); border-bottom: 1px solid rgba(255, 255, 255, 0.1);">
+                  <span id="infoNivelTitle" style="font-size: 12.5px; font-weight: 800; color: #ffffff;">
                     Lámina Oficial: Funciones Nivel Profesional (DAFP)
                   </span>
-                  <a id="linkOpenFullImg" href="assets/verbos/Funciones profesional.png" target="_blank" style="font-size: 11.5px; color: #0284c7; text-decoration: none; font-weight: 700;">
+                  <a id="linkOpenFullImg" href="assets/verbos/Funciones profesional.png" target="_blank" style="font-size: 11.5px; color: #38bdf8; text-decoration: none; font-weight: 700;">
                     Abrir en pestaña ↗
                   </a>
                 </div>
-                <div style="width: 100%; max-height: 52vh; overflow: auto; padding: 10px; display: flex; justify-content: center; background: #f8fafc;">
-                  <img id="imgVerbosInfografia" src="assets/verbos/Funciones profesional.png" alt="Lámina de funciones oficiales" style="max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0 1px 3px rgba(15, 23, 42, 0.08);">
+                <div style="width: 100%; max-height: 52vh; overflow: auto; padding: 10px; display: flex; justify-content: center; background: rgba(0, 0, 0, 0.25);">
+                  <img id="imgVerbosInfografia" src="assets/verbos/Funciones profesional.png" alt="Lámina de funciones oficiales" style="max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);">
                 </div>
               </div>
             </div>
 
             <!-- SECCIÓN 4: REGLAS DE ORO DE LOS DISTRACTORES -->
             <div id="sectionVerbosReglas" style="display: none; flex-direction: column; gap: 12px;">
-              <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-left: 4px solid #0284c7; border-radius: 10px; padding: 14px;">
-                <div style="font-size: 14px; font-weight: 800; color: #0f172a; margin-bottom: 6px;">
+              <div style="background: rgba(15, 23, 42, 0.9); border: 1px solid rgba(56, 189, 248, 0.35); border-left: 4px solid #38bdf8; border-radius: 10px; padding: 14px;">
+                <div style="font-size: 14px; font-weight: 800; color: #ffffff; margin-bottom: 6px;">
                   📐 La Estructura Obligatoria de Toda Función Pública
                 </div>
-                <div style="font-size: 13px; color: #334155; line-height: 1.55;">
+                <div style="font-size: 13px; color: #cbd5e1; line-height: 1.55;">
                   En el examen de la CNSC y DIAN, toda función y opción correcta se compone estrictamente de tres elementos:
                 </div>
-                <div style="margin-top: 8px; background: #ffffff; padding: 10px 12px; border-radius: 6px; font-family: monospace; font-size: 12.5px; color: #0284c7; font-weight: 700; text-align: center; border: 1px solid #e2e8f0;">
+                <div style="margin-top: 8px; background: rgba(0, 0, 0, 0.45); padding: 10px 12px; border-radius: 6px; font-family: monospace; font-size: 12.5px; color: #38bdf8; font-weight: 700; text-align: center; border: 1px solid rgba(56, 189, 248, 0.3);">
                   Función = [Verbo Rector (Infinitivo)] + [Objeto] + [Condición de Calidad / Norma]
                 </div>
               </div>
 
               <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; width: 100%; box-sizing: border-box;">
-                <div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 10px; padding: 14px; display: flex; flex-direction: column; gap: 6px; box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);">
-                  <span style="font-size: 13px; font-weight: 800; color: #0284c7;">Gestor III (Profesional)</span>
-                  <div style="font-size: 12px; color: #334155; line-height: 1.5;">
+                <div style="background: rgba(15, 23, 42, 0.85); border: 1px solid rgba(56, 189, 248, 0.3); border-radius: 10px; padding: 14px; display: flex; flex-direction: column; gap: 6px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);">
+                  <span style="font-size: 13px; font-weight: 800; color: #38bdf8;">Gestor III (Profesional)</span>
+                  <div style="font-size: 12px; color: #e2e8f0; line-height: 1.5;">
                     • <strong>Verbos clave:</strong> <em>Analizar, Formular, Proyectar, Fiscalizar, Investigar, Evaluar</em>.<br>
                     • <strong>Trampa a evitar:</strong> Distractores de pasividad (archivar sin revisar, esperar instrucciones pasivas). El profesional decide y proyecta.
                   </div>
                 </div>
 
-                <div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 10px; padding: 14px; display: flex; flex-direction: column; gap: 6px; box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);">
-                  <span style="font-size: 13px; font-weight: 800; color: #7c3aed;">Analista IV (Técnico)</span>
-                  <div style="font-size: 12px; color: #334155; line-height: 1.5;">
+                <div style="background: rgba(15, 23, 42, 0.85); border: 1px solid rgba(192, 132, 252, 0.3); border-radius: 10px; padding: 14px; display: flex; flex-direction: column; gap: 6px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);">
+                  <span style="font-size: 13px; font-weight: 800; color: #c084fc;">Analista IV (Técnico)</span>
+                  <div style="font-size: 12px; color: #e2e8f0; line-height: 1.5;">
                     • <strong>Verbos clave:</strong> <em>Apoyar, Verificar, Comprobar, Operar, Consolidar, Rendir informes</em>.<br>
                     • <strong>Trampa a evitar:</strong> Distractores por extralimitación (diseñar modelos, formular políticas, aprobar amnistías). El técnico comprueba y reporta.
                   </div>
                 </div>
               </div>
 
-              <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px; padding: 12px 14px; font-size: 12px; color: #475569; line-height: 1.55;">
+              <div style="background: rgba(15, 23, 42, 0.85); border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 10px; padding: 12px 14px; font-size: 12px; color: #cbd5e1; line-height: 1.55;">
                 • <strong>Nivel Directivo:</strong> Es el único con potestad de <em>Aprobar, Ordenar y Asignar</em>.<br>
                 • <strong>Nivel Asesor:</strong> <em>Recomienda y Conceptúa</em>, pero nunca emite mandamientos ni firma resoluciones resolutivas.
               </div>
@@ -1089,8 +1089,8 @@
           </div>
 
           <!-- Botón de retorno a recursos en el pie del card -->
-          <div style="display: flex; justify-content: flex-end; margin-top: 6px; padding-top: 10px; border-top: 1px solid #e2e8f0;">
-            <button type="button" class="btn-back-to-recursos btn-secondary" style="font-size: 13.5px; font-weight: 700; padding: 10px 20px; border-radius: 8px; cursor: pointer; display: flex; align-items: center; gap: 8px; background: #ffffff; border: 1.5px solid #e2e8f0; color: #334155;">
+          <div style="display: flex; justify-content: flex-end; margin-top: 6px; padding-top: 10px; border-top: 1px solid rgba(255, 255, 255, 0.12);">
+            <button type="button" class="btn-back-to-recursos btn-secondary" style="font-size: 13.5px; font-weight: 700; padding: 10px 20px; border-radius: 8px; cursor: pointer; display: flex; align-items: center; gap: 8px; background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.2); color: #f8fafc;">
               <span>⬅️ Volver a Biblioteca de Recursos</span>
             </button>
           </div>
@@ -1559,26 +1559,26 @@
       </div>
 
       <!-- BADGE DE RACHA DINÁMICO EN FEEDBACK -->
-      <div id="feedbackStreakBadge" style="display: none; align-items: center; justify-content: space-between; background: #fef3c7; border: 1px solid #fde68a; padding: 10px 14px; border-radius: 10px;">
+      <div id="feedbackStreakBadge" style="display: none; align-items: center; justify-content: space-between; background: rgba(245, 158, 11, 0.2); border: 1.5px solid #f59e0b; padding: 10px 14px; border-radius: 10px;">
         <div style="display: flex; align-items: center; gap: 8px;">
           <span id="feedbackStreakFlame" style="font-size: 24px; animation: simoFlamePulse 1.2s infinite alternate; display: inline-block;">🔥</span>
           <div>
-            <div id="feedbackStreakTitle" style="font-size: 14px; font-weight: 800; color: #92400e;">¡Racha Activa!</div>
-            <div id="feedbackStreakSubtitle" style="font-size: 12px; color: #b45309; font-weight: 700;">3 respuestas correctas seguidas</div>
+            <div id="feedbackStreakTitle" style="font-size: 14px; font-weight: 800; color: #fbbf24;">¡Racha Activa!</div>
+            <div id="feedbackStreakSubtitle" style="font-size: 12px; color: #fde68a; font-weight: 700;">3 respuestas correctas seguidas</div>
           </div>
         </div>
-        <span id="feedbackStreakXP" style="font-size: 12px; font-weight: 800; background: #d97706; color: #ffffff; padding: 4px 10px; border-radius: 12px; letter-spacing: 0.3px;">+150 XP</span>
+        <span id="feedbackStreakXP" style="font-size: 12px; font-weight: 900; background: #10b981; color: #022c22; padding: 4px 10px; border-radius: 12px; letter-spacing: 0.3px;">+150 XP</span>
       </div>
 
-      <div class="norm-box" style="padding: 14px 16px; border-radius: 8px; background-color: #f8fafc; border: 1px solid #e2e8f0; border-left: 4px solid #0284c7;">
-        <div style="font-weight: 800; text-transform: uppercase; margin-bottom: 6px; color: #0284c7; font-size: 12.5px; letter-spacing: 0.5px;">
+      <div class="norm-box" style="padding: 14px 16px; border-radius: 8px; background: rgba(15, 23, 42, 0.85); border: 1px solid rgba(255, 255, 255, 0.12); border-left: 4px solid #38bdf8;">
+        <div style="font-weight: 800; text-transform: uppercase; margin-bottom: 6px; color: #38bdf8; font-size: 12.5px; letter-spacing: 0.5px;">
           ⚖️ Fundamento Normativo / Criterio Oficial
         </div>
-        <div id="feedbackNormText" style="font-size: 14.5px; line-height: 1.6; color: #0f172a;">Ley o Decreto...</div>
+        <div id="feedbackNormText" style="font-size: 14.5px; line-height: 1.6; color: #f1f5f9;">Ley o Decreto...</div>
       </div>
 
       <div class="breakdown-section">
-        <div style="font-size: 13.5px; font-weight: 800; color: #0f172a; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px;">
+        <div style="font-size: 13.5px; font-weight: 800; color: #ffffff; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px;">
           🔍 Análisis de Opciones y Distractores
         </div>
         <div id="feedbackOptionsBreakdown" style="display: flex; flex-direction: column; gap: 10px;">
@@ -1586,28 +1586,28 @@
         </div>
       </div>
 
-      <div class="srs-section" style="border-top: 1px solid #e2e8f0; padding-top: 12px;">
-        <div style="font-size: 13px; font-weight: 800; color: #0f172a; text-transform: uppercase; margin-bottom: 8px; letter-spacing: 0.4px;">
+      <div class="srs-section" style="border-top: 1px solid rgba(255, 255, 255, 0.12); padding-top: 12px;">
+        <div style="font-size: 13px; font-weight: 800; color: #6ee7b7; text-transform: uppercase; margin-bottom: 8px; letter-spacing: 0.4px;">
           🧠 Programar Repetición Espaciada (SRS)
         </div>
         <div class="srs-buttons">
-          <button class="srs-btn" data-srs="hard" style="border: 1.5px solid #fecaca; background: #ffffff; color: #b91c1c; padding: 12px 8px; font-size: 13.5px; font-weight: 800; border-radius: 8px; cursor: pointer;">
-            🔴 Difícil<br><span style="font-size: 11.5px; font-weight: 600; color: #64748b;">Repasar hoy</span>
+          <button class="srs-btn" data-srs="hard" style="border: 1.5px solid rgba(239, 68, 68, 0.4); background: rgba(239, 68, 68, 0.15); color: #fca5a5; padding: 12px 8px; font-size: 13.5px; font-weight: 800; border-radius: 8px; cursor: pointer;">
+            🔴 Difícil<br><span style="font-size: 11.5px; font-weight: 600; color: #fca5a5;">Repasar hoy</span>
           </button>
-          <button class="srs-btn" data-srs="good" style="border: 1.5px solid #fde68a; background: #ffffff; color: #b45309; padding: 12px 8px; font-size: 13.5px; font-weight: 800; border-radius: 8px; cursor: pointer;">
-            🟡 Regular<br><span style="font-size: 11.5px; font-weight: 600; color: #64748b;">En 2 días</span>
+          <button class="srs-btn" data-srs="good" style="border: 1.5px solid rgba(245, 158, 11, 0.4); background: rgba(245, 158, 11, 0.15); color: #fde68a; padding: 12px 8px; font-size: 13.5px; font-weight: 800; border-radius: 8px; cursor: pointer;">
+            🟡 Regular<br><span style="font-size: 11.5px; font-weight: 600; color: #fde68a;">En 2 días</span>
           </button>
-          <button class="srs-btn" data-srs="easy" style="border: 1.5px solid #bbf7d0; background: #ffffff; color: #15803d; padding: 12px 8px; font-size: 13.5px; font-weight: 800; border-radius: 8px; cursor: pointer;">
-            🟢 Dominada<br><span style="font-size: 11.5px; font-weight: 600; color: #64748b;">En 5 días</span>
+          <button class="srs-btn" data-srs="easy" style="border: 1.5px solid rgba(16, 185, 129, 0.4); background: rgba(16, 185, 129, 0.15); color: #6ee7b7; padding: 12px 8px; font-size: 13.5px; font-weight: 800; border-radius: 8px; cursor: pointer;">
+            🟢 Dominada<br><span style="font-size: 11.5px; font-weight: 600; color: #6ee7b7;">En 5 días</span>
           </button>
         </div>
       </div>
 
-      <div id="feedbackModalActions" style="display: flex; gap: 10px; margin-top: 10px; position: sticky; bottom: -22px; background: #ffffff; padding: 14px 0 4px 0; z-index: 10; border-top: 1px solid #e2e8f0;">
-        <button id="btnFinishSessionFromFeedback" class="btn-secondary" style="flex: 1; font-size: 14px; font-weight: 700; padding: 12px; background: #ffffff; border: 1.5px solid #e2e8f0; color: #475569; cursor: pointer; border-radius: 8px;">
+      <div id="feedbackModalActions" style="display: flex; gap: 10px; margin-top: 10px; position: sticky; bottom: -22px; background: #0b1520; padding: 14px 0 4px 0; z-index: 10; border-top: 1px solid rgba(255, 255, 255, 0.12);">
+        <button id="btnFinishSessionFromFeedback" class="btn-secondary" style="flex: 1; font-size: 14px; font-weight: 700; padding: 12px; background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.2); color: #f8fafc; cursor: pointer; border-radius: 8px;">
           🏁 Terminar Sesión
         </button>
-        <button id="btnCloseFeedback" class="btn-primary" style="flex: 2; font-size: 15px; font-weight: 800; padding: 12px; background: #0f2942; border: 1px solid #0f2942; color: #ffffff; border-radius: 8px; cursor: pointer;">
+        <button id="btnCloseFeedback" class="btn-primary" style="flex: 2; font-size: 15px; font-weight: 800; padding: 12px; background: #10b981; border: none; color: #022c22; border-radius: 8px; cursor: pointer; box-shadow: 0 2px 10px rgba(16, 185, 129, 0.35);">
           Seguir Practicando ➔
         </button>
       </div>
@@ -1616,23 +1616,23 @@
 
   <!-- MODAL: CONFIGURADOR DEL CARGO (OPTIMIZADO PARA MÓVILES) -->
   <div id="jobModal" class="modal-overlay">
-    <div class="modal-card" style="max-width: 520px; width: 95%; max-height: 90vh; overflow-y: auto; -webkit-overflow-scrolling: touch; padding: 20px 18px; border-radius: 14px; box-sizing: border-box; background: #ffffff; border: 1px solid #e2e8f0; box-shadow: 0 20px 40px rgba(15, 23, 42, 0.15); display: flex; flex-direction: column; gap: 14px;">
+    <div class="modal-card" style="max-width: 520px; width: 95%; max-height: 90vh; overflow-y: auto; -webkit-overflow-scrolling: touch; padding: 20px 18px; border-radius: 14px; box-sizing: border-box; background: linear-gradient(135deg, rgba(15, 23, 42, 0.98), rgba(6, 78, 59, 0.85)); border: 1.5px solid rgba(16, 185, 129, 0.45); box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7); display: flex; flex-direction: column; gap: 14px; color: #ffffff;">
       
       <!-- Encabezado táctil accesible -->
-      <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #e2e8f0; padding-bottom: 14px;">
+      <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255, 255, 255, 0.12); padding-bottom: 14px;">
         <div style="display: flex; align-items: center; gap: 12px;">
           <span style="font-size: 28px;">🎯</span>
           <div>
-            <h3 style="font-size: 18px; font-weight: 800; color: #0f172a; margin: 0;">Configuración de tu Cargo en SIMO</h3>
-            <span style="font-size: 13px; color: #64748b;">Ficha de empleo y funciones para casos situacionales</span>
+            <h3 style="font-size: 18px; font-weight: 800; color: #ffffff; margin: 0;">Configuración de tu Cargo en SIMO</h3>
+            <span style="font-size: 13px; color: #a7f3d0;">Ficha de empleo y funciones para casos situacionales</span>
           </div>
         </div>
-        <button id="btnCloseJobModalX" type="button" style="background: #ffffff; border: 1px solid #e2e8f0; color: #475569; font-size: 18px; cursor: pointer; width: 36px; height: 36px; border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;" title="Cerrar">✕</button>
+        <button id="btnCloseJobModalX" type="button" style="background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.2); color: #cbd5e1; font-size: 18px; cursor: pointer; width: 36px; height: 36px; border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;" title="Cerrar">✕</button>
       </div>
 
       <!-- Selector Rápido de Perfil con Tarjetas Táctiles Grandes Especial para Móvil -->
       <div style="display: flex; flex-direction: column; gap: 10px;">
-        <div style="font-size: 13px; font-weight: 800; color: #0284c7; text-transform: uppercase; letter-spacing: 0.5px; display: flex; align-items: center; gap: 6px;">
+        <div style="font-size: 13px; font-weight: 800; color: #6ee7b7; text-transform: uppercase; letter-spacing: 0.5px; display: flex; align-items: center; gap: 6px;">
           <span>⚡</span> Selecciona tu Cargo Oficial DIAN:
         </div>
         
@@ -1643,17 +1643,17 @@
             <div class="profile-selection-info">
               <div style="display: flex; justify-content: space-between; align-items: center;">
                 <span class="profile-selection-title">GESTOR III (OPEC 236872)</span>
-                <span id="badgeActiveGestorCI" class="profile-selection-badge" style="background: #eff6ff; color: #0284c7; border: 1px solid #bfdbfe;">✓ ACTIVO</span>
+                <span id="badgeActiveGestorCI" class="profile-selection-badge" style="background: rgba(16, 185, 129, 0.25); color: #6ee7b7; border: 1px solid #10b981;">✓ ACTIVO</span>
               </div>
               <span class="profile-selection-sub">Nivel Profesional • Grado 03 • Ficha PC-CI-3006 (Control Interno)</span>
               <div style="display: flex; gap: 6px; margin-top: 4px; font-size: 12px; font-weight: 700; flex-wrap: wrap;">
-                <span style="color: #047857; background: #ecfdf5; padding: 2px 8px; border-radius: 6px;">150 Casos</span>
-                <span style="color: #b45309; background: #fef3c7; padding: 2px 8px; border-radius: 6px;">$9.346.562</span>
-                <span style="color: #0284c7; background: #eff6ff; padding: 2px 8px; border-radius: 6px;">4 Vacantes</span>
+                <span style="color: #6ee7b7; background: rgba(16, 185, 129, 0.2); padding: 2px 8px; border-radius: 6px; border: 1px solid rgba(16, 185, 129, 0.3);">150 Casos</span>
+                <span style="color: #fbbf24; background: rgba(245, 158, 11, 0.2); padding: 2px 8px; border-radius: 6px; border: 1px solid rgba(245, 158, 11, 0.3);">$9.346.562</span>
+                <span style="color: #38bdf8; background: rgba(56, 189, 248, 0.2); padding: 2px 8px; border-radius: 6px; border: 1px solid rgba(56, 189, 248, 0.3);">4 Vacantes</span>
               </div>
               <!-- Ejes oficiales del cargo OPEC 236872 -->
-              <div style="margin-top: 7px; padding-top: 7px; border-top: 1px dashed #e2e8f0; font-size: 11px; color: #64748b; line-height: 1.45;">
-                <span style="font-weight: 800; color: #0284c7;">Ejes Oficiales (26):</span> 🛡️ MECI • 📐 MIPG Auditoría • 📜 NIA/IIA • 💻 Auditoría TI • ⚠️ Riesgos • 🌐 TACI • 📑 Contabilidad Pública CGN • 📄 Contratación • 🏛️ Misionalidad • 💡 Solución de Problemas N4.
+              <div style="margin-top: 7px; padding-top: 7px; border-top: 1px dashed rgba(255, 255, 255, 0.15); font-size: 11px; color: #cbd5e1; line-height: 1.45;">
+                <span style="font-weight: 800; color: #38bdf8;">Ejes Oficiales (26):</span> 🛡️ MECI • 📐 MIPG Auditoría • 📜 NIA/IIA • 💻 Auditoría TI • ⚠️ Riesgos • 🌐 TACI • 📑 Contabilidad Pública CGN • 📄 Contratación • 🏛️ Misionalidad • 💡 Solución de Problemas N4.
               </div>
             </div>
           </div>
@@ -1664,16 +1664,16 @@
             <div class="profile-selection-info">
               <div style="display: flex; justify-content: space-between; align-items: center;">
                 <span class="profile-selection-title">GESTOR III (OPEC 242703)</span>
-                <span id="badgeActiveGestor" class="profile-selection-badge" style="display: none; background: #eff6ff; color: #0284c7; border: 1px solid #bfdbfe;">✓ ACTIVO</span>
+                <span id="badgeActiveGestor" class="profile-selection-badge" style="display: none; background: rgba(16, 185, 129, 0.25); color: #6ee7b7; border: 1px solid #10b981;">✓ ACTIVO</span>
               </div>
               <span class="profile-selection-sub">Nivel Profesional • Grado 03 • Ficha FT-TAH-1824</span>
               <div style="display: flex; gap: 6px; margin-top: 4px; font-size: 12px; font-weight: 700; flex-wrap: wrap;">
-                <span style="color: #047857; background: #ecfdf5; padding: 2px 8px; border-radius: 6px;">122 Casos</span>
-                <span style="color: #b45309; background: #fef3c7; padding: 2px 8px; border-radius: 6px;">$8.450.000</span>
+                <span style="color: #6ee7b7; background: rgba(16, 185, 129, 0.2); padding: 2px 8px; border-radius: 6px; border: 1px solid rgba(16, 185, 129, 0.3);">122 Casos</span>
+                <span style="color: #fbbf24; background: rgba(245, 158, 11, 0.2); padding: 2px 8px; border-radius: 6px; border: 1px solid rgba(245, 158, 11, 0.3);">$8.450.000</span>
               </div>
               <!-- Ejes oficiales del cargo OPEC 242703 -->
-              <div style="margin-top: 7px; padding-top: 7px; border-top: 1px dashed #e2e8f0; font-size: 11px; color: #64748b; line-height: 1.45;">
-                <span style="font-weight: 800; color: #0284c7;">Ejes Oficiales (18):</span> 📊 Procedimiento Tributario • 🚢 Aduanas • ⚖️ Cobro Coactivo • 📐 MIPG / FURAG • 📈 Indicadores • 📜 CPACA • 💱 Cambiario • 📄 Contratación • 🏛️ Misionalidad.
+              <div style="margin-top: 7px; padding-top: 7px; border-top: 1px dashed rgba(255, 255, 255, 0.15); font-size: 11px; color: #cbd5e1; line-height: 1.45;">
+                <span style="font-weight: 800; color: #38bdf8;">Ejes Oficiales (18):</span> 📊 Procedimiento Tributario • 🚢 Aduanas • ⚖️ Cobro Coactivo • 📐 MIPG / FURAG • 📈 Indicadores • 📜 CPACA • 💱 Cambiario • 📄 Contratación • 🏛️ Misionalidad.
               </div>
             </div>
           </div>
@@ -1684,16 +1684,16 @@
             <div class="profile-selection-info">
               <div style="display: flex; justify-content: space-between; align-items: center;">
                 <span class="profile-selection-title">ANALISTA IV (OPEC 236760)</span>
-                <span id="badgeActiveAnalista" class="profile-selection-badge" style="display: none; background: #eff6ff; color: #0284c7; border: 1px solid #bfdbfe;">✓ ACTIVO</span>
+                <span id="badgeActiveAnalista" class="profile-selection-badge" style="display: none; background: rgba(16, 185, 129, 0.25); color: #6ee7b7; border: 1px solid #10b981;">✓ ACTIVO</span>
               </div>
               <span class="profile-selection-sub">Nivel Técnico • Grado 04 • Ficha AT-FL-2010</span>
               <div style="display: flex; gap: 6px; margin-top: 4px; font-size: 12px; font-weight: 700; flex-wrap: wrap;">
-                <span style="color: #047857; background: #ecfdf5; padding: 2px 8px; border-radius: 6px;">112 Casos</span>
-                <span style="color: #7c3aed; background: #f5f3ff; padding: 2px 8px; border-radius: 6px;">19 Vacantes</span>
+                <span style="color: #6ee7b7; background: rgba(16, 185, 129, 0.2); padding: 2px 8px; border-radius: 6px; border: 1px solid rgba(16, 185, 129, 0.3);">112 Casos</span>
+                <span style="color: #c084fc; background: rgba(192, 132, 252, 0.2); padding: 2px 8px; border-radius: 6px; border: 1px solid rgba(192, 132, 252, 0.3);">19 Vacantes</span>
               </div>
               <!-- Ejes oficiales del cargo OPEC 236760 -->
-              <div style="margin-top: 7px; padding-top: 7px; border-top: 1px dashed #e2e8f0; font-size: 11px; color: #64748b; line-height: 1.45;">
-                <span style="font-weight: 800; color: #0284c7;">Ejes Oficiales (22):</span> 🔍 Fiscalización Aduanera y Pruebas • 📦 Destrucción de Mercancías • 📋 Obligaciones Tributarias • 📁 Archivo y Gestión Documental • 🚨 SARLAFT/ROS • 💱 Régimen Cambiario.
+              <div style="margin-top: 7px; padding-top: 7px; border-top: 1px dashed rgba(255, 255, 255, 0.15); font-size: 11px; color: #cbd5e1; line-height: 1.45;">
+                <span style="font-weight: 800; color: #38bdf8;">Ejes Oficiales (22):</span> 🔍 Fiscalización Aduanera y Pruebas • 📦 Destrucción de Mercancías • 📋 Obligaciones Tributarias • 📁 Archivo y Gestión Documental • 🚨 SARLAFT/ROS • 💱 Régimen Cambiario.
               </div>
             </div>
           </div>
@@ -1702,20 +1702,20 @@
 
       <form id="jobForm" style="display: flex; flex-direction: column; gap: 14px; margin-top: 4px;">
         <div>
-          <label style="font-size: 13px; font-weight: 800; color: #475569; text-transform: uppercase; letter-spacing: 0.5px; display: block; margin-bottom: 6px;">
+          <label style="font-size: 13px; font-weight: 800; color: #6ee7b7; text-transform: uppercase; letter-spacing: 0.5px; display: block; margin-bottom: 6px;">
             Denominación del Cargo
           </label>
-          <input type="text" id="inputJobTitle" required style="width: 100%; padding: 12px 14px; background-color: #f8fafc; border: 1.5px solid #e2e8f0; border-radius: 8px; color: #0f172a; font-size: 14.5px; min-height: 46px; outline: none; box-sizing: border-box;">
+          <input type="text" id="inputJobTitle" required style="width: 100%; padding: 12px 14px; background-color: rgba(0, 0, 0, 0.45); border: 1.5px solid rgba(255, 255, 255, 0.16); border-radius: 8px; color: #ffffff; font-size: 14.5px; min-height: 46px; outline: none; box-sizing: border-box;">
         </div>
 
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
           <div>
-            <label style="font-size: 13px; font-weight: 800; color: #475569; text-transform: uppercase; letter-spacing: 0.5px; display: block; margin-bottom: 6px;">Código OPEC</label>
-            <input type="text" id="inputJobOpec" style="width: 100%; padding: 12px 14px; background-color: #f8fafc; border: 1.5px solid #e2e8f0; border-radius: 8px; color: #0f172a; font-size: 14.5px; min-height: 46px; outline: none; box-sizing: border-box;">
+            <label style="font-size: 13px; font-weight: 800; color: #6ee7b7; text-transform: uppercase; letter-spacing: 0.5px; display: block; margin-bottom: 6px;">Código OPEC</label>
+            <input type="text" id="inputJobOpec" style="width: 100%; padding: 12px 14px; background-color: rgba(0, 0, 0, 0.45); border: 1.5px solid rgba(255, 255, 255, 0.16); border-radius: 8px; color: #ffffff; font-size: 14.5px; min-height: 46px; outline: none; box-sizing: border-box;">
           </div>
           <div>
-            <label style="font-size: 13px; font-weight: 800; color: #475569; text-transform: uppercase; letter-spacing: 0.5px; display: block; margin-bottom: 6px;">Nivel</label>
-            <select id="selectJobLevel" style="width: 100%; padding: 12px 14px; background-color: #f8fafc; border: 1.5px solid #e2e8f0; border-radius: 8px; color: #0f172a; font-size: 14.5px; min-height: 46px; outline: none; box-sizing: border-box; cursor: pointer;">
+            <label style="font-size: 13px; font-weight: 800; color: #6ee7b7; text-transform: uppercase; letter-spacing: 0.5px; display: block; margin-bottom: 6px;">Nivel</label>
+            <select id="selectJobLevel" style="width: 100%; padding: 12px 14px; background-color: rgba(15, 23, 42, 0.95); border: 1.5px solid rgba(255, 255, 255, 0.16); border-radius: 8px; color: #ffffff; font-size: 14.5px; min-height: 46px; outline: none; box-sizing: border-box; cursor: pointer;">
               <option value="Profesional">Profesional</option>
               <option value="Técnico">Técnico</option>
               <option value="Asistencial">Asistencial</option>
@@ -1724,43 +1724,43 @@
         </div>
 
         <div>
-          <label style="font-size: 13px; font-weight: 800; color: #475569; text-transform: uppercase; letter-spacing: 0.5px; display: block; margin-bottom: 6px;">Entidad / Convocatoria</label>
-          <input type="text" id="inputJobEntity" style="width: 100%; padding: 12px 14px; background-color: #f8fafc; border: 1.5px solid #e2e8f0; border-radius: 8px; color: #0f172a; font-size: 14.5px; min-height: 46px; outline: none; box-sizing: border-box;">
+          <label style="font-size: 13px; font-weight: 800; color: #6ee7b7; text-transform: uppercase; letter-spacing: 0.5px; display: block; margin-bottom: 6px;">Entidad / Convocatoria</label>
+          <input type="text" id="inputJobEntity" style="width: 100%; padding: 12px 14px; background-color: rgba(0, 0, 0, 0.45); border: 1.5px solid rgba(255, 255, 255, 0.16); border-radius: 8px; color: #ffffff; font-size: 14.5px; min-height: 46px; outline: none; box-sizing: border-box;">
         </div>
 
         <div>
-          <label style="font-size: 13px; font-weight: 800; color: #475569; text-transform: uppercase; letter-spacing: 0.5px; display: block; margin-bottom: 6px;">Propósito Principal</label>
-          <textarea id="inputJobPurpose" rows="3" style="width: 100%; padding: 12px 14px; background-color: #f8fafc; border: 1.5px solid #e2e8f0; border-radius: 8px; color: #0f172a; font-size: 13.5px; line-height: 1.5; outline: none; resize: vertical; box-sizing: border-box;"></textarea>
+          <label style="font-size: 13px; font-weight: 800; color: #6ee7b7; text-transform: uppercase; letter-spacing: 0.5px; display: block; margin-bottom: 6px;">Propósito Principal</label>
+          <textarea id="inputJobPurpose" rows="3" style="width: 100%; padding: 12px 14px; background-color: rgba(0, 0, 0, 0.45); border: 1.5px solid rgba(255, 255, 255, 0.16); border-radius: 8px; color: #ffffff; font-size: 13.5px; line-height: 1.5; outline: none; resize: vertical; box-sizing: border-box;"></textarea>
         </div>
 
         <div>
-          <label style="font-size: 13px; font-weight: 800; color: #475569; text-transform: uppercase; letter-spacing: 0.5px; display: block; margin-bottom: 6px;">Funciones Esenciales (una por línea)</label>
-          <textarea id="inputJobFunctions" rows="4" style="width: 100%; padding: 12px 14px; background-color: #f8fafc; border: 1.5px solid #e2e8f0; border-radius: 8px; color: #0f172a; font-size: 13.5px; line-height: 1.5; outline: none; resize: vertical; box-sizing: border-box;"></textarea>
+          <label style="font-size: 13px; font-weight: 800; color: #6ee7b7; text-transform: uppercase; letter-spacing: 0.5px; display: block; margin-bottom: 6px;">Funciones Esenciales (una por línea)</label>
+          <textarea id="inputJobFunctions" rows="4" style="width: 100%; padding: 12px 14px; background-color: rgba(0, 0, 0, 0.45); border: 1.5px solid rgba(255, 255, 255, 0.16); border-radius: 8px; color: #ffffff; font-size: 13.5px; line-height: 1.5; outline: none; resize: vertical; box-sizing: border-box;"></textarea>
         </div>
 
         <!-- SECCIÓN DE EJES TEMÁTICOS E INDICADORES OFICIALES A EVALUAR EN SIMO -->
-        <div id="jobModalEjesSection" style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 14px 16px; display: flex; flex-direction: column; gap: 10px;">
-          <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #e2e8f0; padding-bottom: 8px;">
+        <div id="jobModalEjesSection" style="background: rgba(0, 0, 0, 0.35); border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 12px; padding: 14px 16px; display: flex; flex-direction: column; gap: 10px;">
+          <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255, 255, 255, 0.12); padding-bottom: 8px;">
             <div style="display: flex; align-items: center; gap: 8px;">
               <span style="font-size: 18px;">📚</span>
-              <span style="font-size: 13.5px; font-weight: 800; color: #0284c7; text-transform: uppercase; letter-spacing: 0.5px;">Ejes e Indicadores a Evaluar en SIMO</span>
+              <span style="font-size: 13.5px; font-weight: 800; color: #38bdf8; text-transform: uppercase; letter-spacing: 0.5px;">Ejes e Indicadores a Evaluar en SIMO</span>
             </div>
-            <span id="jobModalEjesCountBadge" style="font-size: 11.5px; font-weight: 800; color: #047857; background: #ecfdf5; border: 1px solid #a7f3d0; padding: 3px 10px; border-radius: 12px;">
+            <span id="jobModalEjesCountBadge" style="font-size: 11.5px; font-weight: 800; color: #6ee7b7; background: rgba(16, 185, 129, 0.2); border: 1px solid #10b981; padding: 3px 10px; border-radius: 12px;">
               Cargando ejes...
             </span>
           </div>
 
           <!-- Leyenda de colores -->
           <div style="display: flex; gap: 10px; font-size: 11px; flex-wrap: wrap;">
-            <span style="display: inline-flex; align-items: center; gap: 4px; color: #0284c7; font-weight: 700;">
-              <span style="width: 8px; height: 8px; border-radius: 50%; background: #0284c7; display: inline-block;"></span>
+            <span style="display: inline-flex; align-items: center; gap: 4px; color: #38bdf8; font-weight: 700;">
+              <span style="width: 8px; height: 8px; border-radius: 50%; background: #38bdf8; display: inline-block;"></span>
               Funcionales (65% Eliminatorio)
             </span>
-            <span style="display: inline-flex; align-items: center; gap: 4px; color: #7c3aed; font-weight: 700;">
-              <span style="width: 8px; height: 8px; border-radius: 50%; background: #7c3aed; display: inline-block;"></span>
+            <span style="display: inline-flex; align-items: center; gap: 4px; color: #c084fc; font-weight: 700;">
+              <span style="width: 8px; height: 8px; border-radius: 50%; background: #c084fc; display: inline-block;"></span>
               Comportamentales (15%)
             </span>
-            <span style="display: inline-flex; align-items: center; gap: 4px; color: #b45309; font-weight: 700;">
+            <span style="display: inline-flex; align-items: center; gap: 4px; color: #fbbf24; font-weight: 700;">
               <span style="width: 8px; height: 8px; border-radius: 50%; background: #f59e0b; display: inline-block;"></span>
               Integridad (10%)
             </span>
@@ -1771,14 +1771,14 @@
             <!-- Renderizado dinámicamente según el perfil seleccionado -->
           </div>
 
-          <div style="font-size: 11px; color: #64748b; line-height: 1.45; border-top: 1px dashed #e2e8f0; padding-top: 6px;">
+          <div style="font-size: 11px; color: #94a3b8; line-height: 1.45; border-top: 1px dashed rgba(255, 255, 255, 0.12); padding-top: 6px;">
             💡 <strong>Ponderación Oficial CNSC/DIAN:</strong> Los ejes funcionales son eliminatorios (mínimo aprobatorio: 70.00 pts). Al seleccionar tu cargo, el sistema calibra las preguntas y filtros según estos indicadores.
           </div>
         </div>
 
         <div style="display: flex; gap: 12px; margin-top: 8px;">
-          <button type="button" id="btnCancelJobModal" class="btn-secondary" style="flex: 1; min-height: 48px; font-size: 15px; font-weight: 700; border-radius: 8px; background: #ffffff; border: 1.5px solid #e2e8f0; color: #475569; cursor: pointer;">Cancelar</button>
-          <button type="submit" class="btn-primary" style="flex: 2; min-height: 48px; font-size: 15px; font-weight: 800; border-radius: 8px; background: #0f2942; border: 1px solid #0f2942; color: #ffffff; cursor: pointer;">Guardar y Enfocar 🚀</button>
+          <button type="button" id="btnCancelJobModal" class="btn-secondary" style="flex: 1; min-height: 48px; font-size: 15px; font-weight: 700; border-radius: 8px; background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.2); color: #f8fafc; cursor: pointer;">Cancelar</button>
+          <button type="submit" class="btn-primary" style="flex: 2; min-height: 48px; font-size: 15px; font-weight: 800; border-radius: 8px; background: #10b981; border: none; color: #022c22; cursor: pointer; box-shadow: 0 4px 15px rgba(16, 185, 129, 0.35);">Guardar y Enfocar 🚀</button>
         </div>
       </form>
     </div>
@@ -1804,75 +1804,75 @@
 
       <div class="modal-body">
         <!-- Selector de Modo de Visualización (Por defecto: Una por una aleatoria) -->
-        <div style="display: flex; justify-content: space-between; align-items: center; background: #f8fafc; border: 1px solid #e2e8f0; padding: 6px 8px; border-radius: 8px; gap: 8px; flex-wrap: wrap;">
-          <div style="display: flex; align-items: center; gap: 4px;">
-            <button id="btnTipsModeSingle" type="button" style="background: #0f2942; border: 1px solid #0f2942; color: #ffffff; padding: 6px 12px; border-radius: 6px; font-size: 12px; font-weight: 800; cursor: pointer; display: flex; align-items: center; gap: 5px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; background: rgba(15, 23, 42, 0.85); border: 1px solid rgba(255, 255, 255, 0.12); padding: 6px 8px; border-radius: 8px; gap: 8px; flex-wrap: wrap;">
+          <div style="display: flex; align-items: center; gap: 6px;">
+            <button id="btnTipsModeSingle" type="button" style="background: #10b981; border: none; color: #022c22; padding: 7px 14px; border-radius: 6px; font-size: 12px; font-weight: 800; cursor: pointer; display: flex; align-items: center; gap: 5px; box-shadow: 0 2px 8px rgba(16, 185, 129, 0.35);">
               <span>🎲</span> Una por Una (Aleatoria)
             </button>
-            <button id="btnTipsModeList" type="button" style="background: transparent; border: 1px solid transparent; color: #64748b; padding: 6px 12px; border-radius: 6px; font-size: 12px; font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 5px;">
+            <button id="btnTipsModeList" type="button" style="background: rgba(255, 255, 255, 0.06); border: 1px solid rgba(255, 255, 255, 0.12); color: #cbd5e1; padding: 7px 14px; border-radius: 6px; font-size: 12px; font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 5px;">
               <span>📋</span> Ver Todas (Catálogo)
             </button>
           </div>
-          <span id="tipsCounterBadge" style="font-size: 11.5px; font-weight: 800; color: #0284c7; background: #eff6ff; padding: 3px 10px; border-radius: 12px; border: 1px solid #bfdbfe;">
+          <span id="tipsCounterBadge" style="font-size: 11.5px; font-weight: 800; color: #6ee7b7; background: rgba(16, 185, 129, 0.2); padding: 3px 10px; border-radius: 12px; border: 1px solid #10b981;">
             46 Claves
           </span>
         </div>
 
         <!-- MODO 1: VISTA UNA POR UNA Y DE FORMA ALEATORIA (POR DEFECTO) -->
         <div id="tipsSingleContainer" style="display: flex; flex-direction: column; gap: 14px; width: 100%;">
-          <div id="singleTipCard" style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 18px 20px; display: flex; flex-direction: column; gap: 12px; box-shadow: 0 1px 3px rgba(15, 23, 42, 0.05);">
+          <div id="singleTipCard" style="background: linear-gradient(135deg, rgba(15, 23, 42, 0.98), rgba(6, 78, 59, 0.85)); border: 1.5px solid rgba(16, 185, 129, 0.4); border-radius: 12px; padding: 18px 20px; display: flex; flex-direction: column; gap: 12px; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);">
             
             <!-- Fila Superior: Categoría, Número y Botón Rápido Siguiente -->
             <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 8px;">
               <div style="display: flex; align-items: center; gap: 10px;">
                 <span id="singleTipIcon" style="font-size: 28px;">💡</span>
                 <div>
-                  <span id="singleTipCategoryBadge" style="font-size: 11px; font-weight: 800; background: #eff6ff; color: #0284c7; padding: 3px 8px; border-radius: 6px; text-transform: uppercase; border: 1px solid #bfdbfe;">
+                  <span id="singleTipCategoryBadge" style="font-size: 11px; font-weight: 800; background: rgba(56, 189, 248, 0.2); color: #38bdf8; padding: 3px 8px; border-radius: 6px; text-transform: uppercase; border: 1px solid rgba(56, 189, 248, 0.4);">
                     Juicio Situacional
                   </span>
-                  <div id="singleTipNumberBadge" style="font-size: 11px; color: #64748b; margin-top: 3px; font-weight: 700;">
+                  <div id="singleTipNumberBadge" style="font-size: 11px; color: #94a3b8; margin-top: 3px; font-weight: 700;">
                     🎲 Clave Aleatoria 1 de 46
                   </div>
                 </div>
               </div>
-              <button id="btnSingleTipNextRandomTop" type="button" style="background: #0f2942; border: 1px solid #0f2942; color: #ffffff; font-size: 12px; font-weight: 800; padding: 7px 12px; border-radius: 6px; cursor: pointer; display: flex; align-items: center; gap: 4px;">
+              <button id="btnSingleTipNextRandomTop" type="button" style="background: #10b981; border: none; color: #022c22; font-size: 12px; font-weight: 800; padding: 7px 12px; border-radius: 6px; cursor: pointer; display: flex; align-items: center; gap: 4px; box-shadow: 0 2px 8px rgba(16, 185, 129, 0.35);">
                 🎲 Otra Clave ➔
               </button>
             </div>
 
             <!-- Título de la Clave -->
-            <h3 id="singleTipTitle" style="font-size: 17px; font-weight: 800; color: #0f172a; margin: 0; line-height: 1.35;">
+            <h3 id="singleTipTitle" style="font-size: 17px; font-weight: 800; color: #ffffff; margin: 0; line-height: 1.35;">
               Título de la Clave
             </h3>
 
             <!-- Soporte Legal -->
             <div id="singleTipNormaContainer" style="display: flex; align-items: center; gap: 6px;">
-              <span style="font-size: 12px; color: #0284c7; font-weight: 700; background: #eff6ff; padding: 3px 8px; border-radius: 6px; border: 1px solid #bfdbfe;">
+              <span style="font-size: 12px; color: #38bdf8; font-weight: 700; background: rgba(56, 189, 248, 0.15); padding: 3px 8px; border-radius: 6px; border: 1px solid rgba(56, 189, 248, 0.3);">
                 📖 <span id="singleTipNorma">Norma</span>
               </span>
             </div>
 
             <!-- Resumen Clave / Premisa Situacional -->
-            <div id="singleTipResumen" style="font-size: 13.5px; color: #1e293b; line-height: 1.55; font-style: italic; background: #f8fafc; border-left: 4px solid #0284c7; border: 1px solid #e2e8f0; border-left: 4px solid #0284c7; padding: 12px 14px; border-radius: 6px;">
+            <div id="singleTipResumen" style="font-size: 13.5px; color: #f1f5f9; line-height: 1.55; font-style: italic; background: rgba(0, 0, 0, 0.4); border: 1px solid rgba(56, 189, 248, 0.35); border-left: 4px solid #38bdf8; padding: 12px 14px; border-radius: 6px;">
               Resumen
             </div>
 
             <!-- Contenido Detallado -->
-            <div id="singleTipContenido" style="font-size: 13.5px; color: #334155; line-height: 1.6; max-height: 300px; overflow-y: auto; padding-right: 4px;">
+            <div id="singleTipContenido" style="font-size: 13.5px; color: #e2e8f0; line-height: 1.6; max-height: 300px; overflow-y: auto; padding-right: 4px;">
               Contenido
             </div>
 
             <!-- Bloque de Imagen / Infografía si aplica -->
-            <div id="singleTipImageContainer" style="display: none; border-radius: 10px; overflow: hidden; border: 1px solid #e2e8f0; margin-top: 4px;">
+            <div id="singleTipImageContainer" style="display: none; border-radius: 10px; overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.12); margin-top: 4px;">
               <img id="singleTipImage" src="" alt="Infografía" style="width: 100%; height: auto; display: block;">
             </div>
 
             <!-- Botones de Navegación Inferior -->
-            <div style="display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-top: 6px; border-top: 1px solid #e2e8f0; padding-top: 12px;">
-              <button id="btnSingleTipPrev" type="button" style="background: #ffffff; border: 1.5px solid #e2e8f0; color: #475569; font-size: 13px; font-weight: 700; padding: 10px 16px; border-radius: 8px; cursor: pointer; display: flex; align-items: center; gap: 6px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-top: 6px; border-top: 1px solid rgba(255, 255, 255, 0.12); padding-top: 12px;">
+              <button id="btnSingleTipPrev" type="button" style="background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.2); color: #f8fafc; font-size: 13px; font-weight: 700; padding: 10px 16px; border-radius: 8px; cursor: pointer; display: flex; align-items: center; gap: 6px;">
                 ⬅️ Anterior
               </button>
-              <button id="btnSingleTipNextRandom" type="button" style="background: #0f2942; border: 1px solid #0f2942; color: #ffffff; font-size: 13px; font-weight: 800; padding: 10px 20px; border-radius: 8px; cursor: pointer; display: flex; align-items: center; gap: 6px;">
+              <button id="btnSingleTipNextRandom" type="button" style="background: #10b981; border: none; color: #022c22; font-size: 13px; font-weight: 800; padding: 10px 20px; border-radius: 8px; cursor: pointer; display: flex; align-items: center; gap: 6px; box-shadow: 0 2px 10px rgba(16, 185, 129, 0.35);">
                 🎲 Siguiente Clave Aleatoria ➔
               </button>
             </div>
@@ -1884,27 +1884,27 @@
           <!-- Barra de herramientas: Buscador y Acceso a Microaprendizaje -->
           <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap;">
             <div style="position: relative; flex: 1; min-width: 200px;">
-              <input type="text" id="inputSearchTips" placeholder="🔍 Buscar clave o tema (ej. factura, aduana, lectura)..." style="width: 100%; box-sizing: border-box; background: #ffffff; border: 1.5px solid #e2e8f0; color: #0f172a; padding: 9px 12px; border-radius: 8px; font-size: 13px; outline: none;">
+              <input type="text" id="inputSearchTips" placeholder="🔍 Buscar clave o tema (ej. factura, aduana, lectura)..." style="width: 100%; box-sizing: border-box; background: rgba(0, 0, 0, 0.45); border: 1.5px solid rgba(255, 255, 255, 0.16); color: #ffffff; padding: 9px 12px; border-radius: 8px; font-size: 13px; outline: none;">
             </div>
-            <button id="btnOpenMicrolearningFromTips" type="button" style="background: #eff6ff; border: 1px solid #bfdbfe; color: #0284c7; font-size: 12px; font-weight: 700; padding: 9px 12px; border-radius: 8px; cursor: pointer; display: flex; align-items: center; gap: 6px; white-space: nowrap;">
+            <button id="btnOpenMicrolearningFromTips" type="button" style="background: rgba(16, 185, 129, 0.2); border: 1px solid #10b981; color: #6ee7b7; font-size: 12px; font-weight: 700; padding: 9px 12px; border-radius: 8px; cursor: pointer; display: flex; align-items: center; gap: 6px; white-space: nowrap;">
               <span>🔔</span> Configurar Microaprendizaje
             </button>
           </div>
 
           <!-- Filtros rápidos por categoría con scroll horizontal táctil -->
           <div style="display: flex; gap: 6px; align-items: center; overflow-x: auto; padding-bottom: 4px; -webkit-overflow-scrolling: touch;">
-            <button class="tip-filter-btn" data-cat="all" style="background: #0f2942; border: 1px solid #0f2942; color: #ffffff; padding: 5px 12px; border-radius: 12px; font-size: 12px; font-weight: 700; cursor: pointer; white-space: nowrap;">Todas</button>
-            <button class="tip-filter-btn" data-cat="Fórmulas y Mnemotecnias" style="background: #ffffff; border: 1px solid #e2e8f0; color: #475569; padding: 5px 12px; border-radius: 12px; font-size: 12px; font-weight: 700; cursor: pointer; white-space: nowrap;">📐 Fórmulas & Infografías</button>
-            <button class="tip-filter-btn" data-cat="Verbo Rector" style="background: #ffffff; border: 1px solid #e2e8f0; color: #475569; padding: 5px 12px; border-radius: 12px; font-size: 12px; font-weight: 700; cursor: pointer; white-space: nowrap;">⚡ Verbo Rector</button>
-            <button class="tip-filter-btn" data-cat="Comprensión Lectora" style="background: #ffffff; border: 1px solid #e2e8f0; color: #475569; padding: 5px 12px; border-radius: 12px; font-size: 12px; font-weight: 700; cursor: pointer; white-space: nowrap;">📖 Comprensión</button>
-            <button class="tip-filter-btn" data-cat="Régimen Aduanero" style="background: #ffffff; border: 1px solid #e2e8f0; color: #475569; padding: 5px 12px; border-radius: 12px; font-size: 12px; font-weight: 700; cursor: pointer; white-space: nowrap;">🚢 Aduanas (Dec. 1165)</button>
-            <button class="tip-filter-btn" data-cat="Procedimiento Tributario" style="background: #ffffff; border: 1px solid #e2e8f0; color: #475569; padding: 5px 12px; border-radius: 12px; font-size: 12px; font-weight: 700; cursor: pointer; white-space: nowrap;">🏪 Facturación & Clausura</button>
-            <button class="tip-filter-btn" data-cat="Constitución y Legalidad" style="background: #ffffff; border: 1px solid #e2e8f0; color: #475569; padding: 5px 12px; border-radius: 12px; font-size: 12px; font-weight: 600; cursor: pointer; white-space: nowrap;">⚖️ Legalidad</button>
-            <button class="tip-filter-btn" data-cat="Estructura Orgánica DIAN" style="background: #ffffff; border: 1px solid #e2e8f0; color: #475569; padding: 5px 12px; border-radius: 12px; font-size: 12px; font-weight: 700; cursor: pointer; white-space: nowrap;">🏛️ Estructura & Carrera</button>
-            <button class="tip-filter-btn" data-cat="Régimen Especial Aduanero" style="background: #ffffff; border: 1px solid #e2e8f0; color: #475569; padding: 5px 12px; border-radius: 12px; font-size: 12px; font-weight: 700; cursor: pointer; white-space: nowrap;">🚢 Zonas Francas</button>
-            <button class="tip-filter-btn" data-cat="Procedimientos Institucionales" style="background: #ffffff; border: 1px solid #e2e8f0; color: #475569; padding: 5px 12px; border-radius: 12px; font-size: 12px; font-weight: 700; cursor: pointer; white-space: nowrap;">📬 PQRSF & Denuncias</button>
-            <button class="tip-filter-btn" data-cat="Técnica de Examen" style="background: #ffffff; border: 1px solid #e2e8f0; color: #475569; padding: 5px 12px; border-radius: 12px; font-size: 12px; font-weight: 600; cursor: pointer; white-space: nowrap;">🎯 Técnica</button>
-            <button class="tip-filter-btn" data-cat="Ética e Integridad" style="background: #ffffff; border: 1px solid #e2e8f0; color: #475569; padding: 5px 12px; border-radius: 12px; font-size: 12px; font-weight: 600; cursor: pointer; white-space: nowrap;">🛡️ Integridad</button>
+            <button class="tip-filter-btn active" data-cat="all" style="background: #10b981; border: none; color: #022c22; padding: 5px 12px; border-radius: 12px; font-size: 12px; font-weight: 800; cursor: pointer; white-space: nowrap;">Todas</button>
+            <button class="tip-filter-btn" data-cat="Fórmulas y Mnemotecnias" style="background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.14); color: #cbd5e1; padding: 5px 12px; border-radius: 12px; font-size: 12px; font-weight: 700; cursor: pointer; white-space: nowrap;">📐 Fórmulas & Infografías</button>
+            <button class="tip-filter-btn" data-cat="Verbo Rector" style="background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.14); color: #cbd5e1; padding: 5px 12px; border-radius: 12px; font-size: 12px; font-weight: 700; cursor: pointer; white-space: nowrap;">⚡ Verbo Rector</button>
+            <button class="tip-filter-btn" data-cat="Comprensión Lectora" style="background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.14); color: #cbd5e1; padding: 5px 12px; border-radius: 12px; font-size: 12px; font-weight: 700; cursor: pointer; white-space: nowrap;">📖 Comprensión</button>
+            <button class="tip-filter-btn" data-cat="Régimen Aduanero" style="background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.14); color: #cbd5e1; padding: 5px 12px; border-radius: 12px; font-size: 12px; font-weight: 700; cursor: pointer; white-space: nowrap;">🚢 Aduanas (Dec. 1165)</button>
+            <button class="tip-filter-btn" data-cat="Procedimiento Tributario" style="background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.14); color: #cbd5e1; padding: 5px 12px; border-radius: 12px; font-size: 12px; font-weight: 700; cursor: pointer; white-space: nowrap;">🏪 Facturación & Clausura</button>
+            <button class="tip-filter-btn" data-cat="Constitución y Legalidad" style="background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.14); color: #cbd5e1; padding: 5px 12px; border-radius: 12px; font-size: 12px; font-weight: 600; cursor: pointer; white-space: nowrap;">⚖️ Legalidad</button>
+            <button class="tip-filter-btn" data-cat="Estructura Orgánica DIAN" style="background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.14); color: #cbd5e1; padding: 5px 12px; border-radius: 12px; font-size: 12px; font-weight: 700; cursor: pointer; white-space: nowrap;">🏛️ Estructura & Carrera</button>
+            <button class="tip-filter-btn" data-cat="Régimen Especial Aduanero" style="background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.14); color: #cbd5e1; padding: 5px 12px; border-radius: 12px; font-size: 12px; font-weight: 700; cursor: pointer; white-space: nowrap;">🚢 Zonas Francas</button>
+            <button class="tip-filter-btn" data-cat="Procedimientos Institucionales" style="background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.14); color: #cbd5e1; padding: 5px 12px; border-radius: 12px; font-size: 12px; font-weight: 700; cursor: pointer; white-space: nowrap;">📬 PQRSF & Denuncias</button>
+            <button class="tip-filter-btn" data-cat="Técnica de Examen" style="background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.14); color: #cbd5e1; padding: 5px 12px; border-radius: 12px; font-size: 12px; font-weight: 600; cursor: pointer; white-space: nowrap;">🎯 Técnica</button>
+            <button class="tip-filter-btn" data-cat="Ética e Integridad" style="background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.14); color: #cbd5e1; padding: 5px 12px; border-radius: 12px; font-size: 12px; font-weight: 600; cursor: pointer; white-space: nowrap;">🛡️ Integridad</button>
           </div>
 
           <div style="display: flex; justify-content: space-between; align-items: center; font-size: 12px; color: #94a3b8; padding: 0 2px;">

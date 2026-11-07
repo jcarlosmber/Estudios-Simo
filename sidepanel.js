@@ -3925,36 +3925,36 @@ function evaluateAnswer(selectedId) {
     const incorrectOpts = q.opciones.filter((o) => o.id !== q.respuestaCorrecta);
     const verdictBannerHtml = isCorrect
       ? `
-        <div style="background: #f0fdf4; border: 1.5px solid #86efac; border-radius: 10px; padding: 12px 14px; margin-bottom: 12px; display: flex; align-items: center; gap: 10px;">
+        <div style="background: linear-gradient(135deg, rgba(6, 78, 59, 0.95), rgba(6, 95, 70, 0.8)); border: 1.5px solid #10b981; border-radius: 10px; padding: 12px 14px; margin-bottom: 12px; display: flex; align-items: center; gap: 10px;">
           <span style="font-size: 26px;">🎯</span>
           <div>
-            <div style="font-size: 15px; font-weight: 800; color: #15803d;">🎯 ¡ACERTASTE! Discriminación perfecta (+1 Acierto)</div>
-            <div style="font-size: 13px; color: #166534; margin-top: 2px;">Identificaste la clave oficial: <strong>Opción ${q.respuestaCorrecta}</strong></div>
+            <div style="font-size: 15px; font-weight: 900; color: #ffffff;">🎯 ¡ACERTASTE! Discriminación perfecta (+1 Acierto)</div>
+            <div style="font-size: 13px; color: #a7f3d0; margin-top: 2px;">Identificaste la clave oficial: <strong>Opción ${q.respuestaCorrecta}</strong></div>
           </div>
         </div>
       `
       : `
-        <div style="background: #fef2f2; border: 1.5px solid #fecdd3; border-radius: 10px; padding: 12px 14px; margin-bottom: 12px; display: flex; align-items: center; gap: 10px;">
+        <div style="background: linear-gradient(135deg, rgba(127, 29, 29, 0.95), rgba(153, 27, 27, 0.8)); border: 1.5px solid #ef4444; border-radius: 10px; padding: 12px 14px; margin-bottom: 12px; display: flex; align-items: center; gap: 10px;">
           <span style="font-size: 26px;">❌</span>
           <div>
-            <div style="font-size: 15px; font-weight: 800; color: #b91c1c;">❌ TRAMPA CAÍDA: La opción era la ${q.respuestaCorrecta}</div>
-            <div style="font-size: 13px; color: #991b1b; margin-top: 2px;">Seleccionaste la Opción ${selectedId} (distractor). Revisa el análisis a continuación.</div>
+            <div style="font-size: 15px; font-weight: 900; color: #ffffff;">❌ TRAMPA CAÍDA: La opción era la ${q.respuestaCorrecta}</div>
+            <div style="font-size: 13px; color: #fecaca; margin-top: 2px;">Seleccionaste la Opción ${selectedId} (distractor). Revisa el análisis a continuación.</div>
           </div>
         </div>
       `;
 
     huntBox.innerHTML = `
       ${verdictBannerHtml}
-      <div style="font-weight: 800; color: #b45309; margin-bottom: 10px; font-size: 14px; display: flex; align-items: center; gap: 6px;">
+      <div style="font-weight: 800; color: #34d399; margin-bottom: 10px; font-size: 14px; display: flex; align-items: center; gap: 6px;">
         <span>🎯</span>
         <span>Cacería de Distractores: ¿Por qué fallan las otras opciones?</span>
       </div>
       ${incorrectOpts.map((o) => {
         const explText = o.explicacion || (q.justificacion ? `Distractor descartado: ${q.justificacion}` : "Opción incorrecta según la normativa y los criterios técnicos evaluados.");
         return `
-        <div style="margin-bottom: 8px; padding: 11px 13px; background: #fef2f2; border: 1px solid #fecdd3; border-left: 4px solid #e11d48; border-radius: 8px;">
-          <strong style="color: #b91c1c; font-size: 13.5px; font-weight: 800;">❌ Opción ${o.id}:</strong>
-          <div style="color: #334155; font-size: 13px; margin-top: 3px; line-height: 1.55;">${explText}</div>
+        <div style="margin-bottom: 8px; padding: 11px 13px; background: rgba(127, 29, 29, 0.35); border: 1px solid rgba(239, 68, 68, 0.4); border-left: 4px solid #ef4444; border-radius: 8px;">
+          <strong style="color: #f87171; font-size: 13.5px; font-weight: 800;">❌ Opción ${o.id}:</strong>
+          <div style="color: #f1f5f9; font-size: 13px; margin-top: 3px; line-height: 1.55;">${explText}</div>
         </div>
       `;}).join("")}
     `;
@@ -4055,17 +4055,17 @@ function openFeedbackModal(isCorrect, q) {
   if (isCorrect) {
     icon.className = "verdict-icon correct";
     icon.textContent = "🎯";
-    icon.style.background = "#dcfce7";
-    icon.style.borderColor = "#86efac";
-    icon.style.color = "#15803d";
+    icon.style.background = "rgba(16, 185, 129, 0.25)";
+    icon.style.borderColor = "#10b981";
+    icon.style.color = "#6ee7b7";
 
     title.className = "verdict-title correct";
     title.textContent = "🎯 ¡ACERTASTE! Discriminación perfecta (+1 Acierto)";
-    title.style.color = "#15803d";
+    title.style.color = "#ffffff";
 
     if (sub) {
       sub.textContent = `Opción ${q.respuestaCorrecta} es la Clave Oficial CNSC/DIAN • ${q.tema || "Juicio Situacional"}`;
-      sub.style.color = "#334155";
+      sub.style.color = "#a7f3d0";
     }
 
     if (streakBadge && AppState.sessionStreak > 0) {
@@ -4080,17 +4080,17 @@ function openFeedbackModal(isCorrect, q) {
   } else {
     icon.className = "verdict-icon incorrect";
     icon.textContent = "❌";
-    icon.style.background = "#fee2e2";
-    icon.style.borderColor = "#fecdd3";
-    icon.style.color = "#b91c1c";
+    icon.style.background = "rgba(239, 68, 68, 0.25)";
+    icon.style.borderColor = "#ef4444";
+    icon.style.color = "#fca5a5";
 
     title.className = "verdict-title incorrect";
     title.textContent = `❌ TRAMPA CAÍDA: La opción era la ${q.respuestaCorrecta}`;
-    title.style.color = "#b91c1c";
+    title.style.color = "#ffffff";
 
     if (sub) {
       sub.textContent = `Caíste en un distractor de juicio situacional • La clave oficial es la Opción ${q.respuestaCorrecta}`;
-      sub.style.color = "#475569";
+      sub.style.color = "#fecaca";
     }
 
     if (streakBadge) streakBadge.style.display = "none";
@@ -4098,9 +4098,9 @@ function openFeedbackModal(isCorrect, q) {
 
   if (q.citaNormativa) {
     normText.innerHTML = `
-      <div style="font-weight: 800; color: #0f172a; margin-bottom: 6px; font-size: 14.5px;">${q.norma || "Criterio de juicio situacional oficial para la DIAN."}</div>
-      <div style="background: #ffffff; border: 1px solid #cbd5e1; border-left: 4px solid #0284c7; padding: 12px 14px; border-radius: 8px; font-style: italic; font-size: 13.5px; line-height: 1.6; color: #334155; margin-top: 6px;">
-        <strong style="color: #0284c7; font-style: normal; display: block; margin-bottom: 3px; font-size: 12.5px; text-transform: uppercase; letter-spacing: 0.3px;">📖 Cita Clave para asimilar:</strong>
+      <div style="font-weight: 800; color: #ffffff; margin-bottom: 6px; font-size: 14.5px;">${q.norma || "Criterio de juicio situacional oficial para la DIAN."}</div>
+      <div style="background: rgba(0, 0, 0, 0.45); border: 1px solid rgba(56, 189, 248, 0.35); border-left: 4px solid #38bdf8; padding: 12px 14px; border-radius: 8px; font-style: italic; font-size: 13.5px; line-height: 1.6; color: #f1f5f9; margin-top: 6px;">
+        <strong style="color: #38bdf8; font-style: normal; display: block; margin-bottom: 3px; font-size: 12.5px; text-transform: uppercase; letter-spacing: 0.3px;">📖 Cita Clave para asimilar:</strong>
         ${q.citaNormativa}
       </div>
     `;
@@ -4118,17 +4118,17 @@ function openFeedbackModal(isCorrect, q) {
       border-radius: 8px;
       font-size: 14px;
       line-height: 1.6;
-      background-color: ${isThisCorrect ? "#f0fdf4" : "#fef2f2"};
-      border: 1px solid ${isThisCorrect ? "#bbf7d0" : "#fecdd3"};
-      border-left: 4px solid ${isThisCorrect ? "#15803d" : "#e11d48"};
+      background: ${isThisCorrect ? "rgba(6, 78, 59, 0.45)" : "rgba(127, 29, 29, 0.35)"};
+      border: 1.5px solid ${isThisCorrect ? "#10b981" : "rgba(239, 68, 68, 0.45)"};
+      border-left: 4px solid ${isThisCorrect ? "#10b981" : "#ef4444"};
       margin-bottom: 8px;
     `;
     item.innerHTML = `
-      <div style="font-size: 14px; font-weight: 800; color: ${isThisCorrect ? "#15803d" : "#b91c1c"}; margin-bottom: 4px; display: flex; align-items: center; gap: 6px;">
+      <div style="font-size: 14px; font-weight: 800; color: ${isThisCorrect ? "#6ee7b7" : "#fca5a5"}; margin-bottom: 4px; display: flex; align-items: center; gap: 6px;">
         <span>${isThisCorrect ? "✓" : "✕"}</span>
         <span>Opción ${opt.id} ${isThisCorrect ? "— CLAVE OFICIAL CNSC/DIAN" : "— DISTRACTOR"}</span>
       </div> 
-      <div style="font-size: 13.5px; color: ${isThisCorrect ? "#166534" : "#334155"}; line-height: 1.55;">
+      <div style="font-size: 13.5px; color: #f1f5f9; line-height: 1.55;">
         ${opt.explicacion || (isThisCorrect ? (q.justificacion || "Opción correcta conforme a la normativa aplicable.") : (q.justificacion ? `Distractor descartado: ${q.justificacion}` : "Opción incorrecta según los criterios de la prueba."))}
       </div>
     `;
@@ -6056,38 +6056,38 @@ function renderSimulacroQuestion() {
   const selectedAnswer = SimulacroState.answers[idx];
 
   if (SimulacroState.mode === "optical") {
-    // MODO HOJA ÓPTICA AREANDINA (Lápiz N° 2)
+    // MODO HOJA ÓPTICA AREANDINA (Lápiz N° 2) - ESTILO PLAN 3006 DARK EMERALD
     const card = document.createElement("div");
-    card.style.cssText = "background: #ffffff; color: #0b1120; border-radius: 10px; padding: 14px 16px; box-shadow: 0 4px 15px rgba(0,0,0,0.4); border: 2px solid #e2e8f0; display: flex; flex-direction: column; gap: 12px;";
+    card.style.cssText = "background: linear-gradient(135deg, rgba(15, 23, 42, 0.98), rgba(6, 78, 59, 0.85)); color: #ffffff; border-radius: 12px; padding: 16px 18px; box-shadow: 0 8px 24px rgba(0,0,0,0.5); border: 1.5px solid rgba(16, 185, 129, 0.4); display: flex; flex-direction: column; gap: 12px;";
 
     card.innerHTML = `
-      <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #0f172a; padding-bottom: 8px;">
-        <div style="font-size: 11px; font-weight: 900; color: #0f172a; letter-spacing: 0.5px;">
+      <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1.5px solid rgba(255, 255, 255, 0.12); padding-bottom: 8px;">
+        <div style="font-size: 11px; font-weight: 900; color: #6ee7b7; letter-spacing: 0.5px;">
           HOJA DE RESPUESTAS OFICIAL AREANDINA • LÁPIZ N° 2
         </div>
-        <span style="font-size: 11px; font-weight: 800; background: #0f172a; color: #ffffff; padding: 2px 8px; border-radius: 4px;">
+        <span style="font-size: 11px; font-weight: 800; background: rgba(16, 185, 129, 0.25); color: #6ee7b7; border: 1px solid #10b981; padding: 2px 8px; border-radius: 4px;">
           ÍTEM ${idx + 1}
         </span>
       </div>
 
-      <div style="display: flex; justify-content: center; gap: 24px; padding: 10px 0; background: #f8fafc; border-radius: 8px; border: 1px dashed #cbd5e1;">
+      <div style="display: flex; justify-content: center; gap: 24px; padding: 12px 0; background: rgba(0, 0, 0, 0.4); border-radius: 8px; border: 1px dashed rgba(255, 255, 255, 0.18);">
         ${['A', 'B', 'C'].map((letter) => {
           const isMarked = selectedAnswer === letter;
           return `
-            <button type="button" class="sim-optical-bubble" data-letter="${letter}" style="width: 44px; height: 44px; border-radius: 50%; border: 2px solid ${isMarked ? '#090d16' : '#64748b'}; background: ${isMarked ? '#090d16' : '#ffffff'}; color: ${isMarked ? '#ffffff' : '#0f172a'}; font-size: 16px; font-weight: 900; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: ${isMarked ? 'inset 0 3px 6px rgba(0,0,0,0.8), 0 2px 8px rgba(0,0,0,0.3)' : '0 2px 4px rgba(0,0,0,0.06)'};">
+            <button type="button" class="sim-optical-bubble" data-letter="${letter}" style="width: 44px; height: 44px; border-radius: 50%; border: 2px solid ${isMarked ? '#10b981' : 'rgba(255, 255, 255, 0.3)'}; background: ${isMarked ? '#10b981' : 'rgba(15, 23, 42, 0.8)'}; color: ${isMarked ? '#022c22' : '#ffffff'}; font-size: 16px; font-weight: 900; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: ${isMarked ? '0 0 14px rgba(16, 185, 129, 0.6)' : '0 2px 4px rgba(0,0,0,0.2)'};">
               ${letter}
             </button>
           `;
         }).join('')}
       </div>
-      <div style="font-size: 10px; color: #64748b; text-align: center; font-style: italic;">
+      <div style="font-size: 11px; color: #94a3b8; text-align: center; font-style: italic;">
         Toca el círculo para rellenarlo completamente con lápiz grafito N° 2.
       </div>
 
       <div style="display: flex; flex-direction: column; gap: 8px; margin-top: 4px;">
         ${q.opciones.map((opt) => `
-          <div class="sim-optical-desc" data-letter="${opt.id}" style="font-size: 12px; line-height: 1.5; color: #1e293b; background: ${selectedAnswer === opt.id ? '#f1f5f9' : '#ffffff'}; border-left: 4px solid ${selectedAnswer === opt.id ? '#0f172a' : '#cbd5e1'}; padding: 8px 10px; border-radius: 4px; cursor: pointer;">
-            <strong style="color: #0f172a;">${opt.id}.</strong> ${opt.texto}
+          <div class="sim-optical-desc" data-letter="${opt.id}" style="font-size: 13px; line-height: 1.5; color: ${selectedAnswer === opt.id ? '#ffffff' : '#e2e8f0'}; background: ${selectedAnswer === opt.id ? 'rgba(16, 185, 129, 0.2)' : 'rgba(15, 23, 42, 0.6)'}; border-left: 4px solid ${selectedAnswer === opt.id ? '#10b981' : 'rgba(255, 255, 255, 0.2)'}; border: 1px solid ${selectedAnswer === opt.id ? '#10b981' : 'rgba(255, 255, 255, 0.08)'}; padding: 10px 12px; border-radius: 6px; cursor: pointer;">
+            <strong style="color: ${selectedAnswer === opt.id ? '#6ee7b7' : '#ffffff'};">${opt.id}.</strong> ${opt.texto}
           </div>
         `).join('')}
       </div>
@@ -6103,17 +6103,17 @@ function renderSimulacroQuestion() {
 
     container.appendChild(card);
   } else {
-    // MODO DIGITAL TÁCTIL
+    // MODO DIGITAL TÁCTIL - ESTILO PLAN 3006 DARK EMERALD
     q.opciones.forEach((opt) => {
       const isSelected = selectedAnswer === opt.id;
       const card = document.createElement("div");
-      card.style.cssText = `background: ${isSelected ? '#eff6ff' : '#ffffff'}; border: ${isSelected ? '1.5px solid #2563eb' : '1px solid #e2e8f0'}; border-radius: 8px; padding: 12px 14px; cursor: pointer; display: flex; gap: 10px; align-items: flex-start; transition: all 0.2s ease; box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);`;
+      card.style.cssText = `background: ${isSelected ? 'rgba(16, 185, 129, 0.22)' : 'rgba(15, 23, 42, 0.85)'}; border: ${isSelected ? '1.5px solid #10b981' : '1px solid rgba(255, 255, 255, 0.12)'}; border-radius: 8px; padding: 12px 14px; cursor: pointer; display: flex; gap: 10px; align-items: flex-start; transition: all 0.2s ease; box-shadow: ${isSelected ? '0 4px 15px rgba(16, 185, 129, 0.2)' : '0 1px 3px rgba(0,0,0,0.3)'}; margin-bottom: 8px;`;
 
       card.innerHTML = `
-        <span style="width: 26px; height: 26px; border-radius: 50%; background: ${isSelected ? '#2563eb' : '#f1f5f9'}; color: ${isSelected ? '#ffffff' : '#475569'}; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 13px; flex-shrink: 0; border: 1px solid ${isSelected ? '#2563eb' : '#e2e8f0'};">
+        <span style="width: 28px; height: 28px; border-radius: 50%; background: ${isSelected ? '#10b981' : 'rgba(255, 255, 255, 0.08)'}; color: ${isSelected ? '#022c22' : '#ffffff'}; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 13px; flex-shrink: 0; border: 1px solid ${isSelected ? '#10b981' : 'rgba(255, 255, 255, 0.2)'};">
           ${opt.id}
         </span>
-        <span style="font-size: 13.5px; line-height: 1.55; color: #1e293b; font-weight: ${isSelected ? '700' : '500'};">
+        <span style="font-size: 13.5px; line-height: 1.55; color: ${isSelected ? '#ffffff' : '#f1f5f9'}; font-weight: ${isSelected ? '700' : '500'};">
           ${opt.texto}
         </span>
       `;
@@ -6288,35 +6288,35 @@ function reviewSimAnswers() {
   const isCorrect = userAns === q.respuestaCorrecta;
 
   container.innerHTML = `
-    <div style="background: ${isCorrect ? '#f0fdf4' : '#fef2f2'}; border: 1px solid ${isCorrect ? '#bbf7d0' : '#fecaca'}; border-left: 4px solid ${isCorrect ? '#16a34a' : '#dc2626'}; border-radius: 8px; padding: 12px 14px; margin-bottom: 8px;">
-      <div style="font-weight: 800; font-size: 13.5px; color: ${isCorrect ? '#15803d' : '#b91c1c'};">
+    <div style="background: ${isCorrect ? 'rgba(6, 78, 59, 0.45)' : 'rgba(127, 29, 29, 0.35)'}; border: 1.5px solid ${isCorrect ? '#10b981' : 'rgba(239, 68, 68, 0.45)'}; border-left: 4px solid ${isCorrect ? '#10b981' : '#ef4444'}; border-radius: 8px; padding: 12px 14px; margin-bottom: 8px;">
+      <div style="font-weight: 800; font-size: 13.5px; color: ${isCorrect ? '#6ee7b7' : '#fca5a5'};">
         ${isCorrect ? '✓ Discriminación Correcta' : `✕ Marcaste Opción ${userAns || 'Sin Responder'} (La Clave Oficial es: ${q.respuestaCorrecta})`}
       </div>
-      <div style="font-size: 13px; color: #334155; margin-top: 6px; line-height: 1.55;">
+      <div style="font-size: 13px; color: #f1f5f9; margin-top: 6px; line-height: 1.55;">
         ${q.opciones.find(o => o.id === q.respuestaCorrecta)?.explicacion || q.justificacion || 'Respuesta correcta fundamentada en la normativa legal vigente.'}
       </div>
       ${q.citaNormativa ? `
-        <div style="margin-top: 8px; padding-top: 6px; border-top: 1px solid #e2e8f0; font-size: 12px; color: #0284c7; font-style: italic;">
+        <div style="margin-top: 8px; padding-top: 6px; border-top: 1px solid rgba(255, 255, 255, 0.12); font-size: 12px; color: #38bdf8; font-style: italic;">
           ⚖️ Cita Normativa Areandina: ${q.citaNormativa}
         </div>
       ` : ''}
     </div>
   `;
 
-  // Renderizar las opciones estándar comentadas
+  // Renderizar las opciones estándar comentadas con estilo Dark Executive Emerald
   q.opciones.forEach((opt) => {
     const isThisCorrect = opt.id === q.respuestaCorrecta;
     const isUserChoice = opt.id === userAns;
 
     const optCard = document.createElement("div");
-    optCard.style.cssText = `background: #ffffff; border: 1px solid ${isThisCorrect ? '#16a34a' : (isUserChoice ? '#dc2626' : '#e2e8f0')}; border-left: 4px solid ${isThisCorrect ? '#16a34a' : (isUserChoice ? '#dc2626' : '#cbd5e1')}; border-radius: 8px; padding: 10px 14px; display: flex; flex-direction: column; gap: 4px; margin-bottom: 6px;`;
+    optCard.style.cssText = `background: rgba(15, 23, 42, 0.85); border: 1px solid ${isThisCorrect ? '#10b981' : (isUserChoice ? '#ef4444' : 'rgba(255, 255, 255, 0.12)')}; border-left: 4px solid ${isThisCorrect ? '#10b981' : (isUserChoice ? '#ef4444' : 'rgba(255, 255, 255, 0.2)')}; border-radius: 8px; padding: 10px 14px; display: flex; flex-direction: column; gap: 4px; margin-bottom: 6px;`;
 
     optCard.innerHTML = `
       <div style="display: flex; gap: 8px; align-items: center; justify-content: space-between;">
-        <span style="font-weight: 700; font-size: 13px; color: #1e293b;">
-          <strong>${opt.id}.</strong> ${opt.texto}
+        <span style="font-weight: 700; font-size: 13px; color: #ffffff;">
+          <strong style="color: ${isThisCorrect ? '#6ee7b7' : '#ffffff'};">${opt.id}.</strong> ${opt.texto}
         </span>
-        ${isThisCorrect ? '<span style="font-size: 10.5px; background: #ecfdf5; color: #047857; border: 1px solid #a7f3d0; padding: 2px 7px; border-radius: 4px; font-weight: 800; white-space: nowrap;">CLAVE OFICIAL</span>' : ''}
+        ${isThisCorrect ? '<span style="font-size: 10.5px; background: rgba(16, 185, 129, 0.25); color: #6ee7b7; border: 1px solid #10b981; padding: 2px 7px; border-radius: 4px; font-weight: 800; white-space: nowrap;">CLAVE OFICIAL</span>' : ''}
       </div>
     `;
     container.appendChild(optCard);
@@ -8181,31 +8181,31 @@ function setupVerbosRectoresModule() {
     container.innerHTML = filtered.map((v) => {
       const evalResult = VERBOS_RECTORES_DATA.evaluarVerboParaCargo(v.verbo, profile);
       const esPropio = evalResult ? evalResult.esPropio : false;
-      const statusColor = esPropio ? "#15803d" : "#b91c1c";
-      const statusBg = esPropio ? "#dcfce7" : "#fee2e2";
-      const statusBorder = esPropio ? "#bbf7d0" : "#fecdd3";
+      const statusColor = esPropio ? "#6ee7b7" : "#fca5a5";
+      const statusBg = esPropio ? "rgba(16, 185, 129, 0.2)" : "rgba(239, 68, 68, 0.2)";
+      const statusBorder = esPropio ? "#10b981" : "#ef4444";
       const statusLabel = esPropio ? "✅ Propio de tu Cargo" : `⚠️ ${evalResult ? evalResult.tipoDistractor : 'Distractor'}`;
 
       const levelsBadges = Object.keys(v.niveles)
         .filter((k) => v.niveles[k])
-        .map((k) => `<span style="font-size: 10px; font-weight: 800; background: #f1f5f9; padding: 2px 6px; border-radius: 4px; color: #475569; border: 1px solid #e2e8f0;">${k}</span>`)
+        .map((k) => `<span style="font-size: 10px; font-weight: 800; background: rgba(255, 255, 255, 0.08); padding: 2px 6px; border-radius: 4px; color: #cbd5e1; border: 1px solid rgba(255, 255, 255, 0.14);">${k}</span>`)
         .join(" ");
 
       return `
-        <div class="verbo-card-item" style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 10px; padding: 12px 14px; display: flex; flex-direction: column; gap: 8px; box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04); margin-bottom: 8px;">
+        <div class="verbo-card-item" style="background: linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(6, 78, 59, 0.45)); border: 1px solid rgba(255, 255, 255, 0.12); border-left: 4px solid ${esPropio ? '#10b981' : '#f59e0b'}; border-radius: 10px; padding: 12px 14px; display: flex; flex-direction: column; gap: 8px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); margin-bottom: 8px;">
           <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 6px;">
             <div style="display: flex; align-items: center; gap: 8px;">
-              <span style="font-size: 15px; font-weight: 800; color: #0f172a;">${v.num}. ${v.verbo}</span>
+              <span style="font-size: 15px; font-weight: 800; color: #ffffff;">${v.num}. ${v.verbo}</span>
               <div style="display: flex; gap: 4px;">${levelsBadges}</div>
             </div>
             <span style="font-size: 11px; font-weight: 800; color: ${statusColor}; background: ${statusBg}; border: 1px solid ${statusBorder}; padding: 3px 9px; border-radius: 12px;">
               ${statusLabel}
             </span>
           </div>
-          <div style="font-size: 13px; color: #334155; line-height: 1.5;">
+          <div style="font-size: 13px; color: #f1f5f9; line-height: 1.5;">
             ${v.descripcion}
           </div>
-          <div style="font-size: 12px; color: ${esPropio ? '#166534' : '#991b1b'}; background: ${esPropio ? '#f0fdf4' : '#fef2f2'}; padding: 8px 10px; border-radius: 6px; border: 1px solid ${statusBorder}; border-left: 3px solid ${statusColor}; line-height: 1.45;">
+          <div style="font-size: 12px; color: ${esPropio ? '#ecfdf5' : '#fef2f2'}; background: ${esPropio ? 'rgba(6, 78, 59, 0.35)' : 'rgba(127, 29, 29, 0.3)'}; padding: 8px 10px; border-radius: 6px; border: 1px solid ${statusBorder}; border-left: 3px solid ${esPropio ? '#10b981' : '#ef4444'}; line-height: 1.45;">
             💡 <strong>En tu examen:</strong> ${evalResult ? evalResult.diagnostico : ''}
           </div>
         </div>

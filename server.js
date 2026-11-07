@@ -30,8 +30,9 @@ app.use(cors({
 
 app.use(express.json({ limit: '10mb' }));
 
-// Servir archivos estáticos del proyecto (HTML, CSS, JS, imágenes, iconos)
+// Servir archivos estáticos del proyecto (HTML, CSS, JS, imágenes, iconos y material)
 app.use(express.static(__dirname));
+app.use('/material', express.static(path.join(__dirname, 'material')));
 
 function loadDB() {
   if (!fs.existsSync(DB_FILE)) return {};
@@ -139,7 +140,14 @@ app.get(['/download/extension', '/simo-prep-extension.zip'], (req, res) => {
 });
 
 // 7. Ruta directa para visualizar / descargar el PDF oficial del Plan de Estudio (121 páginas)
-app.get(['/plan-estudio.pdf', '/material/Plan_Estudio_Gestor_III_DIAN_Ficha_3006.pdf'], (req, res) => {
+app.get([
+  '/plan-estudio.pdf',
+  '/material/01_Guias_y_Convocatoria/Plan_Estudio_Gestor_III_DIAN_Ficha_3006.pdf',
+  '/material/Plan_Estudio_Gestor_III_DIAN_Ficha_3006.pdf',
+  '/Plan_Estudio_Gestor_III_DIAN_Ficha_3006.pdf',
+  '/pdf/plan-estudio',
+  '/plan-estudio'
+], (req, res) => {
   const pdfPath = path.join(__dirname, 'material', '01_Guias_y_Convocatoria', 'Plan_Estudio_Gestor_III_DIAN_Ficha_3006.pdf');
   if (fs.existsSync(pdfPath)) {
     res.setHeader('Content-Type', 'application/pdf');
