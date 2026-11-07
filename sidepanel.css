@@ -3657,3 +3657,514 @@ body.theme-light #singleTipContenido .tip-trampa-val {
 
 
 
+
+
+/* =========================================================================
+   MEJORAS INTEGRALES MODO CLARO (ALTA LEGIBILIDAD Y CONTRASTE EXECUTIVE)
+   ========================================================================= */
+
+/* 1. Modal Headers Globales en Modo Claro */
+body.theme-light .modal-header {
+  background: #ffffff !important;
+  border-bottom: 1px solid #e2e8f0 !important;
+  color: #0f172a !important;
+}
+
+body.theme-light .modal-header h2,
+body.theme-light .modal-header h3,
+body.theme-light .modal-header h4 {
+  color: #0f172a !important;
+}
+
+body.theme-light .modal-header p,
+body.theme-light .modal-header span {
+  color: #475569 !important;
+}
+
+body.theme-light .modal-close-btn,
+body.theme-light #btnCloseTipsModalX,
+body.theme-light #btnCloseDiaDModalX,
+body.theme-light #btnCloseJobModalX,
+body.theme-light #btnCloseVerbosModal,
+body.theme-light #btnCloseSettingsModalX {
+  background: #f1f5f9 !important;
+  border: 1px solid #cbd5e1 !important;
+  color: #475569 !important;
+}
+
+body.theme-light .modal-close-btn:hover,
+body.theme-light #btnCloseTipsModalX:hover,
+body.theme-light #btnCloseDiaDModalX:hover {
+  background: #e2e8f0 !important;
+  color: #0f172a !important;
+}
+
+/* 2. Modal Protocolo Oficial Día D (Imagen 1) */
+body.theme-light #diaDModal .modal-card {
+  background: #ffffff !important;
+  border: 1.5px solid #cbd5e1 !important;
+  color: #0f172a !important;
+  box-shadow: 0 16px 48px rgba(15, 23, 42, 0.15) !important;
+}
+
+body.theme-light #diaDModal div[style*="border-bottom: 1px solid"] {
+  border-bottom-color: #e2e8f0 !important;
+}
+
+body.theme-light #diaDModal div[style*="font-size: 16px; font-weight: 800"] {
+  color: #0f172a !important;
+}
+
+body.theme-light #diaDModal div[style*="font-size: 12px; color: #fca5a5"] {
+  color: #b91c1c !important;
+  font-weight: 800 !important;
+}
+
+body.theme-light #diaDModal div[style*="background: rgba(245, 158, 11"] {
+  background: #fffbeb !important;
+  border: 1.5px solid #fcd34d !important;
+  border-left: 4px solid #d97706 !important;
+}
+
+body.theme-light #diaDModal div[style*="color: #f59e0b"] {
+  color: #b45309 !important;
+}
+
+body.theme-light #diaDModal div[style*="color: #e2e8f0"] {
+  color: #1e293b !important;
+}
+
+body.theme-light #diaDModal span[style*="color: #f87171"] {
+  color: #dc2626 !important;
+  font-weight: 900 !important;
+}
+
+body.theme-light #diaDModal label[style*="background: rgba(11, 17, 32"] {
+  background: #f8fafc !important;
+  border: 1.5px solid #e2e8f0 !important;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.04) !important;
+}
+
+body.theme-light #diaDModal label strong {
+  color: #0f172a !important;
+}
+
+body.theme-light #diaDModal div[style*="background: rgba(239, 68, 68"] {
+  background: #fff1f2 !important;
+  border: 1.5px solid #fecdd3 !important;
+  border-left: 4px solid #e11d48 !important;
+}
+
+body.theme-light #diaDModal div[style*="color: #f87171"] {
+  color: #be123c !important;
+}
+
+body.theme-light #diaDModal ul[style*="color: #cbd5e1"] {
+  color: #1e293b !important;
+}
+
+body.theme-light #diaDModal ul[style*="color: #cbd5e1"] strong {
+  color: #881337 !important;
+}
+
+body.theme-light #diaDModal div[style*="background: rgba(11, 17, 32, 0.85)"] {
+  background: #f0fdf4 !important;
+  border: 1.5px solid #bbf7d0 !important;
+  border-left: 4px solid #059669 !important;
+}
+
+body.theme-light #diaDModal div[style*="color: #34d399"] {
+  color: #047857 !important;
+}
+
+/* 3. Modal Claves Maestras PJS (Imagen 2) */
+body.theme-light #tipsModal .modal-header {
+  background: #ffffff !important;
+  border-bottom: 1px solid #e2e8f0 !important;
+}
+
+body.theme-light #tipsModal .modal-header h3 {
+  color: #b45309 !important;
+}
+
+body.theme-light #tipsModal .tips-tab-btn {
+  background: #f1f5f9 !important;
+  border: 1px solid #cbd5e1 !important;
+  color: #475569 !important;
+}
+
+body.theme-light #tipsModal .tips-tab-btn.active {
+  background: #0284c7 !important;
+  border-color: #0284c7 !important;
+  color: #ffffff !important;
+}
+
+body.theme-light #singleTipCard {
+  background: #ffffff !important;
+  border: 1.5px solid #cbd5e1 !important;
+  color: #0f172a !important;
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.05) !important;
+}
+
+body.theme-light #singleTipTitle {
+  color: #0f172a !important;
+  font-weight: 800 !important;
+}
+
+body.theme-light #singleTipNorma {
+  color: #0284c7 !important;
+}
+
+body.theme-light #singleTipResumen {
+  background: #f8fafc !important;
+  border: 1.5px solid #e2e8f0 !important;
+  border-left: 4px solid #047857 !important;
+  color: #0f172a !important;
+}
+
+body.theme-light .tip-detallado-text,
+body.theme-light #singleTipContenido .tip-detallado-text,
+body.theme-light #popupTipBody .tip-detallado-text {
+  color: #1e293b !important;
+  line-height: 1.6 !important;
+}
+
+body.theme-light .tip-detallado-text strong,
+body.theme-light #singleTipContenido strong {
+  color: #0f172a !important;
+}
+
+body.theme-light #btnSinglePrev {
+  background: #f1f5f9 !important;
+  border: 1.5px solid #cbd5e1 !important;
+  color: #334155 !important;
+}
+
+body.theme-light #btnSinglePrev:hover:not(:disabled) {
+  background: #e2e8f0 !important;
+  color: #0f172a !important;
+}
+
+body.theme-light .tip-catalog-card {
+  background: #ffffff !important;
+  border: 1.5px solid #cbd5e1 !important;
+  color: #0f172a !important;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04) !important;
+}
+
+/* 4. Decodificador de Verbos Rectores (Imagen 3) */
+body.theme-light #tab-verbos {
+  color: #0f172a !important;
+}
+
+body.theme-light #tab-verbos div[style*="font-size: 16px; font-weight: 800"] {
+  color: #0f172a !important;
+}
+
+body.theme-light #tab-verbos div[style*="color: #94a3b8"] {
+  color: #64748b !important;
+}
+
+body.theme-light .verbos-tab-btn {
+  background: #f1f5f9 !important;
+  border: 1px solid #cbd5e1 !important;
+  color: #475569 !important;
+}
+
+body.theme-light .verbos-tab-btn.active {
+  background: #0284c7 !important;
+  border-color: #0284c7 !important;
+  color: #ffffff !important;
+}
+
+body.theme-light .verbos-pill-filter {
+  background: #f1f5f9 !important;
+  border: 1px solid #cbd5e1 !important;
+  color: #475569 !important;
+}
+
+body.theme-light .verbos-pill-filter.active {
+  background: #0284c7 !important;
+  border-color: #0284c7 !important;
+  color: #ffffff !important;
+}
+
+body.theme-light #filterVerboPropios.active {
+  background: #059669 !important;
+  border-color: #059669 !important;
+}
+
+body.theme-light #filterVerboDistractores.active {
+  background: #dc2626 !important;
+  border-color: #dc2626 !important;
+}
+
+body.theme-light .verbo-card-item {
+  background: #ffffff !important;
+  border: 1.5px solid #e2e8f0 !important;
+  color: #0f172a !important;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.05) !important;
+}
+
+body.theme-light .verbo-card-item:hover {
+  background: #f8fafc !important;
+  border-color: #cbd5e1 !important;
+}
+
+body.theme-light .verbo-card-item span[style*="font-size: 15px"],
+body.theme-light .verbo-card-item .verbo-item-title {
+  color: #0f172a !important;
+  font-weight: 800 !important;
+}
+
+body.theme-light .verbo-card-item div[style*="font-size: 13px"],
+body.theme-light .verbo-card-item .verbo-item-desc {
+  color: #334155 !important;
+}
+
+body.theme-light .verbo-card-item .verbo-level-badge,
+body.theme-light .verbo-card-item span[style*="font-size: 10px"] {
+  background: #f1f5f9 !important;
+  color: #475569 !important;
+  border: 1px solid #cbd5e1 !important;
+}
+
+body.theme-light .verbo-card-item div[style*="font-size: 12px"],
+body.theme-light .verbo-card-item .verbo-item-exam {
+  color: #0f172a !important;
+}
+
+/* 5. Dashboard Cockpit & Métricas & Calculadora (Imagen 4) */
+body.theme-light .cockpit-hero {
+  background: #ffffff !important;
+  background-image: none !important;
+  border: 1.5px solid #cbd5e1 !important;
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.06) !important;
+}
+
+body.theme-light .cockpit-hero div[style*="color: var(--accent-blue)"] {
+  color: #0284c7 !important;
+}
+
+body.theme-light #dashLevelTitle {
+  color: #0f172a !important;
+}
+
+body.theme-light #dashSubStatus {
+  color: #475569 !important;
+}
+
+body.theme-light .cockpit-score-circle {
+  background: conic-gradient(var(--accent-green) calc(var(--score-pct, 0) * 1%), #e2e8f0 0) !important;
+  box-shadow: 0 0 12px rgba(5, 150, 105, 0.2) !important;
+}
+
+body.theme-light .cockpit-score-inner {
+  background-color: #ffffff !important;
+}
+
+body.theme-light .cockpit-score-val {
+  color: #0f172a !important;
+}
+
+body.theme-light .cockpit-score-lbl {
+  color: #059669 !important;
+}
+
+body.theme-light #statTotalAnswered {
+  color: #0f172a !important;
+}
+
+body.theme-light #tab-stats div[style*="background-color: var(--bg-surface)"] {
+  background-color: #ffffff !important;
+  border: 1.5px solid #cbd5e1 !important;
+}
+
+body.theme-light #tab-stats div[style*="background: rgba(11, 17, 32, 0.7)"] {
+  background: #f8fafc !important;
+  border: 1.5px solid #fde68a !important;
+  box-shadow: 0 2px 8px rgba(245, 158, 11, 0.12) !important;
+}
+
+body.theme-light #tab-stats div[style*="color: #f8fafc"] {
+  color: #0f172a !important;
+}
+
+body.theme-light #tab-stats div[style*="color: #cbd5e1"] {
+  color: #334155 !important;
+}
+
+body.theme-light .calculator-card {
+  background: #ffffff !important;
+  background-image: none !important;
+  border: 1.5px solid #cbd5e1 !important;
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.06) !important;
+  color: #0f172a !important;
+}
+
+body.theme-light .calculator-card label {
+  color: #334155 !important;
+}
+
+body.theme-light .calculator-card #selectCalcModality {
+  background: #f8fafc !important;
+  border: 1.5px solid #cbd5e1 !important;
+  color: #0f172a !important;
+}
+
+body.theme-light .calculator-card .calc-label-row span {
+  color: #0f172a !important;
+}
+
+body.theme-light .calculator-card #calcModalityNote {
+  color: #64748b !important;
+}
+
+body.theme-light .calc-slider {
+  background: #e2e8f0 !important;
+}
+
+/* 6. Speed Drill Caza-Distractores (Imagen 5) */
+body.theme-light #speedCazaContainer > div {
+  background: #ffffff !important;
+  background-image: none !important;
+  border: 1.5px solid #cbd5e1 !important;
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.06) !important;
+}
+
+body.theme-light #speedCazaContainer span[style*="color: #ffffff"] {
+  color: #0f172a !important;
+}
+
+body.theme-light #speedCazaRemainingBadge {
+  background: #f0f9ff !important;
+  border-color: #bae6fd !important;
+  color: #0284c7 !important;
+}
+
+body.theme-light #speedCazaContainer div[style*="background: rgba(0, 0, 0, 0.35)"] {
+  background: #f8fafc !important;
+  border: 1px solid #e2e8f0 !important;
+}
+
+body.theme-light #speedCazaCargoBadge {
+  color: #059669 !important;
+}
+
+body.theme-light #speedCazaTimer {
+  color: #dc2626 !important;
+}
+
+body.theme-light #speedCazaContainer .case-box {
+  background: #f8fafc !important;
+  border: 1.5px solid #bae6fd !important;
+  border-left: 4px solid #0284c7 !important;
+}
+
+body.theme-light #speedCazaContainer .case-box div[style*="color: #38bdf8"] {
+  color: #0284c7 !important;
+}
+
+body.theme-light #speedCazaContexto {
+  color: #0f172a !important;
+  font-weight: 600 !important;
+}
+
+body.theme-light #speedCazaContainer div[style*="color: #94a3b8"] {
+  color: #475569 !important;
+}
+
+body.theme-light #speedCazaOpcion {
+  background: #f8fafc !important;
+  border: 1.5px solid #cbd5e1 !important;
+  color: #0f172a !important;
+}
+
+body.theme-light .btn-speed-caza[data-answer="ACCION_CORRECTA"] {
+  background: #ecfdf5 !important;
+  border-color: #059669 !important;
+  color: #065f46 !important;
+}
+
+body.theme-light .btn-speed-caza[data-answer="DISTRACTOR_EXTRALIMITACION"] {
+  background: #fff1f2 !important;
+  border-color: #e11d48 !important;
+  color: #9f1239 !important;
+}
+
+body.theme-light .btn-speed-caza[data-answer="DISTRACTOR_PASIVIDAD"] {
+  background: #fffbeb !important;
+  border-color: #d97706 !important;
+  color: #92400e !important;
+}
+
+body.theme-light #speedCazaFeedback {
+  background: #f8fafc !important;
+  border: 1.5px solid #cbd5e1 !important;
+}
+
+body.theme-light #speedCazaFeedbackExplicacion {
+  color: #1e293b !important;
+}
+
+/* 7. Modals Restantes en Modo Claro */
+body.theme-light #accountModal .modal-card,
+body.theme-light #installModal .modal-card,
+body.theme-light #welcomeOnboardingModal .modal-card,
+body.theme-light #generalAlertModal .modal-card,
+body.theme-light #streakMilestoneModal .modal-card,
+body.theme-light #microlearningModal .modal-card {
+  background: #ffffff !important;
+  border: 1.5px solid #cbd5e1 !important;
+  color: #0f172a !important;
+  box-shadow: 0 16px 48px rgba(15, 23, 42, 0.15) !important;
+}
+
+
+/* Ajustes adicionales específicos para botones de Claves PJS y Caja Verde Día D */
+body.theme-light #btnSingleTipPrev {
+  background: #f1f5f9 !important;
+  border: 1.5px solid #cbd5e1 !important;
+  color: #334155 !important;
+}
+
+body.theme-light #btnSingleTipPrev:hover:not(:disabled) {
+  background: #e2e8f0 !important;
+  color: #0f172a !important;
+}
+
+body.theme-light #btnTipsModeSingle {
+  background: #fffbeb !important;
+  border: 1.5px solid #fcd34d !important;
+  color: #b45309 !important;
+}
+
+body.theme-light #btnTipsModeList {
+  background: #f1f5f9 !important;
+  border: 1.5px solid #cbd5e1 !important;
+  color: #475569 !important;
+}
+
+body.theme-light #diaDModal div[style*="background: rgba(11, 17, 32, 0.85)"] div {
+  color: #1e293b !important;
+}
+
+
+/* Selector de modo en Speed Drill (Caza vs V/F) en Modo Claro */
+body.theme-light #tab-speedDrill > div:first-child {
+  background: #f1f5f9 !important;
+  border: 1.5px solid #cbd5e1 !important;
+}
+
+body.theme-light .speed-mode-toggle-btn {
+  background: #f8fafc !important;
+  border: 1px solid #cbd5e1 !important;
+  color: #475569 !important;
+}
+
+body.theme-light .speed-mode-toggle-btn.active {
+  background: #059669 !important;
+  border-color: #059669 !important;
+  color: #ffffff !important;
+  box-shadow: 0 2px 8px rgba(5, 150, 105, 0.25) !important;
+}

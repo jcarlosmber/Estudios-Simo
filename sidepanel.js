@@ -1903,14 +1903,16 @@ function setupTipsModal() {
     }
 
     filtered.forEach((tip) => {
+      const isLight = document.body.classList.contains("theme-light");
       const card = document.createElement("div");
+      card.className = "tip-catalog-card";
       card.style.cssText = `
-        background-color: rgba(11, 17, 32, 0.75);
-        border: 1px solid rgba(255,255,255,0.06);
-        border-left: 4px solid ${tip.color || "var(--accent-gold)"};
+        background-color: ${isLight ? '#ffffff' : 'rgba(11, 17, 32, 0.75)'};
+        border: 1px solid ${isLight ? '#cbd5e1' : 'rgba(255,255,255,0.06)'};
+        border-left: 4px solid ${tip.color || (isLight ? '#b45309' : 'var(--accent-gold)')};
         padding: 15px 16px;
         border-radius: 8px;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+        box-shadow: ${isLight ? '0 2px 8px rgba(15, 23, 42, 0.05)' : '0 2px 8px rgba(0,0,0,0.25)'};
         display: flex;
         flex-direction: column;
         gap: 6px;
@@ -1918,40 +1920,40 @@ function setupTipsModal() {
 
       card.innerHTML = `
         <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; flex-wrap: wrap;">
-          <div style="font-size: 15px; font-weight: 800; color: ${tip.color || "#f59e0b"}; display: flex; align-items: center; gap: 6px;">
+          <div style="font-size: 15px; font-weight: 800; color: ${tip.color || (isLight ? '#b45309' : '#f59e0b')}; display: flex; align-items: center; gap: 6px;">
             <span>${tip.icono || "💡"}</span>
-            <span>${tip.numero}. ${tip.titulo}</span>
+            <span style="color: ${isLight ? '#0f172a' : '#ffffff'};">${tip.numero}. ${tip.titulo}</span>
           </div>
-          <span style="font-size: 11px; background: rgba(56, 189, 248, 0.15); color: #38bdf8; padding: 2px 8px; border-radius: 4px; font-weight: 700; white-space: nowrap;">
+          <span style="font-size: 11px; background: ${isLight ? '#f0f9ff' : 'rgba(56, 189, 248, 0.15)'}; color: ${isLight ? '#0369a1' : '#38bdf8'}; border: 1px solid ${isLight ? '#bae6fd' : 'transparent'}; padding: 2px 8px; border-radius: 4px; font-weight: 700; white-space: nowrap;">
             ${tip.categoria}
           </span>
         </div>
-        <div style="font-size: 12px; color: #94a3b8; font-weight: 600; display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap;">
+        <div style="font-size: 12px; color: ${isLight ? '#64748b' : '#94a3b8'}; font-weight: 600; display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap;">
           <span>📌 Fundamento: ${tip.normaReferencia}</span>
-          ${tip.ejeNombre ? `<span style="color: #38bdf8; font-size: 11px; background: rgba(56, 189, 248, 0.12); border: 1px solid rgba(56, 189, 248, 0.3); padding: 2px 7px; border-radius: 4px; font-weight: 700;">🎯 ${tip.ejeNombre}</span>` : ""}
+          ${tip.ejeNombre ? `<span style="color: ${isLight ? '#0369a1' : '#38bdf8'}; font-size: 11px; background: ${isLight ? '#f0f9ff' : 'rgba(56, 189, 248, 0.12)'}; border: 1px solid ${isLight ? '#bae6fd' : 'rgba(56, 189, 248, 0.3)'}; padding: 2px 7px; border-radius: 4px; font-weight: 700;">🎯 ${tip.ejeNombre}</span>` : ""}
         </div>
         ${tip.plazoCritico ? `
-          <div style="font-size: 12.5px; color: #f0f9ff; background: rgba(56, 189, 248, 0.12); border-left: 3px solid #38bdf8; padding: 7px 10px; border-radius: 6px; margin-top: 3px;">
-            <strong style="color: #38bdf8;">⏱️ Término / Plazo Crítico:</strong> ${tip.plazoCritico}
+          <div style="font-size: 12.5px; color: ${isLight ? '#0c4a6e' : '#f0f9ff'}; background: ${isLight ? '#f0f9ff' : 'rgba(56, 189, 248, 0.12)'}; border-left: 3px solid #0284c7; border: 1px solid ${isLight ? '#bae6fd' : 'transparent'}; padding: 7px 10px; border-radius: 6px; margin-top: 3px;">
+            <strong style="color: ${isLight ? '#0369a1' : '#38bdf8'};">⏱️ Término / Plazo Crítico:</strong> ${tip.plazoCritico}
           </div>
         ` : ""}
         ${tip.trampaHabitual ? `
-          <div style="font-size: 12.5px; color: #ffe4e6; background: rgba(244, 63, 94, 0.12); border-left: 3px solid #f43f5e; padding: 7px 10px; border-radius: 6px; margin-top: 3px;">
-            <strong style="color: #f43f5e;">⚠️ Trampa CNSC en Casos:</strong> ${tip.trampaHabitual}
+          <div style="font-size: 12.5px; color: ${isLight ? '#881337' : '#ffe4e6'}; background: ${isLight ? '#fff1f2' : 'rgba(244, 63, 94, 0.12)'}; border-left: 3px solid #e11d48; border: 1px solid ${isLight ? '#fecdd3' : 'transparent'}; padding: 7px 10px; border-radius: 6px; margin-top: 3px;">
+            <strong style="color: ${isLight ? '#be123c' : '#f43f5e'};">⚠️ Trampa CNSC en Casos:</strong> ${tip.trampaHabitual}
           </div>
         ` : ""}
-        <div style="font-size: 14px; color: #e2e8f0; line-height: 1.6; margin-top: 2px;">
+        <div style="font-size: 14px; color: ${isLight ? '#1e293b' : '#e2e8f0'}; line-height: 1.6; margin-top: 2px;">
           ${tip.contenidoDetallado}
         </div>
-        <div style="font-size: 13px; color: #cbd5e1; background: rgba(0,0,0,0.35); padding: 8px 12px; border-radius: 6px; margin-top: 4px; border-left: 2px solid ${tip.color || "#f59e0b"};">
-          <strong style="color: #f8fafc;">💡 Regla Rápida:</strong> ${tip.resumenCorto}
+        <div style="font-size: 13px; color: ${isLight ? '#334155' : '#cbd5e1'}; background: ${isLight ? '#f8fafc' : 'rgba(0,0,0,0.35)'}; padding: 8px 12px; border-radius: 6px; margin-top: 4px; border: 1px solid ${isLight ? '#e2e8f0' : 'transparent'}; border-left: 3px solid ${tip.color || (isLight ? '#b45309' : '#f59e0b')};">
+          <strong style="color: ${isLight ? '#0f172a' : '#f8fafc'};">💡 Regla Rápida:</strong> ${tip.resumenCorto}
         </div>
         ${tip.formula ? `
-          <div style="font-size: 13px; color: #fdf4ff; background: rgba(168, 85, 247, 0.16); border: 1px solid rgba(168, 85, 247, 0.4); border-left: 3px solid #a855f7; padding: 9px 12px; border-radius: 6px; margin-top: 5px; display: flex; align-items: flex-start; gap: 8px;">
+          <div style="font-size: 13px; color: ${isLight ? '#581c87' : '#fdf4ff'}; background: ${isLight ? '#faf5ff' : 'rgba(168, 85, 247, 0.16)'}; border: 1px solid ${isLight ? '#e9d5ff' : 'rgba(168, 85, 247, 0.4)'}; border-left: 3px solid #9333ea; padding: 9px 12px; border-radius: 6px; margin-top: 5px; display: flex; align-items: flex-start; gap: 8px;">
             <span style="font-size: 16px; line-height: 1.2;">📐</span>
             <div style="flex: 1;">
-              <div style="font-size: 11px; font-weight: 800; color: #c084fc; text-transform: uppercase; letter-spacing: 0.5px;">Fórmula / Regla Mnemotécnica:</div>
-              <div style="font-size: 13px; font-weight: 700; color: #f8fafc; font-family: 'Consolas', monospace; margin-top: 2px; line-height: 1.35;">${tip.formula}</div>
+              <div style="font-size: 11px; font-weight: 800; color: ${isLight ? '#7e22ce' : '#c084fc'}; text-transform: uppercase; letter-spacing: 0.5px;">Fórmula / Regla Mnemotécnica:</div>
+              <div style="font-size: 13px; font-weight: 700; color: ${isLight ? '#3b0764' : '#f8fafc'}; font-family: 'Consolas', monospace; margin-top: 2px; line-height: 1.35;">${tip.formula}</div>
             </div>
           </div>
         ` : ""}
@@ -8416,33 +8418,38 @@ function setupVerbosRectoresModule() {
     }
 
     container.innerHTML = filtered.map((v) => {
+      const isLight = document.body.classList.contains("theme-light");
       const evalResult = VERBOS_RECTORES_DATA.evaluarVerboParaCargo(v.verbo, profile);
       const esPropio = evalResult ? evalResult.esPropio : false;
-      const statusColor = esPropio ? "#6ee7b7" : "#fca5a5";
-      const statusBg = esPropio ? "rgba(16, 185, 129, 0.2)" : "rgba(239, 68, 68, 0.2)";
+      const statusColor = isLight 
+        ? (esPropio ? "#047857" : "#b91c1c")
+        : (esPropio ? "#6ee7b7" : "#fca5a5");
+      const statusBg = isLight 
+        ? (esPropio ? "#ecfdf5" : "#fef2f2")
+        : (esPropio ? "rgba(16, 185, 129, 0.2)" : "rgba(239, 68, 68, 0.2)");
       const statusBorder = esPropio ? "#10b981" : "#ef4444";
       const statusLabel = esPropio ? "✅ Propio de tu Cargo" : `⚠️ ${evalResult ? evalResult.tipoDistractor : 'Distractor'}`;
 
       const levelsBadges = Object.keys(v.niveles)
         .filter((k) => v.niveles[k])
-        .map((k) => `<span style="font-size: 10px; font-weight: 800; background: rgba(255, 255, 255, 0.08); padding: 2px 6px; border-radius: 4px; color: #cbd5e1; border: 1px solid rgba(255, 255, 255, 0.14);">${k}</span>`)
+        .map((k) => `<span class="verbo-level-badge" style="font-size: 10px; font-weight: 800; background: ${isLight ? '#f1f5f9' : 'rgba(255, 255, 255, 0.08)'}; padding: 2px 6px; border-radius: 4px; color: ${isLight ? '#475569' : '#cbd5e1'}; border: 1px solid ${isLight ? '#cbd5e1' : 'rgba(255, 255, 255, 0.14)'};">${k}</span>`)
         .join(" ");
 
       return `
-        <div class="verbo-card-item" style="background: linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(6, 78, 59, 0.45)); border: 1px solid rgba(255, 255, 255, 0.12); border-left: 4px solid ${esPropio ? '#10b981' : '#f59e0b'}; border-radius: 10px; padding: 12px 14px; display: flex; flex-direction: column; gap: 8px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); margin-bottom: 8px;">
+        <div class="verbo-card-item" style="${isLight ? 'background: #ffffff; border: 1.5px solid #e2e8f0; color: #0f172a; box-shadow: 0 2px 8px rgba(15, 23, 42, 0.05);' : 'background: linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(6, 78, 59, 0.45)); border: 1px solid rgba(255, 255, 255, 0.12); color: #ffffff; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);'} border-left: 4px solid ${esPropio ? '#10b981' : '#f59e0b'}; border-radius: 10px; padding: 12px 14px; display: flex; flex-direction: column; gap: 8px; margin-bottom: 8px;">
           <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 6px;">
             <div style="display: flex; align-items: center; gap: 8px;">
-              <span style="font-size: 15px; font-weight: 800; color: #ffffff;">${v.num}. ${v.verbo}</span>
+              <span class="verbo-item-title" style="font-size: 15px; font-weight: 800; color: ${isLight ? '#0f172a' : '#ffffff'};">${v.num}. ${v.verbo}</span>
               <div style="display: flex; gap: 4px;">${levelsBadges}</div>
             </div>
             <span style="font-size: 11px; font-weight: 800; color: ${statusColor}; background: ${statusBg}; border: 1px solid ${statusBorder}; padding: 3px 9px; border-radius: 12px;">
               ${statusLabel}
             </span>
           </div>
-          <div style="font-size: 13px; color: #f1f5f9; line-height: 1.5;">
+          <div class="verbo-item-desc" style="font-size: 13px; color: ${isLight ? '#334155' : '#f1f5f9'}; line-height: 1.5;">
             ${v.descripcion}
           </div>
-          <div style="font-size: 12px; color: ${esPropio ? '#ecfdf5' : '#fef2f2'}; background: ${esPropio ? 'rgba(6, 78, 59, 0.35)' : 'rgba(127, 29, 29, 0.3)'}; padding: 8px 10px; border-radius: 6px; border: 1px solid ${statusBorder}; border-left: 3px solid ${esPropio ? '#10b981' : '#ef4444'}; line-height: 1.45;">
+          <div class="verbo-item-exam" style="font-size: 12px; color: ${isLight ? '#0f172a' : (esPropio ? '#ecfdf5' : '#fef2f2')}; background: ${isLight ? (esPropio ? '#ecfdf5' : '#fff1f2') : (esPropio ? 'rgba(6, 78, 59, 0.35)' : 'rgba(127, 29, 29, 0.3)')}; padding: 8px 10px; border-radius: 6px; border: 1px solid ${statusBorder}; border-left: 3px solid ${esPropio ? '#10b981' : '#ef4444'}; line-height: 1.45;">
             💡 <strong>En tu examen:</strong> ${evalResult ? evalResult.diagnostico : ''}
           </div>
         </div>
