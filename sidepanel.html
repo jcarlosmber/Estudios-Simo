@@ -13,6 +13,18 @@
   <link rel="apple-touch-icon" href="icons/icon192.png?v=2">
   <title>SIMO Prep - Entrenador CNSC / DIAN</title>
   <link rel="stylesheet" href="sidepanel.css">
+  <script>
+    try {
+      var savedTheme = localStorage.getItem("simo_app_theme");
+      if (!savedTheme) {
+        var raw = localStorage.getItem("simo_prep_appTheme");
+        if (raw) savedTheme = JSON.parse(raw);
+      }
+      if (savedTheme === "light") {
+        document.documentElement.classList.add("theme-light");
+      }
+    } catch (e) {}
+  </script>
 </head>
 <body>
   <!-- Encabezado Principal Estilo App Móvil (Duolingo Style) -->

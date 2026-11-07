@@ -2352,6 +2352,883 @@ textarea:focus {
   box-shadow: 0 6px 18px rgba(239, 68, 68, 0.55) !important;
 }
 
+/* =========================================================================
+   TEMA CLARO EJECUTIVO (PORTAL INSTITUCIONAL) - SELECCIONABLE DESDE AJUSTES
+   ========================================================================= */
+html.theme-light,
+body.theme-light {
+  --bg-primary: #f0f4f8;
+  --bg-surface: #ffffff;
+  --bg-card: #ffffff;
+  --bg-card-hover: #f8fafc;
+  --bg-muted: #f1f5f9;
+  --text-primary: #0f172a;
+  --text-secondary: #1e293b;
+  --text-muted: #64748b;
+  --accent-primary: #047857;
+  --accent-gold: #b45309;
+  --accent-blue: #0284c7;
+  --accent-navy: #0f172a;
+  --accent-indigo: #4338ca;
+  --accent-green: #047857;
+  --accent-red: #b91c1c;
+  --accent-purple: #7e22ce;
+  --border-color: #cbd5e1;
+  --border-emerald: rgba(4, 120, 87, 0.35);
+  --border-active: #047857;
+  --shadow-sm: 0 1px 3px rgba(15, 23, 42, 0.08);
+  --shadow-md: 0 4px 12px rgba(15, 23, 42, 0.08);
+  --shadow-lg: 0 12px 28px rgba(15, 23, 42, 0.12);
+}
+
+body.theme-light {
+  background-color: #f0f4f8 !important;
+  color: #0f172a !important;
+}
+
+body.theme-light a {
+  color: #0284c7;
+}
+
+/* 1. Header en Modo Claro */
+body.theme-light .header-bar.duo-header {
+  background-color: #ffffff !important;
+  border-bottom: 1.5px solid #e2e8f0 !important;
+  box-shadow: 0 2px 10px rgba(15, 23, 42, 0.06) !important;
+}
+
+body.theme-light .duo-profile-chip {
+  background: #f8fafc !important;
+  border: 1.5px solid #cbd5e1 !important;
+  color: #0f172a !important;
+  box-shadow: 0 1px 4px rgba(15, 23, 42, 0.05) !important;
+}
+
+body.theme-light .duo-profile-chip:hover {
+  background: #f1f5f9 !important;
+  border-color: #047857 !important;
+}
+
+body.theme-light .duo-job-badge {
+  background: #ecfdf5 !important;
+  border: 1px solid #10b981 !important;
+  color: #047857 !important;
+}
+
+body.theme-light .duo-opec-badge {
+  background: #e0f2fe !important;
+  border: 1px solid #38bdf8 !important;
+  color: #0369a1 !important;
+}
+
+body.theme-light .duo-job-sub {
+  color: #64748b !important;
+}
+
+body.theme-light .duo-streak-pill {
+  background: #fffbeb !important;
+  border: 1.5px solid #fde68a !important;
+  color: #b45309 !important;
+}
+
+body.theme-light .duo-streak-num {
+  color: #b45309 !important;
+}
+
+body.theme-light .duo-pomodoro-pill {
+  background: #fef2f2 !important;
+  border: 1.5px solid #fecaca !important;
+  color: #b91c1c !important;
+}
+
+body.theme-light .duo-settings-btn,
+body.theme-light #btnSoundToggle {
+  background: #f8fafc !important;
+  border: 1.5px solid #cbd5e1 !important;
+  color: #334155 !important;
+}
+
+body.theme-light .duo-settings-btn:hover,
+body.theme-light #btnSoundToggle:hover {
+  background: #f1f5f9 !important;
+  border-color: #047857 !important;
+  color: #047857 !important;
+}
+
+/* 2. Barra de Power-Ups de Estudio en Modo Claro */
+body.theme-light .duo-powerup-btn {
+  background: #ffffff !important;
+  border: 1.5px solid #cbd5e1 !important;
+  color: #1e293b !important;
+  box-shadow: 0 1px 4px rgba(15, 23, 42, 0.05) !important;
+}
+
+body.theme-light .duo-powerup-btn:hover {
+  background: #f8fafc !important;
+  border-color: #047857 !important;
+  color: #047857 !important;
+}
+
+body.theme-light .duo-powerup-btn.active,
+body.theme-light .duo-powerup-gold.active,
+body.theme-light .duo-powerup-blue.active,
+body.theme-light .duo-powerup-purple.active,
+body.theme-light .duo-powerup-green.active {
+  background: #047857 !important;
+  border-color: #047857 !important;
+  color: #ffffff !important;
+  box-shadow: 0 2px 10px rgba(4, 120, 87, 0.35) !important;
+}
+
+/* 3. Card de Filtro de Ejes en Modo Claro */
+body.theme-light .duo-filter-card {
+  background: #ffffff !important;
+  border: 1.5px solid #e2e8f0 !important;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04) !important;
+}
+
+body.theme-light .duo-filter-label {
+  color: #0f172a !important;
+}
+
+body.theme-light #filterEjeProgressText {
+  background: #e0f2fe !important;
+  border-color: #7dd3fc !important;
+  color: #0369a1 !important;
+}
+
+body.theme-light .duo-filter-select {
+  background: #f8fafc !important;
+  border: 1.5px solid #cbd5e1 !important;
+  color: #0f172a !important;
+}
+
+body.theme-light #filterEjeProgressWrap {
+  background: #e2e8f0 !important;
+}
+
+/* 4. Carátula y Tarjeta de Práctica en Modo Claro */
+body.theme-light #practiceCoverCard {
+  background: #ffffff !important;
+  border: 1.5px solid #e2e8f0 !important;
+  color: #0f172a !important;
+}
+
+body.theme-light #practiceCoverTitle {
+  color: #0f172a !important;
+}
+
+body.theme-light #practiceCoverDesc {
+  color: #475569 !important;
+}
+
+body.theme-light .question-card {
+  background: #ffffff !important;
+  border: 1.5px solid #cbd5e1 !important;
+  box-shadow: 0 4px 18px rgba(15, 23, 42, 0.07) !important;
+  color: #0f172a !important;
+}
+
+body.theme-light .question-enunciado {
+  color: #0f172a !important;
+  font-weight: 800 !important;
+}
+
+body.theme-light .case-box {
+  background: #f8fafc !important;
+  border: 1.5px solid #e2e8f0 !important;
+  border-left: 4px solid #0284c7 !important;
+}
+
+body.theme-light .case-heading {
+  color: #0284c7 !important;
+  font-weight: 800 !important;
+}
+
+body.theme-light .case-text {
+  color: #1e293b !important;
+}
+
+body.theme-light .norm-box {
+  background: #f8fafc !important;
+  border: 1.5px solid #e2e8f0 !important;
+  border-left: 4px solid #0284c7 !important;
+  color: #1e293b !important;
+}
+
+body.theme-light .badge-level {
+  background-color: #fef3c7 !important;
+  color: #92400e !important;
+  border: 1px solid #fcd34d !important;
+}
+
+body.theme-light .badge-type {
+  background-color: #e0f2fe !important;
+  color: #0369a1 !important;
+  border: 1px solid #7dd3fc !important;
+}
+
+body.theme-light .badge-topic {
+  background-color: #f1f5f9 !important;
+  color: #334155 !important;
+  border: 1px solid #cbd5e1 !important;
+}
+
+/* Opciones de respuesta en Modo Claro */
+body.theme-light .option-item {
+  background-color: #ffffff !important;
+  border: 1.5px solid #cbd5e1 !important;
+  color: #0f172a !important;
+  box-shadow: 0 1px 4px rgba(15, 23, 42, 0.04) !important;
+}
+
+body.theme-light .option-item:hover {
+  background-color: #f8fafc !important;
+  border-color: #0284c7 !important;
+}
+
+body.theme-light .option-item.selected {
+  background-color: #eff6ff !important;
+  border-color: #0284c7 !important;
+  border-width: 2px !important;
+  box-shadow: 0 0 12px rgba(2, 132, 199, 0.2) !important;
+}
+
+body.theme-light .option-key {
+  background-color: #f1f5f9 !important;
+  border: 1.5px solid #cbd5e1 !important;
+  color: #334155 !important;
+  font-weight: 800;
+}
+
+body.theme-light .option-item.selected .option-key {
+  background-color: #0284c7 !important;
+  border-color: #0284c7 !important;
+  color: #ffffff !important;
+}
+
+body.theme-light .option-text {
+  color: #0f172a !important;
+  font-weight: 600 !important;
+}
+
+/* Botones principales de acción */
+body.theme-light .btn-primary {
+  background: #047857 !important;
+  color: #ffffff !important;
+  box-shadow: 0 4px 14px rgba(4, 120, 87, 0.3) !important;
+}
+
+body.theme-light .btn-primary:hover:not(:disabled) {
+  background: #059669 !important;
+  box-shadow: 0 6px 18px rgba(4, 120, 87, 0.45) !important;
+}
+
+body.theme-light .btn-secondary {
+  background-color: #ffffff !important;
+  color: #1e293b !important;
+  border: 1.5px solid #cbd5e1 !important;
+  box-shadow: 0 1px 4px rgba(15, 23, 42, 0.04) !important;
+}
+
+body.theme-light .btn-secondary:hover {
+  background-color: #f8fafc !important;
+  border-color: #94a3b8 !important;
+  color: #0f172a !important;
+}
+
+/* 5. Cacería de Distractores en Tarjeta (Modo Claro - Cero Texto Invisible) */
+body.theme-light #distractorHuntBox {
+  color: #0f172a !important;
+}
+
+body.theme-light #distractorHuntBox > div[style*="linear-gradient"] {
+  background: #ecfdf5 !important;
+  border: 1.5px solid #10b981 !important;
+}
+
+body.theme-light #distractorHuntBox > div[style*="linear-gradient"] > div > div:first-child {
+  color: #065f46 !important;
+  font-weight: 900 !important;
+}
+
+body.theme-light #distractorHuntBox > div[style*="linear-gradient"] > div > div:last-child {
+  color: #047857 !important;
+  font-weight: 600 !important;
+}
+
+body.theme-light #distractorHuntBox > div[style*="127, 29, 29"] {
+  background: #fef2f2 !important;
+  border: 1.5px solid #ef4444 !important;
+}
+
+body.theme-light #distractorHuntBox > div[style*="127, 29, 29"] > div > div:first-child {
+  color: #991b1b !important;
+  font-weight: 900 !important;
+}
+
+body.theme-light #distractorHuntBox > div[style*="127, 29, 29"] > div > div:last-child {
+  color: #b91c1c !important;
+  font-weight: 600 !important;
+}
+
+body.theme-light #distractorHuntBox > div:nth-child(2) {
+  color: #047857 !important;
+}
+
+body.theme-light #distractorHuntBox div[style*="background: rgba(127, 29, 29"] {
+  background: #fff1f2 !important;
+  border: 1px solid #fecdd3 !important;
+  border-left: 4px solid #ef4444 !important;
+}
+
+body.theme-light #distractorHuntBox div[style*="background: rgba(127, 29, 29"] strong {
+  color: #b91c1c !important;
+}
+
+body.theme-light #distractorHuntBox div[style*="background: rgba(127, 29, 29"] div {
+  color: #334155 !important;
+  font-weight: 500 !important;
+}
+
+/* 6. Modals en Modo Claro */
+body.theme-light .modal-card,
+body.theme-light .duo-modal-settings,
+body.theme-light #lecturaTipModal .modal-card,
+body.theme-light #popupTipModal .modal-card,
+body.theme-light #srsModal .modal-card,
+body.theme-light #speedCazaModal .modal-card,
+body.theme-light #speedDrillModal .modal-card,
+body.theme-light #feedbackModal .modal-card,
+body.theme-light #profileModal .modal-card,
+body.theme-light #settingsModal .modal-card,
+body.theme-light #appSettingsModal .modal-card,
+body.theme-light #jobModal .modal-card,
+body.theme-light #tipsModal .modal-card,
+body.theme-light #planEstudioModal .modal-card {
+  background: #ffffff !important;
+  border: 1.5px solid #cbd5e1 !important;
+  color: #0f172a !important;
+  box-shadow: 0 16px 48px rgba(15, 23, 42, 0.2) !important;
+}
+
+body.theme-light .modal-card h2,
+body.theme-light .modal-card h3,
+body.theme-light .modal-card h4,
+body.theme-light .duo-modal-title,
+body.theme-light #lecturaTipTitle,
+body.theme-light #popupTipTitle,
+body.theme-light #singleTipTitle {
+  color: #0f172a !important;
+}
+
+body.theme-light .duo-modal-close {
+  background: #f1f5f9 !important;
+  border: 1px solid #cbd5e1 !important;
+  color: #64748b !important;
+}
+
+body.theme-light .duo-modal-close:hover {
+  background: #e2e8f0 !important;
+  color: #0f172a !important;
+}
+
+body.theme-light #lecturaTipNorma,
+body.theme-light #popupTipNorma {
+  color: #0284c7 !important;
+}
+
+body.theme-light #lecturaTipBody,
+body.theme-light #popupTipBody {
+  background: #f8fafc !important;
+  color: #1e293b !important;
+  border-left: 4px solid #047857 !important;
+  border-top: 1px solid #e2e8f0 !important;
+  border-right: 1px solid #e2e8f0 !important;
+  border-bottom: 1px solid #e2e8f0 !important;
+}
+
+/* Modal de Retroalimentación Oficial CNSC */
+body.theme-light #feedbackModal .verdict-banner.correct {
+  background: #ecfdf5 !important;
+  border: 1.5px solid #10b981 !important;
+}
+
+body.theme-light #feedbackModal .verdict-title.correct {
+  color: #065f46 !important;
+  font-weight: 900 !important;
+}
+
+body.theme-light #feedbackModal .verdict-title.incorrect {
+  color: #991b1b !important;
+  font-weight: 900 !important;
+}
+
+body.theme-light #feedbackModal #feedbackSub {
+  color: #047857 !important;
+}
+
+body.theme-light #feedbackNormText {
+  color: #1e293b !important;
+}
+
+body.theme-light #feedbackNormText div[style*="font-weight: 800"] {
+  color: #0f172a !important;
+}
+
+body.theme-light #feedbackNormText div[style*="font-style: italic"] {
+  background: #f8fafc !important;
+  border: 1px solid #e2e8f0 !important;
+  border-left: 4px solid #0284c7 !important;
+  color: #1e293b !important;
+}
+
+body.theme-light #feedbackNormText strong[style*="color: #38bdf8"] {
+  color: #0284c7 !important;
+}
+
+body.theme-light .breakdown-item.correct {
+  background: #ecfdf5 !important;
+  border: 1.5px solid #a7f3d0 !important;
+  border-left: 4px solid #047857 !important;
+  color: #064e3b !important;
+}
+
+body.theme-light .breakdown-item.correct div:first-child {
+  color: #047857 !important;
+  font-weight: 800 !important;
+}
+
+body.theme-light .breakdown-item.correct div:last-child {
+  color: #064e3b !important;
+}
+
+body.theme-light .breakdown-item.incorrect {
+  background: #fff1f2 !important;
+  border: 1.5px solid #fecdd3 !important;
+  border-left: 4px solid #ef4444 !important;
+  color: #1e293b !important;
+}
+
+body.theme-light .breakdown-item.incorrect div:first-child {
+  color: #dc2626 !important;
+  font-weight: 800 !important;
+}
+
+body.theme-light .breakdown-item.incorrect div:last-child {
+  color: #334155 !important;
+}
+
+body.theme-light #feedbackModalActions {
+  background: #ffffff !important;
+  border-top: 1.5px solid #e2e8f0 !important;
+}
+
+body.theme-light #btnCloseFeedback {
+  background: #0f172a !important;
+  color: #ffffff !important;
+  font-weight: 800 !important;
+}
+
+body.theme-light #btnFinishSessionFromFeedback,
+body.theme-light #btnFinishSessionFromCard {
+  background: #ffffff !important;
+  border: 1.5px solid #cbd5e1 !important;
+  color: #334155 !important;
+  font-weight: 700 !important;
+}
+
+body.theme-light #btnFinishSessionFromFeedback:hover,
+body.theme-light #btnFinishSessionFromCard:hover {
+  background: #f8fafc !important;
+  border-color: #94a3b8 !important;
+  color: #0f172a !important;
+}
+
+/* Botones SRS */
+body.theme-light .srs-btn {
+  background: #ffffff !important;
+  border: 1.5px solid #cbd5e1 !important;
+  color: #0f172a !important;
+}
+
+body.theme-light .srs-btn:hover {
+  background: #f8fafc !important;
+  border-color: #047857 !important;
+}
+
+body.theme-light .srs-btn-hard {
+  background: #fef2f2 !important;
+  border: 1.5px solid #fca5a5 !important;
+  color: #991b1b !important;
+}
+
+body.theme-light .srs-btn-medium {
+  background: #fffbeb !important;
+  border: 1.5px solid #fde68a !important;
+  color: #92400e !important;
+}
+
+body.theme-light .srs-btn-easy {
+  background: #ecfdf5 !important;
+  border: 1.5px solid #a7f3d0 !important;
+  color: #065f46 !important;
+}
+
+/* 7. Simulacro de Examen Real en Modo Claro */
+body.theme-light #tab-simulacro .simulacro-container,
+body.theme-light #simulacroConfigView,
+body.theme-light #simulacroExamView,
+body.theme-light #simulacroSummaryView {
+  background: #ffffff !important;
+  border: 1.5px solid #e2e8f0 !important;
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.05) !important;
+  color: #0f172a !important;
+}
+
+body.theme-light #examCountdownWidget {
+  background: #ffffff !important;
+  border: 1.5px solid #e2e8f0 !important;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.05) !important;
+}
+
+body.theme-light #examCountdownWidget .countdown-number {
+  color: #0f172a !important;
+  font-weight: 900 !important;
+}
+
+body.theme-light #examCountdownWidget .countdown-label {
+  color: #64748b !important;
+}
+
+body.theme-light .simulacro-opt-btn,
+body.theme-light .simulacro-mode-btn {
+  background: #ffffff !important;
+  border: 1.5px solid #cbd5e1 !important;
+  color: #0f172a !important;
+  box-shadow: 0 1px 4px rgba(15, 23, 42, 0.04) !important;
+}
+
+body.theme-light .simulacro-opt-btn:hover,
+body.theme-light .simulacro-mode-btn:hover {
+  background: #f8fafc !important;
+  border-color: #047857 !important;
+}
+
+body.theme-light .simulacro-opt-btn.active,
+body.theme-light .simulacro-mode-btn.active {
+  background: #ecfdf5 !important;
+  border: 2px solid #059669 !important;
+  box-shadow: 0 0 12px rgba(5, 150, 105, 0.25) !important;
+}
+
+body.theme-light .simulacro-opt-btn .sim-opt-title,
+body.theme-light .simulacro-mode-btn .sim-mode-title {
+  color: #0f172a !important;
+  font-weight: 800 !important;
+}
+
+body.theme-light .simulacro-opt-btn .sim-opt-sub,
+body.theme-light .simulacro-mode-btn .sim-mode-sub {
+  color: #64748b !important;
+}
+
+body.theme-light .simulacro-opt-btn.active .sim-opt-title,
+body.theme-light .simulacro-mode-btn.active .sim-mode-title {
+  color: #065f46 !important;
+}
+
+body.theme-light .simulacro-opt-btn.active .sim-opt-sub,
+body.theme-light .simulacro-mode-btn.active .sim-mode-sub {
+  color: #047857 !important;
+  font-weight: 800 !important;
+}
+
+body.theme-light .simulacro-rule-box {
+  background: #ecfdf5 !important;
+  border: 1.5px solid #a7f3d0 !important;
+  border-left: 4px solid #059669 !important;
+  color: #064e3b !important;
+}
+
+body.theme-light .simulacro-rule-box span,
+body.theme-light .simulacro-rule-box div {
+  color: #064e3b !important;
+}
+
+body.theme-light #btnStartSimulacro {
+  background: #047857 !important;
+  color: #ffffff !important;
+  font-weight: 900 !important;
+  box-shadow: 0 4px 14px rgba(4, 120, 87, 0.35) !important;
+}
+
+body.theme-light #btnStartSimulacro:hover {
+  background: #059669 !important;
+  box-shadow: 0 6px 18px rgba(4, 120, 87, 0.45) !important;
+}
+
+body.theme-light #simBubbleMap {
+  background: #ffffff !important;
+  border: 1.5px solid #cbd5e1 !important;
+}
+
+/* 8. Speed Drill Modal en Modo Claro */
+body.theme-light #speedDrillModal .modal-card {
+  background: #ffffff !important;
+  border: 1.5px solid #cbd5e1 !important;
+  color: #0f172a !important;
+}
+
+body.theme-light #speedDrillTitle {
+  color: #0f172a !important;
+}
+
+body.theme-light #speedDrillModal div[style*="background: rgba(15, 23, 42"] {
+  background: #f8fafc !important;
+  border: 1.5px solid #cbd5e1 !important;
+}
+
+body.theme-light #speedDrillModal div[style*="border-left: 4px solid #38bdf8"] {
+  border-left: 4px solid #0284c7 !important;
+}
+
+body.theme-light #speedDrillStatement {
+  color: #0f172a !important;
+  font-weight: 600 !important;
+}
+
+body.theme-light #btnSpeedTrue {
+  background: #059669 !important;
+  color: #ffffff !important;
+  font-weight: 900 !important;
+  box-shadow: 0 4px 14px rgba(5, 150, 105, 0.35) !important;
+}
+
+body.theme-light #btnSpeedTrue:hover:not(:disabled) {
+  background: #047857 !important;
+  box-shadow: 0 6px 18px rgba(5, 150, 105, 0.45) !important;
+}
+
+body.theme-light #btnSpeedFalse {
+  background: #ef4444 !important;
+  color: #ffffff !important;
+  font-weight: 900 !important;
+  box-shadow: 0 4px 14px rgba(239, 68, 68, 0.35) !important;
+}
+
+body.theme-light #btnSpeedFalse:hover:not(:disabled) {
+  background: #dc2626 !important;
+  box-shadow: 0 6px 18px rgba(239, 68, 68, 0.45) !important;
+}
+
+/* 9. Centro de Recursos / Learning Hub en Modo Claro */
+body.theme-light .duo-section-title {
+  color: #0f172a !important;
+}
+
+body.theme-light .duo-section-sub {
+  color: #64748b !important;
+}
+
+body.theme-light .duo-hub-card {
+  background: #ffffff !important;
+  border: 1.5px solid #e2e8f0 !important;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.05) !important;
+}
+
+body.theme-light .duo-hub-card:hover {
+  border-color: #047857 !important;
+  box-shadow: 0 6px 18px rgba(4, 120, 87, 0.15) !important;
+}
+
+body.theme-light .hub-card-icon {
+  background: #ecfdf5 !important;
+  border: 1px solid #a7f3d0 !important;
+  color: #047857 !important;
+}
+
+body.theme-light .hub-card-title {
+  color: #0f172a !important;
+  font-weight: 800 !important;
+}
+
+body.theme-light .hub-card-desc {
+  color: #475569 !important;
+}
+
+body.theme-light .hub-card-arrow {
+  color: #047857 !important;
+}
+
+body.theme-light .btn-back-to-recursos {
+  background: #ffffff !important;
+  border: 1.5px solid #cbd5e1 !important;
+  color: #1e293b !important;
+  box-shadow: 0 1px 4px rgba(15, 23, 42, 0.05) !important;
+}
+
+body.theme-light .btn-back-to-recursos:hover {
+  background: #f8fafc !important;
+  border-color: #94a3b8 !important;
+  color: #0f172a !important;
+}
+
+body.theme-light #planEstudioCard {
+  background: #ffffff !important;
+  border: 1.5px solid #e2e8f0 !important;
+  border-left: 5px solid #047857 !important;
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.06) !important;
+  color: #0f172a !important;
+}
+
+body.theme-light #planEstudioTitle {
+  color: #0f172a !important;
+}
+
+body.theme-light #planEstudioSub {
+  color: #475569 !important;
+}
+
+body.theme-light #btnOpenPlanPdf {
+  background: #047857 !important;
+  color: #ffffff !important;
+}
+
+body.theme-light #btnDownloadPlanPdf {
+  background: #f1f5f9 !important;
+  border: 1.5px solid #cbd5e1 !important;
+  color: #1e293b !important;
+}
+
+/* 10. Módulo de Verbos Rectores en Modo Claro */
+body.theme-light #verbosModal .modal-card {
+  background: #ffffff !important;
+  border: 1.5px solid #cbd5e1 !important;
+  color: #0f172a !important;
+}
+
+body.theme-light .verbo-filter-btn {
+  background: #f1f5f9 !important;
+  border: 1px solid #cbd5e1 !important;
+  color: #475569 !important;
+}
+
+body.theme-light .verbo-filter-btn.active {
+  background: #047857 !important;
+  border-color: #047857 !important;
+  color: #ffffff !important;
+}
+
+body.theme-light .verbo-search-input {
+  background: #ffffff !important;
+  border: 1.5px solid #cbd5e1 !important;
+  color: #0f172a !important;
+}
+
+body.theme-light .verbo-card-item {
+  background: #ffffff !important;
+  border: 1px solid #e2e8f0 !important;
+  color: #0f172a !important;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.03) !important;
+}
+
+body.theme-light .verbo-card-item:hover {
+  background: #f8fafc !important;
+  border-color: #cbd5e1 !important;
+}
+
+body.theme-light .verbo-title {
+  color: #0f172a !important;
+  font-weight: 800 !important;
+}
+
+body.theme-light .verbo-def {
+  color: #334155 !important;
+}
+
+body.theme-light .verbo-cargo-tag {
+  background: #ecfdf5 !important;
+  border: 1px solid #a7f3d0 !important;
+  color: #065f46 !important;
+}
+
+body.theme-light .verbo-distractor-tag {
+  background: #fff1f2 !important;
+  border: 1px solid #fecdd3 !important;
+  color: #9f1239 !important;
+}
+
+/* 11. Ajustes & Configuración en Modo Claro */
+body.theme-light .duo-setting-row {
+  background: #f8fafc !important;
+  border: 1px solid #e2e8f0 !important;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.04) !important;
+}
+
+body.theme-light .setting-row-title {
+  color: #0f172a !important;
+  font-weight: 800 !important;
+}
+
+body.theme-light .setting-row-sub {
+  color: #64748b !important;
+}
+
+body.theme-light .theme-toggle-group {
+  background: #e2e8f0 !important;
+  border: 1px solid #cbd5e1 !important;
+}
+
+body.theme-light #settingRowAccount > div[style*="background: rgba(15, 23, 42"] {
+  background: #f1f5f9 !important;
+  border-color: #cbd5e1 !important;
+}
+
+body.theme-light #inputSettingsQuickUserId {
+  background: #ffffff !important;
+  color: #0f172a !important;
+  border: 1.5px solid #cbd5e1 !important;
+}
+
+/* 12. Barra de Navegación Inferior en Modo Claro */
+body.theme-light .app-bottom-nav {
+  background: #ffffff !important;
+  border-top: 1.5px solid #e2e8f0 !important;
+  box-shadow: 0 -2px 10px rgba(15, 23, 42, 0.05) !important;
+}
+
+body.theme-light .nav-tab-btn {
+  color: #64748b !important;
+}
+
+body.theme-light .nav-tab-btn.active {
+  color: #047857 !important;
+  font-weight: 800 !important;
+}
+
+/* 13. Formularios, Controles e Inputs en Modo Claro */
+body.theme-light input,
+body.theme-light select,
+body.theme-light textarea {
+  background: #ffffff !important;
+  border: 1.5px solid #cbd5e1 !important;
+  color: #0f172a !important;
+}
+
+body.theme-light input:focus,
+body.theme-light select:focus,
+body.theme-light textarea:focus {
+  border-color: #0284c7 !important;
+  box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.15) !important;
+}
+
+body.theme-light input::placeholder,
+body.theme-light textarea::placeholder {
+  color: #94a3b8 !important;
+}
+
+
 
 
 

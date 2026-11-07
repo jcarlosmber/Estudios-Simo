@@ -1052,6 +1052,7 @@ async function setupMobileBackgroundScheduler() {
 }
 
 document.addEventListener("DOMContentLoaded", async () => {
+  await setupThemeManager();
   setupGlobalModals();
   await loadUserData();
   setupNavigation();
@@ -1114,10 +1115,130 @@ document.addEventListener("DOMContentLoaded", async () => {
             btn.style.borderColor = enabled ? "rgba(56, 189, 248, 0.4)" : "rgba(255, 255, 255, 0.15)";
           }
         }
+        if (changes.appTheme !== undefined) {
+          applyTheme(changes.appTheme.newValue || "dark", false);
+        }
       }
     });
   }
 });
+
+// =========================================================================
+// GESTOR DE TEMA VISUAL: PLAN 3006 OSCURO EJECUTIVO vs CLARO EJECUTIVO
+// =========================================================================
+let currentAppTheme = "dark";
+
+function applyTheme(theme, save = true) {
+  currentAppTheme = theme === "light" ? "light" : "dark";
+  const isLight = currentAppTheme === "light";
+
+  // 1. Alternar clase CSS en documentElement y body
+  if (isLight) {
+    document.documentElement.classList.add("theme-light");
+    document.body.classList.add("theme-light");
+  } else {
+    document.documentElement.classList.remove("theme-light");
+    document.body.classList.remove("theme-light");
+  }
+
+  // 2. Actualizar meta theme-color para navegadores móviles y desktop
+  let metaTheme = document.querySelector('meta[name="theme-color"]');
+  if (!metaTheme) {
+    metaTheme = document.createElement("meta");
+    metaTheme.name = "theme-color";
+    document.head.appendChild(metaTheme);
+  }
+  metaTheme.setAttribute("content", isLight ? "#f0f4f8" : "#07131b");
+
+  // 3. Actualizar botones en el Modal de Ajustes
+  const btnDark = document.getElementById("btnThemeDark");
+  const btnLight = document.getElementById("btnThemeLight");
+  const subtitle = document.getElementById("themeSubtitle");
+
+  if (btnDark && btnLight) {
+    if (isLight) {
+      btnLight.classList.add("active");
+      btnDark.classList.remove("active");
+      btnLight.style.background = "#0284c7";
+      btnLight.style.color = "#ffffff";
+      btnLight.style.fontWeight = "800";
+      btnLight.style.border = "none";
+      btnLight.style.boxShadow = "0 2px 8px rgba(2, 132, 199, 0.4)";
+
+      btnDark.style.background = "transparent";
+      btnDark.style.color = "#64748b";
+      btnDark.style.fontWeight = "600";
+      btnDark.style.border = "1px solid transparent";
+      btnDark.style.boxShadow = "none";
+    } else {
+      btnDark.classList.add("active");
+      btnLight.classList.remove("active");
+      btnDark.style.background = "#10b981";
+      btnDark.style.color = "#022c22";
+      btnDark.style.fontWeight = "800";
+      btnDark.style.border = "none";
+      btnDark.style.boxShadow = "0 2px 8px rgba(16, 185, 129, 0.4)";
+
+      btnLight.style.background = "transparent";
+      btnLight.style.color = "#cbd5e1";
+      btnLight.style.fontWeight = "600";
+      btnLight.style.border = "1px solid transparent";
+      btnLight.style.boxShadow = "none";
+    }
+  }
+
+  if (subtitle) {
+    subtitle.textContent = isLight
+      ? "Activo: Claro Ejecutivo (Portal Institucional)"
+      : "Activo: Oscuro Ejecutivo (Plan 3006)";
+  }
+
+  // 4. Guardar persistencia en storage y local
+  if (save) {
+    try {
+      localStorage.setItem("simo_app_theme", currentAppTheme);
+      if (typeof StorageManager !== "undefined") {
+        StorageManager.set("appTheme", currentAppTheme);
+      }
+    } catch (e) {
+      console.warn("Error guardando tema:", e);
+    }
+  }
+}
+
+async function setupThemeManager() {
+  let savedTheme = "dark";
+  try {
+    const local = localStorage.getItem("simo_app_theme");
+    if (local === "light" || local === "dark") {
+      savedTheme = local;
+    } else if (typeof StorageManager !== "undefined") {
+      savedTheme = await StorageManager.get("appTheme", "dark");
+    }
+  } catch (e) {
+    savedTheme = "dark";
+  }
+
+  applyTheme(savedTheme, false);
+
+  const btnDark = document.getElementById("btnThemeDark");
+  const btnLight = document.getElementById("btnThemeLight");
+
+  if (btnDark) {
+    btnDark.addEventListener("click", () => {
+      applyTheme("dark", true);
+      if (typeof SoundFX !== "undefined") SoundFX.playPop();
+    });
+  }
+
+  if (btnLight) {
+    btnLight.addEventListener("click", () => {
+      applyTheme("light", true);
+      if (typeof SoundFX !== "undefined") SoundFX.playPop();
+    });
+  }
+}
+window.applyTheme = applyTheme;
 
 async function setupSoundToggleUI() {
   const btn = document.getElementById("btnSoundToggle");
