@@ -1303,24 +1303,24 @@
 
     <!-- PESTAÑA PRINCIPAL: PLAN MAESTRO DE ESTUDIO GESTOR III (FICHA TP-DE-3006) -->
     <section id="tab-planEstudio" class="tab-content" style="display: none; flex-direction: column; gap: 14px; width: 100%;">
-      <!-- Hero Card Institucional -->
-      <div style="background: linear-gradient(135deg, rgba(15, 23, 42, 0.98), rgba(6, 78, 59, 0.85)); border: 1.5px solid #10b981; border-radius: 14px; padding: 16px 18px; display: flex; flex-direction: column; gap: 12px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.45);">
+      <!-- Hero Card Institucional (Versión Clara) -->
+      <div id="planHeroCard" style="background: #ffffff; border: 1.5px solid #bbf7d0; border-radius: 14px; padding: 18px 20px; display: flex; flex-direction: column; gap: 12px; box-shadow: 0 2px 10px rgba(16, 185, 129, 0.08);">
         <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; flex-wrap: wrap;">
           <div style="display: flex; align-items: center; gap: 12px; min-width: 0; flex: 1;">
-            <div style="font-size: 28px; width: 44px; height: 44px; border-radius: 12px; background: rgba(16, 185, 129, 0.2); border: 1.5px solid #10b981; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">🗓️</div>
+            <div style="font-size: 28px; width: 44px; height: 44px; border-radius: 12px; background: #ecfdf5; border: 1.5px solid #10b981; display: flex; align-items: center; justify-content: center; flex-shrink: 0; color: #15803d;">🗓️</div>
             <div style="min-width: 0; flex: 1;">
-              <div style="font-size: 15.5px; font-weight: 900; color: #ffffff; letter-spacing: -0.3px;">Plan Maestro de Estudio • Ficha TP-DE-3006</div>
-              <div style="font-size: 11px; color: #6ee7b7; font-weight: 700;">UAE DIAN • Gestor III (303-03) • OPEC 242703 • 20 Módulos & 90 Diagramas</div>
+              <div style="font-size: 16px; font-weight: 900; color: #0f172a; letter-spacing: -0.3px;">Plan Maestro de Estudio • Ficha TP-DE-3006</div>
+              <div style="font-size: 11.5px; color: #047857; font-weight: 700;">UAE DIAN • Gestor III (303-03) • OPEC 242703 • 20 Módulos & 90 Diagramas</div>
             </div>
           </div>
           <div style="display: flex; gap: 8px; flex-wrap: wrap;">
             <a href="material/01_Guias_y_Convocatoria/Plan_Estudio_Gestor_III_DIAN_Ficha_3006.pdf" target="_blank" style="text-decoration: none;">
-              <button type="button" style="background: #10b981; color: #022c22; font-size: 11.5px; font-weight: 800; border: none; padding: 7px 12px; border-radius: 8px; cursor: pointer; display: flex; align-items: center; gap: 5px;">
-                <span>📄</span> Abrir PDF (121 págs)
+              <button type="button" style="background: #10b981; color: #ffffff; font-size: 11.5px; font-weight: 800; border: none; padding: 8px 14px; border-radius: 8px; cursor: pointer; display: flex; align-items: center; gap: 6px; box-shadow: 0 2px 6px rgba(16, 185, 129, 0.25);">
+                <span>📄</span> Abrir PDF Oficial (121 págs)
               </button>
             </a>
             <a href="/plan-estudio.pdf?download=true" download="Plan_Estudio_Gestor_III_DIAN_Ficha_3006.pdf" style="text-decoration: none;">
-              <button type="button" style="background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.2); color: #f8fafc; font-size: 11.5px; font-weight: 700; padding: 7px 12px; border-radius: 8px; cursor: pointer; display: flex; align-items: center; gap: 5px;">
+              <button type="button" style="background: #ffffff; border: 1.5px solid #cbd5e1; color: #0f172a; font-size: 11.5px; font-weight: 700; padding: 8px 14px; border-radius: 8px; cursor: pointer; display: flex; align-items: center; gap: 6px;">
                 <span>📥</span> Descargar PDF
               </button>
             </a>
@@ -1328,49 +1328,49 @@
         </div>
 
         <!-- Barra de Progreso del Cronograma -->
-        <div style="background: rgba(0,0,0,0.35); border-radius: 10px; padding: 10px 14px; display: flex; flex-direction: column; gap: 6px;">
-          <div style="display: flex; justify-content: space-between; font-size: 11px; font-weight: 700;">
-            <span style="color: #94a3b8;">Progreso Cronograma Intensivo (60 Días / 12 Semanas):</span>
-            <span id="tabPlanProgressText" style="color: #6ee7b7; font-weight: 800;">0 / 12 Semanas (0%)</span>
+        <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px; padding: 10px 14px; display: flex; flex-direction: column; gap: 6px;">
+          <div style="display: flex; justify-content: space-between; font-size: 11.5px; font-weight: 700;">
+            <span style="color: #475569;">Progreso Cronograma Intensivo (60 Días / 12 Semanas):</span>
+            <span id="tabPlanProgressText" style="color: #047857; font-weight: 900;">0 / 12 Semanas (0%)</span>
           </div>
-          <div style="background: rgba(255, 255, 255, 0.08); height: 8px; border-radius: 4px; overflow: hidden;">
-            <div id="tabPlanProgressBar" style="background: linear-gradient(90deg, #10b981, #34d399); width: 0%; height: 100%; transition: width 0.3s ease;"></div>
+          <div style="background: #e2e8f0; height: 8px; border-radius: 4px; overflow: hidden;">
+            <div id="tabPlanProgressBar" style="background: linear-gradient(90deg, #10b981, #059669); width: 0%; height: 100%; transition: width 0.3s ease;"></div>
           </div>
         </div>
       </div>
 
-      <!-- Barra de Navegación de Subpestañas Internas -->
-      <div style="display: flex; background: rgba(15, 23, 42, 0.9); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 10px; padding: 4px; gap: 6px; overflow-x: auto;">
-        <button type="button" id="tabBtnPlanSubModulos" class="plan-subtab-btn active" style="flex: 1; min-width: 130px; padding: 8px 10px; font-size: 12px; font-weight: 800; border-radius: 8px; border: 1px solid #10b981; background: rgba(16, 185, 129, 0.25); color: #a7f3d0; cursor: pointer; white-space: nowrap; display: flex; align-items: center; justify-content: center; gap: 6px;">
+      <!-- Barra de Navegación de Subpestañas Internas (Versión Clara) -->
+      <div id="planSubtabsBar" style="display: flex; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px; padding: 5px; gap: 6px; overflow-x: auto;">
+        <button type="button" id="tabBtnPlanSubModulos" class="plan-subtab-btn active" style="flex: 1; min-width: 130px; padding: 9px 12px; font-size: 12px; font-weight: 800; border-radius: 8px; border: 1.5px solid #10b981; background: #dcfce7; color: #065f46; cursor: pointer; white-space: nowrap; display: flex; align-items: center; justify-content: center; gap: 6px;">
           <span>📖</span> Compendio 20 Módulos
         </button>
-        <button type="button" id="tabBtnPlanSubCrono" class="plan-subtab-btn" style="flex: 1; min-width: 120px; padding: 8px 10px; font-size: 12px; font-weight: 700; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.1); background: transparent; color: #94a3b8; cursor: pointer; white-space: nowrap; display: flex; align-items: center; justify-content: center; gap: 6px;">
+        <button type="button" id="tabBtnPlanSubCrono" class="plan-subtab-btn" style="flex: 1; min-width: 120px; padding: 9px 12px; font-size: 12px; font-weight: 700; border-radius: 8px; border: 1px solid #e2e8f0; background: #ffffff; color: #64748b; cursor: pointer; white-space: nowrap; display: flex; align-items: center; justify-content: center; gap: 6px;">
           <span>📅</span> Cronograma 60 Días
         </button>
-        <button type="button" id="tabBtnPlanSubFiltros" class="plan-subtab-btn" style="flex: 1; min-width: 120px; padding: 8px 10px; font-size: 12px; font-weight: 700; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.1); background: transparent; color: #94a3b8; cursor: pointer; white-space: nowrap; display: flex; align-items: center; justify-content: center; gap: 6px;">
+        <button type="button" id="tabBtnPlanSubFiltros" class="plan-subtab-btn" style="flex: 1; min-width: 120px; padding: 9px 12px; font-size: 12px; font-weight: 700; border-radius: 8px; border: 1px solid #e2e8f0; background: #ffffff; color: #64748b; cursor: pointer; white-space: nowrap; display: flex; align-items: center; justify-content: center; gap: 6px;">
           <span>⚖️</span> 4 Filtros Psicométricos
         </button>
-        <button type="button" id="tabBtnPlanSubCasos" class="plan-subtab-btn" style="flex: 1; min-width: 130px; padding: 8px 10px; font-size: 12px; font-weight: 700; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.1); background: transparent; color: #94a3b8; cursor: pointer; white-space: nowrap; display: flex; align-items: center; justify-content: center; gap: 6px;">
+        <button type="button" id="tabBtnPlanSubCasos" class="plan-subtab-btn" style="flex: 1; min-width: 130px; padding: 9px 12px; font-size: 12px; font-weight: 700; border-radius: 8px; border: 1px solid #e2e8f0; background: #ffffff; color: #64748b; cursor: pointer; white-space: nowrap; display: flex; align-items: center; justify-content: center; gap: 6px;">
           <span>⭐</span> 40 Casos PJS (Ficha 3006)
         </button>
       </div>
 
-      <!-- VISTA 1: COMPENDIO DE LOS 20 MÓDULOS ÍNTEGROS (LECTOR MAESTRO CON MERMAID) -->
+      <!-- VISTA 1: COMPENDIO DE LOS 20 MÓDULOS ÍNTEGROS (LECTOR MAESTRO CLARO) -->
       <div id="tabPlanViewModulos" style="display: flex; flex-direction: column; gap: 12px; width: 100%;">
         <!-- Barra de Control del Lector -->
-        <div style="background: rgba(15, 23, 42, 0.95); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; padding: 12px 14px; display: flex; flex-direction: column; gap: 10px;">
+        <div id="planReaderControls" style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 12px 14px; display: flex; flex-direction: column; gap: 10px; box-shadow: 0 1px 3px rgba(15, 23, 42, 0.05);">
           <div style="display: flex; justify-content: space-between; align-items: center; gap: 8px; flex-wrap: wrap;">
-            <div style="display: flex; align-items: center; gap: 8px; flex: 1; min-width: 200px;">
-              <span style="font-size: 11px; font-weight: 800; color: #38bdf8; text-transform: uppercase;">Módulo:</span>
-              <select id="tabPlanSelectModule" style="flex: 1; background: #0b1120; border: 1px solid rgba(56, 189, 248, 0.3); color: #f8fafc; font-size: 12px; font-weight: 700; padding: 6px 10px; border-radius: 8px; cursor: pointer;">
+            <div style="display: flex; align-items: center; gap: 8px; flex: 1; min-width: 220px;">
+              <span style="font-size: 11px; font-weight: 800; color: #0284c7; text-transform: uppercase;">Módulo:</span>
+              <select id="tabPlanSelectModule" style="flex: 1; background: #f8fafc; border: 1.5px solid #cbd5e1; color: #0f172a; font-size: 12.5px; font-weight: 700; padding: 7px 10px; border-radius: 8px; cursor: pointer;">
                 <!-- Opciones de los 20 módulos generadas dinámicamente -->
               </select>
             </div>
             <div style="display: flex; align-items: center; gap: 6px;">
-              <button type="button" id="btnPlanPrevModule" style="background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.15); color: #f8fafc; font-size: 11px; font-weight: 700; padding: 6px 10px; border-radius: 6px; cursor: pointer;">
+              <button type="button" id="btnPlanPrevModule" style="background: #f1f5f9; border: 1px solid #cbd5e1; color: #0f172a; font-size: 11.5px; font-weight: 700; padding: 6px 10px; border-radius: 6px; cursor: pointer;">
                 ⬅️ Anterior
               </button>
-              <button type="button" id="btnPlanNextModule" style="background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.15); color: #f8fafc; font-size: 11px; font-weight: 700; padding: 6px 10px; border-radius: 6px; cursor: pointer;">
+              <button type="button" id="btnPlanNextModule" style="background: #f1f5f9; border: 1px solid #cbd5e1; color: #0f172a; font-size: 11.5px; font-weight: 700; padding: 6px 10px; border-radius: 6px; cursor: pointer;">
                 Siguiente ➡️
               </button>
             </div>
@@ -1378,20 +1378,23 @@
 
           <div style="display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap;">
             <div style="flex: 1; min-width: 180px; position: relative;">
-              <input type="text" id="tabPlanSearchInput" placeholder="🔍 Buscar palabras clave en este módulo..." style="width: 100%; box-sizing: border-box; background: #0b1120; border: 1px solid rgba(255, 255, 255, 0.12); color: #f8fafc; font-size: 11.5px; padding: 6px 10px; border-radius: 6px;">
+              <input type="text" id="tabPlanSearchInput" placeholder="🔍 Buscar palabras clave en este módulo..." style="width: 100%; box-sizing: border-box; background: #f8fafc; border: 1.5px solid #cbd5e1; color: #0f172a; font-size: 12px; padding: 7px 10px; border-radius: 6px;">
             </div>
             <div style="display: flex; align-items: center; gap: 6px;">
-              <button type="button" id="btnPlanFontDec" style="background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.15); color: #cbd5e1; font-size: 11px; font-weight: 800; padding: 4px 8px; border-radius: 6px; cursor: pointer;" title="Disminuir tamaño de texto">A-</button>
-              <button type="button" id="btnPlanFontInc" style="background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.15); color: #cbd5e1; font-size: 11px; font-weight: 800; padding: 4px 8px; border-radius: 6px; cursor: pointer;" title="Aumentar tamaño de texto">A+</button>
-              <button type="button" id="btnPlanMarkModuleRead" style="background: rgba(16, 185, 129, 0.15); border: 1px solid #10b981; color: #6ee7b7; font-size: 11px; font-weight: 800; padding: 5px 10px; border-radius: 6px; cursor: pointer; display: flex; align-items: center; gap: 4px;">
+              <button type="button" id="btnPlanToggleContrast" style="background: #f1f5f9; border: 1px solid #cbd5e1; color: #0f172a; font-size: 11.5px; font-weight: 700; padding: 5px 9px; border-radius: 6px; cursor: pointer; display: flex; align-items: center; gap: 4px;" title="Alternar entre Fondo Claro y Modo Lectura Nocturna">
+                <span id="iconThemeToggle">☀️</span> <span id="labelThemeToggle">Claro</span>
+              </button>
+              <button type="button" id="btnPlanFontDec" style="background: #f1f5f9; border: 1px solid #cbd5e1; color: #334155; font-size: 11px; font-weight: 800; padding: 5px 8px; border-radius: 6px; cursor: pointer;" title="Disminuir tamaño de texto">A-</button>
+              <button type="button" id="btnPlanFontInc" style="background: #f1f5f9; border: 1px solid #cbd5e1; color: #334155; font-size: 11px; font-weight: 800; padding: 5px 8px; border-radius: 6px; cursor: pointer;" title="Aumentar tamaño de texto">A+</button>
+              <button type="button" id="btnPlanMarkModuleRead" style="background: #ecfdf5; border: 1.5px solid #10b981; color: #047857; font-size: 11.5px; font-weight: 800; padding: 6px 12px; border-radius: 6px; cursor: pointer; display: flex; align-items: center; gap: 5px;">
                 <span>✓</span> Marcar Estudiado
               </button>
             </div>
           </div>
         </div>
 
-        <!-- Contenedor del Texto Exhaustivo y Gráficos Mermaid -->
-        <div id="tabPlanModuleBody" style="background: #0f172a; border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; padding: 20px; font-size: 13.5px; line-height: 1.7; color: #f1f5f9; box-sizing: border-box; overflow-wrap: break-word;">
+        <!-- Contenedor del Texto Exhaustivo y Gráficos Mermaid (Versión Clara de Alta Legibilidad) -->
+        <div id="tabPlanModuleBody" style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 24px; font-size: 13.5px; line-height: 1.7; color: #334155; box-sizing: border-box; overflow-wrap: break-word; box-shadow: 0 2px 10px rgba(15, 23, 42, 0.04);">
           <!-- Contenido dinámico completo del módulo -->
         </div>
       </div>
@@ -1405,9 +1408,9 @@
 
       <!-- VISTA 3: FILTROS PSICOMÉTRICOS (MÉTODO DE LOS 4 FILTROS) -->
       <div id="tabPlanViewFiltros" style="display: none; flex-direction: column; gap: 12px; width: 100%;">
-        <div style="background: rgba(15, 23, 42, 0.85); border: 1px solid rgba(56, 189, 248, 0.3); border-radius: 12px; padding: 14px 16px;">
-          <h3 style="font-size: 14.5px; font-weight: 800; color: #38bdf8; margin: 0 0 6px 0;">⚖️ El Método de los Cuatro Filtros de Descarte (Módulo 20)</h3>
-          <p style="font-size: 12px; color: #cbd5e1; line-height: 1.5; margin: 0;">
+        <div style="background: #f0f9ff; border: 1.5px solid #bae6fd; border-radius: 12px; padding: 14px 16px;">
+          <h3 style="font-size: 14.5px; font-weight: 800; color: #0369a1; margin: 0 0 6px 0;">⚖️ El Método de los Cuatro Filtros de Descarte (Módulo 20)</h3>
+          <p style="font-size: 12px; color: #334155; line-height: 1.55; margin: 0;">
             En las pruebas de la CNSC / Universidad Areandina, cada pregunta PJS tiene 3 opciones (A, B, C). Solo una es la clave oficial; las otras dos son distractores construidos psicométricamente para medir sesgos. Aplica estos 4 filtros en orden:
           </p>
         </div>
@@ -1418,12 +1421,12 @@
 
       <!-- VISTA 4: 40 CASOS PJS FICHA 3006 -->
       <div id="tabPlanViewCasos" style="display: none; flex-direction: column; gap: 12px; width: 100%;">
-        <div style="background: linear-gradient(135deg, rgba(16, 185, 129, 0.15), rgba(15, 23, 42, 0.9)); border: 1.5px solid #10b981; border-radius: 12px; padding: 16px; display: flex; flex-direction: column; gap: 10px;">
+        <div style="background: #f0fdf4; border: 1.5px solid #bbf7d0; border-radius: 12px; padding: 16px; display: flex; flex-direction: column; gap: 10px;">
           <div style="display: flex; justify-content: space-between; align-items: center;">
-            <span style="font-size: 14.5px; font-weight: 800; color: #6ee7b7;">⭐ Banco Maestro Oficial: 40 Casos Prácticos de Juicio Situacional</span>
-            <span style="font-size: 11px; font-weight: 800; background: #10b981; color: #022c22; padding: 2px 8px; border-radius: 8px;">40 Casos</span>
+            <span style="font-size: 14.5px; font-weight: 800; color: #15803d;">⭐ Banco Maestro Oficial: 40 Casos Prácticos de Juicio Situacional</span>
+            <span style="font-size: 11px; font-weight: 800; background: #10b981; color: #ffffff; padding: 3px 8px; border-radius: 8px;">40 Casos</span>
           </div>
-          <p style="font-size: 12px; color: #cbd5e1; line-height: 1.5; margin: 0;">
+          <p style="font-size: 12px; color: #166534; line-height: 1.5; margin: 0;">
             Casos de alta complejidad diseñados con la estructura exacta de la prueba real: Situación Hipotética, Enunciado y 3 Opciones de Respuesta (A, B, C), justificación técnica, trampa clásica y normograma oficial DIAN.
           </p>
           <button type="button" id="btnStartCasosMaestrosFromTab" style="background: linear-gradient(135deg, #10b981, #059669); color: #ffffff; border: none; font-size: 13px; font-weight: 800; padding: 12px 18px; border-radius: 8px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; box-shadow: 0 4px 14px rgba(16, 185, 129, 0.35);">

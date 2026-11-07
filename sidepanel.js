@@ -6467,13 +6467,17 @@ function reviewSimAnswers() {
 // SISTEMA INTEGRAL: PLAN MAESTRO DE ESTUDIO (FICHA TP-DE-3006 / 121 PÁGINAS)
 // 20 Módulos Completos, 90 Gráficos Mermaid y Cronograma Intensivo de 60 Días
 
-function initMermaidConfig() {
+// scratch/new_plan_estudio_code.js
+// SISTEMA INTEGRAL: PLAN MAESTRO DE ESTUDIO (FICHA TP-DE-3006 / 121 PÁGINAS)
+// Versión Clara de Alta Legibilidad (Fondo Blanco, Tipografía Oscura Nítida y Modo Conmutable)
+
+function initMermaidConfig(isDark = false) {
   if (typeof mermaid !== "undefined") {
     try {
       mermaid.initialize({
         startOnLoad: false,
-        theme: "dark",
-        themeVariables: {
+        theme: isDark ? "dark" : "default",
+        themeVariables: isDark ? {
           darkMode: true,
           background: "#0b1120",
           primaryColor: "#0284c7",
@@ -6482,6 +6486,17 @@ function initMermaidConfig() {
           lineColor: "#38bdf8",
           secondaryColor: "#1e293b",
           tertiaryColor: "#0f172a"
+        } : {
+          darkMode: false,
+          background: "#f8fafc",
+          primaryColor: "#e0f2fe",
+          primaryTextColor: "#0f172a",
+          primaryBorderColor: "#0284c7",
+          lineColor: "#0284c7",
+          secondaryColor: "#f1f5f9",
+          tertiaryColor: "#ffffff",
+          fontFamily: "'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
+          fontSize: "13px"
         },
         flowchart: {
           curve: "basis",
@@ -6500,7 +6515,7 @@ async function triggerMermaidRender(containerEl) {
   try {
     const nodes = containerEl.querySelectorAll("pre.mermaid");
     if (nodes.length > 0) {
-      await mermaid.run({ nodes });
+      await mermaid.run({ nodes: Array.from(nodes) });
     }
   } catch (err) {
     console.error("[Mermaid] Renderizado error:", err);
@@ -6517,25 +6532,32 @@ function escapeHtml(text) {
     .replace(/'/g, "&#039;");
 }
 
-function renderHtmlTable(rows) {
+function renderHtmlTable(rows, isDark = false) {
   if (!rows || rows.length === 0) return "";
   const header = rows[0];
   const body = rows.slice(1);
 
-  let html = `<div style="overflow-x: auto; margin: 16px 0; border: 1px solid rgba(255,255,255,0.12); border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.3);">`;
-  html += `<table style="width: 100%; border-collapse: collapse; font-size: 12px; text-align: left; background: rgba(15, 23, 42, 0.9);">`;
+  const tableBg = isDark ? "rgba(15, 23, 42, 0.9)" : "#ffffff";
+  const borderCol = isDark ? "rgba(255,255,255,0.12)" : "#e2e8f0";
+  const thBg = isDark ? "rgba(56, 189, 248, 0.15)" : "#f8fafc";
+  const thColor = isDark ? "#38bdf8" : "#0f172a";
+  const textColor = isDark ? "#cbd5e1" : "#334155";
+  const rowAltBg = isDark ? "rgba(255,255,255,0.03)" : "#f8fafc";
+
+  let html = `<div style="overflow-x: auto; margin: 18px 0; border: 1px solid ${borderCol}; border-radius: 8px; box-shadow: 0 1px 4px rgba(15, 23, 42, 0.05);">`;
+  html += `<table style="width: 100%; border-collapse: collapse; font-size: 12.5px; text-align: left; background: ${tableBg};">`;
   
-  html += `<thead><tr style="background: rgba(56, 189, 248, 0.15); border-bottom: 2px solid rgba(56, 189, 248, 0.4);">`;
+  html += `<thead><tr style="background: ${thBg}; border-bottom: 2px solid ${isDark ? '#38bdf8' : '#cbd5e1'};">`;
   header.forEach(h => {
-    html += `<th style="padding: 10px 12px; font-weight: 800; color: #38bdf8; border-right: 1px solid rgba(255,255,255,0.06);">${h}</th>`;
+    html += `<th style="padding: 10px 12px; font-weight: 800; color: ${thColor}; border-right: 1px solid ${borderCol};">${h}</th>`;
   });
   html += `</tr></thead><tbody>`;
 
   body.forEach((r, idx) => {
-    const bg = idx % 2 === 0 ? "rgba(255,255,255,0.02)" : "rgba(255,255,255,0.05)";
-    html += `<tr style="background: ${bg}; border-bottom: 1px solid rgba(255,255,255,0.06);">`;
+    const bg = idx % 2 === 0 ? "transparent" : rowAltBg;
+    html += `<tr style="background: ${bg}; border-bottom: 1px solid ${borderCol};">`;
     r.forEach(cell => {
-      html += `<td style="padding: 9px 12px; color: #cbd5e1; border-right: 1px solid rgba(255,255,255,0.06); line-height: 1.45;">${cell}</td>`;
+      html += `<td style="padding: 9px 12px; color: ${textColor}; border-right: 1px solid ${borderCol}; line-height: 1.5;">${cell}</td>`;
     });
     html += `</tr>`;
   });
@@ -6544,7 +6566,7 @@ function renderHtmlTable(rows) {
   return html;
 }
 
-function formatMarkdownToHtml(md) {
+function formatMarkdownToHtml(md, isDark = false) {
   if (!md) return "";
 
   // 1. Extraer bloques mermaid temporalmente
@@ -6563,23 +6585,47 @@ function formatMarkdownToHtml(md) {
     return `___CODE_BLOCK_${idx}___`;
   });
 
-  // 3. Reemplazar encabezados
-  processed = processed.replace(/^#### (.*$)/gim, '<h5 style="font-size: 13px; font-weight: 800; color: #a7f3d0; margin: 16px 0 6px 0;">$1</h5>');
-  processed = processed.replace(/^### (.*$)/gim, '<h4 style="font-size: 14.5px; font-weight: 800; color: #6ee7b7; margin: 20px 0 8px 0; border-left: 3px solid #10b981; padding-left: 8px;">$1</h4>');
-  processed = processed.replace(/^## (.*$)/gim, '<h3 style="font-size: 16.5px; font-weight: 900; color: #38bdf8; margin: 26px 0 10px 0; border-bottom: 1px solid rgba(56, 189, 248, 0.25); padding-bottom: 6px;">$1</h3>');
-  processed = processed.replace(/^# (.*$)/gim, '<h2 style="font-size: 19px; font-weight: 900; color: #ffffff; margin: 0 0 14px 0; letter-spacing: -0.3px;">$1</h2>');
+  // 3. Encabezados adaptables
+  if (isDark) {
+    processed = processed.replace(/^#### (.*$)/gim, '<h5 style="font-size: 13px; font-weight: 800; color: #a7f3d0; margin: 16px 0 6px 0;">$1</h5>');
+    processed = processed.replace(/^### (.*$)/gim, '<h4 style="font-size: 14.5px; font-weight: 800; color: #6ee7b7; margin: 20px 0 8px 0; border-left: 3px solid #10b981; padding-left: 8px;">$1</h4>');
+    processed = processed.replace(/^## (.*$)/gim, '<h3 style="font-size: 16.5px; font-weight: 900; color: #38bdf8; margin: 26px 0 10px 0; border-bottom: 1px solid rgba(56, 189, 248, 0.25); padding-bottom: 6px;">$1</h3>');
+    processed = processed.replace(/^# (.*$)/gim, '<h2 style="font-size: 19px; font-weight: 900; color: #ffffff; margin: 0 0 14px 0; letter-spacing: -0.3px;">$1</h2>');
+  } else {
+    // MODO CLARO PROFESIONAL (Fondo blanco, títulos oscuros/azules)
+    processed = processed.replace(/^#### (.*$)/gim, '<h5 style="font-size: 13px; font-weight: 800; color: #0f766e; margin: 16px 0 6px 0;">$1</h5>');
+    processed = processed.replace(/^### (.*$)/gim, '<h4 style="font-size: 14.5px; font-weight: 800; color: #047857; margin: 20px 0 8px 0; border-left: 3px solid #10b981; padding-left: 8px;">$1</h4>');
+    processed = processed.replace(/^## (.*$)/gim, '<h3 style="font-size: 16px; font-weight: 900; color: #0284c7; margin: 24px 0 10px 0; border-bottom: 1.5px solid #e2e8f0; padding-bottom: 6px;">$1</h3>');
+    processed = processed.replace(/^# (.*$)/gim, '<h2 style="font-size: 19px; font-weight: 900; color: #0f172a; margin: 0 0 14px 0; letter-spacing: -0.3px; border-bottom: 2px solid #0284c7; padding-bottom: 8px;">$1</h2>');
+  }
 
   // 4. Callouts [!IMPORTANT], [!NOTE], [!TIP], [!WARNING]
-  processed = processed.replace(/^>\s*\[!IMPORTANT\]\s*(.*$)/gim, '<div style="background: rgba(16, 185, 129, 0.12); border-left: 4px solid #10b981; padding: 10px 14px; border-radius: 6px; margin: 12px 0; color: #a7f3d0; font-size: 12.5px;"><strong style="color: #34d399;">⚖️ IMPORTANTE:</strong> $1</div>');
-  processed = processed.replace(/^>\s*\[!NOTE\]\s*(.*$)/gim, '<div style="background: rgba(56, 189, 248, 0.12); border-left: 4px solid #38bdf8; padding: 10px 14px; border-radius: 6px; margin: 12px 0; color: #bae6fd; font-size: 12.5px;"><strong style="color: #38bdf8;">📌 NOTA TÉCNICA:</strong> $1</div>');
-  processed = processed.replace(/^>\s*\[!TIP\]\s*(.*$)/gim, '<div style="background: rgba(245, 158, 11, 0.12); border-left: 4px solid #f59e0b; padding: 10px 14px; border-radius: 6px; margin: 12px 0; color: #fde68a; font-size: 12.5px;"><strong style="color: #fbbf24;">💡 CLAVE PSICOMÉTRICA:</strong> $1</div>');
-  processed = processed.replace(/^>\s*\[!WARNING\]\s*(.*$)/gim, '<div style="background: rgba(239, 68, 68, 0.12); border-left: 4px solid #ef4444; padding: 10px 14px; border-radius: 6px; margin: 12px 0; color: #fca5a5; font-size: 12.5px;"><strong style="color: #f87171;">⚠️ ALERTA EXCLUSIÓN:</strong> $1</div>');
-  processed = processed.replace(/^>\s*(.*$)/gim, '<blockquote style="border-left: 3px solid rgba(255,255,255,0.2); margin: 10px 0; padding: 6px 12px; color: #cbd5e1; font-style: italic; background: rgba(255,255,255,0.02); border-radius: 4px;">$1</blockquote>');
+  if (isDark) {
+    processed = processed.replace(/^>\s*\[!IMPORTANT\]\s*(.*$)/gim, '<div style="background: rgba(16, 185, 129, 0.12); border-left: 4px solid #10b981; padding: 10px 14px; border-radius: 6px; margin: 12px 0; color: #a7f3d0; font-size: 12.5px;"><strong style="color: #34d399;">⚖️ IMPORTANTE:</strong> $1</div>');
+    processed = processed.replace(/^>\s*\[!NOTE\]\s*(.*$)/gim, '<div style="background: rgba(56, 189, 248, 0.12); border-left: 4px solid #38bdf8; padding: 10px 14px; border-radius: 6px; margin: 12px 0; color: #bae6fd; font-size: 12.5px;"><strong style="color: #38bdf8;">📌 NOTA TÉCNICA:</strong> $1</div>');
+    processed = processed.replace(/^>\s*\[!TIP\]\s*(.*$)/gim, '<div style="background: rgba(245, 158, 11, 0.12); border-left: 4px solid #f59e0b; padding: 10px 14px; border-radius: 6px; margin: 12px 0; color: #fde68a; font-size: 12.5px;"><strong style="color: #fbbf24;">💡 CLAVE PSICOMÉTRICA:</strong> $1</div>');
+    processed = processed.replace(/^>\s*\[!WARNING\]\s*(.*$)/gim, '<div style="background: rgba(239, 68, 68, 0.12); border-left: 4px solid #ef4444; padding: 10px 14px; border-radius: 6px; margin: 12px 0; color: #fca5a5; font-size: 12.5px;"><strong style="color: #f87171;">⚠️ ALERTA EXCLUSIÓN:</strong> $1</div>');
+    processed = processed.replace(/^>\s*(.*$)/gim, '<blockquote style="border-left: 3px solid rgba(255,255,255,0.2); margin: 10px 0; padding: 6px 12px; color: #cbd5e1; font-style: italic; background: rgba(255,255,255,0.02); border-radius: 4px;">$1</blockquote>');
+  } else {
+    // Callouts en Modo Claro
+    processed = processed.replace(/^>\s*\[!IMPORTANT\]\s*(.*$)/gim, '<div style="background: #f0fdf4; border: 1px solid #bbf7d0; border-left: 4px solid #10b981; padding: 12px 14px; border-radius: 8px; margin: 14px 0; color: #166534; font-size: 12.5px; line-height: 1.55;"><strong style="color: #15803d; font-weight: 800;">⚖️ IMPORTANTE:</strong> $1</div>');
+    processed = processed.replace(/^>\s*\[!NOTE\]\s*(.*$)/gim, '<div style="background: #f0f9ff; border: 1px solid #bae6fd; border-left: 4px solid #0284c7; padding: 12px 14px; border-radius: 8px; margin: 14px 0; color: #075985; font-size: 12.5px; line-height: 1.55;"><strong style="color: #0284c7; font-weight: 800;">📌 NOTA TÉCNICA:</strong> $1</div>');
+    processed = processed.replace(/^>\s*\[!TIP\]\s*(.*$)/gim, '<div style="background: #fefce8; border: 1px solid #fde68a; border-left: 4px solid #f59e0b; padding: 12px 14px; border-radius: 8px; margin: 14px 0; color: #854d0e; font-size: 12.5px; line-height: 1.55;"><strong style="color: #b45309; font-weight: 800;">💡 CLAVE PSICOMÉTRICA:</strong> $1</div>');
+    processed = processed.replace(/^>\s*\[!WARNING\]\s*(.*$)/gim, '<div style="background: #fef2f2; border: 1px solid #fecdd3; border-left: 4px solid #ef4444; padding: 12px 14px; border-radius: 8px; margin: 14px 0; color: #991b1b; font-size: 12.5px; line-height: 1.55;"><strong style="color: #b91c1c; font-weight: 800;">⚠️ ALERTA EXCLUSIÓN:</strong> $1</div>');
+    processed = processed.replace(/^>\s*(.*$)/gim, '<blockquote style="border-left: 3px solid #cbd5e1; margin: 12px 0; padding: 8px 14px; color: #475569; font-style: italic; background: #f8fafc; border-radius: 6px;">$1</blockquote>');
+  }
 
   // 5. Negritas, cursivas y código inline
-  processed = processed.replace(/\*\*(.*?)\*\*/g, '<strong style="color: #ffffff; font-weight: 800;">$1</strong>');
-  processed = processed.replace(/\*(.*?)\*/g, '<em style="color: #cbd5e1;">$1</em>');
-  processed = processed.replace(/`([^`]+)`/g, '<code style="background: rgba(0,0,0,0.45); color: #38bdf8; padding: 2px 6px; border-radius: 4px; font-size: 12px; font-family: monospace;">$1</code>');
+  if (isDark) {
+    processed = processed.replace(/\*\*(.*?)\*\*/g, '<strong style="color: #ffffff; font-weight: 800;">$1</strong>');
+    processed = processed.replace(/\*(.*?)\*/g, '<em style="color: #cbd5e1;">$1</em>');
+    processed = processed.replace(/`([^`]+)`/g, '<code style="background: rgba(0,0,0,0.45); color: #38bdf8; padding: 2px 6px; border-radius: 4px; font-size: 12px; font-family: monospace;">$1</code>');
+  } else {
+    // Negritas y código en Modo Claro
+    processed = processed.replace(/\*\*(.*?)\*\*/g, '<strong style="color: #0f172a; font-weight: 800;">$1</strong>');
+    processed = processed.replace(/\*(.*?)\*/g, '<em style="color: #475569;">$1</em>');
+    processed = processed.replace(/`([^`]+)`/g, '<code style="background: #f1f5f9; color: #0284c7; border: 1px solid #e2e8f0; padding: 2px 6px; border-radius: 4px; font-size: 12px; font-family: monospace;">$1</code>');
+  }
 
   // 6. Tablas Markdown
   const lines = processed.split('\n');
@@ -6598,7 +6644,7 @@ function formatMarkdownToHtml(md) {
       tableRows.push(cells);
     } else {
       if (inTable) {
-        outLines.push(renderHtmlTable(tableRows));
+        outLines.push(renderHtmlTable(tableRows, isDark));
         tableRows = [];
         inTable = false;
       }
@@ -6606,29 +6652,34 @@ function formatMarkdownToHtml(md) {
     }
   }
   if (inTable && tableRows.length > 0) {
-    outLines.push(renderHtmlTable(tableRows));
+    outLines.push(renderHtmlTable(tableRows, isDark));
   }
   processed = outLines.join('\n');
 
   // 7. Listas de viñetas y números
-  processed = processed.replace(/^\s*[\-\*]\s+(.*$)/gim, '<li style="margin-left: 20px; list-style-type: disc; margin-bottom: 4px; color: #e2e8f0;">$1</li>');
-  processed = processed.replace(/^\s*(\d+)\.\s+(.*$)/gim, '<li style="margin-left: 20px; list-style-type: decimal; margin-bottom: 4px; color: #e2e8f0;">$2</li>');
+  const liColor = isDark ? "#e2e8f0" : "#334155";
+  processed = processed.replace(/^\s*[\-\*]\s+(.*$)/gim, `<li style="margin-left: 20px; list-style-type: disc; margin-bottom: 5px; color: ${liColor}; line-height: 1.6;">$1</li>`);
+  processed = processed.replace(/^\s*(\d+)\.\s+(.*$)/gim, `<li style="margin-left: 20px; list-style-type: decimal; margin-bottom: 5px; color: ${liColor}; line-height: 1.6;">$2</li>`);
 
   // 8. Párrafos
+  const pColor = isDark ? "#cbd5e1" : "#334155";
   processed = processed.split(/\n\s*\n/).map(p => {
     p = p.trim();
     if (!p) return "";
     if (p.startsWith('<h') || p.startsWith('<div') || p.startsWith('<table') || p.startsWith('<blockquote') || p.startsWith('<li') || p.startsWith('___MERMAID') || p.startsWith('___CODE')) {
       return p;
     }
-    return `<p style="margin: 8px 0; line-height: 1.65; color: #cbd5e1;">${p.replace(/\n/g, '<br>')}</p>`;
+    return `<p style="margin: 9px 0; line-height: 1.7; color: ${pColor}; font-size: 13.5px;">${p.replace(/\n/g, '<br>')}</p>`;
   }).join('\n');
 
   // 9. Restaurar Bloques de Código Genéricos
   processed = processed.replace(/___CODE_BLOCK_(\d+)___/g, (match, idx) => {
     const item = codeBlocks[Number(idx)];
     if (!item) return "";
-    return `<div style="background: #090d16; border: 1px solid rgba(255,255,255,0.12); border-radius: 8px; padding: 12px; margin: 12px 0; overflow-x: auto; font-family: monospace; font-size: 12px; color: #7dd3fc; line-height: 1.5;">${escapeHtml(item.code)}</div>`;
+    const codeBg = isDark ? "#090d16" : "#f8fafc";
+    const codeBorder = isDark ? "rgba(255,255,255,0.12)" : "#cbd5e1";
+    const codeText = isDark ? "#7dd3fc" : "#0f172a";
+    return `<div style="background: ${codeBg}; border: 1px solid ${codeBorder}; border-radius: 8px; padding: 12px; margin: 14px 0; overflow-x: auto; font-family: monospace; font-size: 12px; color: ${codeText}; line-height: 1.5;">${escapeHtml(item.code)}</div>`;
   });
 
   // 10. Restaurar Bloques Mermaid
@@ -6636,17 +6687,24 @@ function formatMarkdownToHtml(md) {
     const code = mermaidBlocks[Number(idx)];
     if (!code) return "";
     const diagramId = `mermaid_diag_${Date.now()}_${idx}_${Math.floor(Math.random() * 1000)}`;
+    const mContainerBg = isDark ? "#0b1120" : "#f8fafc";
+    const mBorder = isDark ? "rgba(56, 189, 248, 0.4)" : "#cbd5e1";
+    const mHeaderColor = isDark ? "#38bdf8" : "#0284c7";
+    const mBadgeBg = isDark ? "rgba(16, 185, 129, 0.15)" : "#dcfce7";
+    const mBadgeColor = isDark ? "#6ee7b7" : "#15803d";
+    const mPreColor = isDark ? "#f8fafc" : "#0f172a";
+
     return `
-      <div class="mermaid-container" style="margin: 20px 0; background: #0b1120; border: 1.5px solid rgba(56, 189, 248, 0.4); border-radius: 12px; padding: 16px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5); overflow-x: auto;">
-        <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255, 255, 255, 0.08); padding-bottom: 8px; margin-bottom: 12px;">
-          <span style="font-size: 11px; font-weight: 800; color: #38bdf8; text-transform: uppercase; display: flex; align-items: center; gap: 6px;">
+      <div class="mermaid-container" style="margin: 20px 0; background: ${mContainerBg}; border: 1.5px solid ${mBorder}; border-radius: 12px; padding: 16px; box-shadow: 0 2px 8px rgba(15, 23, 42, 0.05); overflow-x: auto;">
+        <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid ${isDark ? 'rgba(255,255,255,0.08)' : '#e2e8f0'}; padding-bottom: 8px; margin-bottom: 12px;">
+          <span style="font-size: 11.5px; font-weight: 800; color: ${mHeaderColor}; text-transform: uppercase; display: flex; align-items: center; gap: 6px;">
             <span>📊</span> Diagrama de Proceso / Estructura Técnica
           </span>
-          <span style="font-size: 10px; font-weight: 700; color: #6ee7b7; background: rgba(16, 185, 129, 0.15); padding: 2px 7px; border-radius: 6px;">
+          <span style="font-size: 10px; font-weight: 800; color: ${mBadgeColor}; background: ${mBadgeBg}; padding: 2px 8px; border-radius: 6px;">
             Mermaid Vectorial
           </span>
         </div>
-        <pre class="mermaid" id="${diagramId}" style="text-align: center; margin: 0; background: transparent; font-size: 12px; color: #f8fafc;">${escapeHtml(code)}</pre>
+        <pre class="mermaid" id="${diagramId}" style="text-align: center; margin: 0; background: transparent; font-size: 12.5px; color: ${mPreColor};">${escapeHtml(code)}</pre>
       </div>
     `;
   });
@@ -6655,7 +6713,11 @@ function formatMarkdownToHtml(md) {
 }
 
 function setupPlanEstudioModal() {
-  initMermaidConfig();
+  const THEME_STORAGE_KEY = "simo_plan_reader_theme";
+  let readerTheme = localStorage.getItem(THEME_STORAGE_KEY) || "light"; // POR DEFECTO: CLARO (COMO PIDIÓ EL USUARIO)
+  let isDark = readerTheme === "dark";
+
+  initMermaidConfig(isDark);
 
   // Elementos de la Pestaña Principal (tab-planEstudio)
   const navBottomBtn = document.getElementById("navBtnBottomPlanEstudio");
@@ -6680,6 +6742,9 @@ function setupPlanEstudioModal() {
   const btnFontDec = document.getElementById("btnPlanFontDec");
   const btnFontInc = document.getElementById("btnPlanFontInc");
   const btnMarkRead = document.getElementById("btnPlanMarkModuleRead");
+  const btnToggleContrast = document.getElementById("btnPlanToggleContrast");
+  const iconThemeToggle = document.getElementById("iconThemeToggle");
+  const labelThemeToggle = document.getElementById("labelThemeToggle");
   const moduleBody = document.getElementById("tabPlanModuleBody");
 
   const weeksContainer = document.getElementById("tabPlanWeeksContainer");
@@ -6691,7 +6756,7 @@ function setupPlanEstudioModal() {
   const btnIrDesdeRecursos = document.getElementById("btnIrAPlanDesdeRecursos");
   const hubCardPlan = document.getElementById("hubCardPlanEstudio");
 
-  // Modal legacy (para compatibilidad si se activa desde algún botón)
+  // Legacy Modal Handlers
   const legacyModal = document.getElementById("planEstudioModal");
   const legacyCloseX = document.getElementById("btnClosePlanEstudioModalX");
   const legacyCloseBtn = document.getElementById("btnClosePlanEstudioModal");
@@ -6712,6 +6777,24 @@ function setupPlanEstudioModal() {
   } catch (e) {
     completedWeeks = {};
     completedModules = {};
+  }
+
+  function applyReaderThemeUI() {
+    isDark = readerTheme === "dark";
+    if (iconThemeToggle) iconThemeToggle.textContent = isDark ? "🌙" : "☀️";
+    if (labelThemeToggle) labelThemeToggle.textContent = isDark ? "Noche" : "Claro";
+
+    if (moduleBody) {
+      if (isDark) {
+        moduleBody.style.background = "#0f172a";
+        moduleBody.style.color = "#f1f5f9";
+        moduleBody.style.border = "1px solid rgba(255, 255, 255, 0.1)";
+      } else {
+        moduleBody.style.background = "#ffffff";
+        moduleBody.style.color = "#334155";
+        moduleBody.style.border = "1px solid #e2e8f0";
+      }
+    }
   }
 
   function updateGlobalProgress() {
@@ -6755,16 +6838,16 @@ function setupPlanEstudioModal() {
       if (!t.btn || !t.view) return;
       if (t.key === subTabKey) {
         t.btn.classList.add("active");
-        t.btn.style.border = "1px solid #10b981";
-        t.btn.style.background = "rgba(16, 185, 129, 0.25)";
-        t.btn.style.color = "#a7f3d0";
+        t.btn.style.border = "1.5px solid #10b981";
+        t.btn.style.background = "#dcfce7";
+        t.btn.style.color = "#065f46";
         t.btn.style.fontWeight = "800";
         t.view.style.display = "flex";
       } else {
         t.btn.classList.remove("active");
-        t.btn.style.border = "1px solid rgba(255, 255, 255, 0.1)";
-        t.btn.style.background = "transparent";
-        t.btn.style.color = "#94a3b8";
+        t.btn.style.border = "1px solid #e2e8f0";
+        t.btn.style.background = "#ffffff";
+        t.btn.style.color = "#64748b";
         t.btn.style.fontWeight = "700";
         t.view.style.display = "none";
       }
@@ -6815,25 +6898,40 @@ function setupPlanEstudioModal() {
     if (btnMarkRead) {
       if (isRead) {
         btnMarkRead.style.background = "#10b981";
-        btnMarkRead.style.color = "#042f2e";
+        btnMarkRead.style.color = "#ffffff";
         btnMarkRead.innerHTML = "<span>✓</span> ¡Estudiado!";
       } else {
-        btnMarkRead.style.background = "rgba(16, 185, 129, 0.15)";
-        btnMarkRead.style.color = "#6ee7b7";
+        btnMarkRead.style.background = "#ecfdf5";
+        btnMarkRead.style.color = "#047857";
         btnMarkRead.innerHTML = "<span>✓</span> Marcar Estudiado";
       }
     }
 
-    // Renderizar Markdown Completo a HTML enriquecido
-    const html = formatMarkdownToHtml(mod.content);
+    applyReaderThemeUI();
+
+    // Renderizar Markdown Completo en Versión Clara
+    const html = formatMarkdownToHtml(mod.content, isDark);
     moduleBody.style.fontSize = `${currentFontSize}px`;
     moduleBody.innerHTML = html;
 
     // Disparar renderizado dinámico de diagramas Mermaid vectoriales
+    initMermaidConfig(isDark);
     await triggerMermaidRender(moduleBody);
 
     // Scroll suave al inicio del lector
     moduleBody.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+
+  // Alternar entre modo claro y modo noche en el lector
+  if (btnToggleContrast) {
+    btnToggleContrast.addEventListener("click", () => {
+      readerTheme = readerTheme === "light" ? "dark" : "light";
+      try {
+        localStorage.setItem(THEME_STORAGE_KEY, readerTheme);
+      } catch (e) {}
+      applyReaderThemeUI();
+      renderModule(currentModuleId);
+    });
   }
 
   // Buscador de palabras en el módulo actual
@@ -6850,10 +6948,9 @@ function setupPlanEstudioModal() {
         return;
       }
 
-      // Volver a renderizar y resaltar coincidencias
-      let html = formatMarkdownToHtml(mod.content);
+      let html = formatMarkdownToHtml(mod.content, isDark);
       const re = new RegExp(`(${query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
-      html = html.replace(re, '<mark style="background: #f59e0b; color: #000; padding: 1px 3px; border-radius: 3px; font-weight: 800;">$1</mark>');
+      html = html.replace(re, '<mark style="background: #fde047; color: #854d0e; padding: 1px 4px; border-radius: 3px; font-weight: 800;">$1</mark>');
       moduleBody.innerHTML = html;
       triggerMermaidRender(moduleBody);
     });
@@ -6919,7 +7016,7 @@ function setupPlanEstudioModal() {
     });
   }
 
-  // --- SUBVISTA 2: CRONOGRAMA 60 DÍAS (12 SEMANAS) ---
+  // --- SUBVISTA 2: CRONOGRAMA 60 DÍAS (12 SEMANAS - VERSIÓN CLARA) ---
   function renderWeeksList() {
     if (!weeksContainer) return;
     const crono = (window.PLAN_ESTUDIO_FICHA_3006 && window.PLAN_ESTUDIO_FICHA_3006.cronograma) || [];
@@ -6928,13 +7025,14 @@ function setupPlanEstudioModal() {
     crono.forEach(w => {
       const isCompleted = !!completedWeeks[w.semana];
       const card = document.createElement("div");
-      card.style.background = isCompleted ? "rgba(16, 185, 129, 0.08)" : "rgba(15, 23, 42, 0.85)";
-      card.style.border = isCompleted ? "1.5px solid rgba(16, 185, 129, 0.5)" : "1px solid rgba(255, 255, 255, 0.1)";
+      card.style.background = isCompleted ? "#f0fdf4" : "#ffffff";
+      card.style.border = isCompleted ? "1.5px solid #10b981" : "1px solid #e2e8f0";
       card.style.borderRadius = "12px";
-      card.style.padding = "14px 16px";
+      card.style.padding = "16px 18px";
       card.style.display = "flex";
       card.style.flexDirection = "column";
       card.style.gap = "10px";
+      card.style.boxShadow = "0 1px 3px rgba(15, 23, 42, 0.05)";
 
       const topRow = document.createElement("div");
       topRow.style.display = "flex";
@@ -6963,7 +7061,7 @@ function setupPlanEstudioModal() {
       const titleSpan = document.createElement("span");
       titleSpan.style.fontSize = "13.5px";
       titleSpan.style.fontWeight = "800";
-      titleSpan.style.color = isCompleted ? "#6ee7b7" : "#f8fafc";
+      titleSpan.style.color = isCompleted ? "#047857" : "#0f172a";
       titleSpan.textContent = `Semana ${w.semana}: ${w.titulo}`;
 
       leftTag.appendChild(chk);
@@ -6971,11 +7069,11 @@ function setupPlanEstudioModal() {
 
       const modBadge = document.createElement("span");
       modBadge.style.fontSize = "11px";
-      modBadge.style.fontWeight = "700";
-      modBadge.style.color = "#38bdf8";
-      modBadge.style.background = "rgba(56, 189, 248, 0.12)";
-      modBadge.style.border = "1px solid rgba(56, 189, 248, 0.25)";
-      modBadge.style.padding = "2px 8px";
+      modBadge.style.fontWeight = "800";
+      modBadge.style.color = "#0284c7";
+      modBadge.style.background = "#e0f2fe";
+      modBadge.style.border = "1px solid #bae6fd";
+      modBadge.style.padding = "3px 8px";
       modBadge.style.borderRadius = "6px";
       modBadge.textContent = `Módulos: ${(w.modulos || []).join(", ")}`;
 
@@ -6985,33 +7083,31 @@ function setupPlanEstudioModal() {
 
       const metaDiv = document.createElement("div");
       metaDiv.style.fontSize = "12px";
-      metaDiv.style.color = "#cbd5e1";
+      metaDiv.style.color = "#334155";
       metaDiv.style.lineHeight = "1.5";
       metaDiv.innerHTML = `<strong>🎯 Meta & Entregable:</strong> ${w.meta}`;
       card.appendChild(metaDiv);
 
-      // Desglose de Días de la Semana
       if (w.dias && w.dias.length > 0) {
         const diasBox = document.createElement("div");
-        diasBox.style.background = "rgba(0,0,0,0.25)";
-        diasBox.style.border = "1px solid rgba(255,255,255,0.06)";
+        diasBox.style.background = "#f8fafc";
+        diasBox.style.border = "1px solid #e2e8f0";
         diasBox.style.borderRadius = "8px";
-        diasBox.style.padding = "8px 12px";
+        diasBox.style.padding = "10px 14px";
         diasBox.style.display = "flex";
         diasBox.style.flexDirection = "column";
-        diasBox.style.gap = "4px";
+        diasBox.style.gap = "5px";
 
         w.dias.forEach(d => {
           const diaItem = document.createElement("div");
           diaItem.style.fontSize = "11.5px";
-          diaItem.style.color = "#94a3b8";
-          diaItem.innerHTML = `<span style="color: #38bdf8; font-weight: 700;">• Día ${d.dia}:</span> ${d.tema}`;
+          diaItem.style.color = "#475569";
+          diaItem.innerHTML = `<span style="color: #0284c7; font-weight: 700;">• Día ${d.dia}:</span> ${d.tema}`;
           diasBox.appendChild(diaItem);
         });
         card.appendChild(diasBox);
       }
 
-      // Botonera de acciones
       const actionsRow = document.createElement("div");
       actionsRow.style.display = "flex";
       actionsRow.style.justifyContent = "space-between";
@@ -7028,13 +7124,13 @@ function setupPlanEstudioModal() {
         const b = document.createElement("button");
         b.type = "button";
         b.textContent = `📖 Leer Módulo ${mNum}`;
-        b.style.padding = "4px 9px";
-        b.style.fontSize = "11px";
+        b.style.padding = "5px 10px";
+        b.style.fontSize = "11.5px";
         b.style.fontWeight = "700";
         b.style.borderRadius = "6px";
-        b.style.border = "1px solid rgba(56, 189, 248, 0.35)";
-        b.style.background = "rgba(56, 189, 248, 0.1)";
-        b.style.color = "#7dd3fc";
+        b.style.border = "1px solid #bae6fd";
+        b.style.background = "#e0f2fe";
+        b.style.color = "#0369a1";
         b.style.cursor = "pointer";
         b.addEventListener("click", () => {
           switchPlanSubtab("modulos");
@@ -7046,14 +7142,15 @@ function setupPlanEstudioModal() {
       const btnPrac = document.createElement("button");
       btnPrac.type = "button";
       btnPrac.textContent = "🎯 Practicar Casos";
-      btnPrac.style.padding = "5px 12px";
+      btnPrac.style.padding = "6px 14px";
       btnPrac.style.fontSize = "11.5px";
       btnPrac.style.fontWeight = "800";
       btnPrac.style.borderRadius = "6px";
-      btnPrac.style.border = "1px solid #10b981";
-      btnPrac.style.background = "rgba(16, 185, 129, 0.2)";
-      btnPrac.style.color = "#a7f3d0";
+      btnPrac.style.border = "none";
+      btnPrac.style.background = "#10b981";
+      btnPrac.style.color = "#ffffff";
       btnPrac.style.cursor = "pointer";
+      btnPrac.style.boxShadow = "0 2px 6px rgba(16, 185, 129, 0.25)";
       btnPrac.addEventListener("click", () => launchMaestroPractice());
 
       actionsRow.appendChild(btnGroup);
@@ -7064,7 +7161,7 @@ function setupPlanEstudioModal() {
     });
   }
 
-  // --- SUBVISTA 3: FILTROS PSICOMÉTRICOS ---
+  // --- SUBVISTA 3: FILTROS PSICOMÉTRICOS (VERSIÓN CLARA) ---
   function renderFiltrosList() {
     if (!filtrosGrid) return;
     const filtros = (window.PLAN_ESTUDIO_FICHA_3006 && window.PLAN_ESTUDIO_FICHA_3006.filtrosPsicometricos) || [];
@@ -7072,23 +7169,24 @@ function setupPlanEstudioModal() {
 
     filtros.forEach(f => {
       const card = document.createElement("div");
-      card.style.background = "rgba(15, 23, 42, 0.85)";
-      card.style.border = `1.5px solid ${f.color || "#38bdf8"}`;
+      card.style.background = "#ffffff";
+      card.style.border = `1.5px solid ${f.color || "#0284c7"}`;
       card.style.borderRadius = "12px";
-      card.style.padding = "14px 16px";
+      card.style.padding = "16px 18px";
       card.style.display = "flex";
       card.style.flexDirection = "column";
       card.style.gap = "8px";
+      card.style.boxShadow = "0 1px 4px rgba(15, 23, 42, 0.05)";
 
       card.innerHTML = `
         <div style="display: flex; align-items: center; gap: 10px;">
           <span style="font-size: 24px;">${f.icono}</span>
           <div>
-            <div style="font-size: 13.5px; font-weight: 800; color: #ffffff;">Filtro ${f.numero}: ${f.nombre}</div>
-            <div style="font-size: 11px; color: ${f.color || '#38bdf8'}; font-weight: 700;">Regla Oficial de Descarte Psicométrico</div>
+            <div style="font-size: 14px; font-weight: 800; color: #0f172a;">Filtro ${f.numero}: ${f.nombre}</div>
+            <div style="font-size: 11px; color: ${f.color || '#0284c7'}; font-weight: 700;">Regla Oficial de Descarte Psicométrico</div>
           </div>
         </div>
-        <div style="background: rgba(0,0,0,0.3); border-left: 3px solid ${f.color || '#38bdf8'}; padding: 10px 12px; border-radius: 4px; font-size: 12px; color: #cbd5e1; line-height: 1.55;">
+        <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-left: 4px solid ${f.color || '#0284c7'}; padding: 12px 14px; border-radius: 6px; font-size: 12.5px; color: #334155; line-height: 1.6;">
           ${f.reglaDeOro}
         </div>
       `;
@@ -7096,7 +7194,7 @@ function setupPlanEstudioModal() {
     });
   }
 
-  // --- SUBVISTA 4: 40 CASOS PJS ---
+  // --- SUBVISTA 4: 40 CASOS PJS (VERSIÓN CLARA) ---
   function renderCasosList() {
     if (!casosCardsContainer) return;
     const casos = window.CASOS_MAESTROS_FICHA_3006 || [];
@@ -7104,23 +7202,25 @@ function setupPlanEstudioModal() {
 
     casos.forEach((c, idx) => {
       const item = document.createElement("div");
-      item.style.background = "rgba(15, 23, 42, 0.75)";
-      item.style.border = "1px solid rgba(255, 255, 255, 0.08)";
+      item.style.background = "#ffffff";
+      item.style.border = "1px solid #e2e8f0";
       item.style.borderRadius = "10px";
-      item.style.padding = "12px 14px";
+      item.style.padding = "14px 16px";
       item.style.display = "flex";
       item.style.flexDirection = "column";
       item.style.gap = "6px";
+      item.style.cursor = "pointer";
+      item.style.boxShadow = "0 1px 3px rgba(15, 23, 42, 0.04)";
 
       item.innerHTML = `
         <div style="display: flex; justify-content: space-between; align-items: center;">
-          <span style="font-size: 11px; font-weight: 800; color: #10b981;">Caso ${idx + 1} de 40 • ${c.ejeNombre || c.ejeId}</span>
-          <span style="font-size: 10px; font-weight: 800; background: rgba(16, 185, 129, 0.15); color: #6ee7b7; padding: 2px 6px; border-radius: 6px;">Ficha 3006</span>
+          <span style="font-size: 11.5px; font-weight: 800; color: #047857;">Caso ${idx + 1} de 40 • ${c.ejeNombre || c.ejeId}</span>
+          <span style="font-size: 10px; font-weight: 800; background: #dcfce7; color: #15803d; border: 1px solid #bbf7d0; padding: 2px 7px; border-radius: 6px;">Ficha 3006</span>
         </div>
-        <div style="font-size: 11.5px; color: #94a3b8; font-style: italic; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">
+        <div style="font-size: 12px; color: #475569; font-style: italic; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; line-height: 1.45;">
           ${c.caso}
         </div>
-        <div style="font-size: 12px; font-weight: 700; color: #f8fafc;">
+        <div style="font-size: 12.5px; font-weight: 800; color: #0f172a; line-height: 1.4;">
           ${c.pregunta}
         </div>
       `;
